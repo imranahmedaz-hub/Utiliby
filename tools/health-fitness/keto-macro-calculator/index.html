@@ -53,10 +53,10 @@
 
 <div class="row" id="imperialBox" hidden>
 <div><label for="ft">Height (ft)</label><input id="ft" type="number" min="3" max="8" step="1" value="5"></div>
-<div><label for="in">Height (in)</label><input id="in" type="number" min="0" max="11" step="1" value="9"></div>
+<div><label for="in">Height (in)</label><input id="in" type="number" min="0" max="11" step="0.1" value="8.9"></div>
 </div>
 <div class="row" id="imperialBox2" hidden>
-<div><label for="lb">Weight (lb)</label><input id="lb" type="number" min="60" max="660" step="0.1" value="165"></div>
+<div><label for="lb">Weight (lb)</label><input id="lb" type="number" min="60" max="660" step="0.1" value="165.3"></div>
 <div></div>
 </div>
 
@@ -129,6 +129,7 @@
 function $(id){ return document.getElementById(id); }
 function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
 function fmt(n){ return Math.round(n).toLocaleString(); }
+function round1(n){ return Math.round(n * 10) / 10; }
 
 var unit = "metric";
 var LAST = "";
@@ -236,7 +237,27 @@ function render(){
 }
 
 function setUnit(u){
-  unit = (u === "imperial") ? "imperial" : "metric";
+  var newUnit = (u === "imperial") ? "imperial" : "metric";
+  if(newUnit === unit){ return; }
+
+  if(newUnit === "imperial"){
+    var cm = num($("cm").value, 175);
+    var kg = num($("kg").value, 75);
+    var totalIn = cm / 2.54;
+    var ft = Math.floor(totalIn / 12);
+    var inch = round1(totalIn - ft * 12);
+    $("ft").value = ft;
+    $("in").value = inch;
+    $("lb").value = round1(kg * 2.2046226218);
+  } else {
+    var ft2 = num($("ft").value, 5);
+    var in2 = num($("in").value, 9);
+    var lb2 = num($("lb").value, 165);
+    $("cm").value = round1((ft2 * 12 + in2) * 2.54);
+    $("kg").value = round1(lb2 * 0.45359237);
+  }
+
+  unit = newUnit;
   $("metricBox").hidden = unit !== "metric";
   $("imperialBox").hidden = unit !== "imperial";
   $("imperialBox2").hidden = unit !== "imperial";
