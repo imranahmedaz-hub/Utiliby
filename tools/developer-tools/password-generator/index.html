@@ -1,0 +1,272 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Password Generator – Free Strong Random Password Generator</title>
+<meta name="description" content="Free strong password generator. Create secure random passwords with a strength meter. Runs in your browser, no sign-up, nothing is sent anywhere.">
+<link rel="canonical" href="https://utiliby.com/tools/developer-tools/password-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Password Generator – Free Strong Random Password Generator">
+<meta property="og:description" content="Free strong password generator. Create secure random passwords with a strength meter.">
+<meta property="og:url" content="https://utiliby.com/tools/developer-tools/password-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Password Generator","url":"https://utiliby.com/tools/developer-tools/password-generator/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main"><a href="/tools/everyday-calculators/">Calculators</a></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/developer-tools/">Developer Tools</a> › Password Generator</nav>
+<h1>Password Generator</h1>
+<p class="lead">Create strong, random passwords in your browser. Cryptographically secure, no sign-up, nothing is sent anywhere.</p>
+
+<section class="tool" id="tool" aria-label="Password generator">
+<label for="len">Password length: <span id="lenVal">16</span></label>
+<input id="len" type="range" min="4" max="64" value="16" step="1">
+
+<div class="chips">
+<label><input type="checkbox" id="upper" checked> A-Z</label>
+<label><input type="checkbox" id="lower" checked> a-z</label>
+<label><input type="checkbox" id="digits" checked> 0-9</label>
+<label><input type="checkbox" id="symbols" checked> !@#$…</label>
+<label><input type="checkbox" id="noAmbig"> Exclude ambiguous (0O1lI)</label>
+<label><input type="checkbox" id="noDup"> No repeated characters</label>
+</div>
+
+<div class="row">
+<div><label for="count">How many passwords?</label><input id="count" type="number" min="1" max="50" value="1"></div>
+<div></div>
+</div>
+
+<label for="outText">Generated password</label>
+<textarea id="outText" rows="3" readonly></textarea>
+
+<div id="strengthBox" class="result" aria-live="polite"></div>
+
+<div class="actions">
+<button type="button" id="gen">Generate</button>
+<button type="button" class="ghost" id="cpres">Copy</button>
+<button type="button" class="ghost" id="cplink">Copy link</button>
+</div>
+</section>
+
+<h2>How to use this password generator</h2>
+<ol>
+<li>Drag the slider to choose a length. 16 characters or more is recommended for important accounts.</li>
+<li>Tick the character types you want to include.</li>
+<li>Optionally exclude ambiguous characters or disallow repeats.</li>
+<li>Click <b>Generate</b> for a new password, or <b>Copy</b> to place it on your clipboard.</li>
+</ol>
+
+<h2>What makes a strong password?</h2>
+<ul>
+<li><b>Length matters most.</b> Every extra character multiplies the search space. 16+ characters is a solid minimum for important accounts.</li>
+<li><b>Use all four character types.</b> Upper, lower, digits and symbols together give the largest alphabet.</li>
+<li><b>Never reuse.</b> Every account should have a unique password, so a leak on one site cannot unlock others.</li>
+<li><b>Use a password manager.</b> Store passwords in a manager rather than trying to memorise them.</li>
+<li><b>Enable two-factor authentication</b> wherever it is offered.</li>
+</ul>
+
+<h2>How strength is calculated</h2>
+<p>Strength is based on <b>entropy</b>, measured in bits: entropy = length × log₂(alphabet size). Roughly:</p>
+<ul>
+<li><b>Under 40 bits</b> — weak, crackable quickly</li>
+<li><b>40–60 bits</b> — moderate, fine for low-risk accounts</li>
+<li><b>60–80 bits</b> — strong</li>
+<li><b>80+ bits</b> — very strong</li>
+</ul>
+<p>Randomness comes from the browser's Web Crypto API (<code>crypto.getRandomValues()</code>), which draws from the operating system's cryptographically secure random source — not from Math.random().</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>Is this password generator safe to use?</summary><p>Yes. All generation happens in your browser using the Web Crypto API. Nothing is sent to us or stored.</p></details>
+<details><summary>What is a good password length?</summary><p>16 characters or more for important accounts. 20+ for high-value accounts. Length has more effect on security than complexity.</p></details>
+<details><summary>Should I use symbols?</summary><p>Yes — they expand the alphabet and increase entropy. The only exception is when a specific site forbids them.</p></details>
+<details><summary>Can I use these passwords offline?</summary><p>Yes. Once the page loads, the generator works entirely offline. Disconnect your network and it still generates passwords.</p></details>
+<details><summary>Is anything stored?</summary><p>No. Nothing you generate or type is sent to or stored on our servers.</p></details>
+
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+function $(id){ return document.getElementById(id); }
+var LAST = "";
+
+var SETS = {
+  upper:   "ABCDEFGHIJKLMNOPQRSTUVWXYZ",
+  lower:   "abcdefghijklmnopqrstuvwxyz",
+  digits:  "0123456789",
+  symbols: "!@#$%^&*()-_=+[]{};:,.<>?/|~"
+};
+
+var AMBIG = "0O1lI";
+
+function buildAlphabet(){
+  var parts = [];
+  if($("upper").checked)   parts.push(SETS.upper);
+  if($("lower").checked)   parts.push(SETS.lower);
+  if($("digits").checked)  parts.push(SETS.digits);
+  if($("symbols").checked) parts.push(SETS.symbols);
+  var alpha = parts.join("");
+  if($("noAmbig").checked){
+    var out = "";
+    for(var i = 0; i < alpha.length; i++){
+      if(AMBIG.indexOf(alpha.charAt(i)) === -1) out += alpha.charAt(i);
+    }
+    alpha = out;
+  }
+  return alpha;
+}
+
+function secureRandomInt(max){
+  if(max <= 0) return 0;
+  var cryptoObj = window.crypto || window.msCrypto;
+  if(cryptoObj && cryptoObj.getRandomValues){
+    var limit = Math.floor(4294967296 / max) * max;
+    var arr = new Uint32Array(1);
+    do {
+      cryptoObj.getRandomValues(arr);
+    } while(arr[0] >= limit);
+    return arr[0] % max;
+  }
+  return Math.floor(Math.random() * max);
+}
+
+function generateOne(length, alphabet, noDup){
+  if(alphabet.length === 0) return "";
+  if(noDup && length > alphabet.length) length = alphabet.length;
+
+  var chars = alphabet.split("");
+  var result = "";
+  for(var i = 0; i < length; i++){
+    var idx = secureRandomInt(chars.length);
+    result += chars[idx];
+    if(noDup){
+      chars.splice(idx, 1);
+    }
+  }
+  return result;
+}
+
+function entropyBits(length, alphabetSize){
+  if(alphabetSize <= 1 || length <= 0) return 0;
+  return length * Math.log(alphabetSize) / Math.LN2;
+}
+
+function strengthLabel(bits){
+  if(bits < 40) return { text: "Weak", cls: "weak" };
+  if(bits < 60) return { text: "Moderate", cls: "moderate" };
+  if(bits < 80) return { text: "Strong", cls: "strong" };
+  return { text: "Very strong", cls: "vstrong" };
+}
+
+function render(){
+  var length = parseInt($("len").value, 10) || 16;
+  var count  = parseInt($("count").value, 10) || 1;
+  if(count < 1) count = 1;
+  if(count > 50) count = 50;
+
+  var alphabet = buildAlphabet();
+  var noDup = $("noDup").checked;
+  var size = alphabet.length;
+
+  var passwords = [];
+  for(var i = 0; i < count; i++){
+    passwords.push(generateOne(length, alphabet, noDup));
+  }
+  var combined = passwords.join("\n");
+  $("outText").value = combined;
+
+  var bits = entropyBits(length, size);
+  var label = strengthLabel(bits);
+
+  var out = $("strengthBox");
+  if(size === 0){
+    out.innerHTML = '<p><b>Select at least one character type.</b></p>';
+    LAST = "";
+    return;
+  }
+
+  out.innerHTML =
+    '<div>Strength: <b>' + label.text + '</b></div>' +
+    '<div class="big">' + Math.round(bits) + ' bits</div>' +
+    '<p>Alphabet size: ' + size + ' characters · Length: ' + length +
+    ' · Passwords: ' + count + '</p>';
+
+  LAST = combined;
+}
+
+function syncLenLabel(){
+  $("lenVal").textContent = $("len").value;
+}
+
+function copyLink(){
+  var o = {
+    l: $("len").value,
+    u: $("upper").checked ? 1 : 0,
+    lo: $("lower").checked ? 1 : 0,
+    d: $("digits").checked ? 1 : 0,
+    s: $("symbols").checked ? 1 : 0,
+    a: $("noAmbig").checked ? 1 : 0,
+    n: $("noDup").checked ? 1 : 0,
+    c: $("count").value
+  };
+  return location.origin + location.pathname + "#s=" +
+    encodeURIComponent(btoa(unescape(encodeURIComponent(JSON.stringify(o)))));
+}
+
+function loadFromHash(){
+  var m = location.hash.match(/^#s=(.+)$/);
+  if(!m) return false;
+  try {
+    var o = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+    if(o.l != null) $("len").value = o.l;
+    if(o.u != null) $("upper").checked = !!o.u;
+    if(o.lo != null) $("lower").checked = !!o.lo;
+    if(o.d != null) $("digits").checked = !!o.d;
+    if(o.s != null) $("symbols").checked = !!o.s;
+    if(o.a != null) $("noAmbig").checked = !!o.a;
+    if(o.n != null) $("noDup").checked = !!o.n;
+    if(o.c != null) $("count").value = o.c;
+    return true;
+  } catch(e){ return false; }
+}
+
+function copyText(t, b){
+  if(!navigator.clipboard) return;
+  navigator.clipboard.writeText(t).then(function(){
+    var o = b.textContent;
+    b.textContent = "Copied!";
+    setTimeout(function(){ b.textContent = o; }, 1500);
+  });
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  syncLenLabel();
+  loadFromHash();
+  syncLenLabel();
+  render();
+
+  T.addEventListener("input", function(e){
+    if(e.target.id === "len") syncLenLabel();
+    render();
+  });
+  T.addEventListener("change", render);
+  T.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.id === "gen"){ render(); return; }
+    if(b.id === "cpres"){ copyText(LAST, b); return; }
+    if(b.id === "cplink"){ copyText(copyLink(), b); return; }
+  });
+});
+</script>
+</body>
+</html>
