@@ -1,0 +1,244 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Vendor Comparison Tool – Free Supplier Evaluation Matrix</title>
+<meta name="description" content="Free vendor comparison tool. Compare suppliers side by side with weighted scoring, TCO and objective rankings. No sign-up, runs in your browser.">
+<link rel="canonical" href="https://utiliby.com/tools/business-legal-tools/vendor-comparison-tool/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Vendor Comparison Tool – Free Supplier Evaluation Matrix">
+<meta property="og:description" content="Free vendor comparison tool. Compare suppliers with weighted scoring and objective rankings.">
+<meta property="og:url" content="https://utiliby.com/tools/business-legal-tools/vendor-comparison-tool/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Vendor Comparison Tool","url":"https://utiliby.com/tools/business-legal-tools/vendor-comparison-tool/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main"><a href="/tools/everyday-calculators/">Calculators</a></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business &amp; Legal Tools</a> › Vendor Comparison Tool</nav>
+<h1>Vendor Comparison Tool</h1>
+<p class="lead">Compare vendors side by side with weighted scoring. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Vendor comparison tool">
+<p class="meta">Add your criteria and vendors below. Weighted scores and rankings appear instantly.</p>
+
+<div id="criteriaList"></div>
+<p><button type="button" class="ghost" id="addCriterion">+ Add criterion</button></p>
+
+<div id="vendorList"></div>
+<p><button type="button" class="ghost" id="addVendor">+ Add vendor</button></p>
+
+<div class="result" id="out" aria-live="polite"></div>
+
+<div class="actions">
+<button type="button" class="ghost" id="cpres">Copy results</button>
+</div>
+</section>
+
+<h2>What is a vendor comparison matrix?</h2>
+<p>A vendor comparison matrix (also called a supplier evaluation matrix or weighted decision matrix) is a structured tool for comparing multiple suppliers against multiple criteria [citation:2]. Instead of choosing based on price alone, you score each vendor on factors that matter to your business — quality, delivery, support, total cost of ownership — then weight those factors by importance.</p>
+<p>The result is a defensible, data-driven ranking that removes gut feel from the decision [citation:11].</p>
+
+<h2>Why weighted scoring matters</h2>
+<p>The cheapest quote is rarely the cheapest supplier. Hidden costs — freight, quality defects, delays, admin overhead — often make the lowest-price option the most expensive one over time [citation:8][citation:18]. Weighted scoring forces you to quantify the full picture: cost structure, reliability, quality, and strategic fit.</p>
+<p>Research shows that procurement teams using structured evaluation matrices identify 15%+ cost savings compared to price-only decisions [citation:17].</p>
+
+<h2>How to use this tool</h2>
+<ol>
+<li><b>Add criteria:</b> Enter the factors that matter (price, quality, lead time, support).</li>
+<li><b>Set weights:</b> Assign each criterion a weight percentage. Weights don't need to sum to exactly 100 — the tool normalizes them.</li>
+<li><b>Add vendors:</b> Enter the names of the suppliers you're evaluating.</li>
+<li><b>Score each vendor:</b> Rate each vendor 1–10 on each criterion.</li>
+<li><b>Read the ranking:</b> The tool multiplies scores by weights and ranks vendors by total weighted score.</li>
+</ol>
+
+<h2>Common evaluation criteria</h2>
+<ul>
+<li><b>Cost structure</b> (25–40%) — Total cost of ownership, not just unit price</li>
+<li><b>Quality & performance</b> (20–30%) — Defect rates, certifications, samples</li>
+<li><b>Delivery capability</b> (15–20%) — On-time record, lead times, logistics</li>
+<li><b>Technical expertise</b> (10–15%) — Experience, innovation, problem-solving</li>
+<li><b>Financial stability</b> (5–10%) — Credit rating, longevity, business health</li>
+</ul>
+<p>Weights vary by industry and priorities [citation:11]. Adjust to match your situation.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a weighted vendor comparison?</summary><p>It's a method where each evaluation criterion is assigned an importance weight, and each vendor is scored against those criteria. Final scores are weighted sums, producing an objective ranking [citation:2].</p></details>
+<details><summary>Should I use simple or weighted scoring?</summary><p>Simple scoring (equal weights) works for quick decisions with similar vendors. Weighted scoring is better when criteria have different importance, or when trade-offs need to be explicit [citation:2].</p></details>
+<details><summary>What's the minimum number of vendors to compare?</summary><p>Two is minimum; three or more gives better context. Most procurement teams shortlist 3–5 vendors for detailed evaluation [citation:11].</p></details>
+<details><summary>How many criteria should I use?</summary><p>4–8 criteria is the sweet spot. Too few misses important factors; too many dilutes focus and makes scoring unwieldy.</p></details>
+<details><summary>Is anything I enter stored?</summary><p>No. All calculations run in your browser.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+function $(id){ return document.getElementById(id); }
+var LAST = "";
+
+var state = {
+  criteria: [
+    { name: "Cost", weight: 30 },
+    { name: "Quality", weight: 25 },
+    { name: "Delivery", weight: 20 },
+    { name: "Support", weight: 15 },
+    { name: "Reliability", weight: 10 }
+  ],
+  vendors: [
+    { name: "Vendor A", scores: [] },
+    { name: "Vendor B", scores: [] },
+    { name: "Vendor C", scores: [] }
+  ]
+};
+
+function ensureScores(){
+  for(var v = 0; v < state.vendors.length; v++){
+    if(!state.vendors[v].scores) state.vendors[v].scores = [];
+    while(state.vendors[v].scores.length < state.criteria.length){
+      state.vendors[v].scores.push(5);
+    }
+    state.vendors[v].scores.length = state.criteria.length;
+  }
+}
+
+function renderCriteria(){
+  var el = $("criteriaList");
+  var h = '<label>Evaluation criteria</label>';
+  for(var i = 0; i < state.criteria.length; i++){
+    h += '<div class="row prow"><input data-ci="' + i + '" value="' + esc(state.criteria[i].name) + '" placeholder="Criterion name">';
+    h += '<input data-cw="' + i + '" type="number" min="0" max="100" step="1" value="' + state.criteria[i].weight + '" style="max-width:100px" placeholder="Weight %">';
+    if(state.criteria.length > 1){
+      h += '<button type="button" class="rm" data-rc="' + i + '">Remove</button>';
+    }
+    h += '</div>';
+  }
+  el.innerHTML = h;
+}
+
+function renderVendors(){
+  ensureScores();
+  var el = $("vendorList");
+  var h = '<label>Vendors</label>';
+  for(var v = 0; v < state.vendors.length; v++){
+    h += '<div class="item"><div class="row prow"><input data-vi="' + v + '" value="' + esc(state.vendors[v].name) + '" placeholder="Vendor name">';
+    if(state.vendors.length > 1){
+      h += '<button type="button" class="rm" data-rv="' + v + '">Remove</button>';
+    }
+    h += '</div>';
+    h += '<div class="chips" style="display:block">';
+    for(var c = 0; c < state.criteria.length; c++){
+      h += '<label style="display:block;margin:6px 0">' + esc(state.criteria[c].name) + ': <input data-vs="' + v + '-' + c + '" type="number" min="1" max="10" step="1" value="' + (state.vendors[v].scores[c] || 5) + '" style="width:70px"></label>';
+    }
+    h += '</div></div>';
+  }
+  el.innerHTML = h;
+}
+
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+function compute(){
+  ensureScores();
+  var totalWeight = 0;
+  for(var i = 0; i < state.criteria.length; i++){
+    totalWeight += (parseFloat(state.criteria[i].weight) || 0);
+  }
+  if(totalWeight === 0) return { err: "Give at least one criterion a non-zero weight." };
+
+  var results = [];
+  for(var v = 0; v < state.vendors.length; v++){
+    var weighted = 0;
+    var detail = [];
+    for(var c = 0; c < state.criteria.length; c++){
+      var w = (parseFloat(state.criteria[c].weight) || 0) / totalWeight;
+      var score = parseFloat(state.vendors[v].scores[c]) || 0;
+      weighted += w * score;
+      detail.push({ criterion: state.criteria[c].name, score: score, weight: state.criteria[c].weight });
+    }
+    results.push({ name: state.vendors[v].name, score: Math.round(weighted * 100) / 100, detail: detail });
+  }
+
+  results.sort(function(a,b){ return b.score - a.score; });
+  return { results: results, totalWeight: totalWeight };
+}
+
+function render(){
+  var r = compute();
+  var out = $("out");
+  if(r.err){ out.innerHTML = "<p>" + r.err + "</p>"; LAST = ""; return; }
+
+  var h = '<div>Top vendor</div><div class="big">' + esc(r.results[0].name) + '</div>';
+  h += '<table class="res">';
+  h += '<tr><th>Rank</th><th>Vendor</th><th>Weighted score</th></tr>';
+  for(var i = 0; i < r.results.length; i++){
+    h += '<tr><td>' + (i+1) + '</td><td>' + esc(r.results[i].name) + '</td><td><b>' + r.results[i].score.toFixed(2) + '</b> / 10</td></tr>';
+  }
+  h += '</table>';
+  h += '<p class="meta">Scores are weighted averages on a 1–10 scale. Higher is better.</p>';
+  out.innerHTML = h;
+
+  LAST = "Vendor Comparison Results\n";
+  for(var i = 0; i < r.results.length; i++){
+    LAST += (i+1) + ". " + r.results[i].name + " — " + r.results[i].score.toFixed(2) + " / 10\n";
+  }
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  renderCriteria();
+  renderVendors();
+  render();
+
+  T.addEventListener("input", function(e){
+    var d = e.target.dataset;
+    if(d.ci !== undefined){ state.criteria[+d.ci].name = e.target.value; }
+    else if(d.cw !== undefined){ state.criteria[+d.cw].weight = e.target.value; }
+    else if(d.vi !== undefined){ state.vendors[+d.vi].name = e.target.value; }
+    else if(d.vs !== undefined){
+      var p = d.vs.split("-");
+      state.vendors[+p[0]].scores[+p[1]] = e.target.value;
+    }
+    render();
+  });
+
+  T.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    var d = b.dataset;
+    if(d.rc !== undefined){
+      state.criteria.splice(+d.rc, 1);
+      state.vendors.forEach(function(v){ v.scores.splice(+d.rc, 1); });
+      renderCriteria(); renderVendors(); render(); return;
+    }
+    if(d.rv !== undefined){
+      state.vendors.splice(+d.rv, 1);
+      renderVendors(); render(); return;
+    }
+    if(b.id === "addCriterion"){
+      state.criteria.push({ name: "New criterion", weight: 10 });
+      state.vendors.forEach(function(v){ v.scores.push(5); });
+      renderCriteria(); renderVendors(); render(); return;
+    }
+    if(b.id === "addVendor"){
+      var scores = [];
+      for(var i = 0; i < state.criteria.length; i++) scores.push(5);
+      state.vendors.push({ name: "Vendor " + (state.vendors.length + 1), scores: scores });
+      renderVendors(); render(); return;
+    }
+    if(b.id === "cpres" && navigator.clipboard){
+      navigator.clipboard.writeText(LAST);
+      b.textContent = "Copied!";
+      setTimeout(function(){ b.textContent = "Copy results"; }, 1500);
+    }
+  });
+});
+</script>
+</body>
+</html>
