@@ -7,7 +7,7 @@
     ["/tools/engineering/", "Engineering"],
     ["/tools/developer-tools/", "Developer Tools"],
     ["/tools/travel-tools/", "Travel Tools"],
-    ["/tools/business-legal-tools/", "Business & Legal"],
+    ["/tools/business-legal-tools/", "Business & Legal Tools"],
     ["/about/", "About"],
     ["/contact/", "Contact"],
     ["/privacy-policy/", "Privacy Policy"],
