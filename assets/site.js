@@ -6,6 +6,7 @@
     ["/tools/health-fitness/", "Health &amp; Fitness"],
     ["/tools/engineering/", "Engineering"],
     ["/tools/developer-tools/", "Developer Tools"],
+    ["/tools/travel-tools/", "Travel Tools"],
     ["/about/", "About"],
     ["/contact/", "Contact"],
     ["/privacy-policy/", "Privacy Policy"],
