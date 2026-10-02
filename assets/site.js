@@ -9,6 +9,7 @@
     ["/tools/developer-tools/", "Developer"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/business-legal-tools/", "Business"]
+    ["/tools/education-study-tools/", "Education"]
   ];
 
   // Legal / meta links shown in the footer on every page
