@@ -8,7 +8,7 @@
     ["/tools/construction/", "Construction"],
     ["/tools/developer-tools/", "Developer"],
     ["/tools/travel-tools/", "Travel"],
-    ["/tools/business-legal-tools/", "Business"]
+    ["/tools/business-legal-tools/", "Business"],
     ["/tools/education-study-tools/", "Education"]
   ];
 
