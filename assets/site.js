@@ -1,6 +1,6 @@
 /* ---------- SITE NAV + FOOTER ---------- */
 (function () {
-  // Categories shown in the header on every page
+  // Categories shown in the header only
   var categoryLinks = [
     ["/tools/everyday-calculators/", "Everyday"],
     ["/tools/health-fitness/", "Health"],
@@ -20,11 +20,6 @@
     ["/terms/", "Terms"]
   ];
 
-  function isHomepage() {
-    var p = location.pathname;
-    return p === "/" || p === "/index.html" || p === "";
-  }
-
   function buildHeader() {
     var el = document.getElementById("site-header-nav");
     if (!el) return;
@@ -39,18 +34,9 @@
     var el = document.getElementById("site-footer");
     if (!el) return;
 
-    var links;
-    if (isHomepage()) {
-      // On the homepage: legal links only (categories are in the body + header)
-      links = legalLinks;
-    } else {
-      // On other pages: categories + legal
-      links = categoryLinks.concat(legalLinks);
-    }
-
     var html = "";
-    for (var i = 0; i < links.length; i++) {
-      html += '<a href="' + links[i][0] + '">' + links[i][1] + '</a>';
+    for (var i = 0; i < legalLinks.length; i++) {
+      html += '<a href="' + legalLinks[i][0] + '">' + legalLinks[i][1] + '</a>';
     }
     html += '<p>© 2026 Utiliby. Free online tools.</p>';
     el.innerHTML = html;
