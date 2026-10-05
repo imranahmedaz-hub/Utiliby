@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Rental Yield Calculator Online – Gross, Net Yield &amp; Cash Flow</title>
+<meta name="description" content="Free rental yield calculator online. Calculate gross yield, net yield, cash-on-cash return, cap rate, monthly cash flow and payback period for any rental property. Includes vacancy, management fees, maintenance and mortgage costs. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/real-estate-tools/rental-yield-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Rental Yield Calculator Online – Gross, Net Yield &amp; Cash Flow">
+<meta property="og:description" content="Free rental yield calculator online. Gross yield, net yield, cash-on-cash return, cap rate and cash flow.">
+<meta property="og:url" content="https://utiliby.com/tools/real-estate-tools/rental-yield-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.ry-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ry-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.ry-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.ry-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+.ry-stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.ry-stat-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600;margin-bottom:4px}
+.ry-stat-value{font-size:1.15rem;font-weight:700;color:var(--fg)}
+.ry-stat-value.pos{color:#16a34a}
+.ry-stat-value.neg{color:#dc2626}
+.ry-hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:18px 0;text-align:center}
+.ry-hero h3{margin-top:0;color:var(--muted);font-size:.85rem;text-transform:uppercase;letter-spacing:.05em}
+.ry-hero .big{font-size:2.4rem;font-weight:800;color:var(--brand);line-height:1.1;margin:6px 0}
+.ry-hero .sub{color:var(--muted);font-size:.9rem}
+.ry-section{margin-top:16px;padding-top:14px;border-top:1px solid var(--line)}
+.ry-section h4{margin:0 0 10px;font-size:.9rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.ry-inline-row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+@media(max-width:560px){.ry-inline-row{grid-template-columns:1fr}}
+.ry-alert{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:8px;padding:10px 14px;font-size:.85rem;margin:12px 0}
+@media(prefers-color-scheme:dark){.ry-alert{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.ry-summary-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}
+.ry-summary-table th,.ry-summary-table td{padding:8px;text-align:right;border-bottom:1px solid var(--line)}
+.ry-summary-table th:first-child,.ry-summary-table td:first-child{text-align:left}
+.ry-summary-table th{background:var(--card);font-weight:700}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Rental Yield Calculator","url":"https://utiliby.com/tools/real-estate-tools/rental-yield-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is rental yield?","acceptedAnswer":{"@type":"Answer","text":"Rental yield is the annual rental income a property generates, expressed as a percentage of its value or purchase price. Gross yield divides annual rent by property value. Net yield subtracts operating expenses first."}},{"@type":"Question","name":"What is a good rental yield?","acceptedAnswer":{"@type":"Answer","text":"A good rental yield depends on the market. In the US, gross yields of 6 to 8 percent are typically considered strong. In the UK, 4 to 6 percent is common. In high-growth markets like Singapore or Sydney, 2 to 4 percent is typical because capital appreciation offsets lower income yield."}},{"@type":"Question","name":"What is the difference between gross yield and net yield?","acceptedAnswer":{"@type":"Answer","text":"Gross yield is annual rent divided by property value. Net yield subtracts operating costs including vacancy, management fees, maintenance, insurance and property tax, then divides by property value. Net yield gives a more realistic picture of profitability."}},{"@type":"Question","name":"What is cash-on-cash return?","acceptedAnswer":{"@type":"Answer","text":"Cash-on-cash return is annual pre-tax cash flow divided by the total cash you invested (down payment plus closing costs). Unlike yield, it accounts for mortgage financing and shows the return on your actual out-of-pocket cash."}},{"@type":"Question","name":"What is a cap rate?","acceptedAnswer":{"@type":"Answer","text":"Cap rate (capitalization rate) is net operating income divided by property purchase price. It is a financing-agnostic measure used to compare properties of similar risk and type."}},{"@type":"Question","name":"What is a vacancy allowance?","acceptedAnswer":{"@type":"Answer","text":"A vacancy allowance is the percentage of the year you expect the property to be empty. A typical allowance is 5 to 8 percent (about 2 to 4 weeks per year). Including it prevents overestimating income."}},{"@type":"Question","name":"Is this rental yield calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your property data anywhere."}},{"@type":"Question","name":"What is DSCR?","acceptedAnswer":{"@type":"Answer","text":"DSCR (Debt Service Coverage Ratio) is net operating income divided by annual mortgage payments. A DSCR above 1.0 means the property covers its own debt. Lenders often require 1.20 or higher for investment properties."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/real-estate-tools/">Real Estate Tools</a> › Rental Yield Calculator</nav>
+<h1>Rental Yield Calculator</h1>
+<p class="lead">Calculate gross yield, net yield, cash-on-cash return, cap rate and monthly cash flow for any rental property. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Rental yield calculator">
+
+<div class="ry-inline-row">
+<div><label for="currency">Currency</label>
+<select id="currency">
+<option value="USD">$ USD – US Dollar</option>
+<option value="GBP">£ GBP – British Pound</option>
+<option value="EUR">€ EUR – Euro</option>
+<option value="AUD">A$ AUD – Australian Dollar</option>
+<option value="CAD">C$ CAD – Canadian Dollar</option>
+<option value="NZD">NZ$ NZD – New Zealand Dollar</option>
+<option value="INR">₹ INR – Indian Rupee</option>
+<option value="PKR">₨ PKR – Pakistani Rupee</option>
+<option value="AED">د.إ AED – UAE Dirham</option>
+<option value="SGD">S$ SGD – Singapore Dollar</option>
+<option value="ZAR">R ZAR – South African Rand</option>
+<option value="JPY">¥ JPY – Japanese Yen</option>
+</select></div>
+<div>
+<label for="valueBasis">Yield calculated on</label>
+<select id="valueBasis">
+<option value="purchase" selected>Purchase price + costs</option>
+<option value="current">Current market value</option>
+</select></div>
+</div>
+
+<div class="ry-section">
+<h4>Property</h4>
+<div class="ry-inline-row">
+<div><label for="purchasePrice">Purchase price</label><input id="purchasePrice" type="number" min="0" step="1000" value="250000"></div>
+<div><label for="purchaseCosts">Purchase costs (closing, stamp duty)</label><input id="purchaseCosts" type="number" min="0" step="100" value="8000"></div>
+</div>
+<div class="ry-inline-row">
+<div><label for="currentValue">Current market value (optional)</label><input id="currentValue" type="number" min="0" step="1000" placeholder="Leave blank to use purchase price"></div>
+<div><label for="renovation">Renovation budget</label><input id="renovation" type="number" min="0" step="100" value="0"></div>
+</div>
+</div>
+
+<div class="ry-section">
+<h4>Rental income</h4>
+<div class="ry-inline-row">
+<div><label for="monthlyRent">Monthly rent</label><input id="monthlyRent" type="number" min="0" step="10" value="1600"></div>
+<div><label for="otherIncome">Other monthly income</label><input id="otherIncome" type="number" min="0" step="10" value="0"></div>
+</div>
+</div>
+
+<div class="ry-section">
+<h4>Vacancy &amp; management</h4>
+<div class="ry-inline-row">
+<div><label for="vacancyWeeks">Vacancy allowance (weeks per year)</label><input id="vacancyWeeks" type="number" min="0" max="52" step="0.5" value="2"></div>
+<div><label for="mgmtMode">Management fee mode</label>
+<select id="mgmtMode">
+<option value="percent">% of rent</option>
+<option value="months">Months of rent per year</option>
+</select></div>
+</div>
+<div class="ry-inline-row">
+<div><label for="mgmtValue">Management fee value</label><input id="mgmtValue" type="number" min="0" step="0.1" value="8"></div>
+<div></div>
+</div>
+</div>
+
+<div class="ry-section">
+<h4>Annual operating expenses</h4>
+<div class="ry-inline-row">
+<div><label for="propertyTax">Property tax (annual)</label><input id="propertyTax" type="number" min="0" step="50" value="2400"></div>
+<div><label for="insurance">Insurance (annual)</label><input id="insurance" type="number" min="0" step="50" value="800"></div>
+</div>
+<div class="ry-inline-row">
+<div><label for="maintenancePct">Maintenance (% of rent)</label><input id="maintenancePct" type="number" min="0" max="30" step="0.5" value="5"></div>
+<div><label for="capexPct">CapEx reserve (% of rent)</label><input id="capexPct" type="number" min="0" max="20" step="0.5" value="3"></div>
+</div>
+<div class="ry-inline-row">
+<div><label for="hoa">HOA / service charge (annual)</label><input id="hoa" type="number" min="0" step="50" value="0"></div>
+<div><label for="otherExpense">Other annual expenses</label><input id="otherExpense" type="number" min="0" step="50" value="0"></div>
+</div>
+</div>
+
+<div class="ry-section">
+<h4>Mortgage (optional)</h4>
+<div class="ry-inline-row">
+<div><label for="downPaymentPct">Down payment (% of price)</label><input id="downPaymentPct" type="number" min="0" max="100" step="1" value="25"></div>
+<div><label for="interestRate">Interest rate (%)</label><input id="interestRate" type="number" min="0" step="0.01" value="6.5"></div>
+</div>
+<div class="ry-inline-row">
+<div><label for="loanTerm">Loan term (years)</label><input id="loanTerm" type="number" min="1" max="40" step="1" value="30"></div>
+<div></div>
+</div>
+</div>
+
+<div class="ry-section">
+<h4>Stress test (optional)</h4>
+<div class="ry-inline-row">
+<div><label for="rateRise">Interest rate rise (+%)</label><input id="rateRise" type="number" min="0" step="0.25" value="0"></div>
+<div><label for="extraVoid">Extra vacancy (weeks)</label><input id="stressVoid" type="number" min="0" max="12" step="1" value="0"></div>
+</div>
+</div>
+
+<p class="meta">Results update as you type. Estimates only — not financial advice.</p>
+<div id="out"></div>
+
+</section>
+
+<h2>What is a free rental yield calculator online?</h2>
+<p>A free rental yield calculator online is a tool that measures how much income a rental property generates relative to its value. Investors use rental yield to compare properties across different markets, price points and strategies — a house with high yield is producing more income per dollar invested, while a house with low yield may be relying on capital appreciation instead.</p>
+<p>This rental yield calculator online goes beyond a basic gross yield formula. It computes gross yield, net yield, capitalization rate (cap rate), cash-on-cash return, monthly cash flow, payback period, and debt service coverage ratio — the same metrics professional investors use, in one free tool.</p>
+
+<h2>How to use this free rental yield calculator online</h2>
+<ol>
+<li>Select your currency.</li>
+<li>Enter the purchase price and any closing costs (stamp duty, legal fees, mortgage arrangement fees).</li>
+<li>Add the expected monthly rent and any other income (parking, laundry, storage).</li>
+<li>Set your vacancy allowance as weeks per year — a typical range is 1 to 4 weeks.</li>
+<li>Add management fee (either as % of rent or as months per year).</li>
+<li>Enter annual expenses: property tax, insurance, HOA or service charge, and other costs.</li>
+<li>Set maintenance and CapEx reserves as a percentage of rent.</li>
+<li>Optionally enter your mortgage details for cash-on-cash return and cash flow.</li>
+<li>Read the results instantly — gross yield, net yield, cap rate, cash flow and more.</li>
+</ol>
+
+<h2>What is rental yield?</h2>
+<p>Rental yield is the annual rental income a property generates, expressed as a percentage of its value or purchase price. It answers a simple question: for every dollar you invest in the property, how much income does it return each year?</p>
+<p>Yield allows you to compare a $200,000 apartment in one city to a $500,000 house in another on a like-for-like basis. Two properties with very different prices and rents can be compared instantly by looking at their yields.</p>
+
+<h2>Gross yield vs net yield</h2>
+<h3>Gross rental yield</h3>
+<p>Gross yield divides annual rent by property value. It ignores all operating costs, so it is a quick first-pass filter but not a profitability measure.</p>
+<p><b>Gross yield = (Annual rent ÷ Property value) × 100</b></p>
+<h3>Net rental yield</h3>
+<p>Net yield subtracts annual operating costs from rent before dividing by property value. It gives a much more honest picture of what the property actually returns.</p>
+<p><b>Net yield = ((Annual rent − Operating expenses) ÷ Property value) × 100</b></p>
+<p>Operating expenses include vacancy loss, management fees, maintenance, CapEx reserves, property tax, insurance, HOA or service charges, and any other recurring costs.</p>
+
+<h2>What is a good rental yield?</h2>
+<p>What counts as a "good" yield depends on the market and your investment strategy. Rough ranges:</p>
+<ul>
+<li><b>United States:</b> 6–8% gross yield is typically considered strong. Sun Belt markets often reach 8–10%.</li>
+<li><b>United Kingdom:</b> 4–6% gross yield is common. High-yield northern cities reach 7–8%.</li>
+<li><b>Australia:</b> 3–5% gross yield is typical in capital cities.</li>
+<li><b>Singapore, Hong Kong, Tokyo:</b> 2–4% gross yield is common due to high capital values.</li>
+<li><b>Emerging markets:</b> 8–12% gross yield is achievable but often carries higher currency or political risk.</li>
+</ul>
+<p>Lower-yield markets tend to offer stronger capital appreciation, while higher-yield markets tend to offer stronger cash flow. Neither is inherently better — the right yield depends on whether you are investing for income or for growth.</p>
+
+<h2>Cap rate vs rental yield vs cash-on-cash return</h2>
+<h3>Cap rate (capitalization rate)</h3>
+<p>Cap rate is net operating income (NOI) divided by purchase price. It ignores financing entirely, so it measures the property's income performance independent of how you funded it. Cap rate is the standard metric for comparing properties of similar type in the same market.</p>
+<p><b>Cap rate = (NOI ÷ Purchase price) × 100</b></p>
+<h3>Rental yield</h3>
+<p>Rental yield and cap rate are similar. Gross yield uses gross rent; net yield uses NOI. In practice, when investors say "yield," they usually mean net yield.</p>
+<h3>Cash-on-cash return</h3>
+<p>Cash-on-cash return measures the return on your actual cash invested. It is calculated as annual pre-tax cash flow divided by total cash invested (down payment plus closing costs). Unlike yield or cap rate, it accounts for the mortgage — which is why it can be much higher or much lower than yield.</p>
+<p><b>Cash-on-cash return = (Annual pre-tax cash flow ÷ Total cash invested) × 100</b></p>
+
+<h2>Debt Service Coverage Ratio (DSCR)</h2>
+<p>DSCR is net operating income divided by annual debt service (mortgage payments). Lenders use it to judge whether a property generates enough income to safely cover its mortgage. A DSCR of 1.0 means the property exactly covers its debt. Most lenders require 1.20 or higher for investment properties.</p>
+<p><b>DSCR = NOI ÷ Annual mortgage payments</b></p>
+
+<h2>Why vacancy allowance matters</h2>
+<p>A vacancy allowance is the proportion of the year you expect the property to sit empty between tenants. It is not a pessimistic assumption — it is a realistic one. Even in strong rental markets, most landlords experience 2 to 4 weeks of vacancy per year on average, plus additional downtime during major repairs or tenant turnover.</p>
+<p>Ignoring vacancy overstates income by 4 to 8 percent on every calculation, which can turn a marginal deal into what looks like a good one. This calculator subtracts vacancy before computing net yield and cash flow.</p>
+
+<h2>Purchase costs every investor should include</h2>
+<ul>
+<li><b>Stamp duty or transfer tax</b> — varies by country, can reach 5–10% of price</li>
+<li><b>Legal fees</b> — 0.5–2% of price</li>
+<li><b>Mortgage arrangement fees</b> — 0.5–2% of loan amount</li>
+<li><b>Survey and inspection</b> — flat fee</li>
+<li><b>Initial repairs and cosmetic work</b> — varies widely</li>
+</ul>
+<p>Total purchase costs are typically 3 to 12 percent of the property price, depending on the market. Including them in the "property value" basis lowers your effective yield and produces a more honest picture.</p>
+
+<h2>Common mistakes in rental yield calculations</h2>
+<ul>
+<li><b>Using gross yield only.</b> Gross yield flatters every property because it ignores every cost.</li>
+<li><b>Forgetting vacancy.</b> Income lost to empty months is real and recurring.</li>
+<li><b>Underestimating maintenance.</b> A common industry rule of thumb is 1% of property value per year, or 5–10% of rent.</li>
+<li><b>Ignoring CapEx reserves.</b> Roofs, HVAC systems and water heaters have finite lifespans. Setting aside 3–5% of rent for capital replacements prevents nasty surprises.</li>
+<li><b>Confusing yield with cash flow.</b> A property can have a high yield and still be cash-flow negative if mortgage payments eat the income.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is rental yield?</summary><p>Rental yield is the annual rental income a property generates, expressed as a percentage of its value or purchase price. Gross yield divides annual rent by property value. Net yield subtracts operating expenses first.</p></details>
+<details><summary>What is a good rental yield?</summary><p>A good rental yield depends on the market. In the US, gross yields of 6 to 8 percent are typically considered strong. In the UK, 4 to 6 percent is common. In high-growth markets like Singapore or Sydney, 2 to 4 percent is typical because capital appreciation offsets lower income yield.</p></details>
+<details><summary>What is the difference between gross yield and net yield?</summary><p>Gross yield is annual rent divided by property value. Net yield subtracts operating costs including vacancy, management fees, maintenance, insurance and property tax, then divides by property value. Net yield gives a more realistic picture of profitability.</p></details>
+<details><summary>What is cash-on-cash return?</summary><p>Cash-on-cash return is annual pre-tax cash flow divided by the total cash you invested (down payment plus closing costs). Unlike yield, it accounts for mortgage financing and shows the return on your actual out-of-pocket cash.</p></details>
+<details><summary>What is a cap rate?</summary><p>Cap rate (capitalization rate) is net operating income divided by property purchase price. It is a financing-agnostic measure used to compare properties of similar risk and type.</p></details>
+<details><summary>What is a vacancy allowance?</summary><p>A vacancy allowance is the percentage of the year you expect the property to be empty. A typical allowance is 5 to 8 percent (about 2 to 4 weeks per year). Including it prevents overestimating income.</p></details>
+<details><summary>Is this rental yield calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your property data anywhere.</p></details>
+<details><summary>What is DSCR?</summary><p>DSCR (Debt Service Coverage Ratio) is net operating income divided by annual mortgage payments. A DSCR above 1.0 means the property covers its own debt. Lenders often require 1.20 or higher for investment properties.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function fmt(n, dec){
+  if(dec === undefined) dec = 0;
+  if(Math.abs(n) >= 1000) dec = 0;
+  return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+function fmtCurrency(n, code){
+  try {
+    return new Intl.NumberFormat(undefined, {
+      style: "currency", currency: code, maximumFractionDigits: 0
+    }).format(n);
+  } catch(e){ return fmt(n); }
+}
+function fmtPct(n, dec){
+  if(dec === undefined) dec = 2;
+  return n.toFixed(dec) + "%";
+}
+
+function calc(){
+  var currency = $("currency").value;
+  var valueBasis = $("valueBasis").value;
+  var purchasePrice = num($("purchasePrice").value, 0);
+  var purchaseCosts = num($("purchaseCosts").value, 0);
+  var currentValue = num($("currentValue").value, 0);
+  var renovation = num($("renovation").value, 0);
+  var monthlyRent = num($("monthlyRent").value, 0);
+  var otherIncome = num($("otherIncome").value, 0);
+  var vacancyWeeks = num($("vacancyWeeks").value, 0);
+  var mgmtMode = $("mgmtMode").value;
+  var mgmtValue = num($("mgmtValue").value, 0);
+  var propertyTax = num($("propertyTax").value, 0);
+  var insurance = num($("insurance").value, 0);
+  var maintenancePct = num($("maintenancePct").value, 0);
+  var capexPct = num($("capexPct").value, 0);
+  var hoa = num($("hoa").value, 0);
+  var otherExpense = num($("otherExpense").value, 0);
+  var downPaymentPct = num($("downPaymentPct").value, 0);
+  var interestRate = num($("interestRate").value, 0);
+  var loanTerm = num($("loanTerm").value, 0);
+  var rateRise = num($("rateRise").value, 0);
+  var stressVoid = num($("stressVoid").value, 0);
+
+  if(purchasePrice <= 0){
+    return { err: "Enter a purchase price greater than zero." };
+  }
+
+  // Determine the value basis for yield
+  var basisValue;
+  if(valueBasis === "current" && currentValue > 0){
+    basisValue = currentValue;
+  } else {
+    basisValue = purchasePrice + purchaseCosts + renovation;
+  }
+
+  // Gross annual income
+  var grossAnnualRent = (monthlyRent + otherIncome) * 12;
+
+  // Vacancy loss
+  var weeklyRent = grossAnnualRent / 52;
+  var vacancyLoss = weeklyRent * vacancyWeeks;
+  var effectiveRent = grossAnnualRent - vacancyLoss;
+
+  // Management fees
+  var mgmtFee;
+  if(mgmtMode === "months"){
+    mgmtFee = monthlyRent * mgmtValue;
+  } else {
+    mgmtFee = (effectiveRent * mgmtValue) / 100;
+  }
+
+  // Maintenance and CapEx
+  var maintenance = (effectiveRent * maintenancePct) / 100;
+  var capex = (effectiveRent * capexPct) / 100;
+
+  // Total operating expenses (NOI components)
+  var totalOpex = mgmtFee + propertyTax + insurance + maintenance + capex + hoa + otherExpense;
+  var noi = effectiveRent - totalOpex;
+
+  // Gross yield
+  var grossYield = (grossAnnualRent / basisValue) * 100;
+
+  // Net yield
+  var netYield = (noi / basisValue) * 100;
+
+  // Cap rate (based on NOI over purchase price, financing-agnostic)
+  var capRate = (noi / purchasePrice) * 100;
+
+  // Mortgage
+  var downPayment = (purchasePrice * downPaymentPct) / 100;
+  var loanAmount = purchasePrice - downPayment;
+  var monthlyRate = (interestRate / 100) / 12;
+  var totalPayments = loanTerm * 12;
+  var monthlyMortgage = 0;
+  if(loanAmount > 0 && monthlyRate > 0 && totalPayments > 0){
+    monthlyMortgage = loanAmount * monthlyRate * Math.pow(1 + monthlyRate, totalPayments) / (Math.pow(1 + monthlyRate, totalPayments) - 1);
+  } else if(loanAmount > 0 && totalPayments > 0){
+    monthlyMortgage = loanAmount / totalPayments;
+  }
+  var annualMortgage = monthlyMortgage * 12;
+
+  // Annual pre-tax cash flow
+  var annualCashFlow = noi - annualMortgage;
+  var monthlyCashFlow = annualCashFlow / 12;
+
+  // Total cash invested
+  var totalCashInvested = downPayment + purchaseCosts + renovation;
+  var cocReturn = totalCashInvested > 0 ? (annualCashFlow / totalCashInvested) * 100 : 0;
+
+  // DSCR
+  var dscr = annualMortgage > 0 ? noi / annualMortgage : 0;
+
+  // Payback period (years until cumulative cash flow equals cash invested)
+  var paybackYears = annualCashFlow > 0 ? totalCashInvested / annualCashFlow : 0;
+
+  // Stress test
+  var stressMonthlyRate = ((interestRate + rateRise) / 100) / 12;
+  var stressMortgage = 0;
+  if(loanAmount > 0 && stressMonthlyRate > 0 && totalPayments > 0){
+    stressMortgage = loanAmount * stressMonthlyRate * Math.pow(1 + stressMonthlyRate, totalPayments) / (Math.pow(1 + stressMonthlyRate, totalPayments) - 1);
+  }
+  var stressAnnualMortgage = stressMortgage * 12;
+
+  // Extra void stress
+  var stressWeeklyRent = grossAnnualRent / 52;
+  var stressVacancyLoss = stressWeeklyRent * (vacancyWeeks + stressVoid);
+  var stressEffectiveRent = grossAnnualRent - stressVacancyLoss;
+  var stressMgmtFee = mgmtMode === "months" ? monthlyRent * mgmtValue : (stressEffectiveRent * mgmtValue) / 100;
+  var stressMaintenance = (stressEffectiveRent * maintenancePct) / 100;
+  var stressCapex = (stressEffectiveRent * capexPct) / 100;
+  var stressOpex = stressMgmtFee + propertyTax + insurance + stressMaintenance + stressCapex + hoa + otherExpense;
+  var stressNoi = stressEffectiveRent - stressOpex;
+  var stressCashFlow = stressNoi - stressAnnualMortgage;
+
+  return {
+    currency: currency,
+    basisValue: basisValue,
+    grossAnnualRent: grossAnnualRent,
+    effectiveRent: effectiveRent,
+    vacancyLoss: vacancyLoss,
+    mgmtFee: mgmtFee,
+    maintenance: maintenance,
+    capex: capex,
+    totalOpex: totalOpex,
+    noi: noi,
+    grossYield: grossYield,
+    netYield: netYield,
+    capRate: capRate,
+    downPayment: downPayment,
+    loanAmount: loanAmount,
+    monthlyMortgage: monthlyMortgage,
+    annualMortgage: annualMortgage,
+    annualCashFlow: annualCashFlow,
+    monthlyCashFlow: monthlyCashFlow,
+    totalCashInvested: totalCashInvested,
+    cocReturn: cocReturn,
+    dscr: dscr,
+    paybackYears: paybackYears,
+    stressAnnualMortgage: stressAnnualMortgage,
+    stressCashFlow: stressCashFlow,
+    hasMortgage: loanAmount > 0,
+    hasStress: rateRise > 0 || stressVoid > 0
+  };
+}
+
+function render(){
+  var r = calc();
+  var out = $("out");
+  if(r.err){ out.innerHTML = "<p>" + r.err + "</p>"; return; }
+
+  var c = r.currency;
+
+  var h = '';
+
+  // HERO — Net Yield
+  h += '<div class="ry-hero">';
+  h += '<h3>Net Rental Yield</h3>';
+  h += '<div class="big">' + fmtPct(r.netYield) + '</div>';
+  h += '<div class="sub">Gross yield ' + fmtPct(r.grossYield) + ' · Cap rate ' + fmtPct(r.capRate) + '</div>';
+  h += '</div>';
+
+  // KEY METRICS
+  h += '<div class="ry-grid">';
+  h += '<div class="ry-stat"><div class="ry-stat-label">Gross Yield</div><div class="ry-stat-value">' + fmtPct(r.grossYield) + '</div></div>';
+  h += '<div class="ry-stat"><div class="ry-stat-label">Net Yield</div><div class="ry-stat-value">' + fmtPct(r.netYield) + '</div></div>';
+  h += '<div class="ry-stat"><div class="ry-stat-label">Cap Rate</div><div class="ry-stat-value">' + fmtPct(r.capRate) + '</div></div>';
+  h += '<div class="ry-stat"><div class="ry-stat-label">Monthly Cash Flow</div><div class="ry-stat-value ' + (r.monthlyCashFlow >= 0 ? 'pos' : 'neg') + '">' + fmtCurrency(r.monthlyCashFlow, c) + '</div></div>';
+  if(r.hasMortgage){
+    h += '<div class="ry-stat"><div class="ry-stat-label">Cash-on-Cash</div><div class="ry-stat-value ' + (r.cocReturn >= 0 ? 'pos' : 'neg') + '">' + fmtPct(r.cocReturn) + '</div></div>';
+    h += '<div class="ry-stat"><div class="ry-stat-label">DSCR</div><div class="ry-stat-value">' + r.dscr.toFixed(2) + '</div></div>';
+  }
+  if(r.paybackYears > 0 && r.paybackYears < 100){
+    h += '<div class="ry-stat"><div class="ry-stat-label">Payback Period</div><div class="ry-stat-value">' + r.paybackYears.toFixed(1) + ' yrs</div></div>';
+  }
+  h += '</div>';
+
+  // INCOME BREAKDOWN
+  h += '<div class="ry-section">';
+  h += '<h4>Income breakdown</h4>';
+  h += '<table class="ry-summary-table">';
+  h += '<tr><td>Gross annual rent</td><td>' + fmtCurrency(r.grossAnnualRent, c) + '</td></tr>';
+  h += '<tr><td>Vacancy loss</td><td>−' + fmtCurrency(r.vacancyLoss, c) + '</td></tr>';
+  h += '<tr><td><b>Effective rent</b></td><td><b>' + fmtCurrency(r.effectiveRent, c) + '</b></td></tr>';
+  h += '</table>';
+  h += '</div>';
+
+  // EXPENSE BREAKDOWN
+  h += '<div class="ry-section">';
+  h += '<h4>Operating expenses (annual)</h4>';
+  h += '<table class="ry-summary-table">';
+  h += '<tr><td>Management fee</td><td>' + fmtCurrency(r.mgmtFee, c) + '</td></tr>';
+  h += '<tr><td>Maintenance</td><td>' + fmtCurrency(r.maintenance, c) + '</td></tr>';
+  h += '<tr><td>CapEx reserve</td><td>' + fmtCurrency(r.capex, c) + '</td></tr>';
+  h += '<tr><td>Property tax</td><td>' + fmtCurrency(num($("propertyTax").value, 0), c) + '</td></tr>';
+  h += '<tr><td>Insurance</td><td>' + fmtCurrency(num($("insurance").value, 0), c) + '</td></tr>';
+  h += '<tr><td>HOA / service charge</td><td>' + fmtCurrency(num($("hoa").value, 0), c) + '</td></tr>';
+  h += '<tr><td>Other expenses</td><td>' + fmtCurrency(num($("otherExpense").value, 0), c) + '</td></tr>';
+  h += '<tr><td><b>Total operating expenses</b></td><td><b>' + fmtCurrency(r.totalOpex, c) + '</b></td></tr>';
+  h += '<tr><td><b>Net operating income (NOI)</b></td><td><b>' + fmtCurrency(r.noi, c) + '</b></td></tr>';
+  h += '</table>';
+  h += '</div>';
+
+  // MORTGAGE
+  if(r.hasMortgage){
+    h += '<div class="ry-section">';
+    h += '<h4>Financing</h4>';
+    h += '<table class="ry-summary-table">';
+    h += '<tr><td>Down payment</td><td>' + fmtCurrency(r.downPayment, c) + '</td></tr>';
+    h += '<tr><td>Loan amount</td><td>' + fmtCurrency(r.loanAmount, c) + '</td></tr>';
+    h += '<tr><td>Monthly mortgage payment</td><td>' + fmtCurrency(r.monthlyMortgage, c) + '</td></tr>';
+    h += '<tr><td>Annual mortgage payment</td><td>' + fmtCurrency(r.annualMortgage, c) + '</td></tr>';
+    h += '<tr><td>Total cash invested</td><td>' + fmtCurrency(r.totalCashInvested, c) + '</td></tr>';
+    h += '<tr><td><b>Annual pre-tax cash flow</b></td><td><b>' + fmtCurrency(r.annualCashFlow, c) + '</b></td></tr>';
+    h += '</table>';
+    h += '</div>';
+  }
+
+  // DSCR WARNING
+  if(r.hasMortgage && r.dscr > 0 && r.dscr < 1.2){
+    h += '<div class="ry-alert"><b>DSCR warning:</b> Your DSCR is ' + r.dscr.toFixed(2) + '. Most lenders require 1.20 or higher for investment property mortgages.</div>';
+  }
+
+  // NEGATIVE CASH FLOW WARNING
+  if(r.hasMortgage && r.monthlyCashFlow < 0){
+    h += '<div class="ry-alert"><b>Negative cash flow:</b> This property loses ' + fmtCurrency(Math.abs(r.monthlyCashFlow), c) + ' per month after all expenses and mortgage payments. You would need to fund this shortfall from other income.</div>';
+  }
+
+  // STRESS TEST
+  if(r.hasStress){
+    h += '<div class="ry-section">';
+    h += '<h4>Stress test</h4>';
+    h += '<table class="ry-summary-table">';
+    h += '<tr><td>Mortgage under stress</td><td>' + fmtCurrency(r.stressAnnualMortgage, c) + ' / year</td></tr>';
+    h += '<tr><td>Cash flow under stress</td><td><b class="' + (r.stressCashFlow >= 0 ? 'pos' : 'neg') + '">' + fmtCurrency(r.stressCashFlow / 12, c) + ' / month</b></td></tr>';
+    h += '</table>';
+    if(r.stressCashFlow < 0){
+      h += '<div class="ry-alert">Under stress conditions, this property would lose ' + fmtCurrency(Math.abs(r.stressCashFlow / 12), c) + ' per month. Consider whether you can absorb that shortfall.</div>';
+    }
+    h += '</div>';
+  }
+
+  h += '<p class="meta">Estimate only. Does not include income tax, capital gains tax or tax-advantaged structures. Consult a qualified financial advisor before investing.</p>';
+
+  out.innerHTML = h;
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+  T.addEventListener("input", render);
+  T.addEventListener("change", render);
+  render();
+});
+})();
+</script>
+</body>
+</html>
