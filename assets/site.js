@@ -11,6 +11,7 @@
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
+    ["/tools/audio-music-tools/", "Audio &amp; Music"],
     ["/tools/image-tools/", "Image"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
     ["/tools/pdf-document-tools/", "PDF &amp; Document"],
