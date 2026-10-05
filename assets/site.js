@@ -8,6 +8,7 @@
     ["/tools/construction/", "Construction"],
     ["/tools/developer-tools/", "Developer"],
     ["/tools/accessibility-tools/", "Accessibility"],
+    ["/tools/productivity-organization-tools/", "Productivity"],
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
