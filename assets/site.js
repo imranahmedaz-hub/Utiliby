@@ -11,6 +11,7 @@
     ["/tools/productivity-organization-tools/", "Productivity"],
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
+    ["/tools/design-color-tools/", "Design &amp; Color"],
     ["/tools/astrology/", "Astrology"],
     ["/tools/audio-music-tools/", "Audio &amp; Music"],
     ["/tools/image-tools/", "Image"],
