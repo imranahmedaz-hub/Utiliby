@@ -10,6 +10,7 @@
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
+    ["/tools/date-time-tools/", "Date &amp; Time"],
     ["/tools/business-legal-tools/", "Business"],
     ["/tools/recipe-cooking-tools/", "Cooking"],
     ["/tools/education-study-tools/", "Education"]
