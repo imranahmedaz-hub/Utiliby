@@ -14,6 +14,7 @@
     ["/tools/audio-music-tools/", "Audio &amp; Music"],
     ["/tools/image-tools/", "Image"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
+    ["/tools/seo-web-tools/", "SEO &amp; Web"],
     ["/tools/pdf-document-tools/", "PDF &amp; Document"],
     ["/tools/real-estate-tools/", "Real Estate"],
     ["/tools/business-legal-tools/", "Business"],
