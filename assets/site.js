@@ -8,6 +8,7 @@
     ["/tools/construction/", "Construction"],
     ["/tools/developer-tools/", "Developer"],
     ["/tools/accessibility-tools/", "Accessibility"],
+    ["/tools/email-tools/", "Email"],
     ["/tools/productivity-organization-tools/", "Productivity"],
     ["/tools/marketing-advertising-tools/", "Marketing"],
     ["/tools/text-writing/", "Text"],
