@@ -7,6 +7,7 @@
     ["/tools/engineering/", "Engineering"],
     ["/tools/construction/", "Construction"],
     ["/tools/developer-tools/", "Developer"],
+    ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/business-legal-tools/", "Business"],
     ["/tools/education-study-tools/", "Education"]
