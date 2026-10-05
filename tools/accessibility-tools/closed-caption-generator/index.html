@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Closed Caption Generator Online – SRT &amp; VTT Editor with WCAG Checks</title>
+<meta name="description" content="Free closed caption generator online. Create, edit and export SRT and VTT captions with WCAG compliance checking, reading speed analysis, speaker labels and video preview. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/accessibility-tools/closed-caption-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Closed Caption Generator Online – SRT &amp; VTT Editor with WCAG Checks">
+<meta property="og:description" content="Free closed caption generator online. SRT and VTT editor with WCAG compliance, reading speed analysis and video preview.">
+<meta property="og:url" content="https://utiliby.com/tools/accessibility-tools/closed-caption-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.cap-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.cap-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.cap-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.cap-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.cap-toolbar button{padding:8px 14px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.cap-toolbar button.ghost{background:transparent;color:var(--brand)}
+.cap-toolbar button:hover{opacity:.9}
+.cap-list{margin:12px 0}
+.cap-cue{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;margin-bottom:8px}
+.cap-cue.has-issue{border-left:4px solid #f59e0b}
+.cap-cue.has-error{border-left:4px solid #dc2626}
+.cap-cue-header{display:grid;grid-template-columns:36px 1fr 1fr 90px 100px 36px;gap:6px;align-items:center;margin-bottom:6px}
+@media(max-width:600px){.cap-cue-header{grid-template-columns:1fr;gap:4px}}
+.cap-cue-header label{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;display:block;margin:0}
+.cap-cue-header input,.cap-cue-header select{padding:6px 8px;font-size:.85rem}
+.cap-cue-text textarea{width:100%;padding:8px;font-size:.9rem;font-family:inherit;min-height:44px}
+.cap-cue-text label{font-size:.72rem;color:var(--muted);font-weight:600;text-transform:uppercase;display:block;margin-bottom:4px}
+.cap-cue-num{font-size:.8rem;font-weight:700;color:var(--brand);text-align:center;padding-top:14px}
+.cap-remove{background:transparent;color:#dc2626;border:1px solid var(--line);border-radius:6px;padding:4px 8px;font-size:.8rem;cursor:pointer;font-weight:600}
+.cap-remove:hover{background:#fee2e2}
+.cap-issues{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;margin:12px 0}
+.cap-issues.ok{border-color:#16a34a}
+.cap-issues.warn{border-color:#f59e0b}
+.cap-issues ul{margin:6px 0 0 18px;padding:0}
+.cap-issues li{font-size:.85rem;margin:3px 0}
+.cap-panel{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.cap-video-wrap{position:relative;background:#000;border-radius:10px;overflow:hidden;margin:12px 0}
+.cap-video-wrap video{display:block;width:100%;max-height:400px}
+.cap-overlay{position:absolute;bottom:10%;left:50%;transform:translateX(-50%);background:rgba(0,0,0,.82);color:#fff;padding:8px 16px;border-radius:6px;font-size:1.05rem;font-weight:600;max-width:88%;text-align:center;line-height:1.35;text-shadow:0 1px 2px rgba(0,0,0,.9);pointer-events:none;opacity:0;transition:opacity .15s;font-family:system-ui,-apple-system,sans-serif}
+.cap-overlay.on{opacity:1}
+.cap-stats{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.cap-stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.82rem;font-weight:600}
+.cap-stat .ok{color:#16a34a}
+.cap-stat .warn{color:#f59e0b}
+.cap-stat .bad{color:#dc2626}
+.cap-table-help{font-size:.8rem;color:var(--muted);margin:4px 0 10px;line-height:1.5}
+details{border-bottom:1px solid var(--line);padding:10px 0}
+summary{cursor:pointer;font-weight:600}
+@media(max-width:560px){.cap-toolbar button{font-size:.8rem;padding:7px 10px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Closed Caption Generator","url":"https://utiliby.com/tools/accessibility-tools/closed-caption-generator/","applicationCategory":"AccessibilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a closed caption generator?","acceptedAnswer":{"@type":"Answer","text":"A closed caption generator is a tool that creates time-coded text files (SRT, VTT) that accompany a video and display the spoken words and relevant sound effects as on-screen text. Captions are called 'closed' because viewers can turn them on or off. This free closed caption generator online supports manual cue authoring, SRT and WebVTT export, WCAG compliance checking and video preview."}},{"@type":"Question","name":"What is the difference between subtitles and closed captions?","acceptedAnswer":{"@type":"Answer","text":"Subtitles translate spoken dialogue into another language and assume the viewer can hear the audio. Closed captions describe all significant audio — dialogue, speaker identification, sound effects, music and tone — and are designed for viewers who are deaf or hard of hearing. In practice, both use the same SRT and VTT file formats."}},{"@type":"Question","name":"What are the WCAG caption requirements?","acceptedAnswer":{"@type":"Answer","text":"WCAG 2.1 Success Criterion 1.2.2 requires synchronized captions for all pre-recorded audio in multimedia. WCAG 2.1 Level AA also requires live captions for live media (SC 1.2.4). Best practice requires readable line lengths (32 to 42 characters per line), reading speeds below 20 characters per second, minimum cue duration of 1 second and maximum around 8 seconds per cue."}},{"@type":"Question","name":"What is SRT format?","acceptedAnswer":{"@type":"Answer","text":"SRT (SubRip Subtitle) is the most widely supported subtitle format. Each cue has a sequential number, a time range (start --> end), and text on one or more lines, with a blank line separating cues. Timestamps use the format HH:MM:SS,mmm."}},{"@type":"Question","name":"What is VTT format?","acceptedAnswer":{"@type":"Answer","text":"VTT (Web Video Text Tracks, also called WebVTT) is the W3C standard format for web video captions. It starts with the text WEBVTT and uses timestamps in the format HH:MM:SS.mmm (dot instead of comma). VTT supports styling with CSS, cue identifiers, and voice spans via <v Speaker> tags."}},{"@type":"Question","name":"What is a good reading speed for captions?","acceptedAnswer":{"@type":"Answer","text":"The industry standard for adult captions is under 20 characters per second (CPS), and ideally 15 to 17 CPS for comfortable reading. Children's content should aim for lower. This closed caption generator flags any cue that exceeds these reading speed limits."}},{"@type":"Question","name":"What line length should captions use?","acceptedAnswer":{"@type":"Answer","text":"The BBC and most accessibility guidelines recommend a maximum of 42 characters per line and no more than two lines per caption cue. This keeps captions readable and prevents text from running past the edge of the frame."}},{"@type":"Question","name":"Is this closed caption generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your video, transcript or captions anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/accessibility-tools/">Accessibility Tools</a> › Closed Caption Generator</nav>
+<h1>Closed Caption Generator</h1>
+<p class="lead">Create, edit and export SRT and VTT captions with WCAG compliance checking, reading speed analysis and video preview. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Closed caption generator">
+
+<div class="cap-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="cap-tab on" data-tab="editor">Editor</button>
+<button type="button" class="cap-tab" data-tab="import">Import</button>
+<button type="button" class="cap-tab" data-tab="preview">Video Preview</button>
+</div>
+
+<!-- EDITOR TAB -->
+<div id="editorTab">
+<div class="cap-toolbar">
+<button type="button" id="addCue">+ Add cue</button>
+<button type="button" class="ghost" id="autoSplitToggle">Auto-split from text</button>
+<button type="button" class="ghost" id="exportSrt">Download SRT</button>
+<button type="button" class="ghost" id="exportVtt">Download VTT</button>
+<button type="button" class="ghost" id="copySrt">Copy SRT</button>
+<button type="button" class="ghost" id="copyVtt">Copy VTT</button>
+<button type="button" class="ghost" id="clearAll">Clear all</button>
+</div>
+
+<div id="autoSplitPanel" class="cap-panel" hidden>
+<h4 style="margin:0 0 8px">Auto-split from text</h4>
+<p class="cap-table-help">Paste your transcript below. The tool splits it into cues by sentence, then distributes them evenly across the duration you enter.</p>
+<label for="splitText">Transcript text</label>
+<textarea id="splitText" rows="5" placeholder="Paste your script, transcript or dialogue here..."></textarea>
+<div class="row">
+<div><label for="splitDuration">Total duration (seconds)</label><input id="splitDuration" type="number" min="1" step="1" value="60"></div>
+<div><label for="splitMaxChars">Max chars per cue</label><input id="splitMaxChars" type="number" min="20" max="120" step="1" value="80"></div>
+</div>
+<button type="button" id="doAutoSplit" style="margin-top:8px">Split into cues</button>
+</div>
+
+<div id="cueList" class="cap-list"></div>
+
+<div id="issuesPanel"></div>
+</div>
+
+<!-- IMPORT TAB -->
+<div id="importTab" hidden>
+<div class="cap-panel">
+<h4 style="margin:0 0 8px">Import existing SRT or VTT</h4>
+<p class="cap-table-help">Paste the content of an SRT or VTT file below, or choose a file from your device. The editor will load every cue so you can review, fix and re-export.</p>
+<label for="importText">Paste SRT or VTT content</label>
+<textarea id="importText" rows="8" placeholder="1&#10;00:00:01,000 --> 00:00:04,000&#10;Hello world&#10;&#10;2&#10;00:00:04,500 --> 00:00:07,000&#10;Second caption"></textarea>
+<div class="cap-toolbar">
+<button type="button" id="parseImport">Parse and load</button>
+<button type="button" class="ghost" id="importFromFileBtn">Choose file…</button>
+<input type="file" id="importFile" accept=".srt,.vtt,.txt" hidden>
+</div>
+</div>
+</div>
+
+<!-- PREVIEW TAB -->
+<div id="previewTab" hidden>
+<div class="cap-panel">
+<h4 style="margin:0 0 8px">Video preview with caption overlay</h4>
+<p class="cap-table-help">Load a video file from your device. The tool never uploads it — your video stays in your browser. Captions from your cue list appear over the video as it plays.</p>
+<label for="videoFile">Choose a video file</label>
+<input type="file" id="videoFile" accept="video/*">
+<div id="videoWrap" class="cap-video-wrap" hidden>
+<video id="video" controls playsinline></video>
+<div id="captionOverlay" class="cap-overlay"></div>
+</div>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div id="summary" class="cap-stats"></div>
+
+</section>
+
+<h2>What is a free closed caption generator online?</h2>
+<p>A free closed caption generator online is a tool that creates time-coded text files — usually in SRT or WebVTT format — that display the spoken words and relevant sound effects of a video as on-screen text. Captions are called "closed" because viewers can turn them on or off, unlike "open" captions that are permanently burned into the video pixels.</p>
+<p>This closed caption generator online is an <b>editor-first</b> tool. Instead of uploading a video for automatic speech recognition, it gives you a full caption authoring environment: add cues, type or paste text, set precise start and end times, add speaker labels and sound-effect notation, and validate everything against WCAG 2.1 and industry captioning standards before you export.</p>
+
+<h2>How to use this free closed caption generator</h2>
+<ol>
+<li>Click <b>+ Add cue</b> to start building your caption track, or paste a transcript into <b>Auto-split from text</b> to generate cues automatically.</li>
+<li>Enter a start time and end time for each cue. The editor accepts formats like <code>00:00:01.500</code>, <code>1:30</code> or <code>90</code> (seconds).</li>
+<li>Type the caption text. Add a speaker name if you want a <code>Speaker:</code> prefix (SRT) or a <code>&lt;v Speaker&gt;</code> voice span (VTT).</li>
+<li>Check the <b>issues panel</b> for WCAG compliance warnings: reading speed, line length, cue duration, overlapping cues and more.</li>
+<li>Load an existing SRT or VTT file in the <b>Import</b> tab to edit an existing caption file.</li>
+<li>Use the <b>Video Preview</b> tab to load a video from your device and see your captions overlaid as the video plays.</li>
+<li>Download SRT or VTT, or copy the file content to your clipboard.</li>
+</ol>
+
+<h2>Closed captions vs subtitles: what's the difference?</h2>
+<p>The terms are often used interchangeably, but they describe different things. <b>Subtitles</b> translate spoken dialogue into another language, assuming the viewer can hear the original audio. <b>Closed captions</b> transcribe all significant audio — dialogue, speaker identification, sound effects, music, tone and meaningful non-speech sounds — and are designed for viewers who are deaf or hard of hearing.</p>
+<p>Both use the same file formats (SRT and VTT) and both can be added to any modern video player. The main difference is content: a subtitle track contains only the words; a caption track contains the words plus everything a deaf viewer needs to fully understand the video.</p>
+
+<h2>What are the WCAG caption requirements?</h2>
+<p>The Web Content Accessibility Guidelines (WCAG) 2.1 define caption requirements for video content. The key success criteria are:</p>
+<ul>
+<li><b>SC 1.2.2 — Captions (Prerecorded):</b> Captions are provided for all prerecorded audio content in synchronized media. This is a Level A requirement — the minimum.</li>
+<li><b>SC 1.2.4 — Captions (Live):</b> Captions are provided for all live audio content in synchronized media. This is Level AA.</li>
+<li><b>SC 1.2.5 — Audio Description (Prerecorded):</b> An audio description is provided for all prerecorded video content. Level AA.</li>
+</ul>
+<p>WCAG does not prescribe specific technical limits like line length or reading speed — those come from best-practice guidance published by the BBC, Netflix, and the Described and Captioned Media Program. This tool applies those recommendations so your captions are not just compliant, but genuinely usable.</p>
+
+<h2>Best-practice captioning rules this tool checks</h2>
+<ul>
+<li><b>Reading speed (CPS).</b> Characters per second should not exceed 20. Most professional captions stay at 15–17 CPS. This tool flags every cue that exceeds 20 CPS.</li>
+<li><b>Line length.</b> Maximum 42 characters per line, with a maximum of two lines per cue. Longer lines are harder to scan, especially on mobile.</li>
+<li><b>Duration.</b> Minimum 1 second and maximum 8 seconds per cue. Very short cues flash on screen and very long cues force viewers to re-read.</li>
+<li><b>Overlapping cues.</b> Two captions should never display at the same time — the player shows one at a time, so overlapping time ranges cause confusion.</li>
+<li><b>Sound effects notation.</b> Non-speech sounds should be written in square brackets or parentheses, e.g. <code>[door slams]</code>, <code>(music swells)</code>.</li>
+<li><b>Speaker identification.</b> When two or more speakers alternate, prefix the caption with the speaker's name, e.g. <code>Alice: Where were you?</code>.</li>
+</ul>
+
+<h2>SRT vs VTT: which format should you use?</h2>
+<p><b>SRT (SubRip Subtitle)</b> is the oldest and most widely supported caption format. Every major video player, editing suite and social platform accepts it. It is minimal: only cue number, time range and text. Timestamps use a comma before the milliseconds (00:00:01,000).</p>
+<p><b>VTT (Web Video Text Tracks, WebVTT)</b> is the W3C standard for the web. It starts with the text <code>WEBVTT</code> and supports features SRT does not: styling with CSS, cue identifiers, voice spans (<code>&lt;v Speaker&gt;</code>), text positioning, and HTML-like markup. Timestamps use a period before the milliseconds (00:00:01.000).</p>
+<p><b>Rule of thumb:</b> use SRT when you need maximum compatibility (YouTube, VLC, most editing software). Use VTT when you are publishing to a website, need custom styling, or want to use a native HTML5 <code>&lt;track&gt;</code> element.</p>
+
+<h2>Why captions matter for SEO and reach</h2>
+<p>Captions are not just an accessibility requirement — they improve performance. Search engines cannot watch video, but they can index the text of a caption file. Adding captions lets your video rank for every keyword spoken in it, not just the title and description.</p>
+<p>Captions also increase engagement. Approximately 85% of Facebook video is watched without sound, and captioned videos average 12% more views and 40% more engagement. For social media creators, captions are the difference between a viewer who keeps watching and one who scrolls past.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a closed caption generator?</summary><p>A closed caption generator is a tool that creates time-coded text files (SRT, VTT) that accompany a video and display the spoken words and relevant sound effects as on-screen text. Captions are called "closed" because viewers can turn them on or off.</p></details>
+<details><summary>What is the difference between subtitles and closed captions?</summary><p>Subtitles translate spoken dialogue into another language and assume the viewer can hear the audio. Closed captions describe all significant audio — dialogue, speaker identification, sound effects, music and tone — and are designed for viewers who are deaf or hard of hearing.</p></details>
+<details><summary>What are the WCAG caption requirements?</summary><p>WCAG 2.1 Success Criterion 1.2.2 requires synchronized captions for all pre-recorded audio in multimedia. WCAG 2.1 Level AA also requires live captions for live media (SC 1.2.4). Best practice requires readable line lengths (32 to 42 characters per line), reading speeds below 20 characters per second, minimum cue duration of 1 second and maximum around 8 seconds per cue.</p></details>
+<details><summary>What is SRT format?</summary><p>SRT (SubRip Subtitle) is the most widely supported subtitle format. Each cue has a sequential number, a time range (start --> end), and text on one or more lines, with a blank line separating cues. Timestamps use the format HH:MM:SS,mmm.</p></details>
+<details><summary>What is VTT format?</summary><p>VTT (Web Video Text Tracks, also called WebVTT) is the W3C standard format for web video captions. It starts with the text WEBVTT and uses timestamps in the format HH:MM:SS.mmm (dot instead of comma). VTT supports styling with CSS, cue identifiers, and voice spans via &lt;v Speaker&gt; tags.</p></details>
+<details><summary>What is a good reading speed for captions?</summary><p>The industry standard for adult captions is under 20 characters per second (CPS), and ideally 15 to 17 CPS for comfortable reading. Children's content should aim for lower. This closed caption generator flags any cue that exceeds these reading speed limits.</p></details>
+<details><summary>What line length should captions use?</summary><p>The BBC and most accessibility guidelines recommend a maximum of 42 characters per line and no more than two lines per caption cue. This keeps captions readable and prevents text from running past the edge of the frame.</p></details>
+<details><summary>Is this closed caption generator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your video, transcript or captions anywhere.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function pad(n){ n = Math.floor(n); return n < 10 ? "0" + n : "" + n; }
+function pad3(n){ n = Math.floor(n); return n < 10 ? "00" + n : (n < 100 ? "0" + n : "" + n); }
+
+/* ---------- TIME PARSING & FORMATTING ---------- */
+function parseTime(str){
+  if(str == null) return 0;
+  str = String(str).trim().replace(/,/g, ".");
+  if(!str) return 0;
+  // Accept "1:30.5", "00:01:30.500", "90", "90.5s", "1m30s"
+  var m = str.match(/^(?:(\d+):)?(?:(\d+):)?(\d+(?:\.\d+)?)$/);
+  if(m){
+    var p1 = m[1] ? parseInt(m[1], 10) : 0;
+    var p2 = m[2] ? parseInt(m[2], 10) : 0;
+    var p3 = parseFloat(m[3]);
+    if(m[1] && m[2]){
+      // HH:MM:SS
+      return p1 * 3600 + p2 * 60 + p3;
+    } else if(m[1] || m[2]){
+      // MM:SS
+      return (m[1] ? p1 * 60 : 0) + (m[2] ? p2 * 60 : 0) + p3;
+    } else {
+      // Seconds
+      return p3;
+    }
+  }
+  // Handle "1m30s" format
+  var mm = str.match(/^(?:(\d+(?:\.\d+)?)h)?(?:(\d+(?:\.\d+)?)m)?(?:(\d+(?:\.\d+)?)s)?$/i);
+  if(mm && (mm[1] || mm[2] || mm[3])){
+    return (parseFloat(mm[1] || 0) * 3600) + (parseFloat(mm[2] || 0) * 60) + (parseFloat(mm[3] || 0));
+  }
+  return parseFloat(str) || 0;
+}
+
+function formatTimeSrt(sec){
+  if(!isFinite(sec) || sec < 0) sec = 0;
+  var h = Math.floor(sec / 3600);
+  var m = Math.floor((sec % 3600) / 60);
+  var s = Math.floor(sec % 60);
+  var ms = Math.round((sec - Math.floor(sec)) * 1000);
+  if(ms === 1000){ s++; ms = 0; if(s === 60){ s = 0; m++; if(m === 60){ m = 0; h++; } } }
+  return pad(h) + ":" + pad(m) + ":" + pad(s) + "," + pad3(ms);
+}
+
+function formatTimeVtt(sec){
+  return formatTimeSrt(sec).replace(",", ".");
+}
+
+function formatDuration(sec){
+  if(sec < 60) return sec.toFixed(1) + "s";
+  var m = Math.floor(sec / 60);
+  var s = sec - m * 60;
+  return m + "m " + s.toFixed(0) + "s";
+}
+
+/* ---------- CUE DATA ---------- */
+var cues = [
+  {start: 0, end: 2.5, text: "Welcome to this demo caption track.", speaker: ""},
+  {start: 2.5, end: 5, text: "Add more cues using the buttons above.", speaker: ""},
+  {start: 5, end: 8, text: "Everything runs in your browser.", speaker: ""}
+];
+
+/* ---------- CUE LIST RENDERING ---------- */
+function renderCueList(){
+  var wrap = $("cueList");
+  if(cues.length === 0){
+    wrap.innerHTML = '<p class="meta" style="text-align:center;padding:20px">No cues yet. Click <b>+ Add cue</b> or use <b>Auto-split from text</b>.</p>';
+    renderIssues();
+    return;
+  }
+  var html = "";
+  for(var i = 0; i < cues.length; i++){
+    var c = cues[i];
+    var dur = c.end - c.start;
+    var issue = analyzeCue(c, cues, i);
+    var cls = "cap-cue";
+    if(issue.errors.length > 0) cls += " has-error";
+    else if(issue.warnings.length > 0) cls += " has-issue";
+
+    html += '<div class="' + cls + '">';
+    html += '<div class="cap-cue-header">';
+    html += '<div class="cap-cue-num">#' + (i + 1) + '</div>';
+    html += '<div><label>Start</label><input type="text" data-idx="' + i + '" data-field="start" value="' + esc(formatTimeSrt(c.start)) + '"></div>';
+    html += '<div><label>End</label><input type="text" data-idx="' + i + '" data-field="end" value="' + esc(formatTimeSrt(c.end)) + '"></div>';
+    html += '<div><label>Duration</label><input type="text" value="' + formatDuration(dur) + '" readonly style="background:var(--bg);text-align:center"></div>';
+    html += '<div><label>Speaker</label><input type="text" data-idx="' + i + '" data-field="speaker" value="' + esc(c.speaker) + '" placeholder="optional"></div>';
+    html += '<button type="button" class="cap-remove" data-remove="' + i + '" title="Remove cue">✕</button>';
+    html += '</div>';
+    html += '<div class="cap-cue-text"><label>Caption text</label>';
+    html += '<textarea data-idx="' + i + '" data-field="text" placeholder="Caption text…">' + esc(c.text) + '</textarea>';
+    html += '</div>';
+    // Show CPS and issues inline
+    var stats = computeCps(c);
+    html += '<div class="cap-stats" style="margin-top:6px">';
+    html += '<span class="cap-stat">CPS: <b class="' + (stats.cps > 20 ? "bad" : (stats.cps > 17 ? "warn" : "ok")) + '">' + stats.cps.toFixed(1) + '</b></span>';
+    html += '<span class="cap-stat">Chars: ' + stats.chars + '</span>';
+    html += '<span class="cap-stat">Lines: ' + stats.lines + ' (max ' + stats.maxLine + ' chars)</span>';
+    if(issue.errors.length) html += '<span class="cap-stat bad">' + issue.errors.length + ' error' + (issue.errors.length > 1 ? "s" : "") + '</span>';
+    if(issue.warnings.length) html += '<span class="cap-stat warn">' + issue.warnings.length + ' warning' + (issue.warnings.length > 1 ? "s" : "") + '</span>';
+    html += '</div>';
+    html += '</div>';
+  }
+  wrap.innerHTML = html;
+  renderIssues();
+}
+
+function computeCps(c){
+  var dur = Math.max(0.001, c.end - c.start);
+  var text = (c.speaker ? c.speaker + ": " : "") + c.text;
+  var chars = text.length;
+  var lines = c.text.split("\n").filter(function(l){ return l.trim().length > 0; });
+  var maxLine = 0;
+  for(var i = 0; i < lines.length; i++){
+    if(lines[i].length > maxLine) maxLine = lines[i].length;
+  }
+  return { cps: chars / dur, chars: chars, lines: lines.length, maxLine: maxLine };
+}
+
+function analyzeCue(c, allCues, idx){
+  var errors = [];
+  var warnings = [];
+  var dur = c.end - c.start;
+  if(dur <= 0){
+    errors.push("End time is not after start time");
+    return { errors: errors, warnings: warnings };
+  }
+  if(!c.text || !c.text.trim()){
+    warnings.push("Empty caption text");
+  }
+  if(dur < 1){
+    warnings.push("Duration under 1 second");
+  }
+  if(dur > 8){
+    warnings.push("Duration over 8 seconds");
+  }
+  var stats = computeCps(c);
+  if(stats.cps > 20){
+    warnings.push("Reading speed " + stats.cps.toFixed(1) + " CPS exceeds 20 CPS limit");
+  }
+  if(stats.maxLine > 42){
+    warnings.push("Line length " + stats.maxLine + " exceeds 42 characters");
+  }
+  if(stats.lines > 2){
+    warnings.push("More than 2 lines of text");
+  }
+  // Overlap check
+  for(var j = 0; j < allCues.length; j++){
+    if(j === idx) continue;
+    var other = allCues[j];
+    if(c.start < other.end && c.end > other.start){
+      errors.push("Overlaps with cue #" + (j + 1));
+      break;
+    }
+  }
+  return { errors: errors, warnings: warnings };
+}
+
+function renderIssues(){
+  var wrap = $("issuesPanel");
+  var allErrors = 0;
+  var allWarnings = 0;
+  var details = [];
+  for(var i = 0; i < cues.length; i++){
+    var r = analyzeCue(cues[i], cues, i);
+    allErrors += r.errors.length;
+    allWarnings += r.warnings.length;
+    if(r.errors.length || r.warnings.length){
+      var txt = "Cue #" + (i + 1) + ": " + r.errors.concat(r.warnings).join("; ");
+      details.push(txt);
+    }
+  }
+  var cls = "cap-issues";
+  var title = "";
+  if(allErrors === 0 && allWarnings === 0){
+    cls += " ok";
+    title = "All " + cues.length + " cues pass WCAG best-practice checks.";
+  } else {
+    if(allErrors > 0) cls += " warn";
+    title = allErrors + " error" + (allErrors === 1 ? "" : "s") + " and " + allWarnings + " warning" + (allWarnings === 1 ? "" : "s") + " found.";
+  }
+  var h = '<div class="' + cls + '"><b>' + title + '</b>';
+  if(details.length){
+    h += '<ul>';
+    for(var j = 0; j < details.length; j++){
+      h += '<li>' + esc(details[j]) + '</li>';
+    }
+    h += '</ul>';
+  }
+  h += '</div>';
+  wrap.innerHTML = h;
+}
+
+/* ---------- EXPORT ---------- */
+function generateSrt(){
+  var out = "";
+  for(var i = 0; i < cues.length; i++){
+    var c = cues[i];
+    out += (i + 1) + "\n";
+    out += formatTimeSrt(c.start) + " --> " + formatTimeSrt(c.end) + "\n";
+    if(c.speaker) out += c.speaker + ": " + c.text + "\n";
+    else out += c.text + "\n";
+    out += "\n";
+  }
+  return out;
+}
+
+function generateVtt(){
+  var out = "WEBVTT\n\n";
+  for(var i = 0; i < cues.length; i++){
+    var c = cues[i];
+    out += (i + 1) + "\n";
+    out += formatTimeVtt(c.start) + " --> " + formatTimeVtt(c.end) + "\n";
+    if(c.speaker) out += "<v " + c.speaker + ">" + c.text + "\n";
+    else out += c.text + "\n";
+    out += "\n";
+  }
+  return out;
+}
+
+function downloadFile(name, content){
+  var blob = new Blob([content], {type: "text/plain;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function copyText(t, btn){
+  if(!navigator.clipboard) return;
+  navigator.clipboard.writeText(t).then(function(){
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  });
+}
+
+/* ---------- IMPORT PARSERS ---------- */
+function parseSrt(text){
+  var out = [];
+  text = text.replace(/\r\n/g, "\n").replace(/\r/g, "\n");
+  var blocks = text.split(/\n\s*\n/);
+  for(var b = 0; b < blocks.length; b++){
+    var block = blocks[b].trim();
+    if(!block) continue;
+    var lines = block.split("\n");
+    // Find time line
+    var timeIdx = -1;
+    var timeMatch = null;
+    for(var i = 0; i < Math.min(lines.length, 3); i++){
+      var m = lines[i].match(/(\d{1,2}:\d{1,2}:\d{1,2}[.,]\d{1,3}|\d{1,2}:\d{1,2}[.,]\d{1,3}|\d+)\s*-->\s*(\d{1,2}:\d{1,2}:\d{1,2}[.,]\d{1,3}|\d{1,2}:\d{1,2}[.,]\d{1,3}|\d+)/);
+      if(m){ timeIdx = i; timeMatch = m; break; }
+    }
+    if(timeIdx === -1) continue;
+    var start = parseTime(timeMatch[1]);
+    var end = parseTime(timeMatch[2]);
+    var textLines = lines.slice(timeIdx + 1).join("\n").trim();
+    var speaker = "";
+    // Try to detect "Speaker: text" prefix
+    var sp = textLines.match(/^([A-Za-z][A-Za-z0-9 _\-'.]{0,29}):\s*([\s\S]+)$/);
+    if(sp){
+      speaker = sp[1].trim();
+      textLines = sp[2].trim();
+    }
+    // Strip VTT voice span if present
+    var vtt = textLines.match(/^<v\s+([^>]+)>([\s\S]+?)(?:<\/v>)?$/);
+    if(vtt){
+      speaker = vtt[1].trim();
+      textLines = vtt[2].trim();
+    }
+    out.push({start: start, end: end, text: textLines, speaker: speaker});
+  }
+  return out;
+}
+
+/* ---------- AUTO-SPLIT ---------- */
+function autoSplitText(text, totalDuration, maxChars){
+  // Split into sentences or chunks
+  var sentences = text.replace(/\s+/g, " ").match(/[^.!?]+[.!?]+|[^.!?]+$/g) || [text];
+  sentences = sentences.map(function(s){ return s.trim(); }).filter(function(s){ return s.length > 0; });
+  // Merge short sentences to fit maxChars
+  var merged = [];
+  var cur = "";
+  for(var i = 0; i < sentences.length; i++){
+    if(!cur){
+      cur = sentences[i];
+    } else if((cur + " " + sentences[i]).length <= maxChars){
+      cur += " " + sentences[i];
+    } else {
+      merged.push(cur);
+      cur = sentences[i];
+    }
+  }
+  if(cur) merged.push(cur);
+  // Split long ones
+  var final = [];
+  for(var i = 0; i < merged.length; i++){
+    var s = merged[i];
+    if(s.length <= maxChars){
+      final.push(s);
+    } else {
+      // Break at word boundary
+      var words = s.split(" ");
+      var chunk = "";
+      for(var w = 0; w < words.length; w++){
+        if(!chunk){
+          chunk = words[w];
+        } else if((chunk + " " + words[w]).length <= maxChars){
+          chunk += " " + words[w];
+        } else {
+          final.push(chunk);
+          chunk = words[w];
+        }
+      }
+      if(chunk) final.push(chunk);
+    }
+  }
+  // Assign times evenly
+  var count = final.length;
+  if(count === 0) return [];
+  var perCue = totalDuration / count;
+  var cues = [];
+  for(var i = 0; i < count; i++){
+    cues.push({
+      start: i * perCue,
+      end: (i + 1) * perCue,
+      text: final[i],
+      speaker: ""
+    });
+  }
+  return cues;
+}
+
+/* ---------- VIDEO PREVIEW ---------- */
+var videoEl = null;
+var overlayEl = null;
+var overlayTimer = null;
+
+function initVideoPreview(){
+  videoEl = $("video");
+  overlayEl = $("captionOverlay");
+  if(!videoEl) return;
+  videoEl.addEventListener("timeupdate", function(){
+    var t = videoEl.currentTime;
+    var active = null;
+    for(var i = 0; i < cues.length; i++){
+      if(t >= cues[i].start && t <= cues[i].end){ active = cues[i]; break; }
+    }
+    if(active){
+      var text = (active.speaker ? active.speaker + ": " : "") + active.text;
+      if(overlayEl.textContent !== text){
+        overlayEl.textContent = text;
+      }
+      overlayEl.classList.add("on");
+    } else {
+      overlayEl.classList.remove("on");
+    }
+  });
+}
+
+function loadVideoFile(file){
+  if(!videoEl) initVideoPreview();
+  var url = URL.createObjectURL(file);
+  videoEl.src = url;
+  $("videoWrap").hidden = false;
+}
+
+/* ---------- EVENT WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Initialize tab handlers
+  var tabs = document.querySelectorAll(".cap-tab");
+  for(var t = 0; t < tabs.length; t++){
+    tabs[t].addEventListener("click", function(){
+      var tab = this.dataset.tab;
+      for(var i = 0; i < tabs.length; i++){
+        if(tabs[i].dataset.tab === tab) tabs[i].classList.add("on");
+        else tabs[i].classList.remove("on");
+      }
+      $("editorTab").hidden = (tab !== "editor");
+      $("importTab").hidden = (tab !== "import");
+      $("previewTab").hidden = (tab !== "preview");
+      if(tab === "preview") initVideoPreview();
+    });
+  }
+
+  // Render initial cue list
+  renderCueList();
+
+  // Toolbar buttons
+  $("addCue").addEventListener("click", function(){
+    var last = cues[cues.length - 1];
+    var start = last ? last.end : 0;
+    cues.push({start: start, end: start + 2.5, text: "", speaker: ""});
+    renderCueList();
+    // Focus the new textarea
+    var textareas = $("cueList").querySelectorAll("textarea");
+    if(textareas.length) textareas[textareas.length - 1].focus();
+  });
+
+  $("autoSplitToggle").addEventListener("click", function(){
+    $("autoSplitPanel").hidden = !$("autoSplitPanel").hidden;
+  });
+
+  $("doAutoSplit").addEventListener("click", function(){
+    var text = $("splitText").value;
+    var dur = parseFloat($("splitDuration").value) || 60;
+    var maxChars = parseInt($("splitMaxChars").value, 10) || 80;
+    if(!text.trim()){
+      alert("Please paste some text to split.");
+      return;
+    }
+    var newCues = autoSplitText(text, dur, maxChars);
+    if(newCues.length === 0){
+      alert("Could not split the text into cues.");
+      return;
+    }
+    cues = cues.concat(newCues);
+    $("splitText").value = "";
+    $("autoSplitPanel").hidden = true;
+    renderCueList();
+  });
+
+  $("clearAll").addEventListener("click", function(){
+    if(confirm("Clear all cues? This cannot be undone.")){
+      cues = [];
+      renderCueList();
+    }
+  });
+
+  $("exportSrt").addEventListener("click", function(){
+    downloadFile("captions.srt", generateSrt());
+  });
+
+  $("exportVtt").addEventListener("click", function(){
+    downloadFile("captions.vtt", generateVtt());
+  });
+
+  $("copySrt").addEventListener("click", function(){
+    copyText(generateSrt(), this);
+  });
+
+  $("copyVtt").addEventListener("click", function(){
+    copyText(generateVtt(), this);
+  });
+
+  // Import handlers
+  $("parseImport").addEventListener("click", function(){
+    var txt = $("importText").value;
+    if(!txt.trim()){
+      alert("Please paste SRT or VTT content first.");
+      return;
+    }
+    var parsed = parseSrt(txt);
+    if(parsed.length === 0){
+      alert("Could not parse any cues. Check the format.");
+      return;
+    }
+    // Ask merge or replace
+    if(cues.length > 0){
+      if(!confirm("You already have " + cues.length + " cues. Replace them with the " + parsed.length + " imported cues?")){
+        return;
+      }
+    }
+    cues = parsed;
+    renderCueList();
+    // Switch to editor
+    var tabs2 = document.querySelectorAll(".cap-tab");
+    for(var i = 0; i < tabs2.length; i++){
+      if(tabs2[i].dataset.tab === "editor") tabs2[i].classList.add("on");
+      else tabs2[i].classList.remove("on");
+    }
+    $("editorTab").hidden = false;
+    $("importTab").hidden = true;
+    $("previewTab").hidden = true;
+  });
+
+  $("importFromFileBtn").addEventListener("click", function(){
+    $("importFile").click();
+  });
+
+  $("importFile").addEventListener("change", function(e){
+    var f = e.target.files[0];
+    if(!f) return;
+    var reader = new FileReader();
+    reader.onload = function(ev){
+      $("importText").value = ev.target.result;
+    };
+    reader.readAsText(f);
+  });
+
+  // Video file
+  $("videoFile").addEventListener("change", function(e){
+    var f = e.target.files[0];
+    if(!f) return;
+    loadVideoFile(f);
+  });
+
+  // Cue list edits (delegated)
+  T.addEventListener("input", function(e){
+    var idx = e.target.dataset.idx;
+    var field = e.target.dataset.field;
+    if(idx === undefined || !field) return;
+    idx = parseInt(idx, 10);
+    if(!cues[idx]) return;
+    var val = e.target.value;
+    if(field === "start" || field === "end"){
+      cues[idx][field] = parseTime(val);
+    } else {
+      cues[idx][field] = val;
+    }
+    // Only re-render inline stats, not the whole list (avoid focus loss)
+    var cueEl = e.target.closest(".cap-cue");
+    if(cueEl){
+      var stats = computeCps(cues[idx]);
+      var statEls = cueEl.querySelectorAll(".cap-stat");
+      if(statEls.length >= 3){
+        statEls[0].innerHTML = 'CPS: <b class="' + (stats.cps > 20 ? "bad" : (stats.cps > 17 ? "warn" : "ok")) + '">' + stats.cps.toFixed(1) + '</b>';
+        statEls[1].innerHTML = 'Chars: ' + stats.chars;
+        statEls[2].innerHTML = 'Lines: ' + stats.lines + ' (max ' + stats.maxLine + ' chars)';
+      }
+    }
+    renderIssues();
+  });
+
+  // Cue removal (delegated)
+  T.addEventListener("click", function(e){
+    var rm = e.target.closest(".cap-remove");
+    if(rm){
+      var idx = parseInt(rm.dataset.remove, 10);
+      cues.splice(idx, 1);
+      renderCueList();
+    }
+  });
+});
+})();
+</script>
+</body>
+</html>
