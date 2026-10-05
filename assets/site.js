@@ -14,6 +14,7 @@
     ["/tools/design-color-tools/", "Design &amp; Color"],
     ["/tools/astrology/", "Astrology"],
     ["/tools/audio-music-tools/", "Audio &amp; Music"],
+    ["/tools/social-media-tools/", "Social Media"],
     ["/tools/image-tools/", "Image"],
     ["/tools/security-privacy-tools/", "Security &amp; Privacy"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
