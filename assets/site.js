@@ -13,6 +13,7 @@
     ["/tools/astrology/", "Astrology"],
     ["/tools/image-tools/", "Image"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
+    ["/tools/pdf-document-tools/", "PDF &amp; Document"],
     ["/tools/real-estate-tools/", "Real Estate"],
     ["/tools/business-legal-tools/", "Business"],
     ["/tools/gaming-tools/", "Gaming"],
