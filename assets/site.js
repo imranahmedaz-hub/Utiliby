@@ -9,6 +9,7 @@
     ["/tools/developer-tools/", "Developer"],
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
+    ["/tools/astrology/", "Astrology"],
     ["/tools/business-legal-tools/", "Business"],
     ["/tools/education-study-tools/", "Education"]
   ];
