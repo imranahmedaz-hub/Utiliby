@@ -8,13 +8,57 @@ header.site{border-bottom:1px solid var(--line)}
 header.site .wrap{display:flex;align-items:center;justify-content:space-between;height:60px}
 .logo{display:flex;align-items:center;gap:10px;font-weight:700;font-size:1.15rem;color:var(--fg);text-decoration:none}
 .logo img{border-radius:8px}
-header.site .wrap{flex-wrap:wrap;min-height:60px;padding-top:8px;padding-bottom:8px;gap:10px}
-header nav[aria-label="Main"]{display:flex;gap:16px;flex:1;justify-content:flex-end;overflow-x:auto;scrollbar-width:none;-ms-overflow-style:none;padding:4px 0}
-header nav[aria-label="Main"]::-webkit-scrollbar{display:none}
-header nav[aria-label="Main"] a{margin-left:0;white-space:nowrap;text-decoration:none;color:var(--muted);font-weight:500;font-size:.95rem;padding:2px 0}
-header nav[aria-label="Main"] a:hover{color:var(--brand)}
-@media(max-width:700px){
-  header nav[aria-label="Main"]{flex-basis:100%;justify-content:flex-start;gap:14px}
+/* Header wrapper — two-row layout: logo, then wrapping nav */
+header.site .wrap{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  padding-top:10px;
+  padding-bottom:10px;
+  row-gap:6px;
+  column-gap:16px;
+  min-height:auto;
+}
+
+/* Logo stays on its own row */
+header.site .logo{
+  flex-shrink:0;
+}
+
+/* Nav — full width, wraps into multiple rows as categories grow */
+header nav[aria-label="Main"]{
+  display:flex;
+  flex-wrap:wrap;
+  align-items:center;
+  flex-basis:100%;
+  gap:4px 16px;
+  padding:0;
+  margin:0;
+  overflow:visible;
+}
+
+header nav[aria-label="Main"] a{
+  margin-left:0;
+  white-space:nowrap;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:500;
+  font-size:.92rem;
+  padding:3px 0;
+}
+
+header nav[aria-label="Main"] a:hover{
+  color:var(--brand);
+}
+
+@media(max-width:560px){
+  header nav[aria-label="Main"]{
+    gap:4px 12px;
+    font-size:.88rem;
+  }
+  header nav[aria-label="Main"] a{
+    font-size:.88rem;
+  }
 }
 .crumbs{font-size:.875rem;color:var(--muted);padding-top:16px}
 .crumbs a{color:var(--muted)}
