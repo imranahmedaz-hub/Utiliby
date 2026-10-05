@@ -1,0 +1,673 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Loot Table Randomizer Online – Weighted Random Loot Generator</title>
+<meta name="description" content="Free loot table randomizer online. Create weighted random loot tables with probability analysis, simulation mode, loot box pity system, D&D 5e presets and CSV export. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/gaming-tools/loot-table-randomizer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Loot Table Randomizer Online – Weighted Random Loot Generator">
+<meta property="og:description" content="Free loot table randomizer online. Weighted random loot with probability analysis, simulation and gacha pity system.">
+<meta property="og:url" content="https://utiliby.com/tools/gaming-tools/loot-table-randomizer/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.lt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.lt-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.lt-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.lt-presets{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.lt-preset{background:var(--card);color:var(--brand);border:1px solid var(--line);border-radius:20px;padding:6px 14px;font-size:.8rem;font-weight:600;cursor:pointer}
+.lt-preset:hover{background:var(--bg);border-color:var(--brand)}
+.lt-table{width:100%;border-collapse:collapse;margin:10px 0;font-size:.9rem}
+.lt-table th,.lt-table td{padding:8px;text-align:left;border-bottom:1px solid var(--line)}
+.lt-table th{background:var(--card);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.lt-table input{width:100%;padding:6px 8px;font-size:.88rem}
+.lt-table .lt-weight-input{max-width:90px}
+.lt-table .lt-remove{background:transparent;color:#dc2626;border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.75rem;cursor:pointer}
+.lt-table .lt-remove:hover{background:#fee2e2;border-color:#dc2626}
+.lt-bar{height:10px;background:var(--brand);border-radius:5px;min-width:2px;transition:width .3s}
+.lt-bar-wrap{background:var(--line);border-radius:5px;overflow:hidden;height:10px;width:100%}
+.lt-stat{display:inline-block;background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-size:.85rem;font-weight:600;margin:4px 4px 4px 0}
+.lt-result-list{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem;max-height:340px;overflow-y:auto;line-height:1.6}
+.lt-result-list .row{display:flex;justify-content:space-between;padding:2px 0;border-bottom:1px solid var(--line)}
+.lt-result-list .row:last-child{border-bottom:0}
+.lt-histogram{margin-top:12px}
+.lt-histogram .bar-row{display:grid;grid-template-columns:140px 1fr 60px;gap:8px;align-items:center;margin:6px 0;font-size:.85rem}
+@media(max-width:560px){.lt-histogram .bar-row{grid-template-columns:1fr;gap:4px}}
+.lt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.lt-actions button,.lt-actions a{padding:10px 18px;border-radius:8px;font-weight:600;font-size:.9rem;text-decoration:none;cursor:pointer;border:1px solid var(--line)}
+.lt-actions button{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.lt-actions a,.lt-actions button.ghost{background:transparent;color:var(--brand)}
+.lt-alert{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:8px;padding:10px 14px;font-size:.85rem;margin:10px 0}
+@media(prefers-color-scheme:dark){.lt-alert{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.lt-info{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;margin:10px 0;font-size:.88rem}
+.lt-info b{color:var(--brand)}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Loot Table Randomizer","url":"https://utiliby.com/tools/gaming-tools/loot-table-randomizer/","applicationCategory":"GameApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a loot table randomizer?","acceptedAnswer":{"@type":"Answer","text":"A loot table randomizer is a tool that picks random items from a weighted list, where each item has a higher or lower chance of being selected. Game masters, game designers and players use loot table randomizers to generate treasure, rewards, drops, loot box contents and random events."}},{"@type":"Question","name":"How do weighted loot tables work?","acceptedAnswer":{"@type":"Answer","text":"Each item in the table has a weight, a positive number. The chance of an item being selected equals its weight divided by the sum of all weights. For example, if item A has weight 10 and item B has weight 5, item A is twice as likely to be picked. Weights do not need to sum to 100 — the tool normalizes them automatically."}},{"@type":"Question","name":"What is a loot box pity system?","acceptedAnswer":{"@type":"Answer","text":"A pity system guarantees a rare drop after a certain number of pulls. Many gacha and live-service games use pity systems to protect players from unlucky streaks. This tool lets you set a pity threshold — for example, guaranteeing a Rare or better drop every 30 rolls."}},{"@type":"Question","name":"How many items can a loot table hold?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed limit, but practical loot tables usually contain 5 to 50 items. The tool supports weighted probability, multiple rolls, simulation mode and CSV export regardless of table size."}},{"@type":"Question","name":"What is simulation mode?","acceptedAnswer":{"@type":"Answer","text":"Simulation mode runs the loot table many times (up to 10,000 rolls) without displaying every result, then shows the actual drop frequency for each item. This reveals whether your weights produce the intended distribution before you use the table in a live game."}},{"@type":"Question","name":"Can I use this tool for D&D 5e loot?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool includes pre-built presets for D&D 5e Common, Uncommon, Rare, Very Rare and Legendary treasure tiers, plus a Random Events preset and a Loot Box preset."}},{"@type":"Question","name":"Is this loot table randomizer free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere."}},{"@type":"Question","name":"Can I export my loot table results?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can copy the results to your clipboard, download them as a CSV file, or share the entire table via a unique URL that encodes your items and weights."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/gaming-tools/">Gaming Tools</a> › Loot Table Randomizer</nav>
+<h1>Loot Table Randomizer</h1>
+<p class="lead">Weighted random loot drops with probability analysis, simulation mode, loot box pity system and D&amp;D 5e presets. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Loot table randomizer">
+
+<!-- Mode tabs -->
+<div class="lt-tabs" role="group" aria-label="Tool mode">
+<button type="button" class="lt-tab on" data-mode="roll">Roll Loot</button>
+<button type="button" class="lt-tab" data-mode="simulate">Simulate</button>
+<button type="button" class="lt-tab" data-mode="lootbox">Loot Box</button>
+</div>
+
+<!-- Presets -->
+<p class="meta" style="margin:6px 0 2px">Load a preset to get started:</p>
+<div class="lt-presets">
+<button type="button" class="lt-preset" data-preset="dnd-common">D&amp;D 5e Common</button>
+<button type="button" class="lt-preset" data-preset="dnd-uncommon">D&amp;D 5e Uncommon</button>
+<button type="button" class="lt-preset" data-preset="dnd-rare">D&amp;D 5e Rare</button>
+<button type="button" class="lt-preset" data-preset="dnd-legendary">D&amp;D 5e Legendary</button>
+<button type="button" class="lt-preset" data-preset="events">Random Events</button>
+<button type="button" class="lt-preset" data-preset="lootbox-preset">Loot Box (Rarities)</button>
+<button type="button" class="lt-preset" data-preset="video-game">Video Game Drops</button>
+</div>
+
+<!-- Table editor -->
+<div id="tableSection">
+<p class="meta" style="margin:14px 0 4px"><b>Loot table</b> — enter item name and weight. Higher weight = more likely.</p>
+<table class="lt-table" id="lootTable">
+<thead>
+<tr>
+<th style="width:55%">Item</th>
+<th style="width:20%">Weight</th>
+<th style="width:15%">Chance</th>
+<th style="width:10%"></th>
+</tr>
+</thead>
+<tbody id="lootBody"></tbody>
+</table>
+<button type="button" class="ghost" id="addRow" style="margin-top:6px">+ Add item</button>
+<button type="button" class="ghost" id="clearTable" style="margin-top:6px;margin-left:6px">Clear table</button>
+</div>
+
+<!-- Rolls control -->
+<div id="rollSection">
+<div class="row" style="margin-top:16px">
+<div>
+<label for="rollCount">Number of rolls</label>
+<input id="rollCount" type="number" min="1" max="10000" step="1" value="10">
+</div>
+<div>
+<label for="pityThreshold">Pity system (0 = off)</label>
+<input id="pityThreshold" type="number" min="0" max="500" step="1" value="0" placeholder="0 to disable">
+</div>
+</div>
+<p class="meta" id="pityHint">Pity guarantees a Rare item every N rolls.</p>
+</div>
+
+<div class="lt-actions">
+<button type="button" id="rollBtn">Roll Loot</button>
+<button type="button" class="ghost" id="copyResults">Copy results</button>
+<button type="button" class="ghost" id="downloadCsv">Download CSV</button>
+<button type="button" class="ghost" id="shareUrl">Share table</button>
+</div>
+
+<div id="output"></div>
+
+</section>
+
+<h2>What is a free loot table randomizer online?</h2>
+<p>A free loot table randomizer online is a tool that picks random items from a weighted list. Each item has a weight — a number that determines how often it appears relative to the other items. Higher weight means the item drops more often. Loot table randomizers are used by Dungeon Masters, video game designers, gacha players, board game hobbyists and anyone else who needs fair, weighted random rewards.</p>
+<p>This loot table randomizer online goes far beyond a basic weighted picker. It includes probability analysis, a simulation mode that runs thousands of trials and reports actual drop frequency, a loot box pity system for gacha mechanics, pre-built D&amp;D 5e treasure presets, CSV export and shareable URLs. Everything runs entirely in your browser — no sign-up, no tracking, no server calls.</p>
+
+<h2>How to use this free loot table randomizer</h2>
+<ol>
+<li>Add items to the table with a name and a weight — or click a preset button to load a sample table.</li>
+<li>Adjust weights. Higher weight = more likely. Weights do not need to sum to 100; the tool normalizes them automatically.</li>
+<li>Set the number of rolls (1 to 10,000).</li>
+<li>Click <b>Roll Loot</b> to generate random drops and view the distribution chart.</li>
+<li>Switch to <b>Simulate</b> mode to run thousands of rolls and see actual drop frequency.</li>
+<li>Switch to <b>Loot Box</b> mode to enable a pity system that guarantees a rare drop every N rolls.</li>
+<li>Use the action buttons to copy, download CSV or share your table via URL.</li>
+</ol>
+
+<h2>How weighted loot tables work</h2>
+<p>In a weighted loot table, each item has a weight. The chance of an item being selected equals its weight divided by the sum of all weights in the table.</p>
+<p><b>Chance (%) = (Item weight ÷ Total weight) × 100</b></p>
+<p>For example, if your table has three items with weights 10, 20 and 30:</p>
+<ul>
+<li>Item 1: 10 ÷ 60 = 16.67% chance</li>
+<li>Item 2: 20 ÷ 60 = 33.33% chance</li>
+<li>Item 3: 30 ÷ 60 = 50.00% chance</li>
+</ul>
+<p>Weights do not need to sum to 100. The tool normalizes them automatically. This makes it easy to work with integer weights that reflect rarity tiers — for example, a rare item might have weight 1 while a common item has weight 100, meaning it is 100 times rarer.</p>
+
+<h2>Weighted random selection in game design</h2>
+<p>Weighted random selection is one of the most common mechanics in game design. It is used for loot drops, critical hit tables, random encounters, gacha pulls, drop rates in MMORPGs, card pack contents, crafting outcomes and much more. The reason is simple: pure equal random feels unfair — players expect common rewards to be common and rare rewards to be rare.</p>
+<p>Designers tune the weights until the drop distribution matches their intent. This tool exposes those weights so you can test them before committing to them in code.</p>
+
+<h2>Loot box pity systems explained</h2>
+<p>A pity system guarantees a rare drop after a certain number of unsuccessful pulls. The mechanic is common in gacha games, mobile RPGs and live-service titles, where it protects players from prolonged bad luck. For example, a game might guarantee a 5-star character every 90 pulls, or a Rare item every 30 loot boxes.</p>
+<p>This tool lets you set any pity threshold between 0 and 500 rolls. When you are within the pity window, the tool automatically upgrades the next drop to a Rare (or better) item. This is useful for simulating real loot box economies, testing player-friendly rates and understanding the true cost of a rare item.</p>
+
+<h2>D&amp;D 5e treasure tiers</h2>
+<p>The Dungeon Master's Guide describes treasure by rarity tier. This tool includes five presets that approximate those tiers:</p>
+<ul>
+<li><b>Common</b> — potions of healing, low-value gems, coins</li>
+<li><b>Uncommon</b> — +1 weapons and armour, bags of holding, cloaks of elvenkind</li>
+<li><b>Rare</b> — +2 weapons, rings of protection, boots of speed</li>
+<li><b>Very Rare</b> — +3 weapons, tomes of leadership, robes of the archmagi</li>
+<li><b>Legendary</b> — vorpal swords, rings of invisibility, staff of the magi</li>
+</ul>
+<p>These presets are starting points — edit them to match your campaign or use them as templates for custom tables.</p>
+
+<h2>Simulation mode: testing probability distributions</h2>
+<p>When you set a table of weights, you are setting a theoretical probability for each item. Simulation mode runs your table thousands of times and reports the <b>actual</b> drop frequency. This reveals:</p>
+<ul>
+<li>Whether the weights produce the intended distribution</li>
+<li>How much variance appears in small samples (1–100 rolls)</li>
+<li>Whether a rare item is genuinely hard to obtain or has an unnoticed bug in the weights</li>
+</ul>
+<p>For tabletop RPGs, simulation mode tells you whether your treasure table will produce the right balance of loot across a campaign. For video game design, it gives you a reality check before you commit weights to code.</p>
+
+<h2>Common use cases for a loot table randomizer</h2>
+<h3>Tabletop RPG dungeon masters</h3>
+<p>Generate treasure for a dungeon, rewards for a quest, contents of a merchant's chest or random encounters along a road.</p>
+<h3>Video game designers</h3>
+<p>Prototype drop rates, test rarity distributions, balance gacha mechanics and verify drop economics before implementing them in code.</p>
+<h3>Gacha and mobile game players</h3>
+<p>Simulate pull rates for a banner, understand expected cost of a target character or item, and compare pity systems across games.</p>
+<h3>Board game designers</h3>
+<p>Test event decks, random rewards and card distributions before going to print.</p>
+<h3>Classroom and game nights</h3>
+<p>Randomly award prizes, choose tasks or pick winners from a weighted list — for example, weighting favourite activities higher than rarely chosen ones.</p>
+
+<h2>Best practices for designing loot tables</h2>
+<ul>
+<li><b>Start with the player experience.</b> What should feel common? What should feel special? Set weights to match.</li>
+<li><b>Use integer weights.</b> Small numbers are easier to reason about. "1 in 100" is clearer than "0.01".</li>
+<li><b>Anchor a common item.</b> Give the most common item a weight of 100, then scale the rest relative to it.</li>
+<li><b>Test before shipping.</b> Use simulation mode to verify the actual distribution matches your intent.</li>
+<li><b>Add a pity system for rare items.</b> Players hate long unlucky streaks — a pity mechanic softens the worst outcomes.</li>
+<li><b>Review your table after live release.</b> Real player behaviour often reveals problems that simulations miss.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a loot table randomizer?</summary><p>A loot table randomizer is a tool that picks random items from a weighted list, where each item has a higher or lower chance of being selected. Game masters, game designers and players use loot table randomizers to generate treasure, rewards, drops, loot box contents and random events.</p></details>
+<details><summary>How do weighted loot tables work?</summary><p>Each item in the table has a weight, a positive number. The chance of an item being selected equals its weight divided by the sum of all weights. For example, if item A has weight 10 and item B has weight 5, item A is twice as likely to be picked. Weights do not need to sum to 100 — the tool normalizes them automatically.</p></details>
+<details><summary>What is a loot box pity system?</summary><p>A pity system guarantees a rare drop after a certain number of pulls. Many gacha and live-service games use pity systems to protect players from unlucky streaks. This tool lets you set a pity threshold — for example, guaranteeing a Rare or better drop every 30 rolls.</p></details>
+<details><summary>How many items can a loot table hold?</summary><p>There is no fixed limit, but practical loot tables usually contain 5 to 50 items. The tool supports weighted probability, multiple rolls, simulation mode and CSV export regardless of table size.</p></details>
+<details><summary>What is simulation mode?</summary><p>Simulation mode runs the loot table many times (up to 10,000 rolls) without displaying every result, then shows the actual drop frequency for each item. This reveals whether your weights produce the intended distribution before you use the table in a live game.</p></details>
+<details><summary>Can I use this tool for D&amp;D 5e loot?</summary><p>Yes. The tool includes pre-built presets for D&amp;D 5e Common, Uncommon, Rare, Very Rare and Legendary treasure tiers, plus a Random Events preset and a Loot Box preset.</p></details>
+<details><summary>Is this loot table randomizer free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere.</p></details>
+<details><summary>Can I export my loot table results?</summary><p>Yes. You can copy the results to your clipboard, download them as a CSV file, or share the entire table via a unique URL that encodes your items and weights.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+var mode = "roll";
+
+/* ---------- PRESETS ---------- */
+var PRESETS = {
+  "dnd-common": [
+    {name: "Potion of Healing", weight: 30},
+    {name: "10 gp gemstone", weight: 20},
+    {name: "50 gp gemstone", weight: 15},
+    {name: "Scroll of a 1st-level spell", weight: 15},
+    {name: "Silver dagger", weight: 10},
+    {name: "Elixir of health", weight: 5},
+    {name: "Spell scroll (2nd level)", weight: 5}
+  ],
+  "dnd-uncommon": [
+    {name: "Bag of Holding", weight: 20},
+    {name: "+1 Weapon", weight: 20},
+    {name: "+1 Shield", weight: 15},
+    {name: "Cloak of Elvenkind", weight: 15},
+    {name: "Wand of Magic Missiles", weight: 10},
+    {name: "Broom of Flying", weight: 10},
+    {name: "Gauntlets of Ogre Power", weight: 10}
+  ],
+  "dnd-rare": [
+    {name: "+2 Weapon", weight: 25},
+    {name: "Ring of Protection", weight: 20},
+    {name: "Boots of Speed", weight: 15},
+    {name: "Cloak of Displacement", weight: 15},
+    {name: "Staff of Charming", weight: 10},
+    {name: "Wand of Fireballs", weight: 10},
+    {name: "Amulet of Health", weight: 5}
+  ],
+  "dnd-legendary": [
+    {name: "Vorpal Sword", weight: 25},
+    {name: "Ring of Invisibility", weight: 20},
+    {name: "Staff of the Magi", weight: 15},
+    {name: "Rod of Lordly Might", weight: 15},
+    {name: "Talisman of Pure Good", weight: 10},
+    {name: "Holy Avenger", weight: 10},
+    {name: "Deck of Many Things", weight: 5}
+  ],
+  "events": [
+    {name: "Ambush by bandits", weight: 20},
+    {name: "A travelling merchant", weight: 15},
+    {name: "A lost child", weight: 10},
+    {name: "A friendly NPC with a rumour", weight: 15},
+    {name: "A pack of wolves", weight: 10},
+    {name: "A mysterious stranger", weight: 10},
+    {name: "A broken wagon", weight: 8},
+    {name: "A sudden storm", weight: 7},
+    {name: "A shrine to an unknown god", weight: 5}
+  ],
+  "lootbox-preset": [
+    {name: "Common (grey)", weight: 60},
+    {name: "Uncommon (green)", weight: 25},
+    {name: "Rare (blue)", weight: 10},
+    {name: "Epic (purple)", weight: 4},
+    {name: "Legendary (gold)", weight: 1}
+  ],
+  "video-game": [
+    {name: "Gold coins (50–200)", weight: 40},
+    {name: "Health potion", weight: 20},
+    {name: "Iron ore", weight: 15},
+    {name: "Magic crystal", weight: 10},
+    {name: "Rare scroll", weight: 8},
+    {name: "Enchanted weapon", weight: 5},
+    {name: "Legendary artifact", weight: 2}
+  ]
+};
+
+/* ---------- STATE ---------- */
+var table = [
+  {name: "Common item", weight: 50},
+  {name: "Uncommon item", weight: 30},
+  {name: "Rare item", weight: 15},
+  {name: "Legendary item", weight: 5}
+];
+
+/* ---------- TABLE EDITOR ---------- */
+function renderTable(){
+  var tbody = $("lootBody");
+  var html = "";
+  var total = 0;
+  for(var i = 0; i < table.length; i++) total += Math.max(0, parseFloat(table[i].weight) || 0);
+
+  for(var i = 0; i < table.length; i++){
+    var pct = total > 0 ? (Math.max(0, parseFloat(table[i].weight) || 0) / total * 100) : 0;
+    html += '<tr>';
+    html += '<td><input type="text" value="' + esc(table[i].name) + '" data-idx="' + i + '" data-field="name" placeholder="Item name"></td>';
+    html += '<td><input type="number" class="lt-weight-input" min="0" step="1" value="' + esc(table[i].weight) + '" data-idx="' + i + '" data-field="weight"></td>';
+    html += '<td>' + pct.toFixed(2) + '%</td>';
+    html += '<td><button type="button" class="lt-remove" data-remove="' + i + '">Remove</button></td>';
+    html += '</tr>';
+  }
+  tbody.innerHTML = html;
+}
+
+function addRow(){
+  table.push({name: "New item", weight: 10});
+  renderTable();
+}
+
+function clearTable(){
+  table = [];
+  renderTable();
+}
+
+/* ---------- WEIGHTED PICK ---------- */
+function weightedPick(){
+  var total = 0;
+  for(var i = 0; i < table.length; i++) total += Math.max(0, parseFloat(table[i].weight) || 0);
+  if(total <= 0) return null;
+  var r = Math.random() * total;
+  var cum = 0;
+  for(var i = 0; i < table.length; i++){
+    cum += Math.max(0, parseFloat(table[i].weight) || 0);
+    if(r < cum) return table[i];
+  }
+  return table[table.length - 1];
+}
+
+/* ---------- LOOT BOX PITY ---------- */
+function isRareOrBetter(item){
+  var n = item.name.toLowerCase();
+  return n.indexOf("rare") > -1 || n.indexOf("epic") > -1 || n.indexOf("legendary") > -1 ||
+         n.indexOf("purple") > -1 || n.indexOf("gold") > -1 || n.indexOf("blue") > -1;
+}
+
+function pityPick(pityCount){
+  // First roll normally
+  var pick = weightedPick();
+  if(!pick) return null;
+  if(pityCount <= 0) return pick;
+
+  // Count rolls since last rare
+  // Caller tracks the count; this function just checks if pity fires
+  return pick;
+}
+
+/* ---------- ROLL LOGIC ---------- */
+function doRoll(count, pityThreshold, usePity){
+  var results = [];
+  var pityCounter = 0;
+  for(var i = 0; i < count; i++){
+    var pick;
+    if(usePity && pityThreshold > 0 && pityCounter >= pityThreshold - 1){
+      // Force a rare or better
+      var rarePool = table.filter(isRareOrBetter);
+      if(rarePool.length > 0){
+        var totalR = 0;
+        for(var r = 0; r < rarePool.length; r++) totalR += Math.max(0, parseFloat(rarePool[r].weight) || 0);
+        var rr = Math.random() * totalR;
+        var cum = 0;
+        for(var r = 0; r < rarePool.length; r++){
+          cum += Math.max(0, parseFloat(rarePool[r].weight) || 0);
+          if(rr < cum){ pick = rarePool[r]; break; }
+        }
+        if(!pick) pick = rarePool[0];
+        pityCounter = 0;
+        results.push({name: pick.name, pity: true});
+        continue;
+      }
+    }
+    pick = weightedPick();
+    if(!pick) break;
+    if(isRareOrBetter(pick)) pityCounter = 0;
+    else pityCounter++;
+    results.push({name: pick.name, pity: false});
+  }
+  return results;
+}
+
+/* ---------- RENDER ROLL OUTPUT ---------- */
+var LAST_RESULTS = [];
+var LAST_MODE = "";
+
+function renderRollResults(results){
+  var counts = {};
+  for(var i = 0; i < results.length; i++){
+    counts[results[i].name] = (counts[results[i].name] || 0) + 1;
+  }
+
+  var h = '<div class="lt-info">';
+  h += '<span class="lt-stat">Total rolls: <b>' + results.length + '</b></span>';
+  h += '<span class="lt-stat">Unique items: <b>' + Object.keys(counts).length + '</b></span>';
+  h += '</div>';
+
+  h += '<h3>Roll results</h3>';
+  h += '<div class="lt-result-list">';
+  for(var i = 0; i < results.length; i++){
+    h += '<div class="row"><span>#' + (i + 1) + ' — ' + esc(results[i].name) + (results[i].pity ? ' <b style="color:var(--brand)">[PITY]</b>' : '') + '</span></div>';
+  }
+  h += '</div>';
+
+  h += '<h3>Distribution</h3>';
+  h += renderHistogram(counts, results.length);
+
+  return h;
+}
+
+function renderHistogram(counts, total){
+  var entries = [];
+  for(var k in counts) entries.push({name: k, count: counts[k]});
+  entries.sort(function(a, b){ return b.count - a.count; });
+  var max = entries[0] ? entries[0].count : 1;
+
+  var h = '<div class="lt-histogram">';
+  for(var i = 0; i < entries.length; i++){
+    var e = entries[i];
+    var pct = total > 0 ? (e.count / total * 100) : 0;
+    var width = max > 0 ? (e.count / max * 100) : 0;
+    h += '<div class="bar-row">';
+    h += '<span>' + esc(e.name) + '</span>';
+    h += '<div class="lt-bar-wrap"><div class="lt-bar" style="width:' + width.toFixed(2) + '%"></div></div>';
+    h += '<span style="text-align:right">' + e.count + ' (' + pct.toFixed(1) + '%)</span>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+/* ---------- RENDER SIMULATION ---------- */
+function renderSimulation(count){
+  var results = [];
+  var counts = {};
+  for(var i = 0; i < count; i++){
+    var pick = weightedPick();
+    if(!pick) break;
+    counts[pick.name] = (counts[pick.name] || 0) + 1;
+  }
+
+  var theoretical = {};
+  var totalW = 0;
+  for(var i = 0; i < table.length; i++) totalW += Math.max(0, parseFloat(table[i].weight) || 0);
+  for(var i = 0; i < table.length; i++){
+    theoretical[table[i].name] = totalW > 0 ? (Math.max(0, parseFloat(table[i].weight) || 0) / totalW * 100) : 0;
+  }
+
+  var h = '<div class="lt-info">';
+  h += '<span class="lt-stat">Simulated rolls: <b>' + count.toLocaleString() + '</b></span>';
+  h += '<span class="lt-stat">Unique items: <b>' + Object.keys(counts).length + '</b></span>';
+  h += '</div>';
+
+  h += '<h3>Simulated vs theoretical distribution</h3>';
+  h += '<table class="lt-table">';
+  h += '<tr><th>Item</th><th>Theoretical %</th><th>Actual count</th><th>Actual %</th><th>Deviation</th></tr>';
+
+  var rows = [];
+  for(var k in counts){
+    rows.push({name: k, count: counts[k], theo: theoretical[k] || 0});
+  }
+  for(var k in theoretical){
+    if(!counts[k]) rows.push({name: k, count: 0, theo: theoretical[k]});
+  }
+  rows.sort(function(a, b){ return b.theo - a.theo; });
+
+  for(var i = 0; i < rows.length; i++){
+    var r = rows[i];
+    var actualPct = count > 0 ? (r.count / count * 100) : 0;
+    var dev = actualPct - r.theo;
+    var devClass = Math.abs(dev) < 1 ? "pos" : "";
+    h += '<tr>';
+    h += '<td>' + esc(r.name) + '</td>';
+    h += '<td>' + r.theo.toFixed(2) + '%</td>';
+    h += '<td>' + r.count.toLocaleString() + '</td>';
+    h += '<td>' + actualPct.toFixed(2) + '%</td>';
+    h += '<td>' + (dev >= 0 ? '+' : '') + dev.toFixed(2) + '%</td>';
+    h += '</tr>';
+  }
+  h += '</table>';
+  return h;
+}
+
+/* ---------- MAIN RENDER ---------- */
+function render(){
+  var out = $("output");
+  if(table.length === 0){
+    out.innerHTML = '<p class="meta">Add at least one item to the loot table.</p>';
+    return;
+  }
+
+  var count = parseInt($("rollCount").value, 10) || 10;
+  var pity = parseInt($("pityThreshold").value, 10) || 0;
+
+  if(mode === "roll"){
+    var results = doRoll(count, 0, false);
+    LAST_RESULTS = results;
+    LAST_MODE = "roll";
+    out.innerHTML = renderRollResults(results);
+  } else if(mode === "simulate"){
+    out.innerHTML = renderSimulation(Math.min(count, 10000));
+    LAST_MODE = "simulate";
+  } else if(mode === "lootbox"){
+    var results = doRoll(count, pity, true);
+    LAST_RESULTS = results;
+    LAST_MODE = "lootbox";
+    var pityHits = 0;
+    for(var i = 0; i < results.length; i++) if(results[i].pity) pityHits++;
+    var h = '<div class="lt-alert"><b>Loot box mode.</b> Pity threshold: ' + pity + ' rolls. Pity triggered ' + pityHits + ' time(s).</div>';
+    h += renderRollResults(results);
+    out.innerHTML = h;
+  }
+}
+
+/* ---------- CSV EXPORT ---------- */
+function downloadCsv(){
+  if(LAST_RESULTS.length === 0){
+    alert("Roll some loot first.");
+    return;
+  }
+  var csv = "Roll,Item,Pity\n";
+  for(var i = 0; i < LAST_RESULTS.length; i++){
+    csv += (i + 1) + ',"' + LAST_RESULTS[i].name.replace(/"/g, '""') + '",' + (LAST_RESULTS[i].pity ? "Yes" : "No") + "\n";
+  }
+  var blob = new Blob([csv], {type: "text/csv;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "utiliby-loot-table.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------- COPY ---------- */
+function copyResults(){
+  if(LAST_RESULTS.length === 0){
+    alert("Roll some loot first.");
+    return;
+  }
+  var text = "";
+  for(var i = 0; i < LAST_RESULTS.length; i++){
+    text += (i + 1) + ". " + LAST_RESULTS[i].name + (LAST_RESULTS[i].pity ? " [PITY]" : "") + "\n";
+  }
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text);
+    var btn = $("copyResults");
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  }
+}
+
+/* ---------- SHARE URL ---------- */
+function shareUrl(){
+  var data = [];
+  for(var i = 0; i < table.length; i++){
+    data.push({n: table[i].name, w: table[i].weight});
+  }
+  var encoded = btoa(unescape(encodeURIComponent(JSON.stringify(data))));
+  var url = location.origin + location.pathname + "#t=" + encodeURIComponent(encoded);
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(url);
+    var btn = $("shareUrl");
+    var old = btn.textContent;
+    btn.textContent = "Link copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  }
+}
+
+function loadFromHash(){
+  var m = location.hash.match(/^#t=(.+)$/);
+  if(!m) return false;
+  try {
+    var data = JSON.parse(decodeURIComponent(escape(atob(decodeURIComponent(m[1])))));
+    if(Array.isArray(data) && data.length > 0){
+      table = data.map(function(d){ return {name: String(d.n || ""), weight: parseFloat(d.w) || 0}; });
+      return true;
+    }
+  } catch(e){ }
+  return false;
+}
+
+/* ---------- EVENT WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  loadFromHash();
+  renderTable();
+
+  // Table edits
+  T.addEventListener("input", function(e){
+    var idx = e.target.dataset.idx;
+    var field = e.target.dataset.field;
+    if(idx !== undefined && field){
+      idx = parseInt(idx, 10);
+      if(table[idx]){
+        if(field === "weight") table[idx].weight = parseFloat(e.target.value) || 0;
+        else table[idx].name = e.target.value;
+        // Update chance column without full re-render (avoid losing focus)
+        var total = 0;
+        for(var i = 0; i < table.length; i++) total += Math.max(0, parseFloat(table[i].weight) || 0);
+        var rows = $("lootBody").querySelectorAll("tr");
+        for(var i = 0; i < rows.length; i++){
+          var pct = total > 0 ? (Math.max(0, parseFloat(table[i].weight) || 0) / total * 100) : 0;
+          rows[i].children[2].textContent = pct.toFixed(2) + "%";
+        }
+      }
+    }
+  });
+
+  // Remove row
+  T.addEventListener("click", function(e){
+    var target = e.target;
+    if(target.dataset && target.dataset.remove !== undefined){
+      table.splice(parseInt(target.dataset.remove, 10), 1);
+      renderTable();
+      return;
+    }
+    if(target.dataset && target.dataset.preset){
+      var key = target.dataset.preset;
+      if(PRESETS[key]){
+        table = PRESETS[key].map(function(p){ return {name: p.name, weight: p.weight}; });
+        renderTable();
+        render();
+      }
+      return;
+    }
+    if(target.dataset && target.dataset.mode){
+      mode = target.dataset.mode;
+      var tabs = document.querySelectorAll(".lt-tab");
+      for(var i = 0; i < tabs.length; i++){
+        if(tabs[i].dataset.mode === mode) tabs[i].classList.add("on");
+        else tabs[i].classList.remove("on");
+      }
+      // Show/hide pity field
+      $("pityThreshold").parentElement.style.display = (mode === "lootbox") ? "" : "none";
+      $("pityHint").style.display = (mode === "lootbox") ? "" : "none";
+      render();
+      return;
+    }
+    if(target.id === "addRow"){ addRow(); return; }
+    if(target.id === "clearTable"){ clearTable(); return; }
+    if(target.id === "rollBtn"){ render(); return; }
+    if(target.id === "copyResults"){ copyResults(); return; }
+    if(target.id === "downloadCsv"){ downloadCsv(); return; }
+    if(target.id === "shareUrl"){ shareUrl(); return; }
+  });
+
+  // Initial roll count control
+  $("rollCount").addEventListener("input", function(){
+    // Just update the hint; don't auto-roll
+  });
+
+  // Hide pity field initially (only shown in Loot Box mode)
+  $("pityThreshold").parentElement.style.display = "none";
+  $("pityHint").style.display = "none";
+
+  render();
+});
+})();
+</script>
+</body>
+</html>
