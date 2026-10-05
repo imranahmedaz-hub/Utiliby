@@ -11,6 +11,7 @@
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
     ["/tools/business-legal-tools/", "Business"],
+    ["/tools/recipe-cooking-tools/", "Cooking"],
     ["/tools/education-study-tools/", "Education"]
   ];
 
