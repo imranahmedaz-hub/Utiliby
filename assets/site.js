@@ -13,6 +13,7 @@
     ["/tools/astrology/", "Astrology"],
     ["/tools/audio-music-tools/", "Audio &amp; Music"],
     ["/tools/image-tools/", "Image"],
+    ["/tools/security-privacy-tools/", "Security &amp; Privacy"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
     ["/tools/seo-web-tools/", "SEO &amp; Web"],
     ["/tools/pdf-document-tools/", "PDF &amp; Document"],
