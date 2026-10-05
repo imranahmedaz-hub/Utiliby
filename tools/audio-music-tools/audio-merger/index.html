@@ -1,0 +1,788 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Audio Merger Online – Combine MP3, WAV &amp; Audio Files</title>
+<meta name="description" content="Free audio merger online. Combine MP3, WAV, OGG and M4A files with drag-to-reorder, per-clip trim, crossfade, silence gap, fade in/out and preview. 100% browser-based, no uploads.">
+<link rel="canonical" href="https://utiliby.com/tools/audio-music-tools/audio-merger/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Audio Merger Online – Combine MP3, WAV &amp; Audio Files">
+<meta property="og:description" content="Free audio merger online. Combine MP3, WAV, OGG and M4A files with reorder, trim, crossfade and silence gap.">
+<meta property="og:url" content="https://utiliby.com/tools/audio-music-tools/audio-merger/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.am-upload{border:2px dashed var(--line);border-radius:var(--r);padding:40px 20px;text-align:center;cursor:pointer;transition:border-color .15s;background:var(--card);margin:12px 0}
+.am-upload:hover,.am-upload.dragover{border-color:var(--brand)}
+.am-upload-icon{font-size:2rem;color:var(--muted);margin-bottom:8px}
+.am-upload-text{font-weight:600;color:var(--fg)}
+.am-upload-sub{font-size:.85rem;color:var(--muted);margin-top:4px}
+.am-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.am-toolbar button{padding:8px 12px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.am-toolbar button:hover{border-color:var(--brand);color:var(--brand)}
+.am-toolbar button.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.am-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+.am-toolbar .spacer{flex:1}
+.am-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:10px;margin:10px 0}
+.am-control{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.am-control label{display:block;font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:0 0 4px}
+.am-control input[type="range"]{width:100%}
+.am-control select{width:100%;padding:6px 8px;font-size:.85rem}
+.am-control input[type="number"]{width:100%;padding:6px 8px;font-size:.85rem}
+.am-val{font-size:.8rem;color:var(--brand);font-weight:700;float:right}
+.am-clip{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px;margin-bottom:8px;transition:border-color .15s}
+.am-clip.dragging{opacity:.5}
+.am-clip.dragover{border-color:var(--brand);border-style:dashed}
+.am-clip-header{display:grid;grid-template-columns:30px 1fr auto auto auto;gap:8px;align-items:center}
+@media(max-width:600px){.am-clip-header{grid-template-columns:1fr;gap:4px}}
+.am-drag{cursor:grab;color:var(--muted);font-size:1.1rem;text-align:center;user-select:none}
+.am-clip-name{font-weight:600;font-size:.9rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.am-clip-meta{font-size:.75rem;color:var(--muted);margin-top:2px}
+.am-clip-actions{display:flex;gap:4px}
+.am-clip-actions button{padding:4px 8px;font-size:.78rem;border-radius:6px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:transparent;color:var(--fg)}
+.am-clip-actions button:hover{border-color:var(--brand);color:var(--brand)}
+.am-clip-actions button.remove{color:#dc2626}
+.am-clip-actions button.remove:hover{background:#fee2e2;border-color:#dc2626}
+.am-clip-wave{margin-top:8px;background:var(--bg);border-radius:6px;padding:4px;position:relative}
+.am-clip-wave canvas{display:block;width:100%;height:48px;cursor:pointer}
+.am-clip-trim{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:8px}
+.am-clip-trim label{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase}
+.am-clip-trim input{width:100%;padding:4px 8px;font-size:.82rem}
+.am-progress{background:var(--line);border-radius:6px;height:8px;overflow:hidden;margin:8px 0}
+.am-progress-bar{background:linear-gradient(90deg,var(--brand),var(--brand2));height:100%;width:0;transition:width .2s}
+.am-status{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.85rem;margin:8px 0;min-height:20px}
+.am-status.ok{border-color:#16a34a;color:#16a34a}
+.am-status.err{border-color:#dc2626;color:#dc2626}
+.am-status.info{border-color:var(--brand);color:var(--brand)}
+.am-stats{display:flex;gap:8px;flex-wrap:wrap;margin:10px 0}
+.am-stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-size:.82rem;font-weight:600}
+.am-preview{margin:12px 0}
+.am-preview audio{width:100%}
+.am-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:am-spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes am-spin{to{transform:rotate(360deg)}}
+.am-empty{text-align:center;color:var(--muted);padding:20px;font-size:.9rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Audio Merger","url":"https://utiliby.com/tools/audio-music-tools/audio-merger/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free audio merger online?","acceptedAnswer":{"@type":"Answer","text":"A free audio merger online is a tool that combines multiple audio files into a single continuous track. This audio merger runs entirely in your browser using the Web Audio API, so your files never leave your device."}},{"@type":"Question","name":"How do I merge audio files online?","acceptedAnswer":{"@type":"Answer","text":"Drag and drop two or more audio files into the upload area. Reorder them by dragging, trim each clip if needed, choose a join mode (seamless, crossfade or silence gap), then click Merge. The result is processed locally and offered as a downloadable WAV file."}},{"@type":"Question","name":"What audio formats can I merge?","acceptedAnswer":{"@type":"Answer","text":"You can merge any audio format your browser can decode, including MP3, WAV, OGG, M4A, AAC, FLAC and WebM. The tool decodes every input to raw PCM, merges them in memory, and exports the result as lossless WAV."}},{"@type":"Question","name":"Does this tool upload my audio files?","acceptedAnswer":{"@type":"Answer","text":"No. All decoding, merging and encoding happen locally in your browser using the Web Audio API and OfflineAudioContext. There is no server, no upload and no storage. Your audio files never leave your device."}},{"@type":"Question","name":"What is a crossfade and when should I use it?","acceptedAnswer":{"@type":"Answer","text":"A crossfade smoothly blends the end of one clip into the start of the next by overlapping them and fading each out or in. Use it for music mixes or when you want a natural transition without a hard cut or silence."}},{"@type":"Question","name":"What is a silence gap?","acceptedAnswer":{"@type":"Answer","text":"A silence gap inserts a short pause between clips. Use it for spoken-word content like podcast segments, interviews, lessons or narration where a brief pause between sections sounds more natural than a hard cut."}},{"@type":"Question","name":"What is the maximum number of files I can merge?","acceptedAnswer":{"@type":"Answer","text":"This audio merger supports up to 50 files per session. The practical limit depends on your device's available memory because all audio is decoded into RAM before merging."}},{"@type":"Question","name":"Can I trim individual clips before merging?","acceptedAnswer":{"@type":"Answer","text":"Yes. Each clip has start and end time inputs. Enter the start and end seconds to trim a portion of the clip before it is merged."}},{"@type":"Question","name":"Is this audio merger free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no file limits."}},{"@type":"Question","name":"Does this tool work offline?","acceptedAnswer":{"@type":"Answer","text":"Once the page has loaded, all audio processing happens locally in your browser. You can disconnect from the internet and the merger will continue to work."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/audio-music-tools/">Audio &amp; Music Tools</a> › Audio Merger</nav>
+<h1>Audio Merger</h1>
+<p class="lead">Merge MP3, WAV, OGG and M4A files with drag-to-reorder, per-clip trim, crossfade, silence gap, fade in/out and preview. 100% runs in your browser — no uploads, no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Audio merger">
+
+<div id="uploadZone" class="am-upload">
+<div class="am-upload-icon">🎵</div>
+<div class="am-upload-text">Click to choose audio files, or drag and drop</div>
+<div class="am-upload-sub">MP3, WAV, OGG, M4A, AAC, FLAC · Up to 50 files · Nothing is uploaded · Your audio stays in your browser</div>
+</div>
+<input type="file" id="fileInput" accept="audio/*" multiple hidden>
+
+<div id="workspace" hidden>
+
+<div class="am-toolbar">
+<button type="button" id="btnAdd" title="Add more files">+ Add files</button>
+<button type="button" id="btnClear" title="Remove all files">Clear all</button>
+<div class="spacer"></div>
+<button type="button" id="btnMerge" class="primary" title="Merge all clips">Merge audio</button>
+<button type="button" id="btnDownload" disabled title="Download merged WAV">Download WAV</button>
+</div>
+
+<div class="am-controls">
+<div class="am-control">
+<label>Join mode</label>
+<select id="joinMode">
+<option value="seamless" selected>Seamless (back-to-back)</option>
+<option value="crossfade">Crossfade (smooth blend)</option>
+<option value="gap">Silence gap</option>
+</select>
+</div>
+<div class="am-control" id="crossfadeControl" hidden>
+<label>Crossfade duration <span class="am-val" id="crossfadeVal">0.5 s</span></label>
+<input type="range" id="crossfade" min="0.1" max="5" step="0.1" value="0.5">
+</div>
+<div class="am-control" id="gapControl" hidden>
+<label>Silence gap <span class="am-val" id="gapVal">0.5 s</span></label>
+<input type="range" id="gap" min="0.1" max="5" step="0.1" value="0.5">
+</div>
+<div class="am-control">
+<label>Global fade in <span class="am-val" id="fadeInVal">0 s</span></label>
+<input type="range" id="fadeIn" min="0" max="10" step="0.1" value="0">
+</div>
+<div class="am-control">
+<label>Global fade out <span class="am-val" id="fadeOutVal">0 s</span></label>
+<input type="range" id="fadeOut" min="0" max="10" step="0.1" value="0">
+</div>
+<div class="am-control">
+<label>Normalize volume</label>
+<select id="normalize">
+<option value="off" selected>Off</option>
+<option value="on">On (peak normalize)</option>
+</select>
+</div>
+<div class="am-control">
+<label>Remove silence (auto)</label>
+<select id="removeSilence">
+<option value="off" selected>Off</option>
+<option value="on">On</option>
+</select>
+</div>
+</div>
+
+<div class="am-status info" id="status">Add audio files above, then click <b>Merge audio</b>.</div>
+
+<div id="progressWrap" hidden>
+<div class="am-progress"><div class="am-progress-bar" id="progressBar"></div></div>
+</div>
+
+<div class="am-stats" id="stats" hidden>
+<span class="am-stat" id="statFiles">—</span>
+<span class="am-stat" id="statDuration">—</span>
+<span class="am-stat" id="statOutput">—</span>
+</div>
+
+<div id="clipList"></div>
+
+<div class="am-preview" id="previewWrap" hidden>
+<h3>Preview merged audio</h3>
+<audio id="preview" controls></audio>
+</div>
+
+</div>
+
+</section>
+
+<h2>What is a free audio merger online?</h2>
+<p>A free audio merger online is a tool that combines multiple audio files into one continuous track. Audio mergers are used by podcasters stitching segments together, musicians layering takes, creators merging voice memos, and anyone who needs to join MP3, WAV or other audio files without installing desktop software.</p>
+<p>This audio merger online goes beyond a basic join. It offers drag-to-reorder, per-clip trimming, three join modes (seamless, crossfade and silence gap), global fade in and fade out, optional volume normalization, automatic silence detection and a built-in preview player. Every step runs in your browser using the Web Audio API — your audio files never leave your device.</p>
+
+<h2>How to use this free audio merger online</h2>
+<ol>
+<li>Click the upload area or drag and drop two or more audio files. The tool accepts MP3, WAV, OGG, M4A, AAC, FLAC and any format your browser can decode.</li>
+<li>Drag the clip rows to reorder them, or use the ↑ and ↓ buttons on each row.</li>
+<li>Trim each clip by adjusting the start and end time fields.</li>
+<li>Choose a join mode: <b>Seamless</b> for back-to-back joins, <b>Crossfade</b> for smooth blends, or <b>Silence gap</b> for spoken-word content.</li>
+<li>Optionally set a global fade in, fade out, or enable volume normalization and silence removal.</li>
+<li>Click <b>Merge audio</b>. Progress is shown as each clip is decoded and merged.</li>
+<li>Preview the result in the built-in player, then click <b>Download WAV</b> to save the merged file.</li>
+</ol>
+
+<h2>How audio merging works</h2>
+<p>Merging audio is not as simple as concatenating file bytes. Each audio file is a compressed stream (MP3, AAC, OGG) or a container (WAV, FLAC). To combine them, the tool performs four steps:</p>
+<ol>
+<li><b>Decode:</b> Every file is decoded into raw PCM samples — an array of amplitude values at a specific sample rate (usually 44.1 kHz).</li>
+<li><b>Align:</b> Sample rates and channel counts are matched so mixed inputs still produce a clean result.</li>
+<li><b>Render:</b> An <code>OfflineAudioContext</code> schedules every clip at the correct position on a single timeline, applies fades and crossfades, and renders the combined audio faster than real time.</li>
+<li><b>Encode:</b> The rendered buffer is encoded to WAV — a lossless, uncompressed format that preserves every sample.</li>
+</ol>
+<p>All four steps happen locally in your browser tab. No audio data is ever sent over the network.</p>
+
+<h2>Seamless, crossfade or silence gap?</h2>
+<p>Choosing the right join mode makes a large difference to the final result.</p>
+<h3>Seamless join</h3>
+<p>Clips are placed back-to-back with no gap and no overlap. This is the correct mode for chapter joins in audiobooks, gapless albums, or any content where the clips are meant to be truly continuous.</p>
+<h3>Crossfade</h3>
+<p>The end of one clip and the start of the next overlap, with each fading out or in over a configurable duration. Crossfade produces a smooth musical transition and hides small timing differences between takes. It is best for music mixes, DJ sets and anywhere a hard boundary would sound jarring.</p>
+<h3>Silence gap</h3>
+<p>A short pause is inserted between clips. For spoken-word content — podcast segments, interviews, lessons, narration — a 0.3 to 1 second pause sounds more natural than a hard cut. The gap duration is configurable from 0.1 to 5 seconds.</p>
+
+<h2>Why merging happens locally in your browser</h2>
+<p>Most free audio mergers upload your files to a remote server, process them there, and send back the result. That model has three problems:</p>
+<ul>
+<li><b>Privacy.</b> Your audio — which might be a confidential interview, an unreleased track or a personal voice memo — passes through a third-party server.</li>
+<li><b>Retention.</b> Many services keep uploaded files for hours or days. You have no visibility into what happens to them.</li>
+<li><b>Limits.</b> Server-based tools often impose file size caps, daily conversion limits or paid tiers.</li>
+</ul>
+<p>This audio merger sidesteps all three. Everything happens in your browser using the Web Audio API. Nothing is uploaded, nothing is stored, and there is no limit on how many files you merge.</p>
+
+<h2>Supported audio formats</h2>
+<p>This tool accepts any audio format your browser can decode. In practice that means:</p>
+<ul>
+<li><b>MP3</b> — the most widely used compressed format</li>
+<li><b>WAV</b> — uncompressed, lossless audio</li>
+<li><b>OGG Vorbis</b> — open-source compressed format</li>
+<li><b>M4A and AAC</b> — Apple and MPEG-4 audio</li>
+<li><b>FLAC</b> — lossless compressed audio (modern browsers)</li>
+<li><b>WebM audio</b> — commonly used in browser recordings</li>
+</ul>
+<p>The output is always WAV, which is lossless, universally compatible, and preserves every sample without re-encoding artifacts. You can convert WAV to MP3 afterwards with any audio converter if you need a smaller file.</p>
+
+<h2>Common use cases</h2>
+<h3>Podcast production</h3>
+<p>Join intro music, interview segments and outro into one episode file. Use silence gap mode between spoken segments and crossfade between musical segments.</p>
+<h3>Music mixing</h3>
+<p>Combine multiple songs or takes into one continuous track. Crossfade mode makes transitions sound professional.</p>
+<h3>Audiobook chapters</h3>
+<p>Merge chapter recordings into a single file. Seamless mode preserves the exact timing between chapters.</p>
+<h3>Voice memos and interviews</h3>
+<p>Stitch together multiple voice recordings into one file for transcription, archiving or sharing.</p>
+<h3>Sound design</h3>
+<p>Chain multiple sound effects into one file for use in video editing, game design or animation.</p>
+
+<h2>Tips for the best merge results</h2>
+<ul>
+<li><b>Trim before merging.</b> Removing silence and false starts at the head and tail of each clip produces a tighter result.</li>
+<li><b>Match bitrates where possible.</b> Mixed inputs are normalized automatically, but starting from similar formats produces cleaner output.</li>
+<li><b>Use crossfade for music, silence gap for speech.</b> Hard cuts work best only when the clips are intended to be truly continuous.</li>
+<li><b>Enable normalization for mixed sources.</b> If clips were recorded at different volumes, peak normalization evens them out.</li>
+<li><b>Preview before downloading.</b> Listen to the merged result in the built-in player to catch order or gap mistakes.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a free audio merger online?</summary><p>A free audio merger online is a tool that combines multiple audio files into a single continuous track. This audio merger runs entirely in your browser using the Web Audio API, so your files never leave your device.</p></details>
+<details><summary>How do I merge audio files online?</summary><p>Drag and drop two or more audio files into the upload area. Reorder them by dragging, trim each clip if needed, choose a join mode (seamless, crossfade or silence gap), then click Merge. The result is processed locally and offered as a downloadable WAV file.</p></details>
+<details><summary>What audio formats can I merge?</summary><p>You can merge any audio format your browser can decode, including MP3, WAV, OGG, M4A, AAC, FLAC and WebM. The tool decodes every input to raw PCM, merges them in memory, and exports the result as lossless WAV.</p></details>
+<details><summary>Does this tool upload my audio files?</summary><p>No. All decoding, merging and encoding happen locally in your browser using the Web Audio API and OfflineAudioContext. There is no server, no upload and no storage. Your audio files never leave your device.</p></details>
+<details><summary>What is a crossfade and when should I use it?</summary><p>A crossfade smoothly blends the end of one clip into the start of the next by overlapping them and fading each out or in. Use it for music mixes or when you want a natural transition without a hard cut or silence.</p></details>
+<details><summary>What is a silence gap?</summary><p>A silence gap inserts a short pause between clips. Use it for spoken-word content like podcast segments, interviews, lessons or narration where a brief pause between sections sounds more natural than a hard cut.</p></details>
+<details><summary>What is the maximum number of files I can merge?</summary><p>This audio merger supports up to 50 files per session. The practical limit depends on your device's available memory because all audio is decoded into RAM before merging.</p></details>
+<details><summary>Can I trim individual clips before merging?</summary><p>Yes. Each clip has start and end time inputs. Enter the start and end seconds to trim a portion of the clip before it is merged.</p></details>
+<details><summary>Is this audio merger free?</summary><p>Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no file limits.</p></details>
+<details><summary>Does this tool work offline?</summary><p>Once the page has loaded, all audio processing happens locally in your browser. You can disconnect from the internet and the merger will continue to work.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function pad(n){ n = Math.floor(n); return n < 10 ? "0" + n : "" + n; }
+
+/* ---------- STATE ---------- */
+var clips = [];               // [{file, name, buffer (AudioBuffer|null), start, end, duration}]
+var audioCtx = null;
+var mergedBlob = null;
+
+function getAudioCtx(){
+  if(!audioCtx){
+    var Ctx = window.AudioContext || window.webkitAudioContext;
+    audioCtx = new Ctx();
+  }
+  return audioCtx;
+}
+
+/* ---------- DOM READY ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  wireUpload();
+  wireToolbar();
+  wireControls();
+});
+
+/* ---------- UPLOAD ---------- */
+function wireUpload(){
+  var zone = $("uploadZone");
+  var input = $("fileInput");
+  zone.addEventListener("click", function(){ input.click(); });
+  input.addEventListener("change", function(e){
+    if(e.target.files && e.target.files.length) handleFiles(e.target.files);
+  });
+  ["dragenter","dragover"].forEach(function(ev){
+    zone.addEventListener(ev, function(e){ e.preventDefault(); zone.classList.add("dragover"); });
+  });
+  ["dragleave","drop"].forEach(function(ev){
+    zone.addEventListener(ev, function(e){ e.preventDefault(); zone.classList.remove("dragover"); });
+  });
+  zone.addEventListener("drop", function(e){
+    if(e.dataTransfer.files && e.dataTransfer.files.length) handleFiles(e.dataTransfer.files);
+  });
+}
+
+function handleFiles(fileList){
+  var files = Array.prototype.slice.call(fileList);
+  if(clips.length + files.length > 50){
+    setStatus("err", "Maximum 50 files per session. You currently have " + clips.length + ".");
+    return;
+  }
+  var loaded = 0;
+  setStatus("info", "<span class='am-spinner'></span>Reading files…");
+  files.forEach(function(f){
+    var clip = { file: f, name: f.name, buffer: null, start: 0, end: 0, duration: 0 };
+    clips.push(clip);
+  });
+  $("uploadZone").hidden = true;
+  $("workspace").hidden = false;
+  renderClips();
+  files.forEach(function(f, idx){
+    readFileAsBuffer(f, function(buffer, dur){
+      var found = clips.filter(function(c){ return c.file === f; })[0];
+      if(found){
+        found.buffer = buffer;
+        found.duration = dur;
+        found.end = dur;
+      }
+      loaded++;
+      if(loaded === files.length){
+        renderClips();
+        updateStats();
+        setStatus("info", clips.length + " clip(s) loaded. Click Merge audio to combine.");
+      }
+    }, function(err){
+      loaded++;
+      setStatus("err", "Could not decode " + f.name + ": " + err);
+      if(loaded === files.length) renderClips();
+    });
+  });
+}
+
+function readFileAsBuffer(file, onSuccess, onError){
+  var ctx = getAudioCtx();
+  var reader = new FileReader();
+  reader.onload = function(e){
+    ctx.decodeAudioData(
+      e.target.result.slice(0),
+      function(buffer){ onSuccess(buffer, buffer.duration); },
+      function(err){ onError(err && err.message ? err.message : "decode failed"); }
+    );
+  };
+  reader.onerror = function(){ onError("read failed"); };
+  reader.readAsArrayBuffer(file);
+}
+
+/* ---------- CLIP LIST ---------- */
+function renderClips(){
+  var list = $("clipList");
+  if(clips.length === 0){
+    list.innerHTML = '<p class="am-empty">No audio files yet. Add some above.</p>';
+    return;
+  }
+  var html = "";
+  for(var i = 0; i < clips.length; i++){
+    var c = clips[i];
+    var dur = c.duration ? c.duration.toFixed(2) + " s" : "loading…";
+    html += '<div class="am-clip" draggable="true" data-idx="' + i + '">';
+    html += '<div class="am-clip-header">';
+    html += '<div class="am-drag" title="Drag to reorder">⋮⋮</div>';
+    html += '<div><div class="am-clip-name">' + esc(c.name) + '</div><div class="am-clip-meta">Duration: ' + dur + '</div></div>';
+    html += '<div class="am-clip-actions">';
+    html += '<button type="button" data-move="' + i + '" data-dir="-1" title="Move up">↑</button>';
+    html += '<button type="button" data-move="' + i + '" data-dir="1" title="Move down">↓</button>';
+    html += '</div>';
+    html += '<div class="am-clip-actions">';
+    html += '<button type="button" class="remove" data-remove="' + i + '" title="Remove">Remove</button>';
+    html += '</div>';
+    html += '</div>';
+    html += '<div class="am-clip-trim">';
+    html += '<div><label>Start (s)</label><input type="number" min="0" step="0.01" value="' + (c.start || 0) + '" data-start="' + i + '"></div>';
+    html += '<div><label>End (s)</label><input type="number" min="0" step="0.01" value="' + (c.end || c.duration || 0) + '" data-end="' + i + '"></div>';
+    html += '</div>';
+    html += '</div>';
+  }
+  list.innerHTML = html;
+}
+
+/* ---------- TOOLBAR & LIST EVENTS ---------- */
+function wireToolbar(){
+  $("btnAdd").addEventListener("click", function(){ $("fileInput").click(); });
+  $("btnClear").addEventListener("click", function(){
+    clips = [];
+    mergedBlob = null;
+    $("uploadZone").hidden = false;
+    $("workspace").hidden = true;
+    $("previewWrap").hidden = true;
+    $("btnDownload").disabled = true;
+    setStatus("info", "Cleared. Add new files to start again.");
+  });
+  $("btnMerge").addEventListener("click", mergeAll);
+  $("btnDownload").addEventListener("click", function(){
+    if(!mergedBlob) return;
+    var url = URL.createObjectURL(mergedBlob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "utiliby-merged-audio.wav";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
+
+  // Delegated list events
+  $("clipList").addEventListener("input", function(e){
+    var t = e.target;
+    if(t.dataset && t.dataset.start !== undefined){
+      var i = parseInt(t.dataset.start, 10);
+      clips[i].start = num(t.value, 0);
+    } else if(t.dataset && t.dataset.end !== undefined){
+      var j = parseInt(t.dataset.end, 10);
+      clips[j].end = num(t.value, 0);
+    }
+  });
+
+  $("clipList").addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.dataset.remove !== undefined){
+      clips.splice(parseInt(b.dataset.remove, 10), 1);
+      renderClips();
+      updateStats();
+      return;
+    }
+    if(b.dataset.move !== undefined){
+      var i = parseInt(b.dataset.move, 10);
+      var dir = parseInt(b.dataset.dir, 10);
+      var j = i + dir;
+      if(j < 0 || j >= clips.length) return;
+      var tmp = clips[i]; clips[i] = clips[j]; clips[j] = tmp;
+      renderClips();
+    }
+  });
+
+  // Drag & drop reorder on rows
+  var dragSrc = null;
+  $("clipList").addEventListener("dragstart", function(e){
+    var row = e.target.closest(".am-clip");
+    if(!row) return;
+    dragSrc = parseInt(row.dataset.idx, 10);
+    row.classList.add("dragging");
+  });
+  $("clipList").addEventListener("dragend", function(e){
+    var row = e.target.closest(".am-clip");
+    if(row) row.classList.remove("dragging");
+    document.querySelectorAll(".am-clip.dragover").forEach(function(el){ el.classList.remove("dragover"); });
+  });
+  $("clipList").addEventListener("dragover", function(e){
+    e.preventDefault();
+    var row = e.target.closest(".am-clip");
+    if(!row) return;
+    document.querySelectorAll(".am-clip.dragover").forEach(function(el){ el.classList.remove("dragover"); });
+    row.classList.add("dragover");
+  });
+  $("clipList").addEventListener("drop", function(e){
+    e.preventDefault();
+    var row = e.target.closest(".am-clip");
+    if(!row || dragSrc === null) return;
+    var targetIdx = parseInt(row.dataset.idx, 10);
+    if(targetIdx === dragSrc) return;
+    var moved = clips.splice(dragSrc, 1)[0];
+    clips.splice(targetIdx, 0, moved);
+    dragSrc = null;
+    renderClips();
+  });
+}
+
+/* ---------- CONTROLS ---------- */
+function wireControls(){
+  $("joinMode").addEventListener("change", function(){
+    var mode = this.value;
+    $("crossfadeControl").hidden = (mode !== "crossfade");
+    $("gapControl").hidden = (mode !== "gap");
+  });
+  $("crossfade").addEventListener("input", function(){ $("crossfadeVal").textContent = parseFloat(this.value).toFixed(1) + " s"; });
+  $("gap").addEventListener("input", function(){ $("gapVal").textContent = parseFloat(this.value).toFixed(1) + " s"; });
+  $("fadeIn").addEventListener("input", function(){ $("fadeInVal").textContent = parseFloat(this.value).toFixed(1) + " s"; });
+  $("fadeOut").addEventListener("input", function(){ $("fadeOutVal").textContent = parseFloat(this.value).toFixed(1) + " s"; });
+}
+
+/* ---------- MERGE ---------- */
+function mergeAll(){
+  var ready = clips.filter(function(c){ return c.buffer; });
+  if(ready.length < 1){
+    setStatus("err", "No clips are fully loaded yet. Please wait, or add files.");
+    return;
+  }
+
+  $("btnMerge").disabled = true;
+  $("btnDownload").disabled = true;
+  $("progressWrap").hidden = false;
+  $("progressBar").style.width = "5%";
+  setStatus("info", "<span class='am-spinner'></span>Preparing merge…");
+
+  var t0 = performance.now();
+
+  setTimeout(function(){
+    try {
+      var joinMode = $("joinMode").value;
+      var crossfade = num($("crossfade").value, 0.5);
+      var gap = num($("gap").value, 0.5);
+      var fadeIn = num($("fadeIn").value, 0);
+      var fadeOut = num($("fadeOut").value, 0);
+      var normalize = $("normalize").value === "on";
+      var removeSilence = $("removeSilence").value === "on";
+
+      // Determine sample rate and channel count
+      var sampleRate = ready[0].buffer.sampleRate;
+      var channels = 2;
+      for(var i = 0; i < ready.length; i++){
+        if(ready[i].buffer.numberOfChannels > channels) channels = ready[i].buffer.numberOfChannels;
+      }
+      channels = Math.min(channels, 2);
+
+      // Compute timeline
+      var timeline = [];
+      var cursor = 0;
+      for(var i = 0; i < ready.length; i++){
+        var c = ready[i];
+        var buf = c.buffer;
+        var clipStart = Math.max(0, Math.min(c.start || 0, buf.duration));
+        var clipEnd = Math.max(clipStart, Math.min(c.end || buf.duration, buf.duration));
+        var clipDur = clipEnd - clipStart;
+        if(clipDur <= 0) continue;
+
+        if(joinMode === "crossfade" && timeline.length > 0){
+          cursor -= crossfade;
+          if(cursor < 0) cursor = 0;
+        }
+        timeline.push({
+          buffer: buf,
+          offset: clipStart,
+          duration: clipDur,
+          start: cursor
+        });
+        cursor += clipDur;
+        if(joinMode === "gap" && i < ready.length - 1){
+          cursor += gap;
+        }
+      }
+
+      if(timeline.length === 0){
+        setStatus("err", "All clips were trimmed to zero length.");
+        $("btnMerge").disabled = false;
+        $("progressWrap").hidden = true;
+        return;
+      }
+
+      // Detect trailing silence trim if enabled
+      var totalDuration = timeline[timeline.length - 1].start + timeline[timeline.length - 1].duration + 0.5;
+      if(fadeOut > 0) totalDuration += 0;
+      totalDuration = Math.max(totalDuration, timeline[timeline.length - 1].start + timeline[timeline.length - 1].duration + fadeOut);
+
+      var totalSamples = Math.ceil(totalDuration * sampleRate);
+      var offline = new (window.OfflineAudioContext || window.webkitOfflineAudioContext)(channels, totalSamples, sampleRate);
+
+      $("progressBar").style.width = "25%";
+
+      // Schedule every clip
+      for(var k = 0; k < timeline.length; k++){
+        var t = timeline[k];
+        var source = offline.createBufferSource();
+        source.buffer = t.buffer;
+        // Ensure source channel count matches output
+        var gain = offline.createGain();
+
+        // Crossfade handling
+        if(joinMode === "crossfade" && k > 0 && crossfade > 0){
+          // Fade in this clip over first `crossfade` seconds
+          var fInEnd = t.start + crossfade;
+          gain.gain.setValueAtTime(0, t.start);
+          gain.gain.linearRampToValueAtTime(1, fInEnd);
+        } else {
+          gain.gain.setValueAtTime(1, t.start);
+        }
+
+        // Crossfade out the previous clip if applicable
+        if(joinMode === "crossfade" && k < timeline.length - 1 && crossfade > 0){
+          var nextStart = timeline[k + 1].start;
+          var fadeStart = nextStart;
+          if(fadeStart > t.start && fadeStart <= t.start + t.duration){
+            // Clamp fade duration so we don't start before the clip begins
+            var fadeDur = Math.min(crossfade, t.duration);
+            gain.gain.setValueAtTime(1, Math.max(t.start, fadeStart - fadeDur));
+            gain.gain.linearRampToValueAtTime(0, t.start + t.duration);
+          }
+        }
+
+        source.connect(gain);
+        gain.connect(offline.destination);
+        source.start(t.start, t.offset, t.duration);
+      }
+
+      $("progressBar").style.width = "55%";
+
+      // Kick off render
+      offline.startRendering().then(function(rendered){
+        $("progressBar").style.width = "80%";
+
+        // Apply global fade in/out to the rendered buffer
+        if(fadeIn > 0 || fadeOut > 0){
+          applyGlobalFades(rendered, fadeIn, fadeOut);
+        }
+
+        // Silence removal if enabled
+        if(removeSilence){
+          trimSilence(rendered);
+        }
+
+        // Normalize if enabled
+        if(normalize){
+          peakNormalize(rendered);
+        }
+
+        // Encode WAV
+        var wav = encodeWav(rendered);
+        mergedBlob = new Blob([wav], {type: "audio/wav"});
+
+        // Set preview
+        var url = URL.createObjectURL(mergedBlob);
+        $("preview").src = url;
+        $("previewWrap").hidden = false;
+
+        $("progressBar").style.width = "100%";
+        var elapsed = Math.round(performance.now() - t0);
+        var durStr = rendered.duration.toFixed(2) + " s";
+        var sizeStr = (mergedBlob.size / 1024 / 1024).toFixed(2) + " MB";
+        setStatus("ok", "Merged " + timeline.length + " clip(s) in " + elapsed + " ms. Duration: " + durStr + ", size: " + sizeStr + ".");
+        $("statOutput").textContent = "Output: " + durStr + " · " + sizeStr;
+
+        $("btnDownload").disabled = false;
+        $("btnMerge").disabled = false;
+        setTimeout(function(){ $("progressWrap").hidden = true; }, 800);
+      }).catch(function(err){
+        setStatus("err", "Merge failed: " + (err && err.message ? err.message : err));
+        $("btnMerge").disabled = false;
+        $("progressWrap").hidden = true;
+      });
+    } catch(e){
+      setStatus("err", "Merge failed: " + e.message);
+      $("btnMerge").disabled = false;
+      $("progressWrap").hidden = true;
+    }
+  }, 50);
+}
+
+function applyGlobalFades(buffer, fadeIn, fadeOut){
+  var channels = buffer.numberOfChannels;
+  var rate = buffer.sampleRate;
+  var fadeInSamples = Math.min(Math.floor(fadeIn * rate), buffer.length);
+  var fadeOutSamples = Math.min(Math.floor(fadeOut * rate), buffer.length);
+  for(var ch = 0; ch < channels; ch++){
+    var data = buffer.getChannelData(ch);
+    // Fade in
+    for(var i = 0; i < fadeInSamples; i++){
+      data[i] *= (i / fadeInSamples);
+    }
+    // Fade out
+    for(var j = 0; j < fadeOutSamples; j++){
+      var idx = buffer.length - 1 - j;
+      data[idx] *= (j / fadeOutSamples);
+    }
+  }
+}
+
+function trimSilence(buffer){
+  // Simple head/tail silence trim: find first and last sample above threshold
+  var channels = buffer.numberOfChannels;
+  var threshold = 0.005;
+  var first = buffer.length, last = 0;
+  for(var ch = 0; ch < channels; ch++){
+    var d = buffer.getChannelData(ch);
+    for(var i = 0; i < d.length; i++){
+      if(Math.abs(d[i]) > threshold){ if(i < first) first = i; break; }
+    }
+    for(var j = d.length - 1; j >= 0; j--){
+      if(Math.abs(d[j]) > threshold){ if(j > last) last = j; break; }
+    }
+  }
+  if(last <= first) return; // nothing meaningful
+  // Copy trimmed region to new buffers
+  for(var c = 0; c < channels; c++){
+    var src = buffer.getChannelData(c);
+    var dst = new Float32Array(last - first + 1);
+    for(var k = first; k <= last; k++){
+      dst[k - first] = src[k];
+    }
+    buffer.copyToChannel(dst, c);
+  }
+}
+
+function peakNormalize(buffer){
+  var channels = buffer.numberOfChannels;
+  var peak = 0;
+  for(var ch = 0; ch < channels; ch++){
+    var d = buffer.getChannelData(ch);
+    for(var i = 0; i < d.length; i++){
+      var a = Math.abs(d[i]);
+      if(a > peak) peak = a;
+    }
+  }
+  if(peak <= 0.0001) return;
+  var gain = 0.99 / peak;
+  for(var c = 0; c < channels; c++){
+    var data = buffer.getChannelData(c);
+    for(var k = 0; k < data.length; k++) data[k] *= gain;
+  }
+}
+
+/* ---------- WAV ENCODING ---------- */
+function encodeWav(buffer){
+  var numChannels = buffer.numberOfChannels;
+  var sampleRate = buffer.sampleRate;
+  var numFrames = buffer.length;
+  var bytesPerSample = 2;
+  var blockAlign = numChannels * bytesPerSample;
+  var dataSize = numFrames * blockAlign;
+  var bufferSize = 44 + dataSize;
+  var ab = new ArrayBuffer(bufferSize);
+  var view = new DataView(ab);
+
+  writeString(view, 0, "RIFF");
+  view.setUint32(4, 36 + dataSize, true);
+  writeString(view, 8, "WAVE");
+  writeString(view, 12, "fmt ");
+  view.setUint32(16, 16, true);
+  view.setUint16(20, 1, true); // PCM
+  view.setUint16(22, numChannels, true);
+  view.setUint32(24, sampleRate, true);
+  view.setUint32(28, sampleRate * blockAlign, true);
+  view.setUint16(32, blockAlign, true);
+  view.setUint16(34, bytesPerSample * 8, true);
+  writeString(view, 36, "data");
+  view.setUint32(40, dataSize, true);
+
+  var offset = 44;
+  var channels = [];
+  for(var c = 0; c < numChannels; c++){
+    channels.push(buffer.getChannelData(c));
+  }
+
+  for(var i = 0; i < numFrames; i++){
+    for(var ch = 0; ch < numChannels; ch++){
+      var s = Math.max(-1, Math.min(1, channels[ch][i]));
+      view.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7fff, true);
+      offset += 2;
+    }
+  }
+  return ab;
+}
+
+function writeString(view, offset, str){
+  for(var i = 0; i < str.length; i++){
+    view.setUint8(offset + i, str.charCodeAt(i));
+  }
+}
+
+/* ---------- STATUS & STATS ---------- */
+function setStatus(type, html){
+  var el = $("status");
+  el.className = "am-status " + type;
+  el.innerHTML = html;
+}
+
+function updateStats(){
+  if(clips.length === 0){
+    $("stats").hidden = true;
+    return;
+  }
+  $("stats").hidden = false;
+  var total = 0;
+  for(var i = 0; i < clips.length; i++){
+    if(clips[i].duration) total += clips[i].duration;
+  }
+  $("statFiles").textContent = clips.length + " file(s)";
+  $("statDuration").textContent = "Input total: " + total.toFixed(2) + " s";
+  if(!$("statOutput").textContent || $("statOutput").textContent === "—"){
+    $("statOutput").textContent = "Output: —";
+  }
+}
+
+})();
+</script>
+</body>
+</html>
