@@ -1,0 +1,679 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Elevator Pitch Generator Online – 30-Second Pitch Builder</title>
+<meta name="description" content="Free elevator pitch generator online. Build one-liner, 30-second, 60-second and 90-second pitches with 6 proven formulas, audience targeting, hook library and value proposition builder. No sign-up, 100% browser-based.">
+<link rel="canonical" href="https://utiliby.com/tools/marketing-advertising-tools/elevator-pitch-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Elevator Pitch Generator Online – 30-Second Pitch Builder">
+<meta property="og:description" content="Free elevator pitch generator online. 6 formulas, 4 lengths, audience targeting and value proposition builder.">
+<meta property="og:url" content="https://utiliby.com/tools/marketing-advertising-tools/elevator-pitch-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.ep-hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.ep-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.ep-hero p{margin:0;opacity:.92;font-size:.9rem}
+.ep-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.ep-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.ep-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.ep-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.ep-panel h3{margin:0 0 10px;font-size:1rem}
+.ep-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.ep-panel input[type="text"],.ep-panel select,.ep-panel textarea{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.ep-panel textarea{min-height:60px;font-family:inherit;resize:vertical}
+.ep-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ep-row{grid-template-columns:1fr}}
+.ep-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.ep-row3{grid-template-columns:1fr}}
+.ep-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;margin-right:8px;margin-top:8px}
+.ep-btn:hover{opacity:.92}
+.ep-btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--line)}
+.ep-btn:disabled{opacity:.45;cursor:not-allowed}
+.ep-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0;position:relative}
+.ep-result-label{font-size:.72rem;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:6px}
+.ep-result-text{font-size:.98rem;line-height:1.75;color:var(--fg);white-space:pre-wrap;word-wrap:break-word}
+.ep-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:10px;align-items:center}
+.ep-meta span{font-size:.78rem;color:var(--muted);font-weight:600}
+.ep-meta .count{color:var(--brand);font-family:ui-monospace,monospace}
+.ep-meta .count.warn{color:#f59e0b}
+.ep-meta .count.err{color:#dc2626}
+.ep-copy{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:6px;padding:4px 12px;font-size:.78rem;font-weight:600;cursor:pointer;margin-left:auto}
+.ep-copy:hover{background:var(--brand);color:#fff}
+.ep-hook-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:10px;margin:10px 0}
+.ep-hook-item{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:border-color .15s;font-size:.88rem;line-height:1.5}
+.ep-hook-item:hover{border-color:var(--brand)}
+.ep-hook-item .cat{font-size:.7rem;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;display:block}
+.ep-template{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:border-color .15s;margin:8px 0}
+.ep-template:hover{border-color:var(--brand)}
+.ep-template .tmpl-label{font-size:.7rem;color:var(--brand);font-weight:700;text-transform:uppercase;letter-spacing:.04em;margin-bottom:4px;display:block}
+.ep-template .tmpl-text{font-size:.88rem;color:var(--fg);line-height:1.55}
+.ep-tip{background:rgba(79,70,229,.06);border-left:3px solid var(--brand);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.ep-tip b{color:var(--brand)}
+.ep-stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin:10px 0}
+.ep-stat-box{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:12px;text-align:center}
+.ep-stat-box .num{font-size:1.3rem;font-weight:800;color:var(--brand);line-height:1.1}
+.ep-stat-box .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-top:3px}
+.ep-status{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.85rem;margin:8px 0}
+.ep-status.ok{border-color:#16a34a;color:#166534}
+.ep-status.info{border-color:var(--brand);color:var(--brand)}
+.ep-empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+@media(max-width:560px){.ep-btn{font-size:.82rem;padding:9px 16px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Elevator Pitch Generator","url":"https://utiliby.com/tools/marketing-advertising-tools/elevator-pitch-generator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free elevator pitch generator online?","acceptedAnswer":{"@type":"Answer","text":"A free elevator pitch generator online is a tool that turns a short description of what you do into a structured, ready-to-deliver pitch. This generator uses six proven pitch formulas, four length variants (one-liner, 30-second, 60-second, 90-second), audience targeting and a hook library to produce pitches that fit any professional setting. It runs entirely in your browser with no sign-up."}},{"@type":"Question","name":"How long should an elevator pitch be?","acceptedAnswer":{"@type":"Answer","text":"A classic elevator pitch is 30 to 60 seconds when spoken aloud. At a conversational pace of 130 to 150 words per minute, this translates to roughly 75 to 140 words. A 90-second version (about 200 words) works for investor meetings or interviews where deeper conversation is expected. Always prepare a one-liner (under 15 seconds) for casual encounters."}},{"@type":"Question","name":"What are the key components of an elevator pitch?","acceptedAnswer":{"@type":"Answer","text":"A strong elevator pitch follows a logical structure: a hook to grab attention, an introduction of who you are, the problem your audience faces, your solution, the unique value you offer, and a clear call to action. The 5-part formula is: hook, problem, solution, value, and call to action."}},{"@type":"Question","name":"What is the problem-solution-benefit formula?","acceptedAnswer":{"@type":"Answer","text":"The problem-solution-benefit formula is one of the most effective structures for an elevator pitch: identify the problem your audience faces, describe your solution, and highlight the specific benefit it delivers. For example, 'You know how remote teams waste hours in status meetings? We automate daily standups so teams save 10 hours per employee per month.'"}},{"@type":"Question","name":"What is a value proposition and how does it differ from a pitch?","acceptedAnswer":{"@type":"Answer","text":"A value proposition is a single sentence that explains what you offer, who it is for, and why it is valuable. An elevator pitch is the longer, spoken version that includes a hook, problem, solution, proof, and call to action. The value proposition is the seed; the elevator pitch is the full story."}},{"@type":"Question","name":"Does this tool use AI?","acceptedAnswer":{"@type":"Answer","text":"No. This tool uses a deterministic, formula-based generation engine built on six proven elevator pitch frameworks. The result is instant, fully client-side and privacy-first. Your input never leaves your browser and no text is sent to any server."}},{"@type":"Question","name":"Is this elevator pitch generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits."}},{"@type":"Question","name":"Can I use this for job interviews?","acceptedAnswer":{"@type":"Answer","text":"Yes. Select 'Job interviewer' as the audience and the generator adapts the pitch to highlight your professional background, skills and value. A 'tell me about yourself' answer is essentially a 60 to 90-second elevator pitch."}},{"@type":"Question","name":"What is the Geoffrey Moore value proposition template?","acceptedAnswer":{"@type":"Answer","text":"The Geoffrey Moore positioning statement is: For [target customer] who [statement of need or opportunity], [product name] is a [product category] that [statement of key benefit]. Unlike [primary competitive alternative], our product [statement of primary differentiation]. This tool builds the statement automatically from your inputs."}},{"@type":"Question","name":"How many hooks does the hook library include?","acceptedAnswer":{"@type":"Answer","text":"The hook library includes 30+ hooks organised into six categories: curiosity gap, problem call-out, contrarian take, specific number, relatable scenario, and bold claim. Click any hook to insert it into your pitch as the opening line."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/marketing-advertising-tools/">Marketing &amp; Advertising Tools</a> › Elevator Pitch Generator</nav>
+<h1>Elevator Pitch Generator</h1>
+<p class="lead">Generate one-liner, 30-second, 60-second and 90-second elevator pitches with six proven formulas, audience targeting, a hook library and a value proposition builder. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Elevator pitch generator">
+
+<div class="ep-hero">
+<h2>Free Elevator Pitch Generator</h2>
+<p>Tell us what you do, pick your audience and length, and get instant pitches built on proven frameworks.</p>
+</div>
+
+<div class="ep-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="ep-tab on" data-tab="generate">Generate pitch</button>
+<button type="button" class="ep-tab" data-tab="hooks">Hook library</button>
+<button type="button" class="ep-tab" data-tab="valueprop">Value proposition</button>
+<button type="button" class="ep-tab" data-tab="formulas">Pitch formulas</button>
+</div>
+
+<!-- GENERATE TAB -->
+<div id="generateTab">
+<div class="ep-panel">
+<h3>About you and your pitch</h3>
+<div class="ep-row">
+<div>
+<label for="yourName">Your name (optional)</label>
+<input type="text" id="yourName" placeholder="e.g., Sarah" value="">
+</div>
+<div>
+<label for="companyName">Company / product name</label>
+<input type="text" id="companyName" placeholder="e.g., FlowSync" value="FlowSync">
+</div>
+</div>
+<label for="whatYouDo">What you do / offer</label>
+<textarea id="whatYouDo" placeholder="e.g., We help remote teams cut meeting time in half by automating daily standups and status updates with AI.">We help remote teams cut meeting time in half by automating daily standups and status updates with AI.</textarea>
+<div class="ep-row">
+<div>
+<label for="targetAudience">Who you help (target audience)</label>
+<input type="text" id="targetAudience" placeholder="e.g., remote teams, startup founders, small businesses" value="remote teams">
+</div>
+<div>
+<label for="problem">Problem you solve</label>
+<input type="text" id="problem" placeholder="e.g., too many status meetings, wasted time" value="teams waste hours in status meetings every week">
+</div>
+</div>
+<div class="ep-row">
+<div>
+<label for="uniqueValue">Your unique value / differentiator</label>
+<input type="text" id="uniqueValue" placeholder="e.g., AI-powered automation, 10 hours saved per employee" value="10 hours saved per employee per month">
+</div>
+<div>
+<label for="proof">Proof / traction (optional)</label>
+<input type="text" id="proof" placeholder="e.g., 50 companies, $8M sales, 200% growth" value="one team saw a 20% boost in project delivery speed">
+</div>
+</div>
+<label for="cta">Call to action (what do you want next?)</label>
+<input type="text" id="cta" placeholder="e.g., book a demo, try it free, exchange cards, schedule a call" value="would you be open to a 3-minute demo later this week?">
+</div>
+
+<div class="ep-panel">
+<h3>Pitch settings</h3>
+<div class="ep-row3">
+<div>
+<label for="audienceSelect">Audience</label>
+<select id="audienceSelect">
+<option value="investor">Investor</option>
+<option value="customer" selected>Customer / Client</option>
+<option value="recruiter">Recruiter / Hiring Manager</option>
+<option value="partner">Partner</option>
+<option value="networking">Networking contact</option>
+<option value="general">General / Anyone</option>
+</select>
+</div>
+<div>
+<label for="toneSelect">Tone</label>
+<select id="toneSelect">
+<option value="professional" selected>Professional</option>
+<option value="conversational">Conversational</option>
+<option value="inspiring">Inspiring</option>
+<option value="bold">Bold &amp; confident</option>
+<option value="friendly">Friendly</option>
+</select>
+</div>
+<div>
+<label for="formulaSelect">Formula</label>
+<select id="formulaSelect">
+<option value="auto" selected>Auto (pick best for audience)</option>
+<option value="psb">Problem-Solution-Benefit</option>
+<option value="hookline">Hook-Problem-Solution-Value-CTA</option>
+<option value="youknow">You Know How</option>
+<option value="story">Story Open</option>
+<option value="boldclaim">Bold Claim</option>
+<option value="question">Question Hook</option>
+</select>
+</div>
+</div>
+</div>
+
+<button type="button" class="ep-btn" id="generateBtn">Generate pitches</button>
+<button type="button" class="ep-btn ghost" id="clearBtn">Clear</button>
+
+<div id="outputArea"></div>
+</div>
+
+<!-- HOOK LIBRARY TAB -->
+<div id="hooksTab" hidden>
+<div class="ep-panel">
+<h3>Hook library — 6 categories, 30+ opening lines</h3>
+<p class="meta" style="margin-bottom:12px">Click any hook to insert it into your pitch as the opening line.</p>
+<div class="ep-hook-list" id="hookList"></div>
+</div>
+</div>
+
+<!-- VALUE PROP TAB -->
+<div id="valuepropTab" hidden>
+<div class="ep-panel">
+<h3>Geoffrey Moore positioning statement</h3>
+<p class="meta" style="margin-bottom:12px">The classic value proposition template used by product marketers worldwide.</p>
+<div id="valuePropOutput"></div>
+<button type="button" class="ep-btn" id="buildValuePropBtn">Build from my inputs</button>
+</div>
+</div>
+
+<!-- FORMULAS TAB -->
+<div id="formulasTab" hidden>
+<div class="ep-panel">
+<h3>Six proven elevator pitch formulas</h3>
+<p class="meta" style="margin-bottom:12px">Each formula is a different structure for the same story. Select one in the Generate tab, or use these as inspiration for your own.</p>
+<div id="formulaList"></div>
+</div>
+</div>
+
+</section>
+
+<article class="cn-article">
+
+<h2>What is a free elevator pitch generator online?</h2>
+<p>A free elevator pitch generator online is a tool that turns a short description of what you do into a structured, ready-to-deliver pitch. Instead of staring at a blank page wondering how to compress your entire business, product or career into 30 seconds, you type a few facts and the generator assembles them into a coherent, confident narrative built on proven frameworks.</p>
+<p>This elevator pitch generator online goes further than most tools. It offers six distinct pitch formulas (Problem-Solution-Benefit, Hook-Line-Sinker, You Know How, Story Open, Bold Claim and Question Hook), four length variants (one-liner, 30-second, 60-second and 90-second), six audience-specific adaptations (investor, customer, recruiter, partner, networking and general), five tone presets, a 30+ hook library, and a Geoffrey Moore value proposition builder. Everything runs in your browser using a deterministic formula engine — no AI, no server, no account, no upload, no tracking.</p>
+
+<h2>How to use this free elevator pitch generator</h2>
+<ol>
+<li>Fill in the basics: your name, company or product name, and what you do in one sentence.</li>
+<li>Add the problem you solve, the audience you serve, and your unique value. The proof field is optional but powerful — a specific number or metric makes your pitch memorable.</li>
+<li>Enter a call to action — what you want the listener to do next.</li>
+<li>Pick an audience. The same business adapts differently for an investor, a customer, a recruiter or a networking contact.</li>
+<li>Choose a tone that matches your personality and the setting.</li>
+<li>Select a formula — or leave it on Auto and the tool picks the best framework for your audience.</li>
+<li>Click <b>Generate pitches</b>. You get four pitch lengths, each with word count and estimated spoken duration.</li>
+<li>Copy the version that fits the moment. Use the hook library and value proposition builder for extra polish.</li>
+</ol>
+
+<h2>What is an elevator pitch and why does it matter?</h2>
+<p>An elevator pitch — also called an elevator speech — is a short, persuasive summary of who you are, what you do, and why it matters. The name comes from the idea that you should be able to deliver it in the time it takes to ride an elevator with someone important, typically 30 to 60 seconds. A 2026 report from Microsoft showed that the average human attention span has dropped to just 8.25 seconds — shorter than a goldfish. That means you have roughly two sentences to convince a stranger that the rest of your pitch is worth hearing.</p>
+<p>The purpose of an elevator pitch is not to close a deal or get a job offer. It is to <b>earn a second conversation</b>. You are opening a door, not walking through it. A strong pitch sparks curiosity, establishes credibility and ends with a clear, low-friction ask. The listener should walk away thinking "I want to know more", not "that was interesting" and then forget you within an hour.</p>
+
+<h2>The anatomy of a winning elevator pitch</h2>
+<p>Every effective elevator pitch contains six components. Not all pitches use all six, but every component has a role.</p>
+<h3>The hook</h3>
+<p>The hook is the first sentence — the attention grabber. It can be a surprising statistic, a thought-provoking question, a bold claim or a relatable problem call-out. The hook creates a curiosity gap: the listener feels that if they do not hear the rest, they will be missing something. "Did you know that teams waste 10 hours per employee per month in status meetings?" is a hook. "We are a software company" is not.</p>
+<h3>The introduction</h3>
+<p>A one-sentence introduction establishes who you are and what role you play. "I am Sarah, founder of FlowSync" or "I am Jordan, a wildlife biologist with five years of experience in habitat restoration." Keep it short — the audience cares more about what you can do for them than about your job title.</p>
+<h3>The problem</h3>
+<p>The problem is the pain point your audience already feels. You are not inventing a problem; you are naming a frustration that already exists in their head. When you describe their problem accurately, they nod involuntarily. That nod is the moment they start trusting you. The problem should be specific, not abstract. "Too many meetings" is vague. "Daily standups that eat 45 minutes but communicate 5 minutes of information" is specific.</p>
+<h3>The solution</h3>
+<p>The solution is what you offer and how it solves the problem. Do not list features — describe the mechanism. "We automate daily standups with AI that summarises progress and flags blockers" tells the listener how it works. "We are a productivity platform" does not.</p>
+<h3>The value / benefit</h3>
+<p>The value is the measurable outcome. This is where you differentiate yourself. "Teams using FlowSync save 10 hours per employee per month" is a benefit. "Our platform is feature-rich" is a feature. The rule of thumb: features are what your product has; benefits are what your customer gets. Always lead with the benefit.</p>
+<h3>The call to action</h3>
+<p>The CTA is the ask. It should be small and specific. "Could we schedule a 15-minute call next week?" is a clear CTA. "Let me know if you are interested" is not. The best CTAs reduce friction — they do not demand a decision, they demand a conversation.</p>
+
+<h2>The five most effective elevator pitch formulas</h2>
+<h3>1. Problem-Solution-Benefit (PSB)</h3>
+<p>The PSB formula is the workhorse of professional pitching. You open with the problem, describe your solution, and close with the specific benefit. It is direct, easy to follow and works for almost any audience. Example: "Most remote teams waste hours in status meetings every week. FlowSync automates daily standups with AI. Teams save 10 hours per employee per month."</p>
+<h3>2. Hook-Problem-Solution-Value-CTA (HPSVC)</h3>
+<p>The full five-part structure used by top sales teams. It starts with a hook, introduces the problem, explains the solution, quantifies the value, and ends with a call to action. This is the formula to use when you have 30 to 60 seconds and want to cover every base.</p>
+<h3>3. You Know How</h3>
+<p>A conversational formula that starts with a rhetorical question the listener immediately recognises. "You know how remote teams waste hours in status meetings every week? We automate them with AI, saving 10 hours per employee per month." The question format stimulates thought, so the listener automatically pays attention.</p>
+<h3>4. Story Open</h3>
+<p>The most human formula. You open mid-narrative and force the listener to resolve the story. "Last year, I watched a 20-person team waste four hours a week in status meetings. That is what inspired me to build FlowSync. Today those teams save 10 hours per employee per month." Stories create emotional engagement that facts alone cannot.</p>
+<h3>5. Bold Claim</h3>
+<p>A confident, contrarian or surprising opening that makes the listener lean in. "Your team does not need another productivity app. It needs fewer meetings. We help teams cut meeting time in half." This formula works best when you have data or conviction to back it up. Overusing it makes you sound arrogant; using it well makes you sound authoritative.</p>
+<h3>6. Question Hook</h3>
+<p>Open with a question that only your solution can answer. "What would your team do with an extra 10 hours per person, per month? That is what FlowSync gives you." The question plants a concrete benefit in the listener's mind before you even describe the product.</p>
+
+<h2>How long should an elevator pitch be?</h2>
+<p>An elevator pitch should be as long as it needs to be to earn a second conversation — no longer, no shorter. The standard guidance is 30 to 60 seconds, which at a natural speaking pace (130 to 150 words per minute) translates to roughly 75 to 140 words. This tool generates four lengths:</p>
+<ul>
+<li><b>One-liner (under 15 seconds, ~20 words).</b> For dinner conversations, casual introductions and social media bios. It is the seed of your full pitch.</li>
+<li><b>30-second pitch (75–100 words).</b> The classic elevator pitch. For hallway introductions, quick networking conversations and cold outreach openers.</li>
+<li><b>60-second pitch (130–160 words).</b> The full pitch. For demo days, first sales meetings, investor calls and "tell me about yourself" interview answers.</li>
+<li><b>90-second pitch (200–240 words).</b> The deep pitch. For investor meetings, interviews and any setting where a longer conversation is expected.</li>
+</ul>
+<p>Prepare all four. The one-liner for the unexpected encounter, the 30-second version for a brief window, the 60-second version for a real pitch moment, and the 90-second version for a formal setting. Practising all four means you never get caught trying to compress or expand on the fly.</p>
+
+<h2>Adapting your pitch for different audiences</h2>
+<h3>Investor pitch</h3>
+<p>Investors care about three things: market size, traction and the team. Lead with the problem, show the size of the opportunity, prove you have traction (revenue, users, growth rate), and end with a clear ask (funding, introduction, next meeting). Investors hear dozens of pitches a week — the ones that stick are specific, data-backed and clearly state what you need.</p>
+<h3>Customer pitch</h3>
+<p>Customers care about one thing: whether you solve <i>their</i> problem. Lead with the pain point, describe the mechanism, and give a concrete outcome. "We help teams cut meeting time in half, saving 10 hours per employee per month." No market size, no funding ask — just the benefit.</p>
+<h3>Recruiter / hiring manager pitch</h3>
+<p>Recruiters and hiring managers want to know what you have done and how it maps to their role. Focus on specific accomplishments with measurable results, not job titles. "I led a digital transformation project that increased profitability by 30% without impacting headcount" beats "I was a senior manager in operations."</p>
+<h3>Partner pitch</h3>
+<p>Partners want to know what is in it for both sides. Lead with the mutual opportunity, show what you bring and what they bring, and make the ask specific. "You have the audience. We have the product. A co-marketing partnership could reach 100,000 potential users in the next quarter."</p>
+<h3>Networking pitch</h3>
+<p>Networking is about connection, not sales. Lead with who you are and what you are working on, then offer something helpful — an introduction, an article, a shared experience. The goal is to be memorable and likeable, not to close a deal. "I help remote teams cut meeting time in half. What are you working on?"</p>
+
+<h2>The Geoffrey Moore value proposition template</h2>
+<p>Geoffrey Moore's positioning statement, popularised in <i>Crossing the Chasm</i>, is one of the most widely used value proposition templates in product marketing. It is designed to be filled in, one blank at a time, until the value proposition is clear and specific.</p>
+<p><b>For [target customer] who [statement of need or opportunity], [product name] is a [product category] that [statement of key benefit]. Unlike [primary competitive alternative], our product [statement of primary differentiation].</b></p>
+<p>Example: "For remote teams who waste hours in weekly status meetings, FlowSync is an AI-powered automation platform that eliminates daily standups. Unlike manual scheduling tools, FlowSync uses AI to summarise progress and flag blockers automatically."</p>
+<p>Every blank must be filled with a specific answer. The most common mistake is leaving blanks vague — writing "businesses" instead of "enterprise SaaS companies with 200+ employees" or "small businesses". Specificity is the entire point of the template.</p>
+
+<h2>Common elevator pitch mistakes</h2>
+<ul>
+<li><b>Opening with your product name.</b> The listener has no context for what your product is, so they tune out before you reach the value.</li>
+<li><b>Listing features instead of benefits.</b> Nobody buys a feature. They buy an outcome — more time, more money, less stress.</li>
+<li><b>Speaking too long.</b> If your pitch exceeds 60 seconds, you are losing the listener. Compress it.</li>
+<li><b>Using jargon.</b> Industry terminology that feels natural to you is noise to everyone else. Plain English always wins.</li>
+<li><b>No call to action.</b> If you do not ask for the next step, you will not get one. End with a specific, low-friction ask.</li>
+<li><b>Being too broad.</b> "We help businesses grow" helps no one. "We help 10-person SaaS teams cut meeting time by 50%" is memorable.</li>
+<li><b>Not practising out loud.</b> A pitch that reads well on paper often falls apart when spoken. Rehearse until it sounds natural.</li>
+</ul>
+
+<h2>How to deliver an elevator pitch effectively</h2>
+<p>The delivery matters as much as the words. Speak at a calm, measured pace — nerves make people rush. Pause briefly after the hook to let it land. Make eye contact. Match your energy to the setting: energetic for a networking event, measured for an investor meeting. And remember that enthusiasm is contagious — if you are genuinely excited about what you do, the listener will be too. Do not recite your pitch like a script. Internalise the structure and deliver it naturally.</p>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free elevator pitch generator online?</summary><p>A free elevator pitch generator online is a tool that turns a short description of what you do into a structured, ready-to-deliver pitch. This generator uses six proven pitch formulas, four length variants (one-liner, 30-second, 60-second, 90-second), audience targeting and a hook library to produce pitches that fit any professional setting. It runs entirely in your browser with no sign-up.</p></details>
+<details><summary>How long should an elevator pitch be?</summary><p>A classic elevator pitch is 30 to 60 seconds when spoken aloud. At a conversational pace of 130 to 150 words per minute, this translates to roughly 75 to 140 words. A 90-second version (about 200 words) works for investor meetings or interviews where deeper conversation is expected. Always prepare a one-liner (under 15 seconds) for casual encounters.</p></details>
+<details><summary>What are the key components of an elevator pitch?</summary><p>A strong elevator pitch follows a logical structure: a hook to grab attention, an introduction of who you are, the problem your audience faces, your solution, the unique value you offer, and a clear call to action. The 5-part formula is: hook, problem, solution, value, and call to action.</p></details>
+<details><summary>What is the problem-solution-benefit formula?</summary><p>The problem-solution-benefit formula is one of the most effective structures for an elevator pitch: identify the problem your audience faces, describe your solution, and highlight the specific benefit it delivers. For example, 'You know how remote teams waste hours in status meetings? We automate daily standups so teams save 10 hours per employee per month.'</p></details>
+<details><summary>What is a value proposition and how does it differ from a pitch?</summary><p>A value proposition is a single sentence that explains what you offer, who it is for, and why it is valuable. An elevator pitch is the longer, spoken version that includes a hook, problem, solution, proof, and call to action. The value proposition is the seed; the elevator pitch is the full story.</p></details>
+<details><summary>Does this tool use AI?</summary><p>No. This tool uses a deterministic, formula-based generation engine built on six proven elevator pitch frameworks. The result is instant, fully client-side and privacy-first. Your input never leaves your browser and no text is sent to any server.</p></details>
+<details><summary>Is this elevator pitch generator free?</summary><p>Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits.</p></details>
+<details><summary>Can I use this for job interviews?</summary><p>Yes. Select 'Job interviewer' as the audience and the generator adapts the pitch to highlight your professional background, skills and value. A 'tell me about yourself' answer is essentially a 60 to 90-second elevator pitch.</p></details>
+<details><summary>What is the Geoffrey Moore value proposition template?</summary><p>The Geoffrey Moore positioning statement is: For [target customer] who [statement of need or opportunity], [product name] is a [product category] that [statement of key benefit]. Unlike [primary competitive alternative], our product [statement of primary differentiation]. This tool builds the statement automatically from your inputs.</p></details>
+<details><summary>How many hooks does the hook library include?</summary><p>The hook library includes 30+ hooks organised into six categories: curiosity gap, problem call-out, contrarian take, specific number, relatable scenario, and bold claim. Click any hook to insert it into your pitch as the opening line.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function pick(arr){ return arr[Math.floor(Math.random() * arr.length)]; }
+
+/* ---------- HOOK LIBRARY ---------- */
+var HOOKS = [
+  { cat: "Curiosity gap", text: "Nobody talks about this: {problem}." },
+  { cat: "Curiosity gap", text: "The one thing most {audience} get wrong about {problem}." },
+  { cat: "Curiosity gap", text: "I was today years old when I learned this about {problem}." },
+  { cat: "Curiosity gap", text: "There is a reason {audience} keep struggling with {problem}." },
+  { cat: "Problem call-out", text: "You know how {audience} waste hours on {problem}?" },
+  { cat: "Problem call-out", text: "If you are a {audience} dealing with {problem}, this one is for you." },
+  { cat: "Problem call-out", text: "Most {audience} accept {problem} as normal. It is not." },
+  { cat: "Problem call-out", text: "The biggest frustration for {audience}? {problem}." },
+  { cat: "Contrarian take", text: "Forget everything you know about {problem}." },
+  { cat: "Contrarian take", text: "The problem is not {problem}. It is the way we handle it." },
+  { cat: "Contrarian take", text: "Hot take: {problem} is overcomplicating what {audience} really need." },
+  { cat: "Contrarian take", text: "Stop trying to fix {problem} the old way." },
+  { cat: "Specific number", text: "{audience} lose hours every week to {problem}. We cut that by half." },
+  { cat: "Specific number", text: "3 out of 4 {audience} say {problem} is their biggest time drain." },
+  { cat: "Specific number", text: "I tried solving {problem} for 30 days. Here is what actually worked." },
+  { cat: "Specific number", text: "The 5-minute fix for {problem} that {audience} never try." },
+  { cat: "Relatable scenario", text: "POV: you are a {audience} and {problem} just ruined your week. Again." },
+  { cat: "Relatable scenario", text: "You know that feeling when {problem} finally gets solved? That is what we do." },
+  { cat: "Relatable scenario", text: "If you have ever sat in a meeting wondering why {problem} is still a problem, this is for you." },
+  { cat: "Relatable scenario", text: "Tell me you deal with {problem} without telling me you deal with {problem}." },
+  { cat: "Bold claim", text: "{audience} do not need another tool. They need {problem} solved." },
+  { cat: "Bold claim", text: "We are not here to improve {problem}. We are here to eliminate it." },
+  { cat: "Bold claim", text: "The fastest way to solve {problem} is not what {audience} think." },
+  { cat: "Bold claim", text: "This changes how {audience} handle {problem}. Permanently." }
+];
+
+/* ---------- PITCH FORMULAS ---------- */
+var FORMULAS = {
+  psb: function(d){
+    var parts = [];
+    parts.push("The problem: " + capitalize(d.problem) + ".");
+    parts.push("The solution: " + d.what + ".");
+    parts.push("The benefit: " + d.unique + ".");
+    return parts.join(" ");
+  },
+  hookline: function(d){
+    var h = pick(HOOKS.filter(function(x){ return x.cat === "Problem call-out" || x.cat === "Curiosity gap"; })).text
+      .replace(/\{problem\}/g, d.problem).replace(/\{audience\}/g, d.audience);
+    return h + " " + d.what + " " + capitalize(d.unique) + ". " + d.proof + " " + d.cta;
+  },
+  youknow: function(d){
+    return "You know how " + d.audience + " waste time on " + d.problem + "? " +
+           "Well, " + d.what + ". " + capitalize(d.unique) + ". " + d.cta;
+  },
+  story: function(d){
+    return "Last year, I watched " + d.audience + " struggle with " + d.problem + ". " +
+           "That is what inspired me to build " + d.company + ". " + capitalize(d.what) + " " +
+           "Today, " + d.unique + ". " + d.cta;
+  },
+  boldclaim: function(d){
+    return "Here is a bold claim: " + d.audience + " do not need another tool. They need " + d.problem + " solved. " +
+           "That is exactly what we do. " + capitalize(d.what) + " " + capitalize(d.unique) + ". " + d.cta;
+  },
+  question: function(d){
+    return "What would it be worth to solve " + d.problem + " for " + d.audience + "? " +
+           "That is what " + d.company + " delivers. " + capitalize(d.what) + " " +
+           capitalize(d.unique) + ". " + d.cta;
+  }
+};
+
+/* ---------- AUDIENCE TUNING ---------- */
+var AUDIENCE_INTRO = {
+  investor: "I am building",
+  customer: "I help",
+  recruiter: "I have spent my career",
+  partner: "I am looking for",
+  networking: "I work on",
+  general: "I am working on"
+};
+
+var AUDIENCE_VALUE = {
+  investor: "The market opportunity is significant, and our early traction validates the model.",
+  customer: "Our customers see the difference within weeks.",
+  recruiter: "I bring a track record of delivering measurable results.",
+  partner: "Together we could reach a much larger audience.",
+  networking: "It has been a fascinating journey so far.",
+  general: "The response has been overwhelmingly positive."
+};
+
+var AUDIENCE_CTA = {
+  investor: "Would you be open to a follow-up meeting to discuss this further?",
+  customer: "Would you be open to a quick demo this week?",
+  recruiter: "I would welcome the chance to discuss how my experience maps to your needs.",
+  partner: "Could we schedule a call to explore what a partnership could look like?",
+  networking: "I would love to stay in touch. Do you have a card or a LinkedIn I could connect with?",
+  general: "I would love to hear what you think."
+};
+
+/* ---------- TONE PRESETS ---------- */
+var TONE_PREFIX = {
+  professional: "",
+  conversational: "Look, ",
+  inspiring: "Imagine this: ",
+  bold: "Here is the thing. ",
+  friendly: "Honestly, "
+};
+
+/* ---------- UTILS ---------- */
+function capitalize(s){ if(!s) return s; return s.charAt(0).toUpperCase() + s.slice(1); }
+function wordCount(s){ return s.split(/\s+/).filter(function(w){ return w.length > 0; }).length; }
+
+/* ---------- GENERATE PITCHES ---------- */
+function generatePitches(){
+  var d = {
+    name: $("yourName").value.trim(),
+    company: $("companyName").value.trim() || "our company",
+    what: $("whatYouDo").value.trim() || "we help teams solve their biggest problems",
+    audience: $("targetAudience").value.trim() || "teams",
+    problem: $("problem").value.trim() || "they waste too much time on repetitive work",
+    unique: $("uniqueValue").value.trim() || "save hours every month",
+    proof: $("proof").value.trim() || "",
+    cta: $("cta").value.trim() || AUDIENCE_CTA[$("audienceSelect").value] || "Let us stay in touch."
+  };
+  if(d.proof && d.proof.charAt(d.proof.length - 1) !== ".") d.proof += ".";
+
+  var audience = $("audienceSelect").value;
+  var tone = $("toneSelect").value;
+  var formulaChoice = $("formulaSelect").value;
+
+  // Auto-pick formula
+  if(formulaChoice === "auto"){
+    if(audience === "investor") formulaChoice = "hookline";
+    else if(audience === "recruiter") formulaChoice = "story";
+    else if(audience === "customer") formulaChoice = "youknow";
+    else if(audience === "partner") formulaChoice = "boldclaim";
+    else formulaChoice = "psb";
+  }
+
+  var out = $("outputArea");
+  var h = "";
+  var introPrefix = TONE_PREFIX[tone] || "";
+
+  // Four pitch lengths
+  var pitches = [
+    { label: "One-liner (~15 seconds)", words: "~20 words", maxWords: 25, text: generateOneLiner(d) },
+    { label: "30-second pitch", words: "75–100 words", maxWords: 100, text: generate30s(d, formulaChoice, introPrefix) },
+    { label: "60-second pitch", words: "130–160 words", maxWords: 160, text: generate60s(d, formulaChoice, introPrefix) },
+    { label: "90-second pitch", words: "200–240 words", maxWords: 240, text: generate90s(d, formulaChoice, introPrefix) }
+  ];
+
+  for(var i = 0; i < pitches.length; i++){
+    var p = pitches[i];
+    var wc = wordCount(p.text);
+    var seconds = Math.round(wc / 2.5); // ~150 wpm
+    var wcClass = wc > p.maxWords ? "warn" : "";
+
+    h += '<div class="ep-result">';
+    h += '<div class="ep-result-label">' + p.label + '</div>';
+    h += '<div class="ep-result-text">' + esc(p.text) + '</div>';
+    h += '<div class="ep-meta">';
+    h += '<span>Words: <span class="count ' + wcClass + '">' + wc + '</span> / ' + p.maxWords + '</span>';
+    h += '<span>Spoken: ~' + seconds + ' sec</span>';
+    h += '<button type="button" class="ep-copy" data-pitch="' + esc(p.text) + '">Copy pitch</button>';
+    h += '</div>';
+    h += '</div>';
+  }
+
+  // Audience + formula summary
+  var formulaName = { psb: "Problem-Solution-Benefit", hookline: "Hook-Problem-Solution-Value-CTA", youknow: "You Know How", story: "Story Open", boldclaim: "Bold Claim", question: "Question Hook" }[formulaChoice] || formulaChoice;
+
+  h += '<div class="ep-panel"><h3>Pitch details</h3>';
+  h += '<div class="ep-stat-grid">';
+  h += '<div class="ep-stat-box"><div class="num">' + (audience.charAt(0).toUpperCase() + audience.slice(1)) + '</div><div class="lbl">Audience</div></div>';
+  h += '<div class="ep-stat-box"><div class="num" style="font-size:.85rem">' + formulaName + '</div><div class="lbl">Formula</div></div>';
+  h += '<div class="ep-stat-box"><div class="num" style="font-size:.85rem">' + (tone.charAt(0).toUpperCase() + tone.slice(1)) + '</div><div class="lbl">Tone</div></div>';
+  h += '</div>';
+  h += '<div class="ep-tip"><b>Tip:</b> Read the pitch out loud before you use it. If any sentence feels awkward in your mouth, rewrite it in your own words. The structure is a scaffold — your voice is what makes it memorable.</div>';
+  h += '</div>';
+
+  out.innerHTML = h;
+}
+
+function generateOneLiner(d){
+  var templates = [
+    "I help " + d.audience + " " + d.unique + ".",
+    "We help " + d.audience + " solve " + d.problem + " — " + d.unique + ".",
+    d.company + " helps " + d.audience + " " + d.unique + " by solving " + d.problem + ".",
+    "At " + d.company + ", we help " + d.audience + " " + d.unique + "."
+  ];
+  return pick(templates);
+}
+
+function generate30s(d, formula, prefix){
+  var core = FORMULAS[formula] ? FORMULAS[formula](d) : FORMULAS.psb(d);
+  var intro = prefix + (d.name ? "I am " + d.name + ". " : "");
+  var body = intro + core;
+  var words = body.split(/\s+/).length;
+  if(words > 100){
+    // Trim: use PSB version for brevity
+    body = intro + "We help " + d.audience + " solve " + d.problem + ". " + capitalize(d.what) + " " + capitalize(d.unique) + ".";
+  }
+  if(d.cta && body.indexOf(d.cta) === -1){
+    body += " " + d.cta;
+  }
+  return body;
+}
+
+function generate60s(d, formula, prefix){
+  var core = FORMULAS[formula] ? FORMULAS[formula](d) : FORMULAS.hookline(d);
+  var intro = prefix + (d.name ? "I am " + d.name + ", founder of " + d.company + ". " : "At " + d.company + ", ");
+  var proof = d.proof ? " " + d.proof + "." : "";
+  var value = " " + AUDIENCE_VALUE[$("audienceSelect").value] + ".";
+  return intro + core + proof + value + " " + d.cta;
+}
+
+function generate90s(d, formula, prefix){
+  var core = FORMULAS[formula] ? FORMULAS[formula](d) : FORMULAS.story(d);
+  var intro = prefix + (d.name ? "I am " + d.name + ", founder of " + d.company + ". " : "At " + d.company + ", ");
+  var opening = "The problem we solve is simple: " + d.problem + ". ";
+  var solution = capitalize(d.what) + ". ";
+  var proof = d.proof ? "And the results speak for themselves: " + d.proof + ". " : "";
+  var value = AUDIENCE_VALUE[$("audienceSelect").value] + " ";
+  var cta = d.cta;
+  return intro + opening + solution + capitalize(d.unique) + ". " + proof + value + cta;
+}
+
+/* ---------- HOOK LIBRARY ---------- */
+function renderHooks(){
+  var el = $("hookList");
+  var cats = {};
+  for(var i = 0; i < HOOKS.length; i++){
+    if(!cats[HOOKS[i].cat]) cats[HOOKS[i].cat] = [];
+    cats[HOOKS[i].cat].push(HOOKS[i].text);
+  }
+  var h = "";
+  for(var cat in cats){
+    for(var j = 0; j < cats[cat].length; j++){
+      h += '<div class="ep-hook-item" data-hook="' + esc(cats[cat][j]) + '">';
+      h += '<span class="cat">' + esc(cat) + '</span>';
+      h += esc(cats[cat][j].replace(/\{problem\}/g, $("problem").value.trim() || "this problem").replace(/\{audience\}/g, $("targetAudience").value.trim() || "teams"));
+      h += '</div>';
+    }
+  }
+  el.innerHTML = h;
+}
+
+/* ---------- VALUE PROP ---------- */
+function buildValueProp(){
+  var d = {
+    audience: $("targetAudience").value.trim() || "teams",
+    problem: $("problem").value.trim() || "a recurring challenge",
+    company: $("companyName").value.trim() || "the product",
+    category: "solution",
+    unique: $("uniqueValue").value.trim() || "a differentiated approach",
+    competitor: "existing alternatives"
+  };
+  var text = "For " + d.audience + " who " + d.problem + ", " + d.company + " is a " + d.category + " that " + d.unique + ". Unlike " + d.competitor + ", our approach " + d.unique + ".";
+  $("valuePropOutput").innerHTML = '<div class="ep-result"><div class="ep-result-label">Geoffrey Moore positioning statement</div><div class="ep-result-text">' + esc(text) + '</div><button type="button" class="ep-copy" data-pitch="' + esc(text) + '" style="margin-top:10px">Copy statement</button></div>';
+}
+
+/* ---------- FORMULAS VIEW ---------- */
+function renderFormulas(){
+  var list = [
+    { name: "Problem-Solution-Benefit (PSB)", desc: "The workhorse formula. Open with the problem, describe your solution, close with the specific benefit. Best for most audiences.", example: "The problem: remote teams waste hours in status meetings. The solution: FlowSync automates standups with AI. The benefit: 10 hours saved per employee per month." },
+    { name: "Hook-Problem-Solution-Value-CTA", desc: "The full five-part structure used by top sales teams. Starts with a hook, covers the problem, solution and value, and ends with a call to action. Best for investors and 60-second pitches.", example: "You know how remote teams waste hours in status meetings? We automate them with AI. Teams save 10 hours per employee per month. One team saw a 20% boost in delivery speed. Would you be open to a demo?" },
+    { name: "You Know How", desc: "A conversational formula that opens with a rhetorical question the listener recognises. The question format stimulates thought, so the listener automatically pays attention.", example: "You know how remote teams waste hours in status meetings? Well, we automate them with AI so teams save 10 hours per employee per month. Would you like to see how?" },
+    { name: "Story Open", desc: "The most human formula. You open mid-narrative and force the listener to resolve the story. Best for networking and personal branding.", example: "Last year, I watched a 20-person team waste four hours a week in status meetings. That is what inspired me to build FlowSync. Today those teams save 10 hours per employee per month." },
+    { name: "Bold Claim", desc: "A confident, contrarian or surprising opening that makes the listener lean in. Works best when you have data or conviction to back it up.", example: "Here is a bold claim: teams do not need another productivity app. They need fewer meetings. We help teams cut meeting time in half." },
+    { name: "Question Hook", desc: "Opens with a question that only your solution can answer. Plants a concrete benefit in the listener's mind before you describe the product.", example: "What would your team do with an extra 10 hours per person, per month? That is what FlowSync gives you." }
+  ];
+  var h = "";
+  for(var i = 0; i < list.length; i++){
+    h += '<div class="ep-template"><span class="tmpl-label">' + esc(list[i].name) + '</span>';
+    h += '<div class="tmpl-text">' + esc(list[i].desc) + '</div>';
+    h += '<div style="margin-top:8px;padding:8px 12px;background:var(--bg);border-radius:6px;font-size:.85rem;color:var(--muted);border-left:2px solid var(--brand)"><b>Example:</b> ' + esc(list[i].example) + '</div>';
+    h += '</div>';
+  }
+  $("formulaList").innerHTML = h;
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  renderHooks();
+  renderFormulas();
+
+  // Tab switching
+  document.querySelectorAll(".ep-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var name = this.dataset.tab;
+      document.querySelectorAll(".ep-tab").forEach(function(x){
+        x.classList.toggle("on", x.dataset.tab === name);
+      });
+      $("generateTab").hidden = (name !== "generate");
+      $("hooksTab").hidden = (name !== "hooks");
+      $("valuepropTab").hidden = (name !== "valueprop");
+      $("formulasTab").hidden = (name !== "formulas");
+    });
+  });
+
+  // Generate
+  $("generateBtn").addEventListener("click", generatePitches);
+  $("clearBtn").addEventListener("click", function(){
+    ["yourName","companyName","whatYouDo","targetAudience","problem","uniqueValue","proof","cta"].forEach(function(id){
+      var el = $(id); if(el) el.value = "";
+    });
+    $("outputArea").innerHTML = "";
+  });
+
+  // Value prop
+  $("buildValuePropBtn").addEventListener("click", buildValueProp);
+
+  // Click handlers
+  T.addEventListener("click", function(e){
+    var copyBtn = e.target.closest("[data-pitch]");
+    if(copyBtn){
+      if(navigator.clipboard){
+        navigator.clipboard.writeText(copyBtn.dataset.pitch);
+        var old = copyBtn.textContent;
+        copyBtn.textContent = "Copied!";
+        setTimeout(function(){ copyBtn.textContent = old; }, 1200);
+      }
+      return;
+    }
+    var hookItem = e.target.closest("[data-hook]");
+    if(hookItem){
+      var hook = hookItem.dataset.hook.replace(/\{problem\}/g, $("problem").value.trim() || "this problem").replace(/\{audience\}/g, $("targetAudience").value.trim() || "teams");
+      // Prepend hook to the "what you do" field as a note
+      var what = $("whatYouDo").value;
+      if(what.indexOf(hook) === -1){
+        $("whatYouDo").value = hook + "\n\n" + what;
+      }
+      document.querySelector(".ep-tab[data-tab='generate']").click();
+      return;
+    }
+  });
+
+  // Live hook re-render when problem/audience changes
+  ["problem","targetAudience"].forEach(function(id){
+    $(id).addEventListener("input", function(){
+      clearTimeout(window._hookTimer);
+      window._hookTimer = setTimeout(renderHooks, 400);
+    });
+  });
+
+  // Generate on load
+  generatePitches();
+});
+})();
+</script>
+</body>
+</html>
