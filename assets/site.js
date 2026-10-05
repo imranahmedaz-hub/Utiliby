@@ -13,6 +13,7 @@
     ["/tools/date-time-tools/", "Date &amp; Time"],
     ["/tools/real-estate-tools/", "Real Estate"],
     ["/tools/business-legal-tools/", "Business"],
+    ["/tools/gaming-tools/", "Gaming"],
     ["/tools/recipe-cooking-tools/", "Cooking"],
     ["/tools/education-study-tools/", "Education"]
   ];
