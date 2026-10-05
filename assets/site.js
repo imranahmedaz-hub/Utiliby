@@ -9,6 +9,7 @@
     ["/tools/developer-tools/", "Developer"],
     ["/tools/accessibility-tools/", "Accessibility"],
     ["/tools/productivity-organization-tools/", "Productivity"],
+    ["/tools/marketing-advertising-tools/", "Marketing"],
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/design-color-tools/", "Design &amp; Color"],
