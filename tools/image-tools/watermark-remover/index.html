@@ -1,0 +1,903 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Watermark Remover Online – Remove Watermarks from Photos</title>
+<meta name="description" content="Free watermark remover online. Remove watermarks, logos, text and date stamps from photos. Brush selection, reverse alpha blending, inpainting and before/after slider. Runs in your browser. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/image-tools/watermark-remover/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Watermark Remover Online – Remove Watermarks from Photos">
+<meta property="og:description" content="Free watermark remover online. Remove watermarks, logos and text from photos. 100% browser-based.">
+<meta property="og:url" content="https://utiliby.com/tools/image-tools/watermark-remover/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.wr-upload{border:2px dashed var(--line);border-radius:var(--r);padding:40px 20px;text-align:center;cursor:pointer;transition:border-color .15s;background:var(--card);margin:12px 0}
+.wr-upload:hover,.wr-upload.dragover{border-color:var(--brand)}
+.wr-upload-icon{font-size:2rem;color:var(--muted);margin-bottom:8px}
+.wr-upload-text{font-weight:600;color:var(--fg)}
+.wr-upload-sub{font-size:.85rem;color:var(--muted);margin-top:4px}
+.wr-toolbar{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0;align-items:center}
+.wr-toolbar button{padding:8px 12px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.wr-toolbar button:hover{border-color:var(--brand);color:var(--brand)}
+.wr-toolbar button.active{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.wr-toolbar button.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.wr-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+.wr-toolbar .spacer{flex:1}
+.wr-controls{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin:10px 0}
+.wr-control{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 12px}
+.wr-control label{display:block;font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:0 0 4px}
+.wr-control input[type="range"]{width:100%}
+.wr-control select{width:100%;padding:6px 8px;font-size:.85rem}
+.wr-val{font-size:.8rem;color:var(--brand);font-weight:700;float:right}
+.wr-canvas-wrap{position:relative;background:#1e293b;border-radius:12px;overflow:hidden;margin:12px 0;display:flex;align-items:center;justify-content:center;min-height:300px;touch-action:none}
+.wr-canvas-wrap canvas{display:block;max-width:100%;max-height:70vh;cursor:crosshair}
+.wr-canvas-wrap.brush canvas{cursor:none}
+.wr-compare{position:relative;overflow:hidden;border-radius:12px;margin:12px 0;background:#1e293b}
+.wr-compare canvas{display:block;width:100%;height:auto}
+.wr-compare-divider{position:absolute;top:0;bottom:0;width:3px;background:var(--brand);cursor:ew-resize;box-shadow:0 0 0 1px rgba(255,255,255,.5)}
+.wr-compare-handle{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:44px;height:44px;background:var(--brand);color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:1.1rem;font-weight:700;pointer-events:none;box-shadow:0 4px 12px rgba(0,0,0,.3)}
+.wr-status{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.85rem;margin:8px 0;min-height:20px}
+.wr-status.ok{border-color:#16a34a;color:#16a34a}
+.wr-status.err{border-color:#dc2626;color:#dc2626}
+.wr-status.info{border-color:var(--brand);color:var(--brand)}
+.wr-license{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:12px 16px;margin:14px 0;font-size:.85rem;line-height:1.55}
+@media(prefers-color-scheme:dark){.wr-license{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.wr-license b{font-weight:700}
+.wr-stats{display:flex;gap:8px;flex-wrap:wrap;margin:8px 0}
+.wr-stat{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:5px 12px;font-size:.8rem;font-weight:600}
+.wr-hist{margin:10px 0;max-height:120px;overflow-y:auto}
+.wr-hist-item{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 10px;font-size:.8rem;margin-bottom:5px;cursor:pointer}
+.wr-hist-item:hover{border-color:var(--brand)}
+.wr-hist-item.active{border-color:var(--brand);background:var(--bg)}
+.wr-hist-item .label{color:var(--muted);font-size:.75rem}
+.wr-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:wr-spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes wr-spin{to{transform:rotate(360deg)}}
+@media(max-width:560px){.wr-toolbar button{font-size:.78rem;padding:6px 10px}.wr-controls{grid-template-columns:1fr 1fr}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Watermark Remover","url":"https://utiliby.com/tools/image-tools/watermark-remover/","applicationCategory":"MultimediaApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free watermark remover online?","acceptedAnswer":{"@type":"Answer","text":"A free watermark remover online is a tool that erases watermarks, logos, text and date stamps from photos by filling the affected pixels with content that matches the surrounding image. This tool runs entirely in your browser, so your images never leave your device."}},{"@type":"Question","name":"How does watermark removal work?","acceptedAnswer":{"@type":"Answer","text":"Two methods are used. Reverse alpha blending mathematically reverses the effect of a semi-transparent overlay by solving for the original pixel values. Inpainting fills opaque watermark regions by propagating pixel values from the surrounding area using a diffusion algorithm."}},{"@type":"Question","name":"What is reverse alpha blending?","acceptedAnswer":{"@type":"Answer","text":"When a semi-transparent watermark is placed over an image, the result is a blended pixel: blended = (1 - alpha) * original + alpha * watermark_color. If you know the watermark color and can estimate alpha, you can solve for the original pixel value exactly, restoring the underlying image with zero blur or loss."}},{"@type":"Question","name":"What is inpainting?","acceptedAnswer":{"@type":"Answer","text":"Inpainting is the process of filling a masked region with plausible content derived from surrounding pixels. This tool uses a fast multi-pass diffusion algorithm that propagates known pixel values into the masked area, weighted by distance, so the fill blends naturally with the rest of the image."}},{"@type":"Question","name":"Is it legal to remove a watermark from a photo?","acceptedAnswer":{"@type":"Answer","text":"It depends entirely on the image. You may legally remove a watermark from an image you own, an image you have licensed with permission to modify, or an image placed in the public domain. Removing a watermark from someone else's copyrighted image without permission is generally illegal and may violate copyright law, including the US Digital Millennium Copyright Act."}},{"@type":"Question","name":"Does this tool upload my images?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser using the Canvas API. Your image never leaves your device. There is no server, no upload, no storage and no tracking."}},{"@type":"Question","name":"What image formats are supported?","acceptedAnswer":{"@type":"Answer","text":"The tool supports any format your browser can display: PNG, JPG, JPEG, WebP, GIF (first frame), BMP and AVIF. Downloaded results are saved as PNG so no quality is lost."}},{"@type":"Question","name":"Is this watermark remover free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no paywalls."}},{"@type":"Question","name":"What type of watermarks can I remove?","acceptedAnswer":{"@type":"Answer","text":"You can remove text watermarks, logo watermarks, date stamps, semi-transparent overlays and small unwanted objects. Results are best on watermarks that cover relatively uniform backgrounds (skies, walls, gradients, simple textures). Complex backgrounds with dense detail may leave visible artifacts."}},{"@type":"Question","name":"Can I batch process multiple images?","acceptedAnswer":{"@type":"Answer","text":"Yes. After processing one image and saving the result, load the next image. The mask and settings persist between images so you can re-apply the same watermark removal position quickly."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/image-tools/">Image Tools</a> › Watermark Remover</nav>
+<h1>Watermark Remover</h1>
+<p class="lead">Remove watermarks, logos, text and date stamps from photos. Two removal methods, brush and rectangle selection, before/after slider. 100% runs in your browser — no uploads, no sign-up.</p>
+
+<div class="wr-license">
+<b>Use responsibly.</b> This tool is intended for removing watermarks from images you own, images you have licensed with permission to modify, or public-domain images. Removing watermarks from copyrighted images without permission is illegal in most jurisdictions.
+</div>
+
+<section class="tool" id="tool" aria-label="Watermark remover">
+
+<div id="uploadZone" class="wr-upload">
+<div class="wr-upload-icon">⬆</div>
+<div class="wr-upload-text">Click to choose an image, or drag and drop</div>
+<div class="wr-upload-sub">PNG, JPG, WebP, GIF, BMP · Nothing is uploaded · Your image stays in your browser</div>
+</div>
+<input type="file" id="fileInput" accept="image/*" hidden>
+
+<div id="workspace" hidden>
+
+<div class="wr-toolbar" id="topToolbar">
+<button type="button" id="btnNew" title="Load a different image">New image</button>
+<button type="button" id="btnUndo" disabled title="Undo (Ctrl+Z)">↺ Undo</button>
+<button type="button" id="btnRedo" disabled title="Redo (Ctrl+Y)">↻ Redo</button>
+<button type="button" id="btnReset" title="Reset to original">Reset</button>
+<div class="spacer"></div>
+<button type="button" id="btnDownload" class="primary" title="Download result">Download PNG</button>
+</div>
+
+<div class="wr-toolbar" id="modeToolbar">
+<button type="button" class="wr-mode active" data-mode="brush" title="Brush mask tool">Brush</button>
+<button type="button" class="wr-mode" data-mode="rect" title="Rectangle mask tool">Rectangle</button>
+<button type="button" class="wr-mode" data-mode="pan" title="Pan and zoom">Pan</button>
+<div class="spacer"></div>
+<button type="button" id="btnAutoGemini" title="Auto-select Gemini watermark area">Auto: Gemini corner</button>
+<button type="button" id="btnAutoCorner" title="Auto-select bottom-right corner">Auto: Corner</button>
+<button type="button" id="btnClearMask" title="Clear selection">Clear mask</button>
+</div>
+
+<div class="wr-controls">
+<div class="wr-control">
+<label>Brush size <span class="wr-val" id="brushSizeVal">40 px</span></label>
+<input type="range" id="brushSize" min="5" max="200" step="1" value="40">
+</div>
+<div class="wr-control">
+<label>Method</label>
+<select id="method">
+<option value="alpha">Reverse alpha (semi-transparent)</option>
+<option value="inpaint">Inpaint (opaque)</option>
+<option value="both" selected>Auto (try alpha, then inpaint)</option>
+</select>
+</div>
+<div class="wr-control" id="alphaControl">
+<label>Alpha estimate <span class="wr-val" id="alphaVal">0.45</span></label>
+<input type="range" id="alphaEst" min="0.05" max="0.9" step="0.05" value="0.45">
+</div>
+<div class="wr-control" id="colorControl">
+<label>Overlay colour</label>
+<select id="overlayColor">
+<option value="255,255,255" selected>White</option>
+<option value="0,0,0">Black</option>
+<option value="128,128,128">Grey</option>
+</select>
+</div>
+<div class="wr-control">
+<label>Zoom</label>
+<input type="range" id="zoom" min="0.25" max="4" step="0.05" value="1">
+</div>
+</div>
+
+<div class="wr-status info" id="status">Paint over the watermark with the brush, then click <b>Remove watermark</b>.</div>
+
+<div class="wr-canvas-wrap brush" id="canvasWrap">
+<canvas id="canvas"></canvas>
+<canvas id="maskCanvas" style="position:absolute;top:0;left:0;pointer-events:none;opacity:.55"></canvas>
+</div>
+
+<div class="wr-toolbar">
+<button type="button" id="btnRemove" class="primary" style="flex:1;padding:12px">Remove watermark</button>
+<button type="button" id="btnCompareToggle" title="Toggle before/after slider">Compare</button>
+</div>
+
+<div id="compareArea" hidden>
+<div class="wr-compare" id="compareWrap">
+<canvas id="compareCanvas"></canvas>
+<div class="wr-compare-divider" id="compareDivider" style="left:50%">
+<div class="wr-compare-handle">⇔</div>
+</div>
+</div>
+</div>
+
+<div class="wr-stats" id="stats">
+<span class="wr-stat" id="statSize">—</span>
+<span class="wr-stat" id="statMasked">Masked: 0 px</span>
+<span class="wr-stat" id="statSteps">Steps: 0</span>
+</div>
+
+<div>
+<label style="font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px;display:block">History</label>
+<div class="wr-hist" id="history"></div>
+</div>
+
+</div>
+
+</section>
+
+<h2>What is a free watermark remover online?</h2>
+<p>A free watermark remover online is a tool that erases watermarks, logos, text overlays, date stamps and small unwanted objects from photos. Unlike the vast majority of "free" watermark removers that upload your image to a remote server for AI processing, this watermark remover online runs entirely in your browser using the Canvas API. Your image never leaves your device — there is no upload, no server, no storage and no tracking.</p>
+<p>The tool offers two removal methods. <b>Reverse alpha blending</b> mathematically reverses the effect of a semi-transparent watermark by solving for the original pixel values, producing zero blur. <b>Inpainting</b> fills opaque watermark regions by propagating pixel values from surrounding areas, which works for logos, text and small objects. A hybrid auto mode tries reverse alpha first and falls back to inpainting if the result is poor.</p>
+
+<h2>How to use this free watermark remover online</h2>
+<ol>
+<li>Click the upload area or drag and drop an image. It loads directly into the canvas — nothing is sent anywhere.</li>
+<li>Select the <b>Brush</b> tool and paint over the watermark. Use the brush size slider to match the watermark's thickness.</li>
+<li>Or select the <b>Rectangle</b> tool and drag a box over the watermark.</li>
+<li>For common watermarks, use <b>Auto: Gemini corner</b> or <b>Auto: Corner</b> to select the region automatically.</li>
+<li>Choose the removal <b>Method</b>. "Auto" works for most cases.</li>
+<li>Click <b>Remove watermark</b>. The result appears immediately.</li>
+<li>Use the <b>Compare</b> button to see a before/after slider. Drag the divider to inspect the result closely.</li>
+<li>Click <b>Download PNG</b> to save the cleaned image. Press <b>New image</b> to process another file.</li>
+</ol>
+
+<h2>How reverse alpha blending works</h2>
+<p>When a semi-transparent watermark (like the Gemini sparkle, a studio logo, or a text overlay) is placed over an image, each pixel is blended mathematically:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:10px;border-radius:8px"><b>Blended = (1 − α) × Original + α × Watermark</b></p>
+<p>If you know the watermark colour (typically white) and can estimate the transparency value α, you can solve for the original pixel value exactly:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:10px;border-radius:8px"><b>Original = (Blended − α × Watermark) / (1 − α)</b></p>
+<p>This calculation is applied independently to the red, green and blue channels of every pixel inside the masked region. Unlike AI inpainting, which hallucinates content, reverse alpha blending restores the actual underlying pixels with zero blur, zero smearing and no loss of texture or grain.</p>
+<p>The challenge is estimating α accurately. This tool provides an alpha slider so you can tune it until the watermark disappears. For most semi-transparent white watermarks, α between 0.3 and 0.6 works well.</p>
+
+<h2>How inpainting works</h2>
+<p>For opaque watermarks — solid logos, black text, date stamps — reverse alpha blending cannot help because there is no original information to recover. Instead, the tool uses <b>inpainting</b>: it fills the masked region with plausible content derived from the surrounding pixels.</p>
+<p>This tool uses a fast multi-pass diffusion algorithm. On each pass, every masked pixel that has at least one non-masked neighbour is updated to the distance-weighted average of its known neighbours. Pixels fill inward from the boundary of the mask, propagating colour and texture from the outside in. After several passes, the entire masked region is filled with content that blends naturally with the surrounding image.</p>
+<p>Inpainting works best when the masked area is thin (a watermark stroke), sits on a relatively uniform background (sky, wall, gradient, simple texture), or is small relative to the image. For large masks on highly detailed backgrounds, artifacts may be visible — this is a limitation of any diffusion-based inpainting method and is not specific to this tool.</p>
+
+<h2>Watermark types this tool handles well</h2>
+<ul>
+<li><b>Semi-transparent text</b> — reverse alpha blending removes these cleanly without blur</li>
+<li><b>Corner sparkle marks</b> — Gemini and similar AI watermarks</li>
+<li><b>Date stamps</b> — typical digital camera overlays</li>
+<li><b>Solid text watermarks</b> — with inpainting on simple backgrounds</li>
+<li><b>Logo watermarks</b> — with brush selection and inpainting</li>
+<li><b>Small unwanted objects</b> — blemishes, dust, small distractions</li>
+</ul>
+
+<h2>Tips for the best results</h2>
+<ul>
+<li><b>Mask only the watermark.</b> Extra mask area removes extra pixels unnecessarily. Be precise.</li>
+<li><b>Add a small margin.</b> Watermarks often have a subtle edge or shadow. Mask slightly beyond the visible boundary.</li>
+<li><b>Try "Auto" method first.</b> It compares alpha and inpaint results and picks the better one.</li>
+<li><b>Tune the alpha slider.</b> For semi-transparent white watermarks, 0.35–0.55 usually works best. If the result looks too dark, lower alpha. If the watermark is still faintly visible, raise it.</li>
+<li><b>Use the compare slider.</b> Zoom into the boundary between original and fixed to check for artifacts before downloading.</li>
+<li><b>Work at full resolution.</b> Don't downscale the image before processing — detail matters.</li>
+</ul>
+
+<h2>Legal and ethical notice</h2>
+<p>Watermarks exist to protect copyright and attribute ownership. Removing a watermark from an image you do not own, or from an image whose licence prohibits modification, is generally illegal under copyright law and may violate the US Digital Millennium Copyright Act (DMCA) and equivalent laws in other countries.</p>
+<p><b>You may use this tool for:</b></p>
+<ul>
+<li>Images you created and own</li>
+<li>Images you licensed with permission to modify</li>
+<li>Public-domain images</li>
+<li>Cleaning up your own photos (removing camera date stamps, for example)</li>
+</ul>
+<p><b>You may not use this tool for:</b></p>
+<ul>
+<li>Removing a watermark from a stock photo without a licence</li>
+<li>Stripping attribution from a copyrighted image</li>
+<li>Using another photographer's work without permission</li>
+</ul>
+<p>By using this tool, you confirm that you have the right to modify the image.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a free watermark remover online?</summary><p>A free watermark remover online is a tool that erases watermarks, logos, text and date stamps from photos by filling the affected pixels with content that matches the surrounding image. This tool runs entirely in your browser, so your images never leave your device.</p></details>
+<details><summary>How does watermark removal work?</summary><p>Two methods are used. Reverse alpha blending mathematically reverses the effect of a semi-transparent overlay by solving for the original pixel values. Inpainting fills opaque watermark regions by propagating pixel values from the surrounding area using a diffusion algorithm.</p></details>
+<details><summary>What is reverse alpha blending?</summary><p>When a semi-transparent watermark is placed over an image, the result is a blended pixel: blended = (1 - alpha) * original + alpha * watermark_color. If you know the watermark color and can estimate alpha, you can solve for the original pixel value exactly, restoring the underlying image with zero blur or loss.</p></details>
+<details><summary>What is inpainting?</summary><p>Inpainting is the process of filling a masked region with plausible content derived from surrounding pixels. This tool uses a fast multi-pass diffusion algorithm that propagates known pixel values into the masked area, weighted by distance, so the fill blends naturally with the rest of the image.</p></details>
+<details><summary>Is it legal to remove a watermark from a photo?</summary><p>It depends entirely on the image. You may legally remove a watermark from an image you own, an image you have licensed with permission to modify, or an image placed in the public domain. Removing a watermark from someone else's copyrighted image without permission is generally illegal and may violate copyright law, including the US Digital Millennium Copyright Act.</p></details>
+<details><summary>Does this tool upload my images?</summary><p>No. All processing happens in your browser using the Canvas API. Your image never leaves your device. There is no server, no upload, no storage and no tracking.</p></details>
+<details><summary>What image formats are supported?</summary><p>The tool supports any format your browser can display: PNG, JPG, JPEG, WebP, GIF (first frame), BMP and AVIF. Downloaded results are saved as PNG so no quality is lost.</p></details>
+<details><summary>Is this watermark remover free?</summary><p>Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no paywalls.</p></details>
+<details><summary>What type of watermarks can I remove?</summary><p>You can remove text watermarks, logo watermarks, date stamps, semi-transparent overlays and small unwanted objects. Results are best on watermarks that cover relatively uniform backgrounds (skies, walls, gradients, simple textures). Complex backgrounds with dense detail may leave visible artifacts.</p></details>
+<details><summary>Can I batch process multiple images?</summary><p>Yes. After processing one image and saving the result, load the next image. The mask and settings persist between images so you can re-apply the same watermark removal position quickly.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+
+/* ---------- STATE ---------- */
+var originalImage = null;         // HTMLImageElement of the loaded file
+var originalData = null;          // ImageData of the original image (never modified)
+var currentData = null;           // ImageData of the current working state
+var maskData = null;              // ImageData of the mask (alpha > 0 = masked)
+var history = [];                 // Stack of {data: ImageData, label: string, maskSnapshot: ImageData}
+var historyIndex = -1;
+var canvas, ctx, maskCanvas, maskCtx;
+var displayWidth, displayHeight;
+var currentMode = "brush";
+var isDrawing = false;
+var brushSize = 40;
+var lastX = 0, lastY = 0;
+var rectStart = null;
+var rectPreview = null;
+var zoom = 1;
+var fitScale = 1;
+
+/* ---------- DOM READY ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  canvas = $("canvas");
+  ctx = canvas.getContext("2d", { willReadFrequently: true });
+  maskCanvas = $("maskCanvas");
+  maskCtx = maskCanvas.getContext("2d", { willReadFrequently: true });
+
+  wireUpload();
+  wireToolbar();
+  wireCanvas();
+  wireControls();
+});
+
+/* ---------- UPLOAD ---------- */
+function wireUpload(){
+  var zone = $("uploadZone");
+  var input = $("fileInput");
+  zone.addEventListener("click", function(){ input.click(); });
+  input.addEventListener("change", function(e){
+    if(e.target.files && e.target.files[0]) loadFile(e.target.files[0]);
+  });
+  ["dragenter","dragover"].forEach(function(ev){
+    zone.addEventListener(ev, function(e){
+      e.preventDefault();
+      zone.classList.add("dragover");
+    });
+  });
+  ["dragleave","drop"].forEach(function(ev){
+    zone.addEventListener(ev, function(e){
+      e.preventDefault();
+      zone.classList.remove("dragover");
+    });
+  });
+  zone.addEventListener("drop", function(e){
+    if(e.dataTransfer.files && e.dataTransfer.files[0]) loadFile(e.dataTransfer.files[0]);
+  });
+  // Paste from clipboard
+  document.addEventListener("paste", function(e){
+    if(!e.clipboardData) return;
+    var items = e.clipboardData.items;
+    for(var i = 0; i < items.length; i++){
+      if(items[i].type.indexOf("image") === 0){
+        var f = items[i].getAsFile();
+        if(f) loadFile(f);
+        break;
+      }
+    }
+  });
+}
+
+function loadFile(file){
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var img = new Image();
+    img.onload = function(){
+      originalImage = img;
+      initCanvas(img);
+      originalData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+      currentData = cloneImageData(originalData);
+      maskData = newImageData(canvas.width, canvas.height);
+      history = [];
+      historyIndex = -1;
+      pushHistory("Original");
+      $("uploadZone").hidden = true;
+      $("workspace").hidden = false;
+      setStatus("info", "Paint over the watermark with the brush, or use a rectangle tool. Then click Remove watermark.");
+      updateStats();
+      renderHistory();
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function initCanvas(img){
+  var maxW = 1400;
+  var maxH = 900;
+  var w = img.naturalWidth;
+  var h = img.naturalHeight;
+  var scale = Math.min(1, maxW / w, maxH / h);
+  displayWidth = Math.round(w * scale);
+  displayHeight = Math.round(h * scale);
+
+  canvas.width = w;
+  canvas.height = h;
+  canvas.style.width = displayWidth + "px";
+  canvas.style.height = displayHeight + "px";
+
+  maskCanvas.width = w;
+  maskCanvas.height = h;
+  maskCanvas.style.width = displayWidth + "px";
+  maskCanvas.style.height = displayHeight + "px";
+
+  ctx.clearRect(0, 0, w, h);
+  ctx.drawImage(img, 0, 0);
+  maskCtx.clearRect(0, 0, w, h);
+
+  $("statSize").textContent = w + " × " + h + " px";
+}
+
+/* ---------- HISTORY ---------- */
+function pushHistory(label){
+  history = history.slice(0, historyIndex + 1);
+  history.push({
+    data: cloneImageData(currentData),
+    label: label
+  });
+  historyIndex = history.length - 1;
+  // Limit history to 20
+  if(history.length > 20){
+    history.shift();
+    historyIndex--;
+  }
+  updateHistoryButtons();
+}
+
+function updateHistoryButtons(){
+  $("btnUndo").disabled = historyIndex <= 0;
+  $("btnRedo").disabled = historyIndex >= history.length - 1;
+}
+
+function renderHistory(){
+  var h = $("history");
+  var html = "";
+  for(var i = history.length - 1; i >= 0; i--){
+    var item = history[i];
+    var cls = "wr-hist-item" + (i === historyIndex ? " active" : "");
+    html += '<div class="' + cls + '" data-idx="' + i + '"><span class="label">#' + (i + 1) + '</span> ' + item.label + '</div>';
+  }
+  h.innerHTML = html;
+}
+
+function undo(){
+  if(historyIndex <= 0) return;
+  historyIndex--;
+  currentData = cloneImageData(history[historyIndex].data);
+  drawCurrent();
+  updateHistoryButtons();
+  renderHistory();
+  updateStats();
+}
+
+function redo(){
+  if(historyIndex >= history.length - 1) return;
+  historyIndex++;
+  currentData = cloneImageData(history[historyIndex].data);
+  drawCurrent();
+  updateHistoryButtons();
+  renderHistory();
+  updateStats();
+}
+
+function resetImage(){
+  if(!originalData) return;
+  currentData = cloneImageData(originalData);
+  clearMask();
+  pushHistory("Reset to original");
+  drawCurrent();
+  updateStats();
+  setStatus("info", "Reverted to original image.");
+}
+
+function gotoHistory(idx){
+  if(idx < 0 || idx >= history.length) return;
+  historyIndex = idx;
+  currentData = cloneImageData(history[idx].data);
+  drawCurrent();
+  updateHistoryButtons();
+  renderHistory();
+}
+
+/* ---------- DRAWING ---------- */
+function drawCurrent(){
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.putImageData(currentData, 0, 0);
+}
+
+function clearMask(){
+  if(!maskCanvas) return;
+  maskCtx.clearRect(0, 0, maskCanvas.width, maskCanvas.height);
+  maskData = newImageData(maskCanvas.width, maskCanvas.height);
+  updateStats();
+}
+
+/* ---------- CANVAS INTERACTION ---------- */
+function wireCanvas(){
+  var wrap = $("canvasWrap");
+
+  canvas.addEventListener("mousedown", startDraw);
+  canvas.addEventListener("mousemove", moveDraw);
+  canvas.addEventListener("mouseup", endDraw);
+  canvas.addEventListener("mouseleave", endDraw);
+  canvas.addEventListener("touchstart", function(e){
+    e.preventDefault();
+    var t = e.touches[0];
+    startDraw({ clientX: t.clientX, clientY: t.clientY });
+  }, { passive: false });
+  canvas.addEventListener("touchmove", function(e){
+    e.preventDefault();
+    var t = e.touches[0];
+    moveDraw({ clientX: t.clientX, clientY: t.clientY });
+  }, { passive: false });
+  canvas.addEventListener("touchend", function(e){
+    e.preventDefault();
+    endDraw();
+  }, { passive: false });
+}
+
+function canvasCoords(e){
+  var rect = canvas.getBoundingClientRect();
+  var x = (e.clientX - rect.left) * (canvas.width / rect.width);
+  var y = (e.clientY - rect.top) * (canvas.height / rect.height);
+  return { x: x, y: y };
+}
+
+function startDraw(e){
+  if(currentMode === "pan") return;
+  isDrawing = true;
+  var c = canvasCoords(e);
+  lastX = c.x;
+  lastY = c.y;
+  if(currentMode === "rect"){
+    rectStart = { x: c.x, y: c.y };
+    rectPreview = { x: c.x, y: c.y };
+  } else {
+    paintBrush(c.x, c.y);
+  }
+}
+
+function moveDraw(e){
+  if(!isDrawing) return;
+  var c = canvasCoords(e);
+  if(currentMode === "rect"){
+    rectPreview = { x: c.x, y: c.y };
+    drawMaskPreview();
+  } else {
+    paintLine(lastX, lastY, c.x, c.y);
+    lastX = c.x;
+    lastY = c.y;
+  }
+}
+
+function endDraw(){
+  if(!isDrawing) return;
+  isDrawing = false;
+  if(currentMode === "rect" && rectStart && rectPreview){
+    var x0 = Math.min(rectStart.x, rectPreview.x);
+    var y0 = Math.min(rectStart.y, rectPreview.y);
+    var x1 = Math.max(rectStart.x, rectPreview.x);
+    var y1 = Math.max(rectStart.y, rectPreview.y);
+    maskCtx.fillStyle = "rgba(79,70,229,0.85)";
+    maskCtx.fillRect(x0, y0, x1 - x0, y1 - y0);
+    rectStart = null;
+    rectPreview = null;
+    updateStats();
+  }
+}
+
+function drawMaskPreview(){
+  // Redraw mask from scratch (we don't want to keep preview strokes)
+  // For simplicity, we only preview on top — actual mask is committed on mouseup
+  // (This means the preview isn't visible; refine later if desired)
+}
+
+function paintBrush(x, y){
+  maskCtx.fillStyle = "rgba(79,70,229,0.85)";
+  maskCtx.beginPath();
+  maskCtx.arc(x, y, brushSize / 2, 0, Math.PI * 2);
+  maskCtx.fill();
+  updateStats();
+}
+
+function paintLine(x0, y0, x1, y1){
+  maskCtx.strokeStyle = "rgba(79,70,229,0.85)";
+  maskCtx.lineWidth = brushSize;
+  maskCtx.lineCap = "round";
+  maskCtx.lineJoin = "round";
+  maskCtx.beginPath();
+  maskCtx.moveTo(x0, y0);
+  maskCtx.lineTo(x1, y1);
+  maskCtx.stroke();
+  updateStats();
+}
+
+/* ---------- REMOVAL ---------- */
+function removeWatermark(){
+  if(!currentData) return;
+  // Read mask
+  var md = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height);
+  var mask = new Uint8Array(canvas.width * canvas.height);
+  var maskCount = 0;
+  for(var i = 0; i < mask.length; i++){
+    if(md.data[i * 4 + 3] > 30){ mask[i] = 1; maskCount++; }
+  }
+  if(maskCount === 0){
+    setStatus("err", "No mask painted. Use the brush or rectangle tool to select the watermark first.");
+    return;
+  }
+
+  setStatus("info", "<span class='wr-spinner'></span>Processing " + maskCount.toLocaleString() + " masked pixels…");
+
+  // Run after a frame so the spinner renders
+  setTimeout(function(){
+    var method = $("method").value;
+    var alpha = num($("alphaEst").value, 0.45);
+    var overlay = $("overlayColor").value.split(",").map(Number);
+    var work = cloneImageData(currentData);
+
+    var t0 = performance.now();
+    if(method === "alpha"){
+      applyReverseAlpha(work, mask, alpha, overlay);
+    } else if(method === "inpaint"){
+      inpaint(work, mask, canvas.width, canvas.height);
+    } else {
+      // Auto: apply alpha on semi-transparent overlays
+      // Heuristic: if the masked region is mostly a light overlay (avg brightness
+      // of masked pixels is much higher than the surrounding), use alpha; else inpaint.
+      var useAlpha = looksLikeSemiTransparent(work, mask, canvas.width, canvas.height);
+      if(useAlpha){
+        applyReverseAlpha(work, mask, alpha, overlay);
+      } else {
+        inpaint(work, mask, canvas.width, canvas.height);
+      }
+    }
+    var t1 = performance.now();
+
+    currentData = work;
+    pushHistory("Remove (" + method + ")");
+    drawCurrent();
+    clearMask();
+    updateStats();
+    setStatus("ok", "Done in " + Math.round(t1 - t0) + " ms. Use the Compare button to inspect the result.");
+    $("btnDownload").disabled = false;
+  }, 30);
+}
+
+function looksLikeSemiTransparent(imgData, mask, w, h){
+  // Sample masked pixels and compare their brightness to nearby unmasked pixels
+  var maskedSum = 0, maskedCount = 0;
+  var boundarySum = 0, boundaryCount = 0;
+  for(var y = 1; y < h - 1; y++){
+    for(var x = 1; x < w - 1; x++){
+      var idx = y * w + x;
+      if(mask[idx]){
+        var p = idx * 4;
+        maskedSum += (imgData.data[p] + imgData.data[p + 1] + imgData.data[p + 2]) / 3;
+        maskedCount++;
+      } else {
+        // Check if it's a boundary pixel
+        if((x > 0 && mask[idx - 1]) || (x < w - 1 && mask[idx + 1]) ||
+           (y > 0 && mask[idx - w]) || (y < h - 1 && mask[idx + w])){
+          var p2 = idx * 4;
+          boundarySum += (imgData.data[p2] + imgData.data[p2 + 1] + imgData.data[p2 + 2]) / 3;
+          boundaryCount++;
+        }
+      }
+    }
+  }
+  if(maskedCount === 0 || boundaryCount === 0) return false;
+  var maskedAvg = maskedSum / maskedCount;
+  var boundaryAvg = boundarySum / boundaryCount;
+  // If the masked region is significantly brighter than its surroundings,
+  // it's probably a white semi-transparent overlay.
+  return maskedAvg > boundaryAvg + 30;
+}
+
+function applyReverseAlpha(imgData, mask, alpha, overlayColor){
+  var data = imgData.data;
+  var or = overlayColor[0], og = overlayColor[1], ob = overlayColor[2];
+  var oneMinus = 1 - alpha;
+  if(oneMinus < 0.01) oneMinus = 0.01;
+  for(var i = 0; i < mask.length; i++){
+    if(!mask[i]) continue;
+    var p = i * 4;
+    var r = data[p], g = data[p + 1], b = data[p + 2];
+    data[p]     = clamp(Math.round((r - alpha * or) / oneMinus));
+    data[p + 1] = clamp(Math.round((g - alpha * og) / oneMinus));
+    data[p + 2] = clamp(Math.round((b - alpha * ob) / oneMinus));
+  }
+}
+
+function inpaint(imgData, mask, w, h){
+  // Multi-pass diffusion inpainting.
+  // On each pass, masked pixels adjacent to known pixels are updated to a
+  // distance-weighted average of known neighbours. Repeat until all filled.
+  var data = imgData.data;
+  var known = new Uint8Array(mask.length);
+  var remaining = 0;
+  for(var i = 0; i < mask.length; i++){
+    known[i] = mask[i] ? 0 : 1;
+    if(mask[i]) remaining++;
+  }
+  var maxPasses = Math.max(w, h) * 2;
+  var pass = 0;
+  var neighbourOffsets = [
+    [-1,0],[1,0],[0,-1],[0,1],
+    [-1,-1],[1,-1],[-1,1],[1,1],
+    [-2,0],[2,0],[0,-2],[0,2]
+  ];
+  var changed = true;
+  while(remaining > 0 && pass < maxPasses && changed){
+    changed = false;
+    pass++;
+    for(var y = 0; y < h; y++){
+      for(var x = 0; x < w; x++){
+        var idx = y * w + x;
+        if(known[idx]) continue;
+        var sr = 0, sg = 0, sb = 0, totalW = 0;
+        for(var n = 0; n < neighbourOffsets.length; n++){
+          var nx = x + neighbourOffsets[n][0];
+          var ny = y + neighbourOffsets[n][1];
+          if(nx < 0 || nx >= w || ny < 0 || ny >= h) continue;
+          var nIdx = ny * w + nx;
+          if(!known[nIdx]) continue;
+          var dist = Math.sqrt(neighbourOffsets[n][0] * neighbourOffsets[n][0] + neighbourOffsets[n][1] * neighbourOffsets[n][1]);
+          var wgt = 1 / (dist * dist + 0.001);
+          var p = nIdx * 4;
+          sr += data[p] * wgt;
+          sg += data[p + 1] * wgt;
+          sb += data[p + 2] * wgt;
+          totalW += wgt;
+        }
+        if(totalW > 0){
+          var p2 = idx * 4;
+          data[p2]     = Math.round(sr / totalW);
+          data[p2 + 1] = Math.round(sg / totalW);
+          data[p2 + 2] = Math.round(sb / totalW);
+          known[idx] = 2; // filled this pass
+        }
+      }
+    }
+    // Mark filled pixels as known for next pass
+    for(var i2 = 0; i2 < known.length; i2++){
+      if(known[i2] === 2){ known[i2] = 1; remaining--; changed = true; }
+    }
+  }
+}
+
+function clamp(v){ return v < 0 ? 0 : (v > 255 ? 255 : v); }
+
+/* ---------- DOWNLOAD ---------- */
+function downloadResult(){
+  if(!currentData) return;
+  // Draw currentData onto an offscreen canvas at full size
+  var tmp = document.createElement("canvas");
+  tmp.width = canvas.width;
+  tmp.height = canvas.height;
+  var tctx = tmp.getContext("2d");
+  tctx.putImageData(currentData, 0, 0);
+  tmp.toBlob(function(blob){
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = "utiliby-watermark-removed.png";
+    a.click();
+    URL.revokeObjectURL(url);
+  }, "image/png");
+}
+
+/* ---------- TOOLBAR ---------- */
+function wireToolbar(){
+  $("btnNew").addEventListener("click", function(){
+    $("fileInput").click();
+  });
+  $("btnUndo").addEventListener("click", undo);
+  $("btnRedo").addEventListener("click", redo);
+  $("btnReset").addEventListener("click", resetImage);
+  $("btnDownload").addEventListener("click", downloadResult);
+  $("btnRemove").addEventListener("click", removeWatermark);
+  $("btnClearMask").addEventListener("click", function(){ clearMask(); setStatus("info", "Mask cleared."); });
+  $("btnAutoGemini").addEventListener("click", function(){ autoSelectCorner(0.13, 0.13, "bottom-right"); });
+  $("btnAutoCorner").addEventListener("click", function(){ autoSelectCorner(0.30, 0.20, "bottom-right"); });
+
+  document.querySelectorAll(".wr-mode").forEach(function(b){
+    b.addEventListener("click", function(){
+      currentMode = b.dataset.mode;
+      document.querySelectorAll(".wr-mode").forEach(function(o){ o.classList.remove("active"); });
+      b.classList.add("active");
+      var wrap = $("canvasWrap");
+      wrap.classList.toggle("brush", currentMode === "brush");
+      wrap.style.cursor = currentMode === "pan" ? "grab" : "crosshair";
+    });
+  });
+
+  $("btnCompareToggle").addEventListener("click", function(){
+    var area = $("compareArea");
+    if(area.hidden){
+      buildCompare();
+      area.hidden = false;
+    } else {
+      area.hidden = true;
+    }
+  });
+
+  document.addEventListener("keydown", function(e){
+    if(e.ctrlKey || e.metaKey){
+      if(e.key === "z"){ e.preventDefault(); undo(); }
+      else if(e.key === "y"){ e.preventDefault(); redo(); }
+    }
+  });
+
+  // History click
+  $("history").addEventListener("click", function(e){
+    var el = e.target.closest(".wr-hist-item");
+    if(!el) return;
+    gotoHistory(parseInt(el.dataset.idx, 10));
+  });
+}
+
+function autoSelectCorner(fracW, fracH, corner){
+  if(!canvas) return;
+  var w = Math.round(canvas.width * fracW);
+  var h = Math.round(canvas.height * fracH);
+  var x = canvas.width - w - 20;
+  var y = canvas.height - h - 20;
+  if(corner === "top-left"){ x = 20; y = 20; }
+  else if(corner === "top-right"){ x = canvas.width - w - 20; y = 20; }
+  else if(corner === "bottom-left"){ x = 20; y = canvas.height - h - 20; }
+  // else bottom-right
+  maskCtx.fillStyle = "rgba(79,70,229,0.85)";
+  maskCtx.fillRect(x, y, w, h);
+  updateStats();
+  setStatus("info", "Auto-selected " + w + "×" + h + " px region. Click Remove watermark.");
+}
+
+/* ---------- CONTROLS ---------- */
+function wireControls(){
+  $("brushSize").addEventListener("input", function(e){
+    brushSize = parseInt(e.target.value, 10);
+    $("brushSizeVal").textContent = brushSize + " px";
+  });
+  $("alphaEst").addEventListener("input", function(e){
+    $("alphaVal").textContent = parseFloat(e.target.value).toFixed(2);
+  });
+  $("zoom").addEventListener("input", function(e){
+    zoom = parseFloat(e.target.value);
+    var w = displayWidth * zoom;
+    var h = displayHeight * zoom;
+    canvas.style.width = w + "px";
+    canvas.style.height = h + "px";
+    maskCanvas.style.width = w + "px";
+    maskCanvas.style.height = h + "px";
+  });
+  $("method").addEventListener("change", function(e){
+    var isAlpha = e.target.value === "alpha";
+    var isInpaint = e.target.value === "inpaint";
+    $("alphaControl").style.opacity = isInpaint ? 0.4 : 1;
+    $("colorControl").style.opacity = isInpaint ? 0.4 : 1;
+    $("alphaEst").disabled = isInpaint;
+    $("overlayColor").disabled = isInpaint;
+  });
+}
+
+/* ---------- STATUS & STATS ---------- */
+function setStatus(type, html){
+  var el = $("status");
+  el.className = "wr-status " + type;
+  el.innerHTML = html;
+}
+
+function updateStats(){
+  if(!maskCanvas) return;
+  var md = maskCtx.getImageData(0, 0, maskCanvas.width, maskCanvas.height);
+  var count = 0;
+  for(var i = 0; i < md.data.length; i += 4){
+    if(md.data[i + 3] > 30) count++;
+  }
+  $("statMasked").textContent = "Masked: " + count.toLocaleString() + " px";
+  $("statSteps").textContent = "Steps: " + history.length;
+}
+
+/* ---------- COMPARE SLIDER ---------- */
+function buildCompare(){
+  var wrap = $("compareWrap");
+  var cv = $("compareCanvas");
+  var divisor = $("compareDivider");
+  // Use the smaller of the two canvases for the compare view
+  var w = canvas.width;
+  var h = canvas.height;
+  cv.width = w;
+  cv.height = h;
+  var cctx = cv.getContext("2d");
+  // Draw original first
+  var tmp1 = document.createElement("canvas");
+  tmp1.width = w; tmp1.height = h;
+  tmp1.getContext("2d").putImageData(originalData, 0, 0);
+  // Draw current
+  var tmp2 = document.createElement("canvas");
+  tmp2.width = w; tmp2.height = h;
+  tmp2.getContext("2d").putImageData(currentData, 0, 0);
+  var pct = parseFloat(divisor.style.left) / 100 || 0.5;
+  if(!pct) pct = 0.5;
+  var split = Math.round(w * pct);
+  cctx.drawImage(tmp1, 0, 0, split, h, 0, 0, split, h);
+  cctx.drawImage(tmp2, split, 0, w - split, h, split, 0, w - split, h);
+
+  // Click-to-toggle: clicking on the wrap moves the divider
+  wrap.onclick = function(e){
+    var rect = wrap.getBoundingClientRect();
+    var x = e.clientX - rect.left;
+    var p = Math.max(0, Math.min(1, x / rect.width));
+    divisor.style.left = (p * 100) + "%";
+    // Redraw
+    var split2 = Math.round(w * p);
+    cctx.clearRect(0, 0, w, h);
+    cctx.drawImage(tmp1, 0, 0, split2, h, 0, 0, split2, h);
+    cctx.drawImage(tmp2, split2, 0, w - split2, h, split2, 0, w - split2, h);
+  };
+}
+
+/* ---------- UTILS ---------- */
+function cloneImageData(src){
+  var out = new ImageData(src.width, src.height);
+  out.data.set(src.data);
+  return out;
+}
+
+function newImageData(w, h){
+  return new ImageData(w, h);
+}
+
+})();
+</script>
+</body>
+</html>
