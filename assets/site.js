@@ -11,6 +11,7 @@
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
+    ["/tools/image-tools/", "Image"],
     ["/tools/date-time-tools/", "Date &amp; Time"],
     ["/tools/real-estate-tools/", "Real Estate"],
     ["/tools/business-legal-tools/", "Business"],
