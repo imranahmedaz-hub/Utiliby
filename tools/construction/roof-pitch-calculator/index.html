@@ -3,19 +3,33 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Roof Pitch Calculator – Convert Pitch, Degrees and Slope</title>
-<meta name="description" content="Free roof pitch calculator. Convert rise/run to degrees, pitch ratio (X:12) and slope percentage. Includes slope factor for roof surface area. No sign-up.">
+<title>Roof Pitch Calculator – Interactive Pitch, Degrees &amp; Slope Tool</title>
+<meta name="description" content="Free interactive roof pitch calculator. Convert rise/run to degrees, pitch ratio and slope percentage with a live diagram. Includes slope factor for roof surface area. No sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/construction/roof-pitch-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
-<meta property="og:title" content="Roof Pitch Calculator – Convert Pitch, Degrees and Slope">
-<meta property="og:description" content="Free roof pitch calculator. Convert rise/run to degrees, pitch ratio and slope percentage.">
+<meta property="og:title" content="Roof Pitch Calculator – Interactive Pitch, Degrees &amp; Slope Tool">
+<meta property="og:description" content="Free interactive roof pitch calculator with live diagram. Convert rise/run, degrees and slope percentage.">
 <meta property="og:url" content="https://utiliby.com/tools/construction/roof-pitch-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
+<style>
+.pitch-diagram-wrap{margin:18px 0;background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:8px}
+.pitch-diagram{display:block;width:100%;max-width:600px;height:auto;margin:0 auto}
+.pd-ground{stroke:var(--line);stroke-width:1;stroke-dasharray:5 5}
+.pd-run-line{stroke:var(--brand);stroke-width:3;stroke-linecap:round}
+.pd-rise-line{stroke:var(--brand);stroke-width:3;stroke-linecap:round}
+.pd-slope-line{stroke:var(--brand2);stroke-width:4;stroke-linecap:round}
+.pd-arc{fill:none;stroke:var(--brand);stroke-width:2}
+.pd-right{fill:none;stroke:var(--muted);stroke-width:1.5}
+.pd-fill{fill:url(#pd-grad)}
+.pd-label{fill:var(--fg);font-size:14px;font-weight:600;font-family:system-ui,-apple-system,sans-serif}
+.pd-angle-label{fill:var(--brand);font-size:16px;font-weight:700;font-family:system-ui,-apple-system,sans-serif}
+.pd-pitch-label{fill:var(--brand2);font-size:20px;font-weight:800;font-family:system-ui,-apple-system,sans-serif}
+</style>
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Roof Pitch Calculator","url":"https://utiliby.com/tools/construction/roof-pitch-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
 </head>
 <body>
@@ -23,7 +37,7 @@
 <main class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/construction/">Construction</a> › Roof Pitch Calculator</nav>
 <h1>Roof Pitch Calculator</h1>
-<p class="lead">Convert roof pitch between rise/run, degrees and slope percentage. Free, fast and no sign-up.</p>
+<p class="lead">Convert roof pitch between rise/run, degrees and slope percentage. The diagram updates as you type. Free, fast and no sign-up.</p>
 
 <section class="tool" id="tool" aria-label="Roof pitch calculator">
 <div class="tabs" role="group" aria-label="Input mode">
@@ -35,7 +49,7 @@
 <div id="riseBox">
 <div class="row">
 <div><label for="rise">Rise (vertical)</label><input id="rise" type="number" min="0" step="0.01" value="6"></div>
-<div><label for="run">Run (horizontal)</label><input id="run" type="number" min="0" step="0.01" value="12"></div>
+<div><label for="run">Run (horizontal)</label><input id="run" type="number" min="0.01" step="0.01" value="12"></div>
 </div>
 <p class="meta">Standard: enter the rise over a 12-unit run. For 6/12 pitch: rise = 6, run = 12.</p>
 </div>
@@ -48,6 +62,28 @@
 <div id="pitchBox" hidden>
 <label for="pitchIn12">Pitch (X in 12)</label>
 <input id="pitchIn12" type="number" min="0" max="48" step="0.1" value="6">
+</div>
+
+<div class="pitch-diagram-wrap">
+<svg class="pitch-diagram" viewBox="0 0 600 400" role="img" aria-label="Live roof pitch diagram">
+<defs>
+<linearGradient id="pd-grad" x1="0%" y1="100%" x2="100%" y2="0%">
+<stop offset="0%" stop-color="#4f46e5" stop-opacity="0.28"/>
+<stop offset="100%" stop-color="#7c3aed" stop-opacity="0.10"/>
+</linearGradient>
+</defs>
+<line class="pd-ground" x1="40" y1="340" x2="560" y2="340"/>
+<polygon id="pd-fill" class="pd-fill" points=""/>
+<line id="pd-run" class="pd-run-line" x1="0" y1="0" x2="0" y2="0"/>
+<line id="pd-rise" class="pd-rise-line" x1="0" y1="0" x2="0" y2="0"/>
+<line id="pd-slope" class="pd-slope-line" x1="0" y1="0" x2="0" y2="0"/>
+<path id="pd-right" class="pd-right" d=""/>
+<path id="pd-arc" class="pd-arc" d=""/>
+<text id="pd-rise-label" class="pd-label">Rise</text>
+<text id="pd-run-label" class="pd-label" text-anchor="middle">Run</text>
+<text id="pd-angle-label" class="pd-angle-label" text-anchor="middle">0°</text>
+<text id="pd-pitch-label" class="pd-pitch-label" text-anchor="middle">0:12</text>
+</svg>
 </div>
 
 <div class="result" id="out" aria-live="polite"></div>
@@ -117,6 +153,13 @@ function fmt(n, dec){
   if(dec === undefined) dec = 2;
   return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
 }
+function setLine(id, x1, y1, x2, y2){
+  var el = $(id);
+  el.setAttribute("x1", x1);
+  el.setAttribute("y1", y1);
+  el.setAttribute("x2", x2);
+  el.setAttribute("y2", y2);
+}
 
 var mode = "rise";
 var LAST = "";
@@ -158,26 +201,90 @@ function calc(){
   return computeFromPitch();
 }
 
+function drawDiagram(rise, run, degrees, pitch){
+  var maxW = 380, maxH = 240;
+  var runPx = maxW;
+  var risePx = (rise / run) * maxW;
+  if(risePx > maxH){
+    var scale = maxH / risePx;
+    risePx = maxH;
+    runPx = runPx * scale;
+  }
+
+  var groundY = 330;
+  var startX = (600 - runPx) / 2;
+  var ax = startX, ay = groundY;
+  var bx = startX + runPx, by = groundY;
+  var cx = bx, cy = groundY - risePx;
+
+  setLine("pd-run", ax, ay, bx, by);
+  setLine("pd-rise", bx, by, cx, cy);
+  setLine("pd-slope", ax, ay, cx, cy);
+
+  $("pd-fill").setAttribute("points", ax + "," + ay + " " + bx + "," + by + " " + cx + "," + cy);
+
+  var s = 14;
+  $("pd-right").setAttribute("d",
+    "M" + (bx - s) + "," + by + " L" + (bx - s) + "," + (by - s) + " L" + bx + "," + (by - s));
+
+  var angleRad = Math.atan2(rise, run);
+  var angleDeg = angleRad * 180 / Math.PI;
+  var r = 42;
+  var arcEndX = ax + r * Math.cos(angleRad);
+  var arcEndY = ay - r * Math.sin(angleRad);
+  $("pd-arc").setAttribute("d",
+    "M" + (ax + r) + "," + ay + " A" + r + "," + r + " 0 0 0 " + arcEndX + "," + arcEndY);
+
+  var riseLbl = $("pd-rise-label");
+  riseLbl.setAttribute("x", bx + 10);
+  riseLbl.setAttribute("y", (by + cy) / 2 + 5);
+  riseLbl.setAttribute("text-anchor", "start");
+  riseLbl.textContent = "Rise " + fmt(rise, 2);
+
+  var runLbl = $("pd-run-label");
+  runLbl.setAttribute("x", (ax + bx) / 2);
+  runLbl.setAttribute("y", by + 28);
+  runLbl.textContent = "Run " + fmt(run, 2);
+
+  var angLbl = $("pd-angle-label");
+  var lr = r + 26;
+  angLbl.setAttribute("x", ax + lr * Math.cos(angleRad / 2));
+  angLbl.setAttribute("y", ay - lr * Math.sin(angleRad / 2) + 6);
+  angLbl.textContent = fmt(angleDeg, 1) + "\u00B0";
+
+  var pLbl = $("pd-pitch-label");
+  pLbl.setAttribute("x", ax + runPx * 0.62);
+  pLbl.setAttribute("y", ay - risePx * 0.35);
+  pLbl.textContent = fmt(pitch, 1) + " : 12";
+}
+
 function render(){
   var r = calc();
   var out = $("out");
-  if(r.err){ out.innerHTML = "<p>" + r.err + "</p>"; LAST = ""; return; }
+  if(r.err){
+    out.innerHTML = "<p>" + r.err + "</p>";
+    LAST = "";
+    drawDiagram(6, 12, 26.57, 6);
+    return;
+  }
 
   var h = '<div>Pitch</div><div class="big">' + fmt(r.pitch, 1) + ' : 12</div>';
   h += '<table class="res">';
   h += '<tr><th>Format</th><th>Value</th></tr>';
   h += '<tr><td>Pitch (X:12)</td><td>' + fmt(r.pitch, 2) + ' : 12</td></tr>';
-  h += '<tr><td>Angle</td><td>' + fmt(r.degrees, 2) + '°</td></tr>';
+  h += '<tr><td>Angle</td><td>' + fmt(r.degrees, 2) + '\u00B0</td></tr>';
   h += '<tr><td>Slope percentage</td><td>' + fmt(r.slopePct, 2) + '%</td></tr>';
   h += '<tr><td>Slope factor</td><td>' + fmt(r.slopeFactor, 4) + '</td></tr>';
   h += '</table>';
-  h += '<p>Multiply horizontal roof area by the slope factor to get actual surface area: <b>' + fmt(r.slopeFactor, 4) + ' × area</b>.</p>';
+  h += '<p>Multiply horizontal roof area by the slope factor to get actual surface area: <b>' + fmt(r.slopeFactor, 4) + ' \u00D7 area</b>.</p>';
   h += '<p class="meta">Estimate only. Verify with a qualified roofer for critical decisions.</p>';
   out.innerHTML = h;
 
+  drawDiagram(r.rise, r.run, r.degrees, r.pitch);
+
   LAST = "Roof Pitch Calculator (Utiliby)\n"
        + "Pitch: " + fmt(r.pitch, 2) + " : 12\n"
-       + "Angle: " + fmt(r.degrees, 2) + "°\n"
+       + "Angle: " + fmt(r.degrees, 2) + "\u00B0\n"
        + "Slope: " + fmt(r.slopePct, 2) + "%\n"
        + "Slope factor: " + fmt(r.slopeFactor, 4);
 }
