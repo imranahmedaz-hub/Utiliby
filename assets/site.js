@@ -7,6 +7,7 @@
     ["/tools/engineering/", "Engineering"],
     ["/tools/construction/", "Construction"],
     ["/tools/developer-tools/", "Developer"],
+    ["/tools/accessibility-tools/", "Accessibility"],
     ["/tools/text-writing/", "Text"],
     ["/tools/travel-tools/", "Travel"],
     ["/tools/astrology/", "Astrology"],
