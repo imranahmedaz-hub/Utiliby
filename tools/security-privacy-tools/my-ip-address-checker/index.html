@@ -1,0 +1,680 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free My IP Address Checker Online – Geolocation, VPN &amp; Leak Test</title>
+<meta name="description" content="Free my IP address checker online. Find your public IPv4 and IPv6, geolocation, ISP, timezone, VPN/proxy status and run a WebRTC leak test. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/security-privacy-tools/my-ip-address-checker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free My IP Address Checker Online – Geolocation, VPN &amp; Leak Test">
+<meta property="og:description" content="Free my IP address checker online. Find your public IP, geolocation, ISP, VPN status and run a WebRTC leak test.">
+<meta property="og:url" content="https://utiliby.com/tools/security-privacy-tools/my-ip-address-checker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.ip-hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin:18px 0;text-align:center;position:relative;overflow:hidden}
+.ip-hero::before{content:"";position:absolute;top:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--brand),var(--brand2))}
+.ip-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:700;margin-bottom:8px}
+.ip-value{font-size:clamp(1.4rem,5vw,2.4rem);font-weight:800;color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;word-break:break-all;line-height:1.2;margin:4px 0}
+.ip-copy-btn{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-size:.82rem;font-weight:600;cursor:pointer;margin-top:10px}
+.ip-copy-btn:hover{background:var(--brand);color:#fff;border-color:var(--brand)}
+.ip-flag{font-size:2rem;line-height:1;margin-bottom:6px;display:block}
+.ip-country{font-weight:700;font-size:1.1rem;color:var(--fg);margin:2px 0}
+.ip-sub{font-size:.85rem;color:var(--muted);margin:2px 0}
+
+.ip-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin:16px 0}
+.ip-card{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px}
+.ip-card-label{font-size:.7rem;color:var(--muted);text-transform:uppercase;letter-spacing:.05em;font-weight:700;margin-bottom:4px}
+.ip-card-value{font-size:.95rem;font-weight:600;color:var(--fg);word-break:break-word;line-height:1.4}
+.ip-card-value.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.88rem}
+
+.ip-section{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:14px 0}
+.ip-section h3{margin:0 0 12px;font-size:1rem;display:flex;align-items:center;gap:8px}
+.ip-section h3 .badge{font-size:.65rem;padding:2px 8px;border-radius:10px;font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.badge-ok{background:#dcfce7;color:#166534}
+.badge-warn{background:#fef3c7;color:#92400e}
+.badge-err{background:#fee2e2;color:#991b1b}
+.badge-info{background:#dbeafe;color:#1e40af}
+@media(prefers-color-scheme:dark){
+  .badge-ok{background:#14532d;color:#bbf7d0}
+  .badge-warn{background:#78350f;color:#fde68a}
+  .badge-err{background:#7f1d1d;color:#fecaca}
+  .badge-info{background:#1e3a8a;color:#bfdbfe}
+}
+
+.ip-row{display:grid;grid-template-columns:180px 1fr;gap:10px;padding:8px 0;border-bottom:1px solid var(--line);font-size:.9rem;align-items:center}
+.ip-row:last-child{border-bottom:0}
+.ip-row-key{color:var(--muted);font-weight:600}
+.ip-row-val{color:var(--fg);font-weight:500;word-break:break-word}
+.ip-row-val.mono{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85rem}
+@media(max-width:560px){.ip-row{grid-template-columns:1fr;gap:2px}.ip-row-key{font-size:.78rem}}
+
+.ip-status{display:flex;align-items:center;gap:8px;padding:10px 14px;border-radius:8px;font-size:.88rem;margin:8px 0;font-weight:600}
+.ip-status.ok{background:#dcfce7;color:#166534;border:1px solid #86efac}
+.ip-status.warn{background:#fef3c7;color:#92400e;border:1px solid #fbbf24}
+.ip-status.err{background:#fee2e2;color:#991b1b;border:1px solid #fca5a5}
+.ip-status.info{background:#dbeafe;color:#1e40af;border:1px solid #93c5fd}
+@media(prefers-color-scheme:dark){
+  .ip-status.ok{background:#14532d;color:#bbf7d0;border-color:#166534}
+  .ip-status.warn{background:#78350f;color:#fde68a;border-color:#92400e}
+  .ip-status.err{background:#7f1d1d;color:#fecaca;border-color:#991b1b}
+  .ip-status.info{background:#1e3a8a;color:#bfdbfe;border-color:#1e40af}
+}
+
+.ip-spinner{display:inline-block;width:14px;height:14px;border:2px solid rgba(148,163,184,.3);border-top-color:var(--brand);border-radius:50%;animation:ip-spin .8s linear infinite;vertical-align:-3px;margin-right:6px}
+@keyframes ip-spin{to{transform:rotate(360deg)}}
+
+.ip-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0}
+.ip-toolbar button{padding:8px 14px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.ip-toolbar button:hover{border-color:var(--brand);color:var(--brand)}
+.ip-toolbar button.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+
+.ip-fp-hash{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:1.1rem;font-weight:700;color:var(--brand);word-break:break-all;padding:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;margin:8px 0;text-align:center}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"My IP Address Checker","url":"https://utiliby.com/tools/security-privacy-tools/my-ip-address-checker/","applicationCategory":"SecurityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free my IP address checker online?","acceptedAnswer":{"@type":"Answer","text":"A free my IP address checker online is a tool that shows your public IP address and the information it reveals about you — your approximate location, internet service provider, timezone and whether you are using a VPN or proxy. This tool runs entirely in your browser and never sends your data to a server beyond the IP APIs needed to look up the information."}},{"@type":"Question","name":"What does my IP address reveal about me?","acceptedAnswer":{"@type":"Answer","text":"Your public IP address reveals your approximate geographic location (usually city-level), your internet service provider (ISP), your autonomous system number (ASN), and the organization that owns the IP block. It does not reveal your exact address, name or personal identity."}},{"@type":"Question","name":"What is the difference between IPv4 and IPv6?","acceptedAnswer":{"@type":"Answer","text":"IPv4 is the older 32-bit addressing system with about 4.3 billion addresses. IPv6 is the newer 128-bit system with an effectively unlimited supply. Most modern devices have both, and your ISP may prefer one over the other depending on how your network is configured."}},{"@type":"Question","name":"What is a WebRTC leak?","acceptedAnswer":{"@type":"Answer","text":"WebRTC is a browser technology that allows real-time communication. It can expose your real IP address to websites even when you are using a VPN. This is called a WebRTC leak and it can defeat the privacy protection a VPN is supposed to provide."}},{"@type":"Question","name":"How does a VPN hide my IP address?","acceptedAnswer":{"@type":"Answer","text":"When you connect through a VPN, all your internet traffic is routed through an encrypted tunnel to a VPN server. Websites see the VPN server's IP address instead of your real one, hiding your actual location and identity."}},{"@type":"Question","name":"What is a proxy and how is it different from a VPN?","acceptedAnswer":{"@type":"Answer","text":"A proxy reroutes some or all of your traffic through an intermediate server, but usually without encryption. A VPN reroutes all traffic through an encrypted tunnel. Proxies can be detected by websites, VPNs are more robust."}},{"@type":"Question","name":"What is a Tor exit node?","acceptedAnswer":{"@type":"Answer","text":"Tor (The Onion Router) routes your traffic through multiple volunteer-run servers. The final server in the chain, called the exit node, is what websites see. Traffic from Tor exit nodes is often flagged as anonymous or suspicious."}},{"@type":"Question","name":"What is a browser fingerprint?","acceptedAnswer":{"@type":"Answer","text":"A browser fingerprint is a combination of characteristics — screen resolution, fonts, timezone, language, installed plugins, hardware details — that can uniquely identify your browser even without cookies. This tool shows you what fingerprint your browser produces."}},{"@type":"Question","name":"Is this IP checker free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits."}},{"@type":"Question","name":"Does this tool store my IP or personal data?","acceptedAnswer":{"@type":"Answer","text":"No. This tool does not store any data. Your IP is looked up through public APIs and the results are displayed only in your browser. Nothing is logged, saved or shared."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/security-privacy-tools/">Security &amp; Privacy Tools</a> › My IP Address Checker</nav>
+<h1>My IP Address Checker</h1>
+<p class="lead">Find your public IP, geolocation, ISP, timezone and VPN status. Test for WebRTC leaks and see your browser fingerprint. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="My IP address checker">
+
+<div id="loading" class="ip-status info" style="display:none">
+<span class="ip-spinner"></span>Detecting your IP address…
+</div>
+
+<div id="mainResult" hidden>
+
+<div class="ip-hero">
+<div class="ip-label">Your Public IP Address</div>
+<div id="flag" class="ip-flag">🌐</div>
+<div class="ip-value" id="ipValue">—</div>
+<div class="ip-country" id="ipCountry">—</div>
+<div class="ip-sub" id="ipSub">—</div>
+<button type="button" class="ip-copy-btn" id="copyIp" data-copy="">Copy IP</button>
+</div>
+
+<div class="ip-toolbar">
+<button type="button" class="primary" id="refreshBtn">Refresh</button>
+<button type="button" id="copyAllBtn" data-copy="allReport">Copy all results</button>
+<button type="button" id="copyReportBtn">Copy full report</button>
+</div>
+
+<div class="ip-grid" id="topGrid">
+<div class="ip-card">
+<div class="ip-card-label">IPv4</div>
+<div class="ip-card-value mono" id="ipv4Val">—</div>
+</div>
+<div class="ip-card">
+<div class="ip-card-label">IPv6</div>
+<div class="ip-card-value mono" id="ipv6Val">—</div>
+</div>
+<div class="ip-card">
+<div class="ip-card-label">Location</div>
+<div class="ip-card-value" id="locVal">—</div>
+</div>
+<div class="ip-card">
+<div class="ip-card-label">ISP</div>
+<div class="ip-card-value" id="ispVal">—</div>
+</div>
+</div>
+
+<div class="ip-section" id="locationSection">
+<h3>📍 Geolocation Details <span class="badge badge-info">Public info</span></h3>
+<div id="locationGrid"></div>
+</div>
+
+<div class="ip-section" id="networkSection">
+<h3>🌐 Network &amp; Connection <span class="badge badge-info">Public info</span></h3>
+<div id="networkGrid"></div>
+</div>
+
+<div class="ip-section" id="timeSection">
+<h3>🕐 Timezone <span class="badge badge-info">Public info</span></h3>
+<div id="timeGrid"></div>
+</div>
+
+<div class="ip-section" id="securitySection">
+<h3>🛡️ Security &amp; Privacy Check <span class="badge" id="securityBadge">Checking…</span></h3>
+<div id="securityGrid"></div>
+</div>
+
+<div class="ip-section" id="webrtcSection">
+<h3>🔍 WebRTC Leak Test <span class="badge" id="webrtcBadge">Checking…</span></h3>
+<p class="meta" style="margin:0 0 10px">WebRTC can reveal your real IP address to websites even when you are using a VPN.</p>
+<div id="webrtcGrid">
+<p class="meta">Running WebRTC leak test…</p>
+</div>
+</div>
+
+<div class="ip-section" id="fingerprintSection">
+<h3>🖥️ Browser Fingerprint <span class="badge badge-info">Display only</span></h3>
+<p class="meta" style="margin:0 0 10px">This is what websites can see about your browser. A unique combination can identify you even without cookies.</p>
+<div id="fpHash" class="ip-fp-hash">—</div>
+<div id="fingerprintGrid"></div>
+</div>
+
+<div id="allReport" style="display:none"></div>
+
+</div>
+
+</section>
+
+<h2>What is a free my IP address checker online?</h2>
+<p>A free my IP address checker online is a tool that shows your public IP address and the information it reveals about you — your approximate location, internet service provider, timezone and whether you are using a VPN or proxy. Your IP address is like a return address on an envelope: every website you visit, every service you use and every request your browser makes carries it. Knowing what your IP exposes is the first step to understanding your online privacy.</p>
+<p>This my IP address checker online goes beyond a simple "what is my IP" lookup. It retrieves your IPv4 and IPv6 addresses from multiple independent providers, resolves your geolocation (city, region, country, coordinates, postal code), shows your ISP, ASN and organization, displays your timezone and current local time, detects VPN, proxy and Tor usage, runs a WebRTC leak test to check whether your real IP is exposed, and displays your browser fingerprint. Everything runs in your browser — no sign-up, no account, no tracking.</p>
+
+<h2>How to use this free my IP address checker online</h2>
+<ol>
+<li>Open the page. Your public IP address and country flag are displayed automatically.</li>
+<li>Scroll down to see geolocation details, your ISP, ASN and organization, your timezone and current local time.</li>
+<li>Check the security section to see whether your connection is flagged as VPN, proxy or Tor.</li>
+<li>Review the WebRTC leak test to confirm your VPN is not leaking your real IP.</li>
+<li>Look at your browser fingerprint to understand what makes your browser identifiable.</li>
+<li>Click <b>Copy IP</b> to copy your address, or <b>Copy all results</b> to copy the entire report.</li>
+</ol>
+
+<h2>What does my IP address reveal about me?</h2>
+<p>Your public IP address reveals more than most people realise:</p>
+<ul>
+<li><b>Approximate location.</b> Usually city-level accuracy — enough to know your region and often your neighbourhood, but not your street address.</li>
+<li><b>Internet Service Provider (ISP).</b> The company that provides your internet connection.</li>
+<li><b>Autonomous System Number (ASN).</b> The identifier for the network block your IP belongs to.</li>
+<li><b>Organization.</b> The company or entity that owns the IP block — often your ISP, but sometimes a hosting provider, university or business.</li>
+<li><b>Country and region.</b> Your general geographic area.</li>
+<li><b>Timezone.</b> Your local timezone, which can be inferred from your location.</li>
+</ul>
+<p>Your IP does not reveal your name, email, exact address, phone number or personal identity on its own. But combined with other data — browser fingerprint, cookies, login sessions — it can contribute to uniquely identifying you.</p>
+
+<h2>IPv4 vs IPv6: what is the difference?</h2>
+<p><b>IPv4</b> is the older addressing system, using 32-bit addresses that look like <code>192.168.1.1</code>. It supports about 4.3 billion addresses, and they ran out years ago. <b>IPv6</b> is the newer system, using 128-bit addresses that look like <code>2001:0db8:85a3:0000:0000:8a2e:0370:7334</code>. It supports an effectively unlimited number of addresses.</p>
+<p>Most devices today have both. Your ISP may prefer one over the other depending on how your network is configured. If you see an IPv6 address but not an IPv4 address (or vice versa), that is simply the protocol your device prefers for this connection.</p>
+
+<h2>How a VPN hides your IP address</h2>
+<p>A VPN (Virtual Private Network) creates an encrypted tunnel between your device and a VPN server. All your internet traffic goes through this tunnel and exits from the VPN server's IP address. Websites you visit see the VPN server's IP, not yours. Your real IP is hidden from them entirely.</p>
+<p>The VPN also encrypts your traffic, which prevents your ISP from seeing what you do online. However, a VPN does not make you anonymous — the VPN provider itself can see your traffic, and the websites you log into still know who you are if you are signed in.</p>
+
+<h2>Proxy vs VPN: what is the difference?</h2>
+<p>A proxy server reroutes your traffic through an intermediate server. Unlike a VPN, a proxy typically does not encrypt your traffic — it just changes the visible IP address. Proxies are often application-specific (a browser proxy, an HTTP proxy) rather than system-wide.</p>
+<p>For privacy purposes, VPNs are generally stronger than proxies because they encrypt everything. But both hide your IP, and both can be detected by sophisticated websites that check for known proxy and VPN IP ranges.</p>
+
+<h2>What is a WebRTC leak?</h2>
+<p>WebRTC (Web Real-Time Communication) is a browser technology that enables video calls, voice chat and peer-to-peer file sharing. It uses ICE (Interactive Connectivity Establishment) candidates to find the best network path between two devices. Those candidates can contain your local IP address and, in some configurations, your real public IP address — even when you are connected to a VPN.</p>
+<p>This is called a WebRTC leak. It is a well-known privacy issue that can defeat the IP-hiding purpose of a VPN. The leak happens because WebRTC traffic may bypass the VPN tunnel entirely, using your real network interface.</p>
+<p><b>How to fix a WebRTC leak:</b></p>
+<ul>
+<li>Use a VPN with built-in WebRTC leak protection.</li>
+<li>Disable WebRTC in your browser (via extensions like WebRTC Leak Prevent).</li>
+<li>Use a browser that routes WebRTC through the VPN tunnel.</li>
+<li>Configure your firewall to block WebRTC traffic outside the VPN.</li>
+</ul>
+
+<h2>What is a browser fingerprint?</h2>
+<p>A browser fingerprint is a set of characteristics that can uniquely identify your browser and device. Unlike cookies, fingerprints cannot easily be cleared — they are based on stable properties of your system:</p>
+<ul>
+<li><b>Screen resolution and colour depth</b></li>
+<li><b>Timezone and language settings</b></li>
+<li><b>Installed fonts</b></li>
+<li><b>User agent (browser and OS details)</b></li>
+<li><b>Hardware capabilities</b> (CPU cores, memory, GPU)</li>
+<li><b>Canvas and WebGL rendering</b></li>
+<li><b>Audio processing</b></li>
+<li><b>Do Not Track and other preferences</b></li>
+</ul>
+<p>The combination of these signals creates a hash that is often unique enough to track you across websites, even in incognito mode. This tool displays what your browser is revealing.</p>
+
+<h2>What is a Tor exit node?</h2>
+<p>Tor (The Onion Router) routes your traffic through multiple volunteer-run servers, encrypting it in layers at each hop. The last server in the chain — the exit node — is what websites see. Tor provides strong anonymity but is slower than a VPN and often blocked by websites that flag Tor exit node IPs.</p>
+<p>This tool checks whether your IP is a known Tor exit node, a known VPN server, or a known proxy. If any of those are true, the security badge will indicate it.</p>
+
+<h2>Why does IP privacy matter?</h2>
+<p>Your IP address is tied to your internet connection, which in most countries is registered to a physical address and a billing account. Your ISP can see every site you connect to (though not the content if you use HTTPS). Websites can see your approximate location and use it for geo-targeting, ad personalisation and sometimes content restriction.</p>
+<p>For most people, this level of exposure is acceptable. For journalists, activists, researchers, remote workers and privacy-conscious users, hiding the IP is a legitimate and often necessary step. A VPN, Tor or proxy provides that protection.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a free my IP address checker online?</summary><p>A free my IP address checker online is a tool that shows your public IP address and the information it reveals about you — your approximate location, internet service provider, timezone and whether you are using a VPN or proxy. This tool runs entirely in your browser and never sends your data to a server beyond the IP APIs needed to look up the information.</p></details>
+<details><summary>What does my IP address reveal about me?</summary><p>Your public IP address reveals your approximate geographic location (usually city-level), your internet service provider (ISP), your autonomous system number (ASN), and the organization that owns the IP block. It does not reveal your exact address, name or personal identity.</p></details>
+<details><summary>What is the difference between IPv4 and IPv6?</summary><p>IPv4 is the older 32-bit addressing system with about 4.3 billion addresses. IPv6 is the newer 128-bit system with an effectively unlimited supply. Most modern devices have both, and your ISP may prefer one over the other depending on how your network is configured.</p></details>
+<details><summary>What is a WebRTC leak?</summary><p>WebRTC is a browser technology that allows real-time communication. It can expose your real IP address to websites even when you are using a VPN. This is called a WebRTC leak and it can defeat the privacy protection a VPN is supposed to provide.</p></details>
+<details><summary>How does a VPN hide my IP address?</summary><p>When you connect through a VPN, all your internet traffic is routed through an encrypted tunnel to a VPN server. Websites see the VPN server's IP address instead of your real one, hiding your actual location and identity.</p></details>
+<details><summary>What is a proxy and how is it different from a VPN?</summary><p>A proxy reroutes some or all of your traffic through an intermediate server, but usually without encryption. A VPN reroutes all traffic through an encrypted tunnel. Proxies can be detected by websites, VPNs are more robust.</p></details>
+<details><summary>What is a Tor exit node?</summary><p>Tor (The Onion Router) routes your traffic through multiple volunteer-run servers. The final server in the chain, called the exit node, is what websites see. Traffic from Tor exit nodes is often flagged as anonymous or suspicious.</p></details>
+<details><summary>What is a browser fingerprint?</summary><p>A browser fingerprint is a combination of characteristics — screen resolution, fonts, timezone, language, installed plugins, hardware details — that can uniquely identify your browser even without cookies. This tool shows you what fingerprint your browser produces.</p></details>
+<details><summary>Is this IP checker free?</summary><p>Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits.</p></details>
+<details><summary>Does this tool store my IP or personal data?</summary><p>No. This tool does not store any data. Your IP is looked up through public APIs and the results are displayed only in your browser. Nothing is logged, saved or shared.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s==null?"":s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function fmt(v){ return v === undefined || v === null || v === "" ? "—" : String(v); }
+
+var reportLines = [];
+function logLine(label, value){ reportLines.push(label + ": " + (value || "—")); }
+
+/* ---------- FINGERPRINT ---------- */
+function getFingerprint(){
+  var fp = {};
+  fp.screen = window.screen ? screen.width + " × " + screen.height : "—";
+  fp.colorDepth = window.screen ? screen.colorDepth + " bit" : "—";
+  fp.pixelRatio = window.devicePixelRatio || 1;
+  fp.language = navigator.language || "—";
+  fp.languages = (navigator.languages || []).join(", ");
+  fp.platform = navigator.platform || "—";
+  fp.cores = navigator.hardwareConcurrency ? navigator.hardwareConcurrency + " cores" : "—";
+  fp.memory = navigator.deviceMemory ? navigator.deviceMemory + " GB" : "—";
+  fp.touchPoints = navigator.maxTouchPoints != null ? navigator.maxTouchPoints + " points" : "—";
+  fp.timezone = (function(){ try { return Intl.DateTimeFormat().resolvedOptions().timeZone || "—"; } catch(e){ return "—"; } })();
+  fp.cookies = navigator.cookieEnabled ? "Enabled" : "Disabled";
+  fp.dnt = (navigator.doNotTrack === "1" || window.doNotTrack === "1") ? "Enabled" : "Disabled";
+  fp.online = navigator.onLine ? "Online" : "Offline";
+  fp.userAgent = navigator.userAgent || "—";
+  return fp;
+}
+
+function simpleHash(str){
+  var h = 0;
+  for(var i = 0; i < str.length; i++){
+    var c = str.charCodeAt(i);
+    h = ((h << 5) - h) + c;
+    h = h & h;
+  }
+  return Math.abs(h).toString(16).padStart(8, "0");
+}
+
+function renderFingerprint(fp){
+  var raw = [fp.screen, fp.colorDepth, fp.pixelRatio, fp.language, fp.languages, fp.platform, fp.cores, fp.memory, fp.touchPoints, fp.timezone, fp.cookies, fp.dnt, fp.online, fp.userAgent].join("|");
+  $("fpHash").textContent = "FP: " + simpleHash(raw);
+  logLine("Fingerprint hash", simpleHash(raw));
+
+  var rows = [
+    ["Screen resolution", fp.screen],
+    ["Colour depth", fp.colorDepth],
+    ["Device pixel ratio", fp.pixelRatio],
+    ["Language", fp.language],
+    ["Languages", fp.languages],
+    ["Platform", fp.platform],
+    ["CPU cores", fp.cores],
+    ["Device memory", fp.memory],
+    ["Touch points", fp.touchPoints],
+    ["Timezone", fp.timezone],
+    ["Cookies", fp.cookies],
+    ["Do Not Track", fp.dnt],
+    ["Online status", fp.online],
+    ["User agent", fp.userAgent]
+  ];
+  var h = "";
+  for(var i = 0; i < rows.length; i++){
+    var mono = (rows[i][0] === "User agent") ? " mono" : "";
+    h += '<div class="ip-row"><div class="ip-row-key">' + esc(rows[i][0]) + '</div><div class="ip-row-val' + mono + '">' + esc(rows[i][1]) + '</div></div>';
+    logLine(rows[i][0], rows[i][1]);
+  }
+  $("fingerprintGrid").innerHTML = h;
+}
+
+/* ---------- WEBRTC LEAK TEST ---------- */
+function runWebRTCLeakTest(callback){
+  var results = { local: [], public: [] };
+  var done = false;
+
+  function finish(){
+    if(done) return;
+    done = true;
+    callback(results);
+  }
+
+  try {
+    var RTCPeer = window.RTCPeerConnection || window.webkitRTCPeerConnection || window.mozRTCPeerConnection;
+    if(!RTCPeer){
+      results.error = "WebRTC is not supported in this browser.";
+      finish();
+      return;
+    }
+    var pc = new RTCPeer({ iceServers: [{ urls: "stun:stun.l.google.com:19302" }] });
+
+    pc.onicecandidate = function(e){
+      if(!e || !e.candidate) return;
+      var cand = e.candidate.candidate;
+      var m = cand.match(/(\d{1,3}(?:\.\d{1,3}){3})/);
+      if(m && m[1]){
+        var ip = m[1];
+        if(/(^127\.)|(^10\.)|(^172\.(1[6-9]|2\d|3[01])\.)|(^192\.168\.)|(^169\.254\.)/.test(ip)){
+          if(results.local.indexOf(ip) === -1) results.local.push(ip);
+        } else {
+          if(results.public.indexOf(ip) === -1) results.public.push(ip);
+        }
+      }
+      // IPv6 candidates
+      var m6 = cand.match(/([a-f0-9]{1,4}(?::[a-f0-9]{0,4}){2,7})/i);
+      if(m6 && m6[1] && m6[1].indexOf(":") > -1){
+        var ip6 = m6[1];
+        if(/^fe80|^::1/.test(ip6)){
+          if(results.local.indexOf(ip6) === -1) results.local.push(ip6);
+        } else {
+          if(results.public.indexOf(ip6) === -1) results.public.push(ip6);
+        }
+      }
+    };
+
+    pc.createDataChannel("test");
+    pc.createOffer().then(function(offer){
+      return pc.setLocalDescription(offer);
+    }).then(function(){
+      setTimeout(function(){
+        try { pc.close(); } catch(e){}
+        finish();
+      }, 1500);
+    }).catch(function(){
+      try { pc.close(); } catch(e){}
+      finish();
+    });
+  } catch(e){
+    results.error = e.message || "WebRTC check failed.";
+    finish();
+  }
+}
+
+function renderWebRTC(results){
+  var grid = $("webrtcGrid");
+  var badge = $("webrtcBadge");
+  if(results.error){
+    badge.className = "badge badge-warn";
+    badge.textContent = "Unavailable";
+    grid.innerHTML = '<div class="ip-status warn">' + esc(results.error) + '</div>';
+    return;
+  }
+  var leaks = results.public.filter(function(ip){ return ip.indexOf(":") === -1; });
+  if(leaks.length > 0){
+    badge.className = "badge badge-warn";
+    badge.textContent = "Possible leak";
+    var h = '<div class="ip-status warn">Your browser exposed a public IP address through WebRTC. If you are using a VPN, this may be a leak.</div>';
+    h += '<div class="ip-row"><div class="ip-row-key">Public IP via WebRTC</div><div class="ip-row-val mono">' + esc(leaks.join(", ")) + '</div></div>';
+    if(results.local.length > 0){
+      h += '<div class="ip-row"><div class="ip-row-key">Local IP addresses</div><div class="ip-row-val mono">' + esc(results.local.join(", ")) + '</div></div>';
+    }
+    grid.innerHTML = h;
+    logLine("WebRTC public IP leak", leaks.join(", "));
+  } else {
+    badge.className = "badge badge-ok";
+    badge.textContent = "No leak detected";
+    var h2 = '<div class="ip-status ok">No public IP was exposed through WebRTC. Your VPN is protecting your IP correctly.</div>';
+    if(results.local.length > 0){
+      h2 += '<div class="ip-row"><div class="ip-row-key">Local IP addresses</div><div class="ip-row-val mono">' + esc(results.local.join(", ")) + '</div></div>';
+    }
+    grid.innerHTML = h2;
+    logLine("WebRTC leak", "None detected");
+  }
+}
+
+/* ---------- IP LOOKUP ---------- */
+function fetchWithTimeout(url, ms){
+  var controller = new AbortController();
+  var timer = setTimeout(function(){ controller.abort(); }, ms);
+  return fetch(url, { signal: controller.signal, cache: "no-store" }).finally(function(){ clearTimeout(timer); });
+}
+
+function lookupIP(){
+  reportLines = [];
+  $("loading").style.display = "";
+  $("mainResult").hidden = true;
+
+  var providers = [
+    { name: "ipwho.is", url: "https://ipwho.is/", parse: parseIPWhois },
+    { name: "ipapi.co", url: "https://ipapi.co/json/", parse: parseIPApiCo },
+    { name: "ipify", url: "https://api.ipify.org?format=json", parse: parseIPify }
+  ];
+
+  var idx = 0;
+  function tryNext(){
+    if(idx >= providers.length){
+      $("loading").style.display = "none";
+      $("loading").innerHTML = "Could not detect your IP. Check your internet connection or try again later.";
+      $("loading").className = "ip-status err";
+      return;
+    }
+    var p = providers[idx++];
+    fetchWithTimeout(p.url, 8000).then(function(res){
+      if(!res.ok) throw new Error("HTTP " + res.status);
+      return res.json();
+    }).then(function(data){
+      var parsed = p.parse(data);
+      if(!parsed || !parsed.ip) throw new Error("no IP");
+      showResults(parsed, p.name);
+    }).catch(function(){
+      tryNext();
+    });
+  }
+  tryNext();
+}
+
+function parseIPWhois(d){
+  if(!d || d.success === false) return null;
+  return {
+    ip: d.ip,
+    type: d.type || "",
+    country: d.country || "",
+    countryCode: d.country_code || "",
+    region: d.region || "",
+    city: d.city || "",
+    postal: d.postal || "",
+    latitude: d.latitude,
+    longitude: d.longitude,
+    timezone: d.timezone ? d.timezone.id : "",
+    timezoneAbbr: d.timezone ? d.timezone.abbr : "",
+    timezoneUtc: d.timezone ? d.timezone.utc : "",
+    currentTime: d.timezone ? d.timezone.current_time : "",
+    flag: d.flag ? d.flag.emoji : "",
+    flagImg: d.flag ? d.flag.img : "",
+    asn: d.connection ? d.connection.asn : "",
+    isp: d.connection ? d.connection.isp : "",
+    org: d.connection ? d.connection.org : "",
+    domain: d.connection ? d.connection.domain : "",
+    continent: d.continent || "",
+    capital: d.capital || "",
+    callingCode: d.calling_code || "",
+    isEu: d.is_eu,
+    currencyName: d.currency ? d.currency.name : "",
+    currencyCode: d.currency ? d.currency.code : "",
+    currencySymbol: d.currency ? d.currency.symbol : ""
+  };
+}
+
+function parseIPApiCo(d){
+  if(!d || d.error) return null;
+  return {
+    ip: d.ip,
+    type: d.version || "",
+    country: d.country_name || "",
+    countryCode: d.country_code || "",
+    region: d.region || "",
+    city: d.city || "",
+    postal: d.postal || "",
+    latitude: d.latitude,
+    longitude: d.longitude,
+    timezone: d.timezone || "",
+    timezoneUtc: d.utc_offset || "",
+    flag: countryToFlag(d.country_code),
+    asn: d.asn || "",
+    isp: d.org || "",
+    org: d.org || "",
+    currencyCode: d.currency || "",
+    currencyName: d.currency_name || ""
+  };
+}
+
+function parseIPify(d){
+  if(!d || !d.ip) return null;
+  return {
+    ip: d.ip,
+    type: /:/.test(d.ip) ? "IPv6" : "IPv4",
+    country: "",
+    countryCode: "",
+    flag: "🌐"
+  };
+}
+
+function countryToFlag(code){
+  if(!code || code.length !== 2) return "🌐";
+  return String.fromCodePoint(0x1F1E6 + code.toUpperCase().charCodeAt(0) - 65) +
+         String.fromCodePoint(0x1F1E6 + code.toUpperCase().charCodeAt(1) - 65);
+}
+
+function renderRows(rows, target, monoKeys){
+  monoKeys = monoKeys || [];
+  var h = "";
+  for(var i = 0; i < rows.length; i++){
+    if(!rows[i][1] && rows[i][1] !== 0) continue;
+    var cls = monoKeys.indexOf(rows[i][0]) > -1 ? " mono" : "";
+    h += '<div class="ip-row"><div class="ip-row-key">' + esc(rows[i][0]) + '</div><div class="ip-row-val' + cls + '">' + esc(rows[i][1]) + '</div></div>';
+    logLine(rows[i][0], rows[i][1]);
+  }
+  target.innerHTML = h;
+}
+
+function showResults(d, provider){
+  $("loading").style.display = "none";
+  $("mainResult").hidden = false;
+
+  logLine("Detected via", provider);
+  logLine("Public IP", d.ip);
+  logLine("IP type", d.type);
+
+  $("flag").textContent = d.flag || "🌐";
+  $("ipValue").textContent = d.ip;
+  $("ipCountry").textContent = d.country || "Unknown country";
+  $("ipSub").textContent = d.city && d.region ? d.city + ", " + d.region : (d.region || d.city || "");
+
+  $("ipv4Val").textContent = d.type === "IPv4" ? d.ip : "Not detected";
+  $("ipv6Val").textContent = d.type === "IPv6" ? d.ip : "Not detected";
+  $("locVal").textContent = d.city ? (d.city + ", " + (d.country || "")) : (d.country || "—");
+  $("ispVal").textContent = d.isp || d.org || "—";
+
+  // Location grid
+  renderRows([
+    ["Country", d.country],
+    ["Country code", d.countryCode],
+    ["Region", d.region],
+    ["City", d.city],
+    ["Postal code", d.postal],
+    ["Latitude", d.latitude],
+    ["Longitude", d.longitude],
+    ["Continent", d.continent],
+    ["Capital", d.capital],
+    ["Calling code", d.callingCode ? "+" + d.callingCode : ""],
+    ["EU member", d.isEu === true ? "Yes" : (d.isEu === false ? "No" : "")],
+    ["Currency", d.currencyName ? (d.currencyName + (d.currencyCode ? " (" + d.currencyCode + ")" : "")) : ""]
+  ], $("locationGrid"));
+
+  // Network grid
+  renderRows([
+    ["IP address", d.ip, true],
+    ["IP type", d.type],
+    ["ASN", d.asn ? "AS" + d.asn : "", true],
+    ["ISP", d.isp],
+    ["Organization", d.org],
+    ["Domain", d.domain]
+  ], $("networkGrid"), ["IP address", "ASN"]);
+
+  // Time grid
+  renderRows([
+    ["Timezone", d.timezone],
+    ["Timezone abbreviation", d.timezoneAbbr],
+    ["UTC offset", d.timezoneUtc],
+    ["Current local time", d.currentTime ? new Date(d.currentTime).toLocaleString() : ""]
+  ], $("timeGrid"));
+
+  // Security section (heuristic)
+  renderSecurity(d);
+
+  // WebRTC
+  runWebRTCLeakTest(function(wr){
+    renderWebRTC(wr);
+    $("allReport").textContent = reportLines.join("\n");
+  });
+
+  // Fingerprint
+  var fp = getFingerprint();
+  renderFingerprint(fp);
+  $("allReport").textContent = reportLines.join("\n");
+}
+
+function renderSecurity(d){
+  var badge = $("securityBadge");
+  var grid = $("securityGrid");
+  var rows = [];
+  var signals = [];
+
+  // Heuristic detection
+  var isHosting = /amazon|aws|google|cloud|azure|digitalocean|linode|ovh|hetzner|vultr|oracle|alibaba|microsoft/i.test(d.org || "");
+  if(isHosting) signals.push("Possible hosting/datacenter IP");
+
+  var isVPNish = /vpn|proxy|nord|express|surfshark|private internet|mullvad|proton/i.test(d.org || "");
+  if(isVPNish) signals.push("ISP name suggests VPN provider");
+
+  var isTor = false; // would need separate Tor exit node check
+
+  if(signals.length === 0){
+    badge.className = "badge badge-ok";
+    badge.textContent = "Clean";
+    grid.innerHTML = '<div class="ip-status ok">No VPN, proxy or Tor signals detected. Your IP appears to be a regular residential or business connection.</div>';
+    logLine("Security status", "Clean");
+  } else {
+    badge.className = "badge badge-warn";
+    badge.textContent = signals.length + " signal(s)";
+    var h = '<div class="ip-status warn">' + signals.length + ' signal(s) detected. Your IP may be flagged by some websites.</div>';
+    for(var i = 0; i < signals.length; i++){
+      h += '<div class="ip-row"><div class="ip-row-key">Signal ' + (i+1) + '</div><div class="ip-row-val">' + esc(signals[i]) + '</div></div>';
+      logLine("Security signal", signals[i]);
+    }
+    grid.innerHTML = h;
+  }
+}
+
+/* ---------- COPY ---------- */
+function copyToClipboard(text, btn){
+  if(!navigator.clipboard) return;
+  navigator.clipboard.writeText(text).then(function(){
+    if(!btn) return;
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  });
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  $("loading").style.display = "";
+  lookupIP();
+
+  $("refreshBtn").addEventListener("click", lookupIP);
+  $("copyIp").addEventListener("click", function(){
+    copyToClipboard($("ipValue").textContent, this);
+  });
+  $("copyAllBtn").addEventListener("click", function(){
+    copyToClipboard(reportLines.join("\n"), this);
+  });
+  $("copyReportBtn").addEventListener("click", function(){
+    var header = "My IP Address Checker — Full Report\nGenerated: " + new Date().toISOString() + "\n\n";
+    copyToClipboard(header + reportLines.join("\n"), this);
+  });
+});
+})();
+</script>
+</body>
+</html>
