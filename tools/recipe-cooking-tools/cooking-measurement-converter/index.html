@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Cooking Measurement Converter Online – Cups, Grams, Ounces</title>
+<meta name="description" content="Free cooking measurement converter online. Convert cups, grams, ounces, millilitres, tablespoons and more with ingredient-specific accuracy. Includes oven temperatures and 50+ ingredients. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/recipe-cooking-tools/cooking-measurement-converter/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Cooking Measurement Converter Online – Cups, Grams, Ounces">
+<meta property="og:description" content="Free cooking measurement converter online. Convert cups, grams, ounces and more with ingredient-specific accuracy.">
+<meta property="og:url" content="https://utiliby.com/tools/recipe-cooking-tools/cooking-measurement-converter/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.conv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.conv-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.conv-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.conv-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end}
+@media(max-width:560px){.conv-row{grid-template-columns:1fr}}
+.conv-swap{display:flex;justify-content:center;margin:12px 0}
+.conv-swap button{width:44px;height:44px;border-radius:50%;padding:0;font-size:1.2rem;line-height:1}
+.all-units{margin-top:18px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px}
+.all-units h4{margin:0 0 10px;font-size:.95rem;color:var(--muted)}
+.all-units table{width:100%;border-collapse:collapse}
+.all-units td{padding:6px 8px;border-bottom:1px solid var(--line);font-size:.9rem}
+.all-units td:first-child{color:var(--muted);font-weight:600}
+.all-units td:last-child{text-align:right;font-weight:600}
+.all-units tr:last-child td{border-bottom:0}
+.oven-ref{margin-top:18px;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:14px}
+.oven-ref table{width:100%;border-collapse:collapse;font-size:.88rem}
+.oven-ref th,.oven-ref td{padding:8px;text-align:center;border-bottom:1px solid var(--line)}
+.oven-ref th{background:var(--card);font-weight:700}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Cooking Measurement Converter","url":"https://utiliby.com/tools/recipe-cooking-tools/cooking-measurement-converter/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How many grams are in a cup of flour?","acceptedAnswer":{"@type":"Answer","text":"One US cup of all-purpose flour weighs approximately 125 grams when measured using the spoon-and-level method. Scooping directly from the bag compacts the flour and can add up to 30 extra grams per cup."}},{"@type":"Question","name":"How many grams are in a cup of sugar?","acceptedAnswer":{"@type":"Answer","text":"One US cup of granulated sugar weighs approximately 200 grams. Brown sugar weighs about 220 grams per cup when packed."}},{"@type":"Question","name":"Why is a cup of flour not the same weight as a cup of sugar?","acceptedAnswer":{"@type":"Answer","text":"Cups measure volume, while grams measure weight. A cup of flour and a cup of sugar occupy the same space but have different densities, so they weigh different amounts. Flour is less dense than sugar."}},{"@type":"Question","name":"What is the difference between a US cup and a metric cup?","acceptedAnswer":{"@type":"Answer","text":"A US customary cup holds approximately 236.6 millilitres, while a metric cup used in many countries holds exactly 250 millilitres. This calculator lets you switch between both standards."}},{"@type":"Question","name":"How do I convert oven temperatures?","acceptedAnswer":{"@type":"Answer","text":"Use the Temperature mode in this converter. Enter a value in Celsius or Fahrenheit and the tool shows the equivalent in both scales, plus the corresponding Gas Mark for UK recipes."}},{"@type":"Question","name":"Is this cooking measurement converter free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your measurements anywhere."}},{"@type":"Question","name":"How accurate are ingredient weight conversions?","acceptedAnswer":{"@type":"Answer","text":"Ingredient conversions are accurate estimates based on standard density values. Actual weights vary with packing, grind size, moisture, brand and measuring technique. For precision baking, weighing ingredients directly is always recommended."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/recipe-cooking-tools/">Recipe &amp; Cooking Tools</a> › Cooking Measurement Converter</nav>
+<h1>Cooking Measurement Converter</h1>
+<p class="lead">Convert cups, grams, ounces, millilitres, tablespoons and oven temperatures with ingredient-specific accuracy. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Cooking measurement converter">
+<div class="conv-tabs" role="group" aria-label="Conversion mode">
+<button type="button" class="conv-tab on" data-mode="volume">Volume</button>
+<button type="button" class="conv-tab" data-mode="weight">Weight</button>
+<button type="button" class="conv-tab" data-mode="ingredient">Ingredient</button>
+<button type="button" class="conv-tab" data-mode="temperature">Temperature</button>
+</div>
+
+<div id="volumeMode">
+<div class="conv-row">
+<div><label for="volAmount">Amount</label><input id="volAmount" type="number" min="0" step="0.01" value="1"></div>
+<div><label for="volIngredient">Ingredient (optional)</label><select id="volIngredient"><option value="">— None (pure volume) —</option></select></div>
+</div>
+<div class="conv-row">
+<div><label for="volFrom">From</label><select id="volFrom"></select></div>
+<div><label for="volTo">To</label><select id="volTo"></select></div>
+</div>
+<div class="conv-row">
+<div><label for="volCupStandard">Cup standard</label><select id="volCupStandard">
+<option value="us">US cup (236.6 ml)</option>
+<option value="metric">Metric cup (250 ml)</option>
+</select></div>
+<div></div>
+</div>
+<div class="conv-swap"><button type="button" class="ghost" id="swapVol" aria-label="Swap units">⇅</button></div>
+<div class="result" id="volOut" aria-live="polite"></div>
+</div>
+
+<div id="weightMode" hidden>
+<div class="conv-row">
+<div><label for="wtAmount">Amount</label><input id="wtAmount" type="number" min="0" step="0.01" value="100"></div>
+<div><label for="wtIngredient">Ingredient (optional)</label><select id="wtIngredient"><option value="">— None (pure weight) —</option></select></div>
+</div>
+<div class="conv-row">
+<div><label for="wtFrom">From</label><select id="wtFrom"></select></div>
+<div><label for="wtTo">To</label><select id="wtTo"></select></div>
+</div>
+<div class="conv-swap"><button type="button" class="ghost" id="swapWt" aria-label="Swap units">⇅</button></div>
+<div class="result" id="wtOut" aria-live="polite"></div>
+</div>
+
+<div id="ingredientMode" hidden>
+<div class="conv-row">
+<div><label for="ingAmount">Amount</label><input id="ingAmount" type="number" min="0" step="0.01" value="1"></div>
+<div><label for="ingIngredient">Ingredient</label><select id="ingIngredient"></select></div>
+</div>
+<div class="conv-row">
+<div><label for="ingFrom">From unit</label><select id="ingFrom"></select></div>
+<div><label for="ingTo">To unit</label><select id="ingTo"></select></div>
+</div>
+<div class="conv-row">
+<div><label for="ingCupStandard">Cup standard</label><select id="ingCupStandard">
+<option value="us">US cup (236.6 ml)</option>
+<option value="metric">Metric cup (250 ml)</option>
+</select></div>
+<div></div>
+</div>
+<div class="conv-swap"><button type="button" class="ghost" id="swapIng" aria-label="Swap units">⇅</button></div>
+<div class="result" id="ingOut" aria-live="polite"></div>
+</div>
+
+<div id="temperatureMode" hidden>
+<div class="conv-row">
+<div><label for="tempAmount">Temperature</label><input id="tempAmount" type="number" step="0.1" value="180"></div>
+<div><label for="tempFrom">From</label><select id="tempFrom">
+<option value="c">Celsius (°C)</option>
+<option value="f">Fahrenheit (°F)</option>
+<option value="gas">Gas Mark</option>
+</select></div>
+</div>
+<div class="result" id="tempOut" aria-live="polite"></div>
+</div>
+</section>
+
+<h2>What is a free cooking measurement converter online?</h2>
+<p>A free cooking measurement converter online is a tool that converts between the many units used in recipes around the world — cups, tablespoons, teaspoons, millilitres, litres, fluid ounces, pints, quarts and gallons for volume; grams, kilograms, ounces and pounds for weight; and Celsius, Fahrenheit and Gas Mark for oven temperatures.</p>
+<p>The challenge is that recipes from different countries use different standards. A US cup holds about 236.6 millilitres, while a metric cup used in many other countries holds exactly 250 millilitres. A cup of flour weighs about 125 grams, but a cup of sugar weighs about 200 grams, and a cup of honey weighs about 340 grams. A cooking measurement converter that ignores these differences produces errors of 40 to 170 percent. This tool accounts for all of them.</p>
+
+<h2>How to use this free cooking measurement converter online</h2>
+<ol>
+<li>Choose a conversion mode: <b>Volume</b>, <b>Weight</b>, <b>Ingredient</b> or <b>Temperature</b>.</li>
+<li>Enter your amount and select the source unit.</li>
+<li>Select the target unit. For cup-based conversions, choose whether you want US or Metric cup standards.</li>
+<li>In Ingredient mode, select your ingredient first — this ensures the weight-to-volume conversion uses the correct density.</li>
+<li>Read the result instantly. Use the swap button to reverse the conversion.</li>
+<li>Click <b>Copy result</b> to paste the value into your notes or recipe card.</li>
+</ol>
+
+<h2>Cooking measurement conversions explained</h2>
+<h3>Volume conversions</h3>
+<p>Volume measures how much space an ingredient occupies. Common volume units include teaspoons (tsp), tablespoons (tbsp), cups, fluid ounces (fl oz), millilitres (ml), litres (l), pints, quarts and gallons. Volume-to-volume conversions use fixed mathematical ratios. For example, 1 cup = 16 tablespoons = 48 teaspoons = 8 fluid ounces.</p>
+<h3>Weight conversions</h3>
+<p>Weight measures how heavy an ingredient is. Common weight units include grams (g), kilograms (kg), ounces (oz) and pounds (lb). Weight-to-weight conversions are also fixed: 1 kilogram = 1,000 grams, 1 pound = 16 ounces = 453.592 grams.</p>
+<h3>Volume-to-weight conversions</h3>
+<p>This is where ingredient density matters. A cup of flour and a cup of sugar occupy the same volume but weigh different amounts. Flour weighs about 125 grams per cup, sugar about 200 grams, brown sugar about 220 grams, honey about 340 grams. This converter uses ingredient-specific densities so your conversions are accurate.</p>
+
+<h2>Common ingredient weights per US cup</h2>
+<table class="res">
+<tr><th>Ingredient</th><th>Grams / cup</th><th>Category</th></tr>
+<tr><td>All-purpose flour</td><td>125 g</td><td>Baking</td></tr>
+<tr><td>Bread flour</td><td>127 g</td><td>Baking</td></tr>
+<tr><td>Granulated sugar</td><td>200 g</td><td>Sweetener</td></tr>
+<tr><td>Brown sugar (packed)</td><td>220 g</td><td>Sweetener</td></tr>
+<tr><td>Butter</td><td>227 g</td><td>Fat</td></tr>
+<tr><td>Honey</td><td>340 g</td><td>Liquid sweetener</td></tr>
+<tr><td>Milk</td><td>245 g</td><td>Dairy</td></tr>
+<tr><td>Water</td><td>236 g</td><td>Liquid</td></tr>
+<tr><td>Cocoa powder</td><td>85 g</td><td>Baking</td></tr>
+<tr><td>Rolled oats</td><td>90 g</td><td>Grain</td></tr>
+</table>
+
+<h2>Oven temperature conversion chart</h2>
+<table class="res">
+<tr><th>Celsius</th><th>Fahrenheit</th><th>Gas Mark</th><th>Description</th></tr>
+<tr><td>110°C</td><td>225°F</td><td>¼</td><td>Very cool</td></tr>
+<tr><td>130°C</td><td>250°F</td><td>½</td><td>Very cool</td></tr>
+<tr><td>150°C</td><td>300°F</td><td>2</td><td>Cool</td></tr>
+<tr><td>170°C</td><td>325°F</td><td>3</td><td>Moderate</td></tr>
+<tr><td>180°C</td><td>350°F</td><td>4</td><td>Moderate</td></tr>
+<tr><td>190°C</td><td>375°F</td><td>5</td><td>Moderate</td></tr>
+<tr><td>200°C</td><td>400°F</td><td>6</td><td>Moderately hot</td></tr>
+<tr><td>220°C</td><td>425°F</td><td>7</td><td>Hot</td></tr>
+<tr><td>230°C</td><td>450°F</td><td>8</td><td>Hot</td></tr>
+<tr><td>240°C</td><td>475°F</td><td>9</td><td>Very hot</td></tr>
+</table>
+
+<h2>Why ingredient density matters</h2>
+<p>One cup of flour does not weigh the same as one cup of sugar, honey, rice, cocoa or nuts. A generic converter that treats every cup the same produces errors of 40 to 170 percent when converting between volume and weight. This is why professional bakers weigh ingredients rather than using cup measures.</p>
+<p>The spoon-and-level method — spooning flour into a cup, then levelling with a knife — is the standard technique that the density values in this converter assume. Scooping flour directly from the bag compacts it, adding up to 30 grams per cup. That single measuring error can add 25 percent more flour to a recipe, resulting in dry, dense baked goods.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>How many grams are in a cup of flour?</summary><p>One US cup of all-purpose flour weighs approximately 125 grams when measured using the spoon-and-level method. Scooping directly from the bag compacts the flour and can add up to 30 extra grams per cup.</p></details>
+<details><summary>How many grams are in a cup of sugar?</summary><p>One US cup of granulated sugar weighs approximately 200 grams. Brown sugar weighs about 220 grams per cup when packed.</p></details>
+<details><summary>Why is a cup of flour not the same weight as a cup of sugar?</summary><p>Cups measure volume, while grams measure weight. A cup of flour and a cup of sugar occupy the same space but have different densities, so they weigh different amounts. Flour is less dense than sugar.</p></details>
+<details><summary>What is the difference between a US cup and a metric cup?</summary><p>A US customary cup holds approximately 236.6 millilitres, while a metric cup used in many countries holds exactly 250 millilitres. This calculator lets you switch between both standards.</p></details>
+<details><summary>How do I convert oven temperatures?</summary><p>Use the Temperature mode in this converter. Enter a value in Celsius or Fahrenheit and the tool shows the equivalent in both scales, plus the corresponding Gas Mark for UK recipes.</p></details>
+<details><summary>Is this cooking measurement converter free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your measurements anywhere.</p></details>
+<details><summary>How accurate are ingredient weight conversions?</summary><p>Ingredient conversions are accurate estimates based on standard density values. Actual weights vary with packing, grind size, moisture, brand and measuring technique. For precision baking, weighing ingredients directly is always recommended.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function fmt(n, dec){
+  if(dec === undefined) dec = 2;
+  if(Math.abs(n) >= 1000) dec = Math.min(dec, 1);
+  return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+/* Volume units in ml */
+var VOLUME_UNITS = [
+  {id:"tsp", name:"Teaspoon (US)", ml:4.92892},
+  {id:"tbsp", name:"Tablespoon (US)", ml:14.7868},
+  {id:"floz", name:"Fluid ounce (US)", ml:29.5735},
+  {id:"cup", name:"Cup", ml:236.588},
+  {id:"ml", name:"Millilitre", ml:1},
+  {id:"l", name:"Litre", ml:1000},
+  {id:"pint", name:"Pint (US)", ml:473.176},
+  {id:"quart", name:"Quart (US)", ml:946.353},
+  {id:"gallon", name:"Gallon (US)", ml:3785.41}
+];
+
+/* Weight units in grams */
+var WEIGHT_UNITS = [
+  {id:"g", name:"Gram", g:1},
+  {id:"kg", name:"Kilogram", g:1000},
+  {id:"oz", name:"Ounce", g:28.3495},
+  {id:"lb", name:"Pound", g:453.592}
+];
+
+/* Ingredient densities: grams per ml */
+var INGREDIENTS = [
+  {id:"flour_ap", name:"All-purpose flour", density:0.528},
+  {id:"flour_bread", name:"Bread flour", density:0.537},
+  {id:"flour_whole", name:"Whole wheat flour", density:0.512},
+  {id:"flour_cake", name:"Cake flour", density:0.482},
+  {id:"sugar_gran", name:"Granulated sugar", density:0.845},
+  {id:"sugar_brown", name:"Brown sugar (packed)", density:0.930},
+  {id:"sugar_powder", name:"Powdered sugar", density:0.560},
+  {id:"sugar_caster", name:"Caster sugar", density:0.800},
+  {id:"butter", name:"Butter", density:0.911},
+  {id:"oil_veg", name:"Vegetable oil", density:0.920},
+  {id:"oil_olive", name:"Olive oil", density:0.913},
+  {id:"honey", name:"Honey", density:1.420},
+  {id:"maple", name:"Maple syrup", density:1.320},
+  {id:"milk", name:"Milk", density:1.030},
+  {id:"cream", name:"Heavy cream", density:1.010},
+  {id:"yogurt", name:"Yogurt", density:1.030},
+  {id:"water", name:"Water", density:1.000},
+  {id:"cocoa", name:"Cocoa powder", density:0.360},
+  {id:"oats", name:"Rolled oats", density:0.380},
+  {id:"rice_white", name:"White rice (uncooked)", density:0.800},
+  {id:"rice_brown", name:"Brown rice (uncooked)", density:0.850},
+  {id:"cornstarch", name:"Cornstarch", density:0.540},
+  {id:"baking_powder", name:"Baking powder", density:0.900},
+  {id:"baking_soda", name:"Baking soda", density:0.950},
+  {id:"salt_table", name:"Table salt", density:1.220},
+  {id:"salt_kosher", name:"Kosher salt", density:0.640},
+  {id:"yeast", name:"Active dry yeast", density:0.640},
+  {id:"peanut_butter", name:"Peanut butter", density:1.080},
+  {id:"nutella", name:"Nutella", density:1.200},
+  {id:"shredded_coconut", name:"Shredded coconut", density:0.340},
+  {id:"almond_flour", name:"Almond flour", density:0.420},
+  {id:"breadcrumbs", name:"Breadcrumbs (dry)", density:0.480},
+  {id:"parmesan", name:"Parmesan (grated)", density:0.360},
+  {id:"chocolate_chips", name:"Chocolate chips", density:0.680},
+  {id:"raisins", name:"Raisins", density:0.600},
+  {id:"walnuts", name:"Walnuts (chopped)", density:0.520},
+  {id:"almonds", name:"Almonds (whole)", density:0.600},
+  {id:"pecans", name:"Pecans (chopped)", density:0.480},
+  {id:"peanuts", name:"Peanuts", density:0.600},
+  {id:"sesame", name:"Sesame seeds", density:0.600},
+  {id:"chia", name:"Chia seeds", density:0.700},
+  {id:"flax", name:"Flax seeds (ground)", density:0.520},
+  {id:"quinoa", name:"Quinoa (uncooked)", density:0.750},
+  {id:"lentils", name:"Lentils (dry)", density:0.850},
+  {id:"chickpeas", name:"Chickpeas (dry)", density:0.850},
+  {id:"pasta", name:"Pasta (dry)", density:0.420},
+  {id:"molasses", name:"Molasses", density:1.400},
+  {id:"condensed_milk", name:"Condensed milk", density:1.300},
+  {id:"jam", name:"Jam / preserves", density:1.330},
+  {id:"tahini", name:"Tahini", density:1.120}
+];
+
+/* Temperature conversion */
+function tempConvert(value, fromUnit){
+  var celsius;
+  if(fromUnit === "c") celsius = value;
+  else if(fromUnit === "f") celsius = (value - 32) * 5 / 9;
+  else if(fromUnit === "gas"){
+    var gasToC = {0.25:110,0.5:130,1:140,2:150,3:170,4:180,5:190,6:200,7:220,8:230,9:240};
+    celsius = gasToC[value] || 180;
+  } else celsius = value;
+
+  var fahrenheit = celsius * 9 / 5 + 32;
+
+  var gasMark = "—";
+  var gasTable = [[110,0.25],[130,0.5],[140,1],[150,2],[170,3],[180,4],[190,5],[200,6],[220,7],[230,8],[240,9]];
+  for(var i = gasTable.length - 1; i >= 0; i--){
+    if(celsius >= gasTable[i][0] - 5){ gasMark = gasTable[i][1]; break; }
+  }
+
+  return { celsius: celsius, fahrenheit: fahrenheit, gas: gasMark };
+}
+
+/* Populate dropdowns */
+function populateSelect(el, items, valueKey, labelKey){
+  var html = "";
+  for(var i = 0; i < items.length; i++){
+    html += '<option value="' + items[i][valueKey] + '">' + items[i][labelKey] + '</option>';
+  }
+  el.innerHTML = html;
+}
+
+function populateIngredients(el, includeNone){
+  var html = "";
+  if(includeNone) html += '<option value="">— None (pure measurement) —</option>';
+  for(var i = 0; i < INGREDIENTS.length; i++){
+    html += '<option value="' + INGREDIENTS[i].id + '">' + INGREDIENTS[i].name + '</option>';
+  }
+  el.innerHTML = html;
+}
+
+function getIngredient(id){
+  for(var i = 0; i < INGREDIENTS.length; i++){
+    if(INGREDIENTS[i].id === id) return INGREDIENTS[i];
+  }
+  return null;
+}
+
+/* All-units grid renderer */
+function renderAllUnits(container, baseValue, baseUnitId, unitList, unitKey, convertFn){
+  var html = '<h4>All equivalents</h4><table>';
+  for(var i = 0; i < unitList.length; i++){
+    var u = unitList[i];
+    if(u.id === baseUnitId) continue;
+    var converted = convertFn(baseValue, baseUnitId, u.id);
+    html += '<tr><td>' + u.name + '</td><td>' + fmt(converted) + ' ' + u.id + '</td></tr>';
+  }
+  html += '</table>';
+  container.innerHTML = html;
+}
+
+/* ---------- VOLUME ---------- */
+function convertVolume(value, from, to, cupStandard){
+  var fromUnit = VOLUME_UNITS.find(function(u){ return u.id === from; });
+  var toUnit = VOLUME_UNITS.find(function(u){ return u.id === to; });
+  if(!fromUnit || !toUnit) return 0;
+  var fromMl = fromUnit.ml;
+  var toMl = toUnit.ml;
+  if(from === "cup" && cupStandard === "metric") fromMl = 250;
+  if(to === "cup" && cupStandard === "metric") toMl = 250;
+  var ml = value * fromMl;
+  return ml / toMl;
+}
+
+function updateVolume(){
+  var value = num($("volAmount").value, 1);
+  var from = $("volFrom").value;
+  var to = $("volTo").value;
+  var cup = $("volCupStandard").value;
+  var result = convertVolume(value, from, to, cup);
+
+  var h = '<div>Result</div><div class="big">' + fmt(result) + ' ' + to + '</div>';
+  h += '<p class="meta">' + fmt(value) + ' ' + from + ' = ' + fmt(result) + ' ' + to + '</p>';
+  $("volOut").innerHTML = h;
+
+  var grid = document.createElement("div");
+  grid.className = "all-units";
+  var html = '<h4>All equivalents</h4><table>';
+  for(var i = 0; i < VOLUME_UNITS.length; i++){
+    var u = VOLUME_UNITS[i];
+    if(u.id === from) continue;
+    var converted = convertVolume(value, from, u.id, cup);
+    html += '<tr><td>' + u.name + '</td><td>' + fmt(converted) + ' ' + u.id + '</td></tr>';
+  }
+  html += '</table>';
+  grid.innerHTML = html;
+  $("volOut").appendChild(grid);
+}
+
+/* ---------- WEIGHT ---------- */
+function convertWeight(value, from, to){
+  var fromUnit = WEIGHT_UNITS.find(function(u){ return u.id === from; });
+  var toUnit = WEIGHT_UNITS.find(function(u){ return u.id === to; });
+  if(!fromUnit || !toUnit) return 0;
+  return (value * fromUnit.g) / toUnit.g;
+}
+
+function updateWeight(){
+  var value = num($("wtAmount").value, 100);
+  var from = $("wtFrom").value;
+  var to = $("wtTo").value;
+  var result = convertWeight(value, from, to);
+
+  var h = '<div>Result</div><div class="big">' + fmt(result) + ' ' + to + '</div>';
+  h += '<p class="meta">' + fmt(value) + ' ' + from + ' = ' + fmt(result) + ' ' + to + '</p>';
+  $("wtOut").innerHTML = h;
+
+  var grid = document.createElement("div");
+  grid.className = "all-units";
+  var html = '<h4>All equivalents</h4><table>';
+  for(var i = 0; i < WEIGHT_UNITS.length; i++){
+    var u = WEIGHT_UNITS[i];
+    if(u.id === from) continue;
+    var converted = convertWeight(value, from, u.id);
+    html += '<tr><td>' + u.name + '</td><td>' + fmt(converted) + ' ' + u.id + '</td></tr>';
+  }
+  html += '</table>';
+  grid.innerHTML = html;
+  $("wtOut").appendChild(grid);
+}
+
+/* ---------- INGREDIENT ---------- */
+function updateIngredient(){
+  var value = num($("ingAmount").value, 1);
+  var ingId = $("ingIngredient").value;
+  var from = $("ingFrom").value;
+  var to = $("ingTo").value;
+  var cupStandard = $("ingCupStandard").value;
+
+  var ing = getIngredient(ingId);
+  if(!ing){ $("ingOut").innerHTML = '<p>Please select an ingredient.</p>'; return; }
+
+  // Convert from source to a base (grams)
+  var baseG;
+  var volUnits = VOLUME_UNITS;
+  var wtUnits = WEIGHT_UNITS;
+
+  var fromVol = volUnits.find(function(u){ return u.id === from; });
+  var fromWt = wtUnits.find(function(u){ return u.id === from; });
+
+  if(fromVol){
+    var fromMl = fromVol.ml;
+    if(from === "cup" && cupStandard === "metric") fromMl = 250;
+    baseG = value * fromMl * ing.density;
+  } else if(fromWt){
+    baseG = value * fromWt.g;
+  } else {
+    baseG = value;
+  }
+
+  // Convert base to target
+  var result;
+  var toVol = volUnits.find(function(u){ return u.id === to; });
+  var toWt = wtUnits.find(function(u){ return u.id === to; });
+
+  if(toVol){
+    var toMl = toVol.ml;
+    if(to === "cup" && cupStandard === "metric") toMl = 250;
+    result = baseG / ing.density / toMl;
+  } else if(toWt){
+    result = baseG / toWt.g;
+  } else {
+    result = baseG;
+  }
+
+  var h = '<div>Result</div><div class="big">' + fmt(result) + ' ' + to + '</div>';
+  h += '<p class="meta">' + fmt(value) + ' ' + from + ' of ' + ing.name + ' = ' + fmt(result) + ' ' + to + '</p>';
+  h += '<p class="meta">Density: ' + ing.density + ' g/ml. Estimates vary with packing and grind.</p>';
+  $("ingOut").innerHTML = h;
+}
+
+/* ---------- TEMPERATURE ---------- */
+function updateTemperature(){
+  var value = num($("tempAmount").value, 180);
+  var from = $("tempFrom").value;
+  var r = tempConvert(value, from);
+
+  var h = '<div>Result</div><div class="big">' + fmt(r.celsius, 1) + '°C / ' + fmt(r.fahrenheit, 1) + '°F</div>';
+  h += '<table class="res">';
+  h += '<tr><th>Scale</th><th>Value</th></tr>';
+  h += '<tr><td>Celsius</td><td>' + fmt(r.celsius, 1) + ' °C</td></tr>';
+  h += '<tr><td>Fahrenheit</td><td>' + fmt(r.fahrenheit, 1) + ' °F</td></tr>';
+  h += '<tr><td>Gas Mark</td><td>' + r.gas + '</td></tr>';
+  h += '</table>';
+  $("tempOut").innerHTML = h;
+}
+
+/* ---------- MODE SWITCHING ---------- */
+var mode = "volume";
+function setMode(m){
+  mode = m;
+  $("volumeMode").hidden = (mode !== "volume");
+  $("weightMode").hidden = (mode !== "weight");
+  $("ingredientMode").hidden = (mode !== "ingredient");
+  $("temperatureMode").hidden = (mode !== "temperature");
+  var tabs = document.querySelectorAll(".conv-tab");
+  for(var i = 0; i < tabs.length; i++){
+    if(tabs[i].dataset.mode === mode) tabs[i].classList.add("on");
+    else tabs[i].classList.remove("on");
+  }
+  if(mode === "volume") updateVolume();
+  if(mode === "weight") updateWeight();
+  if(mode === "ingredient") updateIngredient();
+  if(mode === "temperature") updateTemperature();
+}
+
+/* ---------- SWAP ---------- */
+function swapUnits(fromId, toId, updateFn){
+  var f = $(fromId), t = $(toId);
+  var tmp = f.value;
+  f.value = t.value;
+  t.value = tmp;
+  updateFn();
+}
+
+/* ---------- EVENT WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Populate volume units
+  var volOpts = VOLUME_UNITS.map(function(u){ return {id:u.id, name:u.name}; });
+  populateSelect($("volFrom"), volOpts, "id", "name");
+  populateSelect($("volTo"), volOpts, "id", "name");
+  $("volFrom").value = "cup";
+  $("volTo").value = "ml";
+
+  // Populate weight units
+  var wtOpts = WEIGHT_UNITS.map(function(u){ return {id:u.id, name:u.name}; });
+  populateSelect($("wtFrom"), wtOpts, "id", "name");
+  populateSelect($("wtTo"), wtOpts, "id", "name");
+  $("wtFrom").value = "g";
+  $("wtTo").value = "oz";
+
+  // Populate ingredient units
+  var ingUnitOpts = [];
+  for(var i = 0; i < VOLUME_UNITS.length; i++) ingUnitOpts.push({id:VOLUME_UNITS[i].id, name:VOLUME_UNITS[i].name});
+  for(var j = 0; j < WEIGHT_UNITS.length; j++) ingUnitOpts.push({id:WEIGHT_UNITS[j].id, name:WEIGHT_UNITS[j].name});
+  populateSelect($("ingFrom"), ingUnitOpts, "id", "name");
+  populateSelect($("ingTo"), ingUnitOpts, "id", "name");
+  $("ingFrom").value = "cup";
+  $("ingTo").value = "g";
+
+  // Populate ingredient lists
+  populateIngredients($("volIngredient"), true);
+  populateIngredients($("wtIngredient"), true);
+  populateIngredients($("ingIngredient"), false);
+  $("ingIngredient").value = "flour_ap";
+
+  // Wire events
+  $("volAmount").addEventListener("input", updateVolume);
+  $("volFrom").addEventListener("change", updateVolume);
+  $("volTo").addEventListener("change", updateVolume);
+  $("volCupStandard").addEventListener("change", updateVolume);
+
+  $("wtAmount").addEventListener("input", updateWeight);
+  $("wtFrom").addEventListener("change", updateWeight);
+  $("wtTo").addEventListener("change", updateWeight);
+
+  $("ingAmount").addEventListener("input", updateIngredient);
+  $("ingIngredient").addEventListener("change", updateIngredient);
+  $("ingFrom").addEventListener("change", updateIngredient);
+  $("ingTo").addEventListener("change", updateIngredient);
+  $("ingCupStandard").addEventListener("change", updateIngredient);
+
+  $("tempAmount").addEventListener("input", updateTemperature);
+  $("tempFrom").addEventListener("change", updateTemperature);
+
+  // Mode tabs
+  var tabs = document.querySelectorAll(".conv-tab");
+  for(var t = 0; t < tabs.length; t++){
+    tabs[t].addEventListener("click", function(){
+      setMode(this.dataset.mode);
+    });
+  }
+
+  // Swap buttons
+  $("swapVol").addEventListener("click", function(){ swapUnits("volFrom", "volTo", updateVolume); });
+  $("swapWt").addEventListener("click", function(){ swapUnits("wtFrom", "wtTo", updateWeight); });
+  $("swapIng").addEventListener("click", function(){ swapUnits("ingFrom", "ingTo", updateIngredient); });
+
+  setMode("volume");
+});
+})();
+</script>
+</body>
+</html>
