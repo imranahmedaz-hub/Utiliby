@@ -1,0 +1,1053 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free GPA Calculator Online – Weighted, Unweighted &amp; Cumulative GPA</title>
+<meta name="description" content="Free GPA calculator online. Calculate weighted and unweighted GPA, cumulative GPA across semesters, target GPA planning, retake handling and multi-scale support (4.0, 5.0, 10.0, percentage). 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/everyday-calculators/gpa-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free GPA Calculator Online – Weighted, Unweighted &amp; Cumulative GPA">
+<meta property="og:description" content="Free GPA calculator online. Weighted and unweighted GPA, cumulative tracking, target planning and multi-scale support.">
+<meta property="og:url" content="https://utiliby.com/tools/everyday-calculators/gpa-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.gp-hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.gp-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.gp-hero p{margin:0;opacity:.92;font-size:.9rem}
+.gp-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.gp-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.gp-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.gp-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.gp-panel h3{margin:0 0 10px;font-size:1rem}
+.gp-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.gp-panel input[type="text"],.gp-panel input[type="number"],.gp-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.gp-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.gp-row{grid-template-columns:1fr}}
+.gp-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.gp-row3{grid-template-columns:1fr}}
+.gp-btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;margin-right:8px;margin-top:8px}
+.gp-btn:hover{opacity:.92}
+.gp-btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--line)}
+.gp-btn.danger{background:transparent;color:#dc2626;border:1px solid var(--line)}
+.gp-btn.small{padding:5px 12px;font-size:.78rem;margin-top:0}
+.gp-semester{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin:12px 0}
+.gp-semester-header{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:10px}
+.gp-semester-name{font-weight:700;font-size:1rem;color:var(--fg);background:transparent;border:0;font-family:inherit;padding:4px 0;width:auto;min-width:150px}
+.gp-semester-name:focus{outline:2px solid var(--brand);border-radius:4px}
+.gp-semester-gpa{font-size:.8rem;color:var(--muted);font-weight:600}
+.gp-courses{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.gp-course{display:grid;grid-template-columns:1fr 80px 120px 100px 26px;gap:6px;align-items:center}
+@media(max-width:700px){.gp-course{grid-template-columns:1fr 1fr;gap:4px}}
+.gp-course input,.gp-course select{padding:6px 8px;font-size:.82rem}
+.gp-course .remove{background:transparent;border:0;color:#dc2626;font-size:1rem;cursor:pointer;padding:2px;line-height:1;border-radius:4px}
+.gp-course .remove:hover{background:#fee2e2}
+.gp-grade-scale{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:14px;margin:12px 0}
+.gp-scale-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(90px,1fr));gap:6px;margin-top:8px}
+.gp-scale-item{text-align:center;padding:6px;border:1px solid var(--line);border-radius:6px;font-size:.75rem;background:var(--bg)}
+.gp-scale-item .letter{font-weight:700;font-size:.9rem;color:var(--fg)}
+.gp-scale-item .points{color:var(--brand);font-weight:700}
+.gp-scale-item .pct{color:var(--muted);font-size:.68rem}
+.gp-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.gp-result-big{font-size:2.2rem;font-weight:800;color:var(--brand);line-height:1.1;margin:4px 0}
+.gp-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.gp-result-sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.gp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.gp-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.gp-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.gp-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.gp-stat .val.ok{color:#16a34a}
+.gp-stat .val.warn{color:#f59e0b}
+.gp-stat .val.over{color:#dc2626}
+.gp-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.gp-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.gp-tip{background:rgba(79,70,229,.06);border-left:3px solid var(--brand);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.gp-tip b{color:var(--brand)}
+.gp-mode-toggle{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap}
+.gp-mode{background:transparent;color:var(--muted);border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.gp-mode.on{background:var(--brand);color:#fff;border-color:var(--brand)}
+.gp-empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.gp-print-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.gp-print-table th,.gp-print-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.gp-print-table th{background:var(--card);font-weight:700}
+@media print{
+  header.site,footer.site,.gp-tabs,.gp-btn,.gp-hero,.cn-article,.no-print{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+  .gp-semester,.gp-panel{border:1px solid #ccc !important;background:#fff !important;page-break-inside:avoid}
+  .gp-result-big{color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"GPA Calculator","url":"https://utiliby.com/tools/everyday-calculators/gpa-calculator/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free GPA calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free GPA calculator online is a tool that computes your Grade Point Average from your course grades and credit hours. This GPA calculator online supports weighted and unweighted GPA, multiple grading scales (4.0, 5.0, 10.0 and percentage), cumulative GPA across semesters, target planning and retake handling. It runs entirely in your browser with no sign-up."}},{"@type":"Question","name":"How is GPA calculated?","acceptedAnswer":{"@type":"Answer","text":"GPA is a credit-weighted average: each course grade is converted to grade points on a scale (usually 4.0), multiplied by the course credit hours to give quality points, and the total quality points are divided by the total graded credits. A 4-credit course therefore affects GPA four times as much as a 1-credit course."}},{"@type":"Question","name":"What is the difference between weighted and unweighted GPA?","acceptedAnswer":{"@type":"Answer","text":"Unweighted GPA treats every course equally on the 4.0 scale: an A is 4.0 whether it is a regular class or an AP class. Weighted GPA adds bonus points for advanced courses, typically +0.5 for Honors and +1.0 for AP or IB, so an A in an AP class may be worth 5.0 instead of 4.0. Most selective colleges consider both and often recalculate your GPA using their own formula."}},{"@type":"Question","name":"What is cumulative GPA?","acceptedAnswer":{"@type":"Answer","text":"Cumulative GPA is the GPA across all your semesters or terms combined. It is calculated by summing the quality points from every course you have taken and dividing by the total graded credits. Cumulative GPA is the number most colleges, scholarships and employers ask for."}},{"@type":"Question","name":"How do I calculate what grades I need to reach a target GPA?","acceptedAnswer":{"@type":"Answer","text":"To reverse-calculate your target GPA, use this formula: required average GPA = (target GPA × total future credits − current quality points) ÷ future credits. This tool does the calculation automatically in the Target tab. If the required GPA exceeds the maximum scale value, the target is mathematically impossible without additional credits."}},{"@type":"Question","name":"How does retaking a course affect my GPA?","acceptedAnswer":{"@type":"Answer","text":"Retake policies vary. Some schools replace the old grade entirely with the new one (grade replacement). Others average both attempts. A third policy counts only the highest. This tool's Retake mode lets you choose the policy so the calculation matches your school's rules."}},{"@type":"Question","name":"What is a good GPA?","acceptedAnswer":{"@type":"Answer","text":"On the US 4.0 unweighted scale, 3.7 or higher is strong for selective colleges, 3.3 to 3.6 is competitive at many state universities, and below 3.0 may be a barrier at four-year institutions. Graduate school and scholarship requirements vary widely."}},{"@type":"Question","name":"Is this GPA calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your grades anywhere. There are no ads and no rate limits."}},{"@type":"Question","name":"Does this GPA calculator work for high school and college?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works for any credit-based grading system. High school students can use it with weighted AP and Honors courses, while college and university students can use the unweighted mode with the 4.0 scale."}},{"@type":"Question","name":"Can I import and export my GPA history?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool supports CSV export to save your complete semester-by-semester history, and CSV import to restore it later or move it between devices."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › GPA Calculator</nav>
+<h1>GPA Calculator</h1>
+<p class="lead">Calculate weighted and unweighted GPA, track cumulative GPA across semesters, plan a target GPA and handle retakes. Multi-scale support (4.0, 5.0, 10.0, percentage). Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="GPA calculator">
+
+<div class="gp-hero">
+<h2>Free GPA Calculator</h2>
+<p>Add courses, pick grades and credit hours — your GPA updates live. Track every semester in one place.</p>
+</div>
+
+<div class="gp-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="gp-tab on" data-tab="calculator">GPA Calculator</button>
+<button type="button" class="gp-tab" data-tab="target">Target GPA</button>
+<button type="button" class="gp-tab" data-tab="retake">Retake Mode</button>
+<button type="button" class="gp-tab" data-tab="reference">Grade Scale</button>
+</div>
+
+<!-- CALCULATOR TAB -->
+<div id="calculatorTab">
+
+<div class="gp-panel">
+<h3>Grading scale</h3>
+<div class="gp-row3">
+<div>
+<label for="scaleSelect">GPA scale</label>
+<select id="scaleSelect">
+<option value="4.0" selected>4.0 scale (US standard)</option>
+<option value="5.0">5.0 scale (weighted / AP)</option>
+<option value="10.0">10.0 scale (India CGPA)</option>
+<option value="percentage">Percentage (0–100)</option>
+</select>
+</div>
+<div>
+<label>GPA mode</label>
+<div class="gp-mode-toggle">
+<button type="button" class="gp-mode on" data-mode="unweighted">Unweighted</button>
+<button type="button" class="gp-mode" data-mode="weighted">Weighted</button>
+</div>
+</div>
+<div>
+<label for="precisionSelect">Decimal precision</label>
+<select id="precisionSelect">
+<option value="2" selected>2 decimals</option>
+<option value="3">3 decimals</option>
+<option value="4">4 decimals</option>
+</select>
+</div>
+</div>
+</div>
+
+<div id="semesterList"></div>
+
+<div class="gp-panel">
+<button type="button" class="gp-btn" id="addSemesterBtn">+ Add semester</button>
+<button type="button" class="gp-btn ghost" id="resetAllBtn">Reset all</button>
+</div>
+
+<div id="gpaSummary"></div>
+
+<div class="gp-panel">
+<h3>Export &amp; save</h3>
+<button type="button" class="gp-btn" id="copySummaryBtn">Copy summary</button>
+<button type="button" class="gp-btn ghost" id="downloadCsvBtn">Download CSV</button>
+<button type="button" class="gp-btn ghost" id="importCsvBtn">Import CSV</button>
+<input type="file" id="csvInput" accept=".csv" hidden>
+<button type="button" class="gp-btn ghost" id="printBtn">Print / save as PDF</button>
+<p class="meta" style="margin-top:8px">Your grades are saved automatically in this browser. Nothing is uploaded or shared.</p>
+</div>
+
+</div>
+
+<!-- TARGET TAB -->
+<div id="targetTab" hidden>
+<div class="gp-panel">
+<h3>What grades do I need to reach my target GPA?</h3>
+<p class="meta" style="margin-bottom:10px">Uses your current GPA from the Calculator tab. If you have not entered any courses yet, start there first.</p>
+<div class="gp-row3">
+<div><label for="targetGpa">Target GPA</label><input type="number" id="targetGpa" min="0" step="0.01" value="3.5"></div>
+<div><label for="targetCurrentGpa">Current GPA (auto-filled)</label><input type="number" id="targetCurrentGpa" min="0" step="0.01" value="0"></div>
+<div><label for="targetCurrentCredits">Current graded credits</label><input type="number" id="targetCurrentCredits" min="0" step="1" value="0"></div>
+</div>
+<div class="gp-row">
+<div><label for="targetRemainingCredits">Remaining credits to take</label><input type="number" id="targetRemainingCredits" min="0" step="1" value="60"></div>
+<div><label for="targetMaxGpa">Max possible GPA</label><input type="number" id="targetMaxGpa" min="1" step="0.1" value="4.0"></div>
+</div>
+<button type="button" class="gp-btn" id="calcTargetBtn">Calculate required GPA</button>
+</div>
+<div id="targetResult"></div>
+</div>
+
+<!-- RETAKE TAB -->
+<div id="retakeTab" hidden>
+<div class="gp-panel">
+<h3>Retake course effect</h3>
+<p class="meta" style="margin-bottom:10px">See how retaking a course changes your GPA under different school policies.</p>
+<div class="gp-row">
+<div><label for="retakeCurrentGpa">Current cumulative GPA</label><input type="number" id="retakeCurrentGpa" min="0" step="0.01" value="0"></div>
+<div><label for="retakeCurrentCredits">Current graded credits</label><input type="number" id="retakeCurrentCredits" min="0" step="1" value="0"></div>
+</div>
+<div class="gp-row3">
+<div><label for="retakeCourseCredits">Course credit hours</label><input type="number" id="retakeCourseCredits" min="0" step="0.5" value="3"></div>
+<div><label for="retakeOldGrade">Old grade</label><input type="number" id="retakeOldGrade" min="0" step="0.1" value="1.0"></div>
+<div><label for="retakeNewGrade">New (retake) grade</label><input type="number" id="retakeNewGrade" min="0" step="0.1" value="3.5"></div>
+</div>
+<div class="gp-row">
+<div><label for="retakePolicy">School retake policy</label>
+<select id="retakePolicy">
+<option value="replace" selected>Grade replacement (new grade replaces old)</option>
+<option value="average">Both attempts averaged</option>
+<option value="highest">Higher grade counted, lower ignored</option>
+</select>
+</div>
+<div><label for="retakeMaxGpa">Max GPA scale</label><input type="number" id="retakeMaxGpa" min="1" step="0.1" value="4.0"></div>
+</div>
+<button type="button" class="gp-btn" id="calcRetakeBtn">Calculate retake effect</button>
+</div>
+<div id="retakeResult"></div>
+</div>
+
+<!-- REFERENCE TAB -->
+<div id="referenceTab" hidden>
+<div class="gp-panel">
+<h3>Grade scale reference</h3>
+<p class="meta" style="margin-bottom:10px">Standard 4.0 grade point values with typical percentage equivalents. Adjust the scale above to change calculations.</p>
+<div class="gp-grade-scale">
+<div class="gp-scale-grid" id="gradeScaleGrid"></div>
+</div>
+</div>
+<div class="gp-panel">
+<h3>Multi-scale conversion chart</h3>
+<p class="meta" style="margin-bottom:10px">Approximate conversions between common grading scales. Use as a guide only — always check your institution's official policy.</p>
+<table class="gp-print-table">
+<thead><tr><th>4.0 GPA</th><th>5.0 Scale</th><th>10.0 CGPA</th><th>Percentage</th><th>Letter</th></tr></thead>
+<tbody id="conversionTable"></tbody>
+</table>
+</div>
+</div>
+
+</section>
+
+<article class="cn-article">
+
+<h2>What is a free GPA calculator online?</h2>
+<p>A free GPA calculator online is a tool that computes your Grade Point Average from your course grades and credit hours. GPA is the single number most used by colleges, universities, graduate programmes, scholarships and employers to summarise academic performance. Instead of manually multiplying grades by credits and dividing totals on a spreadsheet, you enter your courses, select grades from a dropdown, and the GPA updates live.</p>
+<p>This GPA calculator online goes beyond a basic averaging tool. It supports weighted and unweighted GPA, four grading scales (4.0, 5.0, 10.0 CGPA and percentage), unlimited semesters with a running cumulative GPA, reverse target planning (what grades do I need to hit 3.5?), retake course modelling, CSV import/export, and a built-in grade scale reference. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free GPA calculator</h2>
+<ol>
+<li>Choose your grading scale: 4.0 (standard US), 5.0 (weighted AP), 10.0 (India CGPA) or percentage.</li>
+<li>Select weighted or unweighted mode. Weighted adds bonus points for AP, IB and Honors courses.</li>
+<li>For each course, enter the course name (optional), credit hours, and letter grade.</li>
+<li>Click <b>+ Add course</b> to add more rows, or <b>+ Add semester</b> to start a new term.</li>
+<li>Watch the semester GPA and cumulative GPA update instantly.</li>
+<li>Use the <b>Target GPA</b> tab to reverse-calculate what grades you need on remaining credits.</li>
+<li>Use the <b>Retake Mode</b> tab to see how repeating a course affects your GPA under different policies.</li>
+<li>Export your history as CSV, copy a summary, or print a report.</li>
+</ol>
+
+<h2>How GPA is calculated</h2>
+<p>GPA is a <b>credit-weighted average</b>, not a plain average. The formula used by virtually every US college and university is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>GPA = Σ (grade points × credit hours) ÷ Σ credit hours</b></p>
+<p>Grade points come from the grading scale. On the standard 4.0 scale, an A is 4.0, a B is 3.0, a C is 2.0, a D is 1.0 and an F is 0.0. Plus and minus grades carry intermediate values: an A− is 3.7, a B+ is 3.3, a C− is 1.7 and so on.</p>
+<p>The "credit-weighted" part is what makes GPA different from a plain average. A 4-credit calculus course counts four times as much as a 1-credit lab. If you get an A in the lab and a C in the calculus course, your GPA will be dominated by the calculus grade — as it should be, since the calculus course represents four times the work.</p>
+
+<h2>Weighted vs unweighted GPA</h2>
+<p>The two most common GPA types in US high schools are unweighted and weighted.</p>
+<h3>Unweighted GPA</h3>
+<p>Treats every course equally on the 4.0 scale. An A in a regular class and an A in an AP class are both 4.0. Unweighted GPA is the most widely reported and compared number. It never exceeds 4.0 (or the top of whatever scale your school uses).</p>
+<h3>Weighted GPA</h3>
+<p>Adds bonus points for advanced courses to reward students who take on more challenging work. The most common bonus scheme is:</p>
+<table>
+<tr><th>Course level</th><th>Bonus (4.0 → 5.0 scale)</th><th>Bonus (5.0 → 6.0 scale)</th></tr>
+<tr><td>Regular</td><td>+0.0</td><td>+0.0</td></tr>
+<tr><td>Honors</td><td>+0.5</td><td>+1.0</td></tr>
+<tr><td>AP / IB / Dual Enrollment</td><td>+1.0</td><td>+2.0</td></tr>
+</table>
+<p>With this scheme, an A in an AP class on a weighted 5.0 scale is worth 5.0 instead of 4.0. Students who take many AP courses can graduate with a weighted GPA above 4.5 or even 5.0.</p>
+<p>Most selective colleges consider both weighted and unweighted GPA and often recalculate using their own formula. This tool shows both side by side.</p>
+
+<h2>Cumulative GPA vs semester GPA</h2>
+<p><b>Semester GPA</b> covers a single term. <b>Cumulative GPA</b> covers every term combined. Cumulative GPA is calculated by summing the quality points from every course you have taken — across all semesters — and dividing by the total graded credits.</p>
+<p>Cumulative GPA is the number that appears on your transcript and the one colleges, scholarships and employers ask for. A strong semester can pull up a weaker cumulative GPA, but only in proportion to the credits earned. This is why raising a cumulative GPA gets harder over time: as you accumulate more credits, each new semester carries less weight in the average.</p>
+
+<h2>Reverse GPA calculation: what grades do I need?</h2>
+<p>One of the most useful features of this tool is the target GPA calculation. If you know your current cumulative GPA and how many credits you have left, you can compute the average grade you need on remaining courses to reach a target.</p>
+<p>The formula is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:.95rem"><b>Required average = (Target GPA × Total final credits − Current quality points) ÷ Remaining credits</b></p>
+<p>If the required average exceeds your maximum GPA (for example, 4.3 when the scale caps at 4.0), the target is mathematically impossible without additional credits. This tool shows that honestly rather than hiding it.</p>
+
+<h2>How retaking a course affects your GPA</h2>
+<p>Retake policies vary widely between schools, and the difference matters:</p>
+<ul>
+<li><b>Grade replacement:</b> The new grade replaces the old one. Most common at US universities — often with a limit on how many times you can repeat.</li>
+<li><b>Average of both attempts:</b> Both grades count, so the retake has half the effect of a first attempt.</li>
+<li><b>Higher grade counted:</b> The better of the two is used, and the lower is ignored. Most generous policy.</li>
+</ul>
+<p>This tool's Retake Mode tab lets you model all three policies against your actual current GPA and credits, so you can see exactly how much a retake would help.</p>
+
+<h2>Multi-scale support: 4.0, 5.0, 10.0 and percentage</h2>
+<p>Different countries and institutions use different GPA scales. This tool supports the four most common:</p>
+<h3>4.0 scale (US, Canada)</h3>
+<p>The standard US scale. A = 4.0, B = 3.0, C = 2.0, D = 1.0, F = 0.0. Plus/minus grades carry intermediate values. Weighted variants extend the scale to 5.0 or 6.0.</p>
+<h3>5.0 scale (weighted US, some Canadian provinces)</h3>
+<p>Extends the 4.0 scale to accommodate AP, IB and Honors bonus points. Regular courses still cap at 4.0; advanced courses can reach 5.0.</p>
+<h3>10.0 scale (India CGPA)</h3>
+<p>Widely used in Indian universities and CBSE. A CGPA of 10.0 is equivalent to roughly 95–100 percent; 9.0 is about 85–95 percent; 8.0 is about 75–85 percent. Conversion formulas vary by institution.</p>
+<h3>Percentage scale</h3>
+<p>Used in the UK, Europe, and many other countries. Percentage to 4.0 GPA conversion is approximate: roughly 90–100 percent = 4.0, 80–89 percent = 3.0–3.9, 70–79 percent = 2.0–2.9, below 70 percent = below 2.0.</p>
+
+<h2>Why GPA matters</h2>
+<p>GPA is the single most important quantitative measure in academic applications. Research from the National Association for College Admission Counseling consistently ranks GPA as the top factor in admissions decisions, ahead of test scores, essays and extracurriculars.</p>
+<p>GPA also affects:</p>
+<ul>
+<li><b>Scholarships and financial aid.</b> Most merit-based awards have minimum GPA requirements.</li>
+<li><b>Graduate school admissions.</b> A 3.0 is the common minimum for most master's programmes; competitive programmes often require 3.5 or higher.</li>
+<li><b>Internships and first jobs.</b> Many employers screen candidates by GPA cutoff, especially for competitive entry-level roles.</li>
+<li><b>Study abroad and exchange programmes.</b> GPA thresholds are standard for eligibility.</li>
+<li><b>Athletic eligibility.</b> NCAA and NAIA both require minimum GPAs for competition.</li>
+<li><b>Honours and Dean's List.</b> Most universities publish GPA thresholds for these recognitions.</li>
+</ul>
+
+<h2>Common GPA mistakes to avoid</h2>
+<ul>
+<li><b>Averaging semester GPAs.</b> You cannot simply average semester GPAs to get cumulative GPA — you must weight each semester by its credit hours.</li>
+<li><b>Using unweighted GPA to report to colleges that recalculate.</b> Check each college's policy; many use a specific formula that may exclude or adjust certain courses.</li>
+<li><b>Forgetting Pass/Fail courses.</b> P/F courses earn credits but do not affect GPA. This tool excludes them automatically.</li>
+<li><b>Ignoring +/- modifiers.</b> An A− (3.7) and an A (4.0) are different. Precision matters when you are close to a cutoff.</li>
+<li><b>Not checking retake policy.</b> Retake rules vary so widely that two students with the same grades can end up with very different GPAs after a retake. Always verify your school's policy.</li>
+<li><b>Calculating mid-semester with incomplete grades.</b> In-progress courses are not yet factored into GPA. Only completed, graded courses count.</li>
+</ul>
+
+<h2>GPA targets by goal</h2>
+<table>
+<tr><th>Goal</th><th>Typical GPA threshold</th></tr>
+<tr><td>Graduate from high school</td><td>2.0</td></tr>
+<tr><td>State university admission</td><td>2.5–3.0</td></tr>
+<tr><td>Competitive state university</td><td>3.3–3.7</td></tr>
+<tr><td>Selective private college</td><td>3.7–4.0</td></tr>
+<tr><td>Ivy League / top 20</td><td>3.9+ (with strong weighted GPA)</td></tr>
+<tr><td>Master's programme minimum</td><td>3.0</td></tr>
+<tr><td>Competitive graduate programme</td><td>3.5+</td></tr>
+<tr><td>Dean's List (typical)</td><td>3.5+</td></tr>
+<tr><td>Summa Cum Laude (typical)</td><td>3.9+</td></tr>
+</table>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free GPA calculator online?</summary><p>A free GPA calculator online is a tool that computes your Grade Point Average from your course grades and credit hours. This GPA calculator online supports weighted and unweighted GPA, multiple grading scales (4.0, 5.0, 10.0 and percentage), cumulative GPA across semesters, target planning and retake handling. It runs entirely in your browser with no sign-up.</p></details>
+<details><summary>How is GPA calculated?</summary><p>GPA is a credit-weighted average: each course grade is converted to grade points on a scale (usually 4.0), multiplied by the course credit hours to give quality points, and the total quality points are divided by the total graded credits. A 4-credit course therefore affects GPA four times as much as a 1-credit course.</p></details>
+<details><summary>What is the difference between weighted and unweighted GPA?</summary><p>Unweighted GPA treats every course equally on the 4.0 scale: an A is 4.0 whether it is a regular class or an AP class. Weighted GPA adds bonus points for advanced courses, typically +0.5 for Honors and +1.0 for AP or IB, so an A in an AP class may be worth 5.0 instead of 4.0.</p></details>
+<details><summary>What is cumulative GPA?</summary><p>Cumulative GPA is the GPA across all your semesters or terms combined. It is calculated by summing the quality points from every course you have taken and dividing by the total graded credits.</p></details>
+<details><summary>How do I calculate what grades I need to reach a target GPA?</summary><p>To reverse-calculate your target GPA, use this formula: required average GPA = (target GPA × total future credits − current quality points) ÷ future credits. This tool does the calculation automatically in the Target tab.</p></details>
+<details><summary>How does retaking a course affect my GPA?</summary><p>Retake policies vary. Some schools replace the old grade entirely with the new one. Others average both attempts. A third policy counts only the highest. This tool's Retake mode lets you choose the policy so the calculation matches your school's rules.</p></details>
+<details><summary>What is a good GPA?</summary><p>On the US 4.0 unweighted scale, 3.7 or higher is strong for selective colleges, 3.3 to 3.6 is competitive at many state universities, and below 3.0 may be a barrier at four-year institutions. Graduate school and scholarship requirements vary widely.</p></details>
+<details><summary>Is this GPA calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your grades anywhere. There are no ads and no rate limits.</p></details>
+<details><summary>Does this GPA calculator work for high school and college?</summary><p>Yes. It works for any credit-based grading system. High school students can use it with weighted AP and Honors courses, while college and university students can use the unweighted mode with the 4.0 scale.</p></details>
+<details><summary>Can I import and export my GPA history?</summary><p>Yes. The tool supports CSV export to save your complete semester-by-semester history, and CSV import to restore it later or move it between devices.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+
+var STORAGE_KEY = "utiliby-gpa-v1";
+
+/* ---------- GRADE SCALES ---------- */
+var SCALES = {
+  "4.0": { max: 4.0, grades: [
+    { letter: "A+", pts: 4.0, pct: "97–100" }, { letter: "A", pts: 4.0, pct: "93–96" },
+    { letter: "A−", pts: 3.7, pct: "90–92" }, { letter: "B+", pts: 3.3, pct: "87–89" },
+    { letter: "B", pts: 3.0, pct: "83–86" }, { letter: "B−", pts: 2.7, pct: "80–82" },
+    { letter: "C+", pts: 2.3, pct: "77–79" }, { letter: "C", pts: 2.0, pct: "73–76" },
+    { letter: "C−", pts: 1.7, pct: "70–72" }, { letter: "D+", pts: 1.3, pct: "67–69" },
+    { letter: "D", pts: 1.0, pct: "63–66" }, { letter: "D−", pts: 0.7, pct: "60–62" },
+    { letter: "F", pts: 0.0, pct: "0–59" }, { letter: "P", pts: null, pct: "Pass" },
+    { letter: "NP", pts: null, pct: "No credit" }
+  ]},
+  "5.0": { max: 5.0, grades: [
+    { letter: "A+", pts: 5.0, pct: "97–100" }, { letter: "A", pts: 5.0, pct: "93–96" },
+    { letter: "A−", pts: 4.7, pct: "90–92" }, { letter: "B+", pts: 4.3, pct: "87–89" },
+    { letter: "B", pts: 4.0, pct: "83–86" }, { letter: "B−", pts: 3.7, pct: "80–82" },
+    { letter: "C+", pts: 3.3, pct: "77–79" }, { letter: "C", pts: 3.0, pct: "73–76" },
+    { letter: "C−", pts: 2.7, pct: "70–72" }, { letter: "D+", pts: 2.3, pct: "67–69" },
+    { letter: "D", pts: 2.0, pct: "63–66" }, { letter: "D−", pts: 1.7, pct: "60–62" },
+    { letter: "F", pts: 0.0, pct: "0–59" }, { letter: "P", pts: null, pct: "Pass" },
+    { letter: "NP", pts: null, pct: "No credit" }
+  ]},
+  "10.0": { max: 10.0, grades: [
+    { letter: "O (10)", pts: 10.0, pct: "95–100" }, { letter: "A+ (9)", pts: 9.0, pct: "85–94" },
+    { letter: "A (8)", pts: 8.0, pct: "75–84" }, { letter: "B+ (7)", pts: 7.0, pct: "65–74" },
+    { letter: "B (6)", pts: 6.0, pct: "55–64" }, { letter: "C (5)", pts: 5.0, pct: "45–54" },
+    { letter: "P (4)", pts: 4.0, pct: "40–44" }, { letter: "F (0)", pts: 0.0, pct: "Below 40" }
+  ]},
+  "percentage": { max: 100, grades: [
+    { letter: "90–100", pts: 100, pct: "A" }, { letter: "80–89", pts: 89, pct: "B" },
+    { letter: "70–79", pts: 79, pct: "C" }, { letter: "60–69", pts: 69, pct: "D" },
+    { letter: "0–59", pts: 0, pct: "F" }
+  ]}
+};
+
+/* ---------- COURSE LEVEL WEIGHTS (for weighted mode) ---------- */
+var LEVEL_BONUS = {
+  "regular": 0.0,
+  "honors": 0.5,
+  "ap": 1.0,
+  "ib": 1.0,
+  "dual": 0.5
+};
+
+/* ---------- STATE ---------- */
+var state = {
+  scale: "4.0",
+  mode: "unweighted",
+  precision: 2,
+  semesters: []
+};
+
+/* ---------- UTILS ---------- */
+function currentScale(){ return SCALES[state.scale] || SCALES["4.0"]; }
+function gradePoints(letter, level){
+  var s = currentScale();
+  var g = s.grades.filter(function(x){ return x.letter === letter; })[0];
+  if(!g || g.pts === null) return null;
+  var pts = g.pts;
+  if(state.mode === "weighted" && level){
+    var bonus = LEVEL_BONUS[level] || 0;
+    // Scale the bonus to the current max
+    var scaled = bonus * (s.max / 4.0);
+    pts = Math.min(s.max, pts + scaled);
+  }
+  return pts;
+}
+
+function fmtGpa(n){
+  if(!isFinite(n)) return "—";
+  return n.toFixed(state.precision);
+}
+
+/* ---------- SEMESTER RENDERING ---------- */
+function renderSemesters(){
+  var list = $("semesterList");
+  if(state.semesters.length === 0){
+    list.innerHTML = '<div class="gp-empty"><h3>No semesters yet</h3><p>Click <b>+ Add semester</b> to start tracking your GPA.</p></div>';
+    return;
+  }
+  var h = "";
+  for(var s = 0; s < state.semesters.length; s++){
+    var sem = state.semesters[s];
+    h += '<div class="gp-semester" data-sidx="' + s + '">';
+    h += '<div class="gp-semester-header">';
+    h += '<input type="text" class="gp-semester-name" data-sidx="' + s + '" data-field="name" value="' + esc(sem.name) + '" placeholder="Semester name">';
+    h += '<div class="gp-semester-gpa">GPA: <b>' + fmtGpa(calcSemesterGpa(sem)) + '</b> · ' + calcSemesterCredits(sem) + ' credits</div>';
+    h += '<button type="button" class="gp-btn ghost small" data-remove-sem="' + s + '" style="margin-left:auto">Remove</button>';
+    h += '</div>';
+    h += '<div class="gp-courses">';
+    for(var c = 0; c < sem.courses.length; c++){
+      var cr = sem.courses[c];
+      h += '<div class="gp-course" data-sidx="' + s + '" data-cidx="' + c + '">';
+      h += '<input type="text" data-sidx="' + s + '" data-cidx="' + c + '" data-field="name" value="' + esc(cr.name) + '" placeholder="Course name">';
+      h += '<input type="number" min="0" step="0.5" data-sidx="' + s + '" data-cidx="' + c + '" data-field="credits" value="' + esc(cr.credits) + '" placeholder="Credits">';
+      h += '<select data-sidx="' + s + '" data-cidx="' + c + '" data-field="grade">';
+      var scale = currentScale();
+      for(var g = 0; g < scale.grades.length; g++){
+        var gr = scale.grades[g];
+        h += '<option value="' + esc(gr.letter) + '"' + (gr.letter === cr.grade ? " selected" : "") + '>' + esc(gr.letter) + (gr.pts !== null ? " (" + gr.pts + ")" : "") + '</option>';
+      }
+      h += '</select>';
+      h += '<select data-sidx="' + s + '" data-cidx="' + c + '" data-field="level">';
+      h += '<option value="regular"' + (cr.level === "regular" ? " selected" : "") + '>Regular</option>';
+      h += '<option value="honors"' + (cr.level === "honors" ? " selected" : "") + '>Honors</option>';
+      h += '<option value="ap"' + (cr.level === "ap" ? " selected" : "") + '>AP</option>';
+      h += '<option value="ib"' + (cr.level === "ib" ? " selected" : "") + '>IB</option>';
+      h += '<option value="dual"' + (cr.level === "dual" ? " selected" : "") + '>Dual Enr.</option>';
+      h += '</select>';
+      h += '<button type="button" class="remove" data-sidx="' + s + '" data-cidx="' + c + '" data-remove-course="1" title="Remove course">×</button>';
+      h += '</div>';
+    }
+    h += '</div>';
+    h += '<button type="button" class="gp-btn ghost small" data-add-course="' + s + '">+ Add course</button>';
+    h += '</div>';
+  }
+  list.innerHTML = h;
+}
+
+/* ---------- GPA CALCULATIONS ---------- */
+function calcSemesterGpa(sem){
+  var quality = 0, credits = 0;
+  for(var i = 0; i < sem.courses.length; i++){
+    var c = sem.courses[i];
+    var pts = gradePoints(c.grade, c.level);
+    if(pts === null) continue;
+    var cr = num(c.credits, 0);
+    quality += pts * cr;
+    credits += cr;
+  }
+  if(credits <= 0) return 0;
+  return quality / credits;
+}
+
+function calcSemesterCredits(sem){
+  var credits = 0;
+  for(var i = 0; i < sem.courses.length; i++){
+    var c = sem.courses[i];
+    if(gradePoints(c.grade, c.level) === null) continue;
+    credits += num(c.credits, 0);
+  }
+  return credits;
+}
+
+function calcCumulative(){
+  var quality = 0, credits = 0, totalCredits = 0;
+  for(var s = 0; s < state.semesters.length; s++){
+    var sem = state.semesters[s];
+    for(var i = 0; i < sem.courses.length; i++){
+      var c = sem.courses[i];
+      var pts = gradePoints(c.grade, c.level);
+      var cr = num(c.credits, 0);
+      totalCredits += cr;
+      if(pts === null) continue;
+      quality += pts * cr;
+      credits += cr;
+    }
+  }
+  return {
+    gpa: credits > 0 ? quality / credits : 0,
+    gradedCredits: credits,
+    totalCredits: totalCredits,
+    qualityPoints: quality
+  };
+}
+
+/* ---------- SUMMARY ---------- */
+function renderSummary(){
+  var cum = calcCumulative();
+  var h = '<div class="gp-result">';
+  h += '<div class="gp-result-label">Cumulative GPA</div>';
+  h += '<div class="gp-result-big">' + fmtGpa(cum.gpa) + '</div>';
+  h += '<div class="gp-result-sub">' + state.scale + ' scale · ' + (state.mode === "weighted" ? "Weighted" : "Unweighted") + '</div>';
+  h += '</div>';
+  h += '<div class="gp-stats">';
+  h += '<div class="gp-stat"><div class="lbl">Graded credits</div><div class="val">' + cum.gradedCredits + '</div></div>';
+  h += '<div class="gp-stat"><div class="lbl">Total credits</div><div class="val">' + cum.totalCredits + '</div></div>';
+  h += '<div class="gp-stat"><div class="lbl">Quality points</div><div class="val">' + Math.round(cum.qualityPoints * 100) / 100 + '</div></div>';
+  h += '<div class="gp-stat"><div class="lbl">Semesters</div><div class="val">' + state.semesters.length + '</div></div>';
+  h += '</div>';
+
+  // Per-semester breakdown
+  if(state.semesters.length > 1){
+    h += '<div class="gp-panel"><h3>Semester breakdown</h3>';
+    h += '<table class="gp-print-table"><thead><tr><th>Semester</th><th>GPA</th><th>Credits</th></tr></thead><tbody>';
+    for(var s = 0; s < state.semesters.length; s++){
+      h += '<tr><td>' + esc(state.semesters[s].name || "Semester " + (s+1)) + '</td><td>' + fmtGpa(calcSemesterGpa(state.semesters[s])) + '</td><td>' + calcSemesterCredits(state.semesters[s]) + '</td></tr>';
+    }
+    h += '</tbody></table></div>';
+  }
+
+  $("gpaSummary").innerHTML = h;
+
+  // Autofill target tab
+  $("targetCurrentGpa").value = cum.gpa.toFixed(state.precision);
+  $("targetCurrentCredits").value = cum.gradedCredits;
+  $("targetMaxGpa").value = currentScale().max;
+  $("retakeCurrentGpa").value = cum.gpa.toFixed(state.precision);
+  $("retakeCurrentCredits").value = cum.gradedCredits;
+  $("retakeMaxGpa").value = currentScale().max;
+}
+
+/* ---------- ADD/REMOVE ---------- */
+function addSemester(){
+  var n = state.semesters.length + 1;
+  state.semesters.push({
+    name: "Semester " + n,
+    courses: [{ name: "", credits: 3, grade: currentScale().grades[1].letter, level: "regular" }]
+  });
+  renderSemesters();
+  renderSummary();
+  saveState();
+}
+
+function addCourse(sidx){
+  if(!state.semesters[sidx]) return;
+  state.semesters[sidx].courses.push({ name: "", credits: 3, grade: currentScale().grades[1].letter, level: "regular" });
+  renderSemesters();
+  renderSummary();
+  saveState();
+}
+
+function removeCourse(sidx, cidx){
+  if(!state.semesters[sidx]) return;
+  state.semesters[sidx].courses.splice(cidx, 1);
+  renderSemesters();
+  renderSummary();
+  saveState();
+}
+
+function removeSemester(sidx){
+  if(!confirm("Remove this semester and all its courses?")) return;
+  state.semesters.splice(sidx, 1);
+  renderSemesters();
+  renderSummary();
+  saveState();
+}
+
+/* ---------- TARGET GPA ---------- */
+function calcTarget(){
+  var target = num($("targetGpa").value, 0);
+  var currentGpa = num($("targetCurrentGpa").value, 0);
+  var currentCredits = num($("targetCurrentCredits").value, 0);
+  var remainingCredits = num($("targetRemainingCredits").value, 0);
+  var maxGpa = num($("targetMaxGpa").value, 4.0);
+
+  if(remainingCredits <= 0){
+    $("targetResult").innerHTML = '<div class="gp-warn">Enter a positive number of remaining credits.</div>';
+    return;
+  }
+
+  var currentPoints = currentGpa * currentCredits;
+  var targetTotalPoints = target * (currentCredits + remainingCredits);
+  var requiredPoints = targetTotalPoints - currentPoints;
+  var requiredAvg = requiredPoints / remainingCredits;
+
+  var h = '<div class="gp-result">';
+  h += '<div class="gp-result-label">Required average on remaining courses</div>';
+  h += '<div class="gp-result-big">' + fmtGpa(requiredAvg) + '</div>';
+  h += '<div class="gp-result-sub">To reach a ' + target.toFixed(state.precision) + ' cumulative GPA</div>';
+  h += '</div>';
+
+  if(requiredAvg > maxGpa){
+    h += '<div class="gp-warn"><b>Mathematically impossible.</b> Reaching a ' + target.toFixed(2) + ' GPA would require an average of ' + requiredAvg.toFixed(2) + ' on remaining credits, but the scale caps at ' + maxGpa.toFixed(1) + '. You would need more credits, a higher target that is achievable, or to check whether your school has grade replacement policies that could help.</div>';
+  } else if(requiredAvg < 0){
+    h += '<div class="gp-tip"><b>Already there.</b> Your current GPA of ' + currentGpa.toFixed(2) + ' already exceeds the target of ' + target.toFixed(2) + '. You can maintain or raise it with any passing grades.</div>';
+  } else {
+    var letterHint = "";
+    var scale = currentScale();
+    for(var i = 0; i < scale.grades.length; i++){
+      if(scale.grades[i].pts !== null && scale.grades[i].pts >= requiredAvg){ letterHint = scale.grades[i].letter; }
+      else break;
+    }
+    h += '<div class="gp-tip"><b>What this means:</b> You need an average of <b>' + requiredAvg.toFixed(2) + '</b> — roughly a <b>' + (letterHint || "top grade") + '</b> — on each remaining credit to hit your target.</div>';
+  }
+
+  $("targetResult").innerHTML = h;
+}
+
+/* ---------- RETAKE ---------- */
+function calcRetake(){
+  var currentGpa = num($("retakeCurrentGpa").value, 0);
+  var currentCredits = num($("retakeCurrentCredits").value, 0);
+  var courseCredits = num($("retakeCourseCredits").value, 0);
+  var oldGrade = num($("retakeOldGrade").value, 0);
+  var newGrade = num($("retakeNewGrade").value, 0);
+  var policy = $("retakePolicy").value;
+  var maxGpa = num($("retakeMaxGpa").value, 4.0);
+
+  if(courseCredits <= 0 || currentCredits < 0){
+    $("retakeResult").innerHTML = '<div class="gp-warn">Enter valid credit values.</div>';
+    return;
+  }
+
+  var currentPoints = currentGpa * currentCredits;
+  var newPoints, newCredits, note;
+
+  if(policy === "replace"){
+    // Old grade removed; new grade replaces it. Credits unchanged.
+    var oldPoints = oldGrade * courseCredits;
+    newPoints = currentPoints - oldPoints + (newGrade * courseCredits);
+    newCredits = currentCredits;
+    note = "Your old grade (" + oldGrade.toFixed(1) + ") is removed and replaced by the new grade (" + newGrade.toFixed(1) + ").";
+  } else if(policy === "average"){
+    // Both attempts count. Old attempt stays; new attempt adds credits.
+    newPoints = currentPoints + (newGrade * courseCredits);
+    newCredits = currentCredits + courseCredits;
+    note = "Both attempts count. The old grade stays and the new grade adds " + courseCredits + " credits to your average.";
+  } else {
+    // Highest counted, lower ignored — only if new is higher
+    if(newGrade > oldGrade){
+      var oldPts = oldGrade * courseCredits;
+      newPoints = currentPoints - oldPts + (newGrade * courseCredits);
+      newCredits = currentCredits;
+      note = "Only the higher grade (" + newGrade.toFixed(1) + ") counts; the lower grade (" + oldGrade.toFixed(1) + ") is ignored.";
+    } else {
+      newPoints = currentPoints;
+      newCredits = currentCredits;
+      note = "Your retake grade is not higher than the original, so it does not change your GPA under this policy.";
+    }
+  }
+
+  var newGpa = newCredits > 0 ? newPoints / newCredits : 0;
+  var change = newGpa - currentGpa;
+
+  var h = '<div class="gp-result">';
+  h += '<div class="gp-result-label">GPA after retake</div>';
+  h += '<div class="gp-result-big">' + fmtGpa(newGpa) + '</div>';
+  h += '<div class="gp-result-sub">Change: ' + (change >= 0 ? "+" : "") + change.toFixed(state.precision) + ' from your current ' + fmtGpa(currentGpa) + '</div>';
+  h += '</div>';
+  h += '<div class="gp-tip"><b>Policy:</b> ' + esc(note) + '</div>';
+  $("retakeResult").innerHTML = h;
+}
+
+/* ---------- REFERENCE TABLE ---------- */
+function renderReference(){
+  var scale = currentScale();
+  var gh = "";
+  for(var i = 0; i < scale.grades.length; i++){
+    var g = scale.grades[i];
+    gh += '<div class="gp-scale-item">';
+    gh += '<div class="letter">' + esc(g.letter) + '</div>';
+    gh += '<div class="points">' + (g.pts !== null ? g.pts : "—") + '</div>';
+    gh += '<div class="pct">' + esc(g.pct) + '</div>';
+    gh += '</div>';
+  }
+  $("gradeScaleGrid").innerHTML = gh;
+
+  var conversions = [
+    { gpa: "4.0", five: "5.0", ten: "10.0", pct: "93–100", letter: "A" },
+    { gpa: "3.9", five: "4.9", ten: "9.5", pct: "90–92", letter: "A−" },
+    { gpa: "3.7", five: "4.7", ten: "9.0", pct: "87–89", letter: "B+" },
+    { gpa: "3.3", five: "4.3", ten: "8.5", pct: "83–86", letter: "B" },
+    { gpa: "3.0", five: "4.0", ten: "8.0", pct: "80–82", letter: "B−" },
+    { gpa: "2.7", five: "3.7", ten: "7.5", pct: "77–79", letter: "C+" },
+    { gpa: "2.3", five: "3.3", ten: "7.0", pct: "73–76", letter: "C" },
+    { gpa: "2.0", five: "3.0", ten: "6.0", pct: "70–72", letter: "C−" },
+    { gpa: "1.7", five: "2.7", ten: "5.5", pct: "67–69", letter: "D+" },
+    { gpa: "1.0", five: "2.0", ten: "4.0", pct: "63–66", letter: "D" },
+    { gpa: "0.0", five: "0.0", ten: "0.0", pct: "0–59", letter: "F" }
+  ];
+  var th = "";
+  for(var i = 0; i < conversions.length; i++){
+    var c = conversions[i];
+    th += '<tr><td>' + c.gpa + '</td><td>' + c.five + '</td><td>' + c.ten + '</td><td>' + c.pct + '</td><td>' + c.letter + '</td></tr>';
+  }
+  $("conversionTable").innerHTML = th;
+}
+
+/* ---------- EXPORT ---------- */
+function buildSummaryText(){
+  var cum = calcCumulative();
+  var lines = [];
+  lines.push("GPA Summary");
+  lines.push("===========");
+  lines.push("Scale: " + state.scale + " (" + state.mode + ")");
+  lines.push("Cumulative GPA: " + fmtGpa(cum.gpa));
+  lines.push("Graded credits: " + cum.gradedCredits);
+  lines.push("Quality points: " + cum.qualityPoints.toFixed(2));
+  lines.push("");
+  for(var s = 0; s < state.semesters.length; s++){
+    var sem = state.semesters[s];
+    lines.push(sem.name || ("Semester " + (s+1)) + " — GPA " + fmtGpa(calcSemesterGpa(sem)) + " (" + calcSemesterCredits(sem) + " credits)");
+    for(var i = 0; i < sem.courses.length; i++){
+      var c = sem.courses[i];
+      if(!c.name && !c.credits) continue;
+      lines.push("  - " + (c.name || "(unnamed)") + ": " + c.grade + " · " + c.credits + " cr · " + c.level);
+    }
+    lines.push("");
+  }
+  return lines.join("\n");
+}
+
+function copySummary(){
+  var text = buildSummaryText();
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text);
+    var btn = $("copySummaryBtn");
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1400);
+  }
+}
+
+function downloadCsv(){
+  var rows = [["Semester", "Course", "Credits", "Grade", "Level"]];
+  for(var s = 0; s < state.semesters.length; s++){
+    var sem = state.semesters[s];
+    for(var i = 0; i < sem.courses.length; i++){
+      var c = sem.courses[i];
+      rows.push([sem.name || ("Semester " + (s+1)), c.name || "", c.credits, c.grade, c.level]);
+    }
+  }
+  var csv = rows.map(function(r){
+    return r.map(function(x){
+      var s = String(x == null ? "" : x);
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }).join(",");
+  }).join("\n");
+
+  var blob = new Blob([csv], {type: "text/csv;charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "utiliby-gpa.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+function importCsv(file){
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var text = e.target.result;
+    var lines = text.split(/\r?\n/);
+    if(lines.length < 2){ alert("CSV appears empty."); return; }
+
+    // Reset and rebuild
+    state.semesters = [];
+    var semesterMap = {};
+
+    for(var i = 1; i < lines.length; i++){
+      var line = lines[i].trim();
+      if(!line) continue;
+      // Simple CSV parser handling quoted fields
+      var fields = [];
+      var cur = "", inQ = false;
+      for(var k = 0; k < line.length; k++){
+        var ch = line.charAt(k);
+        if(ch === '"' && !inQ){ inQ = true; continue; }
+        if(ch === '"' && inQ){
+          if(line.charAt(k + 1) === '"'){ cur += '"'; k++; continue; }
+          inQ = false; continue;
+        }
+        if(ch === "," && !inQ){ fields.push(cur); cur = ""; continue; }
+        cur += ch;
+      }
+      fields.push(cur);
+
+      var semName = fields[0] || "Imported Semester";
+      if(!semesterMap[semName]){
+        semesterMap[semName] = { name: semName, courses: [] };
+        state.semesters.push(semesterMap[semName]);
+      }
+      semesterMap[semName].courses.push({
+        name: fields[1] || "",
+        credits: num(fields[2], 3),
+        grade: fields[3] || currentScale().grades[1].letter,
+        level: fields[4] || "regular"
+      });
+    }
+
+    renderSemesters();
+    renderSummary();
+    saveState();
+  };
+  reader.readAsText(file);
+}
+
+/* ---------- PERSISTENCE ---------- */
+function saveState(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    var saved = JSON.parse(raw);
+    if(saved && saved.semesters && Array.isArray(saved.semesters)){
+      state.scale = saved.scale || "4.0";
+      state.mode = saved.mode || "unweighted";
+      state.precision = saved.precision || 2;
+      state.semesters = saved.semesters;
+      return true;
+    }
+  } catch(e){}
+  return false;
+}
+
+/* ---------- EVENT WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  if(!loadState()){
+    // Seed with a sample semester
+    state.semesters = [
+      {
+        name: "Semester 1",
+        courses: [
+          { name: "Calculus I", credits: 4, grade: "A", level: "regular" },
+          { name: "English Composition", credits: 3, grade: "B+", level: "regular" },
+          { name: "Introduction to Psychology", credits: 3, grade: "A−", level: "regular" }
+        ]
+      }
+    ];
+  }
+
+  // Set input values from state
+  $("scaleSelect").value = state.scale;
+  $("precisionSelect").value = state.precision;
+  document.querySelectorAll(".gp-mode").forEach(function(m){
+    m.classList.toggle("on", m.dataset.mode === state.mode);
+  });
+
+  renderSemesters();
+  renderSummary();
+  renderReference();
+
+  // Tabs
+  document.querySelectorAll(".gp-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var name = this.dataset.tab;
+      document.querySelectorAll(".gp-tab").forEach(function(x){
+        x.classList.toggle("on", x.dataset.tab === name);
+      });
+      $("calculatorTab").hidden = (name !== "calculator");
+      $("targetTab").hidden = (name !== "target");
+      $("retakeTab").hidden = (name !== "retake");
+      $("referenceTab").hidden = (name !== "reference");
+      if(name === "target" || name === "retake") renderSummary();
+    });
+  });
+
+  // Scale change
+  $("scaleSelect").addEventListener("change", function(){
+    state.scale = this.value;
+    // Reset all grades to a valid value for the new scale
+    var scale = currentScale();
+    var defaultGrade = scale.grades[1] ? scale.grades[1].letter : scale.grades[0].letter;
+    for(var s = 0; s < state.semesters.length; s++){
+      for(var c = 0; c < state.semesters[s].courses.length; c++){
+        var cr = state.semesters[s].courses[c];
+        var exists = scale.grades.some(function(g){ return g.letter === cr.grade; });
+        if(!exists) cr.grade = defaultGrade;
+      }
+    }
+    renderSemesters();
+    renderSummary();
+    renderReference();
+    saveState();
+  });
+
+  // Precision change
+  $("precisionSelect").addEventListener("change", function(){
+    state.precision = parseInt(this.value, 10);
+    renderSemesters();
+    renderSummary();
+    saveState();
+  });
+
+  // Mode toggle
+  document.querySelectorAll(".gp-mode").forEach(function(m){
+    m.addEventListener("click", function(){
+      state.mode = this.dataset.mode;
+      document.querySelectorAll(".gp-mode").forEach(function(x){ x.classList.toggle("on", x === m); });
+      renderSemesters();
+      renderSummary();
+      saveState();
+    });
+  });
+
+  // Add semester
+  $("addSemesterBtn").addEventListener("click", addSemester);
+
+  // Reset all
+  $("resetAllBtn").addEventListener("click", function(){
+    if(!confirm("Reset all semesters and courses? This cannot be undone.")) return;
+    state.semesters = [];
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+    renderSemesters();
+    renderSummary();
+  });
+
+  // Event delegation for semester/course actions
+  T.addEventListener("click", function(e){
+    var add = e.target.closest("[data-add-course]");
+    if(add){ addCourse(parseInt(add.dataset.addCourse, 10)); return; }
+    var remC = e.target.closest("[data-remove-course]");
+    if(remC){
+      removeCourse(parseInt(remC.dataset.sidx, 10), parseInt(remC.dataset.cidx, 10));
+      return;
+    }
+    var remS = e.target.closest("[data-remove-sem]");
+    if(remS){ removeSemester(parseInt(remS.dataset.removeSem, 10)); return; }
+  });
+
+  // Live input handling for courses and semester names
+  T.addEventListener("input", function(e){
+    var sidx = e.target.dataset.sidx;
+    var cidx = e.target.dataset.cidx;
+    var field = e.target.dataset.field;
+    if(sidx === undefined || field === undefined) return;
+    sidx = parseInt(sidx, 10);
+    if(!state.semesters[sidx]) return;
+
+    if(field === "name" && cidx === undefined){
+      state.semesters[sidx].name = e.target.value;
+      saveState();
+      return;
+    }
+
+    cidx = parseInt(cidx, 10);
+    if(!state.semesters[sidx].courses[cidx]) return;
+    var cr = state.semesters[sidx].courses[cidx];
+
+    if(field === "name") cr.name = e.target.value;
+    else if(field === "credits") cr.credits = e.target.value;
+    else if(field === "grade") cr.grade = e.target.value;
+    else if(field === "level") cr.level = e.target.value;
+
+    if(field === "grade" || field === "credits" || field === "level"){
+      // Re-render summary and semester GPA line only (skip full re-render to preserve focus)
+      var headerGpa = e.target.closest(".gp-semester").querySelector(".gp-semester-gpa");
+      if(headerGpa){
+        var sem = state.semesters[sidx];
+        headerGpa.innerHTML = "GPA: <b>" + fmtGpa(calcSemesterGpa(sem)) + "</b> · " + calcSemesterCredits(sem) + " credits";
+      }
+      renderSummary();
+    }
+    saveState();
+  });
+
+  // Change handler for selects
+  T.addEventListener("change", function(e){
+    var sidx = e.target.dataset.sidx;
+    var cidx = e.target.dataset.cidx;
+    var field = e.target.dataset.field;
+    if(sidx === undefined || cidx === undefined || field === undefined) return;
+    sidx = parseInt(sidx, 10);
+    cidx = parseInt(cidx, 10);
+    if(!state.semesters[sidx] || !state.semesters[sidx].courses[cidx]) return;
+    var cr = state.semesters[sidx].courses[cidx];
+    if(field === "grade") cr.grade = e.target.value;
+    else if(field === "level") cr.level = e.target.value;
+    renderSummary();
+    saveState();
+  });
+
+  // Target calculator
+  $("calcTargetBtn").addEventListener("click", calcTarget);
+  // Retake calculator
+  $("calcRetakeBtn").addEventListener("click", calcRetake);
+
+  // Export/import
+  $("copySummaryBtn").addEventListener("click", copySummary);
+  $("downloadCsvBtn").addEventListener("click", downloadCsv);
+  $("importCsvBtn").addEventListener("click", function(){ $("csvInput").click(); });
+  $("csvInput").addEventListener("change", function(e){
+    if(e.target.files && e.target.files[0]) importCsv(e.target.files[0]);
+  });
+  $("printBtn").addEventListener("click", function(){ window.print(); });
+});
+})();
+</script>
+</body>
+</html>
