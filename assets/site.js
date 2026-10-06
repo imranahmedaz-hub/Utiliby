@@ -18,6 +18,7 @@ var toolIndex = [
   // Health & Fitness
   { name: "Keto Macro Calculator",              url: "/tools/health-fitness/keto-macro-calculator/",                      category: "Health & Fitness",     keywords: "keto macro protein fat carbs diet low-carb carnivore macros" },
   { name: "Sleep Cycle Calculator", 		url: "/tools/health-fitness/sleep-cycle-calculator/", 			  category: "Health & Fitness",     keywords: "sleep cycle bedtime wake up nap sleep debt calculator" },  
+  { name: "Stretching Routine Generator",       url: "/tools/health-fitness/stretching-routine-generator/",               category: "Health & Fitness",     keywords: "stretching routine generator stretch flexibility morning desk break mobility" },
   // Engineering
   { name: "V-Belt Length Calculator",           url: "/tools/engineering/v-belt-length-calculator/",                      category: "Engineering",          keywords: "v-belt length pulley belt drive wrap angle mechanical" },
   // Construction
