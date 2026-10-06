@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Screen Time Calculator Online – Daily, Lifetime &amp; Health Impact</title>
+<meta name="description" content="Free screen time calculator online. See your daily, weekly, yearly and lifetime screen time, health impact score, opportunity cost and age-based recommendations. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/everyday-calculators/screen-time-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Screen Time Calculator Online – Daily, Lifetime &amp; Health Impact">
+<meta property="og:description" content="Free screen time calculator online. See daily, lifetime and health impact of your screen time.">
+<meta property="og:url" content="https://utiliby.com/tools/everyday-calculators/screen-time-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.st-hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.st-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.st-hero p{margin:0;opacity:.92;font-size:.9rem}
+.st-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.st-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.st-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.st-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.st-panel h3{margin:0 0 10px;font-size:1rem}
+.st-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.st-panel input[type="text"],.st-panel input[type="number"],.st-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.st-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.st-row{grid-template-columns:1fr}}
+.st-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.st-row3{grid-template-columns:1fr}}
+.st-btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;margin-right:8px;margin-top:8px}
+.st-btn:hover{opacity:.92}
+.st-btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--line)}
+.st-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.st-result-big{font-size:2.2rem;font-weight:800;color:var(--brand);line-height:1.1;margin:4px 0}
+.st-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.st-result-sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.st-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.st-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.st-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.st-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.st-stat .val.ok{color:#16a34a}
+.st-stat .val.warn{color:#f59e0b}
+.st-stat .val.err{color:#dc2626}
+.st-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.st-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.st-tip{background:rgba(79,70,229,.06);border-left:3px solid var(--brand);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.st-tip b{color:var(--brand)}
+.st-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.st-table th,.st-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.st-table th{background:var(--card);font-weight:700}
+.st-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700}
+.st-badge.ok{background:#dcfce7;color:#166534}
+.st-badge.warn{background:#fef3c7;color:#92400e}
+.st-badge.err{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .st-badge.ok{background:#14532d;color:#bbf7d0}
+  .st-badge.warn{background:#78350f;color:#fde68a}
+  .st-badge.err{background:#7f1d1d;color:#fecaca}
+}
+.st-donut-wrap{display:grid;grid-template-columns:200px 1fr;gap:20px;align-items:center;margin:16px 0}
+@media(max-width:700px){.st-donut-wrap{grid-template-columns:1fr}}
+.st-donut{position:relative;width:200px;height:200px;margin:0 auto}
+.st-donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+.st-donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.st-donut .center .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+.st-donut .center .val{font-size:1.1rem;font-weight:800;color:var(--fg)}
+.st-legend{list-style:none;padding:0;margin:0}
+.st-legend li{display:flex;align-items:center;gap:8px;padding:4px 0;font-size:.85rem}
+.st-legend .dot{width:12px;height:12px;border-radius:3px}
+.st-progress{background:var(--line);border-radius:6px;height:8px;overflow:hidden;margin:6px 0}
+.st-progress-bar{height:100%;background:var(--brand);transition:width .25s}
+.st-progress-bar.warn{background:#f59e0b}
+.st-progress-bar.err{background:#dc2626}
+.st-empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.st-score-gauge{display:flex;flex-direction:column;align-items:center;margin:12px 0}
+.st-score-gauge .score-num{font-size:3rem;font-weight:800;line-height:1}
+.st-score-gauge .score-label{font-size:.9rem;color:var(--muted);margin-top:4px;font-weight:700}
+.st-score-gauge .score-bar{width:100%;height:12px;background:var(--line);border-radius:6px;margin-top:10px;overflow:hidden;position:relative}
+.st-score-gauge .score-bar-fill{height:100%;transition:width .3s}
+@media print{
+  header.site,footer.site,.st-tabs,.st-btn,.st-hero,.cn-article,.no-print{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Screen Time Calculator","url":"https://utiliby.com/tools/everyday-calculators/screen-time-calculator/","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free screen time calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free screen time calculator online is a tool that measures how much time you spend on screens across devices and activities, projects that usage across a lifetime, and scores your digital habits against health recommendations. This screen time calculator online runs entirely in your browser with no sign-up and no tracking."}},{"@type":"Question","name":"How much screen time is healthy?","acceptedAnswer":{"@type":"Answer","text":"There is no evidence-based hourly limit for adults, so any number quoted for grown-ups is a rule of thumb rather than a guideline. For children, the WHO recommends no screen time for under 1s, no more than 1 hour per day for ages 2 to 4, and no more than 2 hours per day for ages 5 to 17. The American Academy of Pediatrics now favours a family media plan that protects sleep, activity and meals over a fixed hourly limit for older children."}},{"@type":"Question","name":"How many years of my life will I spend on screens?","acceptedAnswer":{"@type":"Answer","text":"At 6 hours of screen time per day, you spend approximately 1,314 waking hours on screens per year — about 25 percent of your waking life. Over an 80-year lifespan that is approximately 10 to 12 years of clock time, or closer to 18 to 20 years of waking time. This calculator projects your own numbers based on your input."}},{"@type":"Question","name":"What is the 20-20-20 rule?","acceptedAnswer":{"@type":"Answer","text":"The 20-20-20 rule is a break guideline for reducing digital eye strain: every 20 minutes, look at something 20 feet away for at least 20 seconds. It relaxes the ciliary muscles that control focus and reduces the symptoms of computer vision syndrome."}},{"@type":"Question","name":"Does screen time before bed affect sleep?","acceptedAnswer":{"@type":"Answer","text":"Yes. Bright and blue-rich light in the evening suppresses melatonin, the sleep hormone, and can delay sleep onset by 30 to 60 minutes. Research shows that 88 percent of adults use a screen within 2 hours of bedtime. This calculator gives extra weight to nighttime screen use in your health impact score."}},{"@type":"Question","name":"Is all screen time bad?","acceptedAnswer":{"@type":"Answer","text":"No. Active screen time (creating, coding, learning, video calling) has different effects from passive screen time (mindless scrolling, binge-watching). This calculator distinguishes between work/study use and leisure use, and applies different weights to each. The goal is awareness, not guilt."}},{"@type":"Question","name":"Is this screen time calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}},{"@type":"Question","name":"What is the average screen time per day?","acceptedAnswer":{"@type":"Answer","text":"In 2026, the average adult spends about 6 hours 40 minutes per day on screens across all devices. Children aged 8 to 12 average about 5 hours 33 minutes, and teens average about 8 hours 39 minutes. Screen time varies widely by country, age and occupation."}},{"@type":"Question","name":"What is a digital wellbeing score?","acceptedAnswer":{"@type":"Answer","text":"A digital wellbeing score is a 0 to 100 rating of how protective your screen habits are. It considers total screen time, the balance between work and leisure use, nighttime use, break frequency, and posture. Higher scores indicate healthier digital habits."}},{"@type":"Question","name":"Does this calculator work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is fully responsive and works on phones, tablets and desktops."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › Screen Time Calculator</nav>
+<h1>Screen Time Calculator</h1>
+<p class="lead">See your daily, weekly, yearly and lifetime screen time. Health impact score, age-based recommendations, opportunity cost and reduction simulator. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Screen time calculator">
+
+<div class="st-hero">
+<h2>Free Screen Time Calculator</h2>
+<p>Enter your daily usage and see how much of your life goes to screens — plus your digital wellbeing score.</p>
+</div>
+
+<div class="st-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="st-tab on" data-tab="input">Enter your usage</button>
+<button type="button" class="st-tab" data-tab="results">Your results</button>
+<button type="button" class="st-tab" data-tab="lifetime">Lifetime projection</button>
+<button type="button" class="st-tab" data-tab="health">Health &amp; wellbeing</button>
+<button type="button" class="st-tab" data-tab="reduce">Reduce simulator</button>
+</div>
+
+<!-- INPUT TAB -->
+<div id="inputTab">
+<div class="st-panel">
+<h3>About you</h3>
+<div class="st-row3">
+<div>
+<label for="ageGroup">Age group</label>
+<select id="ageGroup">
+<option value="child-0-2">Child (0–2 years)</option>
+<option value="child-2-5">Child (2–5 years)</option>
+<option value="child-5-12">Child (5–12 years)</option>
+<option value="teen">Teen (13–18 years)</option>
+<option value="young-adult" selected>Young adult (18–29 years)</option>
+<option value="adult">Adult (30–59 years)</option>
+<option value="senior">Senior (60+ years)</option>
+</select>
+</div>
+<div>
+<label for="currentAge">Your current age (years)</label>
+<input type="number" id="currentAge" min="1" max="110" step="1" value="28">
+</div>
+<div>
+<label for="lifeExpectancy">Life expectancy</label>
+<input type="number" id="lifeExpectancy" min="40" max="110" step="1" value="80">
+</div>
+</div>
+</div>
+
+<div class="st-panel">
+<h3>Daily screen time by device</h3>
+<p class="meta" style="margin-bottom:10px">Enter average daily hours for each device. If you want to break it down by activity too, use the activity breakdown below.</p>
+<div class="st-row3">
+<div><label for="phoneHours">Phone (hours / day)</label><input type="number" id="phoneHours" min="0" max="24" step="0.25" value="3"></div>
+<div><label for="computerHours">Computer / laptop (hours / day)</label><input type="number" id="computerHours" min="0" max="24" step="0.25" value="5"></div>
+<div><label for="tvHours">TV / gaming (hours / day)</label><input type="number" id="tvHours" min="0" max="24" step="0.25" value="2"></div>
+</div>
+<div class="st-row">
+<div><label for="tabletHours">Tablet (hours / day)</label><input type="number" id="tabletHours" min="0" max="24" step="0.25" value="0.5"></div>
+<div><label for="otherDeviceHours">Other device (hours / day)</label><input type="number" id="otherDeviceHours" min="0" max="24" step="0.25" value="0"></div>
+</div>
+</div>
+
+<div class="st-panel">
+<h3>Activity breakdown (optional)</h3>
+<p class="meta" style="margin-bottom:10px">Distribute your total screen time across activities. If you leave these blank, the calculator will use your device totals.</p>
+<div class="st-row3">
+<div><label for="workHours">Work / study (hours / day)</label><input type="number" id="workHours" min="0" max="24" step="0.25" value="0"></div>
+<div><label for="socialHours">Social media (hours / day)</label><input type="number" id="socialHours" min="0" max="24" step="0.25" value="0"></div>
+<div><label for="streamingHours">Streaming (hours / day)</label><input type="number" id="streamingHours" min="0" max="24" step="0.25" value="0"></div>
+</div>
+<div class="st-row3">
+<div><label for="gamingHours">Gaming (hours / day)</label><input type="number" id="gamingHours" min="0" max="24" step="0.25" value="0"></div>
+<div><label for="readingHours">Reading / learning on screen (hours / day)</label><input type="number" id="readingHours" min="0" max="24" step="0.25" value="0"></div>
+<div><label for="otherActivityHours">Other (hours / day)</label><input type="number" id="otherActivityHours" min="0" max="24" step="0.25" value="0"></div>
+</div>
+</div>
+
+<div class="st-panel">
+<h3>Additional factors</h3>
+<div class="st-row3">
+<div><label for="nightHours">Screen time within 2 hours of bedtime (hours / day)</label><input type="number" id="nightHours" min="0" max="12" step="0.25" value="1"></div>
+<div><label for="breakFrequency">Break frequency</label>
+<select id="breakFrequency">
+<option value="never">Never / rarely</option>
+<option value="hourly">About every hour</option>
+<option value="regular" selected>Every 30 minutes</option>
+<option value="frequent">Every 20 minutes (20-20-20 rule)</option>
+</select>
+</div>
+<div><label for="posture">Posture</label>
+<select id="posture">
+<option value="poor">Poor (slouched, hunched)</option>
+<option value="mixed" selected>Mixed</option>
+<option value="good">Good (screen at eye level, upright)</option>
+</select>
+</div>
+</div>
+</div>
+
+<div class="st-panel">
+<h3>Reduction goal</h3>
+<label for="targetDaily">Target daily screen time (hours / day)</label>
+<input type="number" id="targetDaily" min="0" max="24" step="0.25" value="4">
+<p class="meta" style="margin-top:6px">Set a realistic target. The Reduce tab will show you how much time and life you could reclaim.</p>
+</div>
+
+<button type="button" class="st-btn" id="calcBtn">Calculate my screen time</button>
+<button type="button" class="st-btn ghost" id="resetBtn">Reset</button>
+</div>
+
+<!-- RESULTS TAB -->
+<div id="resultsTab" hidden>
+<div id="resultsContent"></div>
+</div>
+
+<!-- LIFETIME TAB -->
+<div id="lifetimeTab" hidden>
+<div id="lifetimeContent"></div>
+</div>
+
+<!-- HEALTH TAB -->
+<div id="healthTab" hidden>
+<div id="healthContent"></div>
+</div>
+
+<!-- REDUCE TAB -->
+<div id="reduceTab" hidden>
+<div id="reduceContent"></div>
+</div>
+
+</section>
+
+<article class="cn-article">
+
+<h2>What is a free screen time calculator online?</h2>
+<p>A free screen time calculator online is a tool that measures how much time you spend on screens across devices and activities, projects that usage across your lifetime, and scores your digital habits against health recommendations. Instead of guessing at your screen time — most people underestimate it by 30 to 50 percent — you enter your average daily hours and the calculator translates that into eye-opening daily, weekly, yearly and lifetime totals.</p>
+<p>This screen time calculator online goes far beyond a simple multiplication. It separates screen time by device (phone, computer, TV, tablet) and by activity (work, social media, streaming, gaming, reading). It projects your lifetime usage against your age and life expectancy. It scores your digital wellbeing on a 0–100 scale considering device type, nighttime use, break frequency and posture. It shows what you could reclaim by reducing screen time, and it compares your habits against WHO and AAP recommendations for your age group. Everything runs in your browser — no sign-up, no account, no tracking.</p>
+
+<h2>How to use this free screen time calculator</h2>
+<ol>
+<li>Select your age group and enter your current age and life expectancy.</li>
+<li>Enter your average daily screen hours by device — phone, computer, TV/gaming, tablet.</li>
+<li>Optionally break down your time by activity (work, social media, streaming, gaming, reading).</li>
+<li>Add your nighttime use — the portion of screen time within two hours of bedtime.</li>
+<li>Set your break frequency and posture to refine your digital wellbeing score.</li>
+<li>Set a reduction target — a realistic daily screen time goal.</li>
+<li>Click Calculate. Review the Results, Lifetime, Health and Reduce tabs.</li>
+</ol>
+
+<h2>How much screen time is healthy?</h2>
+<p>The honest answer is that there is no evidence-based hourly limit for adults. Any number you see quoted for grown-ups is a rule of thumb, not a guideline. The World Health Organization recommends limiting non-work screen time to 2 to 4 hours per day for adults, but this is a general wellness recommendation, not a hard clinical limit.</p>
+<p>For children, the picture is much clearer because researchers have more data on developmental effects:</p>
+<table>
+<tr><th>Age group</th><th>WHO recommendation</th><th>Average actual screen time (US)</th></tr>
+<tr><td>Under 1 year</td><td>No screen time</td><td>—</td></tr>
+<tr><td>1–2 years</td><td>No more than 1 hour</td><td>1 hr 3 min</td></tr>
+<tr><td>2–4 years</td><td>No more than 1 hour</td><td>2 hr 8 min</td></tr>
+<tr><td>5–8 years</td><td>No more than 2 hours</td><td>3 hr 38 min</td></tr>
+<tr><td>8–12 years</td><td>No more than 2 hours</td><td>5 hr 33 min</td></tr>
+<tr><td>13–18 years</td><td>No more than 2 hours</td><td>8 hr 39 min</td></tr>
+<tr><td>Adults 18+</td><td>No universal limit</td><td>6–8 hours</td></tr>
+</table>
+<p>The gap between recommendation and reality is striking. Children in every age group exceed recommended limits, often by two to four times.</p>
+<p>The American Academy of Pediatrics updated its guidance in 2026 to move away from a single universal hourly limit. Its new framework — the 5 Cs — considers Child, Content, Calm, Crowding out and Communication. Two children with identical screen hours can have very different experiences depending on what they watch, whether they watch with a caregiver, and whether screen time is displacing sleep, physical activity or in-person connection.</p>
+
+<h2>Average screen time by age and device in 2026</h2>
+<p>Understanding how your usage compares to others is a useful reality check. Here are the most recent averages:</p>
+<table>
+<tr><th>Group</th><th>Average daily screen time</th></tr>
+<tr><td>Gen Z (13–28)</td><td>8–9 hours</td></tr>
+<tr><td>Millennials (29–44)</td><td>7–8 hours</td></tr>
+<tr><td>Gen X (45–60)</td><td>6–7 hours</td></tr>
+<tr><td>Baby Boomers (60+)</td><td>5–6 hours</td></tr>
+<tr><td>All US adults</td><td>6 hr 40 min</td></tr>
+<tr><td>UK adults</td><td>6 hr 24 min</td></tr>
+<tr><td>Global average</td><td>6 hr 37 min</td></tr>
+</table>
+<p>Gen Z spends the most time on smartphones — over 4 hours per day — while Baby Boomers have the highest number of phone pickups, averaging 224 per day. Female users aged 16 to 24 spend the most total time on screens, while users aged 55 to 64 spend the least.</p>
+
+<h2>How screen time affects health</h2>
+<p>The research on screen time and health has matured considerably. The picture is more nuanced than early headlines suggested:</p>
+<h3>Eye strain</h3>
+<p>Prolonged screen use reduces blink rate by up to 60 percent, causing dry eyes, blurred vision and headaches — collectively known as Computer Vision Syndrome or digital eye strain. The 20-20-20 rule (every 20 minutes, look 20 feet away for 20 seconds) is the standard mitigation.</p>
+<h3>Sleep disruption</h3>
+<p>Bright and blue-rich light in the evening suppresses melatonin and delays sleep onset by 30 to 60 minutes. Approximately 88 percent of adults use a screen within two hours of bedtime, and 26 percent prioritise screen time over getting enough sleep. Sleep disruption then cascades into daytime fatigue, reduced cognitive performance and mood changes.</p>
+<h3>Mental health and mood</h3>
+<p>Screen time above 3 to 7 hours daily correlates with a 10 to 20 percent increase in depression odds. The relationship is bidirectional — low mood drives passive screen use, and passive screen use exacerbates low mood. Passive consumption (scrolling, binge-watching) has stronger negative associations than active use (creating, learning, video calling).</p>
+<h3>Physical inactivity</h3>
+<p>Every hour spent on screens is an hour not spent on physical activity. Research shows that reducing leisure screen time to under 3 hours weekly increases daily physical activity by about 45 minutes and improves mood. The CDC recommends at least 150 minutes of moderate physical activity per week for adults.</p>
+<h3>Posture and musculoskeletal issues</h3>
+<p>Over half of adults report "smartphone finger" — aches and structural changes in the pinky from holding a phone. Neck and upper-back pain from sustained forward head posture is also widespread. Ergonomics — screen at eye level, feet flat, back supported — makes a measurable difference.</p>
+
+<h2>How we calculate your screen time projections</h2>
+<p>Every projection in this calculator follows a simple, transparent formula:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:.95rem"><b>Daily × 7 = Weekly<br>Daily × 365 = Yearly<br>Yearly × Remaining years = Lifetime</b></p>
+<p>For waking-life percentage, we assume a 16-hour waking day. So a person using screens 8 hours per day spends 50 percent of their waking hours on screens. Over an 80-year lifespan that adds up to roughly 116,800 waking hours — or about 13.3 years of full-time clock time.</p>
+<p>To put that in perspective: 10 years of clock time on screens is more than most people spend completing secondary school, more than most people spend in a single job, and roughly the time it takes to become expert at any complex craft, language or sport.</p>
+
+<h2>The opportunity cost of screen time</h2>
+<p>Every hour spent on screens is an hour that cannot be spent on something else. This calculator converts your daily screen hours into concrete equivalents:</p>
+<ul>
+<li><b>Books:</b> The average adult reads about 30 pages per hour. A 300-page book takes about 10 hours to read. At 6 hours of daily screen time, you are "spending" the equivalent of about 219 books per year.</li>
+<li><b>Workouts:</b> A typical workout session is 45 minutes. Six hours of screens per day equals 8 workout sessions per day in time, or 2,920 workouts per year.</li>
+<li><b>Languages:</b> Reaching conversational fluency in a new language takes about 600 hours. At 6 hours per day, you could go from zero to fluent in under four months.</li>
+<li><b>Running:</b> At a moderate 10-minute-per-mile pace, six hours of screens per day equals 36 miles of running that could have been covered.</li>
+</ul>
+<p>These are illustrative conversions, not moral judgments. Sometimes screen time is genuinely productive — coding, learning, writing, connecting. The point is to make the trade-off visible so the choice is conscious.</p>
+
+<h2>What is a digital wellbeing score?</h2>
+<p>A digital wellbeing score is a 0–100 rating of how protective your screen habits are. Unlike raw screen time, which only measures quantity, a digital wellbeing score considers quality and context:</p>
+<ul>
+<li><b>Total screen time</b> (weighted by device: phone counts more than TV because phone use is more fragmented and habit-forming).</li>
+<li><b>Nighttime use</b> (screens within two hours of bedtime carry extra weight because of their effect on sleep).</li>
+<li><b>Balance</b> between productive screen time (work, learning) and passive screen time (streaming, scrolling).</li>
+<li><b>Break frequency</b> (frequent breaks reduce eye strain and improve posture).</li>
+<li><b>Posture</b> (screen position and body position affect long-term musculoskeletal health).</li>
+</ul>
+<p>Higher scores indicate healthier habits. The score is not a moral judgment — it is a diagnostic. A low score means there is room to improve; a high score means your habits are already protective.</p>
+
+<h2>How to reduce screen time</h2>
+<p>Reducing screen time is harder than it sounds because most screen use is habitual rather than intentional. Phone checks happen automatically; social scrolling starts without a decision. The most effective strategies target the habit loop rather than willpower alone:</p>
+<ul>
+<li><b>Use built-in tools.</b> iOS Screen Time and Android Digital Wellbeing both show per-app usage and let you set daily limits. Awareness alone reduces usage by 10–15 percent for most people.</li>
+<li><b>Enable grayscale mode.</b> Removing colour reduces the dopamine reward from scrolling. Studies show grayscale reduces total phone time by 30 to 40 percent.</li>
+<li><b>Create phone-free zones.</b> The bedroom and dining table are the highest-impact choices. Charge your phone outside the bedroom overnight.</li>
+<li><b>Set specific check times.</b> Checking your phone at set intervals (every hour, at lunch, after work) reduces fragmented use. Batch messaging and email instead of reacting to every notification.</li>
+<li><b>Replace, don't just remove.</b> Habits are easier to replace than to eliminate. Decide what you will do instead of scrolling — read one chapter, walk the dog, call a friend, prep dinner.</li>
+<li><b>Turn off non-human notifications.</b> Social media and shopping apps are engineered to demand attention. Turning off every notification that is not from a real person cuts phone pickups by 40 to 60 percent.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free screen time calculator online?</summary><p>A free screen time calculator online is a tool that measures how much time you spend on screens across devices and activities, projects that usage across a lifetime, and scores your digital habits against health recommendations. This screen time calculator online runs entirely in your browser with no sign-up and no tracking.</p></details>
+<details><summary>How much screen time is healthy?</summary><p>There is no evidence-based hourly limit for adults, so any number quoted for grown-ups is a rule of thumb rather than a guideline. For children, the WHO recommends no screen time for under 1s, no more than 1 hour per day for ages 2 to 4, and no more than 2 hours per day for ages 5 to 17.</p></details>
+<details><summary>How many years of my life will I spend on screens?</summary><p>At 6 hours of screen time per day, you spend approximately 1,314 waking hours on screens per year — about 25 percent of your waking life. Over an 80-year lifespan that is approximately 10 to 12 years of clock time, or closer to 18 to 20 years of waking time.</p></details>
+<details><summary>What is the 20-20-20 rule?</summary><p>The 20-20-20 rule is a break guideline for reducing digital eye strain: every 20 minutes, look at something 20 feet away for at least 20 seconds. It relaxes the ciliary muscles that control focus and reduces the symptoms of computer vision syndrome.</p></details>
+<details><summary>Does screen time before bed affect sleep?</summary><p>Yes. Bright and blue-rich light in the evening suppresses melatonin, the sleep hormone, and can delay sleep onset by 30 to 60 minutes. Approximately 88 percent of adults use a screen within 2 hours of bedtime.</p></details>
+<details><summary>Is all screen time bad?</summary><p>No. Active screen time (creating, coding, learning, video calling) has different effects from passive screen time (mindless scrolling, binge-watching). This calculator distinguishes between work/study use and leisure use.</p></details>
+<details><summary>Is this screen time calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits.</p></details>
+<details><summary>What is the average screen time per day?</summary><p>In 2026, the average adult spends about 6 hours 40 minutes per day on screens across all devices. Children aged 8 to 12 average about 5 hours 33 minutes, and teens average about 8 hours 39 minutes.</p></details>
+<details><summary>What is a digital wellbeing score?</summary><p>A digital wellbeing score is a 0 to 100 rating of how protective your screen habits are. It considers total screen time, the balance between work and leisure use, nighttime use, break frequency, and posture.</p></details>
+<details><summary>Does this calculator work on mobile?</summary><p>Yes. It is fully responsive and works on phones, tablets and desktops.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+
+var STORAGE_KEY = "utiliby-screentime-v1";
+
+/* ---------- AGE GROUP RECOMMENDATIONS ---------- */
+var AGE_RECS = {
+  "child-0-2": { label: "0–2 years", who: "No screen time (except video calls)", maxHrs: 0.5 },
+  "child-2-5": { label: "2–5 years", who: "No more than 1 hour per day", maxHrs: 1 },
+  "child-5-12": { label: "5–12 years", who: "No more than 2 hours per day", maxHrs: 2 },
+  "teen": { label: "13–18 years", who: "No more than 2 hours recreational per day", maxHrs: 2 },
+  "young-adult": { label: "18–29 years", who: "Aim for under 4 hours non-work", maxHrs: 4 },
+  "adult": { label: "30–59 years", who: "Aim for under 4 hours non-work", maxHrs: 4 },
+  "senior": { label: "60+ years", who: "No universal limit — keep active", maxHrs: 5 }
+};
+
+/* ---------- STATE ---------- */
+var state = {};
+
+/* ---------- UTILS ---------- */
+function readInputs(){
+  var phone = num($("phoneHours").value, 0);
+  var computer = num($("computerHours").value, 0);
+  var tv = num($("tvHours").value, 0);
+  var tablet = num($("tabletHours").value, 0);
+  var other = num($("otherDeviceHours").value, 0);
+  var deviceTotal = phone + computer + tv + tablet + other;
+
+  var work = num($("workHours").value, 0);
+  var social = num($("socialHours").value, 0);
+  var streaming = num($("streamingHours").value, 0);
+  var gaming = num($("gamingHours").value, 0);
+  var reading = num($("readingHours").value, 0);
+  var otherAct = num($("otherActivityHours").value, 0);
+  var activityTotal = work + social + streaming + gaming + reading + otherAct;
+
+  // If no activity breakdown, distribute device total evenly across activity categories
+  var useActivity = activityTotal > 0;
+
+  return {
+    ageGroup: $("ageGroup").value,
+    currentAge: num($("currentAge").value, 28),
+    lifeExpectancy: num($("lifeExpectancy").value, 80),
+    phone: phone,
+    computer: computer,
+    tv: tv,
+    tablet: tablet,
+    other: other,
+    deviceTotal: deviceTotal,
+    work: work,
+    social: social,
+    streaming: streaming,
+    gaming: gaming,
+    reading: reading,
+    otherAct: otherAct,
+    activityTotal: activityTotal,
+    useActivity: useActivity,
+    nightHours: num($("nightHours").value, 0),
+    breakFrequency: $("breakFrequency").value,
+    posture: $("posture").value,
+    targetDaily: num($("targetDaily").value, 4)
+  };
+}
+
+function fmt(n, dec){
+  if(dec === undefined) dec = 1;
+  return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+function fmtInt(n){
+  return Math.round(n).toLocaleString();
+}
+
+/* ---------- SCORE CALCULATION ---------- */
+function computeScore(d){
+  var score = 100;
+
+  // Total screen time penalty
+  var total = d.deviceTotal;
+  if(total > 2) score -= Math.min(25, (total - 2) * 3);
+
+  // Nighttime penalty
+  if(d.nightHours > 0) score -= Math.min(20, d.nightHours * 8);
+
+  // Break frequency
+  var breakBonus = { "never": -15, "hourly": -5, "regular": 0, "frequent": 5 };
+  score += breakBonus[d.breakFrequency] || 0;
+
+  // Posture
+  var postureBonus = { "poor": -10, "mixed": 0, "good": 5 };
+  score += postureBonus[d.posture] || 0;
+
+  // Device weighting — phone carries slightly more penalty because it is more habit-forming
+  if(d.phone > 4) score -= Math.min(10, (d.phone - 4) * 2);
+
+  // Clamp
+  if(score < 0) score = 0;
+  if(score > 100) score = 100;
+  return Math.round(score);
+}
+
+function scoreLabel(score){
+  if(score >= 85) return { label: "Excellent", cls: "ok" };
+  if(score >= 70) return { label: "Good", cls: "ok" };
+  if(score >= 55) return { label: "Fair", cls: "warn" };
+  return { label: "Needs improvement", cls: "err" };
+}
+
+/* ---------- CORE CALCULATIONS ---------- */
+function calcAll(){
+  var d = readInputs();
+  state.d = d;
+
+  var daily = d.deviceTotal;
+  var weekly = daily * 7;
+  var monthly = daily * 30.44;
+  var yearly = daily * 365;
+  var wakingHoursPerDay = 16;
+  var wakingPct = daily / wakingHoursPerDay * 100;
+
+  var remainingYears = Math.max(0, d.lifeExpectancy - d.currentAge);
+  var remainingDays = remainingYears * 365;
+  var remainingWakingHours = remainingDays * wakingHoursPerDay;
+  var lifetimeScreenHours = yearly * remainingYears;
+  var lifetimeScreenYears = lifetimeScreenHours / (365 * 24);
+  var lifetimeWakingYears = lifetimeScreenHours / (365 * wakingHoursPerDay);
+  var lifetimePctWaking = remainingWakingHours > 0 ? (lifetimeScreenHours / remainingWakingHours) * 100 : 0;
+
+  // Opportunity cost equivalents
+  var booksPerYear = yearly / 10;             // 10 hrs per book
+  var workoutsPerYear = yearly / 0.75;        // 45 min per workout
+  var languages = yearly / 600;               // 600 hrs to conversational fluency
+  var marathonMiles = yearly * 6;             // avg 10 min/mile = 6 mph
+  var fullDaysPerYear = yearly / 24;
+
+  // Reduction scenario
+  var reductionHours = Math.max(0, daily - d.targetDaily);
+  var reclaimedPerDay = reductionHours;
+  var reclaimedPerWeek = reductionHours * 7;
+  var reclaimedPerYear = reductionHours * 365;
+  var reclaimedLifetime = reclaimedPerYear * remainingYears;
+  var reclaimedLifetimeYears = reclaimedLifetime / (365 * 24);
+
+  var score = computeScore(d);
+  var sc = scoreLabel(score);
+
+  var ageRec = AGE_RECS[d.ageGroup] || AGE_RECS["young-adult"];
+  var exceedsRec = daily > ageRec.maxHrs;
+
+  return {
+    d: d,
+    daily: daily,
+    weekly: weekly,
+    monthly: monthly,
+    yearly: yearly,
+    wakingPct: wakingPct,
+    remainingYears: remainingYears,
+    lifetimeScreenHours: lifetimeScreenHours,
+    lifetimeScreenYears: lifetimeScreenYears,
+    lifetimeWakingYears: lifetimeWakingYears,
+    lifetimePctWaking: lifetimePctWaking,
+    booksPerYear: booksPerYear,
+    workoutsPerYear: workoutsPerYear,
+    languages: languages,
+    marathonMiles: marathonMiles,
+    fullDaysPerYear: fullDaysPerYear,
+    reclaimedPerDay: reclaimedPerDay,
+    reclaimedPerWeek: reclaimedPerWeek,
+    reclaimedPerYear: reclaimedPerYear,
+    reclaimedLifetime: reclaimedLifetime,
+    reclaimedLifetimeYears: reclaimedLifetimeYears,
+    score: score,
+    scoreCls: sc.cls,
+    scoreLabel: sc.label,
+    ageRec: ageRec,
+    exceedsRec: exceedsRec
+  };
+}
+
+/* ---------- RENDER HELPERS ---------- */
+function renderDonut(d){
+  var deviceData = [
+    { name: "Phone", hours: d.phone, color: "#4f46e5" },
+    { name: "Computer", hours: d.computer, color: "#7c3aed" },
+    { name: "TV / Gaming", hours: d.tv, color: "#06b6d4" },
+    { name: "Tablet", hours: d.tablet, color: "#10b981" },
+    { name: "Other", hours: d.other, color: "#f59e0b" }
+  ].filter(function(x){ return x.hours > 0; });
+
+  var total = deviceData.reduce(function(a, b){ return a + b.hours; }, 0);
+  if(total <= 0) total = 1;
+
+  var circ = 2 * Math.PI * 40;
+  var offset = 0;
+  var svg = '<svg viewBox="0 0 100 100">';
+  svg += '<circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="14"></circle>';
+
+  for(var i = 0; i < deviceData.length; i++){
+    var pct = deviceData[i].hours / total;
+    var len = circ * pct;
+    svg += '<circle cx="50" cy="50" r="40" fill="none" stroke="' + deviceData[i].color + '" stroke-width="14" stroke-dasharray="' + len + ' ' + (circ - len) + '" stroke-dashoffset="-' + offset + '"></circle>';
+    offset += len;
+  }
+  svg += '</svg>';
+
+  var legend = '<ul class="st-legend">';
+  for(var i = 0; i < deviceData.length; i++){
+    var pct2 = (deviceData[i].hours / total * 100).toFixed(0);
+    legend += '<li><span class="dot" style="background:' + deviceData[i].color + '"></span>' + esc(deviceData[i].name) + ' — ' + fmt(deviceData[i].hours, 1) + ' hrs (' + pct2 + '%)</li>';
+  }
+  legend += '</ul>';
+
+  return '<div class="st-donut-wrap"><div class="st-donut">' + svg + '<div class="center"><div class="lbl">Total daily</div><div class="val">' + fmt(d.deviceTotal, 1) + ' hrs</div></div></div><div>' + legend + '</div></div>';
+}
+
+function scoreGauge(score, cls){
+  var color = cls === "ok" ? "#16a34a" : (cls === "warn" ? "#f59e0b" : "#dc2626");
+  var h = '<div class="st-score-gauge">';
+  h += '<div class="score-num" style="color:' + color + '">' + score + '</div>';
+  h += '<div class="score-label">Digital Wellbeing Score</div>';
+  h += '<div class="score-bar"><div class="score-bar-fill" style="width:' + score + '%;background:' + color + '"></div></div>';
+  h += '</div>';
+  return h;
+}
+
+/* ---------- RENDER RESULTS ---------- */
+function renderResults(){
+  var r = calcAll();
+  var d = r.d;
+  var h = '';
+
+  // Hero
+  h += '<div class="st-result">';
+  h += '<div class="st-result-label">Your daily screen time</div>';
+  h += '<div class="st-result-big">' + fmt(r.daily, 1) + ' hours</div>';
+  h += '<div class="st-result-sub">' + fmt(r.daily / 16 * 100, 0) + '% of your waking day</div>';
+  h += '</div>';
+
+  // Device donut
+  h += renderDonut(d);
+
+  // Projections
+  h += '<div class="st-stats">';
+  h += '<div class="st-stat"><div class="lbl">Weekly</div><div class="val">' + fmt(r.weekly, 0) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Monthly</div><div class="val">' + fmt(r.monthly, 0) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Yearly</div><div class="val">' + fmt(r.yearly, 0) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Full days per year</div><div class="val">' + fmt(r.fullDaysPerYear, 0) + '</div></div>';
+  h += '</div>';
+
+  // Full breakdown table
+  h += '<div class="st-panel"><h3>Projection breakdown</h3><table class="st-table">';
+  h += '<tr><th>Period</th><th>Hours</th><th>Equivalent</th></tr>';
+  h += '<tr><td>Daily</td><td>' + fmt(r.daily, 1) + '</td><td>' + fmt(r.wakingPct, 0) + '% of waking day</td></tr>';
+  h += '<tr><td>Weekly</td><td>' + fmt(r.weekly, 1) + '</td><td>' + fmt(r.weekly / 40, 1) + ' full work weeks</td></tr>';
+  h += '<tr><td>Monthly</td><td>' + fmt(r.monthly, 0) + '</td><td>' + fmt(r.monthly / 24, 1) + ' full days</td></tr>';
+  h += '<tr><td>Yearly</td><td>' + fmt(r.yearly, 0) + '</td><td>' + fmt(r.fullDaysPerYear, 1) + ' full 24-hour days</td></tr>';
+  h += '</table></div>';
+
+  // Age recommendation check
+  h += '<div class="st-panel"><h3>Age-based recommendation</h3>';
+  h += '<p>For <b>' + esc(r.ageRec.label) + '</b>: ' + esc(r.ageRec.who) + '</p>';
+  if(r.exceedsRec){
+    h += '<div class="st-warn"><b>You exceed the recommendation.</b> Your ' + fmt(r.daily, 1) + ' hrs/day is above the ' + r.ageRec.maxHrs + '-hour guideline for your age group.</div>';
+  } else {
+    h += '<div class="st-tip"><b>You are within the recommendation.</b> Your usage is at or below the ' + r.ageRec.maxHrs + '-hour guideline for your age group.</div>';
+  }
+  h += '</div>';
+
+  // Tip
+  h += '<div class="st-tip"><b>Tip:</b> Use the Lifetime, Health and Reduce tabs above to see the bigger picture. Small changes — like removing 1 hour per day — add up to hundreds of hours per year.</div>';
+
+  $("resultsContent").innerHTML = h;
+}
+
+/* ---------- RENDER LIFETIME ---------- */
+function renderLifetime(){
+  var r = calcAll();
+  var d = r.d;
+  var h = '';
+
+  h += '<div class="st-result">';
+  h += '<div class="st-result-label">Lifetime screen time remaining</div>';
+  h += '<div class="st-result-big">' + fmt(r.lifetimeScreenYears, 1) + ' years</div>';
+  h += '<div class="st-result-sub">' + fmtInt(r.lifetimeScreenHours) + ' hours over ' + fmt(r.remainingYears, 0) + ' remaining years · ' + fmt(r.lifetimePctWaking, 1) + '% of waking life</div>';
+  h += '</div>';
+
+  h += '<div class="st-stats">';
+  h += '<div class="st-stat"><div class="lbl">Years on screens</div><div class="val">' + fmt(r.lifetimeScreenYears, 1) + '</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Waking years on screens</div><div class="val">' + fmt(r.lifetimeWakingYears, 1) + '</div></div>';
+  h += '<div class="st-stat"><div class="lbl">% of waking life</div><div class="val ' + (r.lifetimePctWaking > 25 ? "err" : (r.lifetimePctWaking > 15 ? "warn" : "ok")) + '">' + fmt(r.lifetimePctWaking, 1) + '%</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Remaining years</div><div class="val">' + fmt(r.remainingYears, 0) + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="st-panel"><h3>What this time could become</h3>';
+  h += '<table class="st-table">';
+  h += '<tr><th>Alternative</th><th>Equivalent per year</th><th>Over your remaining life</th></tr>';
+  h += '<tr><td>Books read (10 hrs each)</td><td>' + fmtInt(r.booksPerYear) + '</td><td>' + fmtInt(r.booksPerYear * r.remainingYears) + '</td></tr>';
+  h += '<tr><td>Workouts (45 min each)</td><td>' + fmtInt(r.workoutsPerYear) + '</td><td>' + fmtInt(r.workoutsPerYear * r.remainingYears) + '</td></tr>';
+  h += '<tr><td>New languages to conversational level (600 hrs)</td><td>' + fmt(r.languages, 1) + '</td><td>' + fmt(r.languages * r.remainingYears, 1) + '</td></tr>';
+  h += '<tr><td>Miles of running (10 min / mile)</td><td>' + fmtInt(r.marathonMiles) + '</td><td>' + fmtInt(r.marathonMiles * r.remainingYears) + '</td></tr>';
+  h += '</table>';
+  h += '<p class="meta">These are illustrative conversions, not moral judgments. Screen time can be genuinely productive.</p>';
+  h += '</div>';
+
+  h += '<div class="st-tip"><b>Context:</b> ' + fmt(r.lifetimeScreenYears, 1) + ' years of clock time on screens is more than most people spend in secondary school, more than most people spend in a single job, and roughly the time it takes to become expert at any complex craft.</div>';
+
+  $("lifetimeContent").innerHTML = h;
+}
+
+/* ---------- RENDER HEALTH ---------- */
+function renderHealth(){
+  var r = calcAll();
+  var d = r.d;
+  var h = '';
+
+  h += '<div class="st-panel"><h3>Digital wellbeing score</h3>';
+  h += scoreGauge(r.score, r.scoreCls);
+  h += '<p style="text-align:center"><span class="st-badge ' + r.scoreCls + '">' + r.scoreLabel + '</span></p>';
+  h += '<p class="meta" style="text-align:center">Scores 85+ are excellent, 70–84 good, 55–69 fair, below 55 needs improvement.</p>';
+  h += '</div>';
+
+  h += '<div class="st-panel"><h3>Score breakdown</h3><table class="st-table">';
+  h += '<tr><th>Factor</th><th>Your input</th><th>Effect</th></tr>';
+
+  var breakLabel = { "never": "Rarely / never (−15)", "hourly": "About hourly (−5)", "regular": "Every 30 min (0)", "frequent": "Every 20 min / 20-20-20 (+5)" };
+  var postureLabel = { "poor": "Poor (−10)", "mixed": "Mixed (0)", "good": "Good (+5)" };
+
+  h += '<tr><td>Total screen time</td><td>' + fmt(d.deviceTotal, 1) + ' hrs/day</td><td>' + (d.deviceTotal > 2 ? "−" + fmt(Math.min(25, (d.deviceTotal - 2) * 3), 0) + " pts" : "No penalty") + '</td></tr>';
+  h += '<tr><td>Nighttime use</td><td>' + fmt(d.nightHours, 1) + ' hrs</td><td>' + (d.nightHours > 0 ? "−" + fmt(Math.min(20, d.nightHours * 8), 0) + " pts" : "No penalty") + '</td></tr>';
+  h += '<tr><td>Break frequency</td><td>' + esc(breakLabel[d.breakFrequency] || d.breakFrequency) + '</td><td>' + (d.breakFrequency === "frequent" ? "+5 pts" : (d.breakFrequency === "regular" ? "Neutral" : (d.breakFrequency === "hourly" ? "−5 pts" : "−15 pts"))) + '</td></tr>';
+  h += '<tr><td>Posture</td><td>' + esc(postureLabel[d.posture] || d.posture) + '</td><td>' + (d.posture === "good" ? "+5 pts" : (d.posture === "mixed" ? "Neutral" : "−10 pts")) + '</td></tr>';
+  h += '<tr><td>Phone usage</td><td>' + fmt(d.phone, 1) + ' hrs/day</td><td>' + (d.phone > 4 ? "−" + fmt(Math.min(10, (d.phone - 4) * 2), 0) + " pts" : "No penalty") + '</td></tr>';
+  h += '</table></div>';
+
+  // Health risks
+  h += '<div class="st-panel"><h3>Health risks at your usage level</h3>';
+  var risks = [];
+  if(d.deviceTotal >= 6) risks.push("Long daily screen time — increased risk of depression, sedentary behaviour and reduced sleep quality.");
+  else if(d.deviceTotal >= 4) risks.push("Moderate daily screen time — watch for eye strain and reduced physical activity.");
+  if(d.nightHours >= 1) risks.push("Nighttime screen use — can delay sleep onset by 30 to 60 minutes and reduce sleep quality.");
+  if(d.phone >= 4) risks.push("High phone use — associated with fragmented attention and higher anxiety in some studies.");
+  if(d.breakFrequency === "never" || d.breakFrequency === "hourly") risks.push("Infrequent breaks — increases eye strain, neck pain and headaches.");
+  if(d.posture === "poor") risks.push("Poor posture — sustained forward head posture strains the neck and upper back.");
+  if(risks.length === 0) risks.push("No major risk flags. Keep up the healthy habits.");
+
+  var riskList = '<ul>';
+  for(var i = 0; i < risks.length; i++) riskList += '<li>' + esc(risks[i]) + '</li>';
+  riskList += '</ul>';
+  h += riskList;
+  h += '</div>';
+
+  // Break schedule
+  h += '<div class="st-panel"><h3>Recommended break schedule</h3>';
+  h += '<ul>';
+  h += '<li><b>20-20-20 rule:</b> every 20 minutes, look at something 20 feet away for 20 seconds.</li>';
+  if(d.phone > 2) h += '<li><b>Phone:</b> a 5-minute break every 30–45 minutes of continuous use.</li>';
+  if(d.computer > 3) h += '<li><b>Computer:</b> a 5–10 minute standing break every 60 minutes. Stand and walk for at least 2 minutes.</li>';
+  if(d.tv > 2) h += '<li><b>TV / gaming:</b> a 5-minute break every hour, plus one long break midway through any session over 2 hours.</li>';
+  h += '<li><b>Evening:</b> stop screens at least 1 hour before bed, or enable night mode and reduce brightness.</li>';
+  h += '</ul></div>';
+
+  $("healthContent").innerHTML = h;
+}
+
+/* ---------- RENDER REDUCE ---------- */
+function renderReduce(){
+  var r = calcAll();
+  var d = r.d;
+  var h = '';
+
+  h += '<div class="st-result">';
+  h += '<div class="st-result-label">Time you could reclaim</div>';
+  h += '<div class="st-result-big">' + fmt(r.reclaimedPerYear, 0) + ' hours / year</div>';
+  h += '<div class="st-result-sub">By reducing from ' + fmt(r.daily, 1) + ' to ' + fmt(d.targetDaily, 1) + ' hrs/day — that is ' + fmt(r.reclaimedLifetimeYears, 1) + ' years over your remaining life</div>';
+  h += '</div>';
+
+  h += '<div class="st-stats">';
+  h += '<div class="st-stat"><div class="lbl">Reclaimed daily</div><div class="val">' + fmt(r.reclaimedPerDay, 1) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Reclaimed weekly</div><div class="val">' + fmt(r.reclaimedPerWeek, 1) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Reclaimed yearly</div><div class="val">' + fmt(r.reclaimedPerYear, 0) + ' hrs</div></div>';
+  h += '<div class="st-stat"><div class="lbl">Reclaimed lifetime</div><div class="val ok">' + fmt(r.reclaimedLifetimeYears, 1) + ' yrs</div></div>';
+  h += '</div>';
+
+  h += '<div class="st-panel"><h3>What you could do with the reclaimed time</h3>';
+  h += '<table class="st-table">';
+  h += '<tr><th>Activity</th><th>Per year</th><th>Over remaining life</th></tr>';
+  h += '<tr><td>Books read (10 hrs each)</td><td>' + fmtInt(r.reclaimedPerYear / 10) + '</td><td>' + fmtInt(r.reclaimedLifetime / 10) + '</td></tr>';
+  h += '<tr><td>Workouts (45 min each)</td><td>' + fmtInt(r.reclaimedPerYear / 0.75) + '</td><td>' + fmtInt(r.reclaimedLifetime / 0.75) + '</td></tr>';
+  h += '<tr><td>Languages (600 hrs each)</td><td>' + fmt(r.reclaimedPerYear / 600, 1) + '</td><td>' + fmt(r.reclaimedLifetime / 600, 1) + '</td></tr>';
+  h += '<tr><td>Full 24-hr days</td><td>' + fmt(r.reclaimedPerYear / 24, 1) + '</td><td>' + fmt(r.reclaimedLifetime / 24, 0) + '</td></tr>';
+  h += '</table></div>';
+
+  h += '<div class="st-tip"><b>Reality check:</b> Reducing screen time by 1 hour per day is achievable for most people. That single hour returns 365 hours per year — the equivalent of nine full 40-hour work weeks. Over 40 remaining years, that is 16 full waking months.</div>';
+
+  $("reduceContent").innerHTML = h;
+}
+
+/* ---------- PERSISTENCE ---------- */
+function saveState(){
+  try {
+    var d = {
+      ageGroup: $("ageGroup").value,
+      currentAge: $("currentAge").value,
+      lifeExpectancy: $("lifeExpectancy").value,
+      phone: $("phoneHours").value,
+      computer: $("computerHours").value,
+      tv: $("tvHours").value,
+      tablet: $("tabletHours").value,
+      other: $("otherDeviceHours").value,
+      work: $("workHours").value,
+      social: $("socialHours").value,
+      streaming: $("streamingHours").value,
+      gaming: $("gamingHours").value,
+      reading: $("readingHours").value,
+      otherAct: $("otherActivityHours").value,
+      night: $("nightHours").value,
+      breakFrequency: $("breakFrequency").value,
+      posture: $("posture").value,
+      targetDaily: $("targetDaily").value
+    };
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(d));
+  } catch(e){}
+}
+
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    var d = JSON.parse(raw);
+    if(!d || typeof d !== "object") return;
+    var map = {
+      "ageGroup": d.ageGroup, "currentAge": d.currentAge, "lifeExpectancy": d.lifeExpectancy,
+      "phoneHours": d.phone, "computerHours": d.computer, "tvHours": d.tv,
+      "tabletHours": d.tablet, "otherDeviceHours": d.other,
+      "workHours": d.work, "socialHours": d.social, "streamingHours": d.streaming,
+      "gamingHours": d.gaming, "readingHours": d.reading, "otherActivityHours": d.otherAct,
+      "nightHours": d.night, "breakFrequency": d.breakFrequency, "posture": d.posture,
+      "targetDaily": d.targetDaily
+    };
+    for(var id in map){
+      var el = $(id);
+      if(el && map[id] !== undefined && map[id] !== null) el.value = map[id];
+    }
+  } catch(e){}
+}
+
+/* ---------- EXPORT ---------- */
+function buildSummaryText(r){
+  var lines = [];
+  lines.push("Screen Time Summary");
+  lines.push("===================");
+  lines.push("Date: " + new Date().toLocaleDateString());
+  lines.push("");
+  lines.push("Daily screen time: " + fmt(r.daily, 2) + " hours");
+  lines.push("Weekly: " + fmt(r.weekly, 0) + " hours");
+  lines.push("Yearly: " + fmt(r.yearly, 0) + " hours");
+  lines.push("Waking day: " + fmt(r.wakingPct, 1) + "%");
+  lines.push("");
+  lines.push("Lifetime projection:");
+  lines.push("  Remaining years: " + fmt(r.remainingYears, 0));
+  lines.push("  Lifetime screen time: " + fmt(r.lifetimeScreenYears, 1) + " years (" + fmtInt(r.lifetimeScreenHours) + " hours)");
+  lines.push("  Waking years on screens: " + fmt(r.lifetimeWakingYears, 1));
+  lines.push("  % of waking life: " + fmt(r.lifetimePctWaking, 1) + "%");
+  lines.push("");
+  lines.push("Digital wellbeing score: " + r.score + "/100 (" + r.scoreLabel + ")");
+  lines.push("");
+  lines.push("Device breakdown:");
+  lines.push("  Phone: " + fmt(r.d.phone, 1) + " hrs");
+  lines.push("  Computer: " + fmt(r.d.computer, 1) + " hrs");
+  lines.push("  TV / Gaming: " + fmt(r.d.tv, 1) + " hrs");
+  lines.push("  Tablet: " + fmt(r.d.tablet, 1) + " hrs");
+  lines.push("  Other: " + fmt(r.d.other, 1) + " hrs");
+  lines.push("");
+  lines.push("Reduction target: " + fmt(r.d.targetDaily, 1) + " hrs/day");
+  lines.push("Reclaimed per year: " + fmt(r.reclaimedPerYear, 0) + " hours");
+  lines.push("Reclaimed over remaining life: " + fmt(r.reclaimedLifetimeYears, 1) + " years");
+  return lines.join("\n");
+}
+
+function copySummary(){
+  var r = calcAll();
+  var text = buildSummaryText(r);
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text);
+    var btn = $("copySummaryBtn");
+    if(btn){
+      var old = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(function(){ btn.textContent = old; }, 1400);
+    }
+  }
+}
+
+function downloadCsv(){
+  var r = calcAll();
+  var rows = [
+    ["Category", "Metric", "Value"],
+    ["Daily", "Total screen time (hours)", fmt(r.daily, 2)],
+    ["Daily", "Phone (hours)", fmt(r.d.phone, 2)],
+    ["Daily", "Computer (hours)", fmt(r.d.computer, 2)],
+    ["Daily", "TV / Gaming (hours)", fmt(r.d.tv, 2)],
+    ["Daily", "Tablet (hours)", fmt(r.d.tablet, 2)],
+    ["Daily", "Other (hours)", fmt(r.d.other, 2)],
+    ["Projection", "Weekly (hours)", fmt(r.weekly, 1)],
+    ["Projection", "Yearly (hours)", fmt(r.yearly, 0)],
+    ["Projection", "Full days per year", fmt(r.fullDaysPerYear, 1)],
+    ["Lifetime", "Remaining years", fmt(r.remainingYears, 0)],
+    ["Lifetime", "Lifetime screen time (years)", fmt(r.lifetimeScreenYears, 2)],
+    ["Lifetime", "Lifetime screen time (hours)", fmtInt(r.lifetimeScreenHours)],
+    ["Lifetime", "Waking years on screens", fmt(r.lifetimeWakingYears, 2)],
+    ["Lifetime", "% of waking life on screens", fmt(r.lifetimePctWaking, 2)],
+    ["Health", "Digital wellbeing score", r.score],
+    ["Health", "Score label", r.scoreLabel],
+    ["Reduction", "Target daily (hours)", fmt(r.d.targetDaily, 2)],
+    ["Reduction", "Reclaimed per year (hours)", fmt(r.reclaimedPerYear, 0)],
+    ["Reduction", "Reclaimed over remaining life (years)", fmt(r.reclaimedLifetimeYears, 2)]
+  ];
+
+  var csv = rows.map(function(row){
+    return row.map(function(c){
+      var s = String(c == null ? "" : c);
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }).join(",");
+  }).join("\n");
+
+  var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "utiliby-screen-time.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------- TABS ---------- */
+function switchTab(name){
+  document.querySelectorAll(".st-tab").forEach(function(t){
+    t.classList.toggle("on", t.dataset.tab === name);
+  });
+  $("inputTab").hidden = (name !== "input");
+  $("resultsTab").hidden = (name !== "results");
+  $("lifetimeTab").hidden = (name !== "lifetime");
+  $("healthTab").hidden = (name !== "health");
+  $("reduceTab").hidden = (name !== "reduce");
+
+  if(name === "results") renderResults();
+  if(name === "lifetime") renderLifetime();
+  if(name === "health") renderHealth();
+  if(name === "reduce") renderReduce();
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  loadState();
+
+  document.querySelectorAll(".st-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){ switchTab(this.dataset.tab); });
+  });
+
+  $("calcBtn").addEventListener("click", function(){
+    saveState();
+    switchTab("results");
+  });
+
+  $("resetBtn").addEventListener("click", function(){
+    if(!confirm("Reset all values to defaults?")) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+    $("ageGroup").value = "young-adult";
+    $("currentAge").value = 28;
+    $("lifeExpectancy").value = 80;
+    $("phoneHours").value = 3;
+    $("computerHours").value = 5;
+    $("tvHours").value = 2;
+    $("tabletHours").value = 0.5;
+    $("otherDeviceHours").value = 0;
+    $("workHours").value = 0;
+    $("socialHours").value = 0;
+    $("streamingHours").value = 0;
+    $("gamingHours").value = 0;
+    $("readingHours").value = 0;
+    $("otherActivityHours").value = 0;
+    $("nightHours").value = 1;
+    $("breakFrequency").value = "regular";
+    $("posture").value = "mixed";
+    $("targetDaily").value = 4;
+    switchTab("input");
+  });
+
+  // Save on any input change
+  T.addEventListener("change", saveState);
+  T.addEventListener("input", function(e){
+    if(e.target.tagName === "INPUT" && e.target.type !== "button") saveState();
+  });
+
+  // Export buttons are rendered inside results, so use delegation
+  T.addEventListener("click", function(e){
+    var b = e.target.closest("button");
+    if(!b) return;
+    if(b.id === "copySummaryBtn") copySummary();
+    if(b.id === "downloadCsvBtn") downloadCsv();
+  });
+});
+})();
+</script>
+</body>
+</html>
