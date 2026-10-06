@@ -151,7 +151,11 @@ function ulContains(haystack, needle){
     var q = document.getElementById("q");
     if (!q) return; // not on homepage
 
-    // Find the "Popular tools" grid — the injection target
+    // Locate the two grids on the homepage
+    var allCards = Array.prototype.slice.call(document.querySelectorAll(".card[data-name]"));
+    if (allCards.length === 0) return;
+
+    // Find the "Popular tools" grid — used as the injection target
     var popularGrid = null;
     var h2s = document.querySelectorAll("h2");
     for (var i = 0; i < h2s.length; i++) {
@@ -163,9 +167,16 @@ function ulContains(haystack, needle){
         }
       }
     }
-    if (!popularGrid) return;
+    if (!popularGrid) popularGrid = allCards[0].parentNode;
 
-    var originalCards = Array.prototype.slice.call(popularGrid.querySelectorAll(".card"));
+    // Split original cards into categories vs popular-tools
+    var categoryCards = [];
+    var popularCards = [];
+    for (var k = 0; k < allCards.length; k++) {
+      if (allCards[k].closest(".grid") === popularGrid) popularCards.push(allCards[k]);
+      else categoryCards.push(allCards[k]);
+    }
+
     var injected = [];
 
     function clearInjected() {
@@ -175,27 +186,33 @@ function ulContains(haystack, needle){
       injected = [];
     }
 
+    function toggleSectionHeading(grid, show) {
+      // Hide the h2 heading above a grid when the entire grid is empty
+      var prev = grid.previousElementSibling;
+      if (prev && prev.tagName === "H2") {
+        prev.style.display = show ? "" : "none";
+      }
+    }
+
     function update() {
       var v = q.value.trim().toLowerCase();
       var visibleUrls = {};
-      var visibleCount = 0;
 
-      // Step 1: filter the original cards
-      for (var i = 0; i < originalCards.length; i++) {
-        var c = originalCards[i];
+      // ---- Step 1: filter ALL original cards (categories + popular tools) ----
+      for (var i = 0; i < allCards.length; i++) {
+        var c = allCards[i];
         var match = !v || ulContains(c.dataset.name || "", v);
         c.style.display = match ? "" : "none";
         if (match) {
-          visibleCount++;
           var href = c.getAttribute("href");
           if (href) visibleUrls[href] = true;
         }
       }
 
-      // Step 2: clear any cards injected in a previous keystroke
+      // ---- Step 2: clear any cards injected during the previous keystroke ----
       clearInjected();
 
-      // Step 3: inject matching tools from the full index
+      // ---- Step 3: inject matching tools from the full index into Popular tools ----
       if (v) {
         for (var j = 0; j < toolIndex.length; j++) {
           var tool = toolIndex[j];
@@ -211,13 +228,16 @@ function ulContains(haystack, needle){
           a.innerHTML = "<b>" + ulEsc(tool.name) + "</b><span>" + ulEsc(tool.category) + "</span>";
           popularGrid.appendChild(a);
           injected.push(a);
-          visibleCount++;
+          visibleUrls[tool.url] = true;
         }
       }
 
-      // Step 4: show or hide the "no results" message
+      // ---- Step 4: show or hide the "no results" message ----
+      var totalVisible = 0;
+      for (var x in visibleUrls) totalVisible++;
+
       var noResult = document.getElementById("home-no-results");
-      if (v && visibleCount === 0) {
+      if (v && totalVisible === 0) {
         if (!noResult) {
           noResult = document.createElement("p");
           noResult.id = "home-no-results";
@@ -232,6 +252,13 @@ function ulContains(haystack, needle){
       } else if (noResult) {
         noResult.style.display = "none";
       }
+
+      // ---- Step 5: hide category heading when all its cards are hidden ----
+      var anyCategoryVisible = false;
+      for (var y = 0; y < categoryCards.length; y++) {
+        if (categoryCards[y].style.display !== "none") { anyCategoryVisible = true; break; }
+      }
+      toggleSectionHeading(categoryCards[0] ? categoryCards[0].closest(".grid") : popularGrid, anyCategoryVisible);
     }
 
     q.addEventListener("input", update);
