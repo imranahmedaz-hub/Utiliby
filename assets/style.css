@@ -141,3 +141,86 @@ button.tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));colo
 /* ---------- SELF-HOSTED DEMO VIDEO ---------- */
 .demo-video{margin:22px 0;text-align:center}
 .demo-video video{max-width:100%;height:auto;border-radius:12px;border:1px solid var(--line);display:block;margin:0 auto}
+/* ---------- BREADCRUMB SEARCH (all non-home pages) ---------- */
+.crumbs-row{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  flex-wrap:wrap;
+  padding-top:16px;
+}
+.crumbs-row .crumbs{
+  padding-top:0;
+  flex:1;
+  min-width:0;
+}
+.crumbs-search{
+  position:relative;
+  flex-shrink:0;
+  width:240px;
+  max-width:100%;
+}
+.crumbs-search input{
+  width:100%;
+  padding:7px 12px;
+  font-size:.85rem;
+  border:1px solid var(--line);
+  border-radius:8px;
+  background:var(--bg);
+  color:var(--fg);
+  outline:none;
+  transition:border-color .15s,box-shadow .15s;
+}
+.crumbs-search input:focus{
+  border-color:var(--brand);
+  box-shadow:0 0 0 3px rgba(79,70,229,.12);
+}
+.crumbs-results{
+  position:absolute;
+  top:calc(100% + 4px);
+  left:0;
+  right:0;
+  background:var(--bg);
+  border:1px solid var(--line);
+  border-radius:8px;
+  box-shadow:0 4px 16px rgba(0,0,0,.08);
+  max-height:320px;
+  overflow-y:auto;
+  z-index:20;
+}
+.crumbs-result-item{
+  display:block;
+  padding:8px 12px;
+  text-decoration:none;
+  color:var(--fg);
+  border-bottom:1px solid var(--line);
+  font-size:.85rem;
+}
+.crumbs-result-item:last-child{border-bottom:0}
+.crumbs-result-item:hover,
+.crumbs-result-item.active{
+  background:rgba(79,70,229,.06);
+  text-decoration:none;
+}
+.crumbs-result-name{
+  display:block;
+  font-weight:600;
+  color:var(--fg);
+}
+.crumbs-result-cat{
+  display:block;
+  font-size:.72rem;
+  color:var(--muted);
+  margin-top:1px;
+}
+.crumbs-result-empty{
+  padding:12px;
+  font-size:.85rem;
+  color:var(--muted);
+  text-align:center;
+}
+@media(max-width:700px){
+  .crumbs-row{padding-top:12px}
+  .crumbs-row .crumbs{flex-basis:100%}
+  .crumbs-search{width:100%}
+}
