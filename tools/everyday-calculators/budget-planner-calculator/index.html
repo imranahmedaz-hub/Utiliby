@@ -1,0 +1,774 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Budget Planner Calculator Online – 50/30/20 Rule &amp; Monthly Budget</title>
+<meta name="description" content="Free budget planner calculator online. Plan your monthly budget with the 50/30/20 rule, custom splits, real line items, progress bars and a live donut chart. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/everyday-calculators/budget-planner-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Budget Planner Calculator Online – 50/30/20 Rule &amp; Monthly Budget">
+<meta property="og:description" content="Free budget planner calculator online. 50/30/20 rule, custom splits, line items, progress bars and donut chart.">
+<meta property="og:url" content="https://utiliby.com/tools/everyday-calculators/budget-planner-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.bp-hero{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.bp-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.bp-hero p{margin:0;opacity:.92;font-size:.9rem}
+.bp-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.bp-panel h3{margin:0 0 10px;font-size:1rem}
+.bp-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.bp-panel input[type="text"],.bp-panel input[type="number"],.bp-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.bp-panel input[type="range"]{width:100%}
+.bp-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.bp-row{grid-template-columns:1fr}}
+.bp-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.bp-row3{grid-template-columns:1fr}}
+.bp-btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:0;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;margin-right:8px;margin-top:8px}
+.bp-btn:hover{opacity:.92}
+.bp-btn.ghost{background:transparent;color:var(--brand);border:1px solid var(--line)}
+.bp-btn.small{padding:5px 12px;font-size:.78rem;margin-top:0}
+.bp-btn.danger{background:transparent;color:#dc2626;border:1px solid var(--line)}
+.bp-buckets{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin:14px 0}
+@media(max-width:800px){.bp-buckets{grid-template-columns:1fr}}
+.bp-bucket{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px}
+.bp-bucket.needs{border-top:4px solid #ef4444}
+.bp-bucket.wants{border-top:4px solid #f59e0b}
+.bp-bucket.savings{border-top:4px solid #16a34a}
+.bp-bucket h4{margin:0 0 4px;font-size:.95rem}
+.bp-bucket .pct{font-size:.72rem;color:var(--muted);font-weight:700;text-transform:uppercase;letter-spacing:.03em}
+.bp-bucket .allocated{font-size:1.1rem;font-weight:800;color:var(--brand);margin:6px 0}
+.bp-bucket .remaining{font-size:.82rem;color:var(--muted);margin-bottom:10px}
+.bp-bucket .remaining.over{color:#dc2626;font-weight:700}
+.bp-progress{background:var(--line);border-radius:6px;height:8px;overflow:hidden;margin:6px 0 10px}
+.bp-progress-bar{height:100%;transition:width .25s;background:var(--brand)}
+.bp-progress-bar.over{background:#dc2626}
+.bp-items{display:flex;flex-direction:column;gap:6px;margin-bottom:8px}
+.bp-item{display:grid;grid-template-columns:1fr 90px 26px;gap:6px;align-items:center}
+.bp-item input{padding:6px 8px;font-size:.82rem}
+.bp-item .remove{background:transparent;border:0;color:#dc2626;font-size:1rem;cursor:pointer;padding:2px;line-height:1;border-radius:4px}
+.bp-item .remove:hover{background:#fee2e2}
+.bp-summary{display:grid;grid-template-columns:200px 1fr;gap:20px;margin:16px 0;align-items:start}
+@media(max-width:700px){.bp-summary{grid-template-columns:1fr}}
+.bp-donut{width:200px;height:200px;position:relative;margin:0 auto}
+.bp-donut svg{width:100%;height:100%;transform:rotate(-90deg)}
+.bp-donut .center{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.bp-donut .center .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700}
+.bp-donut .center .val{font-size:1.1rem;font-weight:800;color:var(--fg)}
+.bp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px}
+.bp-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.bp-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.bp-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.bp-stat .val.ok{color:#16a34a}
+.bp-stat .val.warn{color:#f59e0b}
+.bp-stat .val.over{color:#dc2626}
+.bp-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.bp-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.bp-tip{background:rgba(79,70,229,.06);border-left:3px solid var(--brand);padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.bp-tip b{color:var(--brand)}
+.bp-rules{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:8px;margin:8px 0}
+.bp-rule{padding:10px 12px;border:1px solid var(--line);border-radius:8px;text-align:center;cursor:pointer;transition:all .15s;background:var(--card)}
+.bp-rule:hover{border-color:var(--brand)}
+.bp-rule.on{border-color:var(--brand);background:rgba(79,70,229,.06);font-weight:700}
+.bp-rule .rule-name{font-size:.8rem;font-weight:700;color:var(--fg)}
+.bp-rule .rule-desc{font-size:.7rem;color:var(--muted);margin-top:2px}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+@media(max-width:560px){.bp-btn{font-size:.82rem;padding:8px 14px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Budget Planner Calculator","url":"https://utiliby.com/tools/everyday-calculators/budget-planner-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free budget planner calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free budget planner calculator online is a tool that helps you allocate your monthly income across spending categories. This budget planner calculator online uses the 50/30/20 rule and four other presets, supports custom splits, tracks real line items under each bucket, and shows a live donut chart. Everything runs in your browser with no sign-up."}},{"@type":"Question","name":"What is the 50/30/20 budget rule?","acceptedAnswer":{"@type":"Answer","text":"The 50/30/20 rule is a simple budgeting framework popularised by US Senator Elizabeth Warren in her book All Your Worth. It divides your after-tax income into three buckets: 50 percent for needs (rent, groceries, utilities, insurance, minimum debt payments), 30 percent for wants (dining out, subscriptions, hobbies, travel), and 20 percent for savings and extra debt payments."}},{"@type":"Question","name":"Should I use net pay or gross salary for budgeting?","acceptedAnswer":{"@type":"Answer","text":"Always use net pay, also called take-home pay. Net pay is the money that actually lands in your bank account after tax, national insurance, pension contributions and any other deductions. Gross salary is the headline number before deductions and does not reflect what you can actually spend."}},{"@type":"Question","name":"What counts as a need versus a want?","acceptedAnswer":{"@type":"Answer","text":"Needs are essential for survival and to maintain your current obligations: rent or mortgage, utilities, groceries, basic transportation, insurance, healthcare, childcare and minimum debt payments. Wants are lifestyle choices that improve quality of life but are optional: dining out, streaming subscriptions, new gadgets, travel, entertainment, hobbies and upgrades. When in doubt, ask: would my life fall apart without this?"}},{"@type":"Question","name":"Can I use a different budget split?","acceptedAnswer":{"@type":"Answer","text":"Yes. This calculator offers five presets: 50/30/20 (the classic), 60/20/20 (for high cost-of-living areas), 70/20/10 (for aggressive debt payoff), 40/30/30 (for aggressive savings), and a fully custom split that you set with sliders. The custom split must total exactly 100 percent."}},{"@type":"Question","name":"How much should I save each month?","acceptedAnswer":{"@type":"Answer","text":"Financial planners typically recommend saving 20 percent of your take-home pay for long-term goals. However, the right savings rate depends on your circumstances. Someone paying off high-interest debt may temporarily reduce savings to 10 percent while aggressively paying down the balance. Someone approaching retirement or building an emergency fund may push savings to 30 or 40 percent."}},{"@type":"Question","name":"What is zero-based budgeting?","acceptedAnswer":{"@type":"Answer","text":"Zero-based budgeting assigns every dollar of income to a specific category so that income minus planned expenses equals zero. Unlike the 50/30/20 rule, which divides income into three broad buckets, zero-based budgeting requires you to allocate every pound or dollar to a named line item. This tool supports a zero-based mode that highlights unallocated funds."}},{"@type":"Question","name":"Is this budget planner free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere. There are no ads, no accounts and no rate limits."}},{"@type":"Question","name":"Does the calculator save my data?","acceptedAnswer":{"@type":"Answer","text":"Your budget is saved to your browser's local storage so you can return to it later. Nothing is ever uploaded, shared or tracked. Clearing your browser data will delete the saved budget."}},{"@type":"Question","name":"How do I export my budget?","acceptedAnswer":{"@type":"Answer","text":"Use the Copy summary button to copy a plain-text version of your budget to your clipboard, or click Download CSV to save a structured spreadsheet-compatible file. Both options work offline."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › Budget Planner Calculator</nav>
+<h1>Budget Planner Calculator</h1>
+<p class="lead">Plan your monthly budget with the 50/30/20 rule, custom splits and real line items. Live donut chart, progress bars and CSV export. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Budget planner calculator">
+
+<div class="bp-hero">
+<h2>Free Budget Planner Calculator</h2>
+<p>Allocate your income, track real expenses and see where every pound or dollar goes.</p>
+</div>
+
+<!-- INCOME -->
+<div class="bp-panel">
+<h3>Your income</h3>
+<div class="bp-row">
+<div>
+<label for="currency">Currency</label>
+<select id="currency">
+<option value="USD" selected>$ USD – US Dollar</option>
+<option value="GBP">£ GBP – British Pound</option>
+<option value="EUR">€ EUR – Euro</option>
+<option value="AUD">A$ AUD – Australian Dollar</option>
+<option value="CAD">C$ CAD – Canadian Dollar</option>
+<option value="NZD">NZ$ NZD – New Zealand Dollar</option>
+<option value="INR">₹ INR – Indian Rupee</option>
+<option value="PKR">₨ PKR – Pakistani Rupee</option>
+<option value="AED">د.إ AED – UAE Dirham</option>
+<option value="SGD">S$ SGD – Singapore Dollar</option>
+<option value="ZAR">R ZAR – South African Rand</option>
+<option value="JPY">¥ JPY – Japanese Yen</option>
+</select>
+</div>
+<div>
+<label for="incomeFreq">Income frequency</label>
+<select id="incomeFreq">
+<option value="monthly" selected>Monthly</option>
+<option value="weekly">Weekly</option>
+<option value="biweekly">Every 2 weeks</option>
+<option value="semimonthly">Twice a month</option>
+<option value="annual">Annually</option>
+</select>
+</div>
+</div>
+<label for="incomeAmount">Take-home pay (net income)</label>
+<input type="number" id="incomeAmount" min="0" step="10" value="3500" placeholder="e.g., 3500">
+<p class="meta" id="incomeHint">Enter monthly take-home pay. The calculator converts to monthly automatically.</p>
+</div>
+
+<!-- BUDGET RULE -->
+<div class="bp-panel">
+<h3>Budget rule</h3>
+<div class="bp-rules" id="ruleGrid">
+<button type="button" class="bp-rule on" data-rule="50/30/20"><div class="rule-name">50/30/20</div><div class="rule-desc">Classic</div></button>
+<button type="button" class="bp-rule" data-rule="60/20/20"><div class="rule-name">60/20/20</div><div class="rule-desc">High cost</div></button>
+<button type="button" class="bp-rule" data-rule="70/20/10"><div class="rule-name">70/20/10</div><div class="rule-desc">Debt payoff</div></button>
+<button type="button" class="bp-rule" data-rule="40/30/30"><div class="rule-name">40/30/30</div><div class="rule-desc">Aggressive save</div></button>
+<button type="button" class="bp-rule" data-rule="custom"><div class="rule-name">Custom</div><div class="rule-desc">Your split</div></button>
+</div>
+<div id="customSplitPanel" hidden>
+<div class="bp-row3">
+<div><label>Needs % <span class="pct-display" id="needsPctVal">50%</span></label><input type="range" id="needsPct" min="0" max="100" step="1" value="50"></div>
+<div><label>Wants % <span class="pct-display" id="wantsPctVal">30%</span></label><input type="range" id="wantsPct" min="0" max="100" step="1" value="30"></div>
+<div><label>Savings % <span class="pct-display" id="savingsPctVal">20%</span></label><input type="range" id="savingsPct" min="0" max="100" step="1" value="20"></div>
+</div>
+<div id="splitWarning" class="bp-warn" hidden>Your split totals <b id="splitTotal">100</b>%. Adjust the sliders so the total is exactly 100%.</div>
+</div>
+</div>
+
+<!-- BUCKETS -->
+<div class="bp-buckets" id="buckets">
+<div class="bp-bucket needs" data-bucket="needs">
+<h4>Needs</h4>
+<div class="pct" id="needsPctLabel">50% of income</div>
+<div class="allocated" id="needsAllocated">—</div>
+<div class="remaining" id="needsRemaining">—</div>
+<div class="bp-progress"><div class="bp-progress-bar" id="needsBar" style="width:0%"></div></div>
+<div class="bp-items" id="needsItems"></div>
+<button type="button" class="bp-btn ghost small" data-add="needs">+ Add need</button>
+</div>
+<div class="bp-bucket wants" data-bucket="wants">
+<h4>Wants</h4>
+<div class="pct" id="wantsPctLabel">30% of income</div>
+<div class="allocated" id="wantsAllocated">—</div>
+<div class="remaining" id="wantsRemaining">—</div>
+<div class="bp-progress"><div class="bp-progress-bar" id="wantsBar" style="width:0%"></div></div>
+<div class="bp-items" id="wantsItems"></div>
+<button type="button" class="bp-btn ghost small" data-add="wants">+ Add want</button>
+</div>
+<div class="bp-bucket savings" data-bucket="savings">
+<h4>Savings &amp; debt</h4>
+<div class="pct" id="savingsPctLabel">20% of income</div>
+<div class="allocated" id="savingsAllocated">—</div>
+<div class="remaining" id="savingsRemaining">—</div>
+<div class="bp-progress"><div class="bp-progress-bar" id="savingsBar" style="width:0%"></div></div>
+<div class="bp-items" id="savingsItems"></div>
+<button type="button" class="bp-btn ghost small" data-add="savings">+ Add saving</button>
+</div>
+</div>
+
+<!-- SUMMARY -->
+<div class="bp-summary">
+<div class="bp-donut">
+<svg viewBox="0 0 100 100" id="donutSvg">
+<circle cx="50" cy="50" r="40" fill="none" stroke="var(--line)" stroke-width="14"></circle>
+<circle id="donutNeeds" cx="50" cy="50" r="40" fill="none" stroke="#ef4444" stroke-width="14" stroke-dasharray="0 999" stroke-dashoffset="0"></circle>
+<circle id="donutWants" cx="50" cy="50" r="40" fill="none" stroke="#f59e0b" stroke-width="14" stroke-dasharray="0 999" stroke-dashoffset="0"></circle>
+<circle id="donutSavings" cx="50" cy="50" r="40" fill="none" stroke="#16a34a" stroke-width="14" stroke-dasharray="0 999" stroke-dashoffset="0"></circle>
+<circle id="donutUnallocated" cx="50" cy="50" r="40" fill="none" stroke="#94a3b8" stroke-width="14" stroke-dasharray="0 999" stroke-dashoffset="0"></circle>
+</svg>
+<div class="center">
+<div class="lbl">Monthly income</div>
+<div class="val" id="donutIncome">—</div>
+</div>
+</div>
+<div>
+<div class="bp-stats">
+<div class="bp-stat"><div class="lbl">Monthly income</div><div class="val" id="statIncome">—</div></div>
+<div class="bp-stat"><div class="lbl">Total planned</div><div class="val" id="statPlanned">—</div></div>
+<div class="bp-stat"><div class="lbl">Unallocated</div><div class="val" id="statUnallocated">—</div></div>
+<div class="bp-stat"><div class="lbl">Annual savings</div><div class="val ok" id="statAnnualSavings">—</div></div>
+</div>
+<div id="zeroBasedBanner" class="bp-warn" hidden><b>Zero-based mode:</b> You have <span id="unallocatedAmt">$0</span> unallocated. Assign it to a bucket or reduce your income to zero out your budget.</div>
+<div class="bp-tip"><b>Tip:</b> Every time you add a line item, the bucket's progress bar fills. If a bar turns red, that bucket is over its allocated amount. Move money between buckets or adjust your custom split.</div>
+</div>
+</div>
+
+<!-- SAVINGS GOAL -->
+<div class="bp-panel">
+<h3>Savings goal</h3>
+<div class="bp-row">
+<div><label for="goalAmount">Target amount</label><input type="number" id="goalAmount" min="0" step="100" value="5000"></div>
+<div><label for="goalAlready">Already saved</label><input type="number" id="goalAlready" min="0" step="100" value="0"></div>
+</div>
+<div id="goalResult" class="bp-tip">Enter a target to see how many months it will take.</div>
+</div>
+
+<!-- ACTIONS -->
+<div class="bp-panel">
+<h3>Export &amp; save</h3>
+<button type="button" class="bp-btn" id="copySummaryBtn">Copy summary</button>
+<button type="button" class="bp-btn ghost" id="downloadCsvBtn">Download CSV</button>
+<button type="button" class="bp-btn ghost" id="printBtn">Print / save as PDF</button>
+<button type="button" class="bp-btn danger" id="resetBtn">Reset all</button>
+<p class="meta" style="margin-top:8px">Your budget is saved automatically in your browser. Nothing is uploaded or shared.</p>
+</div>
+
+</section>
+
+<article class="cn-article">
+
+<h2>What is a free budget planner calculator online?</h2>
+<p>A free budget planner calculator online is a tool that helps you allocate your monthly income across spending categories, track real expenses against each category, and see at a glance whether you are over or under budget. Instead of staring at a blank spreadsheet wondering where to start, you enter your take-home pay, pick a budgeting rule, and the calculator divides your income into buckets you can immediately fill with real line items.</p>
+<p>This budget planner calculator online is built around the <b>50/30/20 rule</b> — the most widely recommended budgeting framework in personal finance — but it supports four additional presets and a fully custom split. Under each bucket you can add actual expense line items (rent, groceries, subscriptions, savings goals), watch a progress bar fill as you plan, and see a live donut chart update in real time. It exports to CSV, copies a plain-text summary, prints to PDF, and saves your work to your browser's local storage. Everything runs client-side — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free budget planner calculator</h2>
+<ol>
+<li>Select your currency and income frequency (weekly, bi-weekly, semi-monthly, monthly or annually). The calculator converts everything to a monthly figure automatically.</li>
+<li>Enter your take-home pay — the amount that actually lands in your bank account after tax and deductions.</li>
+<li>Choose a budget rule. 50/30/20 is the default, but 60/20/20, 70/20/10 and 40/30/30 are one click away. Or slide the custom percentages to match your situation.</li>
+<li>Add real line items under each of the three buckets: Needs, Wants, Savings &amp; debt. Type the name and amount, and press Enter to add.</li>
+<li>Watch the allocated amount, remaining balance and progress bar update for each bucket. Bars turn red when a bucket goes over.</li>
+<li>Set a savings goal to see how many months it will take to reach it.</li>
+<li>Copy the summary, download the CSV, or print to PDF. Your budget is saved automatically in your browser.</li>
+</ol>
+
+<h2>What is the 50/30/20 budget rule?</h2>
+<p>The 50/30/20 rule is a simple budgeting framework popularised by US Senator Elizabeth Warren in her 2005 book <i>All Your Worth: The Ultimate Lifetime Money Plan</i>. It divides your <b>after-tax income</b> into three broad buckets:</p>
+<ul>
+<li><b>50% for needs.</b> Essential expenses you cannot avoid without serious consequences: rent or mortgage, utilities, groceries, basic transportation, insurance, healthcare, childcare and minimum debt payments.</li>
+<li><b>30% for wants.</b> Lifestyle choices that improve your quality of life but are optional: dining out, streaming subscriptions, new gadgets, travel, entertainment, hobbies and upgrades.</li>
+<li><b>20% for savings and debt repayment.</b> Building your financial future: emergency fund, retirement contributions, investments, sinking funds and any extra payments on debt beyond the minimum.</li>
+</ul>
+<p>The 50/30/20 rule works because it is simple enough to remember but detailed enough to be useful. Rather than tracking dozens of tiny categories, you start with three clear buckets. Over time you can refine the buckets with real line items — which this calculator lets you do — but the mental model stays simple.</p>
+
+<h2>Why budgeting matters more than ever in 2026</h2>
+<p>Household finances have become harder to manage. Inflation has pushed the cost of essentials up sharply since 2022, interest rates have risen and fallen unpredictably, and the gig economy has made income less stable for millions of people. A 2026 survey found that <b>62% of adults live paycheck to paycheck</b>, and fewer than half have enough savings to cover a £1,000 emergency.</p>
+<p>The consequences of not budgeting are concrete. Without a plan, money disappears into small daily decisions — takeaway coffees, impulse purchases, forgotten subscriptions — that individually feel trivial but compound into thousands per year. A budget planner calculator forces those decisions into the open. It does not tell you what to spend; it shows you what you are already planning to spend, and lets you decide whether that matches your priorities.</p>
+
+<h2>Should you use net pay or gross salary for budgeting?</h2>
+<p>Always use <b>net pay</b>, also called take-home pay. Net pay is the amount that actually lands in your bank account after deductions for income tax, national insurance (or social security), pension contributions, student loan repayments and any other automatic deductions.</p>
+<p>Gross salary is the headline number in a job offer — useful for comparing offers, useless for budgeting. A £60,000 gross salary might become £42,000 to £45,000 net, depending on your tax code and pension contributions. Budgeting against gross income gives you a false sense of how much you can spend and leads to shortfalls at the end of the month.</p>
+<p>If you only know your gross salary, use a take-home pay calculator first to estimate net pay, then come back and enter that figure here.</p>
+
+<h2>What counts as a need versus a want?</h2>
+<p>The need-versus-want distinction is the most common source of confusion in budgeting. The rule of thumb: <b>a need is something you cannot avoid without serious consequences; a want is something that improves your life but is optional</b>.</p>
+<table>
+<tr><th>Needs</th><th>Wants</th></tr>
+<tr><td>Rent or mortgage</td><td>Dining out and takeaways</td></tr>
+<tr><td>Utilities (electricity, gas, water, internet)</td><td>Streaming subscriptions</td></tr>
+<tr><td>Groceries and household essentials</td><td>New gadgets and upgrades</td></tr>
+<tr><td>Basic transportation (commute, fuel, insurance)</td><td>Travel and holidays</td></tr>
+<tr><td>Healthcare and prescriptions</td><td>Entertainment and events</td></tr>
+<tr><td>Childcare and school costs</td><td>Hobbies and sports</td></tr>
+<tr><td>Minimum debt payments</td><td>Gym memberships</td></tr>
+<tr><td>Insurance premiums (home, life, car)</td><td>Fashion and beauty</td></tr>
+</table>
+<p>Some items live on the boundary. A car can be a need (commuting to work) or a want (a second car for weekends). A phone can be a need (work contact) or a want (the latest model). When in doubt, ask: <i>would my life fall apart without this?</i> If yes, it is probably a need. If no, it is a want.</p>
+
+<h2>Customising the split: alternatives to 50/30/20</h2>
+<p>The 50/30/20 rule is a starting point, not a law. Different circumstances call for different splits. This calculator offers five presets and a fully custom option:</p>
+<h3>60/20/20 — high cost of living</h3>
+<p>If you live in an expensive city where rent alone exceeds 40% of your income, the 50% needs bucket may be impossible. The 60/20/20 split gives more room to needs while still protecting 20% for savings.</p>
+<h3>70/20/10 — aggressive debt payoff</h3>
+<p>If you are carrying high-interest debt, temporarily shifting your budget toward needs while channelling everything else into debt repayment can make sense. The 70/20/10 split prioritises survival and clearing the balance.</p>
+<h3>40/30/30 — aggressive savings</h3>
+<p>If you are saving for a house deposit, building an emergency fund, or catching up on retirement contributions, the 40/30/30 split pushes savings to 30%.</p>
+<h3>Custom split</h3>
+<p>For everything else, use the sliders to set your own percentages. The calculator validates that they total exactly 100%. You might land on 55/25/20, 45/35/20, or something else entirely — the right split is the one that reflects your actual priorities.</p>
+
+<h2>Zero-based budgeting vs percentage-based budgeting</h2>
+<p>The 50/30/20 rule is a <b>percentage-based</b> framework — you divide income into percentages and spend within those limits. <b>Zero-based budgeting</b> takes a different approach: every pound of income is assigned to a specific named category, so income minus planned spending equals exactly zero.</p>
+<p>Zero-based budgeting is more labour-intensive but also more precise. It forces you to justify every expense and eliminates the vague "I have some money left over" feeling that can lead to impulse spending. This calculator supports a zero-based mode that highlights any unallocated funds at the top of the summary, so you can push the unallocated balance to zero.</p>
+<p>Most people find that 50/30/20 is a good starting point and zero-based becomes more valuable as their finances get more complex.</p>
+
+<h2>How to build a monthly budget in six steps</h2>
+<ol>
+<li><b>Calculate your monthly net income.</b> Add up every source of take-home pay: salary, freelance income, side income, benefits. If income is irregular, use a three-month average.</li>
+<li><b>Choose a budget rule.</b> 50/30/20 for most people, 60/20/20 for high-cost areas, 70/20/10 for debt payoff.</li>
+<li><b>List your fixed needs.</b> Rent or mortgage, utilities, insurance, minimum debt payments. These are the numbers you cannot change quickly.</li>
+<li><b>Estimate variable needs.</b> Groceries, fuel, healthcare. Use the average of the last three months rather than a guess.</li>
+<li><b>Assign wants.</b> Be honest about what you actually spend on dining, subscriptions and entertainment. Cutting too aggressively leads to rebound spending.</li>
+<li><b>Protect savings.</b> Treat savings like a bill you pay to yourself. Automate the transfer on payday so it happens before you can spend it.</li>
+</ol>
+
+<h2>Common budgeting mistakes</h2>
+<ul>
+<li><b>Using gross income.</b> Budgeting against the salary headline rather than take-home pay creates a shortfall that never balances.</li>
+<li><b>Forgetting annual expenses.</b> Car insurance, holidays, birthdays and back-to-school costs are predictable but often ignored. Divide them by twelve and add them to your monthly plan.</li>
+<li><b>Being too aggressive on cuts.</b> A budget that removes every pleasure is a budget you will abandon in six weeks. Leave room for wants.</li>
+<li><b>Not tracking variable expenses.</b> A plan without actual tracking drifts. Review your plan against reality every month.</li>
+<li><b>Ignoring irregular income.</b> Freelancers and gig workers should budget on the lowest recent month, not the highest.</li>
+<li><b>Not having an emergency fund.</b> Without three to six months of expenses saved, one unexpected bill can wreck a budget that was working perfectly.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free budget planner calculator online?</summary><p>A free budget planner calculator online is a tool that helps you allocate your monthly income across spending categories. This budget planner calculator online uses the 50/30/20 rule and four other presets, supports custom splits, tracks real line items under each bucket, and shows a live donut chart. Everything runs in your browser with no sign-up.</p></details>
+<details><summary>What is the 50/30/20 budget rule?</summary><p>The 50/30/20 rule is a simple budgeting framework popularised by US Senator Elizabeth Warren in her book All Your Worth. It divides your after-tax income into three buckets: 50 percent for needs, 30 percent for wants, and 20 percent for savings and extra debt payments.</p></details>
+<details><summary>Should I use net pay or gross salary for budgeting?</summary><p>Always use net pay, also called take-home pay. Net pay is the money that actually lands in your bank account after tax, national insurance, pension contributions and any other deductions. Gross salary is the headline number before deductions and does not reflect what you can actually spend.</p></details>
+<details><summary>What counts as a need versus a want?</summary><p>Needs are essential for survival and to maintain your current obligations: rent or mortgage, utilities, groceries, basic transportation, insurance, healthcare, childcare and minimum debt payments. Wants are lifestyle choices that improve quality of life but are optional: dining out, streaming subscriptions, new gadgets, travel, entertainment, hobbies and upgrades.</p></details>
+<details><summary>Can I use a different budget split?</summary><p>Yes. This calculator offers five presets: 50/30/20 (the classic), 60/20/20 (for high cost-of-living areas), 70/20/10 (for aggressive debt payoff), 40/30/30 (for aggressive savings), and a fully custom split that you set with sliders.</p></details>
+<details><summary>How much should I save each month?</summary><p>Financial planners typically recommend saving 20 percent of your take-home pay for long-term goals. However, the right savings rate depends on your circumstances. Someone paying off high-interest debt may temporarily reduce savings to 10 percent while aggressively paying down the balance.</p></details>
+<details><summary>What is zero-based budgeting?</summary><p>Zero-based budgeting assigns every dollar of income to a specific category so that income minus planned expenses equals zero. Unlike the 50/30/20 rule, which divides income into three broad buckets, zero-based budgeting requires you to allocate every pound or dollar to a named line item. This tool supports a zero-based mode that highlights unallocated funds.</p></details>
+<details><summary>Is this budget planner free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere. There are no ads, no accounts and no rate limits.</p></details>
+<details><summary>Does the calculator save my data?</summary><p>Your budget is saved to your browser's local storage so you can return to it later. Nothing is ever uploaded, shared or tracked. Clearing your browser data will delete the saved budget.</p></details>
+<details><summary>How do I export my budget?</summary><p>Use the Copy summary button to copy a plain-text version of your budget to your clipboard, or click Download CSV to save a structured spreadsheet-compatible file. Both options work offline.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+
+var STORAGE_KEY = "utiliby-budget-v1";
+var CURRENCIES = { USD:"$", GBP:"£", EUR:"€", AUD:"A$", CAD:"C$", NZD:"NZ$", INR:"₹", PKR:"₨", AED:"د.إ", SGD:"S$", ZAR:"R", JPY:"¥" };
+
+var state = {
+  currency: "USD",
+  income: 3500,
+  frequency: "monthly",
+  rule: "50/30/20",
+  custom: { needs: 50, wants: 30, savings: 20 },
+  buckets: { needs: [], wants: [], savings: [] },
+  goal: { amount: 5000, already: 0 }
+};
+
+/* ---------- UTILS ---------- */
+function monthlyIncome(){
+  var n = num(state.income, 0);
+  switch(state.frequency){
+    case "weekly": return n * 52 / 12;
+    case "biweekly": return n * 26 / 12;
+    case "semimonthly": return n * 2;
+    case "annual": return n / 12;
+    default: return n;
+  }
+}
+function fmtMoney(n){
+  var sym = CURRENCIES[state.currency] || "$";
+  return sym + Math.round(n).toLocaleString();
+}
+function pct(){
+  if(state.rule === "custom") return state.custom;
+  var parts = state.rule.split("/");
+  return { needs: parseInt(parts[0],10), wants: parseInt(parts[1],10), savings: parseInt(parts[2],10) };
+}
+function bucketTotal(key){
+  var t = 0;
+  for(var i = 0; i < state.buckets[key].length; i++) t += num(state.buckets[key][i].amount, 0);
+  return t;
+}
+function totalPlanned(){
+  return bucketTotal("needs") + bucketTotal("wants") + bucketTotal("savings");
+}
+
+/* ---------- RENDER ---------- */
+function render(){
+  var income = monthlyIncome();
+  var p = pct();
+  var needsAlloc = income * p.needs / 100;
+  var wantsAlloc = income * p.wants / 100;
+  var savingsAlloc = income * p.savings / 100;
+
+  // Pct labels
+  $("needsPctLabel").textContent = p.needs + "% of income";
+  $("wantsPctLabel").textContent = p.wants + "% of income";
+  $("savingsPctLabel").textContent = p.savings + "% of income";
+  $("needsPctVal").textContent = p.needs + "%";
+  $("wantsPctVal").textContent = p.wants + "%";
+  $("savingsPctVal").textContent = p.savings + "%";
+
+  // Allocated
+  $("needsAllocated").textContent = fmtMoney(needsAlloc);
+  $("wantsAllocated").textContent = fmtMoney(wantsAlloc);
+  $("savingsAllocated").textContent = fmtMoney(savingsAlloc);
+
+  // Remaining
+  var needsSpent = bucketTotal("needs");
+  var wantsSpent = bucketTotal("wants");
+  var savingsSpent = bucketTotal("savings");
+
+  renderRemaining("needs", needsAlloc, needsSpent);
+  renderRemaining("wants", wantsAlloc, wantsSpent);
+  renderRemaining("savings", savingsAlloc, savingsSpent);
+
+  // Progress bars
+  updateBar("needs", needsSpent, needsAlloc);
+  updateBar("wants", wantsSpent, wantsAlloc);
+  updateBar("savings", savingsSpent, savingsAlloc);
+
+  // Summary stats
+  var planned = totalPlanned();
+  var unallocated = income - planned;
+  $("statIncome").textContent = fmtMoney(income);
+  $("donutIncome").textContent = fmtMoney(income);
+  $("statPlanned").textContent = fmtMoney(planned);
+  $("statUnallocated").textContent = fmtMoney(unallocated);
+  $("statAnnualSavings").textContent = fmtMoney(savingsSpent * 12);
+
+  // Zero-based banner
+  if(unallocated > 0.01){
+    $("zeroBasedBanner").hidden = false;
+    $("unallocatedAmt").textContent = fmtMoney(unallocated);
+  } else {
+    $("zeroBasedBanner").hidden = true;
+  }
+
+  // Donut
+  drawDonut(needsSpent, wantsSpent, savingsSpent, Math.max(0, unallocated));
+
+  // Goal
+  updateGoal(savingsSpent);
+
+  // Custom split warning
+  if(state.rule === "custom"){
+    var total = state.custom.needs + state.custom.wants + state.custom.savings;
+    $("splitTotal").textContent = total;
+    $("splitWarning").hidden = (total === 100);
+  } else {
+    $("splitWarning").hidden = true;
+  }
+
+  saveState();
+}
+
+function renderRemaining(key, alloc, spent){
+  var el = $(key + "Remaining");
+  var rem = alloc - spent;
+  if(rem < -0.01){
+    el.textContent = "Over budget by " + fmtMoney(Math.abs(rem));
+    el.className = "remaining over";
+  } else {
+    el.textContent = "Remaining: " + fmtMoney(rem);
+    el.className = "remaining";
+  }
+}
+
+function updateBar(key, spent, alloc){
+  var bar = $(key + "Bar");
+  if(alloc <= 0){ bar.style.width = "0%"; return; }
+  var pct = Math.min(100, (spent / alloc) * 100);
+  bar.style.width = pct + "%";
+  bar.classList.toggle("over", spent > alloc + 0.01);
+}
+
+function drawDonut(needs, wants, savings, unallocated){
+  var total = needs + wants + savings + unallocated;
+  if(total <= 0){ total = 1; }
+  var circ = 2 * Math.PI * 40;
+  var nPct = needs / total;
+  var wPct = wants / total;
+  var sPct = savings / total;
+  var uPct = unallocated / total;
+
+  var nLen = circ * nPct;
+  var wLen = circ * wPct;
+  var sLen = circ * sPct;
+  var uLen = circ * uPct;
+
+  var nEl = $("donutNeeds");
+  var wEl = $("donutWants");
+  var sEl = $("donutSavings");
+  var uEl = $("donutUnallocated");
+
+  nEl.setAttribute("stroke-dasharray", nLen + " " + (circ - nLen));
+  nEl.setAttribute("stroke-dashoffset", "0");
+
+  wEl.setAttribute("stroke-dasharray", wLen + " " + (circ - wLen));
+  wEl.setAttribute("stroke-dashoffset", "-" + nLen);
+
+  sEl.setAttribute("stroke-dasharray", sLen + " " + (circ - sLen));
+  sEl.setAttribute("stroke-dashoffset", "-" + (nLen + wLen));
+
+  uEl.setAttribute("stroke-dasharray", uLen + " " + (circ - uLen));
+  uEl.setAttribute("stroke-dashoffset", "-" + (nLen + wLen + sLen));
+}
+
+function updateGoal(savingsSpent){
+  var target = num(state.goal.amount, 0);
+  var already = num(state.goal.already, 0);
+  var el = $("goalResult");
+  if(target <= 0 || savingsSpent <= 0){
+    el.innerHTML = "Enter a target and add a savings item to see how many months it will take.";
+    return;
+  }
+  var remaining = Math.max(0, target - already);
+  var months = Math.ceil(remaining / savingsSpent);
+  if(months <= 0){
+    el.innerHTML = "<b>Goal reached!</b> You have already saved " + fmtMoney(already) + " toward your " + fmtMoney(target) + " target.";
+  } else {
+    el.innerHTML = "<b>Time to goal:</b> " + months + " month" + (months === 1 ? "" : "s") + " at your current savings rate of " + fmtMoney(savingsSpent) + "/month.";
+  }
+}
+
+/* ---------- BUCKET ITEMS ---------- */
+function renderItems(key){
+  var el = $(key + "Items");
+  var h = "";
+  for(var i = 0; i < state.buckets[key].length; i++){
+    var it = state.buckets[key][i];
+    h += '<div class="bp-item" data-bucket="' + key + '" data-idx="' + i + '">';
+    h += '<input type="text" value="' + esc(it.name) + '" data-field="name" placeholder="Item name">';
+    h += '<input type="number" min="0" step="1" value="' + esc(it.amount) + '" data-field="amount" placeholder="0">';
+    h += '<button type="button" class="remove" data-remove="' + i + '" title="Remove">×</button>';
+    h += '</div>';
+  }
+  el.innerHTML = h;
+}
+
+function addItem(key){
+  state.buckets[key].push({ name: "", amount: 0 });
+  renderItems(key);
+  // Focus the new name input
+  var items = $(key + "Items").querySelectorAll(".bp-item");
+  if(items.length){
+    var last = items[items.length - 1];
+    var input = last.querySelector('input[data-field="name"]');
+    if(input) input.focus();
+  }
+}
+
+function removeItem(key, idx){
+  state.buckets[key].splice(idx, 1);
+  renderItems(key);
+  render();
+}
+
+/* ---------- EVENTS ---------- */
+function wire(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Income
+  $("currency").addEventListener("change", function(){ state.currency = this.value; render(); });
+  $("incomeFreq").addEventListener("change", function(){ state.frequency = this.value; render(); });
+  $("incomeAmount").addEventListener("input", function(){ state.income = num(this.value, 0); render(); });
+
+  // Rule
+  document.querySelectorAll(".bp-rule").forEach(function(btn){
+    btn.addEventListener("click", function(){
+      state.rule = this.dataset.rule;
+      document.querySelectorAll(".bp-rule").forEach(function(b){ b.classList.toggle("on", b === btn); });
+      $("customSplitPanel").hidden = (state.rule !== "custom");
+      render();
+    });
+  });
+
+  // Custom sliders
+  ["needsPct","wantsPct","savingsPct"].forEach(function(id){
+    $(id).addEventListener("input", function(){
+      var key = id.replace("Pct","");
+      state.custom[key] = parseInt(this.value, 10);
+      render();
+    });
+  });
+
+  // Bucket items (event delegation)
+  T.addEventListener("click", function(e){
+    var add = e.target.closest("[data-add]");
+    if(add){ addItem(add.dataset.add); return; }
+    var rem = e.target.closest("[data-remove]");
+    if(rem){
+      var parent = rem.closest(".bp-item");
+      removeItem(parent.dataset.bucket, parseInt(parent.dataset.idx, 10));
+      return;
+    }
+  });
+
+  T.addEventListener("input", function(e){
+    var item = e.target.closest(".bp-item");
+    if(!item) return;
+    var key = item.dataset.bucket;
+    var idx = parseInt(item.dataset.idx, 10);
+    var field = e.target.dataset.field;
+    if(!state.buckets[key] || !state.buckets[key][idx]) return;
+    if(field === "name") state.buckets[key][idx].name = e.target.value;
+    else if(field === "amount"){
+      state.buckets[key][idx].amount = num(e.target.value, 0);
+      render();
+    }
+  });
+
+  // Goal
+  $("goalAmount").addEventListener("input", function(){ state.goal.amount = num(this.value, 0); render(); });
+  $("goalAlready").addEventListener("input", function(){ state.goal.already = num(this.value, 0); render(); });
+
+  // Actions
+  $("copySummaryBtn").addEventListener("click", copySummary);
+  $("downloadCsvBtn").addEventListener("click", downloadCSV);
+  $("printBtn").addEventListener("click", function(){ window.print(); });
+  $("resetBtn").addEventListener("click", function(){
+    if(!confirm("Reset all budget data? This cannot be undone.")) return;
+    try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+    state.buckets = { needs: [], wants: [], savings: [] };
+    state.income = 3500;
+    state.rule = "50/30/20";
+    state.custom = { needs: 50, wants: 30, savings: 20 };
+    $("incomeAmount").value = 3500;
+    $("needsPct").value = 50; $("wantsPct").value = 30; $("savingsPct").value = 20;
+    document.querySelectorAll(".bp-rule").forEach(function(b){ b.classList.toggle("on", b.dataset.rule === "50/30/20"); });
+    $("customSplitPanel").hidden = true;
+    renderItems("needs"); renderItems("wants"); renderItems("savings");
+    render();
+  });
+}
+
+/* ---------- SUMMARY & EXPORT ---------- */
+function buildSummaryLines(){
+  var p = pct();
+  var income = monthlyIncome();
+  var lines = [];
+  lines.push("Budget summary — " + new Date().toLocaleDateString());
+  lines.push("");
+  lines.push("Monthly income: " + fmtMoney(income));
+  lines.push("Rule: " + state.rule + " (Needs " + p.needs + "% / Wants " + p.wants + "% / Savings " + p.savings + "%)");
+  lines.push("");
+  ["needs","wants","savings"].forEach(function(key){
+    var alloc = income * p[key] / 100;
+    var spent = bucketTotal(key);
+    lines.push(key.toUpperCase() + " (allocated " + fmtMoney(alloc) + ", planned " + fmtMoney(spent) + ")");
+    for(var i = 0; i < state.buckets[key].length; i++){
+      var it = state.buckets[key][i];
+      if(it.name || it.amount){
+        lines.push("  - " + (it.name || "(unnamed)") + ": " + fmtMoney(num(it.amount, 0)));
+      }
+    }
+    lines.push("");
+  });
+  var unallocated = income - totalPlanned();
+  lines.push("Unallocated: " + fmtMoney(unallocated));
+  lines.push("Annual savings: " + fmtMoney(bucketTotal("savings") * 12));
+  return lines;
+}
+
+function copySummary(){
+  var text = buildSummaryLines().join("\n");
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(text);
+    var btn = $("copySummaryBtn");
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1400);
+  }
+}
+
+function downloadCSV(){
+  var p = pct();
+  var income = monthlyIncome();
+  var rows = [];
+  rows.push(["Category", "Item", "Amount"]);
+  rows.push(["Income", "Monthly take-home", income.toFixed(2)]);
+  ["needs","wants","savings"].forEach(function(key){
+    rows.push([key.charAt(0).toUpperCase() + key.slice(1), "Allocated", (income * p[key] / 100).toFixed(2)]);
+    for(var i = 0; i < state.buckets[key].length; i++){
+      var it = state.buckets[key][i];
+      rows.push([key.charAt(0).toUpperCase() + key.slice(1), it.name || "", num(it.amount, 0).toFixed(2)]);
+    }
+  });
+  rows.push(["Summary", "Total planned", totalPlanned().toFixed(2)]);
+  rows.push(["Summary", "Unallocated", (income - totalPlanned()).toFixed(2)]);
+  rows.push(["Summary", "Annual savings", (bucketTotal("savings") * 12).toFixed(2)]);
+
+  var csv = rows.map(function(r){
+    return r.map(function(c){
+      var s = String(c == null ? "" : c);
+      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }).join(",");
+  }).join("\n");
+
+  var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = "utiliby-budget.csv";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------- PERSISTENCE ---------- */
+function saveState(){
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); } catch(e){}
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return;
+    var saved = JSON.parse(raw);
+    if(saved && typeof saved === "object"){
+      // Merge carefully
+      if(saved.currency) state.currency = saved.currency;
+      if(typeof saved.income === "number") state.income = saved.income;
+      if(saved.frequency) state.frequency = saved.frequency;
+      if(saved.rule) state.rule = saved.rule;
+      if(saved.custom) state.custom = saved.custom;
+      if(saved.buckets) state.buckets = saved.buckets;
+      if(saved.goal) state.goal = saved.goal;
+    }
+  } catch(e){}
+}
+
+function hydrateInputs(){
+  $("currency").value = state.currency;
+  $("incomeFreq").value = state.frequency;
+  $("incomeAmount").value = state.income;
+  $("needsPct").value = state.custom.needs;
+  $("wantsPct").value = state.custom.wants;
+  $("savingsPct").value = state.custom.savings;
+  $("goalAmount").value = state.goal.amount;
+  $("goalAlready").value = state.goal.already;
+  document.querySelectorAll(".bp-rule").forEach(function(b){
+    b.classList.toggle("on", b.dataset.rule === state.rule);
+  });
+  $("customSplitPanel").hidden = (state.rule !== "custom");
+  renderItems("needs");
+  renderItems("wants");
+  renderItems("savings");
+}
+
+/* ---------- INIT ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  loadState();
+  hydrateInputs();
+  wire();
+  render();
+});
+})();
+</script>
+</body>
+</html>
