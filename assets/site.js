@@ -17,6 +17,7 @@ var toolIndex = [
   { name: "Screen Time Calculator",             url: "/tools/everyday-calculators/screen-time-calculator/",               category: "Everyday Calculators", keywords: "screen time digital wellbeing phone hours lifetime health" },
   // Health & Fitness
   { name: "Keto Macro Calculator",              url: "/tools/health-fitness/keto-macro-calculator/",                      category: "Health & Fitness",     keywords: "keto macro protein fat carbs diet low-carb carnivore macros" },
+  { name: "Sleep Cycle Calculator", 		url: "/tools/health-fitness/sleep-cycle-calculator/", 			  category: "Health & Fitness",     keywords: "sleep cycle bedtime wake up nap sleep debt calculator" },  
   // Engineering
   { name: "V-Belt Length Calculator",           url: "/tools/engineering/v-belt-length-calculator/",                      category: "Engineering",          keywords: "v-belt length pulley belt drive wrap angle mechanical" },
   // Construction
