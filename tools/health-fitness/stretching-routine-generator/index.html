@@ -3,6 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
 <title>Free Stretching Routine Generator Online – Personalised Daily Stretch Plan</title>
 <meta name="description" content="Free stretching routine generator online. Build a personalised daily stretch routine by body area, purpose and time. Interactive body map, guided timer and 65+ stretches. 100% browser-based, no sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/health-fitness/stretching-routine-generator/">
@@ -42,23 +43,23 @@
 .sr-bodymap-wrap{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:14px 0}
 @media(max-width:600px){.sr-bodymap-wrap{grid-template-columns:1fr}}
 .sr-body-view{text-align:center}
-.sr-body-view svg{width:100%;max-width:220px;height:auto;display:block;margin:0 auto}
-.sr-body-part{fill:#e2e8f0;stroke:#94a3b8;stroke-width:1;cursor:pointer;transition:fill .15s}
-.sr-body-part:hover{fill:#c4b5fd}
-.sr-body-part.selected{fill:#7c3aed;stroke:#5b21b6}
-.sr-body-part.highlight{fill:#f59e0b;stroke:#b45309;animation:sr-pulse 1.2s ease-in-out infinite}
+.sr-body-view svg{width:100%;max-width:280px;height:auto;display:block;margin:0 auto;user-select:none;touch-action:manipulation}
+.sr-body-part{fill:#e2e8f0;stroke:#94a3b8;stroke-width:1.5;cursor:pointer;transition:fill .15s,stroke .15s;pointer-events:all}
+.sr-body-part:hover{fill:#c4b5fd;stroke:#7c3aed}
+.sr-body-part.selected{fill:#7c3aed !important;stroke:#5b21b6 !important;stroke-width:2}
+.sr-body-part.highlight{fill:#f59e0b !important;stroke:#b45309 !important;animation:sr-pulse 1.2s ease-in-out infinite}
 @keyframes sr-pulse{0%,100%{opacity:1}50%{opacity:.55}}
 @media(prefers-color-scheme:dark){
   .sr-body-part{fill:#334155;stroke:#475569}
-  .sr-body-part:hover{fill:#5b21b6}
-  .sr-body-part.selected{fill:#a855f7;stroke:#c4b5fd}
-  .sr-body-part.highlight{fill:#f59e0b;stroke:#fbbf24}
+  .sr-body-part:hover{fill:#5b21b6;stroke:#a855f7}
+  .sr-body-part.selected{fill:#a855f7 !important;stroke:#c4b5fd !important}
+  .sr-body-part.highlight{fill:#f59e0b !important;stroke:#fbbf24 !important}
 }
 .sr-body-label{font-size:.72rem;color:var(--muted);margin-top:4px;font-weight:600}
 
 /* ROUTINE */
 .sr-routine-list{display:flex;flex-direction:column;gap:10px;margin:12px 0}
-.sr-stretch{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;grid-template-columns:44px 1fr auto;gap:12px;align-items:start;transition:border-color .15s}
+.sr-stretch{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start;transition:border-color .15s}
 .sr-stretch.active{border-color:#7c3aed;box-shadow:0 0 0 3px rgba(124,58,237,.12)}
 .sr-stretch-num{width:36px;height:36px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:.9rem;flex-shrink:0}
 .sr-stretch-body{min-width:0}
@@ -67,9 +68,6 @@
 .sr-stretch-desc{font-size:.85rem;color:var(--muted);line-height:1.55;margin:0 0 6px}
 .sr-stretch-meta{font-size:.78rem;color:var(--muted);display:flex;gap:12px;flex-wrap:wrap}
 .sr-stretch-meta b{color:var(--fg)}
-.sr-stretch-actions{display:flex;flex-direction:column;gap:4px}
-.sr-stretch-actions button{background:transparent;border:1px solid var(--line);border-radius:6px;padding:4px 10px;font-size:.75rem;font-weight:600;cursor:pointer;color:var(--muted)}
-.sr-stretch-actions button:hover{border-color:#7c3aed;color:#7c3aed}
 
 /* TIMER */
 .sr-timer-wrap{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:24px;text-align:center;margin:14px 0;position:relative}
@@ -108,8 +106,21 @@
 .sr-chip:hover{border-color:#7c3aed;color:#7c3aed}
 .sr-chip.on{background:#7c3aed;color:#fff;border-color:#7c3aed}
 
+.sr-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.sr-actions button{padding:10px 18px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.sr-actions button.primary{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-color:transparent}
+.sr-actions button:hover{border-color:#7c3aed}
+
+.sr-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.sr-share h3{margin:0 0 10px;font-size:1rem}
+.sr-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.sr-share input,.sr-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}
+.sr-share textarea{min-height:90px;resize:vertical}
+.sr-share button{margin-top:6px;background:transparent;color:#7c3aed;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.sr-share button:hover{border-color:#7c3aed;background:rgba(124,58,237,.06)}
+
 @media print{
-  header.site,footer.site,.sr-tabs,.sr-btn,.sr-hero,.cn-article,.no-print,.sr-panel form{display:none !important}
+  header.site,footer.site,.sr-tabs,.sr-btn,.sr-hero,.cn-article,.no-print,.sr-panel form,.sr-share,.sr-actions{display:none !important}
   .tool{border:0 !important;background:#fff !important}
   body{background:#fff !important;color:#000 !important}
   .sr-stretch{page-break-inside:avoid;border-color:#ccc !important}
@@ -125,23 +136,24 @@
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Stretching Routine Generator","url":"https://utiliby.com/tools/health-fitness/stretching-routine-generator/","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free stretching routine generator online?","acceptedAnswer":{"@type":"Answer","text":"A free stretching routine generator online is a tool that builds a personalised stretching sequence based on the body areas you want to target, the purpose (morning, desk break, pre-workout, post-workout, before bed, pain relief or general flexibility) and the time you have available. This generator includes an interactive body map, 65+ stretches, a guided timer and difficulty filtering, all running in your browser without sign-up."}},{"@type":"Question","name":"How long should I hold a stretch?","acceptedAnswer":{"@type":"Answer","text":"Research from the American College of Sports Medicine shows that 20 to 30 seconds is the optimal hold time for improving flexibility. Shorter holds do not produce lasting change, while much longer holds offer no additional benefit and increase injury risk. For a warm-up, use dynamic movements instead — controlled motion through a range of motion without holding still."}},{"@type":"Question","name":"How often should I stretch?","acceptedAnswer":{"@type":"Answer","text":"Daily short sessions beat weekly long sessions. A 2019 meta-analysis in the British Journal of Sports Medicine found that daily stretching sessions as short as 5 minutes produced measurable flexibility gains within 4 weeks. Consistency is the single strongest predictor of improvement."}},{"@type":"Question","name":"What is the difference between dynamic and static stretching?","acceptedAnswer":{"@type":"Answer","text":"Dynamic stretching involves controlled movement through a range of motion — leg swings, arm circles, walking lunges. Static stretching involves holding a position still for 20 to 30 seconds. Dynamic is better before exercise as a warm-up; static is better after exercise or for general flexibility."}},{"@type":"Question","name":"Can stretching help with lower back pain?","acceptedAnswer":{"@type":"Answer","text":"Gentle stretching can reduce lower back tension and improve mobility, especially when tight hip flexors or hamstrings are contributing. Common stretches include knee-to-chest, cat-cow, child's pose, supine twist and hip flexor lunge. If pain is sharp, persistent or radiating down a leg, consult a medical professional — this tool is not medical advice."}},{"@type":"Question","name":"Should I stretch before or after a workout?","acceptedAnswer":{"@type":"Answer","text":"Before a workout, use dynamic stretching to warm up the muscles and prepare them for movement. After a workout, use static stretching to cool down, promote blood flow and reduce muscle soreness. Static stretching before exercise can temporarily reduce power output."}},{"@type":"Question","name":"Can I stretch every day?","acceptedAnswer":{"@type":"Answer","text":"Yes. Daily stretching is safe for most people and is more effective than infrequent longer sessions. Listen to your body: a gentle pulling sensation is good, but sharp or radiating pain means you have gone too far."}},{"@type":"Question","name":"Is this stretching routine generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits. It is a wellness and flexibility planning tool, not medical advice."}},{"@type":"Question","name":"How many stretches should a routine have?","acceptedAnswer":{"@type":"Answer","text":"For general flexibility, aim for 5 to 10 stretches covering the major muscle groups, held for 20 to 30 seconds each. A 10 to 15-minute routine covers all the essentials. The generator automatically selects the right number of stretches based on your available time."}},{"@type":"Question","name":"What is the best time of day to stretch?","acceptedAnswer":{"@type":"Answer","text":"Morning stretching wakes up the body and boosts circulation. Midday desk-break stretches target neck, shoulders and hips after prolonged sitting. Post-workout stretching aids recovery. Before-bed static stretching activates the parasympathetic nervous system and can improve sleep quality."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Stretching Routine Generator","url":"https://utiliby.com/tools/health-fitness/stretching-routine-generator/","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free stretching routine generator online?","acceptedAnswer":{"@type":"Answer","text":"A free stretching routine generator online is a tool that builds a personalised stretching sequence based on the body areas you want to target, the purpose and the time available. This generator includes an interactive body map, 65+ stretches, a guided timer and difficulty filtering, all running in your browser without sign-up."}},{"@type":"Question","name":"How long should I hold a stretch?","acceptedAnswer":{"@type":"Answer","text":"Research shows 20 to 30 seconds is the optimal hold time for improving flexibility. Shorter holds do not produce lasting change, while longer holds offer no additional benefit and increase injury risk."}},{"@type":"Question","name":"How often should I stretch?","acceptedAnswer":{"@type":"Answer","text":"Daily short sessions beat weekly long sessions. Studies show daily stretching sessions as short as 5 minutes produce measurable flexibility gains within 4 weeks. Consistency is the strongest predictor of improvement."}},{"@type":"Question","name":"What is the difference between dynamic and static stretching?","acceptedAnswer":{"@type":"Answer","text":"Dynamic stretching involves controlled movement through a range of motion. Static stretching involves holding a position still for 20 to 30 seconds. Dynamic is better before exercise; static is better after exercise or for general flexibility."}},{"@type":"Question","name":"Can stretching help with lower back pain?","acceptedAnswer":{"@type":"Answer","text":"Gentle stretching can reduce lower back tension and improve mobility. Common stretches include knee-to-chest, cat-cow, child's pose and hip flexor lunge. If pain is sharp or radiating, consult a medical professional."}},{"@type":"Question","name":"Should I stretch before or after a workout?","acceptedAnswer":{"@type":"Answer","text":"Before a workout, use dynamic stretching. After a workout, use static stretching to cool down and promote recovery."}},{"@type":"Question","name":"Can I stretch every day?","acceptedAnswer":{"@type":"Answer","text":"Yes. Daily stretching is safe for most people and is more effective than infrequent longer sessions."}},{"@type":"Question","name":"Is this stretching routine generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. It is a wellness and flexibility planning tool, not medical advice."}},{"@type":"Question","name":"How many stretches should a routine have?","acceptedAnswer":{"@type":"Answer","text":"For general flexibility, aim for 5 to 10 stretches covering the major muscle groups. The generator automatically selects the right number based on your available time."}},{"@type":"Question","name":"What is the best time of day to stretch?","acceptedAnswer":{"@type":"Answer","text":"Morning stretching wakes up the body. Midday desk-break stretches target neck, shoulders and hips. Post-workout stretching aids recovery. Before-bed static stretching can improve sleep quality."}}]}]}</script>
 </head>
 <body>
-<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
-<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/health-fitness/">Health &amp; Fitness</a> › Stretching Routine Generator</nav>
-<h1>Stretching Routine Generator</h1>
-<p class="lead">Build a personalised daily stretch routine using an interactive body map, a guided timer and 65+ stretches. Free, private and no sign-up.</p>
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/health-fitness/">Health &amp; Fitness</a> › Stretching Routine Generator</nav>
+<h1 class="noembed">Stretching Routine Generator</h1>
+<p class="lead noembed">Build a personalised daily stretch routine using an interactive body map, a guided timer and 65+ stretches. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/health-fitness/stretching-routine-generator/" target="_blank" rel="noopener">Stretching Routine Generator by Utiliby</a></p>
 
 <section class="tool" id="tool" aria-label="Stretching routine generator">
 
-<div class="sr-hero">
+<div class="sr-hero noembed">
 <h2>Free Stretching Routine Generator</h2>
 <p>Click your body areas, choose a purpose and time — get a guided routine you can follow right now.</p>
 </div>
 
-<div class="sr-tabs" role="group" aria-label="Tool sections">
+<div class="sr-tabs noembed" role="group" aria-label="Tool sections">
 <button type="button" class="sr-tab on" data-tab="build">Build routine</button>
 <button type="button" class="sr-tab" data-tab="timer" hidden id="timerTabBtn">Guided timer</button>
 <button type="button" class="sr-tab" data-tab="library">Stretch library</button>
@@ -149,64 +161,42 @@
 
 <!-- BUILD TAB -->
 <div id="buildTab">
-
 <div class="sr-panel">
 <h3>1. Choose body areas to target</h3>
-<p class="meta" style="margin-bottom:8px">Click any area on the body map, or use the chips. Multiple selections are allowed.</p>
-
+<p class="meta" style="margin-bottom:8px">Click any area on the body map, or use the chips below. Multiple selections are allowed.</p>
 <div class="sr-bodymap-wrap">
 <div class="sr-body-view">
 <div class="sr-body-label">Front view</div>
 <svg viewBox="0 0 120 260" role="img" aria-label="Front view body map">
-  <!-- Head -->
-  <circle class="sr-body-part" data-part="neck" cx="60" cy="18" r="10"/>
-  <!-- Shoulders -->
-  <path class="sr-body-part" data-part="shoulders" d="M40,32 L80,32 L86,42 L34,42 Z"/>
-  <!-- Chest -->
-  <path class="sr-body-part" data-part="chest" d="M44,42 L76,42 L78,62 L42,62 Z"/>
-  <!-- Core -->
-  <path class="sr-body-part" data-part="core" d="M44,62 L76,62 L74,92 L46,92 Z"/>
-  <!-- Hips -->
-  <path class="sr-body-part" data-part="hips" d="M46,92 L74,92 L76,108 L44,108 Z"/>
-  <!-- Left arm (upper) -->
-  <path class="sr-body-part" data-part="arms" d="M34,42 L44,42 L42,80 L30,78 Z"/>
-  <!-- Right arm (upper) -->
-  <path class="sr-body-part" data-part="arms" d="M76,42 L86,42 L90,78 L78,80 Z"/>
-  <!-- Left forearm / wrist -->
-  <path class="sr-body-part" data-part="wrists" d="M30,80 L42,82 L40,112 L26,110 Z"/>
-  <!-- Right forearm / wrist -->
-  <path class="sr-body-part" data-part="wrists" d="M78,82 L90,80 L94,110 L80,112 Z"/>
-  <!-- Left quad -->
-  <path class="sr-body-part" data-part="quads" d="M44,108 L59,108 L58,160 L44,158 Z"/>
-  <!-- Right quad -->
-  <path class="sr-body-part" data-part="quads" d="M61,108 L76,108 L76,158 L62,160 Z"/>
-  <!-- Left calf / shin -->
-  <path class="sr-body-part" data-part="calves" d="M44,162 L58,162 L56,222 L44,220 Z"/>
-  <!-- Right calf / shin -->
-  <path class="sr-body-part" data-part="calves" d="M62,162 L76,162 L76,220 L64,222 Z"/>
+  <circle class="sr-body-part" data-part="neck" cx="60" cy="18" r="14"/>
+  <path class="sr-body-part" data-part="shoulders" d="M36,32 L84,32 L90,44 L30,44 Z"/>
+  <path class="sr-body-part" data-part="chest" d="M42,44 L78,44 L80,66 L40,66 Z"/>
+  <path class="sr-body-part" data-part="core" d="M42,66 L78,66 L76,96 L44,96 Z"/>
+  <path class="sr-body-part" data-part="hips" d="M44,96 L76,96 L78,116 L42,116 Z"/>
+  <path class="sr-body-part" data-part="arms" d="M28,44 L42,44 L40,86 L24,84 Z"/>
+  <path class="sr-body-part" data-part="arms" d="M78,44 L92,44 L96,84 L80,86 Z"/>
+  <path class="sr-body-part" data-part="wrists" d="M24,86 L40,88 L38,124 L20,122 Z"/>
+  <path class="sr-body-part" data-part="wrists" d="M80,88 L96,86 L100,122 L82,124 Z"/>
+  <path class="sr-body-part" data-part="quads" d="M42,116 L59,116 L58,175 L42,172 Z"/>
+  <path class="sr-body-part" data-part="quads" d="M61,116 L78,116 L78,172 L62,175 Z"/>
+  <path class="sr-body-part" data-part="calves" d="M42,177 L58,177 L56,240 L42,238 Z"/>
+  <path class="sr-body-part" data-part="calves" d="M62,177 L78,177 L78,238 L64,240 Z"/>
 </svg>
 </div>
 <div class="sr-body-view">
 <div class="sr-body-label">Back view</div>
 <svg viewBox="0 0 120 260" role="img" aria-label="Back view body map">
-  <!-- Back of neck -->
-  <circle class="sr-body-part" data-part="neck" cx="60" cy="18" r="10"/>
-  <!-- Upper back -->
-  <path class="sr-body-part" data-part="upper-back" d="M40,32 L80,32 L84,60 L36,60 Z"/>
-  <!-- Lower back -->
-  <path class="sr-body-part" data-part="lower-back" d="M40,60 L80,60 L76,92 L44,92 Z"/>
-  <!-- Glutes -->
-  <path class="sr-body-part" data-part="glutes" d="M44,92 L76,92 L78,118 L42,118 Z"/>
-  <!-- Hamstrings -->
-  <path class="sr-body-part" data-part="hamstrings" d="M44,120 L59,120 L58,175 L44,172 Z"/>
-  <path class="sr-body-part" data-part="hamstrings" d="M61,120 L76,120 L76,172 L62,175 Z"/>
-  <!-- Calves -->
-  <path class="sr-body-part" data-part="calves" d="M44,178 L58,178 L56,222 L44,220 Z"/>
-  <path class="sr-body-part" data-part="calves" d="M62,178 L76,178 L76,220 L64,222 Z"/>
+  <circle class="sr-body-part" data-part="neck" cx="60" cy="18" r="14"/>
+  <path class="sr-body-part" data-part="upper-back" d="M36,32 L84,32 L88,64 L32,64 Z"/>
+  <path class="sr-body-part" data-part="lower-back" d="M36,64 L84,64 L80,96 L40,96 Z"/>
+  <path class="sr-body-part" data-part="glutes" d="M40,96 L80,96 L82,128 L38,128 Z"/>
+  <path class="sr-body-part" data-part="hamstrings" d="M38,130 L59,130 L58,192 L38,188 Z"/>
+  <path class="sr-body-part" data-part="hamstrings" d="M61,130 L82,130 L82,188 L62,192 Z"/>
+  <path class="sr-body-part" data-part="calves" d="M38,194 L58,194 L56,240 L38,238 Z"/>
+  <path class="sr-body-part" data-part="calves" d="M62,194 L82,194 L82,238 L64,240 Z"/>
 </svg>
 </div>
 </div>
-
 <div class="sr-chips" id="partChips"></div>
 <button type="button" class="sr-btn ghost" id="clearParts">Clear all areas</button>
 </div>
@@ -251,10 +241,8 @@
 </div>
 
 <button type="button" class="sr-btn" id="generateBtn">Generate my routine</button>
-<button type="button" class="sr-btn ghost" id="printBtn">Print / save as PDF</button>
 
 <div id="routineOutput"></div>
-
 </div>
 
 <!-- TIMER TAB -->
@@ -270,9 +258,7 @@
 <div class="sr-row">
 <div>
 <label for="libFilterPart">Filter by area</label>
-<select id="libFilterPart">
-<option value="any" selected>All areas</option>
-</select>
+<select id="libFilterPart"><option value="any" selected>All areas</option></select>
 </div>
 <div>
 <label for="libFilterDiff">Filter by difficulty</label>
@@ -288,47 +274,61 @@
 </div>
 </div>
 
+<!-- SHARE / EMBED -->
+<div class="sr-share noembed">
+<h3>Share, cite or embed this tool</h3>
+
+<label for="sr-share-link">Shareable link</label>
+<input type="text" id="sr-share-link" readonly value="https://utiliby.com/tools/health-fitness/stretching-routine-generator/">
+<button type="button" data-copy-target="sr-share-link">Copy link</button>
+
+<label for="sr-cite">Cite this page</label>
+<textarea id="sr-cite" readonly>Utiliby. (2026). Stretching Routine Generator. https://utiliby.com/tools/health-fitness/stretching-routine-generator/</textarea>
+<button type="button" data-copy-target="sr-cite">Copy citation</button>
+
+<label for="sr-embed">Add this tool to your site</label>
+<textarea id="sr-embed" readonly>&lt;iframe src="https://utiliby.com/tools/health-fitness/stretching-routine-generator/?embed=1" width="100%" height="900" style="border:0" loading="lazy" title="Stretching Routine Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/health-fitness/stretching-routine-generator/"&gt;Stretching Routine Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="sr-embed">Copy embed code</button>
+</div>
+
 </section>
 
-<article class="cn-article">
+<article class="cn-article noembed">
 
 <h2>What is a free stretching routine generator online?</h2>
-<p>A free stretching routine generator online is a tool that builds a personalised stretching sequence for you in seconds. Instead of scrolling through dozens of individual stretch guides wondering which to do first, you click the body areas you want to target, choose a purpose (morning wake-up, desk break, pre-workout warm-up, post-workout cool-down, before bed, pain relief or general flexibility), pick how much time you have, and the generator assembles an ordered routine from a curated database of 65+ stretches.</p>
+<p>A free stretching routine generator online is a tool that builds a personalised stretching sequence for you in seconds. Instead of scrolling through dozens of individual stretch guides wondering which to do first, you click the body areas you want to target, choose a purpose (morning wake-up, desk break, pre-workout warm-up, post-workout cool-down, before bed, tension relief or general flexibility), pick how much time you have, and the generator assembles an ordered routine from a curated database of 65+ stretches.</p>
 <p>This stretching routine generator online goes further than the current generation of tools. It includes an <b>interactive SVG body map</b> where you click on anatomical regions to target them, a <b>dynamic muscle highlight</b> that lights up the body area during each stretch in the guided timer, difficulty filtering (beginner to advanced), seven context presets, adjustable hold times, a guided countdown timer with audio cues, and print-to-PDF export. Everything runs in your browser — no sign-up, no account, no tracking, no uploads.</p>
 
 <h2>How to use this free stretching routine generator</h2>
 <ol>
-<li><b>Click body areas on the interactive map.</b> Front and back views let you select neck, shoulders, chest, core, upper back, lower back, arms, wrists, hips, glutes, quads, hamstrings and calves. You can select as many as you like, or use the chips below the map.</li>
+<li><b>Click body areas on the interactive map.</b> Front and back views let you select neck, shoulders, chest, core, upper back, lower back, arms, wrists, hips, glutes, quads, hamstrings and calves.</li>
 <li><b>Choose your purpose.</b> The generator uses this to pick the right stretch type — dynamic movements for pre-workout, static holds for post-workout and before-bed routines.</li>
-<li><b>Pick your session length</b> — 5, 10, 15, 20 or 30 minutes. The algorithm fills that time budget with the right number of stretches based on your hold time.</li>
-<li><b>Set difficulty</b> if you want to filter — beginner, intermediate, advanced or any.</li>
+<li><b>Pick your session length</b> — 5, 10, 15, 20 or 30 minutes.</li>
+<li><b>Set difficulty</b> if you want to filter.</li>
 <li><b>Choose hold time</b> — 20, 30, 40 or 60 seconds per stretch.</li>
-<li><b>Click "Generate my routine".</b> You get an ordered list of stretches from head to toe, each with instructions, target muscles and hold time.</li>
-<li><b>Click the "Guided timer" tab</b> and press Start. The timer auto-advances through every stretch, shows the target muscles highlighted on the body map, and chimes at transitions.</li>
-<li><b>Print or export</b> the routine as a PDF with one click.</li>
+<li><b>Click "Generate my routine".</b> You get an ordered list of stretches from head to toe.</li>
+<li><b>Click "Open guided timer"</b> to follow along with countdown, chimes and auto-advance.</li>
+<li><b>Download as PDF, copy the routine, or print</b> using the action buttons.</li>
 </ol>
 
 <h2>Why a stretching routine generator is better than a stretch list</h2>
 <p>There are thousands of individual stretch guides online, but the hard part is not finding a stretch — it is knowing which ones to do, in what order, for how long, and for your specific situation. A generator solves that problem by assembling a coherent sequence rather than dumping a list.</p>
-<p>The main advantages:</p>
 <ul>
-<li><b>Context matters.</b> A morning routine should wake you up with gentle movement and blood flow. A pre-workout warm-up should use dynamic stretches to prepare muscles for action. A bedtime routine should use slow static holds to activate the parasympathetic nervous system. The generator adapts to your chosen purpose, not just your body parts.</li>
-<li><b>Time adapts to you.</b> You do not need to commit to a 30-minute stretching session if you only have 5 minutes before a meeting. The generator fills whatever time you have with the right number of stretches.</li>
-<li><b>Progressive difficulty.</b> Beginners need simpler, safer stretches. Advanced users want deeper holds and more challenging positions. The difficulty filter keeps the routine appropriate.</li>
-<li><b>Ordered head to toe.</b> Following a logical flow — neck first, then shoulders, then back, then hips and legs — is far more comfortable than jumping around. The generator orders every routine this way.</li>
-<li><b>Variety prevents boredom.</b> Regenerating with the same settings produces a fresh combination. This keeps the routine interesting and works more muscle groups over time.</li>
+<li><b>Context matters.</b> A morning routine should wake you up with gentle movement. A pre-workout warm-up should use dynamic stretches. A bedtime routine should use slow static holds.</li>
+<li><b>Time adapts to you.</b> You do not need 30 minutes if you only have 5.</li>
+<li><b>Progressive difficulty.</b> Beginners need simpler, safer stretches. Advanced users want deeper holds.</li>
+<li><b>Ordered head to toe.</b> Following a logical flow — neck first, then shoulders, then back, then hips and legs — is far more comfortable than jumping around.</li>
+<li><b>Variety prevents boredom.</b> Regenerating with the same settings produces a fresh combination.</li>
 </ul>
 
 <h2>The science of stretching</h2>
-<p>Stretching is one of the most researched areas in exercise science, and the findings are clear on the key questions:</p>
 <h3>How long to hold?</h3>
 <p>Research from the American College of Sports Medicine shows that <b>20 to 30 seconds per stretch</b> is the optimal hold time for improving flexibility. Shorter holds do not create lasting change; longer holds offer no additional benefit and increase injury risk.</p>
 <h3>How often?</h3>
-<p>A 2019 meta-analysis in the British Journal of Sports Medicine found that daily stretching sessions as short as <b>5 minutes</b> produced measurable flexibility gains within 4 weeks. Consistency matters far more than intensity — five minutes every day beats sixty minutes once a week.</p>
+<p>A 2019 meta-analysis in the British Journal of Sports Medicine found that daily stretching sessions as short as <b>5 minutes</b> produced measurable flexibility gains within 4 weeks. Consistency matters far more than intensity.</p>
 <h3>Dynamic vs static</h3>
-<p>Dynamic stretching (controlled movement through a range of motion) before exercise has been shown to improve performance by up to 5% in studies published in the <i>Journal of Strength and Conditioning Research</i>. Static stretching (holding a position) after exercise accelerates recovery by promoting blood flow and reducing muscle soreness. Using the wrong type at the wrong time can actually reduce power output — which is why context matters.</p>
-<h3>What actually changes?</h3>
-<p>Stretching improves flexibility mainly by increasing <b>stretch tolerance</b> — the nervous system's willingness to allow a greater range of motion — rather than by physically lengthening muscle fibres. This is why consistent practice matters: you are training the nervous system as much as the muscle.</p>
+<p>Dynamic stretching before exercise improves performance by up to 5%. Static stretching after exercise accelerates recovery. Using the wrong type at the wrong time can reduce power output — which is why context matters.</p>
 
 <h2>Dynamic vs static stretching: when to use each</h2>
 <table>
@@ -340,57 +340,54 @@
 </table>
 
 <h2>What each body area needs</h2>
-<p>Different areas of the body need different approaches. This tool lets you target any combination, but here is a quick guide to what each area typically benefits from:</p>
 <ul>
 <li><b>Neck and shoulders.</b> Focus on gentle side tilts, rolls and cross-body pulls. Desk workers accumulate tension here faster than anywhere else.</li>
 <li><b>Chest.</b> Doorway chest stretch and wall angels undo the rounded-shoulder posture that develops from screen use.</li>
-<li><b>Upper back and shoulders.</b> Thoracic extensions and thread-the-needle open up the mid-back — an area that stiffens from prolonged sitting.</li>
-<li><b>Lower back.</b> Knee-to-chest, cat-cow, child's pose, supine twist and hip flexor lunges are the standard recommendations. Tight hip flexors and hamstrings are often the root cause of lower back discomfort.</li>
+<li><b>Upper back and shoulders.</b> Thoracic extensions and thread-the-needle open up the mid-back.</li>
+<li><b>Lower back.</b> Knee-to-chest, cat-cow, child's pose, supine twist and hip flexor lunges are the standard recommendations.</li>
 <li><b>Hips and glutes.</b> Pigeon pose, figure-four, butterfly and hip flexor lunges are essential for anyone who sits for a living.</li>
 <li><b>Hamstrings and quads.</b> Standing or supine hamstring stretches and standing quad pulls are the foundation of any leg routine.</li>
-<li><b>Calves.</b> Wall calf stretch and downward dog. Tight calves affect ankle mobility and can cascade into knee and hip problems.</li>
-<li><b>Wrists and forearms.</b> Wrist flexor and extensor stretches, plus finger spreads. Critical for typists, gamers and anyone who spends hours on a keyboard.</li>
+<li><b>Calves.</b> Wall calf stretch and downward dog. Tight calves affect ankle mobility.</li>
+<li><b>Wrists and forearms.</b> Wrist flexor and extensor stretches. Critical for typists, gamers and anyone who spends hours on a keyboard.</li>
 </ul>
 
 <h2>Stretching safety guidelines</h2>
-<p>Stretching is generally safe for healthy people, but a few simple rules prevent injury and make the practice far more effective:</p>
 <ul>
-<li><b>Never stretch cold muscles.</b> Do 2 to 3 minutes of light movement — marching, arm swings, walking — before static stretches. Dynamic stretching is fine as a warm-up without pre-warming.</li>
-<li><b>Feel tension, never pain.</b> A gentle pulling sensation is what you want. Sharp, stabbing or radiating pain means you have gone too far. Back off immediately.</li>
-<li><b>Breathe deeply into the stretch.</b> Slow, deep breathing activates the parasympathetic nervous system and helps muscles relax further into the position. Holding your breath works against you.</li>
+<li><b>Never stretch cold muscles.</b> Do 2 to 3 minutes of light movement before static stretches.</li>
+<li><b>Feel tension, never pain.</b> A gentle pulling sensation is what you want. Sharp or radiating pain means you have gone too far.</li>
+<li><b>Breathe deeply into the stretch.</b> Slow, deep breathing helps muscles relax further into the position.</li>
 <li><b>Hold, don't bounce.</b> Static holds are safer and more effective than ballistic stretching.</li>
 <li><b>Stay hydrated.</b> Dehydrated fascia and muscles are stiffer and more prone to injury.</li>
-<li><b>Warm muscles stretch better.</b> A warm shower or light activity before stretching increases range of motion without effort.</li>
 </ul>
 
 <h2>Common stretching mistakes</h2>
 <ul>
-<li><b>Stretching before a workout instead of warming up.</b> Static stretching before exercise can temporarily reduce power output. Use dynamic stretches instead, and save static holds for after.</li>
-<li><b>Holding too briefly.</b> Anything under 15 seconds does not produce lasting flexibility gains. Aim for 20 to 30 seconds.</li>
-<li><b>Skipping the areas you avoid.</b> The muscles that feel the tightest are usually the ones you most need to stretch — not the ones to avoid.</li>
-<li><b>Only stretching after workouts.</b> Daily 5-minute sessions produce better long-term results than two or three long weekend sessions.</li>
-<li><b>Not being consistent.</b> Flexibility gains reverse within a few weeks if you stop. It is a practice, not a one-time event.</li>
-<li><b>Ignoring pain signals.</b> Sharp pain during a stretch is a red flag. Stop, assess, and if it persists, consult a medical professional.</li>
+<li><b>Stretching before a workout instead of warming up.</b> Static stretching before exercise can temporarily reduce power output.</li>
+<li><b>Holding too briefly.</b> Anything under 15 seconds does not produce lasting flexibility gains.</li>
+<li><b>Skipping the areas you avoid.</b> The muscles that feel the tightest are usually the ones you most need to stretch.</li>
+<li><b>Only stretching after workouts.</b> Daily 5-minute sessions produce better long-term results.</li>
+<li><b>Not being consistent.</b> Flexibility gains reverse within a few weeks if you stop.</li>
+<li><b>Ignoring pain signals.</b> Sharp pain during a stretch is a red flag.</li>
 </ul>
 
 <h2>Frequently asked questions</h2>
 <div class="cn-faq">
-<details><summary>What is a free stretching routine generator online?</summary><p>A free stretching routine generator online is a tool that builds a personalised stretching sequence based on the body areas you want to target, the purpose, and the time you have available. This generator includes an interactive body map, 65+ stretches, a guided timer and difficulty filtering, all running in your browser without sign-up.</p></details>
-<details><summary>How long should I hold a stretch?</summary><p>Research from the American College of Sports Medicine shows that 20 to 30 seconds is the optimal hold time for improving flexibility. Shorter holds do not produce lasting change, while much longer holds offer no additional benefit and increase injury risk.</p></details>
-<details><summary>How often should I stretch?</summary><p>Daily short sessions beat weekly long sessions. A 2019 meta-analysis in the British Journal of Sports Medicine found that daily stretching sessions as short as 5 minutes produced measurable flexibility gains within 4 weeks. Consistency is the single strongest predictor of improvement.</p></details>
-<details><summary>What is the difference between dynamic and static stretching?</summary><p>Dynamic stretching involves controlled movement through a range of motion — leg swings, arm circles, walking lunges. Static stretching involves holding a position still for 20 to 30 seconds. Dynamic is better before exercise; static is better after exercise or for general flexibility.</p></details>
-<details><summary>Can stretching help with lower back pain?</summary><p>Gentle stretching can reduce lower back tension and improve mobility, especially when tight hip flexors or hamstrings are contributing. Common stretches include knee-to-chest, cat-cow, child's pose, supine twist and hip flexor lunge. If pain is sharp or radiating, consult a medical professional.</p></details>
-<details><summary>Should I stretch before or after a workout?</summary><p>Before a workout, use dynamic stretching to warm up the muscles. After a workout, use static stretching to cool down, promote blood flow and reduce muscle soreness.</p></details>
-<details><summary>Can I stretch every day?</summary><p>Yes. Daily stretching is safe for most people and is more effective than infrequent longer sessions. Listen to your body — a gentle pulling sensation is good, but sharp or radiating pain means you have gone too far.</p></details>
-<details><summary>Is this stretching routine generator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits.</p></details>
-<details><summary>How many stretches should a routine have?</summary><p>For general flexibility, aim for 5 to 10 stretches covering the major muscle groups, held for 20 to 30 seconds each. The generator automatically selects the right number based on your available time.</p></details>
-<details><summary>What is the best time of day to stretch?</summary><p>Morning stretching wakes up the body. Midday desk-break stretches target neck, shoulders and hips. Post-workout stretching aids recovery. Before-bed static stretching activates the parasympathetic nervous system and can improve sleep quality.</p></details>
+<details><summary>What is a free stretching routine generator online?</summary><p>A free stretching routine generator online is a tool that builds a personalised stretching sequence based on the body areas you want to target, the purpose, and the time you have available.</p></details>
+<details><summary>How long should I hold a stretch?</summary><p>20 to 30 seconds is the optimal hold time for improving flexibility.</p></details>
+<details><summary>How often should I stretch?</summary><p>Daily short sessions beat weekly long sessions. Even 5 minutes per day produces measurable gains.</p></details>
+<details><summary>What is the difference between dynamic and static stretching?</summary><p>Dynamic involves controlled movement; static involves holding still. Dynamic is better before exercise; static is better after.</p></details>
+<details><summary>Can stretching help with lower back pain?</summary><p>Gentle stretching can reduce lower back tension and improve mobility. If pain is sharp or radiating, consult a medical professional.</p></details>
+<details><summary>Should I stretch before or after a workout?</summary><p>Before: dynamic stretching. After: static stretching for cool-down and recovery.</p></details>
+<details><summary>Can I stretch every day?</summary><p>Yes. Daily stretching is safe for most people.</p></details>
+<details><summary>Is this stretching routine generator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking.</p></details>
+<details><summary>How many stretches should a routine have?</summary><p>5 to 10 stretches covering the major muscle groups. The generator picks the right number based on your time.</p></details>
+<details><summary>What is the best time of day to stretch?</summary><p>Morning wakes the body, midday helps desk workers, post-workout aids recovery, before-bed improves sleep.</p></details>
 </div>
 
 </article>
 
 </main>
-<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
@@ -398,15 +395,6 @@
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function pickN(arr, n){
-  var c = arr.slice();
-  var out = [];
-  for(var i = 0; i < n && c.length; i++){
-    var idx = Math.floor(Math.random() * c.length);
-    out.push(c.splice(idx, 1)[0]);
-  }
-  return out;
-}
 function shuffle(arr){
   for(var i = arr.length - 1; i > 0; i--){
     var j = Math.floor(Math.random() * (i + 1));
@@ -442,165 +430,73 @@ var CONTEXTS = [
   { id: "general", label: "General flexibility", dynamic: false }
 ];
 
-/* ---------- STRETCH DATABASE (65+) ---------- */
+/* ---------- STRETCH DATABASE ---------- */
 var STRETCHES = [
-  // NECK
-  { name:"Neck side tilt", parts:["neck"], diff:"beginner", type:"static", time:30,
-    desc:"Sit or stand tall. Slowly tilt your head toward your right shoulder until you feel a stretch along the left side of your neck. Hold, then switch sides." },
-  { name:"Neck rotation", parts:["neck"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Slowly turn your head to look over your right shoulder, then over your left. Move smoothly without forcing the rotation." },
-  { name:"Chin tuck", parts:["neck","upper-back"], diff:"beginner", type:"static", time:20,
-    desc:"Sit tall. Gently draw your chin straight back toward your spine without tilting your head. Hold for 5 seconds and release. Repeat." },
-  { name:"Levator scapulae stretch", parts:["neck","shoulders"], diff:"intermediate", type:"static", time:30,
-    desc:"Turn your head 45 degrees to the left. With your right hand, gently pull your head forward and down. Hold, then switch sides." },
-
-  // SHOULDERS
-  { name:"Cross-body shoulder stretch", parts:["shoulders","chest"], diff:"beginner", type:"static", time:30,
-    desc:"Bring your right arm across your chest. Use your left hand to gently pull it closer. Hold, then switch." },
-  { name:"Shoulder rolls", parts:["shoulders"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Roll your shoulders forward in slow circles for 15 seconds, then backward for 15 seconds." },
-  { name:"Thread the needle", parts:["shoulders","upper-back"], diff:"intermediate", type:"static", time:30,
-    desc:"On hands and knees, slide your right arm under your body, palm up, and rest your right shoulder and ear on the floor. Hold, then switch." },
-  { name:"Eagle arms", parts:["shoulders","upper-back"], diff:"intermediate", type:"static", time:30,
-    desc:"Cross your arms in front of you at chest height, hooking elbows. Lift your elbows slightly to increase the stretch across your upper back. Switch." },
-  { name:"Doorway shoulder stretch", parts:["shoulders","chest"], diff:"beginner", type:"static", time:30,
-    desc:"Stand in a doorway with your forearms on the frame, elbows at shoulder height. Step forward gently until you feel a stretch across your chest and shoulders." },
-
-  // CHEST
-  { name:"Doorway chest stretch", parts:["chest"], diff:"beginner", type:"static", time:30,
-    desc:"Place your right forearm on a doorframe with elbow at shoulder height. Step forward with your left foot and turn away until you feel a stretch. Switch." },
-  { name:"Wall angel", parts:["chest","upper-back","shoulders"], diff:"intermediate", type:"dynamic", time:30,
-    desc:"Stand with your back against a wall, arms in a goalpost shape. Slowly slide your arms up and down while keeping your back and elbows against the wall." },
-  { name:"Corner chest stretch", parts:["chest","shoulders"], diff:"intermediate", type:"static", time:30,
-    desc:"Face a corner with both forearms on the walls. Slowly lean in until you feel a stretch across your chest." },
-
-  // ARMS
-  { name:"Overhead triceps stretch", parts:["arms"], diff:"beginner", type:"static", time:30,
-    desc:"Raise your right arm overhead and bend the elbow. Use your left hand to gently pull the right elbow toward your head. Hold, then switch." },
-  { name:"Biceps wall stretch", parts:["arms","chest"], diff:"beginner", type:"static", time:30,
-    desc:"Place your palm flat on a wall behind you with arm straight. Rotate your body away until you feel a stretch in the biceps and chest. Switch sides." },
-
-  // WRISTS / FOREARMS
-  { name:"Wrist flexor stretch", parts:["wrists"], diff:"beginner", type:"static", time:30,
-    desc:"Extend your right arm forward, palm up. With your left hand, gently pull your fingers down toward the floor. Hold, then switch." },
-  { name:"Wrist extensor stretch", parts:["wrists"], diff:"beginner", type:"static", time:30,
-    desc:"Extend your right arm forward, palm down. With your left hand, gently pull your fingers down. Hold, then switch." },
-  { name:"Finger spread and fist", parts:["wrists"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Open your hand as wide as possible for 5 seconds, then make a fist. Repeat on both hands." },
-  { name:"Prayer stretch", parts:["wrists"], diff:"beginner", type:"static", time:30,
-    desc:"Press your palms together in front of your chest, fingers pointing up. Slowly lower your hands toward your waist while keeping palms together." },
-
-  // UPPER BACK
-  { name:"Cat-cow", parts:["upper-back","lower-back","core"], diff:"beginner", type:"dynamic", time:45,
-    desc:"On hands and knees, alternate between arching your back (cow) and rounding it (cat). Move slowly and breathe deeply with each rep." },
-  { name:"Child's pose", parts:["upper-back","lower-back"], diff:"beginner", type:"static", time:45,
-    desc:"Kneel on the floor, sit back on your heels, and fold forward with arms extended. Rest your forehead on the floor." },
-  { name:"Seated spinal twist", parts:["upper-back","lower-back","core"], diff:"beginner", type:"static", time:30,
-    desc:"Sit tall with legs extended. Bend your right knee, cross it over your left leg, and twist toward the right. Hold, then switch." },
-  { name:"Thoracic extension over chair", parts:["upper-back","chest"], diff:"intermediate", type:"static", time:30,
-    desc:"Sit in a chair with hands behind your head. Gently lean back over the chair back until you feel a stretch in your mid-back." },
-
-  // LOWER BACK
-  { name:"Knee-to-chest", parts:["lower-back","glutes"], diff:"beginner", type:"static", time:30,
-    desc:"Lie on your back. Bring your right knee to your chest, hugging it gently. Hold, then switch." },
-  { name:"Supine twist", parts:["lower-back","glutes"], diff:"beginner", type:"static", time:30,
-    desc:"Lie on your back with arms in a T-shape. Bring your right knee across your body to the left and turn your head to the right. Switch." },
-  { name:"Sphinx pose", parts:["lower-back","core"], diff:"beginner", type:"static", time:30,
-    desc:"Lie face down. Prop yourself on your forearms and gently lift your chest, keeping your hips on the floor." },
-  { name:"Standing back extension", parts:["lower-back"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Stand with hands on your lower back. Gently lean backward, keeping your hips forward. Return to standing. Repeat." },
-
-  // CORE
-  { name:"Cobra stretch", parts:["core","lower-back"], diff:"intermediate", type:"static", time:30,
-    desc:"Lie face down with palms under your shoulders. Press up, lifting your chest while keeping your hips down." },
-  { name:"Side bend", parts:["core","upper-back"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Stand tall. Reach your right arm overhead and bend toward the left, feeling a stretch down your right side. Alternate." },
-
-  // HIPS
-  { name:"Pigeon pose", parts:["hips","glutes"], diff:"intermediate", type:"static", time:60,
-    desc:"From hands and knees, bring your right knee forward and place it behind your right wrist, shin angled. Slide your left leg back and lower your hips. Switch." },
-  { name:"Butterfly stretch", parts:["hips","glutes"], diff:"beginner", type:"static", time:45,
-    desc:"Sit with the soles of your feet together and knees out. Hold your feet and gently lean forward." },
-  { name:"Hip flexor lunge", parts:["hips","quads"], diff:"beginner", type:"static", time:45,
-    desc:"Kneel on your right knee with left foot forward. Push your hips gently forward until you feel a stretch in the front of your right hip. Switch." },
-  { name:"Figure-four stretch", parts:["hips","glutes"], diff:"beginner", type:"static", time:45,
-    desc:"Lie on your back. Cross your right ankle over your left thigh, then draw both legs toward your chest. Hold, then switch." },
-  { name:"Frog stretch", parts:["hips","glutes"], diff:"advanced", type:"static", time:60,
-    desc:"On hands and knees, slide your knees wide apart and turn your feet outward. Lower your hips toward the floor and hold." },
-  { name:"90/90 hip stretch", parts:["hips","glutes"], diff:"intermediate", type:"static", time:60,
-    desc:"Sit with your right leg bent 90 degrees in front and left leg bent 90 degrees behind. Keep your spine tall. Switch." },
-
-  // GLUTES
-  { name:"Seated glute stretch", parts:["glutes","hips"], diff:"beginner", type:"static", time:30,
-    desc:"Sit on a chair. Cross your right ankle over your left knee. Gently push your right knee down. Hold, then switch." },
-  { name:"Standing glute stretch", parts:["glutes","hips"], diff:"beginner", type:"static", time:30,
-    desc:"Stand and cross your right ankle over your left knee. Slowly sit back as if in a chair. Hold, then switch." },
-
-  // QUADS
-  { name:"Standing quad pull", parts:["quads"], diff:"beginner", type:"static", time:30,
-    desc:"Stand tall. Bend your right knee and pull your foot toward your glutes with your hand. Keep knees together. Switch." },
-  { name:"Kneeling quad stretch", parts:["quads","hips"], diff:"intermediate", type:"static", time:45,
-    desc:"Kneel on your right knee with left foot forward. Reach back and hold your right foot, gently pulling toward your glutes. Switch." },
-  { name:"Couch stretch", parts:["quads","hips"], diff:"advanced", type:"static", time:60,
-    desc:"Kneel with your back foot elevated on a couch or low chair. Bring the other foot forward. Gently lift your torso. Switch." },
-
-  // HAMSTRINGS
-  { name:"Standing hamstring stretch", parts:["hamstrings"], diff:"beginner", type:"static", time:30,
-    desc:"Place your right heel on a low surface. Keep your back straight and lean forward from your hips. Hold, then switch." },
-  { name:"Seated hamstring stretch", parts:["hamstrings","lower-back"], diff:"beginner", type:"static", time:45,
-    desc:"Sit with your right leg extended and left knee bent. Hinge forward from the hips toward your right foot. Switch." },
-  { name:"Supine hamstring stretch", parts:["hamstrings"], diff:"beginner", type:"static", time:30,
-    desc:"Lie on your back. Loop a towel around your right foot and gently pull your leg up, keeping the knee slightly bent. Switch." },
-  { name:"Downward dog", parts:["hamstrings","calves","shoulders"], diff:"intermediate", type:"static", time:45,
-    desc:"From hands and knees, tuck your toes and lift your hips into an inverted V. Press through your hands and lengthen your spine." },
-  { name:"Standing forward fold", parts:["hamstrings","lower-back"], diff:"beginner", type:"static", time:30,
-    desc:"Stand with feet hip-width apart. Hinge forward from the hips and let your head hang. Bend your knees if needed." },
-
-  // CALVES
-  { name:"Wall calf stretch", parts:["calves"], diff:"beginner", type:"static", time:30,
-    desc:"Stand facing a wall, hands on it. Step your right foot back, keeping the heel down. Lean in until you feel a stretch. Switch." },
-  { name:"Downward dog calf stretch", parts:["calves","hamstrings"], diff:"intermediate", type:"static", time:30,
-    desc:"From downward dog, gently press one heel toward the floor at a time, pedalling your feet." },
-  { name:"Seated calf stretch", parts:["calves"], diff:"beginner", type:"static", time:30,
-    desc:"Sit with legs extended. Loop a towel around your toes and gently pull them toward you." },
-  { name:"Ankle circles", parts:["calves"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Sit or stand. Draw circles with your right ankle, 10 one direction and 10 the other. Switch." },
-
-  // ADDITIONAL COMBINED
-  { name:"World's greatest stretch", parts:["hips","hamstrings","chest","shoulders"], diff:"advanced", type:"dynamic", time:60,
-    desc:"From a lunge position, place both hands inside your front foot. Rotate your torso and reach your inside arm toward the sky. Switch sides." },
-  { name:"Deep squat hold", parts:["hips","quads","calves"], diff:"intermediate", type:"static", time:60,
-    desc:"Stand with feet shoulder-width apart, toes slightly out. Lower into a deep squat and hold. Keep heels down if possible." },
-  { name:"Happy baby", parts:["lower-back","hips","glutes"], diff:"beginner", type:"static", time:45,
-    desc:"Lie on your back. Draw both knees toward your chest and grab the outside of your feet. Gently rock side to side." },
-  { name:"Lizard pose", parts:["hips","hamstrings"], diff:"intermediate", type:"static", time:60,
-    desc:"From a low lunge, bring your front foot outside your hands. Lower onto your forearms. Switch sides." },
-  { name:"Cow face arms", parts:["shoulders","arms","upper-back"], diff:"intermediate", type:"static", time:30,
-    desc:"Reach your right arm overhead and bend the elbow so your hand drops behind your head. Reach your left arm behind your back to clasp. Switch." },
-  { name:"Side-lying quad stretch", parts:["quads","hips"], diff:"beginner", type:"static", time:30,
-    desc:"Lie on your side. Bend your top knee and pull the foot toward your glutes with your hand. Switch." },
-  { name:"Extended puppy pose", parts:["upper-back","shoulders","chest"], diff:"beginner", type:"static", time:45,
-    desc:"From hands and knees, walk your hands forward and let your chest sink toward the floor. Keep your hips over your knees." },
-  { name:"Wrist circles", parts:["wrists"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Extend your arms forward and rotate your wrists in slow circles, 10 one direction and 10 the other." },
-  { name:"Pec minor doorway stretch", parts:["chest","shoulders"], diff:"intermediate", type:"static", time:30,
-    desc:"Place your forearm high on a doorframe and step through. Feel the stretch in the front of your shoulder. Switch." },
-  { name:"Standing side bend", parts:["core","upper-back"], diff:"beginner", type:"static", time:30,
-    desc:"Stand tall. Reach your right arm overhead and gently bend to the left. Hold, then switch." },
-  { name:"Seated cat-cow", parts:["upper-back","lower-back"], diff:"beginner", type:"dynamic", time:30,
-    desc:"Sit tall on a chair. Alternate between rounding your back forward and arching it backward with control." },
-  { name:"Standing IT band stretch", parts:["hips","quads"], diff:"intermediate", type:"static", time:30,
-    desc:"Cross one leg behind the other. Lean your hips away from the crossed leg until you feel a stretch along the outer thigh. Switch." },
-  { name:"Soleus stretch", parts:["calves"], diff:"intermediate", type:"static", time:30,
-    desc:"Stand facing a wall. Step one foot close to the wall, bend the knee, and lean in. Keep the heel down. Switch." },
-  { name:"Triceps overhead with towel", parts:["arms","shoulders"], diff:"beginner", type:"static", time:30,
-    desc:"Hold a towel overhead with your right hand. Bend your elbow and reach your left hand behind your head to grab the other end. Pull gently. Switch." },
-  { name:"Kneeling hip flexor stretch", parts:["hips","quads"], diff:"beginner", type:"static", time:45,
-    desc:"Kneel on one knee with the other foot forward. Keep your torso upright and push your hips forward. Switch." },
-  { name:"Piriformis stretch", parts:["glutes","hips"], diff:"intermediate", type:"static", time:45,
-    desc:"Lie on your back. Cross your right ankle over your left knee. Reach through and pull your left thigh toward your chest. Switch." },
-  { name:"Standing calf on step", parts:["calves"], diff:"intermediate", type:"static", time:30,
-    desc:"Stand on a step with your heels off the edge. Let them drop below the step until you feel a stretch. Hold." }
+  { name:"Neck side tilt", parts:["neck"], diff:"beginner", type:"static", time:30, desc:"Sit or stand tall. Slowly tilt your head toward your right shoulder until you feel a stretch along the left side of your neck. Hold, then switch sides." },
+  { name:"Neck rotation", parts:["neck"], diff:"beginner", type:"dynamic", time:30, desc:"Slowly turn your head to look over your right shoulder, then over your left. Move smoothly without forcing the rotation." },
+  { name:"Chin tuck", parts:["neck","upper-back"], diff:"beginner", type:"static", time:20, desc:"Sit tall. Gently draw your chin straight back toward your spine without tilting your head. Hold for 5 seconds and release. Repeat." },
+  { name:"Levator scapulae stretch", parts:["neck","shoulders"], diff:"intermediate", type:"static", time:30, desc:"Turn your head 45 degrees to the left. With your right hand, gently pull your head forward and down. Hold, then switch sides." },
+  { name:"Cross-body shoulder stretch", parts:["shoulders","chest"], diff:"beginner", type:"static", time:30, desc:"Bring your right arm across your chest. Use your left hand to gently pull it closer. Hold, then switch." },
+  { name:"Shoulder rolls", parts:["shoulders"], diff:"beginner", type:"dynamic", time:30, desc:"Roll your shoulders forward in slow circles for 15 seconds, then backward for 15 seconds." },
+  { name:"Thread the needle", parts:["shoulders","upper-back"], diff:"intermediate", type:"static", time:30, desc:"On hands and knees, slide your right arm under your body, palm up, and rest your right shoulder and ear on the floor. Hold, then switch." },
+  { name:"Eagle arms", parts:["shoulders","upper-back"], diff:"intermediate", type:"static", time:30, desc:"Cross your arms in front of you at chest height, hooking elbows. Lift your elbows slightly to increase the stretch across your upper back. Switch." },
+  { name:"Doorway shoulder stretch", parts:["shoulders","chest"], diff:"beginner", type:"static", time:30, desc:"Stand in a doorway with your forearms on the frame, elbows at shoulder height. Step forward gently until you feel a stretch across your chest and shoulders." },
+  { name:"Doorway chest stretch", parts:["chest"], diff:"beginner", type:"static", time:30, desc:"Place your right forearm on a doorframe with elbow at shoulder height. Step forward with your left foot and turn away until you feel a stretch. Switch." },
+  { name:"Wall angel", parts:["chest","upper-back","shoulders"], diff:"intermediate", type:"dynamic", time:30, desc:"Stand with your back against a wall, arms in a goalpost shape. Slowly slide your arms up and down while keeping your back and elbows against the wall." },
+  { name:"Corner chest stretch", parts:["chest","shoulders"], diff:"intermediate", type:"static", time:30, desc:"Face a corner with both forearms on the walls. Slowly lean in until you feel a stretch across your chest." },
+  { name:"Overhead triceps stretch", parts:["arms"], diff:"beginner", type:"static", time:30, desc:"Raise your right arm overhead and bend the elbow. Use your left hand to gently pull the right elbow toward your head. Hold, then switch." },
+  { name:"Biceps wall stretch", parts:["arms","chest"], diff:"beginner", type:"static", time:30, desc:"Place your palm flat on a wall behind you with arm straight. Rotate your body away until you feel a stretch in the biceps and chest. Switch sides." },
+  { name:"Wrist flexor stretch", parts:["wrists"], diff:"beginner", type:"static", time:30, desc:"Extend your right arm forward, palm up. With your left hand, gently pull your fingers down toward the floor. Hold, then switch." },
+  { name:"Wrist extensor stretch", parts:["wrists"], diff:"beginner", type:"static", time:30, desc:"Extend your right arm forward, palm down. With your left hand, gently pull your fingers down. Hold, then switch." },
+  { name:"Finger spread and fist", parts:["wrists"], diff:"beginner", type:"dynamic", time:30, desc:"Open your hand as wide as possible for 5 seconds, then make a fist. Repeat on both hands." },
+  { name:"Prayer stretch", parts:["wrists"], diff:"beginner", type:"static", time:30, desc:"Press your palms together in front of your chest, fingers pointing up. Slowly lower your hands toward your waist while keeping palms together." },
+  { name:"Cat-cow", parts:["upper-back","lower-back","core"], diff:"beginner", type:"dynamic", time:45, desc:"On hands and knees, alternate between arching your back (cow) and rounding it (cat). Move slowly and breathe deeply with each rep." },
+  { name:"Child's pose", parts:["upper-back","lower-back"], diff:"beginner", type:"static", time:45, desc:"Kneel on the floor, sit back on your heels, and fold forward with arms extended. Rest your forehead on the floor." },
+  { name:"Seated spinal twist", parts:["upper-back","lower-back","core"], diff:"beginner", type:"static", time:30, desc:"Sit tall with legs extended. Bend your right knee, cross it over your left leg, and twist toward the right. Hold, then switch." },
+  { name:"Thoracic extension over chair", parts:["upper-back","chest"], diff:"intermediate", type:"static", time:30, desc:"Sit in a chair with hands behind your head. Gently lean back over the chair back until you feel a stretch in your mid-back." },
+  { name:"Knee-to-chest", parts:["lower-back","glutes"], diff:"beginner", type:"static", time:30, desc:"Lie on your back. Bring your right knee to your chest, hugging it gently. Hold, then switch." },
+  { name:"Supine twist", parts:["lower-back","glutes"], diff:"beginner", type:"static", time:30, desc:"Lie on your back with arms in a T-shape. Bring your right knee across your body to the left and turn your head to the right. Switch." },
+  { name:"Sphinx pose", parts:["lower-back","core"], diff:"beginner", type:"static", time:30, desc:"Lie face down. Prop yourself on your forearms and gently lift your chest, keeping your hips on the floor." },
+  { name:"Standing back extension", parts:["lower-back"], diff:"beginner", type:"dynamic", time:30, desc:"Stand with hands on your lower back. Gently lean backward, keeping your hips forward. Return to standing. Repeat." },
+  { name:"Cobra stretch", parts:["core","lower-back"], diff:"intermediate", type:"static", time:30, desc:"Lie face down with palms under your shoulders. Press up, lifting your chest while keeping your hips down." },
+  { name:"Side bend", parts:["core","upper-back"], diff:"beginner", type:"dynamic", time:30, desc:"Stand tall. Reach your right arm overhead and bend toward the left, feeling a stretch down your right side. Alternate." },
+  { name:"Pigeon pose", parts:["hips","glutes"], diff:"intermediate", type:"static", time:60, desc:"From hands and knees, bring your right knee forward and place it behind your right wrist, shin angled. Slide your left leg back and lower your hips. Switch." },
+  { name:"Butterfly stretch", parts:["hips","glutes"], diff:"beginner", type:"static", time:45, desc:"Sit with the soles of your feet together and knees out. Hold your feet and gently lean forward." },
+  { name:"Hip flexor lunge", parts:["hips","quads"], diff:"beginner", type:"static", time:45, desc:"Kneel on your right knee with left foot forward. Push your hips gently forward until you feel a stretch in the front of your right hip. Switch." },
+  { name:"Figure-four stretch", parts:["hips","glutes"], diff:"beginner", type:"static", time:45, desc:"Lie on your back. Cross your right ankle over your left thigh, then draw both legs toward your chest. Hold, then switch." },
+  { name:"Frog stretch", parts:["hips","glutes"], diff:"advanced", type:"static", time:60, desc:"On hands and knees, slide your knees wide apart and turn your feet outward. Lower your hips toward the floor and hold." },
+  { name:"90/90 hip stretch", parts:["hips","glutes"], diff:"intermediate", type:"static", time:60, desc:"Sit with your right leg bent 90 degrees in front and left leg bent 90 degrees behind. Keep your spine tall. Switch." },
+  { name:"Seated glute stretch", parts:["glutes","hips"], diff:"beginner", type:"static", time:30, desc:"Sit on a chair. Cross your right ankle over your left knee. Gently push your right knee down. Hold, then switch." },
+  { name:"Standing glute stretch", parts:["glutes","hips"], diff:"beginner", type:"static", time:30, desc:"Stand and cross your right ankle over your left knee. Slowly sit back as if in a chair. Hold, then switch." },
+  { name:"Standing quad pull", parts:["quads"], diff:"beginner", type:"static", time:30, desc:"Stand tall. Bend your right knee and pull your foot toward your glutes with your hand. Keep knees together. Switch." },
+  { name:"Kneeling quad stretch", parts:["quads","hips"], diff:"intermediate", type:"static", time:45, desc:"Kneel on your right knee with left foot forward. Reach back and hold your right foot, gently pulling toward your glutes. Switch." },
+  { name:"Couch stretch", parts:["quads","hips"], diff:"advanced", type:"static", time:60, desc:"Kneel with your back foot elevated on a couch or low chair. Bring the other foot forward. Gently lift your torso. Switch." },
+  { name:"Standing hamstring stretch", parts:["hamstrings"], diff:"beginner", type:"static", time:30, desc:"Place your right heel on a low surface. Keep your back straight and lean forward from your hips. Hold, then switch." },
+  { name:"Seated hamstring stretch", parts:["hamstrings","lower-back"], diff:"beginner", type:"static", time:45, desc:"Sit with your right leg extended and left knee bent. Hinge forward from the hips toward your right foot. Switch." },
+  { name:"Supine hamstring stretch", parts:["hamstrings"], diff:"beginner", type:"static", time:30, desc:"Lie on your back. Loop a towel around your right foot and gently pull your leg up, keeping the knee slightly bent. Switch." },
+  { name:"Downward dog", parts:["hamstrings","calves","shoulders"], diff:"intermediate", type:"static", time:45, desc:"From hands and knees, tuck your toes and lift your hips into an inverted V. Press through your hands and lengthen your spine." },
+  { name:"Standing forward fold", parts:["hamstrings","lower-back"], diff:"beginner", type:"static", time:30, desc:"Stand with feet hip-width apart. Hinge forward from the hips and let your head hang. Bend your knees if needed." },
+  { name:"Wall calf stretch", parts:["calves"], diff:"beginner", type:"static", time:30, desc:"Stand facing a wall, hands on it. Step your right foot back, keeping the heel down. Lean in until you feel a stretch. Switch." },
+  { name:"Downward dog calf stretch", parts:["calves","hamstrings"], diff:"intermediate", type:"static", time:30, desc:"From downward dog, gently press one heel toward the floor at a time, pedalling your feet." },
+  { name:"Seated calf stretch", parts:["calves"], diff:"beginner", type:"static", time:30, desc:"Sit with legs extended. Loop a towel around your toes and gently pull them toward you." },
+  { name:"Ankle circles", parts:["calves"], diff:"beginner", type:"dynamic", time:30, desc:"Sit or stand. Draw circles with your right ankle, 10 one direction and 10 the other. Switch." },
+  { name:"World's greatest stretch", parts:["hips","hamstrings","chest","shoulders"], diff:"advanced", type:"dynamic", time:60, desc:"From a lunge position, place both hands inside your front foot. Rotate your torso and reach your inside arm toward the sky. Switch sides." },
+  { name:"Deep squat hold", parts:["hips","quads","calves"], diff:"intermediate", type:"static", time:60, desc:"Stand with feet shoulder-width apart, toes slightly out. Lower into a deep squat and hold. Keep heels down if possible." },
+  { name:"Happy baby", parts:["lower-back","hips","glutes"], diff:"beginner", type:"static", time:45, desc:"Lie on your back. Draw both knees toward your chest and grab the outside of your feet. Gently rock side to side." },
+  { name:"Lizard pose", parts:["hips","hamstrings"], diff:"intermediate", type:"static", time:60, desc:"From a low lunge, bring your front foot outside your hands. Lower onto your forearms. Switch sides." },
+  { name:"Cow face arms", parts:["shoulders","arms","upper-back"], diff:"intermediate", type:"static", time:30, desc:"Reach your right arm overhead and bend the elbow so your hand drops behind your head. Reach your left arm behind your back to clasp. Switch." },
+  { name:"Side-lying quad stretch", parts:["quads","hips"], diff:"beginner", type:"static", time:30, desc:"Lie on your side. Bend your top knee and pull the foot toward your glutes with your hand. Switch." },
+  { name:"Extended puppy pose", parts:["upper-back","shoulders","chest"], diff:"beginner", type:"static", time:45, desc:"From hands and knees, walk your hands forward and let your chest sink toward the floor. Keep your hips over your knees." },
+  { name:"Wrist circles", parts:["wrists"], diff:"beginner", type:"dynamic", time:30, desc:"Extend your arms forward and rotate your wrists in slow circles, 10 one direction and 10 the other." },
+  { name:"Pec minor doorway stretch", parts:["chest","shoulders"], diff:"intermediate", type:"static", time:30, desc:"Place your forearm high on a doorframe and step through. Feel the stretch in the front of your shoulder. Switch." },
+  { name:"Standing side bend", parts:["core","upper-back"], diff:"beginner", type:"static", time:30, desc:"Stand tall. Reach your right arm overhead and gently bend to the left. Hold, then switch." },
+  { name:"Seated cat-cow", parts:["upper-back","lower-back"], diff:"beginner", type:"dynamic", time:30, desc:"Sit tall on a chair. Alternate between rounding your back forward and arching it backward with control." },
+  { name:"Standing IT band stretch", parts:["hips","quads"], diff:"intermediate", type:"static", time:30, desc:"Cross one leg behind the other. Lean your hips away from the crossed leg until you feel a stretch along the outer thigh. Switch." },
+  { name:"Soleus stretch", parts:["calves"], diff:"intermediate", type:"static", time:30, desc:"Stand facing a wall. Step one foot close to the wall, bend the knee, and lean in. Keep the heel down. Switch." },
+  { name:"Triceps overhead with towel", parts:["arms","shoulders"], diff:"beginner", type:"static", time:30, desc:"Hold a towel overhead with your right hand. Bend your elbow and reach your left hand behind your head to grab the other end. Pull gently. Switch." },
+  { name:"Kneeling hip flexor stretch", parts:["hips","quads"], diff:"beginner", type:"static", time:45, desc:"Kneel on one knee with the other foot forward. Keep your torso upright and push your hips forward. Switch." },
+  { name:"Piriformis stretch", parts:["glutes","hips"], diff:"intermediate", type:"static", time:45, desc:"Lie on your back. Cross your right ankle over your left knee. Reach through and pull your left thigh toward your chest. Switch." },
+  { name:"Standing calf on step", parts:["calves"], diff:"intermediate", type:"static", time:30, desc:"Stand on a step with your heels off the edge. Let them drop below the step until you feel a stretch. Hold." }
 ];
 
 /* ---------- STATE ---------- */
@@ -614,7 +510,7 @@ var state = {
   timerInterval: null
 };
 
-/* ---------- BUILD UI ---------- */
+/* ---------- UI ---------- */
 function renderPartChips(){
   var el = $("partChips");
   var h = "";
@@ -647,19 +543,28 @@ function highlightBodyParts(activeParts){
   }
 }
 
-/* ---------- ROUTINE GENERATION ---------- */
+function togglePart(part){
+  var idx = state.selectedParts.indexOf(part);
+  if(idx > -1) state.selectedParts.splice(idx, 1);
+  else state.selectedParts.push(part);
+  // Update ALL matching SVG elements (both sides + both views)
+  var isOn = state.selectedParts.indexOf(part) > -1;
+  document.querySelectorAll('.sr-body-part[data-part="' + part + '"]').forEach(function(el){
+    el.classList.toggle("selected", isOn);
+  });
+  renderPartChips();
+}
+
+/* ---------- ROUTINE ---------- */
 function generateRoutine(){
   var parts = state.selectedParts.length ? state.selectedParts : PARTS.map(function(p){ return p.id; });
   var context = state.context;
   var duration = parseInt($("duration").value, 10) * 60;
   var difficulty = $("difficulty").value;
   var holdTime = parseInt($("holdTime").value, 10);
-
   var ctx = CONTEXTS.filter(function(c){ return c.id === context; })[0] || CONTEXTS[0];
 
-  // Filter candidates
   var pool = STRETCHES.filter(function(s){
-    // Match at least one selected body part
     var partMatch = false;
     for(var i = 0; i < s.parts.length; i++){
       if(parts.indexOf(s.parts[i]) > -1){ partMatch = true; break; }
@@ -671,7 +576,6 @@ function generateRoutine(){
     return true;
   });
 
-  // If dynamic context has too few candidates, fall back to static
   if(pool.length < 4){
     pool = STRETCHES.filter(function(s){
       var partMatch = false;
@@ -689,39 +593,46 @@ function generateRoutine(){
     return;
   }
 
-  // Calculate number of stretches to fill the time budget
-  var overlap = 1; // side switching doubles time for bilateral stretches
   var maxStretches = Math.max(3, Math.floor(duration / (holdTime * 1.3)));
   var numStretches = Math.min(maxStretches, pool.length);
-
-  // Shuffle then pick — this keeps variety high across regenerations
   shuffle(pool);
   var chosen = pool.slice(0, numStretches);
 
-  // Sort head-to-toe by first body part order
   var partOrder = PARTS.map(function(p){ return p.id; });
   chosen.sort(function(a, b){
     var aIdx = Math.min.apply(null, a.parts.map(function(p){ return partOrder.indexOf(p); }));
     var bIdx = Math.min.apply(null, b.parts.map(function(p){ return partOrder.indexOf(p); }));
     return aIdx - bIdx;
   });
-
-  // Assign hold times
-  for(var i = 0; i < chosen.length; i++){
-    chosen[i].holdTime = holdTime;
-  }
+  for(var i = 0; i < chosen.length; i++) chosen[i].holdTime = holdTime;
 
   state.routine = chosen;
   state.currentIndex = 0;
-
   renderRoutine();
   $("timerTabBtn").hidden = false;
 
-  // Auto-scroll to routine
   setTimeout(function(){
     var el = $("routineOutput");
     if(el) el.scrollIntoView({ behavior: "smooth", block: "start" });
   }, 100);
+}
+
+function routineAsText(){
+  var lines = [];
+  lines.push("Stretching Routine (" + (CONTEXTS.filter(function(c){ return c.id === state.context; })[0] || {}).label + ")");
+  lines.push("Generated " + new Date().toLocaleDateString() + " — utiliby.com");
+  lines.push("");
+  for(var i = 0; i < state.routine.length; i++){
+    var s = state.routine[i];
+    var targetLabels = s.parts.map(function(p){
+      var part = PARTS.filter(function(x){ return x.id === p; })[0];
+      return part ? part.label : p;
+    }).join(", ");
+    lines.push((i + 1) + ". " + s.name + " (" + targetLabels + ") — Hold " + s.holdTime + "s");
+    lines.push("   " + s.desc);
+    lines.push("");
+  }
+  return lines.join("\n");
 }
 
 function renderRoutine(){
@@ -731,11 +642,7 @@ function renderRoutine(){
     return;
   }
   var totalSeconds = 0;
-  for(var i = 0; i < state.routine.length; i++){
-    totalSeconds += state.routine[i].holdTime;
-    // Bilateral stretches — roughly half the database targets both sides
-    if(state.routine[i].parts.length >= 1) totalSeconds += 0; // hold time already accounts
-  }
+  for(var i = 0; i < state.routine.length; i++) totalSeconds += state.routine[i].holdTime;
   var minutes = Math.round(totalSeconds / 60);
 
   var h = '<div class="sr-panel">';
@@ -743,45 +650,100 @@ function renderRoutine(){
   h += '<div class="sr-stat-row">';
   h += '<span class="sr-stat">' + state.routine.length + ' stretches</span>';
   h += '<span class="sr-stat">~' + minutes + ' min total</span>';
-  h += '<span class="sr-stat">' + esc(CONTEXTS.filter(function(c){return c.id === state.context;})[0].label) + '</span>';
+  h += '<span class="sr-stat">' + esc((CONTEXTS.filter(function(c){return c.id === state.context;})[0]||{}).label) + '</span>';
+  h += '</div>';
+  h += '<div class="sr-actions">';
+  h += '<button type="button" id="openTimerBtn" class="primary">Open guided timer</button>';
+  h += '<button type="button" id="copyRoutineBtn">Copy routine</button>';
+  h += '<button type="button" id="downloadPdfBtn">Download PDF</button>';
+  h += '<button type="button" id="printRoutineBtn">Print</button>';
   h += '</div>';
   h += '<div class="sr-routine-list">';
-  for(var i = 0; i < state.routine.length; i++){
-    var s = state.routine[i];
+  for(var j = 0; j < state.routine.length; j++){
+    var s = state.routine[j];
     var targetLabels = s.parts.map(function(p){
       var part = PARTS.filter(function(x){ return x.id === p; })[0];
       return part ? part.label : p;
     }).join(" · ");
-
-    h += '<div class="sr-stretch" data-idx="' + i + '">';
-    h += '<div class="sr-stretch-num">' + (i + 1) + '</div>';
+    h += '<div class="sr-stretch" data-idx="' + j + '">';
+    h += '<div class="sr-stretch-num">' + (j + 1) + '</div>';
     h += '<div class="sr-stretch-body">';
     h += '<div class="sr-stretch-name">' + esc(s.name) + '</div>';
     h += '<div class="sr-stretch-target">' + esc(targetLabels) + ' · ' + s.diff + ' · ' + s.type + '</div>';
     h += '<p class="sr-stretch-desc">' + esc(s.desc) + '</p>';
     h += '<div class="sr-stretch-meta"><span>Hold: <b>' + s.holdTime + 's</b></span></div>';
-    h += '</div>';
-    h += '</div>';
+    h += '</div></div>';
   }
   h += '</div>';
-  h += '<div class="sr-tip"><b>How to use this routine:</b> Click "Open guided timer" to follow along with countdown, audio chimes and auto-advance. Or click "Print / save as PDF" to keep it offline.</div>';
-  h += '<button type="button" class="sr-btn" id="openTimerBtn">Open guided timer</button>';
+  h += '<div class="sr-tip"><b>How to use this routine:</b> Click "Open guided timer" to follow along with countdown, audio chimes and auto-advance. Use "Copy routine", "Download PDF" or "Print" to keep it offline.</div>';
   h += '</div>';
-
   el.innerHTML = h;
 
-  var openBtn = $("openTimerBtn");
-  if(openBtn){
-    openBtn.addEventListener("click", function(){
-      document.querySelectorAll(".sr-tab").forEach(function(t){
-        t.classList.toggle("on", t.dataset.tab === "timer");
+  $("openTimerBtn").addEventListener("click", function(){
+    document.querySelectorAll(".sr-tab").forEach(function(t){ t.classList.toggle("on", t.dataset.tab === "timer"); });
+    $("buildTab").hidden = true;
+    $("timerTab").hidden = false;
+    $("libraryTab").hidden = true;
+    renderTimer();
+  });
+
+  $("copyRoutineBtn").addEventListener("click", function(){
+    var text = routineAsText();
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(function(){
+        var b = $("copyRoutineBtn");
+        var o = b.textContent;
+        b.textContent = "Copied!";
+        setTimeout(function(){ b.textContent = o; }, 1400);
       });
-      $("buildTab").hidden = true;
-      $("timerTab").hidden = false;
-      $("libraryTab").hidden = true;
-      renderTimer();
-    });
+    }
+  });
+
+  $("downloadPdfBtn").addEventListener("click", downloadPdf);
+
+  $("printRoutineBtn").addEventListener("click", function(){ window.print(); });
+}
+
+function downloadPdf(){
+  var w = window.open("", "_blank");
+  if(!w) return;
+  var title = "Stretching Routine";
+  var context = (CONTEXTS.filter(function(c){ return c.id === state.context; })[0] || {}).label || "";
+  var html = "";
+  html += "<!doctype html><html><head><meta charset='utf-8'><title>" + title + "</title>";
+  html += "<style>";
+  html += "body{font-family:system-ui,-apple-system,'Segoe UI',Roboto,sans-serif;max-width:720px;margin:40px auto;padding:0 30px;color:#111;line-height:1.55}";
+  html += "h1{font-size:1.6rem;margin:0 0 4px}";
+  html += ".meta{color:#666;font-size:.9rem;margin:0 0 24px}";
+  html += ".stretch{border-bottom:1px solid #e5e7eb;padding:12px 0;page-break-inside:avoid}";
+  html += ".stretch:last-child{border-bottom:0}";
+  html += ".n{font-weight:800;color:#7c3aed;margin-right:8px}";
+  html += ".name{font-weight:700;font-size:1rem}";
+  html += ".target{font-size:.8rem;color:#7c3aed;font-weight:600;text-transform:uppercase;letter-spacing:.03em;margin:2px 0 4px}";
+  html += ".desc{font-size:.9rem;color:#333;margin:0}";
+  html += ".foot{margin-top:40px;font-size:.8rem;color:#888;text-align:center;border-top:1px solid #e5e7eb;padding-top:12px}";
+  html += "@media print{body{margin:20px}}";
+  html += "</style></head><body>";
+  html += "<h1>" + title + "</h1>";
+  html += "<p class='meta'>" + context + " · " + state.routine.length + " stretches · " + new Date().toLocaleDateString() + " · utiliby.com</p>";
+  for(var i = 0; i < state.routine.length; i++){
+    var s = state.routine[i];
+    var targetLabels = s.parts.map(function(p){
+      var part = PARTS.filter(function(x){ return x.id === p; })[0];
+      return part ? part.label : p;
+    }).join(", ");
+    html += "<div class='stretch'>";
+    html += "<div><span class='n'>" + (i + 1) + ".</span><span class='name'>" + s.name + "</span></div>";
+    html += "<div class='target'>" + targetLabels + " · Hold " + s.holdTime + "s · " + s.diff + "</div>";
+    html += "<p class='desc'>" + s.desc + "</p>";
+    html += "</div>";
   }
+  html += "<p class='foot'>Generated by Utiliby — utiliby.com. Not medical advice.</p>";
+  html += "</body></html>";
+  w.document.open();
+  w.document.write(html);
+  w.document.close();
+  setTimeout(function(){ w.focus(); w.print(); }, 300);
 }
 
 /* ---------- TIMER ---------- */
@@ -793,34 +755,25 @@ function renderTimer(){
   }
   var s = state.routine[state.currentIndex];
   var totalSeconds = s.holdTime;
+  var circumference = 2 * Math.PI * 44;
+  var current = state.timerRemaining || totalSeconds;
+  var offset = circumference - (current / totalSeconds) * circumference;
 
   var h = '<div class="sr-timer-wrap">';
   h += '<div class="sr-timer-name">' + esc(s.name) + '</div>';
   h += '<div class="sr-timer-target">' + esc(s.parts.join(" · ")) + ' · Stretch ' + (state.currentIndex + 1) + ' of ' + state.routine.length + '</div>';
-
-  // Countdown ring
-  var circumference = 2 * Math.PI * 44;
-  var offset = circumference - (state.timerRemaining / totalSeconds) * circumference;
-  if(!state.timerRunning && state.timerRemaining === 0) offset = 0;
-
   h += '<div class="sr-timer-ring">';
-  h += '<svg viewBox="0 0 100 100">';
-  h += '<circle class="ring-bg" cx="50" cy="50" r="44"></circle>';
-  h += '<circle class="ring-fg" cx="50" cy="50" r="44" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"></circle>';
-  h += '</svg>';
-  h += '<div class="sr-timer-num">' + (state.timerRemaining || totalSeconds) + '</div>';
+  h += '<svg viewBox="0 0 100 100"><circle class="ring-bg" cx="50" cy="50" r="44"></circle>';
+  h += '<circle class="ring-fg" cx="50" cy="50" r="44" stroke-dasharray="' + circumference + '" stroke-dashoffset="' + offset + '"></circle></svg>';
+  h += '<div class="sr-timer-num">' + current + '</div>';
   h += '</div>';
-
   h += '<p class="sr-timer-desc">' + esc(s.desc) + '</p>';
-
-  // Progress bar
   h += '<div class="sr-progress">';
   for(var i = 0; i < state.routine.length; i++){
     var cls = i < state.currentIndex ? "done" : (i === state.currentIndex ? "current" : "pending");
     h += '<div class="sr-progress-block ' + cls + '" style="flex:1"></div>';
   }
   h += '</div>';
-
   h += '<div class="sr-timer-controls">';
   if(!state.timerRunning){
     h += '<button type="button" id="startBtn">' + (state.timerRemaining > 0 ? "Resume" : "Start") + '</button>';
@@ -829,23 +782,15 @@ function renderTimer(){
   }
   h += '<button type="button" class="ghost" id="prevBtn"' + (state.currentIndex === 0 ? " disabled" : "") + '>← Previous</button>';
   h += '<button type="button" class="ghost" id="nextBtn"' + (state.currentIndex === state.routine.length - 1 ? " disabled" : "") + '>Skip →</button>';
-  h += '</div>';
-  h += '</div>';
-
+  h += '</div></div>';
   el.innerHTML = h;
 
-  // Highlight body parts
   highlightBodyParts(s.parts);
 
-  // Wire buttons
-  var startBtn = $("startBtn");
-  if(startBtn) startBtn.addEventListener("click", startTimer);
-  var pauseBtn = $("pauseBtn");
-  if(pauseBtn) pauseBtn.addEventListener("click", pauseTimer);
-  var prevBtn = $("prevBtn");
-  if(prevBtn) prevBtn.addEventListener("click", function(){ goToStretch(state.currentIndex - 1); });
-  var nextBtn = $("nextBtn");
-  if(nextBtn) nextBtn.addEventListener("click", function(){ goToStretch(state.currentIndex + 1); });
+  var startBtn = $("startBtn"); if(startBtn) startBtn.addEventListener("click", startTimer);
+  var pauseBtn = $("pauseBtn"); if(pauseBtn) pauseBtn.addEventListener("click", pauseTimer);
+  var prevBtn = $("prevBtn"); if(prevBtn) prevBtn.addEventListener("click", function(){ goToStretch(state.currentIndex - 1); });
+  var nextBtn = $("nextBtn"); if(nextBtn) nextBtn.addEventListener("click", function(){ goToStretch(state.currentIndex + 1); });
 }
 
 function startTimer(){
@@ -870,8 +815,7 @@ function startTimer(){
         clearInterval(state.timerInterval);
         state.timerRunning = false;
         state.timerRemaining = 0;
-        playChime();
-        playChime();
+        playChime(); setTimeout(playChime, 200);
       }
     }
     renderTimer();
@@ -898,16 +842,13 @@ function playChime(){
     var ctx = new (window.AudioContext || window.webkitAudioContext)();
     var osc = ctx.createOscillator();
     var gain = ctx.createGain();
-    osc.connect(gain);
-    gain.connect(ctx.destination);
-    osc.frequency.value = 660;
-    osc.type = "sine";
+    osc.connect(gain); gain.connect(ctx.destination);
+    osc.frequency.value = 660; osc.type = "sine";
     gain.gain.setValueAtTime(0, ctx.currentTime);
     gain.gain.linearRampToValueAtTime(0.15, ctx.currentTime + 0.02);
     gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-    osc.start(ctx.currentTime);
-    osc.stop(ctx.currentTime + 0.4);
-  } catch(e){ /* audio not available */ }
+    osc.start(ctx.currentTime); osc.stop(ctx.currentTime + 0.4);
+  } catch(e){}
 }
 
 /* ---------- LIBRARY ---------- */
@@ -919,29 +860,23 @@ function renderLibrary(){
     if(diffFilter !== "any" && s.diff !== diffFilter) return false;
     return true;
   });
-
   var el = $("libraryOutput");
-  if(list.length === 0){
-    el.innerHTML = '<div class="sr-empty">No stretches match these filters.</div>';
-    return;
-  }
+  if(list.length === 0){ el.innerHTML = '<div class="sr-empty">No stretches match these filters.</div>'; return; }
   var h = '<div class="sr-routine-list">';
   for(var i = 0; i < list.length; i++){
     var s = list[i];
-    h += '<div class="sr-stretch">';
-    h += '<div class="sr-stretch-num" style="font-size:.75rem">' + (i + 1) + '</div>';
+    h += '<div class="sr-stretch"><div class="sr-stretch-num" style="font-size:.75rem">' + (i + 1) + '</div>';
     h += '<div class="sr-stretch-body">';
     h += '<div class="sr-stretch-name">' + esc(s.name) + '</div>';
     h += '<div class="sr-stretch-target">' + esc(s.parts.map(function(p){ var x = PARTS.filter(function(y){return y.id===p;})[0]; return x ? x.label : p; }).join(" · ")) + ' · ' + s.diff + ' · ' + s.type + '</div>';
     h += '<p class="sr-stretch-desc">' + esc(s.desc) + '</p>';
-    h += '</div>';
-    h += '</div>';
+    h += '</div></div>';
   }
   h += '</div>';
   el.innerHTML = h;
 }
 
-/* ---------- WIRING ---------- */
+/* ---------- INIT ---------- */
 window.addEventListener("DOMContentLoaded", function(){
   var T = $("tool");
   if(!T) return;
@@ -949,57 +884,55 @@ window.addEventListener("DOMContentLoaded", function(){
   renderPartChips();
   renderContextChips();
 
-  // Populate library filter dropdown
+  // Populate library filter
   var libSel = $("libFilterPart");
   for(var i = 0; i < PARTS.length; i++){
     var opt = document.createElement("option");
-    opt.value = PARTS[i].id;
-    opt.textContent = PARTS[i].label;
+    opt.value = PARTS[i].id; opt.textContent = PARTS[i].label;
     libSel.appendChild(opt);
   }
   libSel.addEventListener("change", renderLibrary);
   $("libFilterDiff").addEventListener("change", renderLibrary);
   renderLibrary();
 
-  // Body map clicks
-  document.querySelectorAll(".sr-body-part").forEach(function(el){
-    el.addEventListener("click", function(){
-      var part = this.dataset.part;
-      var idx = state.selectedParts.indexOf(part);
-      if(idx > -1){
-        state.selectedParts.splice(idx, 1);
-        this.classList.remove("selected");
-      } else {
-        state.selectedParts.push(part);
-        this.classList.add("selected");
-      }
-      renderPartChips();
+  // EVENT DELEGATION for body map — clicks on SVG shapes bubble to the SVG
+  document.querySelectorAll(".sr-body-view svg").forEach(function(svg){
+    svg.addEventListener("click", function(e){
+      var el = e.target.closest(".sr-body-part");
+      if(!el) return;
+      var part = el.getAttribute("data-part");
+      if(!part) return;
+      togglePart(part);
     });
   });
 
-  // Chip clicks
+  // Chip clicks (via delegation on the whole tool)
   T.addEventListener("click", function(e){
     var chip = e.target.closest("[data-part]");
-    if(chip){
-      var part = chip.dataset.part;
-      var idx = state.selectedParts.indexOf(part);
-      if(idx > -1) state.selectedParts.splice(idx, 1);
-      else state.selectedParts.push(part);
-      renderPartChips();
-      document.querySelectorAll('.sr-body-part[data-part="' + part + '"]').forEach(function(el){
-        el.classList.toggle("selected", state.selectedParts.indexOf(part) > -1);
-      });
+    if(chip && !chip.classList.contains("sr-body-part")){
+      togglePart(chip.getAttribute("data-part"));
       return;
     }
     var ctxChip = e.target.closest("[data-context]");
     if(ctxChip){
-      state.context = ctxChip.dataset.context;
+      state.context = ctxChip.getAttribute("data-context");
       renderContextChips();
       return;
     }
+    // Copy buttons
+    var copyBtn = e.target.closest("[data-copy-target]");
+    if(copyBtn){
+      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
+      if(target && navigator.clipboard){
+        navigator.clipboard.writeText(target.value).then(function(){
+          var o = copyBtn.textContent;
+          copyBtn.textContent = "Copied!";
+          setTimeout(function(){ copyBtn.textContent = o; }, 1400);
+        });
+      }
+    }
   });
 
-  // Clear parts
   $("clearParts").addEventListener("click", function(){
     state.selectedParts = [];
     renderPartChips();
@@ -1008,11 +941,7 @@ window.addEventListener("DOMContentLoaded", function(){
     });
   });
 
-  // Generate routine
   $("generateBtn").addEventListener("click", generateRoutine);
-
-  // Print
-  $("printBtn").addEventListener("click", function(){ window.print(); });
 
   // Tabs
   document.querySelectorAll(".sr-tab").forEach(function(tab){
