@@ -220,6 +220,7 @@
 </select></div>
 <div><label for="cMaxFeed">Max feed rate target (mm/min, optional)</label><input type="number" id="cMaxFeed" min="0" step="1" value="3000"></div>
 </div>
+</div>
 
 <button type="button" class="sm-btn" id="calcCncBtn">Calculate steps per unit</button>
 
@@ -798,9 +799,9 @@ function renderCurve(){
   svg += '<path d="' + path + '" fill="none" stroke="#1e40af" stroke-width="3" stroke-linecap="round"/>';
   svg += '<text x="' + (padL + plotW / 2) + '" y="' + (H - 10) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Step frequency (steps/sec)</text>';
   svg += '<text x="15" y="' + (padT + plotH / 2) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 15 ' + (padT + plotH / 2) + ')">Torque (N.m)</text>';
-  svg += '<text x="' + (padL + 4) + '" y="' + (padT + 12) + '" font-size="10" fill="var(--muted)">' + r.holdT.toFixed(2) + '</text>';
-  svg += '<text x="' + (padL + 4) + '" y="' + (padT + plotH - 4) + '" font-size="10" fill="var(--muted)">0</text>';
-  svg += '<text x="' + (padL + plotW - 4) + '" y="' + (padT + plotH - 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + Math.round(maxF) + '</text>';
+  svg += '<text x="' + (padL - 6) + '" y="' + (padT + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + r.holdT.toFixed(2) + '</text>';
+  svg += '<text x="' + (padL - 6) + '" y="' + (padT + plotH + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">0</text>';
+  svg += '<text x="' + (padL + plotW) + '" y="' + (padT + plotH + 14) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + Math.round(maxF) + '</text>';
   svg += '</svg>';
 
   var h = '<div class="sm-diagram">' + svg + '<div class="sm-diagram-caption">Torque falls as speed rises - where the curve meets your load torque is your practical speed limit</div></div>';
