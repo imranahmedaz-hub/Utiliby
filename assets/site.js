@@ -44,6 +44,7 @@ var toolIndex = [
   { name: "TikTok Caption Generator",           url: "/tools/social-media-tools/tiktok-caption-generator/",               category: "Social Media",         keywords: "tiktok caption generator hashtags viral" },
   { name: "Elevator Pitch Generator",           url: "/tools/marketing-advertising-tools/elevator-pitch-generator/",      category: "Marketing",            keywords: "elevator pitch generator startup investor sales" },
   { name: "Newsletter Sign-up Form Generator",  url: "/tools/email-tools/newsletter-signup-form-generator/",              category: "Email",                keywords: "newsletter signup form generator email opt-in" }
+  { name: "How to Calculate Keto Macros (Guide)", url: "/guides/how-to-calculate-keto-macros/",                           category: "Guide",                keywords: "how to calculate keto macros guide tutorial protein fat carbs mifflin st jeor" }
 ];
 
 /* ---------- 2. SOCIAL PROFILES ---------- */
