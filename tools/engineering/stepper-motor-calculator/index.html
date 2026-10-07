@@ -442,7 +442,7 @@ function calcSpeed(){
     return { err: "Voltage, current, inductance and steps per revolution must all be greater than zero." };
   }
 
-  var maxStepsSec = V / (2 * L * I * spr);
+  var maxStepsSec = V / (2 * L * I );
   var minTimeMs = (2 * L * I / V) * 1000;
   var pmax = I * V;
   var stepsRevTotal = spr * micro;
@@ -553,7 +553,7 @@ function calcCurve(){
     return { err: "All values must be greater than zero." };
   }
 
-  var maxStepsSec = V / (2 * L * I * spr);
+  var maxStepsSec = V / (2 * L * I );
   var points = [];
   var steps = 30;
   for(var i = 0; i <= steps; i++){
