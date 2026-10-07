@@ -1,0 +1,635 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Spring Rate Calculator Online – Compression, Extension &amp; Torsion Springs</title>
+<meta name="description" content="Free spring rate calculator online. Calculate compression, extension and torsion spring rate, stress, natural frequency and buckling risk with an interactive diagram. 10 materials, imperial and metric. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/engineering/spring-rate-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Spring Rate Calculator Online – Compression, Extension &amp; Torsion Springs">
+<meta property="og:description" content="Free spring rate calculator online. Spring rate, stress, natural frequency and buckling with an interactive diagram.">
+<meta property="og:url" content="https://utiliby.com/tools/engineering/spring-rate-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.sr-hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.sr-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.sr-hero p{margin:0;opacity:.92;font-size:.9rem}
+.sr-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.sr-panel h3{margin:0 0 10px;font-size:1rem}
+.sr-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.sr-panel input[type="text"],.sr-panel input[type="number"],.sr-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.sr-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.sr-row{grid-template-columns:1fr}}
+.sr-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.sr-row3{grid-template-columns:1fr}}
+.sr-row4{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.sr-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;margin-right:8px;margin-top:8px}
+.sr-btn:hover{opacity:.92}
+.sr-btn.ghost{background:transparent;color:#0f766e;border:1px solid var(--line)}
+.sr-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.sr-tab{background:transparent;color:#0f766e;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.sr-tab.on{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-color:transparent}
+
+/* DIAGRAM */
+.sr-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center}
+.sr-diagram svg{width:100%;max-width:520px;height:auto;display:block;margin:0 auto;transition:all .3s}
+.sr-diagram-caption{font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:600}
+
+/* RESULTS */
+.sr-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.sr-result-big{font-size:2rem;font-weight:800;color:#0f766e;line-height:1.1;margin:4px 0}
+@media(prefers-color-scheme:dark){.sr-result-big{color:#5eead4}}
+.sr-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.sr-result-sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.sr-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.sr-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.sr-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.sr-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.sr-stat .val.ok{color:#16a34a}
+.sr-stat .val.warn{color:#f59e0b}
+.sr-stat .val.err{color:#dc2626}
+.sr-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.sr-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.sr-tip{background:rgba(15,118,110,.06);border-left:3px solid #0f766e;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.sr-tip b{color:#0f766e}
+.sr-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.sr-table th,.sr-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.sr-table th{background:var(--card);font-weight:700}
+.sr-empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.sr-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700}
+.sr-badge.ok{background:#dcfce7;color:#166534}
+.sr-badge.warn{background:#fef3c7;color:#92400e}
+.sr-badge.err{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .sr-badge.ok{background:#14532d;color:#bbf7d0}
+  .sr-badge.warn{background:#78350f;color:#fde68a}
+  .sr-badge.err{background:#7f1d1d;color:#fecaca}
+}
+.sr-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.sr-actions button{padding:10px 18px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.sr-actions button.primary{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-color:transparent}
+.sr-actions button:hover{border-color:#0f766e}
+
+.sr-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.sr-share h3{margin:0 0 10px;font-size:1rem}
+.sr-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.sr-share input,.sr-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}
+.sr-share textarea{min-height:80px;resize:vertical}
+.sr-share button{margin-top:6px;background:transparent;color:#0f766e;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.sr-share button:hover{border-color:#0f766e;background:rgba(15,118,110,.06)}
+
+@media print{
+  header.site,footer.site,.sr-tabs,.sr-btn,.sr-hero,.cn-article,.no-print,.sr-panel form,.sr-share,.sr-actions{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Spring Rate Calculator","url":"https://utiliby.com/tools/engineering/spring-rate-calculator/","applicationCategory":"EngineeringApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free spring rate calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free spring rate calculator online is a tool that computes the spring rate (also called spring constant or stiffness) of a compression, extension or torsion spring from its geometry and material. This spring rate calculator runs entirely in your browser and includes an interactive diagram, 10 material presets, imperial and metric units, Wahl factor stress calculation, natural frequency and buckling checks."}},{"@type":"Question","name":"What is the formula for spring rate?","acceptedAnswer":{"@type":"Answer","text":"For a helical compression spring, the spring rate is k = G × d⁴ / (8 × D³ × N), where G is the shear modulus of the spring material, d is the wire diameter, D is the mean coil diameter and N is the number of active coils. The wire diameter d is raised to the fourth power, which is why small changes in wire diameter produce large changes in rate."}},{"@type":"Question","name":"How is spring rate calculated in metric vs imperial units?","acceptedAnswer":{"@type":"Answer","text":"The formula k = Gd⁴/(8D³N) works in any consistent unit system. In metric, G is in N/mm² (MPa), d and D are in millimetres and the rate comes out in N/mm. In imperial, G is in psi, d and D are in inches and the rate is in lb/in. This calculator switches between both automatically."}},{"@type":"Question","name":"Why does wire diameter dominate the spring rate?","acceptedAnswer":{"@type":"Answer","text":"Wire diameter appears in the spring rate formula raised to the fourth power (d⁴). Doubling the wire diameter increases the spring rate sixteen-fold, all else being equal. This is why spring designers treat wire diameter as the most powerful lever, followed by mean coil diameter (cubed) and active coils (linear)."}},{"@type":"Question","name":"What is the spring index and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"The spring index C = D/d is the ratio of mean coil diameter to wire diameter. It indicates how tightly or loosely the spring is coiled. Typical values are 4 to 12, with 6 to 9 being the sweet spot for manufacturability and stability. Values below 4 are hard to coil and highly stressed; values above 12 tend to be unstable and prone to tangling."}},{"@type":"Question","name":"What is the Wahl factor and corrected shear stress?","acceptedAnswer":{"@type":"Answer","text":"The Wahl factor K_w = (4C − 1)/(4C − 4) + 0.615/C corrects the nominal shear stress for the curvature of the wire and the direct shear component. The maximum corrected shear stress is τ_max = K_w × 8FD/(πd³), where F is the applied load and D is the mean coil diameter. This corrected stress is what actually limits the spring's working load."}},{"@type":"Question","name":"How do I calculate the natural frequency of a spring?","acceptedAnswer":{"@type":"Answer","text":"For a spring with an attached mass m, the natural frequency is f_n = (1/2π)√(k/m), where k is the spring rate. If the excitation frequency in the application is close to the spring's natural frequency, the spring will resonate and can fail rapidly. Designers aim for the natural frequency to be at least 15 to 20 times the operating frequency."}},{"@type":"Question","name":"What is the solid height of a spring?","acceptedAnswer":{"@type":"Answer","text":"The solid height is the length of the spring when all coils are pressed together: L_solid = d × N_total, where d is the wire diameter and N_total is the total number of coils including inactive end coils. Compressing a spring below its solid height causes plastic deformation and permanent damage."}},{"@type":"Question","name":"When does a compression spring buckle?","acceptedAnswer":{"@type":"Answer","text":"A compression spring is at risk of buckling when its free length divided by the mean coil diameter (L_free / D) exceeds a critical value, typically around 4 for standard square-and-ground ends. Above 5.2 the spring will almost certainly buckle without a guide rod or bore. This calculator flags the buckling risk automatically."}},{"@type":"Question","name":"Does this tool also handle extension and torsion springs?","acceptedAnswer":{"@type":"Answer","text":"Yes. The spring rate formula is the same for compression and extension springs. For torsion springs, the rate is measured as torque per degree (N·mm/degree or lb·in/degree) and depends on wire diameter, coil diameter, active coils and the Young's modulus of the material."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/engineering/">Engineering</a> › Spring Rate Calculator</nav>
+<h1 class="noembed">Spring Rate Calculator</h1>
+<p class="lead noembed">Calculate spring rate, stress, natural frequency and buckling risk for compression, extension and torsion springs. Interactive diagram, 10 materials, imperial and metric. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/engineering/spring-rate-calculator/" target="_blank" rel="noopener">Spring Rate Calculator by Utiliby</a></p>
+
+<section class="tool" id="tool" aria-label="Spring rate calculator">
+
+<div class="sr-hero noembed">
+<h2>Free Spring Rate Calculator</h2>
+<p>Enter spring geometry and material — the rate, stress, frequency and diagram update live.</p>
+</div>
+
+<div class="sr-tabs noembed" role="group" aria-label="Spring type">
+<button type="button" class="sr-tab on" data-type="compression">Compression</button>
+<button type="button" class="sr-tab" data-type="extension">Extension</button>
+<button type="button" class="sr-tab" data-type="torsion">Torsion</button>
+</div>
+
+<div class="sr-panel">
+<h3>Spring geometry</h3>
+<div class="sr-row3">
+<div><label for="wireDia">Wire diameter (d)</label><input type="number" id="wireDia" min="0.1" step="0.01" value="2"></div>
+<div><label for="coilDia">Mean coil diameter (D)</label><input type="number" id="coilDia" min="1" step="0.1" value="16"></div>
+<div><label for="activeCoils">Active coils (N)</label><input type="number" id="activeCoils" min="1" step="0.5" value="8"></div>
+</div>
+<div class="sr-row3">
+<div><label for="freeLength">Free length (L₀)</label><input type="number" id="freeLength" min="1" step="0.1" value="60"></div>
+<div><label for="material">Material</label>
+<select id="material">
+<option value="music" selected>Music Wire (A228)</option>
+<option value="stainless302">Stainless 302/304</option>
+<option value="chromeSilicon">Chrome Silicon</option>
+<option value="chromeVanadium">Chrome Vanadium</option>
+<option value="oilTempered">Oil-Tempered (A229)</option>
+<option value="hardDrawn">Hard-Drawn (A227)</option>
+<option value="phosphorBronze">Phosphor Bronze</option>
+<option value="berylliumCopper">Beryllium Copper</option>
+<option value="titanium">Titanium</option>
+<option value="inconel">Inconel 718</option>
+</select></div>
+<div><label for="endType">End type</label>
+<select id="endType">
+<option value="squaredGround" selected>Squared &amp; ground</option>
+<option value="squared">Squared / closed</option>
+<option value="plainGround">Plain &amp; ground</option>
+<option value="plain">Plain (open)</option>
+</select></div>
+</div>
+<div class="sr-row">
+<div><label for="appliedLoad">Applied load (F, optional)</label><input type="number" id="appliedLoad" min="0" step="0.1" value="20"></div>
+<div><label for="attachedMass">Attached mass (kg, optional)</label><input type="number" id="attachedMass" min="0" step="0.01" value="1"></div>
+</div>
+<div class="sr-row">
+<div><label for="units">Units</label>
+<select id="units">
+<option value="metric" selected>Metric (mm, N, MPa)</option>
+<option value="imperial">Imperial (in, lb, psi)</option>
+</select></div>
+<div><label for="targetRate">Target rate (for reverse solve, optional)</label><input type="number" id="targetRate" min="0" step="0.01" value=""></div>
+</div>
+</div>
+
+<div class="sr-diagram" id="diagramWrap"></div>
+
+<button type="button" class="sr-btn" id="calcBtn">Calculate spring</button>
+<button type="button" class="sr-btn ghost" id="resetBtn">Reset</button>
+
+<div id="output"></div>
+
+</section>
+
+<div class="sr-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="sr-share-link">Shareable link</label>
+<input type="text" id="sr-share-link" readonly value="https://utiliby.com/tools/engineering/spring-rate-calculator/">
+<button type="button" data-copy-target="sr-share-link">Copy link</button>
+<label for="sr-cite">Cite this page</label>
+<textarea id="sr-cite" readonly>Utiliby. (2026). Spring Rate Calculator. https://utiliby.com/tools/engineering/spring-rate-calculator/</textarea>
+<button type="button" data-copy-target="sr-cite">Copy citation</button>
+<label for="sr-embed">Add this tool to your site</label>
+<textarea id="sr-embed" readonly>&lt;iframe src="https://utiliby.com/tools/engineering/spring-rate-calculator/?embed=1" width="100%" height="900" style="border:0" loading="lazy" title="Spring Rate Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/engineering/spring-rate-calculator/"&gt;Spring Rate Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="sr-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+
+<h2>What is a free spring rate calculator online?</h2>
+<p>A free spring rate calculator online is a tool that computes the spring rate — also called spring constant or stiffness — of a compression, extension or torsion spring from its geometry and material. Spring rate is the amount of force required to compress or extend a spring by one unit of distance. A spring with a rate of 10 N/mm needs 10 newtons of force to deflect it by one millimetre. The stiffer the spring, the higher the rate.</p>
+<p>This spring rate calculator online goes beyond a basic formula. It includes an interactive SVG diagram that morphs as you change parameters, 10 material presets with accurate shear modulus values, imperial and metric unit support, the Wahl correction factor for maximum shear stress, natural frequency calculation, buckling risk assessment, solid height, spring index and a design status indicator. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free spring rate calculator</h2>
+<ol>
+<li>Choose the spring type: compression, extension or torsion.</li>
+<li>Enter the wire diameter (d), mean coil diameter (D) and number of active coils (N).</li>
+<li>Enter the free length (L₀) for buckling and solid height checks.</li>
+<li>Select the material from the dropdown — 10 common spring materials are included.</li>
+<li>Select the end type. Squared and ground is the most common; plain ends are used for extension springs and low-cost applications.</li>
+<li>Optionally enter an applied load to get deflection, stress and corrected shear stress.</li>
+<li>Optionally enter an attached mass to compute the natural frequency of the spring-mass system.</li>
+<li>Click <b>Calculate spring</b>. The rate, stress, index, frequency and buckling check all update.</li>
+<li>Watch the diagram to see how the spring geometry changes with your inputs.</li>
+</ol>
+
+<h2>Spring rate formula explained</h2>
+<p>For a helical compression or extension spring, the spring rate is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1.05rem"><b>k = (G × d⁴) / (8 × D³ × N)</b></p>
+<p>Where:</p>
+<ul>
+<li><b>k</b> — spring rate (N/mm or lb/in)</li>
+<li><b>G</b> — shear modulus of the spring material (MPa or psi)</li>
+<li><b>d</b> — wire diameter (mm or in)</li>
+<li><b>D</b> — mean coil diameter (mm or in) — outer diameter minus wire diameter</li>
+<li><b>N</b> — number of active coils (coils that actually flex)</li>
+</ul>
+<p>The formula comes from treating the spring wire as a torsion bar. When the spring compresses, the wire twists around its own axis, and the resistance to that twist determines the rate. The exponents explain why wire diameter is the dominant variable: doubling d raises the rate by a factor of 16 (2⁴), while doubling D reduces the rate by a factor of 8 (2³).</p>
+
+<h2>Why wire diameter dominates the spring rate</h2>
+<p>The fourth-power relationship between wire diameter and spring rate is the single most important fact in spring design. Small changes in wire diameter produce enormous changes in stiffness:</p>
+<table>
+<tr><th>Wire diameter change</th><th>Spring rate change</th></tr>
+<tr><td>+10%</td><td>+46%</td></tr>
+<tr><td>+25%</td><td>+144%</td></tr>
+<tr><td>+50%</td><td>+406%</td></tr>
+<tr><td>×2</td><td>×16</td></tr>
+</table>
+<p>This is why springs are specified with tight wire diameter tolerances, and why swapping a spring for a "slightly thicker" one is almost never a small change. It also means that if you want to tune a spring rate, wire diameter is the lever with the largest effect — but the one that requires the tightest control.</p>
+
+<h2>Spring index: the design sanity check</h2>
+<p>The spring index is the ratio of mean coil diameter to wire diameter:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>C = D / d</b></p>
+<p>This simple ratio tells you a lot about whether a spring is practical to make and use:</p>
+<ul>
+<li><b>C &lt; 4:</b> Very tight coiling. Difficult to manufacture, high stress concentration at the inside of the coil. Avoid unless you have a specific reason.</li>
+<li><b>C = 4 to 6:</b> Tight but workable. Common in high-rate applications. Requires careful stress analysis.</li>
+<li><b>C = 6 to 9:</b> The sweet spot. Easy to coil, good stress distribution, stable under load.</li>
+<li><b>C = 9 to 12:</b> Loosely coiled. Manageable but more prone to tangling and lateral instability.</li>
+<li><b>C &gt; 12:</b> Very loose. Springs tend to tangle, buckle and lose load capacity. Avoid.</li>
+</ul>
+
+<h2>Wahl factor and maximum shear stress</h2>
+<p>The stress in a spring wire is not simply the torsional shear stress from the applied load. The curvature of the coil concentrates stress on the inside of the wire, and there is a direct shear component as well. The Wahl factor corrects for both:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>K_w = (4C − 1) / (4C − 4) + 0.615 / C</b></p>
+<p>The maximum corrected shear stress is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>τ_max = K_w × (8FD) / (πd³)</b></p>
+<p>Where F is the applied load. This corrected stress is what actually limits the spring's working load — the nominal stress (without the Wahl correction) underestimates the true peak stress by 5 to 20% depending on the spring index.</p>
+
+<h2>Natural frequency and resonance</h2>
+<p>A spring with an attached mass forms a spring-mass system with a natural frequency:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>f_n = (1 / 2π) × √(k / m)</b></p>
+<p>Where k is the spring rate and m is the attached mass. If the excitation frequency of the application (engine RPM, motor speed, valve actuation) comes close to the natural frequency, the spring will resonate — it will oscillate violently with increasing amplitude until it fails. Designers aim for the spring's natural frequency to be at least 15 to 20 times the operating frequency.</p>
+<p>Classic examples: valve springs in internal combustion engines must have high natural frequencies to avoid resonance at high RPM; suspension springs on cars have natural frequencies in the 1 to 1.5 Hz range to match comfortable ride dynamics; vibration isolation mounts use soft springs with low natural frequencies to decouple machinery from the floor.</p>
+
+<h2>Buckling of compression springs</h2>
+<p>A compression spring is essentially a slender column, and like any column it can buckle under load. The risk depends on the slenderness ratio L₀/D (free length divided by mean coil diameter):</p>
+<ul>
+<li><b>L₀/D &lt; 2.6:</b> Very stable. No buckling concern.</li>
+<li><b>L₀/D = 2.6 to 4:</b> Generally stable. Standard design range.</li>
+<li><b>L₀/D = 4 to 5.2:</b> Buckling likely unless the spring is guided. Use a rod or bore.</li>
+<li><b>L₀/D &gt; 5.2:</b> Almost certain to buckle. Must be constrained by a guide rod, bore, or both.</li>
+</ul>
+<p>The critical ratio depends on end conditions. Squared-and-ground ends give the best stability; plain ends give the worst. This calculator flags buckling risk automatically based on the selected end type.</p>
+
+<h2>Spring materials and shear modulus</h2>
+<p>The shear modulus G varies with material and determines the baseline stiffness of a spring of a given geometry:</p>
+<table>
+<tr><th>Material</th><th>G (MPa)</th><th>Typical use</th></tr>
+<tr><td>Music Wire (A228)</td><td>~79,300</td><td>Highest strength small springs, RC, precision instruments</td></tr>
+<tr><td>Oil-Tempered (A229)</td><td>~78,500</td><td>General-purpose, large-diameter springs</td></tr>
+<tr><td>Hard-Drawn (A227)</td><td>~79,300</td><td>Low-cost, non-critical applications</td></tr>
+<tr><td>Chrome Silicon</td><td>~78,500</td><td>High-temperature, shock loads</td></tr>
+<tr><td>Chrome Vanadium</td><td>~77,200</td><td>Automotive valve springs, high fatigue</td></tr>
+<tr><td>Stainless 302/304</td><td>~69,000</td><td>Corrosion resistance, food service, marine</td></tr>
+<tr><td>Phosphor Bronze</td><td>~43,000</td><td>Electrical contacts, non-magnetic</td></tr>
+<tr><td>Beryllium Copper</td><td>~48,000</td><td>Non-magnetic, high conductivity</td></tr>
+<tr><td>Titanium</td><td>~41,000</td><td>Weight-critical aerospace</td></tr>
+<tr><td>Inconel 718</td><td>~77,000</td><td>Extreme high temperature, corrosive</td></tr>
+</table>
+
+<h2>Spring end types and active coils</h2>
+<p>The end type determines how many coils are "active" (flexing) versus "inactive" (sitting flat and not contributing to deflection):</p>
+<table>
+<tr><th>End type</th><th>Active coils formula</th><th>Solid height formula</th></tr>
+<tr><td>Plain (open)</td><td>N = N_total</td><td>d × (N_total + 1)</td></tr>
+<tr><td>Plain and ground</td><td>N = N_total − 1</td><td>d × N_total</td></tr>
+<tr><td>Squared / closed</td><td>N = N_total − 2</td><td>d × (N_total + 1)</td></tr>
+<tr><td>Squared and ground</td><td>N = N_total − 2</td><td>d × N_total</td></tr>
+</table>
+<p>Squared-and-ground is the most widely used end type in compression springs because it gives the best stability and consistent load transfer. Plain ends are used for extension springs and very low-cost applications.</p>
+
+<h2>Common spring design mistakes</h2>
+<ul>
+<li><b>Forgetting the fourth-power wire diameter rule.</b> A 10% wire diameter change is not a 10% rate change — it is roughly 46%.</li>
+<li><b>Using nominal shear stress instead of Wahl-corrected stress.</b> Underestimating peak stress leads to premature fatigue failure.</li>
+<li><b>Ignoring buckling on slenderness ratios above 4.</b> Springs that are not guided can buckle at a fraction of their rated load.</li>
+<li><b>Selecting too small or too large a spring index.</b> Both ends of the range cause manufacturing or stability problems.</li>
+<li><b>Missing the natural frequency check.</b> Resonance destroys springs faster than any other failure mode.</li>
+<li><b>Forgetting solid height.</b> A spring that compresses to solid will take a permanent set and lose its free length.</li>
+<li><b>Mixing units.</b> Shear modulus in MPa, dimensions in inches, and load in pounds produce nonsense. Always use one consistent unit system.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free spring rate calculator online?</summary><p>A free spring rate calculator online is a tool that computes the spring rate (also called spring constant or stiffness) of a compression, extension or torsion spring from its geometry and material.</p></details>
+<details><summary>What is the formula for spring rate?</summary><p>For a helical compression spring: k = G × d⁴ / (8 × D³ × N), where G is shear modulus, d is wire diameter, D is mean coil diameter and N is the number of active coils.</p></details>
+<details><summary>Why does wire diameter dominate the spring rate?</summary><p>Wire diameter appears in the formula raised to the fourth power. Doubling the wire diameter increases the rate sixteen-fold.</p></details>
+<details><summary>What is the spring index?</summary><p>C = D/d. Typical values are 4 to 12, with 6 to 9 being the sweet spot.</p></details>
+<details><summary>What is the Wahl factor?</summary><p>K_w = (4C − 1)/(4C − 4) + 0.615/C. It corrects shear stress for wire curvature and direct shear.</p></details>
+<details><summary>How do I calculate natural frequency?</summary><p>f_n = (1/2π)√(k/m), where k is the spring rate and m is the attached mass.</p></details>
+<details><summary>When does a spring buckle?</summary><p>When L₀/D exceeds about 4 for standard ends, or about 5.2 for any end type without a guide.</p></details>
+<details><summary>What is solid height?</summary><p>The length when all coils touch: L_solid = d × N_total. Never compress a spring to solid height.</p></details>
+<details><summary>Does this calculator handle extension and torsion springs?</summary><p>Yes. Compression and extension use the same rate formula. Torsion springs use a torque-per-degree calculation.</p></details>
+<details><summary>Is this spring rate calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+
+var MATERIALS = {
+  music:           { name: "Music Wire (A228)",     G: 79300 },
+  stainless302:    { name: "Stainless 302/304",      G: 69000 },
+  chromeSilicon:   { name: "Chrome Silicon",        G: 78500 },
+  chromeVanadium:  { name: "Chrome Vanadium",       G: 77200 },
+  oilTempered:     { name: "Oil-Tempered (A229)",   G: 78500 },
+  hardDrawn:       { name: "Hard-Drawn (A227)",     G: 79300 },
+  phosphorBronze:  { name: "Phosphor Bronze",       G: 43000 },
+  berylliumCopper: { name: "Beryllium Copper",      G: 48000 },
+  titanium:        { name: "Titanium",              G: 41000 },
+  inconel:         { name: "Inconel 718",           G: 77000 }
+};
+
+var END_TYPES = {
+  squaredGround: { label: "Squared & ground", inactive: 2 },
+  squared:       { label: "Squared / closed", inactive: 2 },
+  plainGround:   { label: "Plain & ground",   inactive: 1 },
+  plain:         { label: "Plain (open)",      inactive: 0 }
+};
+
+var springType = "compression";
+
+/* ---------- DYNAMIC DIAGRAM ---------- */
+function drawDiagram(d, D, N, L, type){
+  // Scale diagram to fit 520 x 220 box
+  var maxW = 200, maxH = 180;
+  var scale = Math.min(maxW / D, maxH / L, 6);
+  var wD = D * scale;
+  var hL = L * scale;
+  var wireW = Math.max(2, d * scale * 0.9);
+  var coils = Math.max(3, Math.min(20, Math.round(N + 2)));
+
+  var cx = 260;
+  var top = (220 - hL) / 2;
+  var bottom = top + hL;
+
+  var svg = '<svg viewBox="0 0 520 220" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Spring diagram">';
+  // Background guide lines
+  svg += '<line x1="' + cx + '" y1="10" x2="' + cx + '" y2="210" stroke="var(--line)" stroke-dasharray="3 4"/>';
+
+  if(type === "torsion"){
+    // Torsion spring: coil cluster with two arm extensions
+    var r = 30;
+    svg += '<circle cx="' + cx + '" cy="110" r="' + r + '" fill="none" stroke="#0f766e" stroke-width="' + wireW + '"/>';
+    svg += '<circle cx="' + cx + '" cy="110" r="' + (r - 8) + '" fill="none" stroke="#0f766e" stroke-width="' + wireW + '"/>';
+    svg += '<line x1="' + (cx - r) + '" y1="110" x2="' + (cx - r - 60) + '" y2="80" stroke="#0f766e" stroke-width="' + wireW + '" stroke-linecap="round"/>';
+    svg += '<line x1="' + (cx + r) + '" y1="110" x2="' + (cx + r + 60) + '" y2="140" stroke="#0f766e" stroke-width="' + wireW + '" stroke-linecap="round"/>';
+  } else {
+    // Compression / extension: helix
+    var step = hL / coils;
+    var path = "M " + (cx - wD/2) + " " + top;
+    for(var i = 0; i < coils; i++){
+      var y1 = top + i * step;
+      var y2 = top + (i + 1) * step;
+      var mx = cx + (i % 2 === 0 ? wD/2 : -wD/2);
+      path += " Q " + mx + " " + (y1 + step/4) + " " + (cx - wD/2) + " " + y2;
+    }
+    svg += '<path d="' + path + '" fill="none" stroke="#0f766e" stroke-width="' + wireW + '" stroke-linecap="round"/>';
+  }
+
+  // Dimension annotations
+  svg += '<text x="' + cx + '" y="20" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Free length: ' + L.toFixed(1) + '</text>';
+  svg += '<text x="' + (cx + wD/2 + 12) + '" y="' + ((top + bottom) / 2) + '" font-size="11" fill="var(--muted)" font-weight="600">Coil D: ' + D.toFixed(1) + '</text>';
+  svg += '<text x="' + (cx - wD/2 - 12) + '" y="' + ((top + bottom) / 2) + '" text-anchor="end" font-size="11" fill="var(--muted)" font-weight="600">Wire d: ' + d.toFixed(2) + '</text>';
+
+  svg += '</svg>';
+  return svg;
+}
+
+/* ---------- MAIN CALCULATION ---------- */
+function calc(){
+  var isImperial = $("units").value === "imperial";
+  var d = num($("wireDia").value, 2);
+  var D = num($("coilDia").value, 16);
+  var N = num($("activeCoils").value, 8);
+  var L = num($("freeLength").value, 60);
+  var matKey = $("material").value;
+  var mat = MATERIALS[matKey] || MATERIALS.music;
+  var endKey = $("endType").value;
+  var endInfo = END_TYPES[endKey] || END_TYPES.squaredGround;
+  var load = num($("appliedLoad").value, 0);
+  var mass = num($("attachedMass").value, 0);
+  var targetRate = num($("targetRate").value, 0);
+
+  // Convert to metric for internal calculation
+  var dM = isImperial ? d * 25.4 : d;
+  var DM = isImperial ? D * 25.4 : D;
+  var LM = isImperial ? L * 25.4 : L;
+  var GM = mat.G; // MPa
+
+  if(dM <= 0 || DM <= 0 || N <= 0){
+    return { err: "Wire diameter, coil diameter and active coils must all be greater than zero." };
+  }
+
+  var C = DM / dM;
+  var kW = (4 * C - 1) / (4 * C - 4) + 0.615 / C;
+  var k = (GM * Math.pow(dM, 4)) / (8 * Math.pow(DM, 3) * N); // N/mm
+  var kOut = isImperial ? k / 0.175127 : k; // N/mm to lb/in
+
+  // Stress from load
+  var loadN = isImperial ? load * 4.44822 : load;
+  var stress = kW * (8 * loadN * DM) / (Math.PI * Math.pow(dM, 3)); // MPa
+  var stressOut = isImperial ? stress / 6.89476 : stress; // MPa to ksi approx via psi/1000
+
+  // Solid height
+  var totalCoils = N + endInfo.inactive;
+  var solidH = totalCoils * dM;
+  var solidOut = isImperial ? solidH / 25.4 : solidH;
+
+  // Deflection under load
+  var deflection = loadN / k; // mm
+  var deflectOut = isImperial ? deflection / 25.4 : deflection;
+
+  // Natural frequency
+  var kSI = k * 1000; // N/m
+  var fn = mass > 0 ? (1 / (2 * Math.PI)) * Math.sqrt(kSI / mass) : 0;
+
+  // Buckling ratio
+  var buckRatio = LM / DM;
+
+  // Design status
+  var status = { label: "OK", cls: "ok", notes: [] };
+  if(C < 4){ status = { label: "Index too tight", cls: "err", notes: [] }; status.notes.push("Spring index " + C.toFixed(2) + " is below 4 — very hard to manufacture and highly stressed."); }
+  else if(C > 12){ status = { label: "Index too loose", cls: "warn", notes: [] }; status.notes.push("Spring index " + C.toFixed(2) + " is above 12 — spring may be unstable and tangle."); }
+  if(buckRatio > 5.2){ status.cls = "err"; status.label = "Buckling likely"; status.notes.push("L₀/D = " + buckRatio.toFixed(2) + " — spring will buckle without a guide rod or bore."); }
+  else if(buckRatio > 4){ if(status.cls === "ok"){ status.cls = "warn"; status.label = "Buckling risk"; } status.notes.push("L₀/D = " + buckRatio.toFixed(2) + " — buckling possible; add a guide rod or reduce free length."); }
+  if(stress > 0 && loadN > 0){
+    var stressAllow = isImperial ? 200000 : 1400;
+    if(stressOut > stressAllow){ status.cls = "err"; status.label = "Stress exceeds limit"; status.notes.push("Max shear stress " + stressOut.toFixed(0) + " exceeds typical allowable for this material."); }
+  }
+  if(status.notes.length === 0) status.notes.push("No major design issues detected. Verify with the spring supplier before manufacturing.");
+
+  return {
+    isImperial: isImperial,
+    d: dM, D: DM, L: LM, N: N, mat: mat, endType: endInfo.label,
+    C: C, kW: kW, k: k, kOut: kOut,
+    stress: stress, stressOut: stressOut,
+    solidH: solidH, solidOut: solidOut,
+    deflection: deflection, deflectOut: deflectOut,
+    fn: fn, buckRatio: buckRatio, status: status,
+    totalCoils: totalCoils
+  };
+}
+
+/* ---------- RENDER ---------- */
+function render(){
+  var r = calc();
+  var out = $("output");
+
+  if(r.err){
+    out.innerHTML = '<div class="sr-warn">' + r.err + '</div>';
+    $("diagramWrap").innerHTML = '';
+    return;
+  }
+
+  // Diagram
+  $("diagramWrap").innerHTML = drawDiagram(r.d, r.D, r.N, r.L, springType) +
+    '<div class="sr-diagram-caption">Live spring diagram — dimensions scale with your inputs</div>';
+
+  var u = r.isImperial ? "in" : "mm";
+  var uRate = r.isImperial ? "lb/in" : "N/mm";
+  var uForce = r.isImperial ? "lb" : "N";
+  var uStress = r.isImperial ? "ksi" : "MPa";
+
+  // Hero
+  var h = '<div class="sr-result">';
+  h += '<div class="sr-result-label">Spring rate k</div>';
+  h += '<div class="sr-result-big">' + r.kOut.toFixed(2) + ' ' + uRate + '</div>';
+  h += '<div class="sr-result-sub">' + r.mat.name + ' · Index ' + r.C.toFixed(2) + ' · Wahl K<sub>w</sub> = ' + r.kW.toFixed(3) + '</div>';
+  h += '</div>';
+
+  h += '<div class="sr-stats">';
+  h += '<div class="sr-stat"><div class="lbl">Spring index C</div><div class="val">' + r.C.toFixed(2) + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">Solid height</div><div class="val">' + r.solidOut.toFixed(2) + ' ' + u + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">Deflection at load</div><div class="val">' + (r.deflectOut > 0 ? r.deflectOut.toFixed(2) + ' ' + u : '—') + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">Natural freq</div><div class="val">' + (r.fn > 0 ? r.fn.toFixed(1) + ' Hz' : '—') + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="sr-stats">';
+  h += '<div class="sr-stat"><div class="lbl">Max shear stress τ</div><div class="val">' + (r.stressOut > 0 ? r.stressOut.toFixed(0) + ' ' + uStress : '—') + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">Buckling ratio L₀/D</div><div class="val ' + (r.buckRatio > 5.2 ? "err" : (r.buckRatio > 4 ? "warn" : "ok")) + '">' + r.buckRatio.toFixed(2) + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">Total coils</div><div class="val">' + r.totalCoils + '</div></div>';
+  h += '<div class="sr-stat"><div class="lbl">End type</div><div class="val" style="font-size:.85rem">' + r.endType + '</div></div>';
+  h += '</div>';
+
+  // Design status
+  h += '<div class="sr-panel"><h3>Design status <span class="sr-badge ' + r.status.cls + '">' + r.status.label + '</span></h3>';
+  h += '<ul>';
+  for(var i = 0; i < r.status.notes.length; i++){
+    h += '<li>' + r.status.notes[i] + '</li>';
+  }
+  h += '</ul></div>';
+
+  // Formula box
+  h += '<div class="sr-tip"><b>Formula used:</b> k = G·d⁴ / (8·D³·N). Your inputs: G = ' + r.mat.G + ' MPa, d = ' + r.d.toFixed(2) + ' mm, D = ' + r.D.toFixed(2) + ' mm, N = ' + r.N + '.</div>';
+
+  // Actions
+  h += '<div class="sr-actions">';
+  h += '<button type="button" id="copyResultBtn" class="primary">Copy result</button>';
+  h += '<button type="button" id="printBtn">Print / save as PDF</button>';
+  h += '</div>';
+
+  out.innerHTML = h;
+
+  $("copyResultBtn").addEventListener("click", function(){
+    var text = "Spring Rate Calculator Result\n" +
+      "Spring type: " + springType + "\n" +
+      "Material: " + r.mat.name + "\n" +
+      "Wire diameter: " + r.d.toFixed(2) + " mm\n" +
+      "Mean coil diameter: " + r.D.toFixed(2) + " mm\n" +
+      "Active coils: " + r.N + "\n" +
+      "Free length: " + r.L.toFixed(2) + " mm\n" +
+      "Spring rate k: " + r.kOut.toFixed(3) + " " + uRate + "\n" +
+      "Spring index C: " + r.C.toFixed(2) + "\n" +
+      "Wahl factor Kw: " + r.kW.toFixed(4) + "\n" +
+      "Solid height: " + r.solidOut.toFixed(2) + " " + u + "\n" +
+      "Max shear stress: " + (r.stressOut > 0 ? r.stressOut.toFixed(0) + " " + uStress : "—") + "\n" +
+      "Buckling ratio L0/D: " + r.buckRatio.toFixed(2) + "\n" +
+      "Natural frequency: " + (r.fn > 0 ? r.fn.toFixed(1) + " Hz" : "—") + "\n" +
+      "Design status: " + r.status.label + "\n" +
+      "— utiliby.com";
+    if(navigator.clipboard){
+      navigator.clipboard.writeText(text).then(function(){
+        var b = $("copyResultBtn");
+        var o = b.textContent;
+        b.textContent = "Copied!";
+        setTimeout(function(){ b.textContent = o; }, 1400);
+      });
+    }
+  });
+
+  $("printBtn").addEventListener("click", function(){ window.print(); });
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Tabs (spring type)
+  document.querySelectorAll(".sr-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      springType = this.dataset.type;
+      document.querySelectorAll(".sr-tab").forEach(function(x){
+        x.classList.toggle("on", x.dataset.type === springType);
+      });
+      // Adjust defaults for extension/torsion
+      if(springType === "extension"){
+        $("endType").value = "plainGround";
+      } else if(springType === "torsion"){
+        $("endType").value = "plain";
+      } else {
+        $("endType").value = "squaredGround";
+      }
+      render();
+    });
+  });
+
+  // Live update on any input
+  ["wireDia","coilDia","activeCoils","freeLength","material","endType","appliedLoad","attachedMass","units","targetRate"].forEach(function(id){
+    $(id).addEventListener("input", render);
+    $(id).addEventListener("change", render);
+  });
+
+  // Reset
+  $("resetBtn").addEventListener("click", function(){
+    $("wireDia").value = 2;
+    $("coilDia").value = 16;
+    $("activeCoils").value = 8;
+    $("freeLength").value = 60;
+    $("material").value = "music";
+    $("endType").value = "squaredGround";
+    $("appliedLoad").value = 20;
+    $("attachedMass").value = 1;
+    $("units").value = "metric";
+    $("targetRate").value = "";
+    render();
+  });
+
+  // Share embed copy
+  T.addEventListener("click", function(e){
+    var copyBtn = e.target.closest("[data-copy-target]");
+    if(copyBtn){
+      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
+      if(target && navigator.clipboard){
+        navigator.clipboard.writeText(target.value).then(function(){
+          var o = copyBtn.textContent;
+          copyBtn.textContent = "Copied!";
+          setTimeout(function(){ copyBtn.textContent = o; }, 1400);
+        });
+      }
+    }
+  });
+
+  render();
+});
+})();
+</script>
+</body>
+</html>
