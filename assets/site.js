@@ -124,6 +124,7 @@ function ulContains(haystack, needle){
 
   var legalLinks = [
     ["/", "Home"],
+    ["/guides/", "Guides"],
     ["/about/", "About"],
     ["/contact/", "Contact"],
     ["/privacy-policy/", "Privacy Policy"],
