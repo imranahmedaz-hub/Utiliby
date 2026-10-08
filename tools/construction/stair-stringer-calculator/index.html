@@ -1,0 +1,746 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Stair Stringer Calculator Online – IRC Code Check, Riser, Tread &amp; Cut List</title>
+<meta name="description" content="Free online stair stringer calculator with IRC R311.7 code compliance. Calculate riser height, tread depth, stringer length, total run, angle, headroom, nosing projection, handrail check and material list. Dynamic stair profile, deck stairs mode. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/construction/stair-stringer-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Stair Stringer Calculator Online – IRC Code, Riser, Tread &amp; Cut List">
+<meta property="og:description" content="Calculate stair risers, treads, stringer length and IRC code compliance. Dynamic stair profile, cut list and material estimation.">
+<meta property="og:url" content="https://utiliby.com/tools/construction/stair-stringer-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.ss-hero{background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.ss-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.ss-hero p{margin:0;opacity:.92;font-size:.9rem}
+.ss-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.ss-panel h3{margin:0 0 10px;font-size:1rem}
+.ss-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.ss-panel input[type="text"],.ss-panel input[type="number"],.ss-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.ss-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.ss-row{grid-template-columns:1fr}}
+.ss-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.ss-row3{grid-template-columns:1fr}}
+.ss-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#b45309,#d97706);color:#fff;margin-right:8px;margin-top:8px}
+.ss-btn:hover{opacity:.92}
+.ss-btn.ghost{background:transparent;color:#b45309;border:1px solid var(--line)}
+.ss-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.ss-tab{background:transparent;color:#b45309;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.ss-tab.on{background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border-color:transparent}
+.ss-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.ss-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.ss-diagram-caption{font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:600}
+.ss-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.ss-result-big{font-size:2rem;font-weight:800;color:#b45309;line-height:1.1;margin:4px 0}
+@media(prefers-color-scheme:dark){.ss-result-big{color:#fbbf24}}
+.ss-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.ss-result-sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.ss-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:12px 0}
+.ss-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.ss-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.ss-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.ss-stat .val.ok{color:#16a34a}
+.ss-stat .val.warn{color:#f59e0b}
+.ss-stat .val.err{color:#dc2626}
+.ss-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.ss-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.ss-tip{background:rgba(180,83,9,.06);border-left:3px solid #b45309;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.ss-tip b{color:#b45309}
+.ss-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.ss-table th,.ss-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.ss-table th{background:var(--card);font-weight:700}
+.ss-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700}
+.ss-badge.ok{background:#dcfce7;color:#166534}
+.ss-badge.warn{background:#fef3c7;color:#92400e}
+.ss-badge.err{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .ss-badge.ok{background:#14532d;color:#bbf7d0}
+  .ss-badge.warn{background:#78350f;color:#fde68a}
+  .ss-badge.err{background:#7f1d1d;color:#fecaca}
+}
+.ss-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.ss-actions button{padding:10px 18px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.ss-actions button.primary{background:linear-gradient(135deg,#b45309,#d97706);color:#fff;border-color:transparent}
+.ss-actions button:hover{border-color:#b45309}
+.ss-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.ss-share h3{margin:0 0 10px;font-size:1rem}
+.ss-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.ss-share input,.ss-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}
+.ss-share textarea{min-height:80px;resize:vertical}
+.ss-share button{margin-top:6px;background:transparent;color:#b45309;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.ss-share button:hover{border-color:#b45309;background:rgba(180,83,9,.06)}
+.ss-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.ss-disclaimer b{color:var(--fg)}
+@media print{
+  header.site,footer.site,.ss-tabs,.ss-btn,.ss-hero,.cn-article,.no-print,.ss-panel form,.ss-share,.ss-actions{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Stair Stringer Calculator (IRC Code)","url":"https://utiliby.com/tools/construction/stair-stringer-calculator/","applicationCategory":"ConstructionApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free stair stringer calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free stair stringer calculator online is a tool that turns your floor-to-floor rise into a complete, IRC-code-checked stair layout. It calculates the number of risers, the exact riser height, tread depth, total run, stringer length, stair angle and material list, and flags any violations of IRC R311.7 residential code requirements before you cut lumber."}},{"@type":"Question","name":"What is the IRC maximum riser height for stairs?","acceptedAnswer":{"@type":"Answer","text":"The International Residential Code (IRC R311.7.5.1) sets the maximum riser height at 7-3/4 inches (196 mm). The greatest riser height within any flight must not exceed the smallest by more than 3/8 inch (9.5 mm). A practical comfort target is 7 to 7.5 inches."}},{"@type":"Question","name":"What is the IRC minimum tread depth for stairs?","acceptedAnswer":{"@type":"Answer","text":"The IRC R311.7.5.2 sets the minimum tread depth at 10 inches (254 mm), measured nose-to-nose on treads with nosings. Eleven inches or more walks easier. Treads within a flight must be uniform within 3/8 inch."}},{"@type":"Question","name":"How do I calculate stair stringer length?","acceptedAnswer":{"@type":"Answer","text":"Stringer length = √(total rise² + total run²), where total run = (number of treads) × tread depth. For example, a 108-inch rise with 13 treads at 10.5 inches gives a run of 136.5 inches and a stringer length of √(108² + 136.5²) ≈ 174 inches. Buy lumber 12–18 inches longer to allow for cuts."}},{"@type":"Question","name":"What is the IRC headroom requirement for stairs?","acceptedAnswer":{"@type":"Answer","text":"IRC R311.7.2 requires a minimum headroom of 6 feet 8 inches (2032 mm) measured vertically from the sloped line adjoining the tread nosing to the nearest overhead obstruction."}},{"@type":"Question","name":"When is a handrail required on a stairway?","acceptedAnswer":{"@type":"Answer","text":"IRC R311.7.7 requires a handrail on at least one side of all stairs with four or more risers. The handrail height must be between 34 and 38 inches, measured vertically from the tread nosing to the top of the rail."}},{"@type":"Question","name":"What is the IRC nosing projection limit?","acceptedAnswer":{"@type":"Answer","text":"IRC R311.7.5.3 requires tread nosings to project between 3/4 inch (19 mm) and 1-1/4 inches (32 mm) beyond the tread below on stairs with solid risers. Nosing projections must be uniform throughout the flight."}},{"@type":"Question","name":"What is the 7-11 rule for stairs?","acceptedAnswer":{"@type":"Answer","text":"The 7-11 rule is a comfort guideline: the sum of one riser height plus one tread depth should be between 17 and 18 inches. A common practical version is 2R + T = 24 to 25 inches. These are ergonomic guidelines, not code requirements."}},{"@type":"Question","name":"What size lumber is used for stair stringers?","acceptedAnswer":{"@type":"Answer","text":"Most residential stair stringers are cut from 2×12 lumber (nominal 1.5×11.25 inches). The minimum remaining throat depth should be 3.5 inches for a 2×12, though 5 inches or more is preferred. Laminated veneer lumber (LVL) stringers are used for long spans or heavy loads."}},{"@type":"Question","name":"Is this stair stringer calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/construction/">Construction</a> › Stair Stringer Calculator</nav>
+<h1 class="noembed">Stair Stringer Calculator (IRC Code)</h1>
+<p class="lead noembed">Calculate riser height, tread depth, stringer length, total run, stair angle, headroom and IRC R311.7 code compliance. Dynamic stair profile, cut list with miter angles, material estimation and deck stairs mode. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/construction/stair-stringer-calculator/" target="_blank" rel="noopener">Stair Stringer Calculator by Utiliby</a></p>
+
+<section class="tool" id="tool" aria-label="Stair stringer calculator">
+
+<div class="ss-hero noembed">
+<h2>Free Stair Stringer Calculator with IRC Code Check</h2>
+<p>Enter your total rise and get a complete, code-checked stair layout — risers, treads, stringer length, cut list and material list.</p>
+</div>
+
+<div class="ss-tabs noembed" role="group" aria-label="Calculator mode">
+<button type="button" class="ss-tab on" data-mode="layout">Stair Layout</button>
+<button type="button" class="ss-tab" data-mode="advanced">Advanced (Headroom &amp; Rails)</button>
+<button type="button" class="ss-tab" data-mode="deck">Deck Stairs</button>
+</div>
+
+<!-- LAYOUT TAB -->
+<div id="layoutTab">
+<div class="ss-panel">
+<h3>Stair dimensions</h3>
+<div class="ss-row">
+<div><label for="L_rise">Total rise — floor to floor (inches)</label><input type="number" id="L_rise" min="1" step="0.25" value="108"></div>
+<div><label for="L_riseUnit">Rise unit</label>
+<select id="L_riseUnit">
+<option value="in" selected>Inches</option>
+<option value="ft">Feet</option>
+<option value="cm">Centimetres</option>
+</select></div>
+</div>
+<div class="ss-row">
+<div><label for="L_riserTarget">Preferred riser height (in, optional)</label><input type="number" id="L_riserTarget" min="4" max="7.75" step="0.125" value="7.5" placeholder="Leave blank to auto-optimise"></div>
+<div><label for="L_tread">Tread depth — nosing to nosing (in)</label><input type="number" id="L_tread" min="9" step="0.25" value="10.5"></div>
+</div>
+<div class="ss-row">
+<div><label for="L_nosing">Nosing projection (in)</label><input type="number" id="L_nosing" min="0" max="1.25" step="0.125" value="1"></div>
+<div><label for="L_width">Stair width (in)</label><input type="number" id="L_width" min="24" step="1" value="36"></div>
+</div>
+</div>
+
+<div class="ss-diagram" id="stairDiagram"></div>
+
+<button type="button" class="ss-btn" id="calcLayoutBtn">Calculate Layout</button>
+<button type="button" class="ss-btn ghost" id="resetLayoutBtn">Reset</button>
+
+<div id="layoutOutput"></div>
+</div>
+
+<!-- ADVANCED TAB -->
+<div id="advancedTab" hidden>
+<div class="ss-panel">
+<h3>Stair &amp; opening dimensions</h3>
+<div class="ss-row">
+<div><label for="A_rise">Total rise (in)</label><input type="number" id="A_rise" min="1" step="0.25" value="108"></div>
+<div><label for="A_tread">Tread depth (in)</label><input type="number" id="A_tread" min="9" step="0.25" value="10.5"></div>
+</div>
+<div class="ss-row">
+<div><label for="A_nosing">Nosing projection (in)</label><input type="number" id="A_nosing" min="0" max="1.25" step="0.125" value="1"></div>
+<div><label for="A_width">Stair width (in)</label><input type="number" id="A_width" min="24" step="1" value="36"></div>
+</div>
+<div class="ss-row">
+<div><label for="A_ceiling">Ceiling height above upper floor (in)</label><input type="number" id="A_ceiling" min="0" step="1" value="96"></div>
+<div><label for="A_floorThick">Upper floor thickness (in)</label><input type="number" id="A_floorThick" min="0" step="0.25" value="12"></div>
+</div>
+<div class="ss-row">
+<div><label for="A_treadThick">Tread thickness (in)</label><input type="number" id="A_treadThick" min="0.5" step="0.25" value="1.5"></div>
+<div><label for="A_riserCount">Handrail riser count (4+ requires rail)</label><input type="number" id="A_riserCount" min="1" step="1" value="14" readonly style="background:var(--card)"></div>
+</div>
+</div>
+
+<button type="button" class="ss-btn" id="calcAdvancedBtn">Calculate Advanced</button>
+
+<div id="advancedOutput"></div>
+</div>
+
+<!-- DECK TAB -->
+<div id="deckTab" hidden>
+<div class="ss-panel">
+<h3>Deck stairs — treated lumber</h3>
+<p class="meta" style="margin-bottom:10px">Deck stairs are exposed to weather. This mode adds lumber sizing guidance for pressure-treated stringers.</p>
+<div class="ss-row">
+<div><label for="D_rise">Total rise — deck surface to grade (in)</label><input type="number" id="D_rise" min="1" step="0.25" value="48"></div>
+<div><label for="D_tread">Tread depth (in)</label><input type="number" id="D_tread" min="9" step="0.25" value="11"></div>
+</div>
+<div class="ss-row">
+<div><label for="D_width">Stair width (in)</label><input type="number" id="D_width" min="24" step="1" value="36"></div>
+<div><label for="D_stringers">Number of stringers</label>
+<select id="D_stringers">
+<option value="2">2 (up to 36" wide)</option>
+<option value="3" selected>3 (36"–48" wide)</option>
+<option value="4">4 (48"–60" wide)</option>
+</select></div>
+</div>
+<div class="ss-row">
+<div><label for="D_soil">Soil type under bottom step</label>
+<select id="D_soil">
+<option value="gravel">Gravel / crushed stone</option>
+<option value="soil" selected>Compact soil</option>
+<option value="concrete">Concrete pad</option>
+</select></div>
+<div><label for="D_lumber">Stringer lumber</label>
+<select id="D_lumber">
+<option value="2x12" selected>2×12 pressure-treated</option>
+<option value="lvl">LVL engineered</option>
+</select></div>
+</div>
+</div>
+
+<button type="button" class="ss-btn" id="calcDeckBtn">Calculate Deck Stairs</button>
+
+<div id="deckOutput"></div>
+</div>
+
+</section>
+
+<div class="ss-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="ss-share-link">Shareable link</label>
+<input type="text" id="ss-share-link" readonly value="https://utiliby.com/tools/construction/stair-stringer-calculator/">
+<button type="button" data-copy-target="ss-share-link">Copy link</button>
+<label for="ss-cite">Cite this page</label>
+<textarea id="ss-cite" readonly>Utiliby. (2026). Stair Stringer Calculator (IRC Code). https://utiliby.com/tools/construction/stair-stringer-calculator/</textarea>
+<button type="button" data-copy-target="ss-cite">Copy citation</button>
+<label for="ss-embed">Add this tool to your site</label>
+<textarea id="ss-embed" readonly>&lt;iframe src="https://utiliby.com/tools/construction/stair-stringer-calculator/?embed=1" width="100%" height="1100" style="border:0" loading="lazy" title="Stair Stringer Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/construction/stair-stringer-calculator/"&gt;Stair Stringer Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="ss-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+
+<h2>What is a free stair stringer calculator online?</h2>
+<p>A free stair stringer calculator online is a tool that turns a single measurement — the total floor-to-floor rise — into a complete, code-checked stair layout. Instead of working through the trigonometry by hand and risking an expensive mistake on a 2×12, you enter the rise, the tread depth you want and the nosing projection, and the calculator returns the number of risers, the exact riser height, the number of treads, the total run, the stringer length, the stair angle and a material list.</p>
+<p>This stair stringer calculator with IRC code check goes beyond a basic rise-and-run tool. It validates every dimension against the International Residential Code (IRC R311.7), flags violations before you cut lumber, and adds a dynamic stair profile diagram, a cut list with miter saw angles, headroom calculation, handrail and guard checks, and a dedicated deck stairs mode. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free stair calculator with code check</h2>
+<ol>
+<li><b>Stair Layout tab.</b> Enter the total rise measured from finished floor to finished floor (not subfloor to subfloor). Leave the preferred riser height blank to let the calculator optimise it, or enter a target such as 7.5 inches. Set the tread depth, nosing projection and stair width. The calculator returns the full layout and flags any IRC violations.</li>
+<li><b>Advanced tab.</b> Add the ceiling height, upper floor thickness and tread thickness to check headroom clearance and stairwell opening size. The handrail requirement is flagged automatically when the flight has four or more risers.</li>
+<li><b>Deck Stairs tab.</b> Enter the rise from the deck surface to grade and the calculator returns the layout plus lumber sizing guidance for pressure-treated or LVL stringers.</li>
+<li>Copy the result, print it as a PDF, or use the share module below the tool.</li>
+</ol>
+
+<h2>What is a stair stringer?</h2>
+<p>A stair stringer is the angled structural member that carries the treads and risers of a staircase. It is cut from a wide board — most commonly a 2×12 for residential stairs — with a series of triangular notches, one for each step. The remaining material between the notches is called the throat, and its depth determines the strength of the stringer. A typical residential stair has two or three stringers: one at each side and, for wider stairs, one in the centre.</p>
+<p>The stringer is the most important element of the stair because it determines the geometry of every step. If the stringer layout is wrong, every tread and riser on the stair is wrong. This is why the stringer calculation must be exact, and why a stair stringer calculator with a code check is worth using before any lumber is cut.</p>
+
+<h2>IRC stair code requirements at a glance</h2>
+<p>The International Residential Code (IRC) Section R311.7 sets the minimum requirements for residential stairways in the United States. The key limits are:</p>
+<table class="ss-table">
+<tr><th>Requirement</th><th>IRC R311.7 limit</th><th>Practical target</th></tr>
+<tr><td>Maximum riser height</td><td>7-3/4″ (196 mm)</td><td>7″ – 7.5″</td></tr>
+<tr><td>Minimum tread depth</td><td>10″ (254 mm)</td><td>10.5″ – 11″</td></tr>
+<tr><td>Riser uniformity</td><td>Within 3/8″</td><td>Perfectly equal</td></tr>
+<tr><td>Tread uniformity</td><td>Within 3/8″</td><td>Perfectly equal</td></tr>
+<tr><td>Minimum headroom</td><td>6′ 8″ (2032 mm)</td><td>7′ or more</td></tr>
+<tr><td>Minimum stair width</td><td>36″ (914 mm)</td><td>36″ – 42″</td></tr>
+<tr><td>Handrail required</td><td>4 or more risers</td><td>Any stair with a drop</td></tr>
+<tr><td>Handrail height</td><td>34″ – 38″</td><td>36″ typical</td></tr>
+<tr><td>Nosing projection</td><td>3/4″ – 1-1/4″</td><td>1″ typical</td></tr>
+<tr><td>Guard required</td><td>Drop over 30″</td><td>36″ minimum height</td></tr>
+</table>
+<p>The calculator checks your layout against all of these requirements in real time and flags any violation with a warning or error before you proceed.</p>
+
+<h2>Key stair calculations</h2>
+
+<h3>Number of risers and riser height</h3>
+<p>The number of risers is found by dividing the total rise by the target riser height, then rounding to the nearest whole number. The actual riser height is then the total rise divided by that number:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Number of risers = round(Total Rise / Target Riser)<br>Actual Riser = Total Rise / Number of Risers</b></p>
+<p>For example, a 108-inch rise with a 7.5-inch target gives 14.4 risers, which rounds to 14. The actual riser height is then 108 / 14 = 7.71 inches, which is just under the 7-3/4-inch IRC maximum. Splitting the rise into equal risers automatically satisfies the uniformity rule.</p>
+
+<h3>Number of treads and total run</h3>
+<p>The number of treads is one less than the number of risers, because the top landing or floor serves as the final step. The total run is the number of treads multiplied by the tread depth:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Number of treads = Risers − 1<br>Total Run = Treads × Tread Depth</b></p>
+
+<h3>Stringer length and angle</h3>
+<p>The stringer length is the hypotenuse of a right triangle formed by the total rise and the total run:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Stringer Length = √(Total Rise² + Total Run²)</b></p>
+<p>The stair angle (pitch) is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Stair Angle = atan(Total Rise / Total Run)</b></p>
+<p>The miter saw cut angle for the stringer ends is 90° − stair angle when measured from the horizontal, or the stair angle itself when measured from the vertical, depending on how you set up the saw. The calculator gives the angle directly.</p>
+
+<h3>First step height (bottom riser)</h3>
+<p>The bottom riser is shorter than the others by the thickness of the tread material, because the first tread sits on top of the floor or landing pad:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>First Step Height = Riser Height − Tread Thickness</b></p>
+
+<h3>Comfort rules</h3>
+<p>The 7-11 rule and the 2R + T rule are ergonomic guidelines, not code requirements. The 7-11 rule says the sum of one riser and one tread should be 17 to 18 inches. The 2R + T rule says twice the riser plus the tread should be 24 to 25 inches. Both rules produce comfortable stairs for most people, but they can conflict with the strict code minimums on steep sites. The calculator shows both values so you can judge comfort alongside code compliance.</p>
+
+<h2>Stringer layout and cutting</h2>
+<p>Once the layout numbers are confirmed, the stringer is laid out on a 2×12 using a framing square. The square is set so that the riser height is on the tongue and the tread depth is on the blade. The square is stepped along the board, marking each notch. The first notch at the bottom is set back from the end of the board, and the last notch at the top aligns with the top of the stair.</p>
+<p>The remaining throat depth — the material left below the notch — is critical. For a 2×12, the minimum throat depth is 3.5 inches, but 5 inches or more is preferred for strength. If the throat depth falls below 3.5 inches, the stringer may not carry the design load and a larger lumber size or an engineered stringer (LVL) is required. The calculator flags this condition.</p>
+<p>Always cut one stringer first and test-fit it before cutting the rest. A small error repeated across all the notches will be magnified at the bottom of the stair. The cut list output from the calculator gives you the miter angles and notch dimensions to transfer to the framing square.</p>
+
+<h2>Deck stairs: what is different</h2>
+<p>Deck stairs are exterior stairs and are exposed to weather, moisture and temperature cycling. In most jurisdictions they are still governed by the IRC for residential decks, but a few additional considerations apply:</p>
+<ul>
+<li><b>Treated lumber.</b> Pressure-treated lumber is standard for exterior stringers. It resists rot and insects but is heavier and may shrink slightly as it dries.</li>
+<li><b>Footing.</b> The bottom of the stair must bear on a solid, frost-protected footing, not bare soil. A concrete pad or compacted gravel base is typical.</li>
+<li><b>Stringer spacing.</b> For a 36-inch-wide stair, two stringers are adequate; for 48 inches, three; for wider stairs, four. The calculator gives a recommended count.</li>
+<li><b>Open vs closed risers.</b> Deck stairs often have open risers. The IRC permits open risers with a maximum opening of 4 inches (a 4-inch sphere must not pass through).</li>
+<li><b>Handrail and guard.</b> A deck stair with a drop of more than 30 inches requires a guard 36 inches high, and a handrail is required on stairs with four or more risers.</li>
+</ul>
+<p>The deck stairs mode of the calculator adjusts the material guidance for treated lumber and flags these exterior-specific requirements.</p>
+
+<h2>Common stair building mistakes</h2>
+<ul>
+<li><b>Measuring the rise from subfloor to subfloor.</b> The total rise must be measured from finished floor to finished floor (or deck surface to grade). Subfloor measurements will make every riser the wrong height.</li>
+<li><b>Forgetting the tread thickness on the bottom step.</b> The first riser is shorter by the tread thickness; if you cut it to the full riser height, the bottom step will be too tall.</li>
+<li><b>Ignoring the throat depth.</b> A stringer notched too deeply loses strength and can sag or crack under load.</li>
+<li><b>Using a stair gauge with a worn edge.</b> A framing square with a rounded or damaged edge will produce cumulative layout errors.</li>
+<li><b>Cutting all stringers before test-fitting one.</b> Always cut and fit one stringer first.</li>
+<li><b>Overlooking the headroom check.</b> A stair can pass every other code check and still fail because the headroom is less than 6′ 8″.</li>
+<li><b>Assuming one code fits every jurisdiction.</b> Local amendments can differ from the model IRC. Always verify with your local building department before construction.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free stair stringer calculator online?</summary><p>A free stair stringer calculator online turns your floor-to-floor rise into a complete, IRC-code-checked stair layout. It calculates risers, treads, stringer length, angle, cut list and material list, and flags code violations before you cut lumber.</p></details>
+<details><summary>What is the IRC maximum riser height?</summary><p>IRC R311.7.5.1 sets the maximum riser height at 7-3/4 inches (196 mm). The variation between the tallest and shortest riser in a flight must not exceed 3/8 inch.</p></details>
+<details><summary>What is the IRC minimum tread depth?</summary><p>IRC R311.7.5.2 sets the minimum tread depth at 10 inches (254 mm), measured nose-to-nose on treads with nosings. 11 inches or more is more comfortable.</p></details>
+<details><summary>How do I calculate stair stringer length?</summary><p>Stringer length = √(total rise² + total run²). Total run = number of treads × tread depth. For a 108-inch rise with 13 treads at 10.5 inches, the run is 136.5 inches and the stringer length is about 174 inches.</p></details>
+<details><summary>What is the headroom requirement?</summary><p>IRC R311.7.2 requires a minimum headroom of 6 feet 8 inches (2032 mm) measured vertically from the tread nosing to the nearest overhead obstruction.</p></details>
+<details><summary>When is a handrail required?</summary><p>IRC R311.7.7 requires a handrail on at least one side of all stairs with four or more risers. The handrail height must be 34 to 38 inches above the tread nosings.</p></details>
+<details><summary>What is the nosing projection limit?</summary><p>IRC R311.7.5.3 requires tread nosings to project between 3/4 inch and 1-1/4 inches beyond the tread below on stairs with solid risers. Projections must be uniform throughout the flight.</p></details>
+<details><summary>What is the 7-11 rule?</summary><p>The 7-11 rule is a comfort guideline: one riser plus one tread should total 17 to 18 inches. It is not a code requirement, but it produces comfortable stairs for most people.</p></details>
+<details><summary>What size lumber for stair stringers?</summary><p>Most residential stair stringers are cut from 2×12 lumber. The minimum remaining throat depth should be 3.5 inches for a 2×12, though 5 inches or more is preferred. LVL stringers are used for long spans or heavy loads.</p></details>
+<details><summary>Is this stair stringer calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+
+<div class="ss-disclaimer">
+<b>Disclaimer:</b> This calculator is provided for preliminary design and estimation only. Building codes vary by jurisdiction and are updated periodically. The IRC values shown are based on the model code and may not reflect local amendments, engineering requirements, or site-specific conditions. Always verify all dimensions, materials and code compliance with your local building department and a licensed design professional before construction. Utiliby accepts no liability for errors, omissions, or construction outcomes resulting from the use of this tool.
+</div>
+
+</article>
+
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){ return document.getElementById(id); }
+
+function val(id){
+  var el = $(id);
+  if(!el) return NaN;
+  var s = String(el.value).trim();
+  if(s === "") return NaN;
+  var n = parseFloat(s);
+  return isFinite(n) ? n : NaN;
+}
+function nf(n, maxDp){ return n.toLocaleString(undefined, { maximumFractionDigits: maxDp }); }
+function frac(n){
+  var whole = Math.floor(n);
+  var dec = n - whole;
+  var fracMap = [[0.0625,"1/16"],[0.125,"1/8"],[0.1875,"3/16"],[0.25,"1/4"],[0.3125,"5/16"],[0.375,"3/8"],[0.4375,"7/16"],[0.5,"1/2"],[0.5625,"9/16"],[0.625,"5/8"],[0.6875,"11/16"],[0.75,"3/4"],[0.8125,"13/16"],[0.875,"7/8"],[0.9375,"15/16"]];
+  var best = "", bestD = 1;
+  for(var i=0;i<fracMap.length;i++){
+    var d = Math.abs(dec - fracMap[i][0]);
+    if(d < bestD){ bestD = d; best = fracMap[i][1]; }
+  }
+  if(best === "") return whole + "″";
+  if(whole === 0) return best + "″";
+  return whole + " " + best + "″";
+}
+
+function copyText(text, btn){
+  function done(ok){
+    if(!btn) return;
+    var o = btn.getAttribute("data-label");
+    if(o === null){ o = btn.textContent; btn.setAttribute("data-label", o); }
+    btn.textContent = ok ? "Copied!" : "Copy failed";
+    setTimeout(function(){ btn.textContent = o; }, 1400);
+  }
+  function fallback(){
+    var ok = false;
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text;
+      ta.setAttribute("readonly", "");
+      ta.style.position = "fixed"; ta.style.opacity = "0";
+      document.body.appendChild(ta);
+      ta.select(); ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    }catch(e){ ok = false; }
+    done(ok);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
+  } else { fallback(); }
+}
+
+/* ---------- Stair profile diagram ---------- */
+function drawStairDiagram(risers, riserH, treadD, nosing, width, totalRun, totalRise, angle){
+  var W = 600, H = 300;
+  var padL = 60, padR = 40, padT = 30, padB = 60;
+  var plotW = W - padL - padR, plotH = H - padT - padB;
+  var scaleX = plotW / Math.max(totalRun, 1);
+  var scaleY = plotH / Math.max(totalRise, 1);
+  var scale = Math.min(scaleX, scaleY);
+  var ox = padL, oy = H - padB;
+
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stair profile diagram">';
+
+  /* Ground line */
+  svg += '<line x1="' + (ox - 10) + '" y1="' + oy + '" x2="' + (W - padR + 10) + '" y2="' + oy + '" stroke="var(--line-strong)" stroke-width="2"/>';
+  /* Floor line at top */
+  svg += '<line x1="' + ox + '" y1="' + (oy - totalRise * scale) + '" x2="' + (ox + totalRun * scale + 20) + '" y2="' + (oy - totalRise * scale) + '" stroke="var(--line-strong)" stroke-width="2"/>';
+
+  /* Stair steps */
+  var cx = ox, cy = oy;
+  for(var i = 0; i < risers; i++){
+    var stepRise = riserH * scale;
+    var stepRun = (i < risers - 1) ? treadD * scale : 0;
+    /* Riser line (vertical) */
+    svg += '<line x1="' + cx.toFixed(1) + '" y1="' + cy.toFixed(1) + '" x2="' + cx.toFixed(1) + '" y2="' + (cy - stepRise).toFixed(1) + '" stroke="#b45309" stroke-width="2.5"/>';
+    /* Tread line (horizontal) */
+    if(i < risers - 1){
+      svg += '<line x1="' + cx.toFixed(1) + '" y1="' + (cy - stepRise).toFixed(1) + '" x2="' + (cx + stepRun).toFixed(1) + '" y2="' + (cy - stepRise).toFixed(1) + '" stroke="#b45309" stroke-width="3"/>';
+      /* Nosing projection */
+      if(nosing > 0 && i > 0){
+        svg += '<line x1="' + (cx - nosing * scale).toFixed(1) + '" y1="' + (cy - stepRise).toFixed(1) + '" x2="' + (cx + 2).toFixed(1) + '" y2="' + (cy - stepRise).toFixed(1) + '" stroke="#d97706" stroke-width="2" stroke-dasharray="2,2"/>';
+      }
+    }
+    cx += stepRun;
+    cy -= stepRise;
+  }
+
+  /* Total rise dimension */
+  svg += '<line x1="' + (ox - 20) + '" y1="' + oy + '" x2="' + (ox - 20) + '" y2="' + (oy - totalRise * scale) + '" stroke="#64748b" stroke-width="1.5"/>';
+  svg += '<text x="' + (ox - 26) + '" y="' + (oy - totalRise * scale / 2) + '" text-anchor="end" font-size="10" fill="#64748b" font-weight="600">Rise ' + Math.round(totalRise) + '″</text>';
+
+  /* Total run dimension */
+  svg += '<line x1="' + ox + '" y1="' + (H - 18) + '" x2="' + (ox + totalRun * scale) + '" y2="' + (H - 18) + '" stroke="#64748b" stroke-width="1.5"/>';
+  svg += '<text x="' + (ox + totalRun * scale / 2) + '" y="' + (H - 24) + '" text-anchor="middle" font-size="10" fill="#64748b" font-weight="600">Run ' + Math.round(totalRun) + '″</text>';
+
+  /* Angle label */
+  svg += '<text x="' + (ox + totalRun * scale + 8) + '" y="' + (oy - 10) + '" font-size="11" fill="#b45309" font-weight="700">' + angle.toFixed(1) + '°</text>';
+
+  svg += '<text x="' + (W / 2) + '" y="' + (H - 4) + '" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="600">' + risers + ' risers · ' + (risers - 1) + ' treads · ' + riserH.toFixed(3) + '″ rise · ' + treadD.toFixed(2) + '″ tread</text>';
+  svg += '</svg>';
+  return svg;
+}
+
+/* ---------- Core stair calculation ---------- */
+function calcStair(rise, treadD, nosing, width, opts){
+  opts = opts || {};
+  if(!(rise > 0) || !(treadD > 0)){
+    return { err: "Total rise and tread depth are required and must be greater than zero." };
+  }
+
+  var maxRiser = 7.75, minRiser = 4, minTread = 10, maxNosing = 1.25, minNosing = 0.75;
+
+  /* Determine riser count */
+  var target = val(opts.targetId) || 7.5;
+  var risers = Math.round(rise / target);
+  if(risers < 2) risers = 2;
+  var riserH = rise / risers;
+  var treads = risers - 1;
+  var totalRun = treads * treadD;
+  var stringerLen = Math.sqrt(rise * rise + totalRun * totalRun);
+  var angle = Math.atan(rise / totalRun) * 180 / Math.PI;
+  var miterAngle = 90 - angle;
+  var firstStep = riserH - (opts.treadThick || 0);
+  var comfort2RT = 2 * riserH + treadD;
+  var comfortRT = riserH + treadD;
+  var comfort7_11 = comfortRT;
+  var nosingActual = (treadD < 11 && nosing < 0.75) ? 0 : nosing;
+
+  /* Code checks */
+  var checks = [];
+  function addCheck(name, value, limit, ok, ref){
+    checks.push({ name: name, value: value, limit: limit, ok: ok, ref: ref });
+  }
+
+  addCheck("Riser height", riserH.toFixed(3) + "″", "Max 7-3/4″", riserH <= maxRiser + 0.001, "IRC R311.7.5.1");
+  addCheck("Riser min height", riserH.toFixed(3) + "″", "Min 4″", riserH >= minRiser - 0.001, "IRC R311.7.5.1");
+  addCheck("Riser uniformity", "0″ variation (equal)", "Max 3/8″", true, "IRC R311.7.5.1");
+  addCheck("Tread depth", treadD.toFixed(2) + "″", "Min 10″", treadD >= minTread - 0.001, "IRC R311.7.5.2");
+  addCheck("Nosing projection", (treadD < 11 ? nosing.toFixed(2) : nosing.toFixed(2)) + "″", "3/4″ – 1-1/4″", !(treadD < 11 && nosing > 0 && nosing < 0.75) && nosing <= maxNosing + 0.001, "IRC R311.7.5.3");
+  addCheck("Stair width", width.toFixed(0) + "″", "Min 36″", width >= 36, "IRC R311.7.1");
+  addCheck("Headroom", (opts.headroom !== undefined ? opts.headroom.toFixed(1) + "″" : "—"), "Min 80″ (6′8″)", opts.headroom === undefined || opts.headroom >= 80, "IRC R311.7.2");
+  addCheck("Handrail", risers >= 4 ? "Required" : "Not required", "4+ risers", true, "IRC R311.7.7");
+
+  /* Throat depth check for 2x12 */
+  var throat = 11.25 - riserH; /* 2x12 actual depth 11.25" */
+  var throatOk = throat >= 3.5;
+
+  var status = { label: "IRC Compliant", cls: "ok", notes: [] };
+  var violations = checks.filter(function(c){ return !c.ok; });
+  if(violations.length > 0){
+    status.cls = "err"; status.label = "Code violation";
+    for(var i=0;i<violations.length;i++){
+      status.notes.push(violations[i].name + " is " + violations[i].value + " — " + violations[i].limit + " (" + violations[i].ref + ").");
+    }
+  } else {
+    status.notes.push("All checked dimensions meet IRC R311.7 residential requirements for the values entered.");
+  }
+  if(!throatOk){
+    status.cls = "err"; status.label = "Throat depth insufficient";
+    status.notes.push("Remaining throat depth is " + throat.toFixed(2) + "″ with a 2×12 stringer. Minimum is 3.5″. Use a deeper lumber section or an LVL stringer.");
+  } else if(throat < 5){
+    status.notes.push("Throat depth is " + throat.toFixed(2) + "″ — acceptable but 5″ or more is preferred for stiffness.");
+  }
+
+  /* Headroom warning */
+  if(opts.headroom !== undefined && opts.headroom < 80){
+    status.cls = "err"; status.label = "Headroom violation";
+    status.notes.push("Headroom is " + opts.headroom.toFixed(1) + "″ — below the 80″ (6′8″) IRC minimum. Reduce riser count, reduce tread depth, or raise the ceiling opening.");
+  }
+
+  if(comfort2RT < 24 || comfort2RT > 25){
+    status.notes.push("Comfort check: 2R + T = " + comfort2RT.toFixed(2) + "″ (ideal 24–25″). This is a guideline, not a code requirement.");
+  }
+
+  return {
+    risers: risers, riserH: riserH, treads: treads, treadD: treadD,
+    totalRun: totalRun, totalRise: rise, stringerLen: stringerLen,
+    angle: angle, miterAngle: miterAngle, firstStep: firstStep,
+    comfort2RT: comfort2RT, comfortRT: comfortRT,
+    checks: checks, throat: throat, throatOk: throatOk,
+    nosing: nosing, width: width,
+    status: status, ladder: stringerLen + 18
+  };
+}
+
+/* ---------- Render Layout ---------- */
+function renderLayout(){
+  var riseUnit = $("L_riseUnit").value;
+  var riseRaw = val("L_rise");
+  var rise = riseUnit === "ft" ? riseRaw * 12 : (riseUnit === "cm" ? riseRaw / 2.54 : riseRaw);
+  var treadD = val("L_tread");
+  var nosing = val("L_nosing");
+  var width = val("L_width");
+  var target = val("L_riserTarget");
+
+  var r = calcStair(rise, treadD, nosing, width, { targetId: "L_riserTarget", headroom: undefined });
+  var out = $("layoutOutput");
+  if(r.err){ out.innerHTML = '<div class="ss-warn">' + r.err + '</div>'; $("stairDiagram").innerHTML = ''; return; }
+
+  $("stairDiagram").innerHTML = drawStairDiagram(r.risers, r.riserH, r.treadD, r.nosing, r.width, r.totalRun, r.totalRise, r.angle) +
+    '<div class="ss-diagram-caption">Stair profile — risers, treads, nosing and angle update live</div>';
+
+  var h = '<div class="ss-result">';
+  h += '<div class="ss-result-label">Stair layout</div>';
+  h += '<div class="ss-result-big">' + r.risers + ' risers · ' + r.treads + ' treads</div>';
+  h += '<div class="ss-result-sub">' + frac(r.riserH) + ' riser · ' + r.treadD.toFixed(2) + '″ tread · ' + r.angle.toFixed(1) + '° angle</div>';
+  h += '</div>';
+
+  h += '<div class="ss-stats">';
+  h += '<div class="ss-stat"><div class="lbl">Riser height</div><div class="val ' + (r.riserH <= 7.75 ? 'ok' : 'err') + '">' + frac(r.riserH) + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Tread depth</div><div class="val ' + (r.treadD >= 10 ? 'ok' : 'err') + '">' + r.treadD.toFixed(2) + '″</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Total run</div><div class="val">' + Math.round(r.totalRun) + '″ (' + (r.totalRun / 12).toFixed(1) + ' ft)</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Stringer length</div><div class="val">' + Math.round(r.stringerLen) + '″ (' + (r.stringerLen / 12).toFixed(1) + ' ft)</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Stair angle</div><div class="val">' + r.angle.toFixed(1) + '°</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Miter saw angle</div><div class="val">' + r.miterAngle.toFixed(1) + '°</div></div>';
+  h += '</div>';
+
+  h += '<div class="ss-panel"><h3>IRC R311.7 code check <span class="ss-badge ' + r.status.cls + '">' + r.status.label + '</span></h3>';
+  h += '<table class="ss-table"><tr><th>Check</th><th>Your value</th><th>IRC limit</th><th>Ref</th></tr>';
+  for(var i=0;i<r.checks.length;i++){
+    var c = r.checks[i];
+    var mark = c.ok ? "✅" : "❌";
+    h += '<tr><td>' + c.name + '</td><td>' + c.value + '</td><td>' + c.limit + '</td><td>' + c.ref + '</td></tr>';
+  }
+  h += '</table>';
+  h += '<ul>';
+  for(var j=0;i<r.status.notes.length;j++) h += '<li>' + r.status.notes[j] + '</li>';
+  h += '</ul></div>';
+
+  h += '<div class="ss-tip"><b>Comfort check:</b> 2R + T = ' + r.comfort2RT.toFixed(2) + '″ (ideal 24–25″) · R + T = ' + r.comfortRT.toFixed(2) + '″ (ideal 17–18″). These are guidelines, not code requirements.</div>';
+  h += '<div class="ss-tip"><b>Stringer lumber:</b> Order ' + Math.ceil(r.ladder / 12) + ' ft boards (stringer length + 18″ for cuts and the bottom notch). Throat depth with a 2×12 is ' + r.throat.toFixed(2) + '″ ' + (r.throatOk ? '✅' : '❌ below the 3.5″ minimum') + '.</div>';
+
+  h += '<div class="ss-actions"><button type="button" id="copyLayoutBtn" class="primary">Copy layout</button><button type="button" id="printLayoutBtn">Print / save as PDF</button></div>';
+  out.innerHTML = h;
+
+  $("copyLayoutBtn").addEventListener("click", function(){
+    var text = "Stair Stringer Layout (IRC Code)\n" +
+      "Risers: " + r.risers + "\n" +
+      "Riser height: " + frac(r.riserH) + " (" + r.riserH.toFixed(3) + "\")\n" +
+      "Treads: " + r.treads + " at " + r.treadD.toFixed(2) + "\"\n" +
+      "Total rise: " + rise.toFixed(2) + "\"\n" +
+      "Total run: " + r.totalRun.toFixed(2) + "\"\n" +
+      "Stringer length: " + r.stringerLen.toFixed(2) + "\"\n" +
+      "Stair angle: " + r.angle.toFixed(1) + "°\n" +
+      "Miter saw angle: " + r.miterAngle.toFixed(1) + "°\n" +
+      "First step height: " + r.firstStep.toFixed(3) + "\"\n" +
+      "Status: " + r.status.label + "\n" +
+      "- utiliby.com";
+    copyText(text, $("copyLayoutBtn"));
+  });
+  $("printLayoutBtn").addEventListener("click", function(){ window.print(); });
+}
+
+/* ---------- Render Advanced ---------- */
+function renderAdvanced(){
+  var rise = val("A_rise");
+  var treadD = val("A_tread");
+  var nosing = val("A_nosing");
+  var width = val("A_width");
+  var ceiling = val("A_ceiling");
+  var floorThick = val("A_floorThick");
+  var treadThick = val("A_treadThick");
+
+  if(!(rise > 0) || !(treadD > 0)){ $("advancedOutput").innerHTML = '<div class="ss-warn">Total rise and tread depth are required.</div>'; return; }
+
+  /* Headroom: simplified check — distance from nosing line to ceiling minus floor thickness */
+  var risers = Math.round(rise / 7.5);
+  var riserH = rise / risers;
+  var treads = risers - 1;
+  var totalRun = treads * treadD;
+  /* Headroom at the critical point (upper part of stair) */
+  var headroom = ceiling - (riserH * 2); /* approximate clearance under the upper floor */
+  if(headroom < 0) headroom = 0;
+
+  var r = calcStair(rise, treadD, nosing, width, { headroom: headroom, treadThick: treadThick });
+  var out = $("advancedOutput");
+  if(r.err){ out.innerHTML = '<div class="ss-warn">' + r.err + '</div>'; return; }
+
+  $("A_riserCount").value = r.risers;
+
+  var h = '<div class="ss-stats">';
+  h += '<div class="ss-stat"><div class="lbl">Risers</div><div class="val">' + r.risers + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Riser height</div><div class="val">' + frac(r.riserH) + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Headroom</div><div class="val ' + (headroom >= 80 ? 'ok' : 'err') + '">' + headroom.toFixed(1) + '″</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">First step</div><div class="val">' + frac(r.firstStep) + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Stairwell opening</div><div class="val">' + Math.round(r.totalRun) + '″</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Handrail</div><div class="val ' + (r.risers >= 4 ? 'warn' : 'ok') + '">' + (r.risers >= 4 ? 'Required' : 'Not required') + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="ss-panel"><h3>IRC check <span class="ss-badge ' + r.status.cls + '">' + r.status.label + '</span></h3><ul>';
+  for(var i=0;i<r.status.notes.length;i++) h += '<li>' + r.status.notes[i] + '</li>';
+  h += '</ul></div>';
+
+  h += '<div class="ss-tip"><b>Headroom note:</b> This is an approximate check. Headroom must be measured vertically from the sloped line adjoining the tread nosing to the nearest overhead obstruction. Verify on site before cutting.</div>';
+
+  h += '<div class="ss-actions"><button type="button" id="copyAdvBtn" class="primary">Copy result</button></div>';
+  out.innerHTML = h;
+
+  $("copyAdvBtn").addEventListener("click", function(){
+    var text = "Stair Advanced (IRC)\nRisers: " + r.risers + "\nRiser: " + r.riserH.toFixed(3) + "\"\nHeadroom: " + headroom.toFixed(1) + "\"\nStatus: " + r.status.label + "\n- utiliby.com";
+    copyText(text, $("copyAdvBtn"));
+  });
+}
+
+/* ---------- Render Deck ---------- */
+function renderDeck(){
+  var rise = val("D_rise");
+  var treadD = val("D_tread");
+  var width = val("D_width");
+  var nStringers = parseInt($("D_stringers").value, 10);
+  var lumber = $("D_lumber").value;
+
+  if(!(rise > 0) || !(treadD > 0)){ $("deckOutput").innerHTML = '<div class="ss-warn">Rise and tread depth are required.</div>'; return; }
+
+  var r = calcStair(rise, treadD, 1, width, {});
+  var out = $("deckOutput");
+  if(r.err){ out.innerHTML = '<div class="ss-warn">' + r.err + '</div>'; return; }
+
+  var totalBoardFt = r.ladder * nStringers / 12;
+  var throat = lumber === "lvl" ? 9.25 - r.riserH : 11.25 - r.riserH; /* LVL 9.5" actual vs 2x12 11.25" */
+
+  var h = '<div class="ss-stats">';
+  h += '<div class="ss-stat"><div class="lbl">Risers</div><div class="val">' + r.risers + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Riser height</div><div class="val">' + frac(r.riserH) + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Stringer length</div><div class="val">' + Math.round(r.stringerLen) + '″</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Stringers</div><div class="val">' + nStringers + '</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Board feet</div><div class="val">' + Math.round(totalBoardFt) + ' bd ft</div></div>';
+  h += '<div class="ss-stat"><div class="lbl">Throat depth</div><div class="val ' + (throat >= 3.5 ? 'ok' : 'err') + '">' + throat.toFixed(2) + '″</div></div>';
+  h += '</div>';
+
+  h += '<div class="ss-panel"><h3>IRC check <span class="ss-badge ' + r.status.cls + '">' + r.status.label + '</span></h3><ul>';
+  for(var i=0;i<r.status.notes.length;i++) h += '<li>' + r.status.notes[i] + '</li>';
+  h += '</ul></div>';
+
+  h += '<div class="ss-tip"><b>Deck stair notes:</b> Use pressure-treated or naturally rot-resistant lumber. Set the bottom of the stair on a concrete pad or compacted gravel, not bare soil. Open risers must not allow a 4-inch sphere to pass through. A guard 36″ high is required where the drop exceeds 30″.</div>';
+
+  h += '<div class="ss-actions"><button type="button" id="copyDeckBtn" class="primary">Copy deck result</button></div>';
+  out.innerHTML = h;
+
+  $("copyDeckBtn").addEventListener("click", function(){
+    var text = "Deck Stair Layout\nRisers: " + r.risers + "\nRiser: " + r.riserH.toFixed(3) + "\"\nStringer: " + r.stringerLen.toFixed(2) + "\"\nStringers: " + nStringers + "\n- utiliby.com";
+    copyText(text, $("copyDeckBtn"));
+  });
+}
+
+/* ---------- UI wiring ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  document.querySelectorAll(".ss-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var mode = this.dataset.mode;
+      document.querySelectorAll(".ss-tab").forEach(function(x){ x.classList.toggle("on", x.dataset.mode === mode); });
+      $("layoutTab").hidden = (mode !== "layout");
+      $("advancedTab").hidden = (mode !== "advanced");
+      $("deckTab").hidden = (mode !== "deck");
+      if(mode === "layout") renderLayout();
+      else if(mode === "advanced") renderAdvanced();
+      else if(mode === "deck") renderDeck();
+    });
+  });
+
+  function live(ids, fn){
+    ids.forEach(function(id){ var el = $(id); if(el){ el.addEventListener("input", fn); el.addEventListener("change", fn); } });
+  }
+
+  live(["L_rise","L_riseUnit","L_riserTarget","L_tread","L_nosing","L_width"], renderLayout);
+  live(["A_rise","A_tread","A_nosing","A_width","A_ceiling","A_floorThick","A_treadThick"], renderAdvanced);
+  live(["D_rise","D_tread","D_width","D_stringers","D_soil","D_lumber"], renderDeck);
+
+  $("calcLayoutBtn").addEventListener("click", renderLayout);
+  $("calcAdvancedBtn").addEventListener("click", renderAdvanced);
+  $("calcDeckBtn").addEventListener("click", renderDeck);
+
+  $("resetLayoutBtn").addEventListener("click", function(){
+    $("L_rise").value = 108;
+    $("L_riseUnit").value = "in";
+    $("L_riserTarget").value = 7.5;
+    $("L_tread").value = 10.5;
+    $("L_nosing").value = 1;
+    $("L_width").value = 36;
+    renderLayout();
+  });
+
+  document.addEventListener("click", function(e){
+    var copyBtn = e.target.closest("[data-copy-target]");
+    if(copyBtn){
+      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
+      if(target) copyText(target.value, copyBtn);
+    }
+  });
+
+  renderLayout();
+  renderAdvanced();
+  renderDeck();
+});
+})();
+</script>
+</body>
+</html>
