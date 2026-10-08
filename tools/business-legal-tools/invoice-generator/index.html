@@ -408,8 +408,16 @@ window.addEventListener("DOMContentLoaded",function(){
     var r=new FileReader();r.onload=function(ev){logoData=ev.target.result;render();};r.readAsDataURL(f);
   });
   $("addLineBtn").addEventListener("click",function(){addLine("","","");});
-  $("printBtn").addEventListener("click",function(){window.print();});
+$("printBtn").addEventListener("click",function(){
+  render();                                    /* rebuild preview from latest inputs */
+  requestAnimationFrame(function(){
+    requestAnimationFrame(function(){
+      window.print();                          /* wait for paint, then print */
+    });
+  });
+});
   $("resetBtn").addEventListener("click",function(){location.reload();});
+window.addEventListener("beforeprint",render);   /* catches Ctrl+P / Cmd+P */
   document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
   render();
 });
