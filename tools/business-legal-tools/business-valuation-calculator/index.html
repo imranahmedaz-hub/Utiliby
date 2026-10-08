@@ -1,0 +1,309 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Business Valuation Calculator Online – EBITDA &amp; Revenue Multiples</title>
+<meta name="description" content="Free online business valuation calculator. Estimate what your small business is worth using industry EBITDA and revenue multiples. Valuation range, sensitivity table, asset-based sanity check. 15+ industries. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Business Valuation Calculator Online – EBITDA &amp; Revenue Multiples">
+<meta property="og:description" content="Estimate your small business value with industry EBITDA and revenue multiples. Sensitivity table and asset-based check.">
+<meta property="og:url" content="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.bv-hero{background:linear-gradient(135deg,#5b21b6,#8b5cf6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.bv-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.bv-hero p{margin:0;opacity:.92;font-size:.9rem}
+.bv-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.bv-panel h3{margin:0 0 10px;font-size:1rem}
+.bv-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.bv-panel input,.bv-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.bv-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.bv-row{grid-template-columns:1fr}}
+.bv-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.bv-row3{grid-template-columns:1fr}}
+.bv-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#5b21b6,#8b5cf6);color:#fff;margin-right:8px;margin-top:8px}
+.bv-btn:hover{opacity:.92}
+.bv-btn.ghost{background:transparent;color:#5b21b6;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.bv-btn.ghost{color:#c4b5fd}}
+.bv-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.bv-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.bv-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.bv-big{font-size:2rem;font-weight:800;color:#8b5cf6;line-height:1.1;margin:4px 0}
+@media(prefers-color-scheme:dark){.bv-big{color:#c4b5fd}}
+.bv-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.bv-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.bv-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.bv-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.bv-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.bv-stat .val.ok{color:#16a34a}.bv-stat .val.warn{color:#f59e0b}.bv-stat .val.err{color:#dc2626}
+.bv-tip{background:rgba(91,33,182,.06);border-left:3px solid #8b5cf6;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.bv-tip b{color:#7c3aed}
+.bv-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.bv-table th,.bv-table td{padding:6px 8px;border:1px solid var(--line);text-align:right}
+.bv-table th{background:var(--card);font-weight:700;text-align:left}
+.bv-table td:first-child,.bv-table th:first-child{text-align:left}
+.bv-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.bv-share h3{margin:0 0 10px;font-size:1rem}
+.bv-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.bv-share input,.bv-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.bv-share textarea{min-height:80px;resize:vertical}
+.bv-share button{margin-top:6px;background:transparent;color:#5b21b6;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.bv-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.bv-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.bv-btn,.bv-hero,.cn-article,.no-print,.bv-panel form,.bv-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Business Valuation Calculator","url":"https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free business valuation calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free business valuation calculator online estimates what a small business might be worth using industry EBITDA multiples or revenue multiples. It takes your EBITDA or annual revenue, applies a multiple range typical for your industry, and returns a valuation range along with a sensitivity table showing how the value changes with different multiples."}},{"@type":"Question","name":"How do you value a small business?","acceptedAnswer":{"@type":"Answer","text":"The most common method for small businesses is the multiple-of-earnings approach. For profitable businesses, this means a multiple of EBITDA (earnings before interest, tax, depreciation and amortization). For very small businesses that are valued on a seller's discretionary earnings basis, the multiple is applied to SDE instead. Revenue multiples are used for very fast-growing companies or those without positive earnings."}},{"@type":"Question","name":"What is EBITDA?","acceptedAnswer":{"@type":"Answer","text":"EBITDA stands for Earnings Before Interest, Taxes, Depreciation and Amortization. It is a proxy for operating cash flow that strips out financing decisions (interest), tax jurisdictions, and accounting choices around depreciation and amortization. It is the most common metric used to compare businesses within the same industry, but it is not the same as actual cash flow."}},{"@type":"Question","name":"What EBITDA multiple should I use?","acceptedAnswer":{"@type":"Answer","text":"EBITDA multiples vary widely by industry and by business size. Very small businesses often sell for 2 to 4x EBITDA. Established small-to-medium businesses with strong growth sell for 4 to 8x. Larger, high-growth companies in software or technology may sell for 10 to 20x. The multiple also depends on recurring revenue, customer concentration, growth rate and management depth."}},{"@type":"Question","name":"Is this business valuation calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business &amp; Legal Tools</a> › Business Valuation Calculator</nav>
+<h1 class="noembed">Business Valuation Calculator</h1>
+<p class="lead noembed">Estimate what your small business is worth using industry EBITDA and revenue multiples. Valuation range, sensitivity table and asset-based sanity check. 15+ industries. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/" target="_blank" rel="noopener">Business Valuation Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Business valuation calculator">
+<div class="bv-hero noembed">
+<h2>Free Business Valuation Calculator</h2>
+<p>What is my business worth? Multiple-based estimate with sensitivity analysis.</p>
+</div>
+<div class="bv-panel">
+<h3>Business financials</h3>
+<div class="bv-row3">
+<div><label for="revenue">Annual revenue</label><input type="number" id="revenue" min="0" step="1000" value="1500000"></div>
+<div><label for="ebitda">Annual EBITDA</label><input type="number" id="ebitda" min="-1000000" step="1000" value="300000"></div>
+<div><label for="industry">Industry</label>
+<select id="industry">
+<option value="">— Select industry —</option>
+</select></div>
+</div>
+</div>
+<div class="bv-panel">
+<h3>Adjustments</h3>
+<div class="bv-row3">
+<div><label for="recurring">% recurring revenue (0-100)</label><input type="number" id="recurring" min="0" max="100" step="5" value="30"></div>
+<div><label for="growth">Annual growth rate (%)</label><input type="number" id="growth" min="-50" max="200" step="5" value="10"></div>
+<div><label for="concentration">Customer concentration (% top 1)</label><input type="number" id="concentration" min="0" max="100" step="5" value="20"></div>
+</div>
+<div class="bv-row">
+<div><label for="assets">Net asset value (tangible, optional)</label><input type="number" id="assets" min="0" step="1000" value="400000"></div>
+<div><label for="currency">Currency</label><input type="text" id="currency" value="$" maxlength="3"></div>
+</div>
+</div>
+<button type="button" class="bv-btn" id="calcBtn">Estimate valuation</button>
+<button type="button" class="bv-btn ghost" id="resetBtn">Reset</button>
+<div id="output"></div>
+</section>
+<div class="bv-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="bv-share-link">Shareable link</label>
+<input type="text" id="bv-share-link" readonly value="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/">
+<button type="button" data-copy-target="bv-share-link">Copy link</button>
+<label for="bv-cite">Cite this page</label>
+<textarea id="bv-cite" readonly>Utiliby. (2026). Business Valuation Calculator. https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/</textarea>
+<button type="button" data-copy-target="bv-cite">Copy citation</button>
+<label for="bv-embed">Add this tool to your site</label>
+<textarea id="bv-embed" readonly>&lt;iframe src="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/?embed=1" width="100%" height="1300" style="border:0" loading="lazy" title="Business Valuation Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/business-legal-tools/business-valuation-calculator/"&gt;Business Valuation Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="bv-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<h2>What is a free business valuation calculator online?</h2>
+<p>A free business valuation calculator online estimates what a small business might be worth using industry multiples. You enter your annual revenue, your EBITDA (or your net profit, if that is your most useful earnings figure), and the industry your business operates in. The calculator applies the typical EBITDA multiple range for that industry and returns a low-mid-high valuation range. It also shows a sensitivity table — how the value changes if you apply a higher or lower multiple — so you can see the impact of a stronger or weaker negotiation position.</p>
+<p>This business valuation calculator goes beyond a single multiple. It adjusts for three factors that materially move the multiple in real transactions: the percentage of recurring revenue (which pushes the multiple up), the growth rate (which pushes it up further), and customer concentration (which pulls it down if a single customer accounts for a large share of revenue). It also shows an asset-based valuation (net asset value) as a sanity check — the floor below which a business is usually not sold, because it would be cheaper to buy the assets separately. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+<h2>How to use this free business valuation tool</h2>
+<ol>
+<li>Enter your annual revenue and your annual EBITDA. If you do not have an EBITDA figure, use your pre-tax operating profit plus back depreciation and amortization.</li>
+<li>Select your industry. The calculator uses the typical EBITDA multiple range for that sector.</li>
+<li>Enter the percentage of recurring revenue — revenue that repeats without having to be re-won each year, such as subscriptions or long-term contracts.</li>
+<li>Enter your annual growth rate — the percentage increase in revenue over the last twelve months.</li>
+<li>Enter your customer concentration — the percentage of revenue from your largest single customer.</li>
+<li>Optionally enter a net asset value for the asset-based sanity check.</li>
+<li>Click Estimate valuation. The tool shows a low-mid-high range, the sensitivity table and the asset-based floor.</li>
+</ol>
+<h2>How small businesses are valued</h2>
+<p>There are several methods, but for most small businesses the practical choice is between three approaches:</p>
+<table class="cn-article-table">
+<tr><th>Method</th><th>When it applies</th><th>Formula</th></tr>
+<tr><td>EBITDA multiple</td><td>Businesses with clean, positive EBITDA, often over $1M revenue</td><td>Value = EBITDA × industry multiple</td></tr>
+<tr><td>SDE multiple</td><td>Owner-operated businesses where the owner's salary and perks need to be added back</td><td>Value = (Net profit + owner comp + perks) × multiple</td></tr>
+<tr><td>Revenue multiple</td><td>High-growth tech, SaaS, or businesses without positive earnings</td><td>Value = Revenue × multiple</td></tr>
+<tr><td>Asset-based</td><td>Asset-heavy businesses, or as a floor valuation</td><td>Value ≈ net tangible asset value</td></tr>
+<tr><td>DCF</td><td>Businesses with predictable long-term cash flows, or larger transactions</td><td>Sum of discounted future cash flows</td></tr>
+</table>
+<p>For most small businesses, the multiple-of-earnings method (EBITDA or SDE) is the standard, and the multiple ranges are well documented by industry. This calculator uses the EBITDA method as its primary approach because it is comparable across businesses in the same sector.</p>
+<h2>EBITDA multiples by industry (typical ranges)</h2>
+<table class="cn-article-table">
+<tr><th>Industry</th><th>EBITDA multiple</th><th>Notes</th></tr>
+<tr><td>SaaS / software</td><td>5x – 15x</td><td>Recurring revenue drives the top end</td></tr>
+<tr><td>Professional services</td><td>2x – 5x</td><td>Depends heavily on principal retention</td></tr>
+<tr><td>E-commerce (DTC)</td><td>2x – 6x</td><td>Higher for branded, repeat-purchase brands</td></tr>
+<tr><td>Retail</td><td>2x – 4x</td><td>Inventory and lease terms matter</td></tr>
+<tr><td>Restaurants</td><td>2x – 4x</td><td>Larger chains command higher multiples</td></tr>
+<tr><td>Manufacturing</td><td>3x – 7x</td><td>Automation and contracts raise the top</td></tr>
+<tr><td>Construction</td><td>2x – 5x</td><td>Backlog and repeat clients matter</td></tr>
+<tr><td>Healthcare (small clinics)</td><td>3x – 6x</td><td>Regulatory and reimbursement risk discount</td></tr>
+<tr><td>Logistics / transport</td><td>2x – 5x</td><td>Fleet condition and contracts matter</td></tr>
+<tr><td>Marketing agency</td><td>2x – 5x</td><td>Retainer mix pushes the multiple up</td></tr>
+<tr><td>Real estate services</td><td>2x – 4x</td><td>Commission-based revenue is discounted</td></tr>
+<tr><td>Business services / B2B</td><td>3x – 6x</td><td>Contract length and retention drive value</td></tr>
+</table>
+<h2>What pushes a multiple up or down</h2>
+<p>Two businesses with the same EBITDA can sell for very different multiples. The factors that matter most in real transactions:</p>
+<ul>
+<li><b>Recurring revenue.</b> The higher the percentage of revenue that repeats without re-selling, the higher the multiple. A SaaS business with 90% recurring revenue typically sells for 2–3x the multiple of a project-based services business of the same size.</li>
+<li><b>Growth rate.</b> A business growing 30% per year commands a materially higher multiple than one growing 3%. Growth is the single biggest multiple lever in most sectors.</li>
+<li><b>Customer concentration.</b> If one customer is more than 20% of revenue, buyers discount the multiple to reflect the risk that the customer leaves post-sale. Above 40% concentration, some buyers will not proceed at all.</li>
+<li><b>Recurring gross margin.</b> Higher-margin revenue is worth more per dollar. Software gross margins of 80%+ support higher multiples than services gross margins of 30–50%.</li>
+<li><b>Management depth.</b> A business that depends entirely on the founder is worth less than one with a functioning leadership team. Buyers pay for a business that runs without them.</li>
+<li><b>Clean financials.</b> Businesses with audited or accountant-prepared financials command a premium. Cash-based bookkeeping is a discount.</li>
+<li><b>Size.</b> Larger businesses command higher multiples within an industry. A $500k EBITDA business often sells for 3–4x; a $5M EBITDA business in the same sector often sells for 6–8x. This is called the size premium.</li>
+</ul>
+<h2>Why EBITDA is not the same as cash flow</h2>
+<p>EBITDA is a proxy for operating cash flow, but it is not actual cash flow. It excludes interest (which you may be paying), taxes (which you will pay), and capital expenditure (which you will spend). A capital-intensive manufacturer with strong EBITDA but constant equipment replacement has less real cash flow than the EBITDA figure suggests. When evaluating a business, look at both EBITDA and free cash flow — EBITDA minus capital expenditure minus tax. The two can diverge significantly.</p>
+<h2>Asset-based valuation as a floor</h2>
+<p>An asset-based valuation estimates the business by adding up the value of its tangible assets — cash, inventory, receivables, equipment, property — minus liabilities. For asset-heavy businesses, this can be the primary method. For service businesses, it is usually a floor. If the multiple-based valuation falls below the net asset value, a buyer would normally prefer to buy the assets separately, so the asset value becomes the practical minimum sale price.</p>
+<h2>Common mistakes when valuing a small business</h2>
+<ul>
+<li><b>Using the wrong earnings figure.</b> EBITDA, SDE and net profit are different things. Applying an EBITDA multiple to net profit overstates the value; applying a revenue multiple to a low-margin business overstates it dramatically.</li>
+<li><b>Using a national average multiple.</b> Multiples are industry-specific and size-specific. A 2x multiple is normal for a small retail shop and absurdly low for a SaaS business.</li>
+<li><b>Ignoring adjustments.</b> Owner perks, above-market rent to a related party, one-off revenue, and non-recurring costs all need to be normalized before applying a multiple.</li>
+<li><b>Forgetting working capital.</b> Most deals assume a normal level of working capital (receivables, inventory, payables) is included in the sale. If the seller strips working capital, the effective price changes.</li>
+<li><b>Treating the midpoint as the answer.</b> Valuation is a range, not a point. Two reasonable buyers can arrive at figures 30% apart for the same business.</li>
+<li><b>Confusing a valuation with a market test.</b> A multiple-based estimate tells you roughly what the business could be worth if it were sold in an orderly market with a competitive process. A quick private sale to a single buyer typically achieves less.</li>
+</ul>
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free business valuation calculator online?</summary><p>A tool that estimates what a small business might be worth using industry EBITDA or revenue multiples. It applies a range typical for your industry and shows the impact of recurring revenue, growth and customer concentration.</p></details>
+<details><summary>How do you value a small business?</summary><p>The most common method is a multiple of earnings. For profitable businesses this means a multiple of EBITDA or SDE. Revenue multiples are used for high-growth or unprofitable businesses. Asset-based valuation is a floor for asset-heavy businesses.</p></details>
+<details><summary>What is EBITDA?</summary><p>Earnings Before Interest, Taxes, Depreciation and Amortization. A proxy for operating cash flow that allows comparison between businesses in the same industry. It is not the same as free cash flow.</p></details>
+<details><summary>What EBITDA multiple should I use?</summary><p>It depends on industry and size. Very small businesses: 2–4x. Established SMEs: 4–8x. High-growth software or tech: 10–20x. The multiple also depends on recurring revenue, growth, customer concentration and management depth.</p></details>
+<details><summary>Is this business valuation calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+<div class="bv-disclaimer">
+<b>Disclaimer:</b> This calculator provides a rough, multiple-based estimate for planning and informational purposes only. It is not a formal valuation and is not suitable for tax, legal, lending or transaction purposes. Actual business value depends on many factors this tool cannot capture — quality of financial records, customer contracts, employee retention, litigation risk, lease terms, brand strength and the specific buyer's strategic rationale. Industry multiples are illustrative ranges based on general market data and vary significantly by region and by business size. For a transaction, tax filing, litigation or lender submission, engage a qualified business appraiser or M&A adviser. Utiliby accepts no liability for decisions made using this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var MULT={
+  "SaaS / software":{lo:5,mid:9,hi:15},
+  "Professional services":{lo:2,mid:3.5,hi:5},
+  "E-commerce (DTC)":{lo:2,mid:4,hi:6},
+  "Retail":{lo:2,mid:3,hi:4},
+  "Restaurant":{lo:2,mid:3,hi:4},
+  "Manufacturing":{lo:3,mid:5,hi:7},
+  "Construction":{lo:2,mid:3.5,hi:5},
+  "Healthcare (small clinic)":{lo:3,mid:4.5,hi:6},
+  "Logistics / transport":{lo:2,mid:3.5,hi:5},
+  "Marketing agency":{lo:2,mid:3.5,hi:5},
+  "Real estate services":{lo:2,mid:3,hi:4},
+  "Business services / B2B":{lo:3,mid:4.5,hi:6},
+  "Hospitality / hotel":{lo:3,mid:5,hi:8},
+  "Education / training":{lo:2,mid:3.5,hi:5},
+  "Other":{lo:2,mid:3.5,hi:5}
+};
+function buildIndustries(){
+  var sel=$("industry");
+  var keys=Object.keys(MULT).sort();
+  for(var i=0;i<keys.length;i++){var o=document.createElement("option");o.value=keys[i];o.textContent=keys[i];sel.appendChild(o);}
+}
+function fmt(n,cur){
+  if(!isFinite(n))return cur+"—";
+  var sign=n<0?"-":"";
+  return sign+cur+Math.abs(n).toLocaleString(undefined,{maximumFractionDigits:0});
+}
+function calc(){
+  var revenue=parseFloat($("revenue").value)||0;
+  var ebitda=parseFloat($("ebitda").value)||0;
+  var industry=$("industry").value;
+  var recurring=parseFloat($("recurring").value)||0;
+  var growth=parseFloat($("growth").value)||0;
+  var concentration=parseFloat($("concentration").value)||0;
+  var assets=parseFloat($("assets").value)||0;
+  var cur=$("currency").value||"$";
+  var out=$("output");
+  if(!industry){out.innerHTML='<div style="background:#fef3c7;padding:10px 14px;border-radius:10px;font-size:.85rem">Select an industry to apply the correct multiple range.</div>';return;}
+  var base=MULT[industry];
+  /* Adjust multiple for recurring/growth/concentration */
+  var recurAdj=(recurring-30)/100*1.5;
+  var growthAdj=growth/100*2;
+  var concAdj=concentration>20?-(concentration-20)/100*3:0;
+  var totalAdj=recurAdj+growthAdj+concAdj;
+  var lo=Math.max(1,base.lo*(1+totalAdj*0.5));
+  var mid=Math.max(1,base.mid*(1+totalAdj*0.7));
+  var hi=Math.max(1,base.hi*(1+totalAdj*0.9));
+  var valLo=ebitda*lo;
+  var valMid=ebitda*mid;
+  var valHi=ebitda*hi;
+  /* asset floor */
+  var assetFloor=assets>0?assets:0;
+  var effectiveFloor=Math.max(valLo,assetFloor);
+  var h='<div class="bv-result"><div class="bv-label">Estimated valuation range (EBITDA method)</div>'+
+    '<div class="bv-big">'+fmt(valLo,cur)+' — '+fmt(valHi,cur)+'</div>'+
+    '<div class="bv-label" style="margin-top:6px">Midpoint: '+fmt(valMid,cur)+' · Multiple range: '+lo.toFixed(1)+'x – '+hi.toFixed(1)+'x EBITDA</div></div>';
+  h+='<div class="bv-stats">';
+  h+='<div class="bv-stat"><div class="lbl">Industry base multiple</div><div class="val">'+base.lo+'x – '+base.hi+'x</div></div>';
+  h+='<div class="bv-stat"><div class="lbl">Your adjusted multiple</div><div class="val">'+lo.toFixed(1)+'x – '+hi.toFixed(1)+'x</div></div>';
+  h+='<div class="bv-stat"><div class="lbl">EBITDA</div><div class="val">'+fmt(ebitda,cur)+'</div></div>';
+  h+='<div class="bv-stat"><div class="lbl">Revenue multiple (implied)</div><div class="val">'+(revenue>0?(valMid/revenue).toFixed(2)+"x":"—")+'</div></div>';
+  h+='<div class="bv-stat"><div class="lbl">Asset floor</div><div class="val">'+fmt(assetFloor,cur)+'</div></div>';
+  h+='<div class="bv-stat"><div class="lbl">Effective floor</div><div class="val">'+fmt(effectiveFloor,cur)+'</div></div>';
+  h+='</div>';
+  /* Sensitivity table */
+  h+='<div class="bv-panel"><h3>Multiple sensitivity</h3><table class="bv-table"><thead><tr><th>Multiple</th><th>Valuation</th></tr></thead><tbody>';
+  var mults=[1,2,3,4,5,6,8,10,12,15];
+  for(var i=0;i<mults.length;i++){
+    var v=ebitda*mults[i];
+    var cls=(mults[i]>=lo&&mults[i]<=hi)?"ok":(mults[i]<lo?"warn":"");
+    h+='<tr><td>'+mults[i]+'x EBITDA</td><td class="'+cls+'" style="font-weight:700;color:'+(cls==="ok"?"#16a34a":cls==="warn"?"#f59e0b":"inherit")+'">'+fmt(v,cur)+'</td></tr>';
+  }
+  h+='</tbody></table></div>';
+  /* Adjustments breakdown */
+  h+='<div class="bv-tip"><b>Adjustment breakdown:</b> Recurring revenue adjustment '+recurAdj.toFixed(2)+', growth adjustment '+growthAdj.toFixed(2)+', concentration adjustment '+concAdj.toFixed(2)+'. Net adjustment '+totalAdj.toFixed(2)+'. Adjusted multiple = base × (1 + net × weight).</div>';
+  if(concentration>40){h+='<div class="bv-tip" style="background:#fee2e2;border-left-color:#dc2626;color:#991b1b"><b>High customer concentration.</b> '+concentration+'% of revenue from one customer is a significant discount factor. Some buyers will not proceed at any multiple above 2–3x when concentration exceeds 40%. Consider diversifying before selling.</div>';}
+  if(recurring>60){h+='<div class="bv-tip"><b>Strong recurring revenue.</b> '+recurring+'% recurring pushes your multiple towards the top of the range. This is the single most valuable business attribute for a buyer.</div>';}
+  if(growth>20){h+='<div class="bv-tip"><b>High growth.</b> '+growth+'% annual growth is above average and supports a premium multiple in most sectors.</div>';}
+  if(valMid<assetFloor){h+='<div class="bv-tip" style="background:#fef3c7;border-left-color:#f59e0b"><b>Asset floor exceeds earnings-based value.</b> The mid-range earnings-based valuation is below the net asset value. In this situation, buyers often prefer to buy the assets separately, or a strategic buyer may pay above the earnings-based value for the customer relationships or the brand.</div>';}
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyBvBtn" class="bv-btn" style="margin:0">Copy result</button></div>';
+  out.innerHTML=h;
+  document.getElementById("copyBvBtn").addEventListener("click",function(){
+    var t="Business Valuation Estimate\nIndustry: "+industry+"\nRevenue: "+fmt(revenue,cur)+"\nEBITDA: "+fmt(ebitda,cur)+"\nBase multiple: "+base.lo+"x – "+base.hi+"x\nAdjusted multiple: "+lo.toFixed(1)+"x – "+hi.toFixed(1)+"x\nValuation range: "+fmt(valLo,cur)+" – "+fmt(valHi,cur)+"\nMidpoint: "+fmt(valMid,cur)+"\n- utiliby.com";
+    copyText(t,document.getElementById("copyBvBtn"));
+  });
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  buildIndustries();
+  $("industry").value="Business services / B2B";
+  $("calcBtn").addEventListener("click",calc);
+  $("resetBtn").addEventListener("click",function(){$("revenue").value=1500000;$("ebitda").value=300000;$("industry").value="Business services / B2B";$("recurring").value=30;$("growth").value=10;$("concentration").value=20;$("assets").value=400000;$("output").innerHTML="";calc();});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  calc();
+});
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,386 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Invoice Generator Online – Create Professional PDF Invoices, No Sign-Up</title>
+<meta name="description" content="Free online invoice generator. Create professional PDF invoices with unlimited line items, automatic tax and discount, multi-currency, logo upload and live preview. No sign-up, no watermark, no limits. 100% browser-based.">
+<link rel="canonical" href="https://utiliby.com/tools/business-legal-tools/invoice-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Invoice Generator Online – Create Professional PDF Invoices">
+<meta property="og:description" content="Create professional PDF invoices with unlimited line items, automatic tax, multi-currency and live preview. No sign-up, no watermark.">
+<meta property="og:url" content="https://utiliby.com/tools/business-legal-tools/invoice-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.inv-hero{background:linear-gradient(135deg,#065f46,#10b981);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.inv-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.inv-hero p{margin:0;opacity:.92;font-size:.9rem}
+.inv-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.inv-panel h3{margin:0 0 10px;font-size:1rem}
+.inv-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.inv-panel input,.inv-panel select,.inv-panel textarea{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.inv-panel textarea{min-height:60px;resize:vertical;font-family:inherit}
+.inv-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.inv-row{grid-template-columns:1fr}}
+.inv-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.inv-row3{grid-template-columns:1fr}}
+.inv-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#065f46,#10b981);color:#fff;margin-right:8px;margin-top:8px}
+.inv-btn:hover{opacity:.92}
+.inv-btn.ghost{background:transparent;color:#065f46;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.inv-btn.ghost{color:#6ee7b7}}
+.inv-btn.small{padding:6px 12px;font-size:.78rem;margin:0}
+.inv-line{display:grid;grid-template-columns:2fr 1fr 1fr 1fr auto;gap:8px;align-items:end;margin-bottom:8px}
+@media(max-width:640px){.inv-line{grid-template-columns:1fr 1fr;gap:6px}.inv-line .inv-desc{grid-column:1/-1}}
+.inv-line label{font-size:.7rem;margin:0 0 2px}
+.inv-line input{padding:7px 10px;font-size:.85rem}
+.inv-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.inv-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.inv-preview{background:#fff;border:1px solid var(--line);border-radius:12px;padding:30px;margin:12px 0;color:#1f2937;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;font-size:14px;line-height:1.5;max-width:800px;margin-left:auto;margin-right:auto}
+@media(prefers-color-scheme:dark){.inv-preview{background:#f9fafb;color:#111827}}
+.inv-preview h2{font-size:1.6rem;margin:0;color:#065f46}
+.inv-preview .inv-meta{color:#6b7280;font-size:.85rem}
+.inv-preview table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.88rem}
+.inv-preview table th{background:#f3f4f6;text-align:left;padding:8px 10px;font-weight:700;border-bottom:2px solid #065f46}
+.inv-preview table td{padding:8px 10px;border-bottom:1px solid #e5e7eb}
+.inv-preview table td:last-child,.inv-preview table th:last-child{text-align:right}
+.inv-preview .inv-totals{margin-left:auto;width:260px;margin-top:10px}
+.inv-preview .inv-totals tr td{padding:4px 0;border:0}
+.inv-preview .inv-totals tr td:last-child{text-align:right;font-weight:600}
+.inv-preview .inv-grand td{font-size:1.15rem;font-weight:800;color:#065f46;border-top:2px solid #065f46;padding-top:8px!important}
+.inv-preview .inv-logo{max-height:60px;margin-bottom:10px}
+.inv-preview .inv-footer{margin-top:30px;padding-top:14px;border-top:1px solid #e5e7eb;font-size:.82rem;color:#6b7280}
+.inv-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.inv-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.inv-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.inv-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.inv-stat .val.ok{color:#16a34a}
+.inv-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.inv-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.inv-tip{background:rgba(6,95,70,.06);border-left:3px solid #065f46;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.inv-tip b{color:#065f46}
+.inv-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.inv-share h3{margin:0 0 10px;font-size:1rem}
+.inv-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.inv-share input,.inv-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.inv-share textarea{min-height:80px;resize:vertical}
+.inv-share button{margin-top:6px;background:transparent;color:#065f46;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.inv-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.inv-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.inv-btn,.inv-hero,.cn-article,.no-print,.inv-panel,.inv-share,.inv-tabs{display:none!important}.inv-preview{border:0;padding:0;margin:0}.tool{padding:0!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Invoice Generator","url":"https://utiliby.com/tools/business-legal-tools/invoice-generator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free invoice generator online?","acceptedAnswer":{"@type":"Answer","text":"A free invoice generator online is a tool that creates professional invoices directly in your browser. You fill in your business details, your client details and line items, and the tool produces a PDF-ready invoice with automatic subtotals, tax, discounts and totals. This one has no sign-up, no watermark and no invoice limits."}},{"@type":"Question","name":"Is this invoice generator really free with no hidden limits?","acceptedAnswer":{"@type":"Answer","text":"Yes. There is no account, no subscription, no watermark and no cap on the number of invoices you can create. Most free invoice tools cap you at 3 invoices, add a watermark, or require an account. This tool runs entirely in your browser and produces a clean PDF."}},{"@type":"Question","name":"What should an invoice include?","acceptedAnswer":{"@type":"Answer","text":"A compliant invoice normally includes: the word Invoice, a unique invoice number, your business name and contact details, your client's name and address, the invoice date and due date, an itemised list of goods or services with quantities and prices, subtotal, any tax or VAT, discounts, and the total due. Many jurisdictions also require your tax registration number."}},{"@type":"Question","name":"How do I download the invoice as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Click the Print / Save as PDF button. Your browser's print dialog opens with the invoice. Choose Save as PDF instead of a printer, and the file downloads as a clean PDF with no watermark or extra pages."}},{"@type":"Question","name":"Is this invoice generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no watermark and no invoice limit."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business &amp; Legal Tools</a> › Invoice Generator</nav>
+<h1 class="noembed">Invoice Generator</h1>
+<p class="lead noembed">Create professional PDF invoices in your browser. Unlimited line items, automatic tax and discount, multi-currency, logo upload and live preview. No sign-up, no watermark, no limits. Free and private.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/business-legal-tools/invoice-generator/" target="_blank" rel="noopener">Invoice Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Invoice generator">
+<div class="inv-hero noembed">
+<h2>Free Invoice Generator</h2>
+<p>Fill in the details, watch the invoice build live, print or save as PDF. No account, no watermark.</p>
+</div>
+
+<div class="inv-diagram" id="invDiagram"></div>
+
+<div class="inv-panel">
+<h3>Your business</h3>
+<div class="inv-row">
+<div><label for="bizName">Business name</label><input type="text" id="bizName" value="Your Business Ltd"></div>
+<div><label for="bizEmail">Email</label><input type="email" id="bizEmail" value="hello@yourbusiness.com"></div>
+</div>
+<div class="inv-row">
+<div><label for="bizAddress">Address</label><input type="text" id="bizAddress" value="123 High Street, London EC1 1AA"></div>
+<div><label for="bizTax">Tax / VAT number (optional)</label><input type="text" id="bizTax" placeholder="e.g. GB123456789"></div>
+</div>
+<div><label for="bizLogo">Logo (optional, PNG or JPG)</label><input type="file" id="bizLogo" accept="image/*"></div>
+</div>
+
+<div class="inv-panel">
+<h3>Your client</h3>
+<div class="inv-row">
+<div><label for="cliName">Client name</label><input type="text" id="cliName" value="Acme Corp"></div>
+<div><label for="cliEmail">Client email</label><input type="email" id="cliEmail" value="accounts@acme.com"></div>
+</div>
+<div><label for="cliAddress">Client address</label><input type="text" id="cliAddress" value="456 Business Park, Manchester M1 2BB"></div>
+</div>
+
+<div class="inv-panel">
+<h3>Invoice details</h3>
+<div class="inv-row3">
+<div><label for="invNumber">Invoice number</label><input type="text" id="invNumber" value="INV-0001"></div>
+<div><label for="invDate">Invoice date</label><input type="date" id="invDate"></div>
+<div><label for="invDue">Due date</label><input type="date" id="invDue"></div>
+</div>
+<div class="inv-row">
+<div><label for="invCurrency">Currency</label>
+<select id="invCurrency">
+<option value="USD" selected>USD — US Dollar</option>
+<option value="EUR">EUR — Euro</option>
+<option value="GBP">GBP — British Pound</option>
+<option value="CAD">CAD — Canadian Dollar</option>
+<option value="AUD">AUD — Australian Dollar</option>
+<option value="PKR">PKR — Pakistani Rupee</option>
+<option value="INR">INR — Indian Rupee</option>
+<option value="AED">AED — UAE Dirham</option>
+</select></div>
+<div><label for="invTerms">Payment terms</label>
+<select id="invTerms">
+<option value="Net 14">Net 14 days</option>
+<option value="Net 30" selected>Net 30 days</option>
+<option value="Net 45">Net 45 days</option>
+<option value="Due on receipt">Due on receipt</option>
+</select></div>
+</div>
+</div>
+
+<div class="inv-panel">
+<h3>Line items</h3>
+<div id="lineItems"></div>
+<button type="button" class="inv-btn small" id="addLineBtn" style="margin-top:8px">+ Add line item</button>
+</div>
+
+<div class="inv-panel">
+<h3>Adjustments</h3>
+<div class="inv-row3">
+<div><label for="invTaxRate">Tax rate (%)</label><input type="number" id="invTaxRate" min="0" max="50" step="0.1" value="20"></div>
+<div><label for="invDiscount">Discount (amount)</label><input type="number" id="invDiscount" min="0" step="0.01" value="0"></div>
+<div><label for="invShipping">Shipping / other</label><input type="number" id="invShipping" min="0" step="0.01" value="0"></div>
+</div>
+<div><label for="invNotes">Notes / payment instructions</label><textarea id="invNotes" placeholder="e.g. Please pay by bank transfer to Account 12345678, Sort code 00-00-00."></textarea></div>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+<button type="button" class="inv-btn" id="printBtn" style="margin:0">🖨️ Print / Save as PDF</button>
+<button type="button" class="inv-btn ghost" id="resetBtn" style="margin:0">Reset</button>
+</div>
+
+<div id="invPreview"></div>
+</section>
+
+<div class="inv-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="inv-share-link">Shareable link</label>
+<input type="text" id="inv-share-link" readonly value="https://utiliby.com/tools/business-legal-tools/invoice-generator/">
+<button type="button" data-copy-target="inv-share-link">Copy link</button>
+<label for="inv-cite">Cite this page</label>
+<textarea id="inv-cite" readonly>Utiliby. (2026). Invoice Generator. https://utiliby.com/tools/business-legal-tools/invoice-generator/</textarea>
+<button type="button" data-copy-target="inv-cite">Copy citation</button>
+<label for="inv-embed">Add this tool to your site</label>
+<textarea id="inv-embed" readonly>&lt;iframe src="https://utiliby.com/tools/business-legal-tools/invoice-generator/?embed=1" width="100%" height="1400" style="border:0" loading="lazy" title="Invoice Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/business-legal-tools/invoice-generator/"&gt;Invoice Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="inv-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free invoice generator online?</h2>
+<p>A free invoice generator online is a tool that creates professional invoices directly in your browser. You fill in your business details, your client details and the work you are billing for, and the tool produces a PDF-ready invoice with automatic subtotals, tax, discounts and totals. Unlike most "free" invoicing tools — which cap you at three invoices, add a watermark, or require an account — this invoice generator has no sign-up, no watermark and no invoice limit. Everything runs in your browser, so your client data never leaves your device.</p>
+<p>The invoice generator on this page is built for freelancers, contractors, consultants, agencies and small businesses. It supports unlimited line items, automatic tax and discount calculations, multiple currencies, logo upload, invoice numbering and a live preview that updates as you type. It also gives you a printable PDF output via your browser's print dialog — no third-party PDF service, no account, no tracking.</p>
+<h2>How to use this free invoice maker</h2>
+<ol>
+<li>Fill in your business details — name, email, address and, if applicable, your tax or VAT number. You can upload a logo to appear at the top of the invoice.</li>
+<li>Enter your client's details — name, email and address.</li>
+<li>Set the invoice number, invoice date and due date. The currency dropdown supports eight common currencies.</li>
+<li>Add line items. Each row has a description, quantity, rate and automatic line total. Click "+ Add line item" to add more rows, or the × button to remove one.</li>
+<li>Set your tax rate, discount and any shipping or other charges.</li>
+<li>Add notes or payment instructions — for example, bank details, payment terms, or a thank-you message.</li>
+<li>Click Print / Save as PDF. Your browser opens its print dialog; choose "Save as PDF" instead of a printer to download a clean PDF.</li>
+</ol>
+<h2>What a compliant invoice should include</h2>
+<p>Invoice requirements vary by country and by whether you are registered for VAT or GST. In most jurisdictions, a compliant invoice must include the following:</p>
+<table class="cn-article-table">
+<tr><th>Element</th><th>Why it matters</th></tr>
+<tr><td>The word "Invoice"</td><td>Distinguishes it from a receipt, quote or statement</td></tr>
+<tr><td>A unique invoice number</td><td>Required for accounting and tax records; must be sequential and not reused</td></tr>
+<tr><td>Your business name, address and contact details</td><td>Identifies the supplier</td></tr>
+<tr><td>Your tax or VAT registration number</td><td>Required for VAT reclaim in most jurisdictions</td></tr>
+<tr><td>Client's name and address</td><td>Identifies the customer</td></tr>
+<tr><td>Invoice date and due date</td><td>Starts the payment clock and the VAT accounting period</td></tr>
+<tr><td>Itemised goods or services</td><td>Description, quantity, unit price and line total</td></tr>
+<tr><td>Subtotal, tax and total</td><td>Shows how the amount due was calculated</td></tr>
+<tr><td>Payment terms and instructions</td><td>Tells the client how and when to pay</td></tr>
+</table>
+<p>If you are VAT-registered in the EU or UK, your invoice must also show the VAT rate applied and the VAT amount separately. For cross-border transactions, the customer's VAT number may be required to apply the reverse-charge mechanism.</p>
+<h2>Invoice numbering best practices</h2>
+<p>Invoice numbers must be unique and sequential. Most accounting systems generate them automatically. A common format is a prefix followed by a zero-padded number: INV-0001, INV-0002, and so on. If you issue invoices from multiple systems or entities, use a distinct prefix for each. Never reuse an invoice number, even if you cancel the invoice — instead, issue a credit note that references the original.</p>
+<h2>Payment terms explained</h2>
+<p>Payment terms define when the invoice becomes due. The most common terms are:</p>
+<ul>
+<li><b>Net 14 / Net 30 / Net 45</b> — payment is due 14, 30 or 45 days after the invoice date.</li>
+<li><b>Due on receipt</b> — payment is due immediately.</li>
+<li><b>2/10 Net 30</b> — the client gets a 2% discount if they pay within 10 days, otherwise the full amount is due in 30 days.</li>
+</ul>
+<p>Shorter terms improve cash flow but may be resisted by larger clients. If you are a freelancer or small business, Net 14 is a reasonable default; Net 30 is the most common in B2B transactions.</p>
+<h2>Why "free" invoice tools are not always free</h2>
+<p>Many tools advertised as free invoice generators have hidden limits. Common patterns include:</p>
+<ul>
+<li><b>A cap on the number of invoices</b> — often three before you must pay.</li>
+<li><b>A watermark</b> on the PDF until you upgrade.</li>
+<li><b>A mandatory account</b> that collects your email and then markets to you.</li>
+<li><b>Client data stored on the vendor's servers</b>, which may be a privacy or GDPR concern.</li>
+</ul>
+<p>This tool avoids all four. It runs entirely in your browser, stores nothing on a server, has no account and no watermark, and produces a clean PDF via your browser's own print dialog.</p>
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free invoice generator online?</summary><p>A tool that creates professional invoices in your browser. Fill in your details, add line items, and it calculates subtotals, tax and totals and produces a PDF-ready invoice. No sign-up, no watermark, no limits.</p></details>
+<details><summary>Is this invoice generator really free with no hidden limits?</summary><p>Yes. No account, no subscription, no watermark, no cap on invoices. Most free tools cap you at 3 invoices or add a watermark; this one does not.</p></details>
+<details><summary>What should an invoice include?</summary><p>Invoice number, your business name and address, tax number if applicable, client name and address, invoice date, due date, itemised goods or services, subtotal, tax, discount, total and payment terms.</p></details>
+<details><summary>How do I download the invoice as a PDF?</summary><p>Click Print / Save as PDF. Choose "Save as PDF" in your browser's print dialog. The file downloads with no watermark.</p></details>
+<details><summary>Is this invoice generator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no watermark, no invoice limit.</p></details>
+</div>
+<div class="inv-disclaimer">
+<b>Disclaimer:</b> This tool creates invoice documents for general business use. It does not constitute accounting, tax or legal advice. Invoice requirements vary by country and by the tax status of the supplier and customer. You are responsible for ensuring your invoices comply with the regulations that apply to your business, including any requirement to display a VAT, GST or tax registration number and the applicable rate. Confirm your invoice format with your accountant or tax adviser before issuing invoices to customers.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var logoData=null;
+function drawDiagram(){
+  var W=600,H=280,padL=30,padR=30,padT=30,padB=30;
+  var pw=W-padL-padR,ph=H-padT-padB;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Invoice anatomy diagram">';
+  svg+='<rect x="'+padL+'" y="'+padT+'" width="'+pw+'" height="'+ph+'" rx="6" fill="var(--bg)" stroke="var(--line-strong)" stroke-width="1.5"/>';
+  svg+='<rect x="'+(padL+12)+'" y="'+(padT+12)+'" width="120" height="14" rx="3" fill="#065f46" opacity="0.85"/>';
+  svg+='<text x="'+(padL+18)+'" y="'+(padT+22)+'" font-size="9" fill="#fff" font-weight="700">BUSINESS / LOGO</text>';
+  svg+='<rect x="'+(padL+pw-140)+'" y="'+(padT+12)+'" width="128" height="14" rx="3" fill="#10b981" opacity="0.7"/>';
+  svg+='<text x="'+(padL+pw-134)+'" y="'+(padT+22)+'" font-size="9" fill="#fff" font-weight="700">INVOICE # / DATES</text>';
+  var y=padT+40;
+  svg+='<rect x="'+(padL+12)+'" y="'+y+'" width="140" height="30" rx="3" fill="#d1fae5"/>';
+  svg+='<text x="'+(padL+18)+'" y="'+(y+12)+'" font-size="8" fill="#065f46" font-weight="700">BILL TO</text>';
+  svg+='<text x="'+(padL+18)+'" y="'+(y+24)+'" font-size="8" fill="#065f46">Client name / address</text>';
+  y+=42;
+  svg+='<rect x="'+(padL+12)+'" y="'+y+'" width="'+pw-24+'" height="16" rx="3" fill="#065f46"/>';
+  svg+='<text x="'+(padL+18)+'" y="'+(y+11)+'" font-size="8" fill="#fff" font-weight="700">DESCRIPTION</text>';
+  svg+='<text x="'+(padL+pw-130)+'" y="'+(y+11)+'" font-size="8" fill="#fff" font-weight="700">QTY</text>';
+  svg+='<text x="'+(padL+pw-90)+'" y="'+(y+11)+'" font-size="8" fill="#fff" font-weight="700">RATE</text>';
+  svg+='<text x="'+(padL+pw-50)+'" y="'+(y+11)+'" font-size="8" fill="#fff" font-weight="700">TOTAL</text>';
+  for(var i=0;i<3;i++){
+    var ly=y+20+i*16;
+    svg+='<rect x="'+(padL+12)+'" y="'+ly+'" width="'+pw-24+'" height="14" fill="#f9fafb"/>';
+    svg+='<text x="'+(padL+18)+'" y="'+(ly+10)+'" font-size="8" fill="#374151">Service or product line item '+(i+1)+'</text>';
+  }
+  y+=20+3*16+10;
+  svg+='<rect x="'+(padL+pw-180)+'" y="'+y+'" width="168" height="52" rx="3" fill="#ecfdf5" stroke="#065f46" stroke-width="1"/>';
+  svg+='<text x="'+(padL+pw-172)+'" y="'+(y+14)+'" font-size="8" fill="#065f46">Subtotal</text>';
+  svg+='<text x="'+(padL+pw-20)+'" y="'+(y+14)+'" text-anchor="end" font-size="8" fill="#065f46">$0.00</text>';
+  svg+='<text x="'+(padL+pw-172)+'" y="'+(y+28)+'" font-size="8" fill="#065f46">Tax</text>';
+  svg+='<text x="'+(padL+pw-20)+'" y="'+(y+28)+'" text-anchor="end" font-size="8" fill="#065f46">$0.00</text>';
+  svg+='<text x="'+(padL+pw-172)+'" y="'+(y+45)+'" font-size="10" fill="#065f46" font-weight="800">TOTAL DUE</text>';
+  svg+='<text x="'+(padL+pw-20)+'" y="'+(y+45)+'" text-anchor="end" font-size="10" fill="#065f46" font-weight="800">$0.00</text>';
+  svg+='<text x="'+(padL+12)+'" y="'+(padT+ph-8)+'" font-size="8" fill="var(--muted)">Notes / payment terms / footer</text>';
+  svg+='</svg>';
+  $("invDiagram").innerHTML=svg+'<div style="font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:600">Invoice anatomy — every section is generated from the form below</div>';
+}
+
+var lineId=0;
+function addLine(desc,qty,rate){
+  lineId++;
+  var host=$("lineItems");
+  var div=document.createElement("div");
+  div.className="inv-line";
+  div.innerHTML='<div class="inv-desc"><label>Description</label><input type="text" class="li-desc" value="'+esc(desc||"")+'"></div>'+
+    '<div><label>Qty</label><input type="number" class="li-qty" min="0" step="1" value="'+(qty||1)+'"></div>'+
+    '<div><label>Rate</label><input type="number" class="li-rate" min="0" step="0.01" value="'+(rate||0)+'"></div>'+
+    '<div><label>Total</label><input type="text" class="li-total" readonly></div>'+
+    '<div><button type="button" class="inv-btn ghost small li-rm">×</button></div>';
+  host.appendChild(div);
+  div.querySelector(".li-rm").addEventListener("click",function(){div.remove();render();});
+  div.querySelectorAll("input").forEach(function(inp){inp.addEventListener("input",render);});
+  render();
+}
+function collectLines(){
+  var items=[];
+  document.querySelectorAll(".inv-line").forEach(function(row){
+    var d=row.querySelector(".li-desc").value;
+    var q=parseFloat(row.querySelector(".li-qty").value)||0;
+    var r=parseFloat(row.querySelector(".li-rate").value)||0;
+    var t=q*r;
+    row.querySelector(".li-total").value=t.toFixed(2);
+    if(d||q||r)items.push({desc:d,qty:q,rate:r,total:t});
+  });
+  return items;
+}
+function fmt(n,cur){
+  var sym={USD:"$",EUR:"€",GBP:"£",CAD:"C$",AUD:"A$",PKR:"₨",INR:"₹",AED:"AED "}[cur]||cur+" ";
+  return sym+n.toLocaleString(undefined,{minimumFractionDigits:2,maximumFractionDigits:2});
+}
+function render(){
+  var items=collectLines();
+  var cur=$("invCurrency").value;
+  var subtotal=items.reduce(function(a,b){return a+b.total;},0);
+  var discount=parseFloat($("invDiscount").value)||0;
+  var shipping=parseFloat($("invShipping").value)||0;
+  var taxRate=parseFloat($("invTaxRate").value)||0;
+  var taxable=Math.max(0,subtotal-discount);
+  var tax=taxable*(taxRate/100);
+  var total=taxable+tax+shipping;
+  var logo=logoData?'<img class="inv-logo" src="'+logoData+'" alt="Logo">':'';
+  var notes=$("invNotes").value;
+  var h='<div class="inv-preview" id="invPrint">';
+  h+='<div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:10px">';
+  h+='<div>'+logo+'<div style="font-weight:800;font-size:1.05rem;color:#065f46">'+esc($("bizName").value||"Your Business")+'</div><div class="inv-meta">'+esc($("bizEmail").value)+'<br>'+esc($("bizAddress").value)+($("bizTax").value?'<br>Tax: '+esc($("bizTax").value):'')+'</div></div>';
+  h+='<div style="text-align:right"><h2>INVOICE</h2><div class="inv-meta">'+esc($("invNumber").value||"INV-0001")+'<br>Date: '+esc($("invDate").value||"")+'<br>Due: '+esc($("invDue").value||"")+'<br>Terms: '+esc($("invTerms").value)+'</div></div>';
+  h+='</div>';
+  h+='<div style="margin-top:20px"><div style="font-size:.72rem;font-weight:700;color:#6b7280;text-transform:uppercase">Bill to</div><div style="font-weight:600">'+esc($("cliName").value||"Client name")+'</div><div class="inv-meta">'+esc($("cliEmail").value)+'<br>'+esc($("cliAddress").value)+'</div></div>';
+  h+='<table><thead><tr><th>Description</th><th>Qty</th><th>Rate</th><th>Total</th></tr></thead><tbody>';
+  if(items.length===0)h+='<tr><td colspan="4" style="color:#6b7280">No line items yet.</td></tr>';
+  for(var i=0;i<items.length;i++){h+='<tr><td>'+esc(items[i].desc)+'</td><td>'+items[i].qty+'</td><td>'+fmt(items[i].rate,cur)+'</td><td>'+fmt(items[i].total,cur)+'</td></tr>';}
+  h+='</tbody></table>';
+  h+='<table class="inv-totals"><tr><td>Subtotal</td><td>'+fmt(subtotal,cur)+'</td></tr>';
+  if(discount>0)h+='<tr><td>Discount</td><td>-'+fmt(discount,cur)+'</td></tr>';
+  h+='<tr><td>Tax ('+taxRate+'%)</td><td>'+fmt(tax,cur)+'</td></tr>';
+  if(shipping>0)h+='<tr><td>Shipping / other</td><td>'+fmt(shipping,cur)+'</td></tr>';
+  h+='<tr class="inv-grand"><td>Total due</td><td>'+fmt(total,cur)+'</td></tr></table>';
+  if(notes)h+='<div class="inv-footer">'+esc(notes).replace(/\n/g,"<br>")+'</div>';
+  h+='<div class="inv-footer">Generated with Utiliby Invoice Generator — utiliby.com</div>';
+  h+='</div>';
+  $("invPreview").innerHTML=h;
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  drawDiagram();
+  var today=new Date().toISOString().slice(0,10);
+  var due=new Date(Date.now()+30*86400000).toISOString().slice(0,10);
+  $("invDate").value=today;$("invDue").value=due;
+  addLine("Website design — discovery and wireframes",1,1200);
+  addLine("Website design — build and testing",1,2400);
+  addLine("Hosting setup and handover",1,400);
+  var ids=["bizName","bizEmail","bizAddress","bizTax","cliName","cliEmail","cliAddress","invNumber","invDate","invDue","invCurrency","invTerms","invTaxRate","invDiscount","invShipping","invNotes"];
+  ids.forEach(function(id){var el=$(id);if(el){el.addEventListener("input",render);el.addEventListener("change",render);}});
+  $("bizLogo").addEventListener("change",function(e){
+    var f=e.target.files[0];if(!f)return;
+    var r=new FileReader();r.onload=function(ev){logoData=ev.target.result;render();};r.readAsDataURL(f);
+  });
+  $("addLineBtn").addEventListener("click",function(){addLine("","","");});
+  $("printBtn").addEventListener("click",function(){window.print();});
+  $("resetBtn").addEventListener("click",function(){location.reload();});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  render();
+});
+})();
+</script>
+</body>
+</html>

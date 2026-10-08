@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Startup Runway Calculator Online – Burn Rate &amp; Cash Runway</title>
+<meta name="description" content="Free online startup runway calculator. Enter cash, burn rate and revenue to see how many months of runway you have, your break-even month, and a month-by-month projection. Scenario toggles for burn increase. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Startup Runway Calculator Online – Burn Rate &amp; Cash Runway">
+<meta property="og:description" content="See how many months of runway you have, your break-even month, and a month-by-month cash projection.">
+<meta property="og:url" content="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.rw-hero{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.rw-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.rw-hero p{margin:0;opacity:.92;font-size:.9rem}
+.rw-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.rw-panel h3{margin:0 0 10px;font-size:1rem}
+.rw-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.rw-panel input,.rw-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.rw-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.rw-row{grid-template-columns:1fr}}
+.rw-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.rw-row3{grid-template-columns:1fr}}
+.rw-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;margin-right:8px;margin-top:8px}
+.rw-btn:hover{opacity:.92}
+.rw-btn.ghost{background:transparent;color:#7c2d12;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.rw-btn.ghost{color:#fdba74}}
+.rw-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.rw-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.rw-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.rw-big{font-size:2.4rem;font-weight:800;color:#ea580c;line-height:1.1;margin:4px 0}
+@media(prefers-color-scheme:dark){.rw-big{color:#fdba74}}
+.rw-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.rw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.rw-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.rw-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.rw-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.rw-stat .val.ok{color:#16a34a}.rw-stat .val.warn{color:#f59e0b}.rw-stat .val.err{color:#dc2626}
+.rw-tip{background:rgba(124,45,18,.06);border-left:3px solid #ea580c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.rw-tip b{color:#ea580c}
+.rw-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.rw-table th,.rw-table td{padding:6px 8px;border:1px solid var(--line);text-align:right}
+.rw-table th{background:var(--card);font-weight:700;text-align:left}
+.rw-table td:first-child,.rw-table th:first-child{text-align:left}
+.rw-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.rw-share h3{margin:0 0 10px;font-size:1rem}
+.rw-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.rw-share input,.rw-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.rw-share textarea{min-height:80px;resize:vertical}
+.rw-share button{margin-top:6px;background:transparent;color:#7c2d12;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.rw-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.rw-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.rw-btn,.rw-hero,.cn-article,.no-print,.rw-panel form,.rw-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Startup Runway Calculator","url":"https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a startup runway calculator?","acceptedAnswer":{"@type":"Answer","text":"A startup runway calculator tells you how many months your company can operate before running out of cash. You enter your current cash balance, your monthly expenses (burn) and any monthly revenue, and the calculator returns the runway in months along with a month-by-month projection and the date your cash reaches zero."}},{"@type":"Question","name":"How do I calculate startup runway?","acceptedAnswer":{"@type":"Answer","text":"Runway (months) = current cash / net monthly burn, where net monthly burn = monthly expenses minus monthly revenue. For example, $600,000 cash with $80,000 monthly expenses and $30,000 monthly revenue gives net burn of $50,000 and runway of 12 months."}},{"@type":"Question","name":"What is the difference between gross burn and net burn?","acceptedAnswer":{"@type":"Answer","text":"Gross burn is your total monthly operating expenses. Net burn is gross burn minus monthly revenue. Net burn is what matters for runway because it reflects how much cash you are actually consuming. A company with $100k gross burn and $60k revenue has net burn of $40k, not $100k."}},{"@type":"Question","name":"How much runway should a startup have?","acceptedAnswer":{"@type":"Answer","text":"Most investors recommend at least 12 months of runway, and 18 to 24 months is preferable for a seed-stage company. Below 6 months, fundraising becomes urgent and you lose negotiating leverage. The rule of thumb is to start fundraising when you have 9 to 12 months left, because a round typically takes 4 to 6 months to close."}},{"@type":"Question","name":"Is this startup runway calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business &amp; Legal Tools</a> › Startup Runway Calculator</nav>
+<h1 class="noembed">Startup Runway Calculator</h1>
+<p class="lead noembed">Enter your cash, monthly expenses and revenue to see how many months of runway you have, your break-even month and a month-by-month projection. Scenario toggles for burn increase. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/" target="_blank" rel="noopener">Startup Runway Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Startup runway calculator">
+<div class="rw-hero noembed">
+<h2>Free Startup Runway Calculator</h2>
+<p>How many months of cash do you have left? Project runway month by month.</p>
+</div>
+<div class="rw-panel">
+<h3>Current position</h3>
+<div class="rw-row3">
+<div><label for="cash">Cash on hand</label><input type="number" id="cash" min="0" step="1000" value="600000"></div>
+<div><label for="grossBurn">Monthly expenses (gross burn)</label><input type="number" id="grossBurn" min="0" step="1000" value="80000"></div>
+<div><label for="revenue">Monthly revenue</label><input type="number" id="revenue" min="0" step="1000" value="30000"></div>
+</div>
+</div>
+<div class="rw-panel">
+<h3>Growth assumptions (optional)</h3>
+<div class="rw-row3">
+<div><label for="revGrowth">Revenue growth per month (%)</label><input type="number" id="revGrowth" min="-50" max="100" step="0.5" value="5"></div>
+<div><label for="expGrowth">Expense growth per month (%)</label><input type="number" id="expGrowth" min="-50" max="100" step="0.5" value="2"></div>
+<div><label for="scenario">Scenario</label>
+<select id="scenario">
+<option value="base" selected>Base case</option>
+<option value="20">Burn +20%</option>
+<option value="50">Burn +50%</option>
+<option value="minus20">Burn −20%</option>
+</select></div>
+</div>
+</div>
+<button type="button" class="rw-btn" id="calcBtn">Calculate runway</button>
+<button type="button" class="rw-btn ghost" id="resetBtn">Reset</button>
+<div id="output"></div>
+</section>
+<div class="rw-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="rw-share-link">Shareable link</label>
+<input type="text" id="rw-share-link" readonly value="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
+<button type="button" data-copy-target="rw-share-link">Copy link</button>
+<label for="rw-cite">Cite this page</label>
+<textarea id="rw-cite" readonly>Utiliby. (2026). Startup Runway Calculator. https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/</textarea>
+<button type="button" data-copy-target="rw-cite">Copy citation</button>
+<label for="rw-embed">Add this tool to your site</label>
+<textarea id="rw-embed" readonly>&lt;iframe src="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/?embed=1" width="100%" height="1100" style="border:0" loading="lazy" title="Startup Runway Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/"&gt;Startup Runway Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="rw-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<h2>What is a free startup runway calculator online?</h2>
+<p>A free startup runway calculator online is a tool that tells you how many months your company can keep operating before the cash in the bank runs out. You enter your current cash balance, your monthly operating expenses (the gross burn) and any recurring revenue, and the calculator returns your runway in months, your net burn, the date your cash reaches zero, and a month-by-month projection showing how the balance declines. If revenue is growing faster than expenses, the tool also shows the month you break even — the month when revenue equals expenses and your cash balance stops falling.</p>
+<p>This startup runway calculator goes beyond a simple cash ÷ burn division. It projects the balance month by month with configurable revenue and expense growth rates, includes a scenario toggle for burn increases (a critical planning tool when you are considering hiring or a large purchase), and shows you the break-even month if one is achievable within the projection window. It also gives you the fundraising window — the date by which you should start raising your next round. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+<h2>How to use this free runway calculator</h2>
+<ol>
+<li>Enter your cash on hand — the current balance in your operating account, plus any other cash you can spend on operations.</li>
+<li>Enter your monthly expenses (gross burn) — payroll, rent, software, marketing, everything you spend in a typical month.</li>
+<li>Enter your monthly revenue — the recurring revenue you actually collect in a typical month, not annualized contract value.</li>
+<li>Optionally set revenue growth and expense growth per month. Use 0 if you want a flat projection.</li>
+<li>Use the scenario dropdown to model a burn increase or decrease — a 20% or 50% jump simulates a hiring round or a large one-off spend.</li>
+<li>Click Calculate runway. The tool shows your runway in months, your net burn, the zero-cash date, a month-by-month table, and a fundraising window.</li>
+</ol>
+<h2>The runway formula</h2>
+<p>The basic runway formula is simple:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Runway (months) = Cash on hand ÷ Net monthly burn</b></p>
+<p>Where net monthly burn is:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Net burn = Gross burn − Monthly revenue</b></p>
+<p>For example: $600,000 cash, $80,000 gross burn, $30,000 revenue. Net burn is $50,000, so runway is 12 months. A flat projection would show the cash balance reaching zero in month 12.</p>
+<p>When revenue and expenses are both growing, the calculation becomes iterative. This tool projects the balance month by month rather than using the simple formula, which is important because a growing company's runway can be much longer than the flat formula suggests — or much shorter, if expenses grow faster than revenue.</p>
+<h2>Gross burn vs net burn</h2>
+<p>Gross burn is your total monthly operating expenses. Net burn is gross burn minus revenue. Net burn is the figure that matters for runway, but gross burn matters for a different reason: it tells you the size of the hole you need to fill with revenue or funding.</p>
+<p>The distinction trips up founders who quote the wrong number. A company with $100k gross burn and $60k revenue has a net burn of $40k, not $100k. Runway is $cash ÷ $40k, not $cash ÷ $100k. When investors ask about burn, they usually mean net burn — the amount of cash you are actually consuming each month.</p>
+<h2>How much runway should a startup have?</h2>
+<p>Most investors and accelerators recommend at least <b>12 months</b> of runway, and <b>18 to 24 months</b> is preferable for a seed-stage company. The reasoning is straightforward:</p>
+<table class="cn-article-table">
+<tr><th>Runway remaining</th><th>What it means</th></tr>
+<tr><td>Over 18 months</td><td>Comfortable. You have time to grow into metrics that support the next round.</td></tr>
+<tr><td>12–18 months</td><td>Healthy. Start planning your next round but no urgency.</td></tr>
+<tr><td>9–12 months</td><td>Time to start fundraising. A round typically takes 4–6 months to close.</td></tr>
+<tr><td>6–9 months</td><td>Tight. You are fundraising from a position of weakness. Consider cost cuts.</td></tr>
+<tr><td>Under 6 months</td><td>Urgent. Fundraising, bridge round, or significant cost reduction required immediately.</td></tr>
+<tr><td>Under 3 months</td><td>Critical. You may need a bridge, an acqui-hire, or a wind-down.</td></tr>
+</table>
+<p>The reason to start raising at 9–12 months is that fundraising takes time. The average seed round takes 4 to 6 months from first meeting to money in the bank. If you start with 6 months of runway, you may run out before the round closes. Starting with 12 months gives you a buffer if the round takes longer than expected — which it often does.</p>
+<h2>Why projecting month-by-month matters</h2>
+<p>The simple cash ÷ burn formula gives a single number. But real startups do not have flat revenue and flat expenses. Revenue grows — slowly at first, then faster. Expenses also grow — typically in steps as you hire, sign a new office lease or commit to a large annual contract. A month-by-month projection shows what the flat formula hides:</p>
+<ul>
+<li><b>Break-even month.</b> If revenue grows fast enough, you may reach break-even before you run out of cash. The tool shows the month when revenue overtakes expenses and the balance stops falling.</li>
+<li><b>Cash trough.</b> Even if you break even, you may dip close to zero before that happens. The month-by-month table shows the lowest point.</li>
+<li><b>Runway sensitivity to burn growth.</b> If you plan to hire in Q3, you can model the increased burn and see how much runway it costs.</li>
+</ul>
+<h2>Scenario planning: why the burn toggle matters</h2>
+<p>The most common reason a startup runs out of cash is not that the plan was wrong, but that expenses grew faster than expected. The scenario toggle in this tool lets you model three important cases:</p>
+<ul>
+<li><b>Burn +20%.</b> You hire two or three people or sign a larger office lease. What does that do to runway?</li>
+<li><b>Burn +50%.</b> You make a serious bet — a large marketing commitment, an enterprise sales team, a new product line. What is the runway cost of that bet?</li>
+<li><b>Burn −20%.</b> You trim costs in response to a slower-than-expected raise. How much runway does that buy you?</li>
+</ul>
+<p>Founders who run these scenarios ahead of time make better decisions about when to hire, when to raise, and when to cut. Founders who do not run them tend to discover the answer when the bank balance is already low.</p>
+<h2>The fundraising window</h2>
+<p>The fundraising window is the date by which you should start raising your next round. The conventional rule is to start when you have <b>9 to 12 months</b> of runway remaining, because the round itself will take 4 to 6 months to close. If you start at 12 months, you have a 6-month cushion. If you start at 6 months, you are raising from a position of weakness — investors can see your cash position (or at least your urgency), and the terms reflect it.</p>
+<p>This tool calculates the fundraising window as the date 12 months before your zero-cash date. Treat it as the latest sensible date to start, not the earliest.</p>
+<h2>Common mistakes when calculating runway</h2>
+<ul>
+<li><b>Using gross burn instead of net burn.</b> If you have revenue, subtract it. Otherwise you overstate the runway and understate the urgency.</li>
+<li><b>Forgetting one-off costs.</b> Annual insurance, bonuses, tax payments, legal fees and hardware refresh all hit the cash balance in specific months and often get missed in a flat projection.</li>
+<li><b>Assuming revenue will arrive when you expect.</b> Enterprise deals slip. Collections take longer than invoices. Model a conservative version of revenue, not the optimistic plan.</li>
+<li><b>Ignoring cost growth.</b> Payroll grows with hires and raises. Software subscriptions grow with users. Rent grows on renewal. A flat burn assumption usually understates future burn.</li>
+<li><b>Treating runway as a single number.</b> Runway is a range, not a point. Run three scenarios — base, conservative and bad — and plan for the middle one.</li>
+<li><b>Waiting until runway is short to fundraise.</b> By then you have lost leverage. Start at 9–12 months.</li>
+</ul>
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a startup runway calculator?</summary><p>A tool that tells you how many months your company can operate before running out of cash. You enter cash, monthly expenses and revenue, and it projects runway month by month.</p></details>
+<details><summary>How do I calculate startup runway?</summary><p>Runway = cash ÷ net burn, where net burn = monthly expenses − monthly revenue. Example: $600k cash, $80k expenses, $30k revenue → net burn $50k → runway 12 months.</p></details>
+<details><summary>What is the difference between gross burn and net burn?</summary><p>Gross burn is total monthly expenses. Net burn is gross burn minus monthly revenue. Net burn is what matters for runway; gross burn tells you the size of the hole you need to fill.</p></details>
+<details><summary>How much runway should a startup have?</summary><p>At least 12 months, ideally 18–24 months. Start fundraising when you have 9–12 months left, because a round takes 4–6 months to close.</p></details>
+<details><summary>Is this startup runway calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+<div class="rw-disclaimer">
+<b>Disclaimer:</b> This calculator provides an estimate of runway based on the figures you enter and the growth assumptions you select. It is a planning tool, not a financial forecast, and it does not account for seasonality, delayed collections, tax timing, debt repayments, or irregular expenses unless you build them into the averages. Founders should review runway monthly with their finance lead or accountant, and should model at least one conservative scenario alongside the base case. Utiliby accepts no liability for financial decisions, missed fundraising windows, or cash shortfalls arising from the use of this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+function currency(n){
+  return "$"+n.toLocaleString(undefined,{maximumFractionDigits:0});
+}
+function calc(){
+  var cash=parseFloat($("cash").value)||0;
+  var gross=parseFloat($("grossBurn").value)||0;
+  var rev=parseFloat($("revenue").value)||0;
+  var revG=(parseFloat($("revGrowth").value)||0)/100;
+  var expG=(parseFloat($("expGrowth").value)||0)/100;
+  var scenario=$("scenario").value;
+  var out=$("output");
+  if(cash<=0||gross<=0){out.innerHTML='<div class="rw-warn" style="background:#fef3c7;padding:10px 14px;border-radius:10px;font-size:.85rem">Enter cash and monthly expenses greater than zero.</div>';return;}
+  var burnMult=1;
+  if(scenario==="20")burnMult=1.2;
+  else if(scenario==="50")burnMult=1.5;
+  else if(scenario==="minus20")burnMult=0.8;
+  var balance=cash;
+  var months=0;
+  var breakEvenMonth=null;
+  var proj=[];
+  var maxMonths=120;
+  for(var m=1;m<=maxMonths;m++){
+    var r=rev*Math.pow(1+revG,m-1);
+    var e=gross*Math.pow(1+expG,m-1)*burnMult;
+    var net=r-e;
+    balance+=net;
+    proj.push({month:m,revenue:r,expenses:e,net:net,balance:balance});
+    if(breakEvenMonth===null&&net>=0){breakEvenMonth=m;}
+    if(balance<=0){months=m;break;}
+  }
+  if(balance>0)months=maxMonths;
+  var netBurn=(gross*burnMult)-rev;
+  /* SVG chart */
+  var W=600,H=260,padL=60,padR=20,padT=20,padB=40;
+  var pw=W-padL-padR,ph=H-padT-padB;
+  var points=proj.slice(0,Math.min(months+2,24));
+  var maxBal=Math.max.apply(null,points.map(function(p){return p.balance;}));
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Runway projection chart">';
+  svg+='<rect x="'+padL+'" y="'+padT+'" width="'+pw+'" height="'+ph+'" fill="none" stroke="var(--line)"/>';
+  if(points.length>1){
+    var path="M";
+    for(var i=0;i<points.length;i++){
+      var x=padL+(i/(points.length-1))*pw;
+      var y=padT+ph-(points[i].balance/maxBal)*ph;
+      path+=(i===0?" ":" L ")+x.toFixed(1)+" "+y.toFixed(1);
+    }
+    svg+='<path d="'+path+'" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round"/>';
+    svg+='<line x1="'+padL+'" y1="'+(padT+ph)+'" x2="'+(padL+pw)+'" y2="'+(padT+ph)+'" stroke="#dc2626" stroke-dasharray="4,4"/>';
+  }
+  svg+='<text x="'+(padL+pw/2)+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Months from today</text>';
+  svg+='<text x="14" y="'+(padT+ph/2)+'" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 14 '+(padT+ph/2)+')">Cash balance</text>';
+  svg+='<text x="'+(padL-6)+'" y="'+(padT+4)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+currency(maxBal)+'</text>';
+  svg+='<text x="'+(padL-6)+'" y="'+(padT+ph+4)+'" text-anchor="end" font-size="10" fill="var(--muted)">$0</text>';
+  svg+='</svg>';
+  var color=months>=18?"#16a34a":months>=12?"#84cc16":months>=9?"#f59e0b":"#dc2626";
+  var status=months>=18?"Healthy":months>=12?"Adequate":months>=9?"Start fundraising":months>=6?"Tight":"Critical";
+  var h='<div class="rw-result"><div class="rw-label">Runway</div>'+
+    '<div class="rw-big" style="color:'+color+'">'+months+' months</div>'+
+    '<div class="rw-label" style="margin-top:6px">Status: '+status+'</div></div>';
+  h+='<div class="rw-diagram">'+svg+'<div style="font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:600">Cash balance projection — flat, then declining, hits zero at month '+months+'</div></div>';
+  h+='<div class="rw-stats">';
+  h+='<div class="rw-stat"><div class="lbl">Net monthly burn</div><div class="val">'+currency(netBurn)+'</div></div>';
+  h+='<div class="rw-stat"><div class="lbl">Cash on hand</div><div class="val">'+currency(cash)+'</div></div>';
+  h+='<div class="rw-stat"><div class="lbl">Zero-cash month</div><div class="val">Month '+months+'</div></div>';
+  h+='<div class="rw-stat"><div class="lbl">Break-even month</div><div class="val '+(breakEvenMonth?"ok":"warn")+'">'+(breakEvenMonth?"Month "+breakEvenMonth:"Not within projection")+'</div></div>';
+  h+='</div>';
+  if(months>=9&&months<12){h+='<div class="rw-tip"><b>Time to start fundraising.</b> The conventional rule is to start raising when you have 9–12 months left, because a round takes 4–6 months to close.</div>';}
+  if(months<6){h+='<div class="rw-tip" style="background:#fee2e2;border-left-color:#dc2626;color:#991b1b"><b>Critical runway.</b> Under 6 months is urgent. Consider a bridge round, an immediate cost reduction, or a wind-down plan.</div>';}
+  if(breakEvenMonth){h+='<div class="rw-tip"><b>Break-even in month '+breakEvenMonth+'.</b> If the growth assumptions hold, revenue will overtake expenses and your cash stops falling. Check the projection table for the lowest point before that.</div>';}
+  h+='<div class="rw-panel"><h3>Month-by-month projection</h3><table class="rw-table"><thead><tr><th>Month</th><th>Revenue</th><th>Expenses</th><th>Net</th><th>Balance</th></tr></thead><tbody>';
+  var show=Math.min(proj.length,24);
+  for(var j=0;j<show;j++){
+    var p=proj[j];
+    var cls=p.balance<=0?"err":p.balance<cash*0.2?"warn":"";
+    h+='<tr><td>'+p.month+'</td><td>'+currency(p.revenue)+'</td><td>'+currency(p.expenses)+'</td><td style="color:'+(p.net>=0?"#16a34a":"#dc2626")+'">'+currency(p.net)+'</td><td class="'+cls+'" style="color:'+(cls==="err"?"#dc2626":cls==="warn"?"#f59e0b":"inherit")+';font-weight:700">'+currency(p.balance)+'</td></tr>';
+  }
+  h+='</tbody></table></div>';
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyRwBtn" class="rw-btn" style="margin:0">Copy result</button></div>';
+  out.innerHTML=h;
+  document.getElementById("copyRwBtn").addEventListener("click",function(){
+    var t="Startup Runway Calculator Result\nRunway: "+months+" months ("+status+")\nNet monthly burn: "+currency(netBurn)+"\nCash on hand: "+currency(cash)+"\n"+(breakEvenMonth?"Break-even month: "+breakEvenMonth+"\n":"")+"- utiliby.com";
+    copyText(t,document.getElementById("copyRwBtn"));
+  });
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("calcBtn").addEventListener("click",calc);
+  $("resetBtn").addEventListener("click",function(){$("cash").value=600000;$("grossBurn").value=80000;$("revenue").value=30000;$("revGrowth").value=5;$("expGrowth").value=2;$("scenario").value="base";$("output").innerHTML="";});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  calc();
+});
+})();
+</script>
+</body>
+</html>
