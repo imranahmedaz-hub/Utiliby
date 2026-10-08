@@ -72,7 +72,40 @@
 .inv-share button{margin-top:6px;background:transparent;color:#065f46;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
 .inv-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
 .inv-disclaimer b{color:var(--fg)}
-@media print{header.site,footer.site,.inv-btn,.inv-hero,.cn-article,.no-print,.inv-panel,.inv-share,.inv-tabs{display:none!important}.inv-preview{border:0;padding:0;margin:0}.tool{padding:0!important}body{background:#fff!important;color:#000!important}}
+@media print{
+  /* Hide everything except the invoice */
+  body > *:not(main){display:none !important}
+  main > *:not(.tool){display:none !important}
+  #tool > *:not(#invPreview){display:none !important}
+
+  /* Page setup */
+  @page{margin:1.2cm}
+  html,body{background:#fff !important;color:#000 !important;margin:0 !important;padding:0 !important}
+  .wrap{max-width:100% !important;padding:0 !important;margin:0 !important}
+  .tool{border:0 !important;background:#fff !important;padding:0 !important;margin:0 !important}
+
+  /* Invoice layout */
+  #invPreview{display:block !important}
+  .inv-preview{
+    border:0 !important;padding:0 !important;margin:0 !important;
+    box-shadow:none !important;max-width:100% !important;
+    background:#fff !important;color:#000 !important;
+    font-size:11pt !important;
+  }
+  .inv-preview h2{font-size:20pt !important;color:#065f46 !important}
+  .inv-preview table{font-size:10pt !important;page-break-inside:avoid}
+  .inv-preview tr{page-break-inside:avoid}
+  .inv-preview .inv-footer{
+    page-break-inside:avoid;
+    color:#555 !important;border-top-color:#ccc !important;
+  }
+
+  /* Preserve the green accents even if "Background graphics" is unchecked */
+  .inv-preview,.inv-preview *{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+}
 .cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
 .cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
