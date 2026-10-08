@@ -1,0 +1,279 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Layover Time Calculator Online – Is Your Connection Long Enough?</title>
+<meta name="description" content="Free online layover and connection time calculator. Enter your airports and layover duration to see whether your connection is comfortable, tight or risky. Minimum connection time database, same-ticket vs separate-ticket warnings, terminal transfer advice. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/travel-tools/layover-time-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Layover Time Calculator Online – Is Your Connection Long Enough?">
+<meta property="og:description" content="Check whether your layover is comfortable, tight or risky. Minimum connection times, terminal transfers, separate-ticket warnings.">
+<meta property="og:url" content="https://utiliby.com/tools/travel-tools/layover-time-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.lt-hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.lt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.lt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.lt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.lt-panel h3{margin:0 0 10px;font-size:1rem}
+.lt-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.lt-panel input,.lt-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.lt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.lt-row{grid-template-columns:1fr}}
+.lt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.lt-row3{grid-template-columns:1fr}}
+.lt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;margin-right:8px;margin-top:8px}
+.lt-btn:hover{opacity:.92}
+.lt-btn.ghost{background:transparent;color:#0f766e;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.lt-btn.ghost{color:#5eead4}}
+.lt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.lt-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.lt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.lt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.lt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.lt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.lt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.lt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.lt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.lt-stat .val.ok{color:#16a34a}.lt-stat .val.warn{color:#f59e0b}.lt-stat .val.err{color:#dc2626}
+.lt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.lt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.lt-tip{background:rgba(15,118,110,.06);border-left:3px solid #0f766e;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.lt-tip b{color:#0f766e}
+.lt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.lt-table th,.lt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.lt-table th{background:var(--card);font-weight:700}
+.lt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.lt-share h3{margin:0 0 10px;font-size:1rem}
+.lt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.lt-share input,.lt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.lt-share textarea{min-height:80px;resize:vertical}
+.lt-share button{margin-top:6px;background:transparent;color:#0f766e;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.lt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.lt-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.lt-btn,.lt-hero,.cn-article,.no-print,.lt-panel form,.lt-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Layover Time Calculator","url":"https://utiliby.com/tools/travel-tools/layover-time-calculator/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free layover time calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free layover time calculator online checks whether your layover is long enough for a comfortable connection. You enter your airports, the scheduled layover duration, and whether both flights are on the same ticket. The tool compares your layover against the minimum connection time (MCT) for that airport and gives a verdict: comfortable, tight or risky."}},{"@type":"Question","name":"What is minimum connection time (MCT)?","acceptedAnswer":{"@type":"Answer","text":"Minimum connection time (MCT) is the shortest time an airport and airline consider sufficient for a passenger to transfer between flights. It varies by airport, terminal, whether the connection is domestic or international, and whether both flights are operated by the same airline or alliance. MCTs are published by airports and airlines and used by booking systems to build valid itineraries."}},{"@type":"Question","name":"Is a 1-hour layover enough for an international connection?","acceptedAnswer":{"@type":"Answer","text":"Usually not. One hour is generally too tight for an international-to-international connection, especially if you must clear immigration, recheck bags or change terminals. Most international connections require 90 to 180 minutes depending on the airport. The exact MCT for your airport is the authoritative figure."}},{"@type":"Question","name":"What happens if I miss my connection?","acceptedAnswer":{"@type":"Answer","text":"If both flights are on the same ticket, the airline is responsible for rebooking you on the next available flight at no extra cost. If they are on separate tickets, you are responsible — the second airline has no obligation to rebook you, and you may have to buy a new ticket."}},{"@type":"Question","name":"Is this layover calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your travel details anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/travel-tools/">Travel Tools</a> › Layover Time Calculator</nav>
+<h1 class="noembed">Layover Time Calculator</h1>
+<p class="lead noembed">Enter your airports and layover duration and see whether your connection is comfortable, tight or risky. Minimum connection time reference, same-ticket vs separate-ticket warnings, terminal transfer advice. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/layover-time-calculator/" target="_blank" rel="noopener">Layover Time Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Layover time calculator">
+<div class="lt-hero noembed">
+<h2>Free Layover Time Calculator</h2>
+<p>Is your connection long enough? Check it against minimum connection times and get a clear verdict.</p>
+</div>
+<div class="lt-panel">
+<h3>Your connection</h3>
+<div class="lt-row3">
+<div><label for="fromAp">Departure airport (IATA)</label><input type="text" id="fromAp" placeholder="e.g. JFK" maxlength="3" style="text-transform:uppercase"></div>
+<div><label for="viaAp">Layover airport (IATA)</label><input type="text" id="viaAp" placeholder="e.g. LHR" maxlength="3" style="text-transform:uppercase"></div>
+<div><label for="toAp">Final destination (IATA)</label><input type="text" id="toAp" placeholder="e.g. DXB" maxlength="3" style="text-transform:uppercase"></div>
+</div>
+</div>
+<div class="lt-panel">
+<h3>Layover details</h3>
+<div class="lt-row3">
+<div><label for="layoverH">Layover hours</label><input type="number" id="layoverH" min="0" max="48" step="1" value="2"></div>
+<div><label for="layoverM">Minutes</label><input type="number" id="layoverM" min="0" max="59" step="5" value="0"></div>
+<div><label for="ticketType">Ticket type</label>
+<select id="ticketType">
+<option value="same" selected>Same ticket / single booking</option>
+<option value="separate">Separate tickets (self-transfer)</option>
+</select></div>
+</div>
+<div class="lt-row3" style="margin-top:10px">
+<div><label for="connectionType">Connection type</label>
+<select id="connectionType">
+<option value="intl-intl" selected>International → International</option>
+<option value="dom-intl">Domestic → International</option>
+<option value="intl-dom">International → Domestic</option>
+<option value="dom-dom">Domestic → Domestic</option>
+</select></div>
+<div><label for="terminalChange">Terminal change required?</label>
+<select id="terminalChange">
+<option value="no" selected>No / unsure</option>
+<option value="yes">Yes, different terminal</option>
+</select></div>
+<div><label for="bagRecheck">Bag recheck required?</label>
+<select id="bagRecheck">
+<option value="no" selected>No / unsure</option>
+<option value="yes">Yes, must collect and recheck</option>
+</select></div>
+</div>
+</div>
+<button type="button" class="lt-btn" id="calcBtn">Check my connection</button>
+<button type="button" class="lt-btn ghost" id="resetBtn">Reset</button>
+<div id="output"></div>
+</section>
+<div class="lt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="lt-share-link">Shareable link</label>
+<input type="text" id="lt-share-link" readonly value="https://utiliby.com/tools/travel-tools/layover-time-calculator/">
+<button type="button" data-copy-target="lt-share-link">Copy link</button>
+<label for="lt-cite">Cite this page</label>
+<textarea id="lt-cite" readonly>Utiliby. (2026). Layover Time Calculator. https://utiliby.com/tools/travel-tools/layover-time-calculator/</textarea>
+<button type="button" data-copy-target="lt-cite">Copy citation</button>
+<label for="lt-embed">Add this tool to your site</label>
+<textarea id="lt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/travel-tools/layover-time-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Layover Time Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/travel-tools/layover-time-calculator/"&gt;Layover Time Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="lt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<h2>What is a free layover time calculator online?</h2>
+<p>A free layover time calculator online is a tool that tells you whether the time between two flights is long enough for a comfortable connection. You enter your departure airport, the airport where you change planes, your final destination, the scheduled layover duration, and whether both flights are on the same ticket. The tool compares your layover against the minimum connection time (MCT) for that airport and connection type, then gives a clear verdict: comfortable, tight or risky.</p>
+<p>This layover calculator goes beyond a simple duration comparison. It factors in whether a terminal change is required, whether you need to collect and recheck bags, and whether the two flights are on the same ticket or separate bookings. Those three factors change the risk profile dramatically. A 90-minute layover at a single-terminal airport with through-checked bags is comfortable; the same 90 minutes with a terminal change, a bag recheck and two separate tickets is genuinely risky. Everything runs in your browser — no sign-up, no upload, no tracking.</p>
+<h2>How to use this free connection time calculator</h2>
+<ol>
+<li>Enter your departure airport, layover airport and final destination using IATA codes (three letters, e.g. JFK, LHR, DXB).</li>
+<li>Enter the scheduled layover duration in hours and minutes.</li>
+<li>Select the ticket type — same ticket or separate bookings. This is the single most important factor in how much protection you have if you miss the connection.</li>
+<li>Select the connection type: international to international, domestic to international, and so on. International connections require more time because of immigration and security.</li>
+<li>Indicate whether a terminal change or a bag recheck is required.</li>
+<li>Click Check my connection. The tool shows the minimum connection time benchmark, your buffer, and a verdict.</li>
+</ol>
+<h2>What is minimum connection time?</h2>
+<p>Minimum connection time (MCT) is the shortest time an airport and airline consider sufficient for a passenger to transfer between flights. It varies by airport, terminal, whether the connection is domestic or international, and whether both flights are operated by the same airline or alliance. MCTs are published by airports and airlines and used by booking systems to build valid itineraries — if a connection is below MCT, the booking system will normally refuse to sell it as a single ticket.</p>
+<p>Typical MCT ranges:</p>
+<table class="lt-table">
+<tr><th>Connection type</th><th>Typical MCT</th><th>Notes</th></tr>
+<tr><td>Domestic → Domestic (same terminal)</td><td>35–60 min</td><td>Smallest buffer; no immigration</td></tr>
+<tr><td>Domestic → International</td><td>60–90 min</td><td>May require terminal change and passport check</td></tr>
+<tr><td>International → Domestic</td><td>90–120 min</td><td>Immigration and customs on arrival</td></tr>
+<tr><td>International → International (same terminal)</td><td>60–90 min</td><td>Transit without clearing immigration at some airports</td></tr>
+<tr><td>International → International (terminal change)</td><td>90–150 min</td><td>Shuttle or train between terminals</td></tr>
+<tr><td>Separate tickets (any)</td><td>Add 120+ min</td><td>No protection if you miss the second flight</td></tr>
+</table>
+<h2>Same ticket vs separate tickets: the critical distinction</h2>
+<p>If both flights are on the same ticket (a single booking reference, even if operated by different airlines), the airline is responsible for your connection. If your first flight is delayed and you miss the second, the airline must rebook you on the next available flight at no extra cost, and often provide accommodation and meals if the delay is overnight. This is the protection that MCT is designed around.</p>
+<p>If the flights are on separate tickets — sometimes called a self-transfer — the second airline has no obligation to you at all. If you miss the second flight because the first was delayed, you have to buy a new ticket. This is why low-cost carrier itineraries built from two separate bookings are often much cheaper but carry real risk. For a self-transfer, add at least two hours to the MCT as a safety buffer, and consider an overnight layover instead of a same-day connection.</p>
+<h2>Factors that make a layover riskier</h2>
+<ul>
+<li><b>Terminal change.</b> A terminal change adds 15–45 minutes depending on the airport, and some airports require a bus, train or shuttle between terminals.</li>
+<li><b>Bag recheck.</b> If your bags are not checked through to the final destination, you must collect them, clear customs and check them in again. This typically adds 45–90 minutes.</li>
+<li><b>Immigration and security.</b> International connections usually require a security recheck even if you do not clear immigration. Some countries (the US, for example) require you to clear immigration and recheck bags on every international-to-domestic connection.</li>
+<li><b>Separate tickets.</b> No protection if the first flight is delayed. Add a large buffer.</li>
+<li><b>Late arrival risk.</b> A flight that frequently runs late — check the airline's on-time performance — makes a tight connection riskier regardless of the scheduled time.</li>
+<li><b>Airport size.</b> Large hub airports can take 20–40 minutes to walk between distant gates, even without a terminal change.</li>
+</ul>
+<h2>What to do if your layover is tight</h2>
+<ul>
+<li><b>Same ticket:</b> let the airline handle it. They will rebook you automatically if you miss the connection. Tell a gate agent as soon as you land if you are running late.</li>
+<li><b>Separate tickets:</b> consider rebooking the second flight to a later departure before you travel, or build in an overnight stop. If you cannot, have a backup plan and travel with hand luggage only if possible.</li>
+<li><b>Book a longer layover next time.</b> For international connections, aim for 2 to 3 hours. For self-transfers, aim for 4 hours or an overnight stop.</li>
+<li><b>Check the airport map.</b> Know which terminal you arrive at and which you depart from. Some airports publish transfer times between terminals.</li>
+</ul>
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free layover time calculator online?</summary><p>It checks whether your layover is long enough for a comfortable connection. You enter your airports, the layover duration, and whether both flights are on the same ticket. The tool compares your layover against the minimum connection time and gives a verdict.</p></details>
+<details><summary>What is minimum connection time (MCT)?</summary><p>MCT is the shortest time an airport and airline consider sufficient for a passenger to transfer between flights. It varies by airport, terminal, connection type and airline. Booking systems use MCT to decide whether a connection is sellable as a single ticket.</p></details>
+<details><summary>Is a 1-hour layover enough for an international connection?</summary><p>Usually not. One hour is generally too tight for international-to-international, especially with a terminal change or bag recheck. Most international connections need 90 to 180 minutes.</p></details>
+<details><summary>What happens if I miss my connection?</summary><p>If both flights are on the same ticket, the airline rebooks you at no extra cost. If they are on separate tickets, you are responsible — the second airline has no obligation to rebook you.</p></details>
+<details><summary>Is this layover calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+<div class="lt-disclaimer">
+<b>Disclaimer:</b> This calculator provides guidance only. Minimum connection times vary by airport, terminal, airline, alliance and ticket type, and are subject to change. The figures shown are typical ranges based on publicly available airport and airline guidance, not authoritative MCTs for any specific booking. Always check the minimum connection time published by the airport or airline for your specific itinerary, and confirm that both flights are on the same ticket before relying on connection protection. Utiliby accepts no liability for missed connections, rebooking costs, or travel disruption arising from the use of this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var MCT={
+  "JFK":{"dom-dom":45,"dom-intl":60,"intl-dom":120,"intl-intl":90},
+  "LHR":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "CDG":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "FRA":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "AMS":{"dom-dom":40,"dom-intl":50,"intl-dom":75,"intl-intl":60},
+  "DXB":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "SIN":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "HKG":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "IST":{"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75},
+  "LAX":{"dom-dom":45,"dom-intl":60,"intl-dom":120,"intl-intl":90},
+  "ORD":{"dom-dom":45,"dom-intl":60,"intl-dom":120,"intl-intl":90},
+  "ATL":{"dom-dom":45,"dom-intl":60,"intl-dom":120,"intl-intl":90}
+};
+function getMCT(code,type){
+  var up=(code||"").toUpperCase();
+  if(MCT[up]&&MCT[up][type])return MCT[up][type];
+  var defaults={"dom-dom":45,"dom-intl":60,"intl-dom":90,"intl-intl":75};
+  return defaults[type]||75;
+}
+function calc(){
+  var via=$("viaAp").value.trim().toUpperCase();
+  var type=$("connectionType").value;
+  var h=parseInt($("layoverH").value,10)||0;
+  var m=parseInt($("layoverM").value,10)||0;
+  var total=h*60+m;
+  var out=$("output");
+  if(!via){out.innerHTML='<div class="lt-warn">Enter the layover airport (IATA code).</div>';return;}
+  var mct=getMCT(via,type);
+  var buffer=total-mct;
+  var ticket=$("ticketType").value;
+  var terminal=$("terminalChange").value;
+  var bag=$("bagRecheck").value;
+  var extra=0;
+  if(terminal==="yes")extra+=25;
+  if(bag==="yes")extra+=45;
+  if(ticket==="separate")extra+=120;
+  var effectiveNeeded=mct+extra;
+  var effectiveBuffer=total-effectiveNeeded;
+  var status,cls,color;
+  if(effectiveBuffer>=30){status="Comfortable";cls="ok";color="#16a34a";}
+  else if(effectiveBuffer>=0){status="Tight";cls="warn";color="#f59e0b";}
+  else{status="Risky";cls="err";color="#dc2626";}
+  var h2='<div class="lt-result"><div class="lt-label">Your layover verdict</div>'+
+    '<div class="lt-big" style="color:'+color+'">'+status+'</div>'+
+    '<div class="lt-label" style="margin-top:6px">'+total+' min layover · base MCT '+mct+' min · extra factors +'+extra+' min</div></div>';
+  h2+='<div class="lt-stats">';
+  h2+='<div class="lt-stat"><div class="lbl">Base MCT ('+esc(via)+')</div><div class="val">'+mct+' min</div></div>';
+  h2+='<div class="lt-stat"><div class="lbl">Extra factors</div><div class="val">+'+extra+' min</div></div>';
+  h2+='<div class="lt-stat"><div class="lbl">Effective minimum</div><div class="val">'+effectiveNeeded+' min</div></div>';
+  h2+='<div class="lt-stat"><div class="lbl">Your buffer</div><div class="val '+(effectiveBuffer>=30?"ok":effectiveBuffer>=0?"warn":"err")+'">'+(effectiveBuffer>=0?"+":"")+effectiveBuffer+' min</div></div>';
+  h2+='</div>';
+  if(ticket==="separate"){h2+='<div class="lt-warn"><b>Separate tickets.</b> You have no protection if the first flight is delayed and you miss the second. The second airline is not obliged to rebook you, and you may have to buy a new ticket. A buffer of at least 2 hours above the base MCT is strongly recommended.</div>';}
+  if(terminal==="yes"){h2+='<div class="lt-tip"><b>Terminal change.</b> Allow 15–45 minutes to transfer between terminals, depending on whether a bus, train or shuttle is required. Check the airport map before you fly.</div>';}
+  if(bag==="yes"){h2+='<div class="lt-tip"><b>Bag recheck.</b> Collecting and rechecking bags typically adds 45–90 minutes, including customs and a second security check.</div>';}
+  if(effectiveBuffer<0){h2+='<div class="lt-warn"><b>This connection is below the effective minimum.</b> Consider rebooking to a later second flight, or, if both flights are on the same ticket, plan to be rebooked at no cost.</div>';}
+  h2+='<div class="lt-tip"><b>Ticket type:</b> '+(ticket==="same"?"Same ticket — the airline is responsible for rebooking you if you miss the connection.":"Separate tickets — you bear the risk of a missed connection.")+'</div>';
+  h2+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyLtBtn" class="lt-btn" style="margin:0">Copy result</button></div>';
+  out.innerHTML=h2;
+  document.getElementById("copyLtBtn").addEventListener("click",function(){
+    var t="Layover Time Calculator Result\nLayover: "+h+"h "+m+"m ("+total+" min)\nVia: "+via+"\nBase MCT: "+mct+" min\nExtra factors: +"+extra+" min\nEffective minimum: "+effectiveNeeded+" min\nVerdict: "+status+"\n- utiliby.com";
+    copyText(t,document.getElementById("copyLtBtn"));
+  });
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("calcBtn").addEventListener("click",calc);
+  $("resetBtn").addEventListener("click",function(){$("fromAp").value="";$("viaAp").value="";$("toAp").value="";$("layoverH").value=2;$("layoverM").value=0;$("ticketType").value="same";$("connectionType").value="intl-intl";$("terminalChange").value="no";$("bagRecheck").value="no";$("output").innerHTML="";});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+});
+})();
+</script>
+</body>
+</html>

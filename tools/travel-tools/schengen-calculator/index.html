@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Schengen 90/180 Day Calculator Online – Rolling Window Overstay Checker</title>
+<meta name="description" content="Free online Schengen 90/180 day calculator. Add your trips, see days used, days remaining, peak rolling-window usage and the next date you can re-enter. Rolling-window algorithm, EES context, overstay warning. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/travel-tools/schengen-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Schengen 90/180 Day Calculator Online – Rolling Window">
+<meta property="og:description" content="Add trips, see days used and remaining, peak rolling-window usage and next re-entry date.">
+<meta property="og:url" content="https://utiliby.com/tools/travel-tools/schengen-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.sc-hero{background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.sc-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.sc-hero p{margin:0;opacity:.92;font-size:.9rem}
+.sc-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.sc-panel h3{margin:0 0 10px;font-size:1rem}
+.sc-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.sc-panel input,.sc-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.sc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.sc-row{grid-template-columns:1fr}}
+.sc-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;margin-right:8px;margin-top:8px}
+.sc-btn:hover{opacity:.92}
+.sc-btn.ghost{background:transparent;color:#1e40af;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.sc-btn.ghost{color:#93c5fd}}
+.sc-trip{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:560px){.sc-trip{grid-template-columns:1fr}}
+.sc-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.sc-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
+.sc-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.sc-big{font-size:2rem;font-weight:800;color:#1e40af;line-height:1.1;margin:4px 0}
+@media(prefers-color-scheme:dark){.sc-big{color:#93c5fd}}
+.sc-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.sc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.sc-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.sc-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.sc-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.sc-stat .val.ok{color:#16a34a}.sc-stat .val.warn{color:#f59e0b}.sc-stat .val.err{color:#dc2626}
+.sc-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.sc-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.sc-tip{background:rgba(30,64,175,.06);border-left:3px solid #1e40af;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.sc-tip b{color:#1e40af}
+.sc-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.sc-table th,.sc-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.sc-table th{background:var(--card);font-weight:700}
+.sc-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.sc-share h3{margin:0 0 10px;font-size:1rem}
+.sc-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.sc-share input,.sc-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.sc-share textarea{min-height:80px;resize:vertical}
+.sc-share button{margin-top:6px;background:transparent;color:#1e40af;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.sc-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.sc-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.sc-btn,.sc-hero,.cn-article,.no-print,.sc-panel form,.sc-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Schengen 90/180 Day Calculator","url":"https://utiliby.com/tools/travel-tools/schengen-calculator/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Schengen 90/180 day rule?","acceptedAnswer":{"@type":"Answer","text":"The Schengen 90/180 rule limits non-EU visitors to a maximum of 90 days inside the Schengen Area in any rolling 180-day period. The 180-day window is not a calendar period — for any date you pick, you look back 180 days and count every day you were inside Schengen. Both entry and exit days count as full days."}},{"@type":"Question","name":"Does the 90-day clock reset when I leave Schengen?","acceptedAnswer":{"@type":"Answer","text":"No. The clock does not reset when you leave. Old days fade out only as they fall outside the 180-day look-back window. If you stayed 90 days and left, you must wait until enough of those days have exited the window before you can re-enter."}},{"@type":"Question","name":"Do entry and exit days count as full days?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the day you enter and the day you exit count as full days in your 90-day allowance, even if you crossed the border for only a few hours on those days."}},{"@type":"Question","name":"Which countries count towards the Schengen 90 days?","acceptedAnswer":{"@type":"Answer","text":"Your 90 days count across the entire Schengen Area collectively, not per country. The Schengen countries include Austria, Belgium, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland is not in Schengen."}},{"@type":"Question","name":"What happens if I overstay in Schengen?","acceptedAnswer":{"@type":"Answer","text":"Overstaying is taken seriously. Consequences can include fines, deportation, entry bans of one to five years depending on the length and circumstances, and refused future visa or entry applications. With the EES system, overstays are detected automatically."}},{"@type":"Question","name":"Is this Schengen calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your trip data anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/travel-tools/">Travel Tools</a> › Schengen Calculator</nav>
+<h1 class="noembed">Schengen 90/180 Day Calculator</h1>
+<p class="lead noembed">Add your trips and see days used, days remaining, peak rolling-window usage and the next date you can re-enter. Rolling-window algorithm, EES context, overstay warning. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/schengen-calculator/" target="_blank" rel="noopener">Schengen Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Schengen 90/180 day calculator">
+<div class="sc-hero noembed">
+<h2>Free Schengen 90/180 Day Calculator</h2>
+<p>Rolling-window calculation with peak-day detection. Add every past or planned stay.</p>
+</div>
+<div class="sc-panel">
+<h3>Your trips to the Schengen Area</h3>
+<p class="meta" style="font-size:.8rem;margin:0 0 10px">Add each stay with entry and exit dates. Same-day entry and exit counts as one day. Overlapping stays count each day only once.</p>
+<div id="tripList"></div>
+<button type="button" class="sc-btn" id="addTripBtn">+ Add trip</button>
+</div>
+<div class="sc-panel">
+<h3>Reference date</h3>
+<div class="sc-row">
+<div><label for="refDate">Check compliance as of (default: today)</label><input type="date" id="refDate"></div>
+<div><label for="plannedExit">Planned exit date (optional, for a future trip)</label><input type="date" id="plannedExit"></div>
+</div>
+</div>
+<button type="button" class="sc-btn" id="calcBtn">Calculate days used</button>
+<button type="button" class="sc-btn ghost" id="resetBtn">Reset</button>
+<div id="output"></div>
+</section>
+<div class="sc-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="sc-share-link">Shareable link</label>
+<input type="text" id="sc-share-link" readonly value="https://utiliby.com/tools/travel-tools/schengen-calculator/">
+<button type="button" data-copy-target="sc-share-link">Copy link</button>
+<label for="sc-cite">Cite this page</label>
+<textarea id="sc-cite" readonly>Utiliby. (2026). Schengen 90/180 Day Calculator. https://utiliby.com/tools/travel-tools/schengen-calculator/</textarea>
+<button type="button" data-copy-target="sc-cite">Copy citation</button>
+<label for="sc-embed">Add this tool to your site</label>
+<textarea id="sc-embed" readonly>&lt;iframe src="https://utiliby.com/tools/travel-tools/schengen-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Schengen Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/travel-tools/schengen-calculator/"&gt;Schengen 90/180 Day Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="sc-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<h2>What is a free Schengen 90/180 day calculator online?</h2>
+<p>A free Schengen 90/180 day calculator online is a tool that checks whether your travel pattern complies with the Schengen short-stay rule — a maximum of 90 days inside the Schengen Area in any rolling 180-day period. The key word is "rolling": the window is not a fixed calendar period. For any date, you look back exactly 180 days and count every day you were inside Schengen. Both entry and exit days count as full days, and the 90-day limit applies across the whole Schengen Area collectively, not per country.</p>
+<p>This Schengen calculator uses the peak-counting method: it scans every day from your earliest entry to your latest exit, computes the rolling 180-day count for each, and reports the day when that count peaked. Checking only the last exit can miss a violation that happened earlier in the same trip pattern. The tool also shows days remaining, the next date you can re-enter, and — if you have a planned trip — whether it would push you over the limit. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+<h2>How to use this free Schengen calculator</h2>
+<ol>
+<li>Add each trip to the Schengen Area with entry and exit dates. Past and planned trips both count.</li>
+<li>Set the reference date — the date you want to check compliance for. It defaults to today, but you can set a future date to check a planned entry.</li>
+<li>Optionally set a planned exit date for a trip that is still in progress or planned.</li>
+<li>Click Calculate. The tool shows days used in the rolling window, days remaining, the peak day, and the next date you can re-enter.</li>
+</ol>
+<h2>The rule explained</h2>
+<p>The Schengen short-stay rule is set out in Regulation (EU) No 610/2013, which amended the Schengen Borders Code. It limits third-country nationals on a short stay or visa-free entry to 90 days within any 180-day period. The calculation is performed from the date of first entry and is checked on each entry, so the limit must be respected on every day of a stay, not just on arrival.</p>
+<p>The most common misunderstanding is that the 90 days "reset" after a period outside Schengen. They do not. Old days fade out only as they fall outside the 180-day look-back window. If you stayed 90 consecutive days and left on day 91, you cannot re-enter the next day — many of those 90 days still sit inside the 180-day window. You must wait until enough old days have exited the window, or plan shorter visits spread over time.</p>
+<h2>Schengen countries</h2>
+<p>Your 90 days count across the entire Schengen Area collectively. The current Schengen states are Austria, Belgium, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland is not part of Schengen, so days spent in Ireland do not count against your 90-day allowance. Bulgaria and Romania joined the Schengen Area in 2024; days spent there before that date were subject to different rules.</p>
+<h2>EES and digital day counting</h2>
+<p>The Entry/Exit System (EES) replaced manual passport stamping with digital logging. Every crossing is recorded automatically. Before EES, border guards counted stamps by hand and mistakes were common in both directions. With EES, the system instantly shows the exact number of days used, and automated alerts flag travellers who are near or at the 90-day limit. This makes overstays much harder to miss — and much harder to argue against.</p>
+<h2>What happens if you overstay</h2>
+<p>Overstaying a Schengen short stay is a serious matter. Consequences can include fines, deportation, entry bans of one to five years depending on the length and circumstances, and refused future visa applications. Because EES records every crossing, an overstay that might previously have gone unnoticed is now detected automatically. If you need more than 90 days, you normally need a national long-stay (Type D) visa or residence permit from a specific Schengen country — a short-stay Schengen visa alone cannot be extended beyond the limit.</p>
+<h2>Common mistakes</h2>
+<ul>
+<li><b>Assuming the clock resets.</b> It does not. Old days leave the window only after 180 days have passed.</li>
+<li><b>Forgetting entry and exit days.</b> Both count fully, even for a same-day crossing.</li>
+<li><b>Double-counting overlapping trips.</b> All Schengen days share one 90-day pool. You cannot earn extra days by hopping borders.</li>
+<li><b>Checking only the last exit.</b> A violation can occur earlier in the pattern. Peak-counting catches it.</li>
+<li><b>Using an outdated country list.</b> Croatia (2023), Bulgaria and Romania (2024) have joined. Always use the current Schengen map.</li>
+<li><b>Leaving no buffer.</b> Flight delays or counting errors can push you to the absolute limit. Leave a few days of margin.</li>
+</ul>
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is the Schengen 90/180 day rule?</summary><p>Non-EU visitors may spend at most 90 days inside the Schengen Area in any rolling 180-day period. For any date, you look back 180 days and count every day you were inside Schengen. Both entry and exit days count.</p></details>
+<details><summary>Does the 90-day clock reset when I leave?</summary><p>No. Old days fade out only as they fall outside the 180-day look-back window. You must wait until enough days have passed before you can re-enter.</p></details>
+<details><summary>Do entry and exit days count?</summary><p>Yes. Both the day you enter and the day you exit count as full days, even for same-day crossings.</p></details>
+<details><summary>Which countries count towards the 90 days?</summary><p>Your 90 days count across the entire Schengen Area collectively. Ireland is not in Schengen, so days spent there do not count.</p></details>
+<details><summary>What happens if I overstay?</summary><p>Possible consequences include fines, deportation, entry bans of one to five years, and refused future visa applications. EES detects overstays automatically.</p></details>
+<details><summary>Is this calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+<div class="sc-disclaimer">
+<b>Disclaimer:</b> This calculator is provided for planning and educational purposes only. It implements the standard 90/180 rolling-window rule based on the trip data you enter. It does not account for national long-stay visas, residence permits, bilateral agreements, or special statuses that may change how days are counted. Border officials make the final determination. Always verify your situation with the relevant embassy or consulate before travelling, and leave a buffer of a few days to account for counting errors or flight delays. Utiliby accepts no liability for entry decisions, overstays, or consequences arising from the use of this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var tripId=0;
+function addTrip(entry,exit){
+  tripId++;
+  var host=$("tripList");
+  var div=document.createElement("div");
+  div.className="sc-trip";
+  div.dataset.id=tripId;
+  div.innerHTML='<div><label>Entry date</label><input type="date" class="t-entry" value="'+(entry||"")+'"></div>'+
+    '<div><label>Exit date</label><input type="date" class="t-exit" value="'+(exit||"")+'"></div>'+
+    '<div><button type="button" class="sc-btn ghost t-remove" style="margin:0;padding:8px 12px">Remove</button></div>';
+  host.appendChild(div);
+  div.querySelector(".t-remove").addEventListener("click",function(){div.remove();});
+}
+function collectTrips(){
+  var trips=[];
+  document.querySelectorAll(".sc-trip").forEach(function(row){
+    var e=row.querySelector(".t-entry").value;
+    var x=row.querySelector(".t-exit").value;
+    if(e&&x){trips.push({entry:e,exit:x});}
+  });
+  return trips;
+}
+function dayCount(a,b){
+  /* inclusive count of calendar days from a to b */
+  var d1=new Date(a+"T00:00:00"),d2=new Date(b+"T00:00:00");
+  if(isNaN(d1)||isNaN(d2)||d2<d1)return 0;
+  return Math.round((d2-d1)/86400000)+1;
+}
+function isInSchengenOn(date, trips){
+  for(var i=0;i<trips.length;i++){
+    var e=new Date(trips[i].entry+"T00:00:00");
+    var x=new Date(trips[i].exit+"T00:00:00");
+    if(date>=e&&date<=x)return true;
+  }
+  return false;
+}
+function rollingCount(date, trips){
+  /* Count Schengen days in the 180-day window ending on date */
+  var count=0;
+  var start=new Date(date.getTime()-179*86400000);
+  for(var d=new Date(start);d<=date;d=new Date(d.getTime()+86400000)){
+    if(isInSchengenOn(d,trips))count++;
+  }
+  return count;
+}
+function calc(){
+  var trips=collectTrips();
+  var out=$("output");
+  if(trips.length===0){out.innerHTML='<div class="sc-warn">Add at least one trip with entry and exit dates.</div>';return;}
+  var refStr=$("refDate").value;
+  var ref=refStr?new Date(refStr+"T00:00:00"):new Date();
+  var plannedExitStr=$("plannedExit").value;
+  var allTrips=trips.slice();
+  if(plannedExitStr){
+    /* If plannedExit is set, assume a trip starting at ref and ending at plannedExit */
+    allTrips.push({entry:refStr||ref.toISOString().slice(0,10),exit:plannedExitStr});
+  }
+  /* Find earliest entry */
+  var earliest=null,latest=null;
+  for(var i=0;i<allTrips.length;i++){
+    var e=new Date(allTrips[i].entry+"T00:00:00");
+    var x=new Date(allTrips[i].exit+"T00:00:00");
+    if(!earliest||e<earliest)earliest=e;
+    if(!latest||x>latest)latest=x;
+  }
+  /* Scan each day from earliest to max(latest, ref) and find peak rolling count */
+  var scanEnd=new Date(Math.max(latest.getTime(),ref.getTime()));
+  var peak=0,peakDate=null;
+  for(var d=new Date(earliest);d<=scanEnd;d=new Date(d.getTime()+86400000)){
+    var c=rollingCount(d,allTrips);
+    if(c>peak){peak=c;peakDate=new Date(d.getTime());}
+  }
+  var used=rollingCount(ref,allTrips);
+  var remaining=90-used;
+  var status,cls;
+  if(used>90){status="OVERSTAY";cls="err";}
+  else if(used>=85){status="At the limit";cls="err";}
+  else if(used>=75){status="Approaching the limit";cls="warn";}
+  else{status="Compliant";cls="ok";}
+  /* Next re-entry: earliest date when rolling count would drop below 90 */
+  var nextReentry=null;
+  for(var d2=new Date(ref);d2<new Date(ref.getTime()+400*86400000);d2=new Date(d2.getTime()+86400000)){
+    if(rollingCount(d2,allTrips)<90){nextReentry=new Date(d2.getTime());break;}
+  }
+  var h='<div class="sc-result"><div class="sc-label">Days used in the current 180-day window</div>'+
+    '<div class="sc-big">'+used+' / 90</div>'+
+    '<div class="sc-label" style="margin-top:8px">Status: <span style="color:'+(cls==="ok"?"#16a34a":cls==="warn"?"#f59e0b":"#dc2626")+'">'+status+'</span></div></div>';
+  h+='<div class="sc-stats">';
+  h+='<div class="sc-stat"><div class="lbl">Days remaining</div><div class="val '+(remaining>15?"ok":remaining>0?"warn":"err")+'">'+remaining+'</div></div>';
+  h+='<div class="sc-stat"><div class="lbl">Peak rolling count</div><div class="val '+(peak>90?"err":peak>=85?"warn":"ok")+'">'+peak+'</div></div>';
+  h+='<div class="sc-stat"><div class="lbl">Peak date</div><div class="val" style="font-size:.85rem">'+(peakDate?peakDate.toISOString().slice(0,10):"—")+'</div></div>';
+  h+='<div class="sc-stat"><div class="lbl">Reference date</div><div class="val" style="font-size:.85rem">'+ref.toISOString().slice(0,10)+'</div></div>';
+  h+='</div>';
+  if(nextReentry){h+='<div class="sc-tip"><b>Next date you can re-enter (if entering on that day and staying):</b> '+nextReentry.toISOString().slice(0,10)+'. This is the first date on which your rolling 180-day count would drop below 90 for a new entry.</div>';}
+  if(used>90){h+='<div class="sc-warn"><b>Overstay detected.</b> Your current 180-day count is '+used+' days, above the 90-day limit. Consequences can include fines, deportation and entry bans. Adjust your plans or seek advice from the relevant embassy.</div>';}
+  h+='<div class="sc-tip"><b>Your trips:</b> '+(trips.length)+' trip(s) entered. '+(plannedExitStr?'A planned stay from '+($("refDate").value||ref.toISOString().slice(0,10))+' to '+plannedExitStr+' is included in the calculation.':'No planned stay included.')+'</div>';
+  h+='<div class="sc-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyScBtn" class="sc-btn" style="margin:0">Copy result</button></div>';
+  out.innerHTML=h;
+  document.getElementById("copyScBtn").addEventListener("click",function(){
+    var t="Schengen 90/180 Calculator Result\nDays used: "+used+" / 90\nStatus: "+status+"\nPeak rolling count: "+peak+"\n"+(nextReentry?"Next re-entry date: "+nextReentry.toISOString().slice(0,10)+"\n":"")+"- utiliby.com";
+    copyText(t,document.getElementById("copyScBtn"));
+  });
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("refDate").value=new Date().toISOString().slice(0,10);
+  addTrip();
+  $("addTripBtn").addEventListener("click",function(){addTrip();});
+  $("calcBtn").addEventListener("click",calc);
+  $("resetBtn").addEventListener("click",function(){$("tripList").innerHTML="";addTrip();$("plannedExit").value="";$("output").innerHTML="";});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+});
+})();
+</script>
+</body>
+</html>
