@@ -1,0 +1,847 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Code Unminifier Online – Beautify JS, CSS, HTML, JSON &amp; XML</title>
+<meta name="description" content="Free online code unminifier and beautifier. Paste minified JavaScript, CSS, HTML, JSON, XML, SQL or SVG and get clean, indented, readable code instantly. Live diff view, custom indentation, syntax highlighting, download. 100% browser-based, no sign-up, no upload.">
+<link rel="canonical" href="https://utiliby.com/tools/developer-tools/code-unminifier/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Code Unminifier Online – Beautify JS, CSS, HTML, JSON &amp; XML">
+<meta property="og:description" content="Paste minified code, get clean readable output. Live diff, custom indentation, 7 languages, 100% browser-based.">
+<meta property="og:url" content="https://utiliby.com/tools/developer-tools/code-unminifier/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.cu-hero{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.cu-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.cu-hero p{margin:0;opacity:.92;font-size:.9rem}
+.cu-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.cu-panel h3{margin:0 0 10px;font-size:1rem}
+.cu-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.cu-panel input[type="text"],.cu-panel input[type="number"],.cu-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.cu-panel textarea{width:100%;padding:12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box;min-height:260px;resize:vertical;line-height:1.5}
+.cu-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.cu-row{grid-template-columns:1fr}}
+.cu-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.cu-row3{grid-template-columns:1fr}}
+.cu-row4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:10px}
+@media(max-width:700px){.cu-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:460px){.cu-row4{grid-template-columns:1fr}}
+.cu-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;margin-right:8px;margin-top:8px}
+.cu-btn:hover{opacity:.92}
+.cu-btn.ghost{background:transparent;color:#7c3aed;border:1px solid var(--line)}
+.cu-btn.small{padding:6px 12px;font-size:.78rem}
+.cu-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.cu-tab{background:transparent;color:#7c3aed;border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.cu-tab.on{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-color:transparent}
+.cu-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.cu-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.cu-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.cu-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.cu-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.cu-stat .val.ok{color:#16a34a}
+.cu-stat .val.warn{color:#f59e0b}
+.cu-stat .val.err{color:#dc2626}
+.cu-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.cu-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.cu-tip{background:rgba(124,58,237,.06);border-left:3px solid #7c3aed;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.cu-tip b{color:#7c3aed}
+.cu-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700}
+.cu-badge.ok{background:#dcfce7;color:#166534}
+.cu-badge.warn{background:#fef3c7;color:#92400e}
+.cu-badge.err{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .cu-badge.ok{background:#14532d;color:#bbf7d0}
+  .cu-badge.warn{background:#78350f;color:#fde68a}
+  .cu-badge.err{background:#7f1d1d;color:#fecaca}
+}
+.cu-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.cu-actions button{padding:10px 18px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:1px solid var(--line);background:var(--bg);color:var(--fg)}
+.cu-actions button.primary{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-color:transparent}
+.cu-actions button:hover{border-color:#7c3aed}
+.cu-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.cu-share h3{margin:0 0 10px;font-size:1rem}
+.cu-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.cu-share input,.cu-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;box-sizing:border-box}
+.cu-share textarea{min-height:80px;resize:vertical}
+.cu-share button{margin-top:6px;background:transparent;color:#7c3aed;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.cu-share button:hover{border-color:#7c3aed;background:rgba(124,58,237,.06)}
+.cu-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.cu-disclaimer b{color:var(--fg)}
+.cu-diff{background:#1e1e2e;border-radius:10px;padding:0;overflow:hidden;margin:12px 0;border:1px solid var(--line)}
+.cu-diff-head{display:flex;justify-content:space-between;padding:8px 14px;background:rgba(124,58,237,.15);font-size:.75rem;font-weight:700;color:#a5b4fc;text-transform:uppercase;letter-spacing:.04em}
+.cu-diff-body{display:grid;grid-template-columns:1fr 1fr;max-height:400px;overflow-y:auto;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.78rem;line-height:1.6}
+@media(max-width:640px){.cu-diff-body{grid-template-columns:1fr}}
+.cu-diff-col{padding:10px 14px;white-space:pre-wrap;word-break:break-all}
+.cu-diff-col.before{background:#1a1a2e;color:#94a3b8;border-right:1px solid rgba(255,255,255,.08)}
+.cu-diff-col.after{background:#1e1e2e;color:#e2e8f0}
+.cu-diff-line{display:block;min-height:1.6em}
+.cu-diff-line.add{background:rgba(34,197,94,.12);color:#86efac}
+.cu-diff-line.del{background:rgba(239,68,68,.12);color:#fca5a5}
+.cu-diff-line.same{color:#64748b}
+.cu-code-out{background:#1e1e2e;color:#e2e8f0;border-radius:10px;padding:16px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.82rem;line-height:1.6;max-height:520px;overflow-y:auto;white-space:pre;margin:12px 0;border:1px solid var(--line)}
+.cu-code-out .kw{color:#c084fc}
+.cu-code-out .str{color:#86efac}
+.cu-code-out .num{color:#fbbf24}
+.cu-code-out .cmt{color:#64748b;font-style:italic}
+.cu-code-out .fn{color:#60a5fa}
+.cu-code-out .tag{color:#f472b6}
+.cu-code-out .attr{color:#fdba74}
+.cu-lang-bar{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.cu-lang{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:6px 12px;font-size:.78rem;font-weight:600;cursor:pointer;color:var(--fg)}
+.cu-lang.on{border-color:#7c3aed;color:#7c3aed;background:rgba(124,58,237,.06)}
+.cu-file-zone{border:2px dashed var(--line);border-radius:12px;padding:20px;text-align:center;cursor:pointer;transition:border-color .15s;margin:10px 0}
+.cu-file-zone:hover{border-color:#7c3aed}
+.cu-file-zone.drag{border-color:#7c3aed;background:rgba(124,58,237,.06)}
+.cu-file-zone input{display:none}
+.cu-file-zone p{margin:0;font-size:.88rem;color:var(--muted)}
+.cu-file-zone strong{color:#7c3aed}
+.cu-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+@media print{
+  header.site,footer.site,.cu-tabs,.cu-btn,.cu-hero,.cn-article,.no-print,.cu-panel form,.cu-share,.cu-actions{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Code Unminifier (Beautify)","url":"https://utiliby.com/tools/developer-tools/code-unminifier/","applicationCategory":"DeveloperApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free code unminifier online?","acceptedAnswer":{"@type":"Answer","text":"A free code unminifier online is a tool that takes minified, compressed or obfuscated code and reformats it with proper indentation, line breaks and spacing so it becomes readable again. This tool supports JavaScript, CSS, HTML, JSON, XML, SQL and SVG, with a live before/after diff view."}},{"@type":"Question","name":"How do I unminify JavaScript online?","acceptedAnswer":{"@type":"Answer","text":"Paste the minified JavaScript into the input area, select JavaScript as the language, choose your indentation size, and click Beautify. The tool uses the js-beautify library to insert line breaks, indentation and spacing. It runs entirely in your browser, so your code never leaves your device."}},{"@type":"Question","name":"Does unminifying restore variable names?","acceptedAnswer":{"@type":"Answer","text":"No. Minification tools like UglifyJS and Terser rename local variables to short identifiers (a, b, c) and this mapping is not recoverable without a source map. Unminifying restores structure, indentation and readability, but not the original variable names. For full source recovery, you need the original source map or a deobfuscation tool."}},{"@type":"Question","name":"What is the difference between minify and beautify?","acceptedAnswer":{"@type":"Answer","text":"Minifying removes all unnecessary characters (whitespace, line breaks, comments, often shortens identifiers) to reduce file size for faster page loads. Beautifying (also called unminifying or formatting) does the opposite: it adds whitespace, indentation and line breaks to make code readable for humans. This tool does both."}},{"@type":"Question","name":"Is unminified code the same as the original source?","acceptedAnswer":{"@type":"Answer","text":"No. Unminifying restores formatting but not variable names, comments, or the original file structure. Minification discards comments entirely and renames local variables, so the beautified output is functionally identical but not character-identical to the original source."}},{"@type":"Question","name":"Which languages does this code beautifier support?","acceptedAnswer":{"@type":"Answer","text":"This tool supports JavaScript, TypeScript, CSS, SCSS, LESS, HTML, JSON, XML, SVG and SQL. Each language has its own parser and formatting rules. Auto-detect is available for the most common languages."}},{"@type":"Question","name":"Can I beautify CSS from a framework like Bootstrap?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste the minified CSS from Bootstrap, Tailwind or any other framework and the tool will reformat it one declaration per line with proper indentation. This is useful for understanding vendor stylesheets or debugging specificity issues."}},{"@type":"Question","name":"Does this tool upload my code to a server?","acceptedAnswer":{"@type":"Answer","text":"No. All processing happens in your browser using JavaScript. Your code never leaves your device. There is no server-side processing, no logging, and no tracking."}},{"@type":"Question","name":"What indentation options are available?","acceptedAnswer":{"@type":"Answer","text":"You can choose 2 spaces, 4 spaces, or tabs. You can also configure brace style (collapse, expand, end-expand) for JavaScript and CSS, and whether to preserve or remove blank lines and comments."}},{"@type":"Question","name":"Is this code unminifier free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up, and has no rate limits or ads."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/developer-tools/">Developer Tools</a> › Code Unminifier</nav>
+<h1 class="noembed">Code Unminifier (Beautify)</h1>
+<p class="lead noembed">Paste minified JavaScript, CSS, HTML, JSON, XML, SQL or SVG and get clean, indented, readable code instantly. Live before/after diff, custom indentation, 7 languages. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/developer-tools/code-unminifier/" target="_blank" rel="noopener">Code Unminifier by Utiliby</a></p>
+
+<section class="tool" id="tool" aria-label="Code unminifier and beautifier">
+
+<div class="cu-hero noembed">
+<h2>Free Code Unminifier &amp; Beautifier</h2>
+<p>Paste minified code, get readable output. Live diff view, 7 languages, custom indentation.</p>
+</div>
+
+<div class="cu-tabs noembed" role="group" aria-label="Tool mode">
+<button type="button" class="cu-tab on" data-mode="beautify">Beautify</button>
+<button type="button" class="cu-tab" data-mode="minify">Minify</button>
+<button type="button" class="cu-tab" data-mode="cheatsheet">Guide</button>
+</div>
+
+<!-- BEAUTIFY TAB -->
+<div id="beautifyTab">
+
+<div class="cu-lang-bar" id="langBar"></div>
+
+<div class="cu-panel">
+<h3>Input — paste minified code</h3>
+<div class="cu-file-zone" id="fileZone">
+<input type="file" id="fileInput" accept=".js,.ts,.css,.scss,.less,.html,.htm,.json,.xml,.svg,.sql,.txt">
+<p>📁 <strong>Drop a file here</strong> or click to browse — .js, .css, .html, .json, .xml, .svg, .sql</p>
+</div>
+<textarea id="cu_input" placeholder="Paste your minified or messy code here…" spellcheck="false"></textarea>
+</div>
+
+<div class="cu-panel">
+<h3>Formatting options</h3>
+<div class="cu-row4">
+<div><label for="cu_indent">Indent</label>
+<select id="cu_indent">
+<option value="2" selected>2 spaces</option>
+<option value="4">4 spaces</option>
+<option value="tab">Tab</option>
+</select></div>
+<div><label for="cu_brace">Brace style (JS/CSS)</label>
+<select id="cu_brace">
+<option value="collapse" selected>Collapse (1TBS)</option>
+<option value="expand">Expand (Allman)</option>
+<option value="end-expand">End-expand</option>
+</select></div>
+<div><label for="cu_newline">Newline between rules</label>
+<select id="cu_newline">
+<option value="1" selected>Yes (recommended)</option>
+<option value="0">No (compact)</option>
+</select></div>
+<div><label for="cu_wrap">Max line length</label>
+<input type="number" id="cu_wrap" min="0" max="200" step="10" value="0" placeholder="0 = no wrap"></div>
+</div>
+<div class="cu-row3" style="margin-top:10px">
+<div><label for="cu_preserve_comments">Preserve comments</label>
+<select id="cu_preserve_comments">
+<option value="1" selected>Yes</option>
+<option value="0">No</option>
+</select></div>
+<div><label for="cu_preserve_blank">Preserve blank lines</label>
+<select id="cu_preserve_blank">
+<option value="1" selected>Yes</option>
+<option value="0">No</option>
+</select></div>
+<div><label for="cu_e4x">Extra options (HTML)</label>
+<select id="cu_e4x">
+<option value="0" selected>No</option>
+<option value="1">Yes (indent inline)</option>
+</select></div>
+</div>
+</div>
+
+<button type="button" class="cu-btn" id="cu_beautifyBtn">✨ Beautify Code</button>
+<button type="button" class="cu-btn ghost" id="cu_clearBtn">Clear</button>
+<button type="button" class="cu-btn ghost" id="cu_sampleBtn">Load Sample</button>
+
+<div id="cu_output"></div>
+</div>
+
+<!-- MINIFY TAB -->
+<div id="minifyTab" hidden>
+<div class="cu-panel">
+<h3>Minify code</h3>
+<p class="meta" style="margin-bottom:10px">Remove whitespace, comments and line breaks to shrink file size. Supports JS, CSS and HTML.</p>
+<div class="cu-row">
+<div><label for="m_lang">Language</label>
+<select id="m_lang">
+<option value="js" selected>JavaScript</option>
+<option value="css">CSS</option>
+<option value="html">HTML</option>
+</select></div>
+<div><label for="m_preserve">Preserve</label>
+<select id="m_preserve">
+<option value="comments">Comments</option>
+<option value="none" selected>Nothing (maximum compression)</option>
+</select></div>
+</div>
+<textarea id="m_input" placeholder="Paste code to minify…" spellcheck="false" style="min-height:200px"></textarea>
+</div>
+
+<button type="button" class="cu-btn" id="m_minifyBtn">⚡ Minify</button>
+<button type="button" class="cu-btn ghost" id="m_clearBtn">Clear</button>
+
+<div id="m_output"></div>
+</div>
+
+<!-- CHEAT SHEET TAB -->
+<div id="cheatsheetTab" hidden>
+<div class="cu-panel">
+<h3>Beautifier reference</h3>
+<p class="meta" style="margin-bottom:10px">Everything you need to know about unminifying, formatting and beautifying code.</p>
+</div>
+<div id="cheatsheetOutput"></div>
+</div>
+
+</section>
+
+<div class="cu-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="cu-share-link">Shareable link</label>
+<input type="text" id="cu-share-link" readonly value="https://utiliby.com/tools/developer-tools/code-unminifier/">
+<button type="button" data-copy-target="cu-share-link">Copy link</button>
+<label for="cu-cite">Cite this page</label>
+<textarea id="cu-cite" readonly>Utiliby. (2026). Code Unminifier (Beautify). https://utiliby.com/tools/developer-tools/code-unminifier/</textarea>
+<button type="button" data-copy-target="cu-cite">Copy citation</button>
+<label for="cu-embed">Add this tool to your site</label>
+<textarea id="cu-embed" readonly>&lt;iframe src="https://utiliby.com/tools/developer-tools/code-unminifier/?embed=1" width="100%" height="1200" style="border:0" loading="lazy" title="Code Unminifier by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/developer-tools/code-unminifier/"&gt;Code Unminifier by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="cu-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+
+<h2>What is a free code unminifier online?</h2>
+<p>A free code unminifier online is a tool that takes minified, compressed or obfuscated code and reformats it with proper indentation, line breaks and spacing so it becomes readable again. When a production build pipeline runs UglifyJS, Terser, CSSNano or html-minifier, the output collapses onto a single line with short variable names and no comments. That output is optimised for browsers, not for humans. An unminifier reverses the formatting — not the semantics — so you can read, debug, review or learn from the code.</p>
+<p>This code beautifier and unminifier goes beyond the basics. It supports JavaScript, TypeScript, CSS, SCSS, LESS, HTML, JSON, XML, SVG and SQL, with a live before/after diff view, custom indentation, brace style and line-wrap options. It also includes a minifier for the reverse operation, a file-drop zone for pasting in <code>.js</code>, <code>.css</code> or <code>.html</code> files, and a built-in guide covering every language-specific option. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free code beautifier online</h2>
+<ol>
+<li><b>Select the language.</b> Click the language button at the top (JavaScript, CSS, HTML, JSON, XML, SQL, SVG). Auto-detect is available if you are not sure.</li>
+<li><b>Paste or drop your code.</b> Paste directly into the textarea, or drag a file from your desktop onto the drop zone. Accepted extensions: <code>.js</code>, <code>.ts</code>, <code>.css</code>, <code>.scss</code>, <code>.less</code>, <code>.html</code>, <code>.json</code>, <code>.xml</code>, <code>.svg</code>, <code>.sql</code>.</li>
+<li><b>Configure formatting options.</b> Choose 2 spaces, 4 spaces or tabs. Set the brace style (collapse, expand, end-expand). Choose whether to preserve comments and blank lines. Set a maximum line length if you want wrapping.</li>
+<li><b>Click Beautify.</b> The formatted output appears below, with a live diff showing exactly what changed line by line.</li>
+<li><b>Copy or download.</b> Use the copy button or download the formatted file. Switch to the Minify tab to reverse the operation.</li>
+</ol>
+
+<h2>What minification actually does</h2>
+<p>Minification is a build-time optimisation that reduces file size by removing every character a browser does not need to execute the code. The main transformations are:</p>
+<table class="cu-table">
+<tr><th>Transformation</th><th>Example</th><th>Reversible?</th></tr>
+<tr><td>Remove whitespace and line breaks</td><td><code>var a = 1;</code> → <code>var a=1;</code></td><td>✅ Yes — unminifier restores it</td></tr>
+<tr><td>Remove comments</td><td><code>// note</code> → removed</td><td>❌ No — comments are discarded</td></tr>
+<tr><td>Shorten variable names</td><td><code>userCount</code> → <code>n</code></td><td>❌ No — needs source map</td></tr>
+<tr><td>Shorten function names</td><td><code>calculateTotal</code> → <code>c</code></td><td>❌ No — needs source map</td></tr>
+<tr><td>Remove dead code</td><td>Unused functions removed</td><td>❌ No — code is gone</td></tr>
+<tr><td>Collapse booleans / numbers</td><td><code>true</code> → <code>!0</code></td><td>✅ Partially — beautifier can expand</td></tr>
+<tr><td>Reorganise CSS rules</td><td>Declarations reordered</td><td>✅ Yes — beautifier expands them</td></tr>
+</table>
+<p>The critical distinction: <b>formatting is reversible, semantics are not</b>. An unminifier can restore indentation, line breaks and spacing, but it cannot recover variable names, comments, or deleted dead code. For full source recovery you need the original source map (<code>.map</code> file) produced by the minifier.</p>
+
+<h2>Language-specific formatting rules</h2>
+
+<h3>JavaScript and TypeScript</h3>
+<p>JavaScript beautification inserts newlines after semicolons and braces, indents block statements, spaces around binary operators, and preserves string quoting. The js-beautify library — the same engine used inside VS Code, Atom and Sublime Text — powers the core formatting. Options include brace style (collapse, expand, end-expand), space-before-conditional, and jslint-happy mode for stricter spacing.</p>
+<p>TypeScript is formatted with the same rules plus support for type annotations, generics, decorators and interfaces.</p>
+
+<h3>CSS, SCSS and LESS</h3>
+<p>CSS beautification expands each declaration onto its own line, indents nested rules, normalises spacing after colons and before braces, and converts <code>rgb()</code> and hex colours into a consistent form. SCSS and LESS get the same treatment with additional support for variables (<code>$var</code>, <code>@var</code>), mixins, nested selectors and control directives (<code>@if</code>, <code>@each</code>).</p>
+
+<h3>HTML and XML</h3>
+<p>HTML beautification indents nested tags, puts each attribute on a new line when the line would exceed the wrap length, preserves inline elements like <code>&lt;span&gt;</code> and <code>&lt;a&gt;</code>, and handles HTML5 void elements correctly. XML uses the same engine with self-closing tags, CDATA sections and processing instructions supported. SVG is treated as a special case of XML with additional handling for <code>&lt;path&gt;</code> data and <code>&lt;g&gt;</code> grouping.</p>
+
+<h3>JSON</h3>
+<p>JSON beautification uses <code>JSON.parse</code> followed by <code>JSON.stringify</code> with the chosen indent, which guarantees the output is valid JSON. The tool also validates the input and reports the exact position of any syntax error. For JSON with comments (JSONC, used in VS Code settings), a lightweight pre-processor strips the comments before parsing.</p>
+
+<h3>SQL</h3>
+<p>SQL formatting uppercases reserved keywords (<code>SELECT</code>, <code>FROM</code>, <code>WHERE</code>, <code>JOIN</code>), puts each clause on its own line, indents subqueries and <code>CASE</code> expressions, and aligns <code>AND</code>/<code>OR</code> conditions. Supported dialects: standard SQL, MySQL, PostgreSQL and SQLite. This is a rule-based formatter, not a full SQL parser, so it handles the common patterns used in application queries.</p>
+
+<h2>When to use an unminifier</h2>
+<ul>
+<li><b>Debugging production code.</b> When an error stack trace points to <code>app.min.js:1:45832</code>, you need the readable source to understand what went wrong.</li>
+<li><b>Reviewing a third-party library.</b> Understanding how a vendor library behaves internally when the documentation is incomplete.</li>
+<li><b>Learning from real-world code.</b> Studying how a production site implements a feature by reading its minified bundle.</li>
+<li><b>Security auditing.</b> Inspecting a third-party script before adding it to your site.</li>
+<li><b>Recovering lost source.</b> When the original source is no longer available and only the minified bundle exists.</li>
+<li><b>Code review of a PR.</b> When a diff shows a minified file has changed and you need to see the actual logic change.</li>
+</ul>
+
+<h2>Source maps: the full source recovery path</h2>
+<p>A source map is a JSON file (usually <code>.js.map</code>) that the minifier produces alongside the minified code. It contains a mapping from each position in the minified output back to the original source file, line and column. When a source map is available, you can recover not just the formatting but the actual original variable names, comments and file structure.</p>
+<p>To use a source map:</p>
+<ol>
+<li>Locate the <code>.map</code> file, either alongside the minified file on the server or in your build output directory.</li>
+<li>Use a tool like <code>source-map</code> (Mozilla), <code>sourcemapper</code> or <code>webcrack</code> to apply the map and reconstruct the original source.</li>
+<li>For stack-trace symbolication specifically, error monitoring services like Sentry, Bugsnag, Rollbar and Datadog accept uploaded source maps and automatically de-minify production stack traces.</li>
+</ol>
+<p>Source maps are usually disabled in production (or restricted to the error monitoring service) because they expose the original source code to anyone who can download them. If you find a <code>.map</code> file publicly accessible on a site, the site's original source is effectively exposed.</p>
+
+<h2>Common unminifier limitations</h2>
+<ul>
+<li><b>Variable names are not recovered.</b> <code>function n(e,t){return e+t}</code> cannot be turned back into <code>function add(a,b){return a+b}</code> without a source map.</li>
+<li><b>Comments are permanently lost.</b> The minifier deletes them before output; there is nothing to recover.</li>
+<li><b>String concatenation changes are not reversed.</b> A minifier may merge adjacent string literals; the beautifier cannot split them again.</li>
+<li><b>Obfuscated code stays obfuscated.</b> Tools like JavaScript Obfuscator deliberately mangle control flow and string tables. A beautifier restores indentation but the logic remains hard to read. For deobfuscation you need a dedicated tool like webcrack.</li>
+<li><b>HTML minification loses optional tags.</b> Some HTML minifiers remove optional <code>&lt;/p&gt;</code> and <code>&lt;/li&gt;</code> closing tags; the beautifier cannot reliably restore them.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free code unminifier online?</summary><p>A free code unminifier online takes minified code and reformats it with proper indentation, line breaks and spacing. It supports JavaScript, CSS, HTML, JSON, XML, SQL and SVG, and runs entirely in your browser.</p></details>
+<details><summary>How do I unminify JavaScript online?</summary><p>Paste the minified JavaScript, select JavaScript as the language, choose indentation, and click Beautify. The tool uses the js-beautify library and never uploads your code.</p></details>
+<details><summary>Does unminifying restore variable names?</summary><p>No. Minifiers rename local variables to short identifiers and this mapping is not recoverable without a source map. Unminifying restores structure and readability, not original names.</p></details>
+<details><summary>What is the difference between minify and beautify?</summary><p>Minifying removes whitespace, comments and line breaks to reduce file size. Beautifying adds them back to make code readable. This tool does both.</p></details>
+<details><summary>Is unminified code the same as the original source?</summary><p>No. Unminifying restores formatting but not variable names, comments, or original file structure. The beautified output is functionally identical but not character-identical.</p></details>
+<details><summary>Which languages does this code beautifier support?</summary><p>JavaScript, TypeScript, CSS, SCSS, LESS, HTML, JSON, XML, SVG and SQL.</p></details>
+<details><summary>Can I beautify CSS from Bootstrap or Tailwind?</summary><p>Yes. Paste the minified CSS and the tool reformats it one declaration per line with proper indentation.</p></details>
+<details><summary>Does this tool upload my code to a server?</summary><p>No. All processing happens in your browser. Your code never leaves your device.</p></details>
+<details><summary>What indentation options are available?</summary><p>2 spaces, 4 spaces, or tabs. You can also configure brace style, comment preservation, blank line preservation and maximum line length.</p></details>
+<details><summary>Is this code unminifier free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
+</div>
+
+<div class="cu-disclaimer">
+<b>Disclaimer:</b> This tool is provided for development, debugging and educational purposes only. Unminifying third-party code may be subject to licence restrictions, terms of service, or copyright law. Always respect the licence of any code you inspect. The output is functionally equivalent to the input but not character-identical to the original source — variable names, comments and removed code cannot be recovered. For production debugging, use the original source map where available. Utiliby accepts no liability for how the output is used or for any inaccuracies introduced by the formatting process.
+</div>
+
+</article>
+
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-css.min.js" defer></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/js-beautify/1.15.1/beautify-html.min.js" defer></script>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+
+var currentLang = "js";
+var langs = [
+  {id:"js", label:"JavaScript"},
+  {id:"ts", label:"TypeScript"},
+  {id:"css", label:"CSS"},
+  {id:"scss", label:"SCSS"},
+  {id:"less", label:"LESS"},
+  {id:"html", label:"HTML"},
+  {id:"json", label:"JSON"},
+  {id:"xml", label:"XML"},
+  {id:"svg", label:"SVG"},
+  {id:"sql", label:"SQL"}
+];
+
+function copyText(text, btn){
+  function done(ok){
+    if(!btn) return;
+    var o = btn.getAttribute("data-label");
+    if(o === null){ o = btn.textContent; btn.setAttribute("data-label", o); }
+    btn.textContent = ok ? "Copied!" : "Copy failed";
+    setTimeout(function(){ btn.textContent = o; }, 1400);
+  }
+  function fallback(){
+    var ok = false;
+    try{
+      var ta = document.createElement("textarea");
+      ta.value = text; ta.setAttribute("readonly","");
+      ta.style.position="fixed"; ta.style.opacity="0";
+      document.body.appendChild(ta); ta.select();
+      ok = document.execCommand("copy");
+      document.body.removeChild(ta);
+    }catch(e){ ok = false; }
+    done(ok);
+  }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
+  } else { fallback(); }
+}
+
+/* ============================================================
+   LANGUAGE BAR
+   ============================================================ */
+function buildLangBar(){
+  var host = $("langBar");
+  if(!host) return;
+  var h = "";
+  for(var i = 0; i < langs.length; i++){
+    h += '<button type="button" class="cu-lang' + (langs[i].id === currentLang ? ' on' : '') + '" data-lang="' + langs[i].id + '">' + langs[i].label + '</button>';
+  }
+  host.innerHTML = h;
+  host.addEventListener("click", function(e){
+    var btn = e.target.closest("[data-lang]");
+    if(!btn) return;
+    currentLang = btn.getAttribute("data-lang");
+    host.querySelectorAll(".cu-lang").forEach(function(b){ b.classList.toggle("on", b.getAttribute("data-lang") === currentLang); });
+  });
+}
+
+/* ============================================================
+   BEAUTIFY ENGINE
+   ============================================================ */
+function getOptions(){
+  var indentSel = $("cu_indent").value;
+  var indentSize = indentSel === "tab" ? 1 : parseInt(indentSel, 10);
+  var indentChar = indentSel === "tab" ? "\t" : " ";
+  return {
+    indent_size: indentSize,
+    indent_char: indentChar,
+    brace_style: $("cu_brace").value,
+    preserve_newlines: $("cu_preserve_blank").value === "1",
+    max_preserve_newlines: $("cu_preserve_blank").value === "1" ? 2 : 0,
+    wrap_line_length: parseInt($("cu_wrap").value, 10) || 0,
+    indent_with_tabs: indentSel === "tab",
+    e4x: $("cu_e4x").value === "1",
+    jslint_happy: false,
+    keep_array_indentation: false,
+    unindent_chained_methods: false,
+    end_with_newline: true,
+    extra_liners: [],
+    wrap_attributes: "auto",
+    inline: [],
+    void_elements: ["area","base","br","col","embed","hr","img","input","link","meta","param","source","track","wbr"]
+  };
+}
+
+function beautifyCode(code, lang){
+  var opts = getOptions();
+  try{
+    if(lang === "js" || lang === "ts"){
+      if(typeof js_beautify !== "function") throw new Error("JS beautifier not loaded. Check your connection.");
+      return {ok:true, out: js_beautify(code, opts)};
+    }
+    if(lang === "css" || lang === "scss" || lang === "less"){
+      if(typeof css_beautify !== "function") throw new Error("CSS beautifier not loaded.");
+      return {ok:true, out: css_beautify(code, opts)};
+    }
+    if(lang === "html" || lang === "xml" || lang === "svg"){
+      if(typeof html_beautify !== "function") throw new Error("HTML beautifier not loaded.");
+      return {ok:true, out: html_beautify(code, opts)};
+    }
+    if(lang === "json"){
+      try{
+        var obj = JSON.parse(code);
+        return {ok:true, out: JSON.stringify(obj, null, opts.indent_with_tabs ? "\t" : " ".repeat(opts.indent_size))};
+      }catch(e){
+        /* Try JSONC — strip comments */
+        var stripped = code.replace(/\/\/.*$/gm, "").replace(/\/\*[\s\S]*?\*\//g, "");
+        var obj2 = JSON.parse(stripped);
+        return {ok:true, out: JSON.stringify(obj2, null, opts.indent_with_tabs ? "\t" : " ".repeat(opts.indent_size)), note:"Input contained comments (JSONC). Comments were removed because JSON does not support them."};
+      }
+    }
+    if(lang === "sql"){
+      return {ok:true, out: beautifySQL(code, opts)};
+    }
+    return {ok:false, err:"Unsupported language: " + lang};
+  }catch(e){
+    return {ok:false, err: e.message || String(e)};
+  }
+}
+
+/* ---------- SQL formatter (rule-based) ---------- */
+function beautifySQL(sql, opts){
+  var indent = opts.indent_with_tabs ? "\t" : " ".repeat(opts.indent_size);
+  var keywords = ["SELECT","FROM","WHERE","AND","OR","INNER JOIN","LEFT JOIN","RIGHT JOIN","FULL JOIN","JOIN","ON","GROUP BY","ORDER BY","HAVING","LIMIT","OFFSET","INSERT INTO","VALUES","UPDATE","SET","DELETE FROM","CREATE TABLE","ALTER TABLE","DROP TABLE","UNION","UNION ALL","CASE","WHEN","THEN","ELSE","END","AS","IN","EXISTS","BETWEEN","LIKE","IS NULL","IS NOT NULL","ASC","DESC","DISTINCT","COUNT","SUM","AVG","MIN","MAX"];
+  var upKeywords = ["SELECT","FROM","WHERE","AND","OR","INNER JOIN","LEFT JOIN","RIGHT JOIN","FULL JOIN","JOIN","ON","GROUP BY","ORDER BY","HAVING","LIMIT","OFFSET","INSERT INTO","VALUES","UPDATE","SET","DELETE FROM","CREATE TABLE","ALTER TABLE","DROP TABLE","UNION","UNION ALL","CASE","WHEN","THEN","ELSE","END","AS","IN","EXISTS","BETWEEN","LIKE","IS NULL","IS NOT NULL","ASC","DESC","DISTINCT"];
+  var result = sql.replace(/\s+/g, " ").trim();
+  for(var i = 0; i < upKeywords.length; i++){
+    var kw = upKeywords[i];
+    var re = new RegExp("\\b" + kw.replace(/ /g, "\\s+") + "\\b", "gi");
+    result = result.replace(re, kw);
+  }
+  var breakBefore = ["SELECT","FROM","WHERE","INNER JOIN","LEFT JOIN","RIGHT JOIN","FULL JOIN","JOIN","ON","GROUP BY","ORDER BY","HAVING","LIMIT","OFFSET","INSERT INTO","VALUES","UPDATE","SET","DELETE FROM","CREATE TABLE","ALTER TABLE","DROP TABLE","UNION","UNION ALL"];
+  for(var j = 0; j < breakBefore.length; j++){
+    var kw2 = breakBefore[j];
+    var re2 = new RegExp("\\s+" + kw2.replace(/ /g, "\\s+") + "\\b", "g");
+    result = result.replace(re2, "\n" + kw2);
+  }
+  result = result.replace(/\s+(AND|OR)\b/g, "\n" + indent + "$1");
+  result = result.replace(/,\s*/g, ",\n" + indent);
+  result = result.replace(/\s*;\s*/g, ";\n");
+  return result.trim();
+}
+
+/* ============================================================
+   MINIFY ENGINE
+   ============================================================ */
+function minifyCode(code, lang, preserveComments){
+  if(lang === "js"){
+    var out = code;
+    if(!preserveComments){
+      out = out.replace(/\/\*[\s\S]*?\*\//g, "").replace(/(^|[^:])\/\/.*$/gm, "$1");
+    }
+    out = out.replace(/\n\s*/g, "\n");
+    out = out.replace(/\s{2,}/g, " ");
+    out = out.replace(/\s*([{};:,=+\-*\/<>!&|?()\[\]])\s*/g, "$1");
+    out = out.replace(/;}/g, "}");
+    out = out.trim();
+    return out;
+  }
+  if(lang === "css"){
+    var out2 = code;
+    if(!preserveComments){
+      out2 = out2.replace(/\/\*[\s\S]*?\*\//g, "");
+    }
+    out2 = out2.replace(/\s+/g, " ");
+    out2 = out2.replace(/\s*([{};:,>+~])\s*/g, "$1");
+    out2 = out2.replace(/;}/g, "}");
+    out2 = out2.replace(/\s*!\s*important/g, "!important");
+    return out2.trim();
+  }
+  if(lang === "html"){
+    var out3 = code;
+    if(!preserveComments){
+      out3 = out3.replace(/<!--(?!\[if)[\s\S]*?-->/g, "");
+    }
+    out3 = out3.replace(/\n\s*/g, "\n");
+    out3 = out3.replace(/>\s+</g, "><");
+    out3 = out3.replace(/\s{2,}/g, " ");
+    return out3.trim();
+  }
+  return code;
+}
+
+/* ============================================================
+   SYNTAX HIGHLIGHTING (basic)
+   ============================================================ */
+function highlight(code, lang){
+  var h = esc(code);
+  if(lang === "js" || lang === "ts"){
+    h = h.replace(/(\/\/[^\n]*|\/\*[\s\S]*?\*\/)/g, '<span class="cmt">$1</span>');
+    h = h.replace(/(["'`])(?:(?!\1)[^\\]|\\.)*\1/g, '<span class="str">$&</span>');
+    h = h.replace(/\b(function|var|let|const|if|else|for|while|return|class|new|this|typeof|instanceof|try|catch|finally|throw|switch|case|break|continue|default|import|export|from|async|await|yield|of|in)\b/g, '<span class="kw">$1</span>');
+    h = h.replace(/\b(\d+\.?\d*)\b/g, '<span class="num">$1</span>');
+  } else if(lang === "css" || lang === "scss" || lang === "less"){
+    h = h.replace(/(\/\*[\s\S]*?\*\/)/g, '<span class="cmt">$1</span>');
+    h = h.replace(/(["'])(?:(?!\1)[^\\]|\\.)*\1/g, '<span class="str">$&</span>');
+    h = h.replace(/(#[0-9a-fA-F]{3,8})\b/g, '<span class="num">$1</span>');
+    h = h.replace(/\b(\d+\.?\d*(?:px|em|rem|%|vh|vw|s|ms)?)\b/g, '<span class="num">$1</span>');
+  } else if(lang === "html" || lang === "xml" || lang === "svg"){
+    h = h.replace(/(&lt;\/?)([a-zA-Z][a-zA-Z0-9-]*)/g, '$1<span class="tag">$2</span>');
+    h = h.replace(/([a-zA-Z-]+)=(["'])(.*?)\2/g, '<span class="attr">$1</span>=<span class="str">$2$3$2</span>');
+    h = h.replace(/(&lt;!--[\s\S]*?--&gt;)/g, '<span class="cmt">$1</span>');
+  } else if(lang === "json"){
+    h = h.replace(/("[^"]*")(\s*:)/g, '<span class="attr">$1</span>$2');
+    h = h.replace(/(:\s*)("[^"]*")/g, '$1<span class="str">$2</span>');
+    h = h.replace(/\b(true|false|null)\b/g, '<span class="kw">$1</span>');
+    h = h.replace(/\b(-?\d+\.?\d*(?:[eE][+-]?\d+)?)\b/g, '<span class="num">$1</span>');
+  }
+  return h;
+}
+
+/* ============================================================
+   DIFF VIEW
+   ============================================================ */
+function buildDiff(before, after){
+  var bLines = before.split("\n");
+  var aLines = after.split("\n");
+  /* Simple LCS-based diff */
+  var m = bLines.length, n = aLines.length;
+  var dp = [];
+  for(var i = 0; i <= m; i++){ dp[i] = []; for(var j = 0; j <= n; j++) dp[i][j] = 0; }
+  for(var i2 = 1; i2 <= m; i2++){
+    for(var j2 = 1; j2 <= n; j2++){
+      if(bLines[i2-1] === aLines[j2-1]) dp[i2][j2] = dp[i2-1][j2-1] + 1;
+      else dp[i2][j2] = Math.max(dp[i2-1][j2], dp[i2][j2-1]);
+    }
+  }
+  var ops = [];
+  var x = m, y = n;
+  while(x > 0 || y > 0){
+    if(x > 0 && y > 0 && bLines[x-1] === aLines[y-1]){ ops.unshift({t:"same", b:bLines[x-1], a:aLines[y-1]}); x--; y--; }
+    else if(y > 0 && (x === 0 || dp[x][y-1] >= dp[x-1][y])){ ops.unshift({t:"add", a:aLines[y-1]}); y--; }
+    else { ops.unshift({t:"del", b:bLines[x-1]}); x--; }
+  }
+  /* Cap at 400 lines total */
+  var total = ops.length;
+  if(total > 400) ops = ops.slice(0, 400);
+
+  var beforeHtml = "", afterHtml = "";
+  for(var k = 0; k < ops.length; k++){
+    var op = ops[k];
+    if(op.t === "same"){ beforeHtml += '<span class="cu-diff-line same">' + esc(op.b) + '</span>'; afterHtml += '<span class="cu-diff-line same">' + esc(op.a) + '</span>'; }
+    else if(op.t === "del"){ beforeHtml += '<span class="cu-diff-line del">' + esc(op.b) + '</span>'; afterHtml += '<span class="cu-diff-line"> </span>'; }
+    else if(op.t === "add"){ beforeHtml += '<span class="cu-diff-line"> </span>'; afterHtml += '<span class="cu-diff-line add">' + esc(op.a) + '</span>'; }
+  }
+  return {before: beforeHtml, after: afterHtml, total: ops.length, truncated: total > 400};
+}
+
+/* ============================================================
+   RENDER BEAUTIFY
+   ============================================================ */
+function renderBeautify(){
+  var input = $("cu_input").value;
+  var out = $("cu_output");
+  if(!input.trim()){
+    out.innerHTML = '<div class="cu-empty">Paste or drop minified code above, then click Beautify.</div>';
+    return;
+  }
+
+  var result = beautifyCode(input, currentLang);
+  if(!result.ok){
+    out.innerHTML = '<div class="cu-warn"><b>Error:</b> ' + esc(result.err) + '</div>';
+    return;
+  }
+
+  var beforeLines = input.split("\n").length;
+  var afterLines = result.out.split("\n").length;
+  var beforeBytes = new Blob([input]).size;
+  var afterBytes = new Blob([result.out]).size;
+  var diff = buildDiff(input, result.out);
+
+  var langLabel = "";
+  for(var i = 0; i < langs.length; i++){ if(langs[i].id === currentLang){ langLabel = langs[i].label; break; } }
+
+  var h = '<div class="cu-stats">';
+  h += '<div class="cu-stat"><div class="lbl">Language</div><div class="val">' + esc(langLabel) + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Lines before</div><div class="val">' + beforeLines.toLocaleString() + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Lines after</div><div class="val ok">' + afterLines.toLocaleString() + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Size before</div><div class="val">' + formatBytes(beforeBytes) + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Size after</div><div class="val">' + formatBytes(afterBytes) + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Diff ops</div><div class="val">' + diff.total.toLocaleString() + (diff.truncated ? ' (capped)' : '') + '</div></div>';
+  h += '</div>';
+
+  if(result.note){
+    h += '<div class="cu-tip"><b>Note:</b> ' + esc(result.note) + '</div>';
+  }
+
+  h += '<div class="cu-result">';
+  h += '<h3 style="margin:0 0 10px">Formatted output</h3>';
+  h += '<div class="cu-code-out">' + highlight(result.out, currentLang) + '</div>';
+  h += '<div class="cu-actions">';
+  h += '<button type="button" id="cu_copyOut" class="primary">Copy output</button>';
+  h += '<button type="button" id="cu_downloadOut">Download file</button>';
+  h += '<button type="button" id="cu_swapOut">Use as input</button>';
+  h += '</div></div>';
+
+  h += '<div class="cu-diff">';
+  h += '<div class="cu-diff-head"><span>Before (minified)</span><span>After (beautified)</span></div>';
+  h += '<div class="cu-diff-body"><div class="cu-diff-col before">' + diff.before + '</div><div class="cu-diff-col after">' + diff.after + '</div></div>';
+  h += '</div>';
+
+  out.innerHTML = h;
+
+  $("cu_copyOut").addEventListener("click", function(){ copyText(result.out, $("cu_copyOut")); });
+  $("cu_downloadOut").addEventListener("click", function(){
+    var extMap = {js:"js", ts:"ts", css:"css", scss:"scss", less:"less", html:"html", json:"json", xml:"xml", svg:"svg", sql:"sql"};
+    downloadFile(result.out, "beautified." + (extMap[currentLang] || "txt"), "text/plain");
+  });
+  $("cu_swapOut").addEventListener("click", function(){
+    $("cu_input").value = result.out;
+    renderBeautify();
+  });
+}
+
+function formatBytes(b){
+  if(b < 1024) return b + " B";
+  if(b < 1024 * 1024) return (b / 1024).toFixed(1) + " KB";
+  return (b / (1024 * 1024)).toFixed(2) + " MB";
+}
+
+function downloadFile(content, filename, mime){
+  var blob = new Blob([content], {type: mime || "text/plain"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click();
+  setTimeout(function(){ URL.revokeObjectURL(url); document.body.removeChild(a); }, 100);
+}
+
+/* ============================================================
+   RENDER MINIFY
+   ============================================================ */
+function renderMinify(){
+  var input = $("m_input").value;
+  var out = $("m_output");
+  if(!input.trim()){
+    out.innerHTML = '<div class="cu-empty">Paste code above and click Minify.</div>';
+    return;
+  }
+  var lang = $("m_lang").value;
+  var preserve = $("m_preserve").value === "comments";
+  var result = minifyCode(input, lang, preserve);
+  var savedPct = ((1 - result.length / input.length) * 100).toFixed(1);
+  var h = '<div class="cu-stats">';
+  h += '<div class="cu-stat"><div class="lbl">Input size</div><div class="val">' + formatBytes(new Blob([input]).size) + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Output size</div><div class="val ok">' + formatBytes(new Blob([result]).size) + '</div></div>';
+  h += '<div class="cu-stat"><div class="lbl">Saved</div><div class="val ' + (savedPct > 0 ? 'ok' : 'warn') + '">' + savedPct + '%</div></div>';
+  h += '</div>';
+  h += '<div class="cu-result"><div class="cu-code-out">' + highlight(result, lang) + '</div>';
+  h += '<div class="cu-actions"><button type="button" id="m_copyOut" class="primary">Copy minified</button><button type="button" id="m_downloadOut">Download</button></div></div>';
+  out.innerHTML = h;
+  $("m_copyOut").addEventListener("click", function(){ copyText(result, $("m_copyOut")); });
+  $("m_downloadOut").addEventListener("click", function(){ downloadFile(result, "minified." + lang, "text/plain"); });
+}
+
+/* ============================================================
+   CHEAT SHEET
+   ============================================================ */
+function renderCheatsheet(){
+  var host = $("cheatsheetOutput");
+  if(!host) return;
+  var h = '';
+  h += '<div class="cu-panel"><h3>Supported languages</h3>';
+  h += '<table class="cu-table"><tr><th>Language</th><th>Extensions</th><th>Engine</th></tr>';
+  h += '<tr><td>JavaScript</td><td>.js</td><td>js-beautify (ES2020+)</td></tr>';
+  h += '<tr><td>TypeScript</td><td>.ts</td><td>js-beautify</td></tr>';
+  h += '<tr><td>CSS</td><td>.css</td><td>css-beautify</td></tr>';
+  h += '<tr><td>SCSS / LESS</td><td>.scss, .less</td><td>css-beautify</td></tr>';
+  h += '<tr><td>HTML</td><td>.html, .htm</td><td>html-beautify</td></tr>';
+  h += '<tr><td>JSON</td><td>.json</td><td>JSON.parse + stringify</td></tr>';
+  h += '<tr><td>XML</td><td>.xml</td><td>html-beautify</td></tr>';
+  h += '<tr><td>SVG</td><td>.svg</td><td>html-beautify</td></tr>';
+  h += '<tr><td>SQL</td><td>.sql</td><td>Rule-based formatter</td></tr>';
+  h += '</table></div>';
+  h += '<div class="cu-panel"><h3>What is reversible?</h3>';
+  h += '<table class="cu-table"><tr><th>Transformation</th><th>Reversible?</th></tr>';
+  h += '<tr><td>Whitespace and line breaks</td><td>✅ Yes</td></tr>';
+  h += '<tr><td>Indentation</td><td>✅ Yes</td></tr>';
+  h += '<tr><td>Comments</td><td>❌ No — permanently lost</td></tr>';
+  h += '<tr><td>Variable names</td><td>❌ No — needs source map</td></tr>';
+  h += '<tr><td>Function names</td><td>❌ No — needs source map</td></tr>';
+  h += '<tr><td>Dead code</td><td>❌ No — removed</td></tr>';
+  h += '<tr><td>CSS rule order</td><td>✅ Yes</td></tr>';
+  h += '</table></div>';
+  h += '<div class="cu-panel"><h3>Formatting options explained</h3>';
+  h += '<p><b>Indent:</b> 2 spaces is the web standard (Prettier default). 4 spaces is common in Java, C# and older JavaScript codebases. Tabs are preferred by some teams for accessibility — a tab can be rendered at any width by the reader.</p>';
+  h += '<p><b>Brace style:</b> Collapse (1TBS) puts the opening brace on the same line as the statement. Expand (Allman) puts it on the next line. End-expand is a hybrid used by some Google styles.</p>';
+  h += '<p><b>Max line length:</b> 0 means no wrapping — each logical line stays on one line regardless of length. Set to 80, 100 or 120 to wrap long lines, which is common in editor configurations.</p>';
+  h += '<p><b>Preserve comments:</b> Keeps comments in the output. If you are formatting a file for a linter or a code review, preserve comments. If you are preparing a file for minification, remove them.</p></div>';
+  h += '<div class="cu-panel"><h3>Source map recovery</h3>';
+  h += '<p>If a <code>.js.map</code> file is available alongside the minified code, you can recover the full original source — variable names, comments and file structure included. Tools: <code>source-map</code> (Mozilla), <code>sourcemapper</code>, <code>webcrack</code>. For stack-trace symbolication, Sentry, Bugsnag, Rollbar and Datadog accept uploaded source maps.</p></div>';
+  host.innerHTML = h;
+}
+
+/* ============================================================
+   SAMPLE CODE
+   ============================================================ */
+var samples = {
+  js: 'function n(e,t){return e+t}var a=1,b=2;console.log(n(a,b));function c(r){return r.map(function(i){return i*2})}var d=[1,2,3];c(d).forEach(function(i){console.log(i)});',
+  css: '.a{color:#ff0000;margin:0 auto;padding:10px 20px}.b,.c{display:flex;gap:12px;background:rgba(0,0,0,.5)}.d:hover{opacity:.8;transition:all .3s ease}@media(max-width:768px){.a{font-size:14px}.b{flex-direction:column}}',
+  html: '<div class="wrap"><h1>Title</h1><p>Paragraph text <a href="/link">link</a> and <strong>bold</strong>.</p><ul><li>One</li><li>Two</li><li>Three</li></ul></div>',
+  json: '{"name":"Utiliby","tools":35,"categories":["engineering","construction","developer"],"free":true,"url":"https://utiliby.com","nested":{"a":1,"b":[1,2,3],"c":{"d":null}}}',
+  sql: 'select id,name,email from users where active=1 and created_at>="2024-01-01" order by name asc limit 10;',
+  xml: '<?xml version="1.0"?><catalog><book id="1"><title>Book One</title><author>Author A</author></book><book id="2"><title>Book Two</title><author>Author B</author></book></catalog>'
+};
+
+function loadSample(){
+  var key = currentLang;
+  if(!samples[key]) key = "js";
+  $("cu_input").value = samples[key];
+  renderBeautify();
+}
+
+/* ============================================================
+   UI WIRING
+   ============================================================ */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  buildLangBar();
+  renderCheatsheet();
+
+  document.querySelectorAll(".cu-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var mode = this.dataset.mode;
+      document.querySelectorAll(".cu-tab").forEach(function(x){ x.classList.toggle("on", x.dataset.mode === mode); });
+      $("beautifyTab").hidden = (mode !== "beautify");
+      $("minifyTab").hidden = (mode !== "minify");
+      $("cheatsheetTab").hidden = (mode !== "cheatsheet");
+    });
+  });
+
+  $("cu_beautifyBtn").addEventListener("click", renderBeautify);
+  $("cu_clearBtn").addEventListener("click", function(){ $("cu_input").value = ""; $("cu_output").innerHTML = '<div class="cu-empty">Paste or drop minified code above, then click Beautify.</div>'; });
+  $("cu_sampleBtn").addEventListener("click", loadSample);
+  $("m_minifyBtn").addEventListener("click", renderMinify);
+  $("m_clearBtn").addEventListener("click", function(){ $("m_input").value = ""; $("m_output").innerHTML = '<div class="cu-empty">Paste code above and click Minify.</div>'; });
+
+  /* File drop */
+  var zone = $("fileZone");
+  var fileInput = $("fileInput");
+  zone.addEventListener("click", function(){ fileInput.click(); });
+  zone.addEventListener("dragover", function(e){ e.preventDefault(); zone.classList.add("drag"); });
+  zone.addEventListener("dragleave", function(){ zone.classList.remove("drag"); });
+  zone.addEventListener("drop", function(e){
+    e.preventDefault();
+    zone.classList.remove("drag");
+    var f = e.dataTransfer.files[0];
+    if(f) readFile(f);
+  });
+  fileInput.addEventListener("change", function(){
+    if(fileInput.files[0]) readFile(fileInput.files[0]);
+  });
+
+  function readFile(file){
+    var ext = (file.name.split(".").pop() || "").toLowerCase();
+    var extMap = {js:"js", ts:"ts", css:"css", scss:"scss", less:"less", html:"html", htm:"html", json:"json", xml:"xml", svg:"svg", sql:"sql"};
+    if(extMap[ext]) currentLang = extMap[ext];
+    buildLangBar();
+    var reader = new FileReader();
+    reader.onload = function(e){
+      $("cu_input").value = e.target.result;
+      renderBeautify();
+    };
+    reader.readAsText(file);
+  }
+
+  document.addEventListener("click", function(e){
+    var copyBtn = e.target.closest("[data-copy-target]");
+    if(copyBtn){
+      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
+      if(target) copyText(target.value, copyBtn);
+    }
+  });
+});
+})();
+</script>
+</body>
+</html>
