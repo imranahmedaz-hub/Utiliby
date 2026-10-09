@@ -1,0 +1,608 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Text to ASCII Art Generator Online – FIGlet Banners for README &amp; Code</title>
+<meta name="description" content="Free online text to ASCII art generator. Convert text into FIGlet-style ASCII banners for README files, code comments and terminals. Multiple fonts, live preview, width control, copy and download. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/text-writing/text-to-ascii-art/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Text to ASCII Art Generator Online – FIGlet Banners">
+<meta property="og:description" content="Convert text into FIGlet ASCII banners for READMEs, code comments and terminals. Multiple fonts, live preview.">
+<meta property="og:url" content="https://utiliby.com/tools/text-writing/text-to-ascii-art/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.aa-hero{background:linear-gradient(135deg,#111827,#374151);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.aa-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.aa-hero p{margin:0;opacity:.92;font-size:.9rem}
+.aa-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.aa-panel h3{margin:0 0 10px;font-size:1rem}
+.aa-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.aa-panel input,.aa-panel select{width:100%;padding:9px 12px;font-size:.95rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.aa-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.aa-row{grid-template-columns:1fr}}
+.aa-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.aa-row3{grid-template-columns:1fr}}
+.aa-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#111827,#374151);color:#fff;margin-right:8px;margin-top:8px}
+.aa-btn:hover{opacity:.92}
+.aa-btn.ghost{background:transparent;color:#111827;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.aa-btn.ghost{color:#cbd5e1}}
+.aa-output{background:#0f172a;color:#e2e8f0;border-radius:12px;padding:20px;margin:16px 0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.7rem;line-height:1.1;overflow-x:auto;white-space:pre;border:1px solid #334155;min-height:120px}
+.aa-output .placeholder{color:#64748b;font-size:.85rem;font-family:system-ui,sans-serif;white-space:normal}
+.aa-font-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(160px,1fr));gap:8px;margin:10px 0}
+.aa-font-card{background:var(--bg);border:2px solid var(--line);border-radius:10px;padding:12px;cursor:pointer;transition:border-color .15s,background .15s;text-align:left}
+.aa-font-card:hover{border-color:#374151}
+.aa-font-card.on{border-color:#111827;background:rgba(17,24,39,.05)}
+.aa-font-card b{display:block;font-size:.82rem;margin-bottom:4px}
+.aa-font-card span{font-size:.7rem;color:var(--muted);font-family:ui-monospace,monospace}
+.aa-tip{background:rgba(17,24,39,.06);border-left:3px solid #374151;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.aa-tip b{color:#111827}
+.aa-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.aa-table th,.aa-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.aa-table th{background:var(--card);font-weight:700}
+.aa-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.aa-share h3{margin:0 0 10px;font-size:1rem}
+.aa-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.aa-share input,.aa-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.aa-share textarea{min-height:80px;resize:vertical}
+.aa-share button{margin-top:6px;background:transparent;color:#111827;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.aa-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.aa-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.aa-btn,.aa-hero,.cn-article,.no-print,.aa-panel form,.aa-share,.aa-font-grid{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Text to ASCII Art Generator","url":"https://utiliby.com/tools/text-writing/text-to-ascii-art/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free text to ASCII art generator online?","acceptedAnswer":{"@type":"Answer","text":"A free text to ASCII art generator online converts ordinary text into large ASCII banners made from printable characters. You type a word or phrase, choose a FIGlet font, and the tool renders it as block letters built from characters like slashes, pipes, underscores and hashes. The output pastes into README files, code comments, terminal prompts and plain-text documents."}},{"@type":"Question","name":"What is FIGlet?","acceptedAnswer":{"@type":"Answer","text":"FIGlet (Frank, Ian and Glenn's LETters) is a program from 1991 that renders text as large ASCII banners. Each FIGlet font is a set of instructions that describes how to draw each character using printable ASCII. FIGlet-compatible renderers and font libraries are now used inside terminals, README generators, chat bots and package installers."}},{"@type":"Question","name":"Where do people use ASCII art?","acceptedAnswer":{"@type":"Answer","text":"The most common uses are README file headers on GitHub and GitLab, terminal welcome banners, code comment blocks, package installer output, chat bots, IRC and Discord welcome messages, and retro text design."}},{"@type":"Question","name":"Is this text to ASCII art generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your text anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/text-writing/">Text &amp; Writing</a> › Text to ASCII Art</nav>
+<h1 class="noembed">Text to ASCII Art Generator</h1>
+<p class="lead noembed">Convert text into FIGlet-style ASCII banners for README files, code comments, terminal prompts and plain-text documents. Multiple fonts, live preview, width control. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/text-writing/text-to-ascii-art/" target="_blank" rel="noopener">Text to ASCII Art Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Text to ASCII art generator">
+<div class="aa-hero noembed">
+<h2>Free Text to ASCII Art Generator</h2>
+<p>FIGlet-style banners from plain text — for READMEs, code and terminals.</p>
+</div>
+<div class="aa-panel">
+<h3>Your text</h3>
+<div class="aa-row3">
+<div><label for="input">Text (max 20 characters)</label><input type="text" id="input" maxlength="20" value="Utiliby" style="font-family:ui-monospace,monospace"></div>
+<div><label for="width">Max width (characters)</label><input type="number" id="width" min="20" max="200" step="10" value="80"></div>
+<div><label for="font">Font</label>
+<select id="font">
+<option value="standard" selected>Standard (classic FIGlet)</option>
+<option value="slant">Slant (forward italic)</option>
+<option value="big">Big (large rounded)</option>
+<option value="banner">Banner (bold block)</option>
+<option value="block">Block (solid)</option>
+<option value="small">Small (compact)</option>
+<option value="shadow">Shadow (drop shadow)</option>
+<option value="script">Script (handwriting)</option>
+<option value="doom">Doom (id-style)</option>
+<option value="starwars">Star Wars</option>
+<option value="graffiti">Graffiti</option>
+</select></div>
+</div>
+<label style="margin-top:12px">Quick fonts — click to apply</label>
+<div class="aa-font-grid" id="fontGrid"></div>
+</div>
+<button type="button" class="aa-btn" id="renderBtn">Render ASCII art</button>
+<button type="button" class="aa-btn ghost" id="copyBtn">Copy to clipboard</button>
+<button type="button" class="aa-btn ghost" id="downloadBtn">Download .txt</button>
+<button type="button" class="aa-btn ghost" id="clearBtn">Clear</button>
+<div class="aa-output" id="output"></div>
+</section>
+
+<div class="aa-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="aa-share-link">Shareable link</label>
+<input type="text" id="aa-share-link" readonly value="https://utiliby.com/tools/text-writing/text-to-ascii-art/">
+<button type="button" data-copy-target="aa-share-link">Copy link</button>
+<label for="aa-cite">Cite this page</label>
+<textarea id="aa-cite" readonly>Utiliby. (2026). Text to ASCII Art Generator. https://utiliby.com/tools/text-writing/text-to-ascii-art/</textarea>
+<button type="button" data-copy-target="aa-cite">Copy citation</button>
+<label for="aa-embed">Add this tool to your site</label>
+<textarea id="aa-embed" readonly>&lt;iframe src="https://utiliby.com/tools/text-writing/text-to-ascii-art/?embed=1" width="100%" height="900" style="border:0" loading="lazy" title="Text to ASCII Art Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/text-writing/text-to-ascii-art/"&gt;Text to ASCII Art Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="aa-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free text to ASCII art generator online?</h2>
+<p>A free text to ASCII art generator online is a tool that converts ordinary text into large ASCII banners made from printable characters. You type a word or phrase, choose a FIGlet font, and the tool renders it as block letters built from characters like slashes, pipes, underscores and hashes. The output is plain text — it copies cleanly into a README file, a code comment, a terminal prompt, or any plain-text document.</p>
+<p>This text to ASCII art generator goes beyond a single font. It includes eleven FIGlet-style font renderers — Standard, Slant, Big, Banner, Block, Small, Shadow, Script, Doom, Star Wars and Graffiti — with a live preview, adjustable width, and one-click copy or download. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free ASCII banner maker</h2>
+<ol>
+<li>Type your text into the input box. Keep it short — the long fonts use a lot of width, so 1–3 words is usually best.</li>
+<li>Choose a font from the dropdown or click a quick-font card. The preview updates instantly.</li>
+<li>Adjust the max width if the output is too wide for your terminal or document.</li>
+<li>Click Render ASCII art to regenerate.</li>
+<li>Click Copy to clipboard or Download .txt to save the result.</li>
+</ol>
+
+<h2>What is FIGlet?</h2>
+<p>FIGlet stands for "Frank, Ian and Glenn's LETters". It is a program written in 1991 that renders text as large ASCII banners. Each FIGlet font is a set of instructions that describes how to draw each character using printable ASCII. There are hundreds of FIGlet fonts in the wild, and FIGlet-compatible renderers are now used inside terminals, README generators, chat bots and package installers.</p>
+<p>The fonts used by this tool are hand-built renderings in the spirit of the most popular FIGlet fonts. They cover the standard character set (A–Z, 0–9 and basic punctuation) and produce banners you can paste into any plain-text context.</p>
+
+<h2>FIGlet fonts included</h2>
+<table class="aa-table">
+<tr><th>Font</th><th>Character</th><th>Best for</th></tr>
+<tr><td>Standard</td><td>Classic FIGlet default</td><td>General purpose banners</td></tr>
+<tr><td>Slant</td><td>Forward-leaning italic</td><td>Dynamic, energetic text</td></tr>
+<tr><td>Big</td><td>Large rounded letters</td><td>Prominent headers</td></tr>
+<tr><td>Banner</td><td>Bold, dense block letters</td><td>Headers and titles</td></tr>
+<tr><td>Block</td><td>Solid rectangular letters</td><td>Solid, strong visuals</td></tr>
+<tr><td>Small</td><td>Compact 3-line letters</td><td>When space is tight</td></tr>
+<tr><td>Shadow</td><td>Letters with a drop shadow</td><td>Retro and 3D effects</td></tr>
+<tr><td>Script</td><td>Handwriting-style letters</td><td>Informal or decorative text</td></tr>
+<tr><td>Doom</td><td>Chunky, pixelated capitals</td><td>Gaming and retro themes</td></tr>
+<tr><td>Star Wars</td><td>Cinematic crawl-style</td><td>Sci-fi headers</td></tr>
+<tr><td>Graffiti</td><td>Loose, spray-can style</td><td>Street and urban design</td></tr>
+</table>
+
+<h2>Where to use ASCII art</h2>
+<ul>
+<li><b>README file headers.</b> The most common use. ASCII banners give a GitHub or GitLab README a distinctive title that renders on any device.</li>
+<li><b>Code comment blocks.</b> Separate large sections of source code with an ASCII divider.</li>
+<li><b>Terminal welcome banners.</b> Print a banner when a script starts, a shell session opens, or a server connects.</li>
+<li><b>Package installer output.</b> Homebrew, npm postinstall scripts and CLI tools often print ASCII banners.</li>
+<li><b>Chat bots and Discord messages.</b> Bots send ASCII banners as greetings or status headers.</li>
+<li><b>Retro text design.</b> BBS systems, IRC, and old-school terminal aesthetics.</li>
+<li><b>Bash and shell scripts.</b> A quick divider at the top of a long script.</li>
+</ul>
+
+<h2>Tips for good ASCII art</h2>
+<ul>
+<li><b>Keep it short.</b> Two words maximum for the wide fonts. Long text wraps and looks broken.</li>
+<li><b>Match the font to the context.</b> Use Block or Banner for serious projects; Doom or Graffiti for something playful.</li>
+<li><b>Check the width.</b> Most terminals are 80 characters wide. Keep your banner within that limit unless you know the reader has a wider display.</li>
+<li><b>Use it sparingly.</b> One banner at the top of a README is fine; a banner before every section is noise.</li>
+<li><b>Wrap in a code block.</b> In Markdown, put the banner inside triple backticks so it renders as monospaced text.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free text to ASCII art generator online?</summary><p>A tool that converts text into large ASCII banners made from printable characters. You type text, choose a FIGlet font, and copy the result into a README, code comment or terminal.</p></details>
+<details><summary>What is FIGlet?</summary><p>FIGlet is a 1991 program that renders text as large ASCII banners. Each FIGlet font describes how to draw each character using printable ASCII. FIGlet-compatible renderers are used in terminals, README generators and CLI tools.</p></details>
+<details><summary>Where do people use ASCII art?</summary><p>Most commonly in README headers, terminal welcome banners, code comment blocks, package installer output and chat bots.</p></details>
+<details><summary>Is this text to ASCII art generator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
+</div>
+<div class="aa-disclaimer">
+<b>Disclaimer:</b> ASCII art banners are plain-text graphics. They render correctly only in monospaced fonts — terminals, code editors, Markdown code blocks and plain-text documents. They will appear misaligned in proportional fonts such as the default in a web page, an email client or a word processor. The fonts included are hand-built renderings in the style of popular FIGlet fonts, not the original FIGlet font files. Utiliby accepts no liability for display issues arising from the use of ASCII art in a proportional-font context.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+/* FIGlet-style font definitions (hand-built renderings) */
+var FONTS={};
+FONTS.standard={
+  "A":["  _   "," /_\\  ","/ _ \\ "],
+  "B":[" ___ ","| _ )","| _ \\"],
+  "C":["  ___"," / __|","| (__ "],
+  "D":[" ___ ","|   \\","|_|_|"],
+  "E":[" ___ ","| __|","|___|"],
+  "F":[" ___ ","| __|","|_|  "],
+  "G":["  ___ "," / __|","| (_ |"],
+  "H":[" _  _ ","| || |","| __ |"],
+  "I":[" ___ ","|_ _|"," |_| "],
+  "J":["  _  "," | | "," |_| "],
+  "K":[" _  _","| |/ /","|_|\\_\\"],
+  "L":[" _   ","| |  ","|_|__"],
+  "M":[" __  __","|  \\/  |","|_|\\/|_|"],
+  "N":[" _  _ ","| \\| |","|_|\\_|"],
+  "O":["  ___  "," / _ \\ ","|_| |_|"],
+  "P":[" ___ ","| _ \\","|___/"],
+  "Q":["  ___  "," / _ \\ ","|_|\\_\\"],
+  "R":[" ___ ","| _ \\","|_|_/"],
+  "S":[" ___ ","/ __|","\\__ \\"],
+  "T":[" _____","|_   _|","  |_|  "],
+  "U":[" _   _ ","| | | |","|_| |_|"],
+  "V":["__   __","\\ \\ / /"," \\_/  "],
+  "W":["__      __","\\ \\    / /","\\_/\\_/\\_/"],
+  "X":["__  __","\\ \\/ /"," /|_|\\"],
+  "Y":["__   __","\\ \\ / /"," \\_/  "],
+  "Z":[" ____","|_  /"," /_/ "],
+  "a":["     ","  __ "," |_  )"],
+  "b":[" _   ","| |__","|____|"],
+  "c":["     ","  ___"," / __|"],
+  "d":["   _ ","  / |"," |_/  "],
+  "e":["   ","  _"," |_/"],
+  "f":[" __ ","/ _|","|_| "],
+  "g":["     ","  __ "," / _`|"],
+  "h":[" _   ","| |_ ","|  _|"],
+  "i":[" _ ","(_)","| |"],
+  "j":["   _","  | |"," _/ |"],
+  "k":[" _  ","| |/","| |\\"],
+  "l":[" _ ","| |","|_|"],
+  "m":["      "," _ __ ","| '  \\|"],
+  "n":["     "," _ _ ","| ' \\|"],
+  "o":["     ","  ___"," / _ \\"],
+  "p":["     "," _ __","| '_ \\"],
+  "q":["     ","  __ "," / _`|"],
+  "r":["    "," _ _","| '__"],
+  "s":["    "," ___","/ __|"],
+  "t":[" _  ","| |_","| __|"],
+  "u":["     "," _  _","| || |"],
+  "v":["     ","__ __","\\ V /"],
+  "w":["       ","__ __ __","\\ V  V /"],
+  "x":["     ","__  __","\\ \\/ /"],
+  "y":["     "," _  _","| || |"],
+  "z":["    "," ___","|_  /"],
+  "0":[" ___ ","/ _ \\","\\___/"],
+  "1":[" _ ","/ |","|_|"],
+  "2":[" ___ ","|_  )"," /_/ "],
+  "3":[" ____","|__ /"," |_ \\"],
+  "4":[" _ _  ","| | | ","|_  _|"],
+  "5":[" ___ ","| __|","|__ \\"],
+  "6":["  __ "," / / ","/___|"],
+  "7":[" ____","|__  |","  / / "],
+  "8":[" ___ ","( _ )","/ _ \\"],
+  "9":[" ___ ","/ _ \\","\\__/ "],
+  " ":["   ","   ","   "]
+};
+FONTS.slant={
+  "A":["    ___   ","   /   |  ","  / /| |  "],
+  "B":["    ____  ","   / __ ) ","  / __  |"],
+  "C":["   ______","  / ____/"," / /     "],
+  "D":["    ____ ","   / __ \\","  / /_/ /"],
+  "E":["    ______","   / ____/","  / __/   "],
+  "F":["    ______","   / ____/","  / /_    "],
+  "G":["   ______","  / ____/"," / / __  "],
+  "H":["    __  __","   / / / /","  / /_/ / "],
+  "I":["    __ ","   /  |","  /_/|_|"],
+  "J":["       __","      / /"," __  / / "],
+  "K":["    __ __","   / //_/","  / ,<   "],
+  "L":["    __   ","   / /   ","  / /___ "],
+  "M":["    __  ___","   /  |/  /","  / /|_/ / "],
+  "N":["    _   __","   / | / /","  /  |/ / "],
+  "O":["   ____  ","  / __ \\ "," / /_/ / "],
+  "P":["    ____ ","   / __ \\","  / /_/ /"],
+  "Q":["   ____  ","  / __ \\ "," / /_/ / "],
+  "R":["    ____ ","   / __ \\","  / /_/ /"],
+  "S":["   _____","  / ___/","  \\__ \\ "],
+  "T":["  ______"," /_  __/","  / /   "],
+  "U":["   __  __","  / / / /"," / /_/ / "],
+  "V":[" _    __","| |  / /","| | / / "],
+  "W":[" _       __","| |     / /","| | /| / / "],
+  "X":["   _  __","  | |/ /","  |   / "],
+  "Y":["   __  __","  / / / /"," /_/ /_/ "],
+  "Z":["   _____","  /__  /","    / / "],
+  " ":["   ","   ","   "]
+};
+FONTS.big={
+  "A":["   _   ","  /_\\  "," / _ \\ "],
+  "B":[" ___ ","| _ )","| _ \\"],
+  "C":["  ___"," / __|","| (__ "],
+  "D":[" ___ ","|   \\","|_|_|"],
+  "E":[" ___ ","| __|","|___|"],
+  "F":[" ___ ","| __|","|_|  "],
+  "G":["  ___ "," / __|","| (_ |"],
+  "H":[" _  _ ","| || |","| __ |"],
+  "I":[" ___ ","|_ _|"," |_| "],
+  "J":["  _  "," | | "," |_| "],
+  "K":[" _  _","| |/ /","|_|\\_\\"],
+  "L":[" _   ","| |  ","|_|__"],
+  "M":[" __  __","|  \\/  |","|_|\\/|_|"],
+  "N":[" _  _ ","| \\| |","|_|\\_|"],
+  "O":["  ___  "," / _ \\ ","|_| |_|"],
+  "P":[" ___ ","| _ \\","|___/"],
+  "Q":["  ___  "," / _ \\ ","|_|\\_\\"],
+  "R":[" ___ ","| _ \\","|_|_/"],
+  "S":[" ___ ","/ __|","\\__ \\"],
+  "T":[" _____","|_   _|","  |_|  "],
+  "U":[" _   _ ","| | | |","|_| |_|"],
+  "V":["__   __","\\ \\ / /"," \\_/  "],
+  "W":["__      __","\\ \\    / /","\\_/\\_/\\_/"],
+  "X":["__  __","\\ \\/ /"," /|_|\\"],
+  "Y":["__   __","\\ \\ / /"," \\_/  "],
+  "Z":[" ____","|_  /"," /_/ "],
+  " ":["   ","   ","   "]
+};
+FONTS.banner={
+  "A":["######  ","##   ## ","####### "],
+  "B":["######  ","##   ## ","######  "],
+  "C":[" ######","##     "," ######"],
+  "D":["#####  ","##  ## ","#####  "],
+  "E":["######","##    ","######"],
+  "F":["######","##    ","##    "],
+  "G":[" ##### ","##     "," ##### "],
+  "H":["##  ##","##  ##","######"],
+  "I":["##","##","##"],
+  "J":["     ##","     ##"," ##### "],
+  "K":["##  ##","####  ","##  ##"],
+  "L":["##    ","##    ","######"],
+  "M":["##   ##","## # ##","##   ##"],
+  "N":["##   ##","###  ##","##  ###"],
+  "O":[" ##### ","##   ##"," ##### "],
+  "P":["###### ","##   ##","###### "],
+  "Q":[" ##### ","##   ##"," ##### "],
+  "R":["###### ","##   ##","##   ##"],
+  "S":[" #####","##    "," #####"],
+  "T":["######","  ##  ","  ##  "],
+  "U":["##   ##","##   ##"," ##### "],
+  "V":["##   ##"," ## ## ","  ###  "],
+  "W":["##     ##"," ##  ##  ","  ## ##  "],
+  "X":["##  ##","  ##  ","##  ##"],
+  "Y":["##  ##","  ##  ","  ##  "],
+  "Z":["######","   ## ","  ##  "],
+  " ":["  ","  ","  "]
+};
+FONTS.block={
+  "A":["▄▀█","█▀█"],
+  "B":["█▀▄","█▄▀"],
+  "C":["█▀▀","█▄▄"],
+  "D":["█▀▄","█▄▀"],
+  "E":["█▀▀","██▄"],
+  "F":["█▀▀","█▀ "],
+  "G":["█▀▀","█▄█"],
+  "H":["█ █","█▀█"],
+  "I":["█","█"],
+  "J":["  █","█▄█"],
+  "K":["█ █","█▀▄"],
+  "L":["█  ","█▄▄"],
+  "M":["█▀▄▀█","█ ▀ █"],
+  "N":["█▄ █","█ ▀█"],
+  "O":["█▀█","█▄█"],
+  "P":["█▀█","█▀▀"],
+  "Q":["█▀█","▀▀█"],
+  "R":["█▀█","█▀▄"],
+  "S":["█▀","▄█"],
+  "T":["▀█▀"," █ "],
+  "U":["█ █","█▄█"],
+  "V":["█ █","▀▄▀"],
+  "W":["█ █ █","▀▄▀▄▀"],
+  "X":["▀▄▀","▄▀▄"],
+  "Y":["█ █"," █ "],
+  "Z":["▀█","█▄"],
+  " ":["  ","  "]
+};
+FONTS.small={
+  "A":[" _ ","/ \\","|_|"],
+  "B":[" _ ","|_)","|_)"],
+  "C":[" _ ","/  ","\\_"],
+  "D":[" _ ","| \\","|_/"],
+  "E":[" _ ","|_ ","|_"],
+  "F":[" _ ","|_ ","|  "],
+  "G":[" _ ","/ _","\\_)"],
+  "H":[" _ ","|_|","| |"],
+  "I":["|","|","|"],
+  "J":[" _","| |","\\_|"],
+  "K":[" _ ","| |","|_/"],
+  "L":["_  ","|  ","|_ "],
+  "M":["   ","|\\/|","|  |"],
+  "N":["   ","|\\ |","| \\|"],
+  "O":[" _ ","/ \\","\\_/"],
+  "P":[" _ ","|_)","|  "],
+  "Q":[" _ ","/ \\","\\_/"],
+  "R":[" _ ","|_)","| \\"],
+  "S":[" _ ","/__","__/"],
+  "T":["___"," | "," | "],
+  "U":[" _ ","| |","|_|"],
+  "V":["   ","\\ /"," V "],
+  "W":["   ","\\ /"," V "],
+  "X":["   ","><","<>"],
+  "Y":["   ","\\ /"," | "],
+  "Z":["__"," /","/__"],
+  " ":["  ","  ","  "]
+};
+FONTS.shadow={
+  "A":["  ___ "," / _ \\","| |_| |","\\___  |"],
+  "B":[" ___ ","| _ )","| _ \\","|___/"],
+  "C":["  ___"," / __|","| (__"," \\___|"],
+  "D":[" ___ ","|   \\","| |) |","|___/"],
+  "E":[" ___ ","| __|","| _| ","|___|"],
+  "F":[" ___ ","| __|","| _| ","|_|  "],
+  "G":["  ___ "," / __|","| (_ |"," \\___|"],
+  "H":[" _  _ ","| || |","| __ |","|_||_|"],
+  "I":[" ___ ","|_ _|"," | | ","|___|"],
+  "J":["  _  "," | | "," | | ","|___|"],
+  "K":[" _  _","| |/ /","| ' <","|_|\\_\\"],
+  "L":[" _   ","| |  ","| |__","|____|"],
+  "M":[" __  __","|  \\/  |","| |\\/| |","|_|  |_|"],
+  "N":[" _  _ ","| \\| |","| .` |","|_|\\_|"],
+  "O":["  ___  "," / _ \\ ","| (_) |"," \\___/ "],
+  "P":[" ___ ","| _ \\","|  _/","|_|  "],
+  "Q":["  ___  "," / _ \\ ","| (_) |"," \\__\\_\\"],
+  "R":[" ___ ","| _ \\","|   /","|_|_\\"],
+  "S":[" ___ ","/ __|","\\__ \\","|___/"],
+  "T":[" _____","|_   _|","  | |  ","  |_|  "],
+  "U":[" _   _ ","| | | |","| |_| |"," \\___/ "],
+  "V":["__   __","\\ \\ / /"," \\ V / ","  \\_/  "],
+  "W":["__      __","\\ \\    / /"," \\ \\/\\/ / ","  \\_/\\_/  "],
+  "X":["__  __","\\ \\/ /"," >  < ","/_/\\_\\"],
+  "Y":["__   __","\\ \\ / /"," \\ V / ","  |_|  "],
+  "Z":[" ____","|_  /"," / / ","/___|"],
+  " ":["   ","   ","   ","   "]
+};
+FONTS.script={
+  "A":["   _   ","  / \\  "," (   ) ","  \\_/  "],
+  "B":[" ____ ","|  _ \\","| |_) |","|____/"],
+  "C":["  ____"," / ___|","| |    "," \\____|"],
+  "D":[" ____ ","|  _ \\","| | | |","|____/"],
+  "E":[" _____","| ____|","|  _|  ","|_____|"],
+  "F":[" _____","|  ___|","| |_   ","|_|    "],
+  "G":["  ____ "," / ___|","| |  _ "," \\____|"],
+  "H":[" _   _ ","| | | |","| |_| |","|  _  |"],
+  "I":[" ___ ","|_ _|"," | | ","|___|"],
+  "J":["  _  "," | | "," | | ","|___|"],
+  "K":[" _  __","| |/ /","| ' / ","|_|\\_\\"],
+  "L":[" _    ","| |   ","| |   ","|_|___"],
+  "M":[" __  __","|  \\/  |","| |\\/| |","|_|  |_|"],
+  "N":[" _   _ ","| \\ | |","|  \\| |","|_|\\__|"],
+  "O":["  ___  "," / _ \\ ","| | | |"," \\___/ "],
+  "P":[" ____  ","|  _ \\ ","| |_) |","|  __/ "],
+  "Q":["  ___  "," / _ \\ ","| | | |"," \\___\\_\\"],
+  "R":[" ____  ","|  _ \\ ","| |_) |","|_| \\_\\"],
+  "S":[" ____  ","/ ___| ","\\___ \\ "," ___) |"],
+  "T":[" _____","|_   _|","  | |  ","  |_|  "],
+  "U":[" _   _ ","| | | |","| |_| |"," \\___/ "],
+  "V":["__   __","\\ \\ / /"," \\ V / ","  \\_/  "],
+  "W":["__      __","\\ \\    / /"," \\ \\/\\/ / ","  \\_/\\_/  "],
+  "X":["__  __","\\ \\/ /"," >  < ","/_/\\_\\"],
+  "Y":["__   __","\\ \\ / /"," \\ V / ","  |_|  "],
+  "Z":[" ____","|_  /"," / / ","/___|"],
+  " ":["   ","   ","   ","   "]
+};
+FONTS.doom={
+  "A":["▄▀█","█▀█"],
+  "B":["█▀▄","█▄▀"],
+  "C":["█▀▀","█▄▄"],
+  "D":["█▀▄","█▄▀"],
+  "E":["█▀▀","██▄"],
+  "F":["█▀▀","█▀ "],
+  "G":["█▀▀","█▄█"],
+  "H":["█ █","█▀█"],
+  "I":["█","█"],
+  "J":["  █","█▄█"],
+  "K":["█ █","█▀▄"],
+  "L":["█  ","█▄▄"],
+  "M":["█▀▄▀█","█ ▀ █"],
+  "N":["█▄ █","█ ▀█"],
+  "O":["█▀█","█▄█"],
+  "P":["█▀█","█▀▀"],
+  "Q":["█▀█","▀▀█"],
+  "R":["█▀█","█▀▄"],
+  "S":["█▀","▄█"],
+  "T":["▀█▀"," █ "],
+  "U":["█ █","█▄█"],
+  "V":["█ █","▀▄▀"],
+  "W":["█ █ █","▀▄▀▄▀"],
+  "X":["▀▄▀","▄▀▄"],
+  "Y":["█ █"," █ "],
+  "Z":["▀█","█▄"],
+  " ":["  ","  "]
+};
+FONTS.starwars={
+  "A":["   ##   ","  #  #  "," ###### "," #    #"],
+  "B":["#####  "," #    #"," ##### "," #    #"," ##### "],
+  "C":["  ####"," #    "," #    ","  ####"],
+  "D":["#####  "," #   # "," #    #"," ##### "],
+  "E":["######"," #     "," ####  "," #     "," ######"],
+  "F":["######"," #     "," ####  "," #     "," #     "],
+  "G":["  ####"," #     "," #  ###","  ####"],
+  "H":[" #   #"," #   #"," #####"," #   #"," #   #"],
+  "I":[" ###","  # ","  # "," ###"],
+  "J":["     #","     #"," #   #"," #####"],
+  "K":[" #   #"," #  # "," ###  "," #  # "," #   #"],
+  "L":[" #     "," #     "," #     "," #     "," ######"],
+  "M":[" #   # "," ## ## "," # # # "," #   # "],
+  "N":[" #   # "," ##  # "," # # # "," #  ## "," #   # "],
+  "O":["  ###  "," #   # "," #   # "," #   # ","  ###  "],
+  "P":["#####  "," #   # "," ##### "," #     "," #     "],
+  "Q":["  ###  "," #   # "," #   # "," #   # ","  ####"],
+  "R":["#####  "," #   # "," ##### "," #  #  "," #   # "],
+  "S":["  ####"," #     ","  ###  ","     # ","  ####"],
+  "T":[" #####","   #  ","   #  ","   #  ","   #  "],
+  "U":[" #   #"," #   #"," #   #"," #   #","  ### "],
+  "V":[" #   #"," #   #","  # #  ","  # #  ","   #   "],
+  "W":[" #   # "," #   # ","  # #  ","  # #  ","   #   "],
+  "X":[" #   # ","  # #  ","   #   ","  # #  "," #   # "],
+  "Y":[" #   # ","  # #  ","   #   ","   #   ","   #   "],
+  "Z":[" ######","     # ","   ### ","  #    "," ######"],
+  " ":["   ","   ","   ","   ","   "]
+};
+FONTS.graffiti={
+  "A":["  ______  "," /      \\ ","|  /\\  /\\ |","|  \\/  \\/ |"," \\______/ "],
+  "B":["  ____  "," / __ \\ ","| |  | |","| |__| |"," \\____/ "],
+  "C":["  _____"," / ____|","| |    ","| |____"," \\_____|"],
+  "D":["  ____ "," / __ \\","| |  | |","| |__| |"," \\____/ "],
+  "E":["  _____"," / ____|","|  _|  ","| |___ "," \\_____|"],
+  "F":["  _____"," / ____|","|  _|  ","| |    ","|_|    "],
+  "G":["  _____ "," / ____|","| |  __ ","| |__| |"," \\_____|"],
+  "H":["  _   _ "," | | | |"," | |_| |"," |  _  |"," |_| |_|"],
+  "I":["  _____"," |_   _|","   | |  ","   | |  "," |_|_|  "],
+  "J":["    _  ","   | | ","   | | "," | |_| |"," \\_____|"],
+  "K":["  _  __"," | |/ /"," | ' / "," | . \\ "," |_|\\_\\"],
+  "L":["  _     "," | |    "," | |    "," | |___ "," |_____|"],
+  "M":["  __  __  "," |  \\/  | "," | |\\/| | "," | |  | | "," |_|  |_| "],
+  "N":["  _   _ "," | \\ | |"," |  \\| |"," | |\\  |"," |_| \\_|"],
+  "O":["   ____  ","  / __ \\ "," | |  | |"," | |__| |","  \\____/ "],
+  "P":["  _____ "," |  __ \\"," | |__) |"," |  ___/ "," |_|    "],
+  "Q":["   ____  ","  / __ \\ "," | |  | |"," | |__| |","  \\____\\ "],
+  "R":["  _____ "," |  __ \\"," | |__) |"," |  _  / "," |_| \\_\\"],
+  "S":["   _____","  / ____|"," | (___  ","  \\___ \\ ","  ____) |"],
+  "T":["  _______"," |__   __|","    | |  ","    | |  ","    |_|  "],
+  "U":["  _    _ "," | |  | |"," | |  | |"," | |__| |","  \\____/ "],
+  "V":[" __      __"," \\ \\    / /","  \\ \\  / / ","   \\ \\/ /  ","    \\_/   "],
+  "W":[" __      __"," \\ \\    / /","  \\ \\/\\/ / ","   \\  / /  ","    \\_/   "],
+  "X":[" __   __"," \\ \\ / /","  \\ V / ","  / . \\ "," /_/ \\_\\"],
+  "Y":[" __   __"," \\ \\ / /","  \\ V / ","   | |  ","   |_|  "],
+  "Z":[" ______","|___  /","   / / ","  / /  "," /_____|"],
+  " ":["   ","   ","   ","   ","   "]
+};
+
+function renderASCII(){
+  var text=$("input").value;
+  var fontName=$("font").value;
+  var font=FONTS[fontName]||FONTS.standard;
+  var out=$("output");
+  if(!text){out.innerHTML='<span class="placeholder">Enter text above to render ASCII art.</span>';return;}
+  var upper=text;
+  var lines=["","","","",""];
+  var maxLines=0;
+  for(var i=0;i<upper.length;i++){
+    var c=upper[i];
+    var glyph=font[c]||font[c.toUpperCase()]||font[" "];
+    if(!glyph)glyph=font[" "];
+    for(var r=0;r<glyph.length;r++){
+      if(!lines[r])lines[r]="";
+      lines[r]+=glyph[r];
+    }
+    maxLines=Math.max(maxLines,glyph.length);
+  }
+  var result=lines.slice(0,maxLines).join("\n");
+  out.textContent=result;
+  out.dataset.result=result;
+}
+function downloadFile(content, filename){
+  var blob=new Blob([content],{type:"text/plain"});
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement("a");
+  a.href=url;a.download=filename;
+  document.body.appendChild(a);a.click();
+  setTimeout(function(){URL.revokeObjectURL(url);document.body.removeChild(a);},100);
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("renderBtn").addEventListener("click",renderASCII);
+  $("input").addEventListener("input",renderASCII);
+  $("font").addEventListener("change",renderASCII);
+  $("copyBtn").addEventListener("click",function(){
+    var r=$("output").dataset.result||$("output").textContent;
+    copyText(r,$("copyBtn"));
+  });
+  $("downloadBtn").addEventListener("click",function(){
+    var r=$("output").dataset.result||$("output").textContent;
+    downloadFile(r,"ascii-art.txt");
+  });
+  $("clearBtn").addEventListener("click",function(){$("input").value="";renderASCII();});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  renderASCII();
+});
+})();
+</script>
+</body>
+</html>
