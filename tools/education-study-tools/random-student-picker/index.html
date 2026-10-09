@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Random Student Picker Online – Fair Classroom Name Selector Wheel</title>
+<meta name="description" content="Free online random student picker. Paste your class list and spin the wheel to pick a student fairly. No-repeat mode, fullscreen display, URL sharing, embed anywhere. No sign-up, works on any device.">
+<link rel="canonical" href="https://utiliby.com/tools/education-study-tools/random-student-picker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Random Student Picker Online – Fair Classroom Name Selector">
+<meta property="og:description" content="Spin the wheel to pick a student fairly. No-repeat mode, fullscreen, URL sharing, embed anywhere.">
+<meta property="og:url" content="https://utiliby.com/tools/education-study-tools/random-student-picker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.rsp-hero{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.rsp-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.rsp-hero p{margin:0;opacity:.92;font-size:.9rem}
+.rsp-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.rsp-panel h3{margin:0 0 10px;font-size:1rem}
+.rsp-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.rsp-panel input,.rsp-panel select,.rsp-panel textarea{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.rsp-panel textarea{min-height:140px;resize:vertical;font-family:inherit;font-size:.9rem}
+.rsp-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.rsp-row{grid-template-columns:1fr}}
+.rsp-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;margin-right:8px;margin-top:8px}
+.rsp-btn:hover{opacity:.92}
+.rsp-btn.ghost{background:transparent;color:#7c3aed;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.rsp-btn.ghost{color:#c4b5fd}}
+.rsp-wheel-wrap{position:relative;width:100%;max-width:420px;margin:20px auto;aspect-ratio:1}
+.rsp-wheel{width:100%;height:100%;border-radius:50%;box-shadow:0 4px 20px rgba(0,0,0,.15);transition:transform 4s cubic-bezier(.17,.67,.12,.99)}
+.rsp-pointer{position:absolute;top:-6px;left:50%;transform:translateX(-50%);width:0;height:0;border-left:14px solid transparent;border-right:14px solid transparent;border-top:24px solid #7c3aed;z-index:2}
+.rsp-result{background:var(--bg);border:2px solid #7c3aed;border-radius:12px;padding:20px;margin:16px 0;text-align:center}
+.rsp-result-big{font-size:2rem;font-weight:800;color:#7c3aed;line-height:1.2;margin:8px 0;word-break:break-word}
+@media(prefers-color-scheme:dark){.rsp-result-big{color:#c4b5fd}}
+.rsp-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.rsp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.rsp-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.rsp-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.rsp-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.rsp-tip{background:rgba(124,58,237,.06);border-left:3px solid #7c3aed;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.rsp-tip b{color:#7c3aed}
+.rsp-history{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0}
+.rsp-history-tag{background:var(--bg);border:1px solid var(--line);border-radius:16px;padding:4px 12px;font-size:.82rem;font-weight:600}
+.rsp-history-tag.current{background:#7c3aed;color:#fff;border-color:#7c3aed}
+.rsp-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.rsp-share h3{margin:0 0 10px;font-size:1rem}
+.rsp-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.rsp-share input,.rsp-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.rsp-share textarea{min-height:80px;resize:vertical}
+.rsp-share button{margin-top:6px;background:transparent;color:#7c3aed;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.rsp-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.rsp-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.rsp-btn,.rsp-hero,.cn-article,.no-print,.rsp-panel form,.rsp-share,.rsp-wheel-wrap{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Random Student Picker","url":"https://utiliby.com/tools/education-study-tools/random-student-picker/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free random student picker online?","acceptedAnswer":{"@type":"Answer","text":"A free random student picker online is a tool that selects a student from your class list at random. Paste your names, spin the wheel, and one student is chosen. It removes bias, makes cold calling fair, and adds a game-like element that students enjoy."}},{"@type":"Question","name":"How do I use a random name picker in class?","acceptedAnswer":{"@type":"Answer","text":"Paste your class list into the tool, one name per line. Click Spin. The wheel spins and lands on a random student. Enable no-repeat mode to ensure every student is picked once before any student is picked twice."}},{"@type":"Question","name":"Can I save my class list?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool saves your list in the URL. Bookmark the page and your class list will be there next time. You can also create separate bookmarks for each class."}},{"@type":"Question","name":"Is this random student picker free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education &amp; Study Tools</a> › Random Student Picker</nav>
+<h1 class="noembed">Random Student Picker</h1>
+<p class="lead noembed">Paste your class list, spin the wheel, and pick a student fairly. No-repeat mode, fullscreen display, URL sharing and embed code. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/random-student-picker/" target="_blank" rel="noopener">Random Student Picker by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Random student picker">
+<div class="rsp-hero noembed">
+<h2>Free Random Student Picker</h2>
+<p>Fair classroom name selector with spinning wheel, no-repeat mode and fullscreen display.</p>
+</div>
+<div class="rsp-panel">
+<h3>Your class list</h3>
+<label for="namesInput">Student names (one per line)</label>
+<textarea id="namesInput" placeholder="Alice&#10;Bob&#10;Charlie&#10;Diana&#10;Ethan&#10;Fatima"></textarea>
+<div class="rsp-row" style="margin-top:10px">
+<div><label for="noRepeat">Pick mode</label>
+<select id="noRepeat">
+<option value="no" selected>Allow repeats (can pick same student again)</option>
+<option value="yes">No repeats until everyone is picked</option>
+</select></div>
+<div><label for="pickCount">Pick how many at a time?</label>
+<select id="pickCount">
+<option value="1" selected>1 student</option>
+<option value="2">2 students</option>
+<option value="3">3 students</option>
+<option value="4">4 students</option>
+</select></div>
+</div>
+</div>
+<div class="rsp-wheel-wrap" id="wheelWrap" style="display:none">
+<div class="rsp-pointer"></div>
+<canvas class="rsp-wheel" id="wheelCanvas" width="400" height="400"></canvas>
+</div>
+<div id="resultArea"></div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+<button type="button" class="rsp-btn" id="spinBtn">🎡 Spin the wheel</button>
+<button type="button" class="rsp-btn ghost" id="fullscreenBtn">Fullscreen</button>
+<button type="button" class="rsp-btn ghost" id="resetPickedBtn">Reset picked</button>
+</div>
+<div id="historyArea"></div>
+</section>
+
+<div class="rsp-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="rsp-share-link">Shareable link</label>
+<input type="text" id="rsp-share-link" readonly value="https://utiliby.com/tools/education-study-tools/random-student-picker/">
+<button type="button" data-copy-target="rsp-share-link">Copy link</button>
+<label for="rsp-cite">Cite this page</label>
+<textarea id="rsp-cite" readonly>Utiliby. (2026). Random Student Picker. https://utiliby.com/tools/education-study-tools/random-student-picker/</textarea>
+<button type="button" data-copy-target="rsp-cite">Copy citation</button>
+<label for="rsp-embed">Add this tool to your site</label>
+<textarea id="rsp-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/random-student-picker/?embed=1" width="100%" height="900" style="border:0" loading="lazy" title="Random Student Picker by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/education-study-tools/random-student-picker/"&gt;Random Student Picker by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="rsp-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free random student picker online?</h2>
+<p>A free random student picker online is a tool that selects a student from your class list at random. Instead of scanning the room and unconsciously calling on the same eager hands, you paste your roster, spin the wheel, and one student is chosen. The pick is visibly fair, which removes the "you always pick her" complaint, and the spinning wheel adds a game-like anticipation that students actually enjoy.</p>
+<p>This random student picker goes beyond a basic name selector. It includes a no-repeat mode that ensures every student is picked once before anyone is picked twice — essential for cold calling across a full class period. It supports picking one, two, three or four students at a time. It stores your class list in the URL so you can bookmark it and return to it without re-typing. It has a fullscreen mode for displaying on a projector or smartboard. And it produces an embed code so you can drop the picker into Google Slides, PowerPoint (web), Moodle, Canvas or Notion. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free classroom name picker</h2>
+<ol>
+<li>Paste your class list into the text area, one name per line. You can paste directly from a spreadsheet.</li>
+<li>Choose your pick mode. "Allow repeats" is the standard random pick. "No repeats until everyone is picked" ensures fairness across the whole class.</li>
+<li>Select how many students to pick at a time — useful for group activities, presentations or pair work.</li>
+<li>Click Spin the wheel. The wheel spins, decelerates, and lands on a random student (or students).</li>
+<li>Use Fullscreen to display the wheel on a projector. Use Reset picked to clear the no-repeat history.</li>
+</ol>
+
+<h2>Why random selection matters in the classroom</h2>
+<p>Research on classroom questioning consistently shows that teachers unconsciously favour certain students — often those who sit in the front, raise their hands most, or share the teacher's background. A random picker removes that bias. It also raises the general level of attention, because every student knows they might be next. And it signals to the class that participation is expected from everyone, not just the volunteers.</p>
+<p>The no-repeat mode is particularly useful for cold calling across a full lesson. Without it, a class of 25 students will see some students picked two or three times and others not at all. With it, every student is picked once before the cycle restarts.</p>
+
+<h2>Classroom use cases</h2>
+<ul>
+<li><b>Cold calling.</b> Pick the next student to answer a question without any perception of bias.</li>
+<li><b>Presentation order.</b> Randomly decide who presents first, second and third, removing the "I don't want to go first" argument.</li>
+<li><b>Group formation.</b> Use the picker to select group leaders, then have them choose teammates.</li>
+<li><b>Reading aloud.</b> Pick who reads the next paragraph. Students follow along because they might be next.</li>
+<li><b>Prize draws.</b> Pick a winner fairly for a classroom reward.</li>
+<li><b>Turn-taking.</b> Use no-repeat mode to ensure every student has a turn at a classroom task.</li>
+</ul>
+
+<h2>URL sharing and bookmarking</h2>
+<p>The tool saves your class list in the URL. Once you have pasted your names, the URL updates to include them. Bookmark that URL and next time you open the tool your list will already be there. Create a separate bookmark for each class — for example, "Period 1 English" and "Period 2 English" — and you can switch between classes in one click.</p>
+
+<h2>Embedding in Google Slides, PowerPoint or an LMS</h2>
+<p>The share module at the bottom of this page provides an iframe embed code. Paste it into Google Slides (Insert → Video → By URL, or use an iframe extension), PowerPoint for the web, Moodle, Canvas, Notion or any website. The embedded picker includes your saved names if you have set them in the URL.</p>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free random student picker online?</summary><p>A tool that selects a student from your class list at random. Paste names, spin the wheel, and one student is picked fairly. No bias, no favourites, no repeats until you want them.</p></details>
+<details><summary>How do I use a random name picker in class?</summary><p>Paste your class list one name per line, click Spin, and the wheel picks a student. Enable no-repeat mode to ensure every student is picked once before any student is picked twice.</p></details>
+<details><summary>Can I save my class list?</summary><p>Yes. The tool saves your list in the URL. Bookmark the page and your list will be there next time. Create separate bookmarks for each class.</p></details>
+<details><summary>Is this random student picker free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
+</div>
+<div class="rsp-disclaimer">
+<b>Disclaimer:</b> This tool uses a standard randomised selection algorithm suitable for classroom use. It is not cryptographically secure and should not be used for high-stakes, legal or official draws where an auditable, provably random process is required. Utiliby accepts no liability for decisions made using this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var picked=[];var spinning=false;
+function getNames(){return $("namesInput").value.split("\n").map(function(n){return n.trim();}).filter(Boolean);}
+function drawWheel(names){
+  var c=$("wheelCanvas");var ctx=c.getContext("2d");
+  var cx=200,cy=200,r=190;
+  ctx.clearRect(0,0,400,400);
+  if(names.length===0){
+    ctx.fillStyle="#e5e7eb";ctx.beginPath();ctx.arc(cx,cy,r,0,2*Math.PI);ctx.fill();
+    ctx.fillStyle="#6b7280";ctx.font="16px system-ui";ctx.textAlign="center";ctx.fillText("Add names to begin",cx,cy);return;
+  }
+  var colors=["#7c3aed","#a855f7","#8b5cf6","#c084fc","#6d28d9","#9333ea","#a78bfa","#7e22ce"];
+  var slice=2*Math.PI/names.length;
+  for(var i=0;i<names.length;i++){
+    var start=i*slice;var end=start+slice;
+    ctx.beginPath();ctx.moveTo(cx,cy);ctx.arc(cx,cy,r,start,end);ctx.closePath();
+    ctx.fillStyle=colors[i%colors.length];ctx.fill();
+    ctx.save();ctx.translate(cx,cy);ctx.rotate(start+slice/2);
+    ctx.textAlign="right";ctx.fillStyle="#fff";ctx.font="bold 14px system-ui";
+    var label=names[i].length>18?names[i].slice(0,16)+"…":names[i];
+    ctx.fillText(label,r-12,5);
+    ctx.restore();
+  }
+  ctx.beginPath();ctx.arc(cx,cy,30,0,2*Math.PI);ctx.fillStyle="#fff";ctx.fill();
+  ctx.strokeStyle="#7c3aed";ctx.lineWidth=3;ctx.stroke();
+  ctx.fillStyle="#7c3aed";ctx.font="bold 13px system-ui";ctx.textAlign="center";ctx.fillText("SPIN",cx,cy+5);
+}
+function pickRandom(names,count){
+  var pool=names.slice();
+  var res=[];
+  for(var i=0;i<count&&pool.length>0;i++){
+    var idx=Math.floor(Math.random()*pool.length);
+    res.push(pool[idx]);pool.splice(idx,1);
+  }
+  return res;
+}
+function spin(){
+  if(spinning)return;
+  var names=getNames();
+  if(names.length===0){$("resultArea").innerHTML='<div class="rsp-tip" style="background:#fef3c7;border-left-color:#f59e0b">Add at least one student name to spin the wheel.</div>';return;}
+  var noRepeat=$("noRepeat").value==="yes";
+  var count=parseInt($("pickCount").value,10)||1;
+  var available=noRepeat?names.filter(function(n){return picked.indexOf(n)===-1;}):names;
+  if(available.length===0){$("resultArea").innerHTML='<div class="rsp-tip">All students have been picked. Click "Reset picked" to start a new round.</div>';return;}
+  spinning=true;
+  $("wheelWrap").style.display="block";
+  drawWheel(names);
+  $("wheelCanvas").style.transform="rotate(0deg)";
+  var angle=1440+Math.floor(Math.random()*720);
+  $("wheelCanvas").style.transform="rotate("+angle+"deg)";
+  setTimeout(function(){
+    var winners=pickRandom(available,Math.min(count,available.length));
+    for(var i=0;i<winners.length;i++){picked.push(winners[i]);}
+    var h='<div class="rsp-result"><div class="rsp-result-label">Selected</div><div class="rsp-result-big">'+winners.map(esc).join(" · ")+'</div><div class="rsp-result-label" style="margin-top:6px">'+(noRepeat?"No-repeat mode · "+(names.length-picked.length)+" remaining this round":"Standard random pick")+'</div></div>';
+    h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:12px 0"><button type="button" id="copyPickBtn" class="rsp-btn" style="margin:0">Copy picked name</button></div>';
+    $("resultArea").innerHTML=h;
+    document.getElementById("copyPickBtn").addEventListener("click",function(){copyText(winners.join(", "),document.getElementById("copyPickBtn"));});
+    renderHistory();
+    spinning=false;
+  },4100);
+}
+function renderHistory(){
+  var names=getNames();
+  if(picked.length===0||names.length===0){$("historyArea").innerHTML="";return;}
+  var h='<div class="rsp-panel"><h3>Picked this round ('+picked.length+' of '+names.length+')</h3><div class="rsp-history">';
+  for(var i=0;i<picked.length;i++){h+='<span class="rsp-history-tag current">'+esc(picked[i])+'</span>';}
+  h+='</div></div>';
+  $("historyArea").innerHTML=h;
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("namesInput").addEventListener("input",function(){drawWheel(getNames());});
+  $("spinBtn").addEventListener("click",spin);
+  $("fullscreenBtn").addEventListener("click",function(){
+    var el=$("wheelWrap");
+    if(el.requestFullscreen)el.requestFullscreen();
+    else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+  });
+  $("resetPickedBtn").addEventListener("click",function(){picked=[];$("resultArea").innerHTML="";renderHistory();});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  drawWheel([]);
+});
+})();
+</script>
+</body>
+</html>

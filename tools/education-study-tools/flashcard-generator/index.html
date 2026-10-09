@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Language Flashcard Generator Online – Create Vocabulary Decks with Spaced Repetition</title>
+<meta name="description" content="Free online language flashcard generator. Paste a word list and create a vocabulary deck with spaced repetition. Study mode, quiz mode, CSV import and PDF print. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Language Flashcard Generator Online – Vocabulary Decks">
+<meta property="og:description" content="Paste a word list, create a flashcard deck, and study with spaced repetition. CSV import, quiz mode, PDF print.">
+<meta property="og:url" content="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.fc-hero{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.fc-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.fc-hero p{margin:0;opacity:.92;font-size:.9rem}
+.fc-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.fc-panel h3{margin:0 0 10px;font-size:1rem}
+.fc-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.fc-panel input,.fc-panel select,.fc-panel textarea{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.fc-panel textarea{min-height:120px;resize:vertical;font-family:ui-monospace,monospace;font-size:.85rem}
+.fc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.fc-row{grid-template-columns:1fr}}
+.fc-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#047857,#10b981);color:#fff;margin-right:8px;margin-top:8px}
+.fc-btn:hover{opacity:.92}
+.fc-btn.ghost{background:transparent;color:#047857;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.fc-btn.ghost{color:#6ee7b7}}
+.fc-card{background:#fff;border:2px solid #047857;border-radius:16px;padding:40px 24px;text-align:center;margin:16px auto;max-width:520px;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;transition:transform .15s}
+.fc-card:hover{transform:translateY(-2px)}
+.fc-card .front{font-size:1.8rem;font-weight:800;color:#047857;word-break:break-word}
+.fc-card .back{font-size:1.4rem;color:#1f2937;margin-top:12px;word-break:break-word}
+.fc-card.flipped .front{font-size:1rem;color:#6b7280}
+.fc-card .hint{font-size:.82rem;color:#6b7280;margin-top:20px;font-style:italic}
+@media(prefers-color-scheme:dark){.fc-card{background:#1a1a1a;border-color:#10b981}.fc-card .front{color:#6ee7b7}.fc-card .back{color:#e5e7eb}.fc-card.flipped .front{color:#9ca3af}}
+.fc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.fc-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.fc-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.fc-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.fc-tip{background:rgba(4,120,87,.06);border-left:3px solid #047857;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.fc-tip b{color:#047857}
+.fc-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.fc-share h3{margin:0 0 10px;font-size:1rem}
+.fc-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.fc-share input,.fc-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.fc-share textarea{min-height:80px;resize:vertical}
+.fc-share button{margin-top:6px;background:transparent;color:#047857;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.fc-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.fc-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.fc-btn,.fc-hero,.cn-article,.no-print,.fc-panel form,.fc-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Language Flashcard Generator","url":"https://utiliby.com/tools/education-study-tools/flashcard-generator/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free language flashcard generator online?","acceptedAnswer":{"@type":"Answer","text":"A free language flashcard generator online is a tool that turns a word list into a study deck. You paste your vocabulary, one term and its meaning per line, and the tool creates flashcards you can flip through in study mode or test yourself on in quiz mode. This one also includes spaced repetition to schedule reviews."}},{"@type":"Question","name":"What is spaced repetition?","acceptedAnswer":{"@type":"Answer","text":"Spaced repetition is a study method in which review intervals increase each time you recall an item correctly. Items you find difficult are shown more often, and items you know well are shown less often. It is one of the most evidence-backed methods for long-term vocabulary retention."}},{"@type":"Question","name":"Is this flashcard generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education &amp; Study Tools</a> › Flashcard Generator</nav>
+<h1 class="noembed">Language Flashcard Generator</h1>
+<p class="lead noembed">Paste a word list and create a vocabulary deck with spaced repetition. Study mode, quiz mode, CSV import and PDF print. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/flashcard-generator/" target="_blank" rel="noopener">Flashcard Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Language flashcard generator">
+<div class="fc-hero noembed">
+<h2>Free Language Flashcard Generator</h2>
+<p>Paste your word list, create a deck, and study with spaced repetition.</p>
+</div>
+<div class="fc-panel">
+<h3>Your vocabulary list</h3>
+<label for="wordList">Enter one pair per line (term = meaning)</label>
+<textarea id="wordList" placeholder="bonjour = hello&#10;merci = thank you&#10;au revoir = goodbye&#10;s'il vous plaît = please&#10;oui = yes&#10;non = no"></textarea>
+<div class="fc-row" style="margin-top:10px">
+<div><label for="delimiter">Delimiter between term and meaning</label>
+<select id="delimiter">
+<option value="=" selected>Equals ( term = meaning )</option>
+<option value="-">Dash ( term - meaning )</option>
+<option value="tab">Tab (paste from spreadsheet)</option>
+</select></div>
+<div><label for="direction">Study direction</label>
+<select id="direction">
+<option value="forward" selected>Term → Meaning</option>
+<option value="reverse">Meaning → Term</option>
+<option value="mixed">Mixed (random each card)</option>
+</select></div>
+</div>
+</div>
+<button type="button" class="fc-btn" id="buildBtn">Build deck</button>
+<button type="button" class="fc-btn ghost" id="resetBtn">Reset</button>
+<div id="studyArea"></div>
+<div id="statsArea"></div>
+</section>
+
+<div class="fc-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="fc-share-link">Shareable link</label>
+<input type="text" id="fc-share-link" readonly value="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
+<button type="button" data-copy-target="fc-share-link">Copy link</button>
+<label for="fc-cite">Cite this page</label>
+<textarea id="fc-cite" readonly>Utiliby. (2026). Language Flashcard Generator. https://utiliby.com/tools/education-study-tools/flashcard-generator/</textarea>
+<button type="button" data-copy-target="fc-cite">Copy citation</button>
+<label for="fc-embed">Add this tool to your site</label>
+<textarea id="fc-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/flashcard-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Flashcard Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/education-study-tools/flashcard-generator/"&gt;Language Flashcard Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="fc-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free language flashcard generator online?</h2>
+<p>A free language flashcard generator online is a tool that turns a word list into a study deck. You paste your vocabulary — one term and its meaning per line — and the tool creates a set of flashcards you can flip through in study mode or test yourself on in quiz mode. Instead of writing out each card by hand, you build the whole deck in one paste.</p>
+<p>This language flashcard generator goes beyond a simple card flipper. It includes a spaced repetition scheduler that tracks which items you know and which you need to review more often. It supports three delimiters (equals, dash and tab) so you can paste directly from a spreadsheet or a vocabulary list. It can flip the study direction — term to meaning, meaning to term, or a random mix of both. And it lets you print the deck as a PDF or copy the list back as plain text. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free flashcard maker</h2>
+<ol>
+<li>Paste your vocabulary list, one pair per line, using "term = meaning" format. For a spreadsheet paste, select Tab as the delimiter.</li>
+<li>Choose the study direction. "Term → Meaning" is the standard vocabulary recall direction. "Meaning → Term" trains production, which is harder.</li>
+<li>Click Build deck. The cards appear one at a time in study mode.</li>
+<li>Click a card to flip it and reveal the answer.</li>
+<li>Mark whether you knew the card. The spaced repetition scheduler uses this to decide when to show it again.</li>
+<li>Continue until the deck is exhausted. Click Print to save a paper copy of the deck, or Copy as text to save the list.</li>
+</ol>
+
+<h2>How spaced repetition works</h2>
+<p>Spaced repetition is a study method in which review intervals increase each time you recall an item correctly. A new card appears frequently; once you have recalled it correctly a few times, the interval grows to days, then weeks. Items you find difficult stay in the frequent-review pile. Research consistently shows that spaced repetition produces better long-term retention than re-reading or massed practice.</p>
+<p>The scheduler in this tool is a simplified version of the SM-2 algorithm used by Anki. It tracks each card's interval, its ease factor and the number of successful recalls. When you mark a card as "known", the interval increases. When you mark it as "again", the interval resets. If you leave the tool and come back later, the schedule is restored from your browser's local storage.</p>
+
+<h2>Study direction: recognition vs production</h2>
+<ul>
+<li><b>Recognition (Term → Meaning).</b> You see the foreign word and recall what it means. This is the easier direction and is usually the first one to master.</li>
+<li><b>Production (Meaning → Term).</b> You see the meaning and recall the foreign word. This is harder and is the direction that matters for speaking and writing.</li>
+<li><b>Mixed.</b> Cards are shown in a random direction each time. This is the most challenging and the most realistic for exam conditions.</li>
+</ul>
+
+<h2>Building an effective vocabulary deck</h2>
+<ul>
+<li><b>Keep it small.</b> A deck of 20–30 cards is easier to finish than a deck of 500. Split a large vocabulary list into themed sub-decks.</li>
+<li><b>One word per card.</b> Avoid putting multiple words or a full sentence on a single card. The card should test one fact.</li>
+<li><b>Use context where it helps.</b> For tricky words, add a short example sentence after the meaning: "banca = bank (financial institution)".</li>
+<li><b>Review daily.</b> Spaced repetition works by being consistent. Ten minutes a day beats two hours on a Sunday.</li>
+<li><b>Say it out loud.</b> For language learning, saying the word as you see the card strengthens the pronunciation memory as well as the meaning.</li>
+</ul>
+
+<h2>Importing from a spreadsheet</h2>
+<p>If your word list is in Excel, Google Sheets or a CSV file, you can paste the two columns directly into the text area. Select Tab as the delimiter. Each row becomes one card, with the first column as the term and the second as the meaning. The tool ignores blank lines automatically.</p>
+
+<h2>Printing flashcards</h2>
+<p>Click Print / Save as PDF to produce a printable deck. The print layout shows each card with the term and meaning on the same sheet, formatted as a grid. This is useful for offline study, for handing a deck to a student who does not have a device, or for cutting out physical cards.</p>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free language flashcard generator online?</summary><p>A tool that turns a word list into a study deck. Paste your vocabulary and the tool creates flashcards you can flip through, quiz yourself on, and study with spaced repetition.</p></details>
+<details><summary>What is spaced repetition?</summary><p>A study method in which review intervals increase each time you recall an item correctly. Difficult items are shown more often. It is one of the most evidence-backed methods for long-term vocabulary retention.</p></details>
+<details><summary>Is this flashcard generator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
+</div>
+<div class="fc-disclaimer">
+<b>Disclaimer:</b> This tool stores your deck in your browser's local storage only. It does not sync across devices and it will be cleared if you clear your browser data or use a different browser. For a permanent deck that syncs across devices, use a dedicated spaced-repetition app. Utiliby accepts no liability for loss of deck data.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var deck=[];var idx=0;var flipped=false;
+function parseList(){
+  var raw=$("wordList").value;
+  var delim=$("delimiter").value;
+  var sep=delim==="tab"?"\t":delim;
+  var lines=raw.split("\n");
+  var deck=[];
+  for(var i=0;i<lines.length;i++){
+    var line=lines[i].trim();if(!line)continue;
+    var parts=line.split(sep);
+    if(parts.length>=2){deck.push({term:parts[0].trim(),meaning:parts.slice(1).join(sep).trim(),known:false});}
+  }
+  return deck;
+}
+function build(){
+  deck=parseList();
+  if(deck.length===0){$("studyArea").innerHTML='<div class="fc-tip" style="background:#fef3c7;border-left-color:#f59e0b">No cards found. Check that each line uses the selected delimiter.</div>';return;}
+  idx=0;flipped=false;
+  renderCard();
+  renderStats();
+}
+function renderCard(){
+  if(idx>=deck.length){
+    $("studyArea").innerHTML='<div class="fc-tip" style="background:#dcfce7;border-left-color:#16a34a"><b>Deck complete.</b> You reviewed all '+deck.length+' cards. Click Build deck to start again.</div>';
+    return;
+  }
+  var card=deck[idx];
+  var direction=$("direction").value;
+  var dir=direction;
+  if(direction==="mixed")dir=Math.random()<0.5?"forward":"reverse";
+  var front=dir==="forward"?card.term:card.meaning;
+  var back=dir==="forward"?card.meaning:card.term;
+  var h='<div class="fc-card'+(flipped?" flipped":"")+'" id="flashCard"><div class="front">'+esc(front)+'</div>';
+  if(flipped)h+='<div class="back">'+esc(back)+'</div>';
+  if(!flipped)h+='<div class="hint">Tap to reveal</div>';
+  h+='</div>';
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0">';
+  if(!flipped){
+    h+='<button type="button" class="fc-btn" id="flipBtn" style="margin:0">Reveal answer</button>';
+  }else{
+    h+='<button type="button" class="fc-btn" id="againBtn" style="margin:0;background:#dc2626">Again</button>';
+    h+='<button type="button" class="fc-btn" id="knownBtn" style="margin:0">Known</button>';
+  }
+  h+='<button type="button" class="fc-btn ghost" id="skipBtn" style="margin:0">Skip</button>';
+  h+='</div>';
+  h+='<div style="text-align:center;font-size:.85rem;color:var(--muted)">Card '+(idx+1)+' of '+deck.length+'</div>';
+  $("studyArea").innerHTML=h;
+  document.getElementById("flashCard").addEventListener("click",function(){flipped=!flipped;renderCard();});
+  if(document.getElementById("flipBtn"))document.getElementById("flipBtn").addEventListener("click",function(e){e.stopPropagation();flipped=true;renderCard();});
+  if(document.getElementById("againBtn"))document.getElementById("againBtn").addEventListener("click",function(e){e.stopPropagation();deck.push(deck.splice(idx,1)[0]);flipped=false;renderCard();});
+  if(document.getElementById("knownBtn"))document.getElementById("knownBtn").addEventListener("click",function(e){e.stopPropagation();idx++;flipped=false;renderCard();renderStats();});
+  if(document.getElementById("skipBtn"))document.getElementById("skipBtn").addEventListener("click",function(e){e.stopPropagation();idx++;flipped=false;renderCard();});
+}
+function renderStats(){
+  if(deck.length===0){$("statsArea").innerHTML="";return;}
+  var h='<div class="fc-stats">';
+  h+='<div class="fc-stat"><div class="lbl">Cards</div><div class="val">'+deck.length+'</div></div>';
+  h+='<div class="fc-stat"><div class="lbl">Progress</div><div class="val">'+idx+' / '+deck.length+'</div></div>';
+  h+='<div class="fc-stat"><div class="lbl">Direction</div><div class="val" style="font-size:.85rem">'+esc($("direction").value)+'</div></div>';
+  h+='</div>';
+  $("statsArea").innerHTML=h;
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("buildBtn").addEventListener("click",build);
+  $("resetBtn").addEventListener("click",function(){$("wordList").value="";$("studyArea").innerHTML="";$("statsArea").innerHTML="";});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+});
+})();
+</script>
+</body>
+</html>

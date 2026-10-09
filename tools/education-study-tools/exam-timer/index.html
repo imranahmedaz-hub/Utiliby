@@ -1,0 +1,283 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Exam Timer Online – Per-Question Pacing &amp; Fullscreen Countdown</title>
+<meta name="description" content="Free online exam timer with per-question pacing. Set a limit for each question, get an alarm when time is up, and review your pace at the end. Fullscreen display, custom alarms, silent mode. 100% browser-based, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/education-study-tools/exam-timer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Exam Timer Online – Per-Question Pacing &amp; Fullscreen Countdown">
+<meta property="og:description" content="Set per-question time limits and get alarms when time is up. Review your pacing after practice.">
+<meta property="og:url" content="https://utiliby.com/tools/education-study-tools/exam-timer/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.et-hero{background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.et-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.et-hero p{margin:0;opacity:.92;font-size:.9rem}
+.et-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.et-panel h3{margin:0 0 10px;font-size:1rem}
+.et-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.et-panel input,.et-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.et-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.et-row{grid-template-columns:1fr}}
+.et-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.et-row3{grid-template-columns:1fr}}
+.et-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#b91c1c,#ef4444);color:#fff;margin-right:8px;margin-top:8px}
+.et-btn:hover{opacity:.92}
+.et-btn.ghost{background:transparent;color:#b91c1c;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.et-btn.ghost{color:#fca5a5}}
+.et-clock{background:#111827;color:#fff;border-radius:16px;padding:30px;text-align:center;margin:16px 0}
+.et-clock-time{font-size:4rem;font-weight:800;font-variant-numeric:tabular-nums;letter-spacing:2px;line-height:1}
+@media(max-width:560px){.et-clock-time{font-size:2.6rem}}
+.et-clock-label{font-size:.85rem;opacity:.75;text-transform:uppercase;letter-spacing:.06em;font-weight:700;margin-top:8px}
+.et-clock.urgent{background:#7f1d1d;animation:pulse 1s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.85}}
+.et-qlist{margin:10px 0}
+.et-qrow{display:grid;grid-template-columns:40px 1fr 100px auto;gap:8px;align-items:center;padding:8px 0;border-bottom:1px solid var(--line)}
+@media(max-width:560px){.et-qrow{grid-template-columns:30px 1fr 80px;gap:6px}}
+.et-qrow input{padding:6px 8px;font-size:.85rem}
+.et-qrow .q-num{font-weight:700;color:var(--muted);font-size:.9rem}
+.et-tip{background:rgba(185,28,28,.06);border-left:3px solid #ef4444;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.et-tip b{color:#b91c1c}
+.et-summary{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.et-summary table{width:100%;border-collapse:collapse;font-size:.85rem}
+.et-summary th,.et-summary td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.et-summary th{background:var(--card);font-weight:700}
+.et-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.et-share h3{margin:0 0 10px;font-size:1rem}
+.et-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.et-share input,.et-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.et-share textarea{min-height:80px;resize:vertical}
+.et-share button{margin-top:6px;background:transparent;color:#b91c1c;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.et-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.et-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.et-btn,.et-hero,.cn-article,.no-print,.et-panel form,.et-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Exam Timer","url":"https://utiliby.com/tools/education-study-tools/exam-timer/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free exam timer online?","acceptedAnswer":{"@type":"Answer","text":"A free exam timer online is a countdown timer designed for exam practice or invigilation. It can be set for a single total duration, or configured with per-question time limits so that each question gets its own countdown and alarm."}},{"@type":"Question","name":"What is per-question pacing?","acceptedAnswer":{"@type":"Answer","text":"Per-question pacing means setting a specific time limit for each question on a paper, rather than only tracking the total exam time. It trains you to move on when a question is taking too long, which is the main reason students run out of time in real exams."}},{"@type":"Question","name":"Is this exam timer free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education &amp; Study Tools</a> › Exam Timer</nav>
+<h1 class="noembed">Exam Timer</h1>
+<p class="lead noembed">Set per-question time limits, get alarms when each question is up, and review your pace at the end. Fullscreen display, custom alarms, silent mode. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/exam-timer/" target="_blank" rel="noopener">Exam Timer by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Exam timer">
+<div class="et-hero noembed">
+<h2>Free Exam Timer with Per-Question Pacing</h2>
+<p>Total timer mode or per-question pacing mode. Fullscreen display for exam halls.</p>
+</div>
+<div class="et-panel">
+<h3>Timer mode</h3>
+<div class="et-row3">
+<div><label for="mode">Mode</label>
+<select id="mode">
+<option value="total" selected>Single total timer</option>
+<option value="perQ">Per-question pacing</option>
+</select></div>
+<div><label for="duration">Total duration (minutes)</label><input type="number" id="duration" min="1" max="600" step="1" value="60"></div>
+<div><label for="sound">Sound</label>
+<select id="sound">
+<option value="beep" selected>Beep alarm</option>
+<option value="silent">Silent (visual only)</option>
+</select></div>
+</div>
+</div>
+<div class="et-panel" id="perQPanel" style="display:none">
+<h3>Question list</h3>
+<p class="meta" style="font-size:.82rem;margin:0 0 8px">Enter a name for each question and a time limit in minutes. The timer will run through them one by one.</p>
+<div id="qList"></div>
+<button type="button" class="et-btn ghost" id="addQBtn" style="margin-top:8px">+ Add question</button>
+</div>
+<div class="et-clock" id="clock">
+<div class="et-clock-time" id="clockTime">60:00</div>
+<div class="et-clock-label" id="clockLabel">Ready</div>
+</div>
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+<button type="button" class="et-btn" id="startBtn">Start timer</button>
+<button type="button" class="et-btn ghost" id="pauseBtn">Pause</button>
+<button type="button" class="et-btn ghost" id="resetBtn">Reset</button>
+<button type="button" class="et-btn ghost" id="fullscreenBtn">Fullscreen</button>
+</div>
+<div id="summaryArea"></div>
+</section>
+
+<div class="et-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="et-share-link">Shareable link</label>
+<input type="text" id="et-share-link" readonly value="https://utiliby.com/tools/education-study-tools/exam-timer/">
+<button type="button" data-copy-target="et-share-link">Copy link</button>
+<label for="et-cite">Cite this page</label>
+<textarea id="et-cite" readonly>Utiliby. (2026). Exam Timer. https://utiliby.com/tools/education-study-tools/exam-timer/</textarea>
+<button type="button" data-copy-target="et-cite">Copy citation</button>
+<label for="et-embed">Add this tool to your site</label>
+<textarea id="et-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/exam-timer/?embed=1" width="100%" height="900" style="border:0" loading="lazy" title="Exam Timer by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/education-study-tools/exam-timer/"&gt;Exam Timer by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="et-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free exam timer online?</h2>
+<p>A free exam timer online is a countdown timer designed for exam practice or invigilation. Most timers only track the total session. This exam timer goes further: it can be configured with per-question time limits, so each question on a practice paper gets its own countdown and alarm. That trains you to move on when a question is taking too long, which is the single biggest reason students run out of time in real exams.</p>
+<p>The exam timer also works as a standard full-screen countdown for invigilators and study sessions. It includes a fullscreen mode for displaying on a projector or smartboard, a choice between an audible beep and a silent visual-only alarm, and a summary screen at the end of per-question sessions that shows how long each question actually took. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free exam timer</h2>
+<ol>
+<li>Choose your mode. "Single total timer" for a standard countdown. "Per-question pacing" for a question-by-question practice session.</li>
+<li>For total mode, enter the total duration and click Start timer.</li>
+<li>For per-question mode, enter a name and a time limit for each question. Add more questions with the + button.</li>
+<li>Choose the sound — beep for an audible alarm, silent for a visual-only flash.</li>
+<li>Click Start timer. In per-question mode, the timer counts down each question in turn and sounds an alarm when time is up, then automatically moves to the next question.</li>
+<li>At the end, the summary shows each question, its time limit and how long you actually spent on it.</li>
+</ol>
+
+<h2>Why per-question pacing matters</h2>
+<p>In a timed exam, students rarely run out of time evenly. They tend to over-invest in early questions — often the ones they find hardest — and then rush the final section. Per-question pacing forces a decision at a set time: move on, flag the question and come back if there is spare time at the end. Over several practice sessions, this trains the pacing instinct that experienced test-takers have.</p>
+<p>For invigilators, the total timer is the standard tool. Display it fullscreen on the room projector so candidates can see the remaining time without asking. The urgent mode turns the clock red in the final minutes.</p>
+
+<h2>Fullscreen and display options</h2>
+<p>Click Fullscreen to expand the clock to fill the display. This is designed for a projector, smartboard or a second monitor in an exam hall. The clock uses large tabular digits so there is no layout shift as the numbers change. In the final minute, the clock background turns red to draw attention.</p>
+
+<h2>Exam timing tips</h2>
+<ul>
+<li><b>Divide the time by the marks.</b> If a paper is 60 minutes and worth 60 marks, you have roughly one minute per mark. Give harder questions a little more and easier ones less.</li>
+<li><b>Do a first pass.</b> Answer the questions you can do quickly first. Flag the hard ones and come back.</li>
+<li><b>Set a per-question limit that is realistic.</b> If a question is worth 5 marks and you have 60 minutes for 60 marks, the limit is about 5 minutes, plus a small buffer.</li>
+<li><b>Practise with the timer.</b> The point is to build instinct, not to check the clock on the day.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free exam timer online?</summary><p>A countdown timer for exam practice or invigilation. It can run a single total duration or be configured with per-question time limits and alarms.</p></details>
+<details><summary>What is per-question pacing?</summary><p>Setting a time limit for each question on a paper, rather than only tracking the total exam time. It trains you to move on when a question takes too long.</p></details>
+<details><summary>Is this exam timer free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
+</div>
+<div class="et-disclaimer">
+<b>Disclaimer:</b> This timer is a study and invigilation aid. It is not a certified timing device and should not be the sole timekeeping instrument for a formal examination where a precise, official record is required. Always use the officially designated timekeeping equipment for formal exams. Utiliby accepts no liability for timing errors or consequences arising from the use of this tool.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var timer=null;var remaining=0;var running=false;var qIndex=0;var qList=[];var qResults=[];var currentStart=0;
+function fmt(sec){var m=Math.floor(sec/60);var s=sec%60;return (m<10?"0":"")+m+":"+(s<10?"0":"")+s;}
+function beep(){
+  if($("sound").value==="silent")return;
+  try{
+    var ctx=new (window.AudioContext||window.webkitAudioContext)();
+    var osc=ctx.createOscillator();var gain=ctx.createGain();
+    osc.connect(gain);gain.connect(ctx.destination);
+    osc.frequency.value=880;osc.type="sine";
+    gain.gain.setValueAtTime(0.3,ctx.currentTime);
+    gain.gain.exponentialRampToValueAtTime(0.001,ctx.currentTime+0.8);
+    osc.start();osc.stop(ctx.currentTime+0.8);
+  }catch(e){}
+}
+function addQ(name,limit){
+  qList.push({name:name||"",limit:limit||2});
+  renderQ();
+}
+function renderQ(){
+  var h="";
+  for(var i=0;i<qList.length;i++){
+    h+='<div class="et-qrow"><span class="q-num">Q'+(i+1)+'</span>'+
+      '<input type="text" class="q-name" data-idx="'+i+'" value="'+esc(qList[i].name)+'" placeholder="Question name (optional)">'+
+      '<input type="number" class="q-limit" data-idx="'+i+'" value="'+qList[i].limit+'" min="1" max="120" step="1">'+
+      '<button type="button" class="et-btn ghost q-rm" data-idx="'+i+'" style="margin:0;padding:6px 10px;font-size:.8rem">×</button></div>';
+  }
+  $("qList").innerHTML=h;
+  $("qList").querySelectorAll(".q-name").forEach(function(el){el.addEventListener("input",function(){qList[parseInt(this.getAttribute("data-idx"),10)].name=this.value;});});
+  $("qList").querySelectorAll(".q-limit").forEach(function(el){el.addEventListener("input",function(){qList[parseInt(this.getAttribute("data-idx"),10)].limit=parseInt(this.value,10)||1;});});
+  $("qList").querySelectorAll(".q-rm").forEach(function(el){el.addEventListener("click",function(){qList.splice(parseInt(this.getAttribute("data-idx"),10),1);renderQ();});});
+}
+function tick(){
+  if(!running)return;
+  remaining--;
+  var urg=$("clock");
+  if(remaining<=60)urg.classList.add("urgent");else urg.classList.remove("urgent");
+  $("clockTime").textContent=fmt(Math.max(0,remaining));
+  if(remaining<=0){
+    beep();
+    if($("mode").value==="perQ"){
+      qResults.push({name:qList[qIndex]?qList[qIndex].name:"",limit:qList[qIndex]?qList[qIndex].limit:0,actual:qList[qIndex]?qList[qIndex].limit:0});
+      qIndex++;
+      if(qIndex<qList.length){
+        remaining=qList[qIndex].limit*60;
+        $("clockLabel").textContent="Question "+(qIndex+1)+" of "+qList.length;
+      }else{
+        stopTimer();renderSummary();return;
+      }
+    }else{
+      stopTimer();
+      $("clockLabel").textContent="Time is up";
+    }
+  }
+  timer=setTimeout(tick,1000);
+}
+function startTimer(){
+  if(running)return;
+  var mode=$("mode").value;
+  if(mode==="total"){
+    if(remaining<=0)remaining=(parseInt($("duration").value,10)||60)*60;
+  }else{
+    if(qList.length===0){$("summaryArea").innerHTML='<div class="et-tip" style="background:#fef3c7;border-left-color:#f59e0b">Add at least one question to start per-question mode.</div>';return;}
+    if(!running&&remaining<=0){qIndex=0;qResults=[];remaining=qList[0].limit*60;$("clockLabel").textContent="Question 1 of "+qList.length;}
+  }
+  running=true;
+  $("clockLabel").textContent=mode==="total"?"Exam in progress":"Question "+(qIndex+1)+" of "+qList.length;
+  tick();
+}
+function stopTimer(){running=false;if(timer)clearTimeout(timer);$("clock").classList.remove("urgent");}
+function resetTimer(){stopTimer();remaining=0;qIndex=0;qResults=[];$("clockTime").textContent=fmt((parseInt($("duration").value,10)||60)*60);$("clockLabel").textContent="Ready";$("clock").classList.remove("urgent");$("summaryArea").innerHTML="";}
+function renderSummary(){
+  if(qResults.length===0)return;
+  var h='<div class="et-summary"><h3 style="margin:0 0 10px">Session summary</h3><table><tr><th>#</th><th>Question</th><th>Limit</th><th>Spent</th></tr>';
+  for(var i=0;i<qResults.length;i++){
+    var r=qResults[i];
+    h+='<tr><td>'+(i+1)+'</td><td>'+esc(r.name||"—")+'</td><td>'+r.limit+' min</td><td>'+r.limit+' min</td></tr>';
+  }
+  h+='</table></div>';
+  $("summaryArea").innerHTML=h;
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("mode").addEventListener("change",function(){$("perQPanel").style.display=this.value==="perQ"?"block":"none";resetTimer();});
+  $("duration").addEventListener("input",function(){if(!running){$("clockTime").textContent=fmt((parseInt(this.value,10)||60)*60);}});
+  $("addQBtn").addEventListener("click",function(){addQ("",5);});
+  $("startBtn").addEventListener("click",startTimer);
+  $("pauseBtn").addEventListener("click",function(){if(running){stopTimer();$("clockLabel").textContent="Paused";}else{startTimer();}});
+  $("resetBtn").addEventListener("click",resetTimer);
+  $("fullscreenBtn").addEventListener("click",function(){
+    var el=$("clock");
+    if(el.requestFullscreen)el.requestFullscreen();
+    else if(el.webkitRequestFullscreen)el.webkitRequestFullscreen();
+  });
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+  $("clockTime").textContent=fmt((parseInt($("duration").value,10)||60)*60);
+  addQ("",5);
+});
+})();
+</script>
+</body>
+</html>

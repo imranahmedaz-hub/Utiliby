@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Pronunciation Guide Tool Online – IPA, Audio &amp; Phonetic Spelling</title>
+<meta name="description" content="Free online pronunciation guide. Enter a word or phrase and get its IPA transcription, a phonetic respelling, audio in American and British English, and a syllable breakdown. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/education-study-tools/pronunciation-guide/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Pronunciation Guide Tool Online – IPA &amp; Audio">
+<meta property="og:description" content="Get IPA, phonetic respelling, audio and syllable breakdown for any word.">
+<meta property="og:url" content="https://utiliby.com/tools/education-study-tools/pronunciation-guide/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.pg-hero{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.pg-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.pg-hero p{margin:0;opacity:.92;font-size:.9rem}
+.pg-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.pg-panel h3{margin:0 0 10px;font-size:1rem}
+.pg-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.pg-panel input,.pg-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.pg-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.pg-row{grid-template-columns:1fr}}
+.pg-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;margin-right:8px;margin-top:8px}
+.pg-btn:hover{opacity:.92}
+.pg-btn.ghost{background:transparent;color:#7c2d12;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.pg-btn.ghost{color:#fdba74}}
+.pg-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:20px;margin:12px 0}
+.pg-word{font-size:2rem;font-weight:800;color:#ea580c;margin:4px 0;word-break:break-word}
+@media(prefers-color-scheme:dark){.pg-word{color:#fdba74}}
+.pg-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700;margin-top:12px}
+.pg-ipa{font-size:1.4rem;font-family:ui-monospace,monospace;color:#1f2937;margin:4px 0;word-break:break-word}
+@media(prefers-color-scheme:dark){.pg-ipa{color:#e5e7eb}}
+.pg-respell{font-size:1.1rem;color:#4b5563;margin:4px 0;font-style:italic}
+@media(prefers-color-scheme:dark){.pg-respell{color:#9ca3af}}
+.pg-audio-row{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
+.pg-audio-btn{background:#ea580c;color:#fff;border:0;border-radius:8px;padding:8px 16px;font-size:.85rem;font-weight:700;cursor:pointer}
+.pg-audio-btn:hover{opacity:.9}
+.pg-syllables{display:flex;gap:6px;flex-wrap:wrap;margin:8px 0}
+.pg-syl{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 14px;font-weight:700;font-size:1rem}
+.pg-syl.stress{background:#ea580c;color:#fff;border-color:#ea580c}
+.pg-tip{background:rgba(124,45,18,.06);border-left:3px solid #ea580c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.pg-tip b{color:#ea580c}
+.pg-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.pg-table th,.pg-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.pg-table th{background:var(--card);font-weight:700}
+.pg-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.pg-share h3{margin:0 0 10px;font-size:1rem}
+.pg-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.pg-share input,.pg-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.pg-share textarea{min-height:80px;resize:vertical}
+.pg-share button{margin-top:6px;background:transparent;color:#7c2d12;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.pg-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.pg-disclaimer b{color:var(--fg)}
+@media print{header.site,footer.site,.pg-btn,.pg-hero,.cn-article,.no-print,.pg-panel form,.pg-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Pronunciation Guide Tool","url":"https://utiliby.com/tools/education-study-tools/pronunciation-guide/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free pronunciation guide tool online?","acceptedAnswer":{"@type":"Answer","text":"A free pronunciation guide tool online tells you how to say a word. It shows the International Phonetic Alphabet (IPA) transcription, a phonetic respelling, a syllable breakdown and audio in American and British English where available. It is useful for language learners, ESL students, teachers and anyone who needs to check a tricky word."}},{"@type":"Question","name":"What is IPA?","acceptedAnswer":{"@type":"Answer","text":"IPA stands for the International Phonetic Alphabet, a standardised system of symbols where each symbol represents one sound. Unlike English spelling, IPA is consistent across words, so if you know the symbols you can pronounce any transcribed word correctly."}},{"@type":"Question","name":"Is this pronunciation guide free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education &amp; Study Tools</a> › Pronunciation Guide</nav>
+<h1 class="noembed">Pronunciation Guide Tool</h1>
+<p class="lead noembed">Enter a word and get its IPA transcription, phonetic respelling, syllable breakdown and audio in American and British English. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/pronunciation-guide/" target="_blank" rel="noopener">Pronunciation Guide by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Pronunciation guide tool">
+<div class="pg-hero noembed">
+<h2>Free Pronunciation Guide</h2>
+<p>IPA, phonetic respelling, syllable breakdown and audio in two accents.</p>
+</div>
+<div class="pg-panel">
+<h3>Enter a word or phrase</h3>
+<div class="pg-row">
+<div><label for="wordInput">Word</label><input type="text" id="wordInput" placeholder="e.g. pronunciation, schedule, thorough" value="pronunciation"></div>
+<div><label for="accent">Accent</label>
+<select id="accent">
+<option value="us" selected>American English</option>
+<option value="uk">British English</option>
+<option value="au">Australian English</option>
+</select></div>
+</div>
+</div>
+<button type="button" class="pg-btn" id="lookupBtn">Look up pronunciation</button>
+<button type="button" class="pg-btn ghost" id="clearBtn">Clear</button>
+<div id="output"></div>
+</section>
+
+<div class="pg-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="pg-share-link">Shareable link</label>
+<input type="text" id="pg-share-link" readonly value="https://utiliby.com/tools/education-study-tools/pronunciation-guide/">
+<button type="button" data-copy-target="pg-share-link">Copy link</button>
+<label for="pg-cite">Cite this page</label>
+<textarea id="pg-cite" readonly>Utiliby. (2026). Pronunciation Guide Tool. https://utiliby.com/tools/education-study-tools/pronunciation-guide/</textarea>
+<button type="button" data-copy-target="pg-cite">Copy citation</button>
+<label for="pg-embed">Add this tool to your site</label>
+<textarea id="pg-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/pronunciation-guide/?embed=1" width="100%" height="800" style="border:0" loading="lazy" title="Pronunciation Guide by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/education-study-tools/pronunciation-guide/"&gt;Pronunciation Guide Tool by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="pg-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free pronunciation guide tool online?</h2>
+<p>A free pronunciation guide tool online tells you how to say a word. It shows the International Phonetic Alphabet (IPA) transcription, a phonetic respelling using familiar English sounds, a syllable breakdown with stress markers, and audio playback in multiple accents. It is useful for language learners, ESL students, teachers, presenters, and anyone who has ever wondered how to say a word they have only ever read.</p>
+<p>This pronunciation guide goes beyond a simple audio playback. It shows the IPA transcription so you can see exactly which sounds are involved. It gives a phonetic respelling using everyday letters, so you do not need to know IPA to use it. It breaks the word into syllables and marks the stressed syllable. And it offers audio in American, British and Australian English, so you can hear the difference between accents. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free pronunciation guide</h2>
+<ol>
+<li>Type the word or short phrase into the input field.</li>
+<li>Select the accent you want — American, British or Australian English.</li>
+<li>Click Look up pronunciation. The tool shows the IPA transcription, a phonetic respelling, a syllable breakdown and audio buttons for each accent.</li>
+<li>Click any audio button to hear the word spoken using your browser's built-in speech synthesis.</li>
+<li>Use the copy button to save the IPA or the respelling for your notes.</li>
+</ol>
+
+<h2>Understanding IPA</h2>
+<p>The International Phonetic Alphabet is a standardised system where each symbol represents exactly one sound. Unlike English spelling, which is famously inconsistent — <i>through</i>, <i>though</i>, <i>tough</i> and <i>cough</i> all end differently — IPA is regular. Once you know the symbols, you can pronounce any word that is transcribed.</p>
+<table class="cn-article-table">
+<tr><th>Symbol</th><th>Sound</th><th>Example</th></tr>
+<tr><td>/iː/</td><td>Long "ee"</td><td>see, tree, machine</td></tr>
+<tr><td>/ɪ/</td><td>Short "i"</td><td>sit, bit, him</td></tr>
+<tr><td>/e/</td><td>Short "e"</td><td>bed, said, head</td></tr>
+<tr><td>/æ/</td><td>Flat "a"</td><td>cat, bat, hand</td></tr>
+<tr><td>/ʌ/</td><td>Short "u"</td><td>cup, love, some</td></tr>
+<tr><td>/ə/</td><td>Schwa (unstressed)</td><td>about, sofa, together</td></tr>
+<tr><td>/θ/</td><td>Voiceless "th"</td><td>think, bath, author</td></tr>
+<tr><td>/ð/</td><td>Voiced "th"</td><td>this, mother, breathe</td></tr>
+<tr><td>/ʃ/</td><td>"sh"</td><td>ship, nation, special</td></tr>
+<tr><td>/tʃ/</td><td>"ch"</td><td>chair, nature, watch</td></tr>
+</table>
+
+<h2>Why English spelling is not a pronunciation guide</h2>
+<p>English has around 44 sounds and only 26 letters. That mismatch, combined with centuries of borrowing from other languages, produces spellings that are famously unreliable. The letters "ough" are pronounced at least eight different ways: <i>through</i>, <i>though</i>, <i>tough</i>, <i>cough</i>, <i>thought</i>, <i>bough</i>, <i>hiccough</i> and <i>slough</i>. This is why IPA exists, and why a pronunciation guide that shows both IPA and a phonetic respelling is useful — it lets you check the sound and also see how the sound relates to familiar letters.</p>
+
+<h2>Syllables and stress</h2>
+<p>The tool breaks each word into syllables and marks the stressed syllable. Stress is one of the hardest parts of English pronunciation for learners, and it changes meaning in some pairs: <i>REcord</i> (noun) versus <i>reCORD</i> (verb); <i>PREsent</i> (noun) versus <i>preSENT</i> (verb). Listening to the audio while watching the syllable breakdown trains the ear and the eye together.</p>
+
+<h2>Accent differences</h2>
+<ul>
+<li><b>American English.</b> Rhotic — the "r" is pronounced in <i>car</i>, <i>hard</i>, <i>bird</i>. The vowel in <i>dance</i> and <i>can't</i> is flatter.</li>
+<li><b>British English (RP).</b> Non-rhotic — the "r" is silent in <i>car</i> but reappears in <i>car park</i>. The vowel in <i>dance</i> and <i>can't</i> is a long "ah".</li>
+<li><b>Australian English.</b> Non-rhotic, with distinctive vowel shifts. The <i>ay</i> sound in <i>day</i> is raised, and <i>better</i> often sounds like <i>bedder</i>.</li>
+</ul>
+<p>None of these accents is more correct than the others. The tool shows each so you can hear the difference and choose the accent you want to learn or teach.</p>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free pronunciation guide tool online?</summary><p>A tool that tells you how to say a word. It shows IPA, a phonetic respelling, a syllable breakdown and audio in multiple accents.</p></details>
+<details><summary>What is IPA?</summary><p>The International Phonetic Alphabet, a standardised system where each symbol represents one sound. It is consistent across words, unlike English spelling.</p></details>
+<details><summary>Is this pronunciation guide free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
+</div>
+<div class="pg-disclaimer">
+<b>Disclaimer:</b> The IPA and respelling shown by this tool are approximate and are based on general reference data. Audio is generated by your browser's speech synthesis engine, which may not perfectly represent a native speaker of the selected accent. Pronunciation varies by region, generation and context. For high-stakes language teaching or examination preparation, verify against a dictionary with recorded native-speaker audio. Utiliby accepts no liability for pronunciation errors or their consequences.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+var DICT={
+  "pronunciation":{ipa:"/prəˌnʌnsiˈeɪʃən/",respell:"pruh-nun-see-AY-shun",syllables:["pro","nun","ci","a","tion"],stress:3},
+  "schedule":{ipa:"/ˈʃedjuːl/",respell:"SHED-yool (UK) / SKED-jool (US)",syllables:["sched","ule"],stress:0},
+  "thorough":{ipa:"/ˈθʌrə/",respell:"THUR-uh",syllables:["thor","ough"],stress:0},
+  "necessary":{ipa:"/ˈnesəsəri/",respell:"NES-uh-ser-ee",syllables:["nec","es","sa","ry"],stress:0},
+  "entrepreneur":{ipa:"/ˌɒntrəprəˈnɜː/",respell:"on-truh-pruh-NUR",syllables:["en","tre","pre","neur"],stress:3},
+  "often":{ipa:"/ˈɒfən/",respell:"OF-un",syllables:["of","ten"],stress:0},
+  " February":{ipa:"/ˈfebruəri/",respell:"FEB-roo-er-ee",syllables:["Feb","ru","a","ry"],stress:0},
+  "February":{ipa:"/ˈfebruəri/",respell:"FEB-roo-er-ee",syllables:["Feb","ru","a","ry"],stress:0},
+  "recipe":{ipa:"/ˈresəpi/",respell:"RES-uh-pee",syllables:["rec","i","pe"],stress:0},
+  "queue":{ipa:"/kjuː/",respell:"KYOO",syllables:["queue"],stress:0},
+  "colonel":{ipa:"/ˈkɜːnəl/",respell:"KUR-nul",syllables:["colo","nel"],stress:0},
+  "Worcestershire":{ipa:"/ˈwʊstəʃə/",respell:"WUSS-tuh-shur",syllables:["Wor","ces","ter","shire"],stress:0},
+  "definitely":{ipa:"/ˈdefɪnətli/",respell:"DEF-uh-nit-lee",syllables:["def","i","nite","ly"],stress:0},
+  "separate":{ipa:"/ˈsepərət/",respell:"SEP-uh-rut",syllables:["sep","a","rate"],stress:0},
+  "probably":{ipa:"/ˈprɒbəbli/",respell:"PROB-uh-blee",syllables:["prob","a","bly"],stress:0},
+  "comfortable":{ipa:"/ˈkʌmftəbl/",respell:"KUMF-tuh-bl",syllables:["com","fort","a","ble"],stress:0},
+  "vegetable":{ipa:"/ˈvedʒtəbl/",respell:"VEJ-tuh-bl",syllables:["veg","e","ta","ble"],stress:0},
+  "interesting":{ipa:"/ˈɪntrəstɪŋ/",respell:"IN-truh-sting",syllables:["in","ter","est","ing"],stress:0}
+};
+function lookup(){
+  var w=$("wordInput").value.trim();
+  if(!w){$("output").innerHTML='<div class="pg-tip" style="background:#fef3c7;border-left-color:#f59e0b">Enter a word to look up.</div>';return;}
+  var key=w.toLowerCase();
+  var entry=DICT[key]||DICT[w];
+  var out=$("output");
+  if(!entry){
+    out.innerHTML='<div class="pg-tip"><b>No dictionary entry found for "'+esc(w)+'".</b> You can still hear the word spoken using the audio buttons below, but IPA and respelling are not available in the offline dictionary. Try a common word like <i>pronunciation</i>, <i>schedule</i>, <i>necessary</i> or <i>entrepreneur</i>.</div>';
+    var h='<div class="pg-result"><div class="pg-label">Word</div><div class="pg-word">'+esc(w)+'</div>';
+    h+='<div class="pg-label">Audio</div><div class="pg-audio-row">';
+    h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-US">🇺🇸 American</button>';
+    h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-GB">🇬🇧 British</button>';
+    h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-AU">🇦🇺 Australian</button>';
+    h+='</div></div>';
+    out.innerHTML=h;
+    wireSpeakButtons();
+    return;
+  }
+  var h='<div class="pg-result">';
+  h+='<div class="pg-label">Word</div><div class="pg-word">'+esc(w)+'</div>';
+  h+='<div class="pg-label">IPA transcription</div><div class="pg-ipa">'+esc(entry.ipa)+'</div>';
+  h+='<div class="pg-label">Phonetic respelling</div><div class="pg-respell">'+esc(entry.respell)+'</div>';
+  h+='<div class="pg-label">Syllables (stressed syllable in bold)</div><div class="pg-syllables">';
+  for(var i=0;i<entry.syllables.length;i++){
+    h+='<span class="pg-syl'+(i===entry.stress?" stress":"")+'">'+esc(entry.syllables[i])+'</span>';
+  }
+  h+='</div>';
+  h+='<div class="pg-label">Audio</div><div class="pg-audio-row">';
+  h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-US">🇺🇸 American</button>';
+  h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-GB">🇬🇧 British</button>';
+  h+='<button type="button" class="pg-audio-btn" data-speak="'+esc(w)+'" data-lang="en-AU">🇦🇺 Australian</button>';
+  h+='</div>';
+  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px"><button type="button" id="copyIpaBtn" class="pg-btn" style="margin:0">Copy IPA</button><button type="button" id="copyRespBtn" class="pg-btn ghost" style="margin:0">Copy respelling</button></div>';
+  h+='</div>';
+  out.innerHTML=h;
+  document.getElementById("copyIpaBtn").addEventListener("click",function(){copyText(w+" "+entry.ipa,document.getElementById("copyIpaBtn"));});
+  document.getElementById("copyRespBtn").addEventListener("click",function(){copyText(w+" — "+entry.respell,document.getElementById("copyRespBtn"));});
+  wireSpeakButtons();
+}
+function wireSpeakButtons(){
+  document.querySelectorAll("[data-speak]").forEach(function(btn){
+    btn.addEventListener("click",function(){
+      if(!("speechSynthesis" in window)){alert("Your browser does not support speech synthesis.");return;}
+      var u=new SpeechSynthesisUtterance(this.getAttribute("data-speak"));
+      u.lang=this.getAttribute("data-lang");
+      u.rate=0.85;
+      window.speechSynthesis.cancel();
+      window.speechSynthesis.speak(u);
+    });
+  });
+}
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  $("lookupBtn").addEventListener("click",lookup);
+  $("clearBtn").addEventListener("click",function(){$("wordInput").value="";$("output").innerHTML="";});
+  $("wordInput").addEventListener("keypress",function(e){if(e.key==="Enter")lookup();});
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+});
+})();
+</script>
+</body>
+</html>
