@@ -1,0 +1,719 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free PDF Watermark Remover Online – Remove Watermarks from PDF in Browser</title>
+<meta name="description" content="Free online PDF watermark remover. Remove text and image watermarks from PDF files entirely in your browser. Visual region selection, automatic color detection, batch processing. Your files never leave your device — no upload, no sign-up, no limits.">
+<link rel="canonical" href="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free PDF Watermark Remover Online – Remove Watermarks in Browser">
+<meta property="og:description" content="Remove text and image watermarks from PDFs entirely in your browser. Visual selection, automatic detection, no upload.">
+<meta property="og:url" content="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.pw-hero{background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.pw-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.pw-hero p{margin:0;opacity:.92;font-size:.9rem}
+.pw-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.pw-panel h3{margin:0 0 10px;font-size:1rem}
+.pw-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.pw-panel input,.pw-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.pw-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.pw-row{grid-template-columns:1fr}}
+.pw-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.pw-row3{grid-template-columns:1fr}}
+.pw-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c3aed,#a855f7);color:#fff;margin-right:8px;margin-top:8px}
+.pw-btn:hover{opacity:.92}
+.pw-btn.ghost{background:transparent;color:#7c3aed;border:1px solid var(--line)}
+@media(prefers-color-scheme:dark){.pw-btn.ghost{color:#c4b5fd}}
+.pw-btn:disabled{opacity:.4;cursor:not-allowed}
+.pw-drop{border:2px dashed var(--line-strong);border-radius:12px;padding:32px 20px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;margin:12px 0}
+.pw-drop:hover{border-color:#7c3aed;background:rgba(124,58,237,.04)}
+.pw-drop.drag{border-color:#7c3aed;background:rgba(124,58,237,.08)}
+.pw-drop input{display:none}
+.pw-drop p{margin:0;font-size:.92rem;color:var(--muted)}
+.pw-drop strong{color:#7c3aed;display:block;margin-bottom:4px;font-size:1.05rem}
+.pw-canvas-wrap{position:relative;display:inline-block;max-width:100%;margin:12px 0;border:1px solid var(--line);border-radius:8px;overflow:hidden;background:#f3f4f6}
+.pw-canvas-wrap canvas{display:block;max-width:100%;height:auto;cursor:crosshair}
+.pw-selection{position:absolute;border:2px dashed #7c3aed;background:rgba(124,58,237,.12);pointer-events:none;display:none}
+.pw-page-nav{display:flex;align-items:center;gap:12px;justify-content:center;margin:12px 0;flex-wrap:wrap}
+.pw-page-nav button{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;cursor:pointer;color:var(--fg)}
+.pw-page-nav button:hover{border-color:#7c3aed;color:#7c3aed}
+.pw-page-nav span{font-size:.9rem;color:var(--muted);font-weight:600}
+.pw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.pw-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.pw-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.pw-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.pw-stat .val.ok{color:#16a34a}
+.pw-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.pw-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.pw-tip{background:rgba(124,58,237,.06);border-left:3px solid #7c3aed;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.pw-tip b{color:#7c3aed}
+.pw-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.pw-table th,.pw-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.pw-table th{background:var(--card);font-weight:700}
+.pw-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
+.pw-diagram svg{width:100%;max-width:560px;height:auto;display:block;margin:0 auto}
+.pw-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.pw-share h3{margin:0 0 10px;font-size:1rem}
+.pw-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.pw-share input,.pw-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.pw-share textarea{min-height:80px;resize:vertical}
+.pw-share button{margin-top:6px;background:transparent;color:#7c3aed;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.pw-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.pw-disclaimer b{color:var(--fg)}
+.pw-progress{background:var(--line);border-radius:8px;height:8px;overflow:hidden;margin:10px 0}
+.pw-progress-bar{height:100%;background:linear-gradient(90deg,#7c3aed,#a855f7);width:0%;transition:width .3s}
+@media print{header.site,footer.site,.pw-btn,.pw-hero,.cn-article,.no-print,.pw-panel form,.pw-share,.pw-drop,.pw-page-nav{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"PDF Watermark Remover","url":"https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/","applicationCategory":"UtilityApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free PDF watermark remover online?","acceptedAnswer":{"@type":"Answer","text":"A free PDF watermark remover online is a tool that removes text or image watermarks from PDF files. This tool runs entirely in your browser, so your PDF is never uploaded to a server. You select the watermark region visually, and the tool removes it using canvas-based inpainting and rebuilds the PDF."}},{"@type":"Question","name":"How do I remove a watermark from a PDF?","acceptedAnswer":{"@type":"Answer","text":"Upload your PDF, navigate to the page with the watermark, draw a rectangle over the watermark area using your mouse, choose a removal mode, and click Remove Watermark. The tool processes each page and downloads a new PDF with the watermark removed."}},{"@type":"Question","name":"Can I remove text and image watermarks?","acceptedAnswer":{"@type":"Answer","text":"Yes. This tool can remove both text watermarks (such as CONFIDENTIAL or DRAFT stamps) and image watermarks (logos, company marks) by selecting the region visually. It also includes an automatic colour-detection mode that finds watermark pixels by colour similarity."}},{"@type":"Question","name":"Is it legal to remove a watermark from a PDF?","acceptedAnswer":{"@type":"Answer","text":"You may only remove a watermark from a PDF that you own, created, or have explicit permission to modify. Removing a watermark that contains copyright management information without permission may violate the DMCA and similar laws. See the full disclaimer on this page."}},{"@type":"Question","name":"Is this PDF watermark remover free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never uploads your PDF to a server."}}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/pdf-document-tools/">PDF &amp; Document Tools</a> › PDF Watermark Remover</nav>
+<h1 class="noembed">PDF Watermark Remover</h1>
+<p class="lead noembed">Remove text and image watermarks from PDF files entirely in your browser. Visual region selection, automatic colour detection, page-by-page processing. Your files never leave your device. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/" target="_blank" rel="noopener">PDF Watermark Remover by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="PDF watermark remover">
+<div class="pw-hero noembed">
+<h2>Free PDF Watermark Remover</h2>
+<p>Remove watermarks from PDFs in your browser. No upload, no sign-up, no limits.</p>
+</div>
+
+<div class="pw-diagram" id="processDiagram"></div>
+
+<div class="pw-panel">
+<h3>1. Upload your PDF</h3>
+<div class="pw-drop" id="dropZone">
+<input type="file" id="fileInput" accept=".pdf,application/pdf">
+<p><strong>Drop your PDF here</strong>or click to browse — max 50 MB</p>
+</div>
+<div id="fileInfo"></div>
+</div>
+
+<div class="pw-panel" id="previewPanel" style="display:none">
+<h3>2. Select the watermark region</h3>
+<p class="meta" style="font-size:.82rem;margin:0 0 8px">Click and drag on the page preview to draw a rectangle over the watermark. You can draw multiple regions per page.</p>
+<div class="pw-page-nav">
+<button type="button" id="prevPage">← Previous page</button>
+<span id="pageInfo">Page 1 of 1</span>
+<button type="button" id="nextPage">Next page →</button>
+</div>
+<div style="text-align:center;overflow-x:auto">
+<div class="pw-canvas-wrap">
+<canvas id="pageCanvas"></canvas>
+<div class="pw-selection" id="selectionBox"></div>
+</div>
+</div>
+<div class="pw-row3" style="margin-top:10px">
+<div><label for="zoom">Zoom</label>
+<select id="zoom">
+<option value="0.5">50%</option>
+<option value="0.75">75%</option>
+<option value="1" selected>100%</option>
+<option value="1.5">150%</option>
+<option value="2">200%</option>
+</select></div>
+<div><label for="autoDetect">Auto-detect by colour</label>
+<select id="autoDetect">
+<option value="off" selected>Off (manual selection only)</option>
+<option value="on">On — detect and highlight watermark pixels</option>
+</select></div>
+<div><label for="threshold">Colour match tolerance</label>
+<input type="number" id="threshold" min="10" max="200" step="5" value="40"></div>
+</div>
+<div id="autoDetectInfo"></div>
+</div>
+
+<div class="pw-panel" id="optionsPanel" style="display:none">
+<h3>3. Removal settings</h3>
+<div class="pw-row3">
+<div><label for="method">Removal method</label>
+<select id="method">
+<option value="inpaint" selected>Inpaint (content-aware fill)</option>
+<option value="white">Fill with white</option>
+<option value="background">Sample surrounding background colour</option>
+</select></div>
+<div><label for="pageRange">Apply to pages</label>
+<select id="pageRange">
+<option value="all" selected>All pages (use same regions)</option>
+<option value="current">Current page only</option>
+<option value="custom">Custom range</option>
+</select></div>
+<div><label for="quality">Output quality</label>
+<select id="quality">
+<option value="0.7">70% (smaller file)</option>
+<option value="0.85" selected>85% (balanced)</option>
+<option value="0.95">95% (high quality)</option>
+</select></div>
+</div>
+<div id="customRangeRow" hidden style="margin-top:10px">
+<label for="customRange">Page range (e.g. 1-5, 8, 10-12)</label>
+<input type="text" id="customRange" placeholder="1-5, 8, 10-12">
+</div>
+<div class="pw-row" style="margin-top:10px">
+<div><label for="dpi">Render DPI</label>
+<select id="dpi">
+<option value="100">100 DPI (fast, lower quality)</option>
+<option value="150" selected>150 DPI (balanced)</option>
+<option value="200">200 DPI (high quality, slower)</option>
+</select></div>
+<div><label for="outName">Output filename</label>
+<input type="text" id="outName" value="watermark-removed.pdf"></div>
+</div>
+</div>
+
+<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0">
+<button type="button" class="pw-btn" id="processBtn" disabled>🚀 Remove Watermark</button>
+<button type="button" class="pw-btn ghost" id="resetBtn">Reset</button>
+</div>
+
+<div id="progressArea" style="display:none">
+<div class="pw-progress"><div class="pw-progress-bar" id="progressBar"></div></div>
+<p id="progressText" style="font-size:.85rem;color:var(--muted);text-align:center"></p>
+</div>
+
+<div id="resultArea"></div>
+</section>
+
+<div class="pw-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="pw-share-link">Shareable link</label>
+<input type="text" id="pw-share-link" readonly value="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/">
+<button type="button" data-copy-target="pw-share-link">Copy link</button>
+<label for="pw-cite">Cite this page</label>
+<textarea id="pw-cite" readonly>Utiliby. (2026). PDF Watermark Remover. https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/</textarea>
+<button type="button" data-copy-target="pw-cite">Copy citation</button>
+<label for="pw-embed">Add this tool to your site</label>
+<textarea id="pw-embed" readonly>&lt;iframe src="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/?embed=1" width="100%" height="1200" style="border:0" loading="lazy" title="PDF Watermark Remover by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/pdf-document-tools/pdf-watermark-remover/"&gt;PDF Watermark Remover by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="pw-embed">Copy embed code</button>
+</div>
+
+<article class="cn-article noembed">
+<h2>What is a free PDF watermark remover online?</h2>
+<p>A free PDF watermark remover online is a tool that removes text or image watermarks from PDF files. Most online tools require you to upload your PDF to a server, where it is processed and then deleted after a period of hours. This PDF watermark remover is different: it runs entirely in your browser using JavaScript and the HTML5 canvas. Your file is never uploaded, never stored and never seen by anyone but you.</p>
+<p>The tool renders each page to a high-resolution canvas, lets you select the watermark region visually by drawing a rectangle over it, and removes the watermark using content-aware inpainting. It can also auto-detect watermarks by colour similarity, process specific page ranges, and apply the same removal regions across all pages. Everything runs on your device — no sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free PDF watermark remover</h2>
+<ol>
+<li><b>Upload your PDF.</b> Drop the file onto the upload zone, or click to browse. Files up to 50 MB are supported.</li>
+<li><b>Navigate to the page with the watermark.</b> Use the page navigation buttons to find the page you want to clean.</li>
+<li><b>Select the watermark region.</b> Click and drag on the page preview to draw a rectangle over the watermark. You can draw multiple regions on the same page. For repetitive watermarks, enable auto-detect by colour — the tool will highlight all matching pixels in the region.</li>
+<li><b>Choose your removal method.</b> Inpaint fills the region with content sampled from surrounding pixels (best for text overlays). White fills with solid white. Background samples the surrounding background colour.</li>
+<li><b>Choose page range.</b> Apply the same removal regions to all pages (useful for tiled watermarks), just the current page, or a custom range.</li>
+<li><b>Click Remove Watermark.</b> The tool processes each page, renders it to canvas, applies the removal, and rebuilds a new PDF.</li>
+<li><b>Download the cleaned PDF.</b> The output file appears below with a download button.</li>
+</ol>
+
+<h2>Types of PDF watermarks</h2>
+<p>Watermarks in PDF files come in several forms, and the difficulty of removal depends on the type:</p>
+<table class="pw-table">
+<tr><th>Watermark type</th><th>How it is embedded</th><th>Removal difficulty</th></tr>
+<tr><td>Annotation watermark</td><td>Added as a PDF annotation object (stamp, free text, watermark annotation)</td><td>Easy — can be removed via PDF API</td></tr>
+<tr><td>Text watermark (page content)</td><td>Drawn directly into the page content stream as text</td><td>Medium — requires content stream editing or rasterisation</td></tr>
+<tr><td>Image watermark (XObject)</td><td>Placed as an image object on the page</td><td>Medium — can be removed if the XObject reference is identified</td></tr>
+<tr><td>Optional Content Group</td><td>Placed in a toggleable layer (OCG)</td><td>Easy — the layer can be turned off</td></tr>
+<tr><td>Tiled watermark</td><td>Repeated across the page at regular intervals</td><td>Harder — requires removing each tile</td></tr>
+<tr><td>Background watermark</td><td>Drawn behind the main content</td><td>Harder — removal must not damage foreground content</td></tr>
+</table>
+<p>This tool uses a rasterisation approach: it renders each page to a high-DPI canvas, removes the watermark from the image, and rebuilds the PDF. This works for every watermark type, but it converts the PDF to an image-based document. The text in the output is no longer selectable or searchable. If you need to preserve selectable text, use a dedicated PDF editor that can modify the content stream directly.</p>
+
+<h2>Removal methods explained</h2>
+<ul>
+<li><b>Inpaint (content-aware fill).</b> The tool samples pixels from just outside the selected region and blends them inward to fill the watermark area. This works well when the watermark sits over a uniform background such as white paper or a light colour. It is the default and the most natural-looking option.</li>
+<li><b>Fill with white.</b> Replaces the entire selected region with solid white. Use this when the watermark sits over a plain white background and you want a guaranteed clean result. It will also erase any content inside the selected region.</li>
+<li><b>Sample surrounding background.</b> Analyses the pixels around the border of the selection, determines the dominant background colour, and fills the region with that colour. Useful when the page background is not pure white (for example, a light grey or cream paper texture).</li>
+</ul>
+
+<h2>Legal considerations: when can you remove a watermark?</h2>
+<p>Watermarks exist to assert authorship, indicate confidentiality or identify the source of a document. Removing a watermark is legally permissible only in specific circumstances:</p>
+<ul>
+<li><b>You own the document.</b> You created the PDF, or you own the copyright in the underlying content.</li>
+<li><b>You have explicit permission.</b> The copyright holder has given you written permission to modify the document.</li>
+<li><b>The watermark is your own.</b> You added the watermark yourself (for example, a "DRAFT" stamp) and now want to remove it.</li>
+<li><b>The content is in the public domain.</b> The work is not protected by copyright (very old works, or works explicitly released into the public domain).</li>
+<li><b>Your use is covered by an exception.</b> In some jurisdictions, limited exceptions exist for quotation, criticism, review or accessibility. These exceptions are narrow and vary by country.</li>
+</ul>
+<p>In the United States, the Digital Millennium Copyright Act (DMCA) makes it illegal to "intentionally remove or alter any copyright management information" with reasonable grounds to know that the removal will facilitate copyright infringement. Watermarks that contain copyright notices, author names or source identifiers may fall under this provision. Similar laws exist in the EU, the UK and many other jurisdictions.</p>
+<p>If you are unsure whether you have the right to remove a specific watermark, consult a qualified attorney. Do not use this tool to remove a watermark from a document you do not have permission to modify.</p>
+
+<h2>PDF watermark remover vs PDF editor</h2>
+<p>A dedicated PDF watermark remover is not the same as a full PDF editor. The two serve different purposes:</p>
+<table class="pw-table">
+<tr><th>Task</th><th>Watermark remover</th><th>Full PDF editor</th></tr>
+<tr><td>Remove watermark</td><td>✅ Visual selection + inpainting</td><td>✅ Via content stream editing</td></tr>
+<tr><td>Edit text</td><td>❌</td><td>✅</td></tr>
+<tr><td>Add annotations</td><td>❌</td><td>✅</td></tr>
+<tr><td>Preserve selectable text</td><td>❌ (output is image-based)</td><td>✅</td></tr>
+<tr><td>Batch process</td><td>✅ (same regions across pages)</td><td>Varies</td></tr>
+<tr><td>Client-side processing</td><td>✅ (this tool)</td><td>❌ (most editors are desktop or server-based)</td></tr>
+</table>
+
+<h2>Tips for best results</h2>
+<ul>
+<li><b>Select a slightly larger region than the watermark.</b> Include a few pixels of margin around the watermark to ensure it is fully covered.</li>
+<li><b>Use auto-detect for coloured watermarks.</b> If the watermark is a distinct colour (such as red or blue), enable auto-detect and adjust the tolerance. The tool will highlight all matching pixels in the page.</li>
+<li><b>Match the method to the background.</b> Use inpainting for watermarks over text or complex backgrounds. Use white fill for watermarks over plain white areas.</li>
+<li><b>Increase the DPI for small watermarks.</b> If the watermark is small or thin, render at 200 DPI so the tool has more pixels to work with.</li>
+<li><b>Process page by page for irregular watermarks.</b> If the watermark position varies across pages, use "Current page only" and select the region separately for each page.</li>
+<li><b>Check the output before using it.</b> The removal is an image-processing operation, not a semantic PDF edit. Inspect the result to ensure no important content was removed.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free PDF watermark remover online?</summary><p>A tool that removes text or image watermarks from PDF files. This one runs entirely in your browser — your file is never uploaded to a server. You select the watermark region visually, and the tool removes it using canvas-based inpainting.</p></details>
+<details><summary>How do I remove a watermark from a PDF?</summary><p>Upload your PDF, navigate to the page with the watermark, draw a rectangle over the watermark area, choose a removal method, and click Remove Watermark. The tool processes each page and downloads a new PDF.</p></details>
+<details><summary>Can I remove text and image watermarks?</summary><p>Yes. This tool removes both text watermarks (CONFIDENTIAL, DRAFT stamps) and image watermarks (logos, company marks) by visual selection. It also includes an automatic colour-detection mode.</p></details>
+<details><summary>Is it legal to remove a watermark from a PDF?</summary><p>You may only remove a watermark from a PDF that you own, created, or have explicit permission to modify. Removing copyright management information without permission may violate the DMCA and similar laws. See the full disclaimer on this page.</p></details>
+<details><summary>Is this PDF watermark remover free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no upload, no limits.</p></details>
+</div>
+<div class="pw-disclaimer">
+<b>Disclaimer:</b> This tool is provided for legitimate document editing purposes only. You may use it to remove watermarks from PDFs that you own, created, or have explicit written permission from the copyright holder to modify. Removing a watermark that contains copyright management information (such as a copyright notice, author name or source identifier) without permission may violate the Digital Millennium Copyright Act (DMCA) in the United States and equivalent laws in other jurisdictions, and may constitute copyright infringement. This tool converts each page to an image during processing, so the output PDF will not have selectable or searchable text. Utiliby accepts no liability for any use of this tool that infringes copyright or violates applicable law.
+</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs" type="module"></script>
+<script src="https://unpkg.com/pdf-lib@1.17.1/dist/pdf-lib.min.js"></script>
+<script src="/assets/site.js" defer></script>
+<script type="module">
+import * as pdfjsLib from 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.min.mjs';
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/4.0.379/pdf.worker.min.mjs';
+
+(function(){
+"use strict";
+function $(id){return document.getElementById(id);}
+function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
+function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+
+/* ---------- Process diagram ---------- */
+function drawDiagram(){
+  var W=560,H=220,padL=20,padR=20,padT=20,padB=30;
+  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="PDF watermark removal process">';
+  /* Step 1: Upload */
+  svg+='<rect x="20" y="60" width="120" height="90" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>';
+  svg+='<text x="80" y="85" text-anchor="middle" font-size="22">📄</text>';
+  svg+='<text x="80" y="115" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="700">STEP 1</text>';
+  svg+='<text x="80" y="130" text-anchor="middle" font-size="9" fill="var(--muted)">Upload PDF</text>';
+  svg+='<line x1="140" y1="105" x2="175" y2="105" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPw)"/>';
+  /* Step 2: Select */
+  svg+='<rect x="180" y="60" width="120" height="90" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>';
+  svg+='<text x="240" y="85" text-anchor="middle" font-size="22">🎯</text>';
+  svg+='<text x="240" y="115" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="700">STEP 2</text>';
+  svg+='<text x="240" y="130" text-anchor="middle" font-size="9" fill="var(--muted)">Select region</text>';
+  svg+='<line x1="300" y1="105" x2="335" y2="105" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPw)"/>';
+  /* Step 3: Process */
+  svg+='<rect x="340" y="60" width="120" height="90" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>';
+  svg+='<text x="400" y="85" text-anchor="middle" font-size="22">⚙️</text>';
+  svg+='<text x="400" y="115" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="700">STEP 3</text>';
+  svg+='<text x="400" y="130" text-anchor="middle" font-size="9" fill="var(--muted)">Remove watermark</text>';
+  svg+='<line x1="460" y1="105" x2="495" y2="105" stroke="#7c3aed" stroke-width="2" marker-end="url(#arrowPw)"/>';
+  /* Step 4: Download */
+  svg+='<rect x="500" y="60" width="40" height="90" rx="8" fill="var(--card)" stroke="var(--line)" stroke-width="1.5"/>';
+  svg+='<text x="520" y="85" text-anchor="middle" font-size="22">✅</text>';
+  svg+='<text x="520" y="115" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="700">STEP 4</text>';
+  svg+='<text x="520" y="130" text-anchor="middle" font-size="9" fill="var(--muted)">Download</text>';
+  /* Bottom bar */
+  svg+='<rect x="20" y="170" width="520" height="30" rx="6" fill="rgba(124,58,237,.08)" stroke="#7c3aed" stroke-width="1"/>';
+  svg+='<text x="280" y="189" text-anchor="middle" font-size="10" fill="#7c3aed" font-weight="700">100% CLIENT-SIDE — YOUR PDF NEVER LEAVES YOUR DEVICE</text>';
+  svg+='<defs><marker id="arrowPw" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#7c3aed"/></marker></defs>';
+  svg+='</svg>';
+  $("processDiagram").innerHTML=svg;
+}
+
+/* ---------- State ---------- */
+var pdfDoc=null;
+var pdfBytes=null;
+var fileName="";
+var pageNum=1;
+var totalPages=1;
+var regions={};  /* { pageNum: [{x,y,w,h}] } */
+var currentZoom=1;
+var pdfPage=null;
+var canvasEl=null;
+var ctx=null;
+
+/* ---------- File upload ---------- */
+function handleFile(file){
+  if(!file||file.type!=="application/pdf"&&!file.name.toLowerCase().endsWith(".pdf")){
+    $("fileInfo").innerHTML='<div class="pw-warn">Please select a valid PDF file.</div>';return;
+  }
+  if(file.size>50*1024*1024){
+    $("fileInfo").innerHTML='<div class="pw-warn">File is larger than 50 MB. Please use a smaller PDF.</div>';return;
+  }
+  fileName=file.name;
+  $("outName").value=fileName.replace(/\.pdf$/i,"")+"-no-watermark.pdf";
+  $("fileInfo").innerHTML='<div class="pw-tip"><b>Loaded:</b> '+esc(file.name)+' ('+(file.size/1024/1024).toFixed(2)+' MB)</div>';
+  var reader=new FileReader();
+  reader.onload=async function(e){
+    pdfBytes=new Uint8Array(e.target.result);
+    try{
+      pdfDoc=await pdfjsLib.getDocument({data:pdfBytes.slice()}).promise;
+      totalPages=pdfDoc.numPages;
+      pageNum=1;
+      regions={};
+      $("previewPanel").style.display="block";
+      $("optionsPanel").style.display="block";
+      $("processBtn").disabled=false;
+      await renderPage(pageNum);
+    }catch(err){
+      $("fileInfo").innerHTML='<div class="pw-warn">Could not read this PDF. It may be encrypted or corrupted. Try removing password protection first.</div>';
+      console.error(err);
+    }
+  };
+  reader.readAsArrayBuffer(file);
+}
+
+/* ---------- Render a page ---------- */
+async function renderPage(n){
+  if(!pdfDoc)return;
+  pageNum=Math.max(1,Math.min(n,totalPages));
+  $("pageInfo").textContent="Page "+pageNum+" of "+totalPages;
+  var dpi=parseInt($("dpi").value,10)||150;
+  var scale=(dpi/72)*currentZoom;
+  pdfPage=await pdfDoc.getPage(pageNum);
+  var viewport=pdfPage.getViewport({scale:scale});
+  canvasEl=$("pageCanvas");
+  ctx=canvasEl.getContext("2d");
+  canvasEl.width=viewport.width;
+  canvasEl.height=viewport.height;
+  await pdfPage.render({canvasContext:ctx,viewport:viewport}).promise;
+  redrawRegions();
+  if($("autoDetect").value==="on"){ autoDetectWatermark(); }
+}
+
+/* ---------- Draw selection regions ---------- */
+function redrawRegions(){
+  if(!ctx||!canvasEl)return;
+  var r=regions[pageNum]||[];
+  ctx.save();
+  ctx.strokeStyle="#7c3aed";
+  ctx.lineWidth=2;
+  ctx.setLineDash([6,4]);
+  ctx.fillStyle="rgba(124,58,237,.12)";
+  for(var i=0;i<r.length;i++){
+    ctx.fillRect(r[i].x,r[i].y,r[i].w,r[i].h);
+    ctx.strokeRect(r[i].x,r[i].y,r[i].w,r[i].h);
+  }
+  ctx.restore();
+}
+
+/* ---------- Mouse selection ---------- */
+var isDrawing=false,startX=0,startY=0,selBox=null;
+function getCanvasCoords(e){
+  var rect=canvasEl.getBoundingClientRect();
+  var scaleX=canvasEl.width/rect.width;
+  var scaleY=canvasEl.height/rect.height;
+  return {
+    x:(e.clientX-rect.left)*scaleX,
+    y:(e.clientY-rect.top)*scaleY
+  };
+}
+function initCanvasEvents(){
+  var c=$("pageCanvas");
+  c.addEventListener("mousedown",function(e){
+    if(!pdfPage)return;
+    e.preventDefault();
+    var p=getCanvasCoords(e);
+    startX=p.x;startY=p.y;isDrawing=true;
+    selBox=$("selectionBox");
+    selBox.style.display="block";
+    var rect=c.getBoundingClientRect();
+    selBox.style.left=(e.clientX-rect.left)+"px";
+    selBox.style.top=(e.clientY-rect.top)+"px";
+    selBox.style.width="0px";
+    selBox.style.height="0px";
+  });
+  document.addEventListener("mousemove",function(e){
+    if(!isDrawing||!selBox)return;
+    var rect=c.getBoundingClientRect();
+    var p=getCanvasCoords(e);
+    var x=Math.min(startX,p.x),y=Math.min(startY,p.y);
+    var w=Math.abs(p.x-startX),h=Math.abs(p.y-startY);
+    selBox.style.left=(x/(canvasEl.width/rect.width))+"px";
+    selBox.style.top=(y/(canvasEl.height/rect.height))+"px";
+    selBox.style.width=(w/(canvasEl.width/rect.width))+"px";
+    selBox.style.height=(h/(canvasEl.height/rect.height))+"px";
+  });
+  document.addEventListener("mouseup",function(e){
+    if(!isDrawing)return;
+    isDrawing=false;
+    if(!selBox){return;}
+    var rect=c.getBoundingClientRect();
+    var p=getCanvasCoords(e);
+    var x=Math.min(startX,p.x),y=Math.min(startY,p.y);
+    var w=Math.abs(p.x-startX),h=Math.abs(p.y-startY);
+    selBox.style.display="none";selBox=null;
+    if(w<5||h<5)return;
+    if(!regions[pageNum])regions[pageNum]=[];
+    regions[pageNum].push({x:x,y:y,w:w,h:h});
+    redrawRegions();
+    updateRegionInfo();
+  });
+}
+
+function updateRegionInfo(){
+  var count=0;
+  for(var k in regions){count+=regions[k].length;}
+  if(count>0){
+    var info=$("autoDetectInfo");
+    if(!info)return;
+    info.innerHTML='<div class="pw-tip"><b>Regions selected:</b> '+count+' across '+Object.keys(regions).length+' page(s). Draw more regions or click Remove Watermark to process.</div>';
+  }
+}
+
+/* ---------- Auto-detect watermark by colour ---------- */
+function autoDetectWatermark(){
+  if(!ctx||!canvasEl)return;
+  var img=ctx.getImageData(0,0,canvasEl.width,canvasEl.height);
+  var d=img.data;
+  var tolerance=parseInt($("threshold").value,10)||40;
+  /* Sample border colours to estimate background */
+  var borderColours={};
+  var w=canvasEl.width,h=canvasEl.height;
+  function sample(x,y){
+    var i=(y*w+x)*4;
+    var r=d[i],g=d[i+1],b=d[i+2];
+    var key=Math.round(r/32)+","+Math.round(g/32)+","+Math.round(b/32);
+    borderColours[key]=(borderColours[key]||0)+1;
+  }
+  for(var i=0;i<w;i+=4){sample(i,2);sample(i,h-3);}
+  for(var j=0;j<h;j+=4){sample(2,j);sample(w-3,j);}
+  /* Find dominant border colour */
+  var dom=null,domCount=0;
+  for(var k in borderColours){if(borderColours[k]>domCount){domCount=borderColours[k];dom=k;}}
+  if(!dom)return;
+  var parts=dom.split(",").map(Number);
+  var bgR=parts[0]*32+16,bgG=parts[1]*32+16,bgB=parts[2]*32+16;
+  /* Find pixels that differ from background significantly */
+  var diffs=[];
+  for(var p=0;p<d.length;p+=4){
+    var dr=Math.abs(d[p]-bgR),dg=Math.abs(d[p+1]-bgG),db=Math.abs(d[p+2]-bgB);
+    if(dr+dg+db>tolerance*3){diffs.push(p/4);}
+  }
+  if(diffs.length===0){$("autoDetectInfo").innerHTML='<div class="pw-tip">Auto-detect found no watermark-like pixels. Try adjusting the tolerance or select manually.</div>';return;}
+  /* Compute bounding box of detected pixels */
+  var minX=w,minY=h,maxX=0,maxY=0;
+  for(var q=0;q<diffs.length;q++){
+    var x2=diffs[q]%w,y2=Math.floor(diffs[q]/w);
+    if(x2<minX)minX=x2;if(x2>maxX)maxX=x2;
+    if(y2<minY)minY=y2;if(y2>maxY)maxY=y2;
+  }
+  if(!regions[pageNum])regions[pageNum]=[];
+  regions[pageNum].push({x:Math.max(0,minX-4),y:Math.max(0,minY-4),w:Math.min(w,maxX-minX+8),h:Math.min(h,maxY-minY+8)});
+  redrawRegions();
+  $("autoDetectInfo").innerHTML='<div class="pw-tip"><b>Auto-detect:</b> found '+diffs.length.toLocaleString()+' pixels that differ from the background. A bounding region has been added. Adjust tolerance or draw manually for precision.</div>';
+}
+
+/* ---------- Inpainting ---------- */
+function inpaintRegion(ctx,x,y,w,h){
+  if(w<2||h<2)return;
+  /* Sample a ring around the region */
+  var ring=6;
+  var samples=[];
+  for(var i=0;i<w;i++){
+    for(var d=0;d<ring;d++){
+      samples.push(getPixel(ctx,x+i,y-d-1));
+      samples.push(getPixel(ctx,x+i,y+h+d));
+    }
+  }
+  for(var j=0;j<h;j++){
+    for(var d2=0;d2<ring;d2++){
+      samples.push(getPixel(ctx,x-d2-1,y+j));
+      samples.push(getPixel(ctx,x+w+d2,y+j));
+    }
+  }
+  /* Compute average colour (ignoring fully transparent / black) */
+  var r=0,g=0,b=0,count=0;
+  for(var s=0;s<samples.length;s++){
+    var px=samples[s];
+    if(px&&px[3]>10){r+=px[0];g+=px[1];b+=px[2];count++;}
+  }
+  if(count===0){ctx.fillStyle="#ffffff";ctx.fillRect(x,y,w,h);return;}
+  r=Math.round(r/count);g=Math.round(g/count);b=Math.round(b/count);
+  /* Blend: sample individual pixel colours from the edges for smoother fill */
+  var img=ctx.getImageData(0,0,ctx.canvas.width,ctx.canvas.height);
+  var d=img.data;
+  var cw=ctx.canvas.width,ch=ctx.canvas.height;
+  for(var yy=y;yy<y+h;yy++){
+    for(var xx=x;xx<x+w;xx++){
+      if(xx<0||yy<0||xx>=cw||yy>=ch)continue;
+      /* Bilinear-ish blend from nearest edge samples */
+      var top=getPixel(ctx,xx,y-1);
+      var bot=getPixel(ctx,xx,y+h);
+      var lef=getPixel(ctx,x-1,yy);
+      var rig=getPixel(ctx,x+w,yy);
+      var rr=r,gg=g,bb=b,ww=1;
+      function add(p,weight){if(p&&p[3]>10){rr+=p[0]*weight;gg+=p[1]*weight;bb+=p[2]*weight;ww+=weight;}}
+      add(top,2);add(bot,2);add(lef,2);add(rig,2);
+      var idx=(yy*cw+xx)*4;
+      d[idx]=Math.round(rr/ww);
+      d[idx+1]=Math.round(gg/ww);
+      d[idx+2]=Math.round(bb/ww);
+      d[idx+3]=255;
+    }
+  }
+  ctx.putImageData(img,0,0);
+}
+function getPixel(ctx,x,y){
+  if(x<0||y<0||x>=ctx.canvas.width||y>=ctx.canvas.height)return null;
+  try{
+    var d=ctx.getImageData(x,y,1,1).data;
+    return [d[0],d[1],d[2],d[3]];
+  }catch(e){return null;}
+}
+
+/* ---------- Process all pages ---------- */
+async function processPDF(){
+  if(!pdfDoc||!pdfBytes)return;
+  var btn=$("processBtn");
+  btn.disabled=true;
+  $("progressArea").style.display="block";
+  var method=$("method").value;
+  var pageRange=$("pageRange").value;
+  var quality=parseFloat($("quality").value)||0.85;
+  var dpi=parseInt($("dpi").value,10)||150;
+  var scale=(dpi/72);
+
+  /* Determine which pages to process */
+  var pagesToProcess=[];
+  if(pageRange==="all"){for(var i=1;i<=totalPages;i++)pagesToProcess.push(i);}
+  else if(pageRange==="current"){pagesToProcess=[pageNum];}
+  else {
+    var range=parseRange($("customRange").value,totalPages);
+    pagesToProcess=range.length?range:[pageNum];
+  }
+
+  try{
+    var {PDFDocument}=PDFLib;
+    var outPdf=await PDFDocument.create();
+
+    for(var p=0;p<pagesToProcess.length;p++){
+      var pg=pagesToProcess[p];
+      var progress=Math.round((p/pagesToProcess.length)*100);
+      $("progressBar").style.width=progress+"%";
+      $("progressText").textContent="Processing page "+pg+" of "+pagesToProcess.length+"…";
+
+      var page=await pdfDoc.getPage(pg);
+      var viewport=page.getViewport({scale:scale});
+      var c=document.createElement("canvas");
+      c.width=viewport.width;c.height=viewport.height;
+      var cx=c.getContext("2d");
+      await page.render({canvasContext:cx,viewport:viewport}).promise;
+
+      /* Apply removal regions for this page (or fall back to regions[1] if none for this page) */
+      var regs=regions[pg]||regions[1]||[];
+      for(var r=0;r<regs.length;r++){
+        var reg=regs[r];
+        if(method==="white"){
+          cx.fillStyle="#ffffff";
+          cx.fillRect(reg.x,reg.y,reg.w,reg.h);
+        } else if(method==="background"){
+          var bg=getPixel(cx,reg.x-2,reg.y-2);
+          cx.fillStyle=bg?"rgb("+bg[0]+","+bg[1]+","+bg[2]+")":"#ffffff";
+          cx.fillRect(reg.x,reg.y,reg.w,reg.h);
+        } else {
+          inpaintRegion(cx,reg.x,reg.y,reg.w,reg.h);
+        }
+      }
+
+      /* Convert canvas to image and embed in output PDF */
+      var dataUrl=c.toDataURL("image/jpeg",quality);
+      var imgBytes=await fetch(dataUrl).then(function(r){return r.arrayBuffer();});
+      var img=await outPdf.embedJpg(imgBytes);
+      var pdfPage2=outPdf.addPage([img.width,img.height]);
+      pdfPage2.drawImage(img,{x:0,y:0,width:img.width,height:img.height});
+    }
+
+    $("progressBar").style.width="100%";
+    $("progressText").textContent="Building output PDF…";
+    var outBytes=await outPdf.save();
+    var blob=new Blob([outBytes],{type:"application/pdf"});
+    var url=URL.createObjectURL(blob);
+    var sizeMB=(blob.size/1024/1024).toFixed(2);
+    $("resultArea").innerHTML='<div class="pw-panel"><h3>✅ Watermark removed</h3>'+
+      '<div class="pw-stats">'+
+      '<div class="pw-stat"><div class="lbl">Pages processed</div><div class="val">'+pagesToProcess.length+'</div></div>'+
+      '<div class="pw-stat"><div class="lbl">Regions removed</div><div class="val">'+Object.keys(regions).reduce(function(a,k){return a+regions[k].length;},0)+'</div></div>'+
+      '<div class="pw-stat"><div class="lbl">Output size</div><div class="val">'+sizeMB+' MB</div></div>'+
+      '</div>'+
+      '<div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:14px">'+
+      '<a href="'+url+'" download="'+esc($("outName").value)+'" class="pw-btn" style="text-decoration:none;margin:0">⬇️ Download PDF</a>'+
+      '<button type="button" id="copyOutName" class="pw-btn ghost" style="margin:0">Copy filename</button>'+
+      '</div></div>';
+    $("copyOutName").addEventListener("click",function(){copyText($("outName").value,$("copyOutName"));});
+  }catch(err){
+    $("resultArea").innerHTML='<div class="pw-warn">Processing failed: '+esc(err.message||String(err))+'. Try reducing the DPI or the number of pages.</div>';
+    console.error(err);
+  }
+  $("progressArea").style.display="none";
+  btn.disabled=false;
+}
+
+function parseRange(str,max){
+  var out=[];
+  str.split(",").forEach(function(part){
+    part=part.trim();
+    if(part.indexOf("-")>-1){
+      var a=parseInt(part.split("-")[0],10),b=parseInt(part.split("-")[1],10);
+      if(!isNaN(a)&&!isNaN(b)){for(var i=Math.max(1,a);i<=Math.min(max,b);i++)out.push(i);}
+    } else {
+      var n=parseInt(part,10);
+      if(!isNaN(n)&&n>=1&&n<=max)out.push(n);
+    }
+  });
+  return out;
+}
+
+/* ---------- Wiring ---------- */
+window.addEventListener("DOMContentLoaded",function(){
+  if(!$("tool"))return;
+  drawDiagram();
+
+  var drop=$("dropZone"),input=$("fileInput");
+  drop.addEventListener("click",function(){input.click();});
+  drop.addEventListener("dragover",function(e){e.preventDefault();drop.classList.add("drag");});
+  drop.addEventListener("dragleave",function(){drop.classList.remove("drag");});
+  drop.addEventListener("drop",function(e){e.preventDefault();drop.classList.remove("drag");if(e.dataTransfer.files[0])handleFile(e.dataTransfer.files[0]);});
+  input.addEventListener("change",function(){if(input.files[0])handleFile(input.files[0]);});
+
+  $("prevPage").addEventListener("click",function(){if(pageNum>1)renderPage(pageNum-1);});
+  $("nextPage").addEventListener("click",function(){if(pageNum<totalPages)renderPage(pageNum+1);});
+  $("zoom").addEventListener("change",function(){currentZoom=parseFloat(this.value);renderPage(pageNum);});
+  $("dpi").addEventListener("change",function(){renderPage(pageNum);});
+  $("autoDetect").addEventListener("change",function(){if(this.value==="on")autoDetectWatermark();else redrawRegions();});
+  $("threshold").addEventListener("change",function(){if($("autoDetect").value==="on")autoDetectWatermark();});
+  $("pageRange").addEventListener("change",function(){
+    $("customRangeRow").hidden=this.value!=="custom";
+  });
+  $("processBtn").addEventListener("click",processPDF);
+  $("resetBtn").addEventListener("click",function(){
+    pdfDoc=null;pdfBytes=null;regions={};pageNum=1;
+    $("fileInfo").innerHTML="";$("previewPanel").style.display="none";
+    $("optionsPanel").style.display="none";$("resultArea").innerHTML="";
+    $("processBtn").disabled=true;$("fileInput").value="";
+  });
+  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
+
+  initCanvasEvents();
+});
+})();
+</script>
+</body>
+</html>
