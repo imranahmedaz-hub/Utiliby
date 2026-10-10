@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
 <title>Free Bearing L10 Life Calculator Online – ISO 281 Rating Life, L10h &amp; Modified Life</title>
-<meta name="description" content="Free online bearing L10 life calculator using ISO 281. Calculate basic rating life L10 and L10h in hours, equivalent dynamic load P, modified rating life Lnm with reliability and lubrication factors, load-life curves, Weibull reliability chart and bearing comparison. 100% browser-based, no sign-up.">
+<meta name="description" content="Free online bearing L10 life calculator: basic and modified life, static safety, variable loads, required load rating, bearing comparison and report-only PDF printing. Uses ISO 281 rating-life equations.">
 <link rel="canonical" href="https://utiliby.com/tools/engineering/bearing-l10-life-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
@@ -99,31 +99,167 @@
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+
+/* Added styles are confined to the original calculator and article. */
+#tool *,#bearingReport *{box-sizing:border-box}#tool [hidden]{display:none!important}
+#tool .bl-note{font-size:.85rem;line-height:1.6;color:var(--muted);margin:8px 0}
+#tool textarea{width:100%;min-height:125px;padding:10px;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font:.85rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+#tool .bl-table-wrap,.cn-article .bl-table-wrap{overflow-x:auto}
+#tool .bl-diagram svg{max-width:580px}#tool svg text,#bearingReport svg text{font:12px system-ui,sans-serif;fill:#254453}
+#tool input[type=range]{width:100%;accent-color:#0f766e}#tool :focus-visible,.bl-share :focus-visible{outline:3px solid #b57700;outline-offset:3px}
+#tool summary{cursor:pointer;font-weight:600}#tool details{margin:12px 0}#tool .bl-actions button:disabled{opacity:.5;cursor:default}
+#tool .bl-formula,.cn-article .bl-formula{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;border:1px solid var(--line);background:var(--card);padding:12px;border-radius:8px;overflow-wrap:anywhere}
+#bearingReport{display:none}
+@media print{@page{size:auto;margin:14mm}body>*:not(#bearingReport){display:none!important}#bearingReport{display:block!important;background:#fff;color:#000;font:11pt/1.4 Arial,sans-serif}#bearingReport h1{font-size:19pt}#bearingReport h2{font-size:14pt}#bearingReport table{width:100%;border-collapse:collapse;font-size:10pt}#bearingReport th,#bearingReport td{border:1px solid #ccc;padding:6px;text-align:left}#bearingReport tr,#bearingReport .report-visual{break-inside:avoid}#bearingReport svg{display:block;width:100%;max-width:600px;max-height:230px;margin:auto}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Bearing L10 Life Calculator (ISO 281)","url":"https://utiliby.com/tools/engineering/bearing-l10-life-calculator/","applicationCategory":"EngineeringApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free bearing L10 life calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free bearing L10 life calculator online is a tool that computes the basic rating life of a rolling bearing according to ISO 281. It takes the dynamic load rating C, the equivalent dynamic load P and the rotational speed to calculate L10 in millions of revolutions and L10h in operating hours, the life that 90% of a group of identical bearings is expected to reach before fatigue failure."}},{"@type":"Question","name":"What is the L10 life formula according to ISO 281?","acceptedAnswer":{"@type":"Answer","text":"The basic rating life is L10 = (C/P)^p in millions of revolutions, where C is the basic dynamic load rating, P is the equivalent dynamic load and p is 3 for ball bearings and 10/3 for roller bearings. In operating hours, L10h = (10^6 / (60 n)) x (C/P)^p where n is the rotational speed in rpm."}},{"@type":"Question","name":"How do I calculate the equivalent dynamic load P?","acceptedAnswer":{"@type":"Answer","text":"For a combined radial and axial load, P = X Fr + Y Fa where Fr is the radial load, Fa is the axial load and X and Y are the radial and axial load factors from the bearing datasheet. For a purely radial load, P equals Fr and X = 1, Y = 0. The X and Y factors depend on the ratio Fa/Fr and the bearing type."}},{"@type":"Question","name":"What is the modified rating life Lnm according to ISO 281?","acceptedAnswer":{"@type":"Answer","text":"The modified rating life is Lnm = a1 x aISO x L10, where a1 is the reliability factor for the required survival probability (1.0 at 90%, 0.62 at 95%, 0.21 at 99%) and aISO is the life modification factor that accounts for lubrication condition, contamination and fatigue load limits."}},{"@type":"Question","name":"What is the difference between L10 and L10h?","acceptedAnswer":{"@type":"Answer","text":"L10 is the basic rating life expressed in millions of revolutions, while L10h is the same life expressed in operating hours at a given rotational speed. L10h = L10 x 10^6 / (60 n), where n is the speed in rpm. L10h is often more useful for maintenance planning because engineers think in hours of service."}},{"@type":"Question","name":"Why does bearing life drop so dramatically when load increases?","acceptedAnswer":{"@type":"Answer","text":"Because bearing life varies with the cube of the C/P ratio for ball bearings. Doubling the applied load reduces life by a factor of eight. This extreme sensitivity means accurate load analysis, including shock and dynamic loads, is critical for correct bearing sizing."}},{"@type":"Question","name":"What reliability factor should I use for critical applications?","acceptedAnswer":{"@type":"Answer","text":"For critical applications where unplanned downtime is unacceptable, designers typically target 95% to 99% reliability. The ISO 281 reliability factors are a1 = 1.0 for 90%, a1 = 0.62 for 95%, a1 = 0.53 for 96%, a1 = 0.44 for 97%, a1 = 0.33 for 98% and a1 = 0.21 for 99%."}},{"@type":"Question","name":"What is the aISO life modification factor?","acceptedAnswer":{"@type":"Answer","text":"aISO is the ISO 281 life modification factor that adjusts the basic rating life for lubrication condition, contamination level and the fatigue load limit of the bearing. A well-lubricated, clean bearing can have aISO greater than 1, while a contaminated or poorly lubricated bearing may have aISO below 1, reducing the attainable life."}},{"@type":"Question","name":"What is the load-life exponent p and why is it different for ball and roller bearings?","acceptedAnswer":{"@type":"Answer","text":"The exponent p is 3 for ball bearings and 10/3 for roller bearings. It reflects the contact geometry: ball bearings make point contact and roller bearings make line contact, which distributes stress differently and makes roller bearings slightly less sensitive to load increases."}},{"@type":"Question","name":"Is this bearing L10 life calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}}]}]}</script>
+<script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebApplication",
+      "name": "Bearing L10 Life Calculator (ISO 281)",
+      "url": "https://utiliby.com/tools/engineering/bearing-l10-life-calculator/",
+      "applicationCategory": "EngineeringApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Utiliby",
+        "url": "https://utiliby.com"
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "What is L10 bearing life?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "L10 is the basic rolling-contact fatigue rating life that 90% of an apparently identical bearing population is expected to reach or exceed under the rating assumptions. It is not guaranteed individual service life."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How do I calculate bearing life in hours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "For positive RPM, L10h = 1,000,000 × (C/P)^p ÷ (60 × RPM), where p is 3 for ball bearings and 10/3 for roller bearings. C and P must use the same force unit."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the difference between C and C₀?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "C is the basic dynamic load rating used for rolling-fatigue life. C₀ is the basic static load rating used with equivalent static load P₀ for the separate static factor C₀/P₀."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I use radial and axial loads together?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, when the supplied equivalent-load equation and catalogue X, Y, and threshold e are appropriate for your bearing. The tool does not determine universal factors or induced thrust."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What reliability factor is used at 99%?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The ISO 281:2007 table used here gives a₁ = 0.25 at 99% reliability. Older or proprietary methods can use different values, so do not mix tables silently."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does clean lubrication automatically increase life?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. A supported life modification factor requires the applicable manufacturer method and operating data. Viscosity and contamination helper ratios do not independently establish aISO."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I calculate life at zero RPM?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The tool can show a mathematical revolution rating at zero RPM, but hours are undefined. Stationary loads and dwell damage require independent static and application assessments."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How are variable loads and speeds combined?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The duty-cycle model weights load powers by revolutions and sums segment fatigue allocations. It reports both elapsed cycle life and rolling-time life, with a separately stated modified scenario."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Can I find the required bearing dynamic rating?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes. Inverse sizing solves for required C, equivalent load, or RPM for a target life while holding the other inputs and entered life factors fixed. These are fatigue-equation results, not mechanical limits."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does printing include the article?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Printing and Save PDF use a separate report containing calculation data, diagrams, and assumptions. CSV and TXT also export report information only."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Does a longer calculated life prove a bearing is suitable?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. Static capacity, minimum load, speed, fits, clearance, lubrication, temperature, alignment, sealing, and non-fatigue failure mechanisms still need application-specific checks."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Is the Weibull chart an ISO reliability prediction?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "No. It is an optional illustrative model anchored to 90% survival at basic L10h using your selected shape factor. The ISO reliability factors remain a separate tabulated method."
+          }
+        }
+      ]
+    }
+  ]
+}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/engineering/">Engineering</a> › Bearing L10 Life Calculator</nav>
 <h1 class="noembed">Bearing L10 Life Calculator (ISO 281)</h1>
-<p class="lead noembed">Calculate basic rating life L10 and L10h in hours, equivalent dynamic load P, modified rating life Lnm with reliability and lubrication factors. Includes load-life curves, Weibull reliability chart and side-by-side bearing comparison. Free, private and no sign-up.</p>
+<p class="lead noembed">Free online calculation of basic L10 life, modified rating life, variable-load duty cycles and required dynamic rating. Includes static checks, bearing comparison and interactive load-life diagrams. Preliminary estimates; no sign-up.</p>
 <p class="onlyembed"><a href="https://utiliby.com/tools/engineering/bearing-l10-life-calculator/" target="_blank" rel="noopener">Bearing L10 Life Calculator by Utiliby</a></p>
 
 <section class="tool" id="tool" aria-label="Bearing L10 life calculator">
 
 <div class="bl-hero noembed">
 <h2>Free Bearing L10 Life Calculator</h2>
-<p>Three calculators in one: basic ISO 281 rating life, modified rating life Lnm, and bearing comparison.</p>
+<p>Basic life, modified life, bearing comparison, variable-load duty cycles and reverse sizing — with calculation-only reports.</p>
 </div>
 
 <div class="bl-tabs noembed" role="group" aria-label="Calculator mode">
 <button type="button" class="bl-tab on" data-mode="basic">Basic L10 Life</button>
 <button type="button" class="bl-tab" data-mode="modified">Modified Life (ISO 281)</button>
 <button type="button" class="bl-tab" data-mode="compare">Compare Bearings</button>
+<button type="button" class="bl-tab" data-mode="duty">Variable Load</button>
+<button type="button" class="bl-tab" data-mode="sizing">Reverse Sizing</button>
 </div>
 
-<!-- BASIC TAB -->
+<div class="bl-panel"><h3>Units &amp; calculation reference</h3><div><label for="forceUnits">Force units for all ratings, loads and duty-cycle data</label><select id="forceUnits"><option value="N">Newtons (N)</option><option value="kN">Kilonewtons (kN)</option><option value="lbf">Pounds force (lbf)</option></select></div><p class="bl-note">Switching units converts entered force values and valid duty-cycle loads. C is dynamic rating; C₀ is static rating. Use actual manufacturer ratings and bearing-specific load factors.</p></div><!-- BASIC TAB -->
 <div id="basicTab">
 <div class="bl-panel">
 <h3>Bearing parameters</h3>
@@ -136,12 +272,12 @@
 <div><label for="bSpeed">Rotational speed n (rpm)</label><input type="number" id="bSpeed" min="1" step="1" value="1500"></div>
 </div>
 <div class="bl-row">
-<div><label for="bC">Dynamic load rating C (N)</label><input type="number" id="bC" min="1" step="1" value="20000"></div>
-<div><label for="bC0">Static load rating C₀ (N, optional)</label><input type="number" id="bC0" min="0" step="1" value="14000"></div>
+<div><label for="bC">Dynamic load rating C (<span data-force-unit>N</span>)</label><input type="number" id="bC" min="1" step="1" value="20000"></div>
+<div><label for="bC0">Static load rating C₀ (<span data-force-unit>N</span>, optional)</label><input type="number" id="bC0" min="0" step="1" value="14000"></div>
 </div>
 <div class="bl-row">
-<div><label for="bFr">Radial load Fr (N)</label><input type="number" id="bFr" min="0" step="1" value="5000"></div>
-<div><label for="bFa">Axial load Fa (N)</label><input type="number" id="bFa" min="0" step="1" value="0"></div>
+<div><label for="bFr">Radial load Fr (<span data-force-unit>N</span>)</label><input type="number" id="bFr" min="0" step="1" value="5000"></div>
+<div><label for="bFa">Axial load Fa (<span data-force-unit>N</span>)</label><input type="number" id="bFa" min="0" step="1" value="0"></div>
 </div>
 <div class="bl-row3">
 <div><label for="bX">Factor X (radial)</label><input type="number" id="bX" min="0" step="0.01" value="1" title="Set to 1 for pure radial load"></div>
@@ -150,7 +286,7 @@
 </div>
 </div>
 
-<div class="bl-diagram" id="bearingDiagram"></div>
+<div class="bl-panel"><h3>Dynamic load method &amp; life target</h3><div><label for="bLoadMode">Equivalent dynamic load calculation</label><select id="bLoadMode"><option value="radial">Pure radial load P = Fr</option><option value="xy">Manual combined load P = X Fr + Y Fa</option><option value="threshold">Catalogue threshold e: radial / combined branches</option><option value="direct">Enter known equivalent dynamic load P</option></select></div><div class="bl-row3"><div><label for="bDirectP">Known equivalent load P (<span data-force-unit>N</span>)</label><input type="number" id="bDirectP" min="0" step="any" value="5000" ></div><div><label for="bE">Catalogue threshold e</label><input type="number" id="bE" min="0" step="any" value="0.3" ></div><div><label for="bService">Application load multiplier</label><input type="number" id="bService" min="1e-06" step="any" value="1" ></div></div><div class="bl-row3"><div><label for="bTarget">Target basic fatigue life (hours, optional)</label><input type="number" id="bTarget" min="0" step="any" value="20000" ></div><div><label for="bDays">Scheduled operating days/year</label><input type="number" id="bDays" min="1" step="any" value="250" ></div><div><label for="bPreview">Load sensitivity change (%)</label><input type="number" id="bPreview" min="-90" step="any" value="0" max="200"></div></div><p class="bl-note">X, Y and e must apply to the actual bearing and load branch. The multiplier scales dynamic equivalent load, not static load. Calendar duration is only a schedule conversion, not a replacement date.</p></div><div class="bl-panel"><h3>Separate static-load check</h3><div><label for="bStaticMode">Equivalent static load P₀</label><select id="bStaticMode"><option value="direct">Enter independently determined P₀</option><option value="xy">Manual static factors X₀ Fr + Y₀ Fa</option><option value="off">Skip static-load check</option></select></div><div class="bl-row3"><div><label for="bP0">Equivalent static load P₀ (<span data-force-unit>N</span>)</label><input type="number" id="bP0" min="0" step="any" value="5000" ></div><div><label for="bX0">Static radial factor X₀</label><input type="number" id="bX0" min="0" step="any" value="1" ></div><div><label for="bY0">Static axial factor Y₀</label><input type="number" id="bY0" min="0" step="any" value="0" ></div></div><div><label for="bS0">Required static safety factor s₀</label><input type="number" id="bS0" min="1e-06" step="any" value="1.5" ></div><p class="bl-note">Use peak static/shock loading and the catalogue’s actual static equation. Some bearings require a maximum of multiple expressions; enter that result directly. Dynamic P and static P₀ are not interchangeable.</p></div><div class="bl-diagram" id="bearingDiagram"></div>
 
 <button type="button" class="bl-btn" id="calcBasicBtn">Calculate L10 Life</button>
 <button type="button" class="bl-btn ghost" id="resetBasicBtn">Reset</button>
@@ -172,29 +308,12 @@
 <div><label for="mSpeed">Rotational speed n (rpm)</label><input type="number" id="mSpeed" min="1" step="1" value="1500"></div>
 </div>
 <div class="bl-row">
-<div><label for="mC">Dynamic load rating C (N)</label><input type="number" id="mC" min="1" step="1" value="20000"></div>
-<div><label for="mP">Equivalent dynamic load P (N)</label><input type="number" id="mP" min="1" step="1" value="5000"></div>
+<div><label for="mC">Dynamic load rating C (<span data-force-unit>N</span>)</label><input type="number" id="mC" min="1" step="1" value="20000"></div>
+<div><label for="mP">Equivalent dynamic load P (<span data-force-unit>N</span>)</label><input type="number" id="mP" min="1" step="1" value="5000"></div>
 </div>
 <div class="bl-row">
-<div><label for="mReliability">Reliability target</label>
-<select id="mReliability">
-<option value="1">90% (L10, a1 = 1.00)</option>
-<option value="0.62">95% (a1 = 0.62)</option>
-<option value="0.53">96% (a1 = 0.53)</option>
-<option value="0.44">97% (a1 = 0.44)</option>
-<option value="0.33">98% (a1 = 0.33)</option>
-<option value="0.21" selected>99% (a1 = 0.21)</option>
-</select></div>
-<div><label for="mAiso">aISO life modification factor</label>
-<select id="mAiso">
-<option value="0.1">0.1 – Severe contamination, poor lubrication</option>
-<option value="0.3">0.3 – Contaminated, inadequate lubrication</option>
-<option value="0.5">0.5 – Moderate contamination</option>
-<option value="1" selected>1.0 – Normal clean conditions</option>
-<option value="2">2.0 – Good lubrication, clean</option>
-<option value="3">3.0 – Excellent lubrication, very clean</option>
-<option value="5">5.0 – Super-clean, optimal lubrication</option>
-</select></div>
+<div><label for="mReliability">Reliability target — ISO 281:2007 table</label><select id="mReliability"><option value="90">90% (a₁ = 1)</option><option value="95">95% (a₁ = 0.64)</option><option value="96">96% (a₁ = 0.55)</option><option value="97">97% (a₁ = 0.47)</option><option value="98">98% (a₁ = 0.37)</option><option value="99">99% (a₁ = 0.25)</option><option value="99.2">99.2% (a₁ = 0.22)</option><option value="99.4">99.4% (a₁ = 0.19)</option><option value="99.6">99.6% (a₁ = 0.16)</option><option value="99.8">99.8% (a₁ = 0.12)</option><option value="99.9">99.9% (a₁ = 0.093)</option><option value="99.92">99.92% (a₁ = 0.087)</option><option value="99.94">99.94% (a₁ = 0.08)</option><option value="99.95">99.95% (a₁ = 0.077)</option></select></div>
+<div><label for="mAiso">Verified aISO factor (manual input)</label><input type="number" id="mAiso" min="0" step="any" value="1"></div>
 </div>
 <div class="bl-row">
 <div><label for="mHours">Operating hours per day</label><input type="number" id="mHours" min="1" max="24" step="1" value="8"></div>
@@ -202,7 +321,7 @@
 </div>
 </div>
 
-<button type="button" class="bl-btn" id="calcModifiedBtn">Calculate Modified Life</button>
+<div class="bl-panel"><h3>Factor provenance &amp; lubrication screening</h3><label for="mSource">aISO source / catalogue conditions</label><input id="mSource" type="text" maxlength="240" placeholder="Manufacturer tool or chart, viscosity, contamination, fatigue limit"><div class="bl-row3"><div><label for="mDays">Scheduled operating days/year</label><input type="number" id="mDays" min="1" step="any" value="250" ></div><div><label for="mNu">Actual viscosity at bearing temperature (mm²/s, optional)</label><input type="number" id="mNu" min="0" step="any" value="" ></div><div><label for="mNu1">Required reference viscosity (mm²/s, optional)</label><input type="number" id="mNu1" min="0" step="any" value="" ></div></div><div class="bl-row3"><div><label for="mEta">Contamination factor ηc (optional)</label><input type="number" id="mEta" min="0" step="any" value="" ></div><div><label for="mCu">Fatigue load limit Cu (<span data-force-unit>N</span>) (optional)</label><input type="number" id="mCu" min="0" step="any" value="" ></div><div><label for="mTarget">Target modified fatigue life (hours, optional)</label><input type="number" id="mTarget" min="0" step="any" value="20000" ></div></div><p class="bl-note">This tool reports κ = ν/ν₁ and ηc Cu/P when supplied. It does not derive aISO from generic cleanliness labels, and does not interchange aISO, aSKF or aNSK.</p><div class="bl-actions"><button type="button" id="useBasic">Use Basic tab C, P, speed &amp; schedule</button></div></div><div class="bl-panel"><h3>Optional illustrative survival model</h3><label><input id="mWeibull" type="checkbox"> Show a separate Weibull illustration (not the ISO a₁ table)</label><div class="bl-row3"><div><label for="mBeta">Assumed Weibull shape β</label><input id="mBeta" type="number" min="0" step="any" value="1.5"></div><div><label for="mMission">Illustrative mission time (hours)</label><input id="mMission" type="number" min="0" step="any" value="1000"></div><div><label for="mCount">Independent identical bearings in series</label><input id="mCount" type="number" min="1" step="1" value="2"></div></div><p class="bl-note">The illustration is calibrated to S(L10h) = 90% for the unmodified basic life. It uses an assumed shape, not measured failure data. System survival Sⁿ assumes independent failures and is not a safety prediction.</p></div><button type="button" class="bl-btn" id="calcModifiedBtn">Calculate Modified Life</button>
 
 <div id="modifiedOutput"></div>
 </div>
@@ -213,8 +332,8 @@
 <div class="bl-panel">
 <h3>Load &amp; speed (applied to both bearings)</h3>
 <div class="bl-row3">
-<div><label for="cmpFr">Radial load Fr (N)</label><input type="number" id="cmpFr" min="0" step="1" value="5000"></div>
-<div><label for="cmpFa">Axial load Fa (N)</label><input type="number" id="cmpFa" min="0" step="1" value="0"></div>
+<div><label for="cmpFr">Radial load Fr (<span data-force-unit>N</span>)</label><input type="number" id="cmpFr" min="0" step="1" value="5000"></div>
+<div><label for="cmpFa">Axial load Fa (<span data-force-unit>N</span>)</label><input type="number" id="cmpFa" min="0" step="1" value="0"></div>
 <div><label for="cmpSpeed">Speed n (rpm)</label><input type="number" id="cmpSpeed" min="1" step="1" value="1500"></div>
 </div>
 <div class="bl-row3">
@@ -229,23 +348,26 @@
 <h4>Bearing A</h4>
 <label for="cmpAType">Type</label>
 <select id="cmpAType"><option value="ball" selected>Ball (p=3)</option><option value="roller">Roller (p=10/3)</option></select>
-<label for="cmpAC">Dynamic load rating C (N)</label><input type="number" id="cmpAC" min="1" step="1" value="20000">
-<label for="cmpAC0">Static rating C₀ (N, optional)</label><input type="number" id="cmpAC0" min="0" step="1" value="14000">
+<label for="cmpAC">Dynamic load rating C (<span data-force-unit>N</span>)</label><input type="number" id="cmpAC" min="1" step="1" value="20000">
+<label for="cmpAC0">Static rating C₀ (<span data-force-unit>N</span>, optional)</label><input type="number" id="cmpAC0" min="0" step="1" value="14000">
 </div>
 <div class="bl-compare-card b">
 <h4>Bearing B</h4>
 <label for="cmpBType">Type</label>
 <select id="cmpBType"><option value="ball" selected>Ball (p=3)</option><option value="roller">Roller (p=10/3)</option></select>
-<label for="cmpBC">Dynamic load rating C (N)</label><input type="number" id="cmpBC" min="1" step="1" value="35000">
-<label for="cmpBC0">Static rating C₀ (N, optional)</label><input type="number" id="cmpBC0" min="0" step="1" value="25000">
+<label for="cmpBC">Dynamic load rating C (<span data-force-unit>N</span>)</label><input type="number" id="cmpBC" min="1" step="1" value="35000">
+<label for="cmpBC0">Static rating C₀ (<span data-force-unit>N</span>, optional)</label><input type="number" id="cmpBC0" min="0" step="1" value="25000">
 </div>
 </div>
 
-<button type="button" class="bl-btn" id="calcCompareBtn">Compare Bearings</button>
+<div class="bl-panel"><h3>Bearing-specific load factors &amp; static loads</h3><div class="bl-row3"><div><label for="cmpAX">Bearing A factor X</label><input type="number" id="cmpAX" min="0" step="any" value="1" ></div><div><label for="cmpAY">Bearing A factor Y</label><input type="number" id="cmpAY" min="0" step="any" value="0" ></div><div><label for="cmpAP0">Bearing A peak P₀ (<span data-force-unit>N</span>) (optional)</label><input type="number" id="cmpAP0" min="0" step="any" value="5000" ></div></div><div class="bl-row3"><div><label for="cmpBX">Bearing B factor X</label><input type="number" id="cmpBX" min="0" step="any" value="1" ></div><div><label for="cmpBY">Bearing B factor Y</label><input type="number" id="cmpBY" min="0" step="any" value="0" ></div><div><label for="cmpBP0">Bearing B peak P₀ (<span data-force-unit>N</span>) (optional)</label><input type="number" id="cmpBP0" min="0" step="any" value="5000" ></div></div><div class="bl-row3"><div><label for="cmpDays">Scheduled operating days/year</label><input type="number" id="cmpDays" min="1" step="any" value="250" ></div><div><label for="cmpTarget">Target basic fatigue life (hours)</label><input type="number" id="cmpTarget" min="1e-06" step="any" value="20000" ></div><div><label for="cmpRequiredS0">Required static safety factor</label><input type="number" id="cmpRequiredS0" min="1e-06" step="any" value="1.5" ></div></div><p class="bl-note">Per-bearing X/Y values below control the comparison. The shared X/Y fields can be copied to both as a starting point; verify both catalogues separately. Different internal geometry may require different equivalent loads.</p><div class="bl-actions"><button type="button" id="sameFactors">Copy shared X/Y to both bearings</button></div></div><button type="button" class="bl-btn" id="calcCompareBtn">Compare Bearings</button>
 
 <div id="compareOutput"></div>
 </div>
-
+<div id="dutyTab" hidden><div class="bl-panel"><h3>Variable load and speed — repeating duty cycle</h3><div class="bl-row3"><div><label for="dType">Bearing type</label><select id="dType"><option value="ball">Ball (p = 3)</option><option value="roller">Roller (p = 10/3)</option></select></div><div><label for="dC">Dynamic rating C (<span data-force-unit>N</span>)</label><input type="number" id="dC" min="1e-06" step="any" value="20000" ></div><div><label for="dHours">Scheduled elapsed duty hours/day</label><input type="number" id="dHours" min="1e-06" step="any" value="8" ></div></div><div class="bl-row3"><div><label for="dDays">Scheduled operating days/year</label><input type="number" id="dDays" min="1" step="any" value="250" ></div><div><label for="dReliability">Reliability target — ISO 281:2007 table</label><select id="dReliability"><option value="90">90% (a₁ = 1)</option><option value="95">95% (a₁ = 0.64)</option><option value="96">96% (a₁ = 0.55)</option><option value="97">97% (a₁ = 0.47)</option><option value="98">98% (a₁ = 0.37)</option><option value="99">99% (a₁ = 0.25)</option><option value="99.2">99.2% (a₁ = 0.22)</option><option value="99.4">99.4% (a₁ = 0.19)</option><option value="99.6">99.6% (a₁ = 0.16)</option><option value="99.8">99.8% (a₁ = 0.12)</option><option value="99.9">99.9% (a₁ = 0.093)</option><option value="99.92">99.92% (a₁ = 0.087)</option><option value="99.94">99.94% (a₁ = 0.08)</option><option value="99.95">99.95% (a₁ = 0.077)</option></select></div><div><label for="dTarget">Target elapsed duty life (hours, optional)</label><input type="number" id="dTarget" min="0" step="any" value="20000" ></div></div><label for="dData">One row: equivalent load P, RPM, duration in hours, aISO (optional)</label><textarea id="dData">P,rpm,hours,aISO
+5000,1500,1,1
+8000,750,1,1
+2000,0,0.25,1</textarea><p class="bl-note">P uses the selected force unit. Durations may be any positive proportional weights. Loads are already-equivalent dynamic loads; do not enter raw Fr and Fa. Stationary rows contribute elapsed time but no modeled rolling-fatigue revolutions. Static damage, fretting and lubrication during dwell are not evaluated.</p></div><button type="button" class="bl-btn" id="calcDutyBtn">Calculate duty-cycle life</button><div id="dutyOutput"></div></div><div id="sizingTab" hidden><div class="bl-panel"><h3>Solve for dynamic rating, allowable equivalent load or speed</h3><div class="bl-row3"><div><label for="zType">Bearing type</label><select id="zType"><option value="ball">Ball (p = 3)</option><option value="roller">Roller (p = 10/3)</option></select></div><div><label for="zC">Existing dynamic rating C (<span data-force-unit>N</span>)</label><input type="number" id="zC" min="1e-06" step="any" value="20000" ></div><div><label for="zP">Equivalent dynamic load P (<span data-force-unit>N</span>)</label><input type="number" id="zP" min="1e-06" step="any" value="5000" ></div></div><div class="bl-row3"><div><label for="zSpeed">Operating speed (RPM)</label><input type="number" id="zSpeed" min="1e-06" step="any" value="1500" ></div><div><label for="zTarget">Required fatigue life (hours)</label><input type="number" id="zTarget" min="1e-06" step="any" value="20000" ></div><div><label for="zReliability">Reliability target — ISO 281:2007 table</label><select id="zReliability"><option value="90">90% (a₁ = 1)</option><option value="95">95% (a₁ = 0.64)</option><option value="96">96% (a₁ = 0.55)</option><option value="97">97% (a₁ = 0.47)</option><option value="98">98% (a₁ = 0.37)</option><option value="99">99% (a₁ = 0.25)</option><option value="99.2">99.2% (a₁ = 0.22)</option><option value="99.4">99.4% (a₁ = 0.19)</option><option value="99.6">99.6% (a₁ = 0.16)</option><option value="99.8">99.8% (a₁ = 0.12)</option><option value="99.9">99.9% (a₁ = 0.093)</option><option value="99.92">99.92% (a₁ = 0.087)</option><option value="99.94">99.94% (a₁ = 0.08)</option><option value="99.95">99.95% (a₁ = 0.077)</option></select></div></div><div class="bl-row3"><div><label for="zAiso">Verified life modifier aISO</label><input type="number" id="zAiso" min="1e-06" step="any" value="1" ></div><div><label for="zC0">Existing static rating C₀ (<span data-force-unit>N</span>) (optional)</label><input type="number" id="zC0" min="0" step="any" value="14000" ></div><div><label for="zS0">Required static safety factor</label><input type="number" id="zS0" min="1e-06" step="any" value="1.5" ></div></div><p class="bl-note">Each result solves one variable while holding the others fixed. The speed result is a life-equation inversion, not a thermal or limiting-speed rating. Revised P, C or aISO may need a new catalogue assessment.</p><div class="bl-actions"><button type="button" id="sizeFromBasic">Use Basic tab C, P &amp; speed</button></div></div><button type="button" class="bl-btn" id="calcSizingBtn">Calculate required rating</button><div id="sizingOutput"></div></div><div class="bl-actions"><button type="button" class="primary" id="printBearing">Print / Save PDF</button><button type="button" id="csvBearing">Save report CSV</button><button type="button" id="txtBearing">Save report TXT</button><button type="button" id="copyBearing">Copy report</button><button type="button" id="shareBearing">Share these inputs</button><button type="button" id="resetAll">Reset examples</button></div><label><input type="checkbox" id="reportAll"> Include all valid sections in report</label><p class="bl-note">Default report: active mode, inputs, results, charts and assumptions only. Navigation, share fields and the explanatory article are excluded. PDF saving uses the browser’s print dialog.</p><p id="bearingStatus" class="bl-note" role="status" aria-live="polite"></p><p class="bl-tip">Rating life is a statistical rolling-fatigue estimate for a bearing population, not a guaranteed service life, inspection interval or safe replacement date. Static capacity, minimum load, speed, fits, alignment, lubrication and other failure mechanisms require separate review.</p>
 </section>
 
 <div class="bl-share noembed">
@@ -262,626 +384,131 @@
 <button type="button" data-copy-target="bl-embed">Copy embed code</button>
 </div>
 
-<article class="cn-article noembed">
-
-<h2>What is a free bearing L10 life calculator online?</h2>
-<p>A free bearing L10 life calculator online is a tool that computes the basic rating life of a rolling bearing according to ISO 281, the international standard for dynamic load ratings and rating life of rolling bearings. Instead of working through the formula by hand and risking unit errors, you enter the bearing's dynamic load rating from the catalogue, the loads the shaft is actually carrying, and the rotational speed. The calculator returns the L10 life in millions of revolutions, the L10h life in operating hours, and — with the modified life tab — the Lnm life adjusted for reliability, lubrication and contamination.</p>
-<p>This bearing life calculator online goes beyond a basic four-input tool. It combines three calculators in one page: a basic ISO 281 rating life calculator with equivalent dynamic load calculation, a modified rating life calculator with ISO 281 reliability and lubrication factors, and a bearing comparison tool that evaluates two candidates under the same load case. It also draws a load-life curve and a Weibull reliability chart so you can see how sensitive the life is to load and speed. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-
-<h2>How to use this free bearing life calculator</h2>
-<ol>
-<li><b>Basic L10 Life tab.</b> Select the bearing type (ball or roller) and enter the dynamic load rating C from the bearing catalogue. Enter the radial load Fr and, if applicable, the axial load Fa. If both loads are present, enter the X and Y factors from the bearing datasheet. Enter the rotational speed and the operating hours per day. The calculator returns the equivalent dynamic load P, the C/P ratio, L10 in millions of revolutions, L10h in hours and L10 in years. It also shows L10a adjusted for 95% and 99% reliability.</li>
-<li><b>Modified Life tab.</b> Enter the same bearing parameters, then select a reliability target and an aISO life modification factor that reflects your lubrication and contamination conditions. The calculator returns the modified rating life Lnm in revolutions and Lnmh in hours.</li>
-<li><b>Compare Bearings tab.</b> Enter the load case once and two bearing candidates. The tool shows both L10 lives side by side so you can select the bearing that meets your service interval without over-engineering.</li>
-<li>Copy the result, print it as a PDF, or use the share module below the tool.</li>
-</ol>
-
-<h2>What is L10 bearing life?</h2>
-<p>The L10 life is the basic rating life defined in ISO 281: the number of revolutions or operating hours that 90% of a group of apparently identical bearings are expected to meet or exceed before the first evidence of fatigue failure — a fatigue spall — develops on a raceway or rolling element. It is not a guarantee for any single bearing. It is a statistical property of a population. If you install one hundred identical bearings in identical applications, approximately ten will fail before the L10 life and ninety will survive beyond it.</p>
-<p>This is why the L10 life is the standard selection criterion in machine design. It gives the designer a defined reliability level — 90% — against which the bearing's load capacity can be checked. For applications where a 10% failure probability is unacceptable, ISO 281 provides reliability factors that scale the L10 life to higher survival probabilities, and the modified rating life Lnm accounts for lubrication and contamination as well.</p>
-<p>Because the L10 life is a fatigue rating, it assumes that the bearing is correctly mounted, adequately lubricated, protected from contamination and operated within its speed and load limits. Wear, corrosion, electrical erosion, misalignment and inadequate lubrication can all shorten service life below the calculated L10, which is why the calculation should be treated as a ceiling rather than a guaranteed service interval.</p>
-
-<h2>Key bearing life formulas</h2>
-
-<h3>Basic rating life L10 and L10h</h3>
-<p>The ISO 281 basic rating life in millions of revolutions is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>L₁₀ = (C / P)^p × 10⁶ revolutions</b></p>
-<p>Where C is the basic dynamic load rating in newtons, P is the equivalent dynamic load in newtons, and p is the life exponent: 3 for ball bearings and 10/3 for roller bearings. The same life expressed in operating hours is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>L₁₀ₕ = (10⁶ / (60 n)) × (C / P)^p hours</b></p>
-<p>Where n is the rotational speed in revolutions per minute. The factor 10⁶ / (60 n) simply converts millions of revolutions into hours at that speed. Only the ratio C/P matters for the shape of the life curve; the speed only changes the horizontal axis between revolutions and hours.</p>
-
-<h3>Equivalent dynamic load P</h3>
-<p>Rolling bearings rarely carry a purely radial or purely axial load. The equivalent dynamic load P combines the radial and axial components into a single value that produces the same fatigue life as the actual combined load:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>P = X × Fᵣ + Y × Fₐ</b></p>
-<p>Where Fᵣ is the radial load, Fₐ is the axial load, and X and Y are the radial and axial load factors. For a purely radial load, X = 1 and Y = 0, so P = Fᵣ. The X and Y factors depend on the bearing type and on the ratio Fₐ/Fᵣ; they are tabulated in bearing catalogues. A common default for deep-groove ball bearings with a moderate axial load is X = 0.56 and Y = 1.55, but the correct values must always be taken from the datasheet for the specific bearing being evaluated.</p>
-
-<h3>Modified rating life Lnm</h3>
-<p>ISO 281:2007 introduced a life modification factor aISO that adjusts the basic rating life for lubrication condition, contamination and the fatigue load limit of the bearing. The modified rating life is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Lₙₘ = a₁ × aISO × L₁₀</b></p>
-<p>Where a₁ is the reliability factor and aISO is the life modification factor. The reliability factor a₁ is 1.0 for 90% reliability and decreases for higher reliability targets. The aISO factor is greater than 1 for clean, well-lubricated bearings and less than 1 for contaminated or poorly lubricated bearings. When aISO is applied, the result is the modified rating life Lnm, and in hours it is Lnmh.</p>
-
-<h3>Reliability factors a₁</h3>
-<p>ISO 281 defines reliability factors that scale the basic L10 life to higher survival probabilities. The most commonly used values are:</p>
-<table class="bl-table">
-<tr><th>Reliability</th><th>Failure probability</th><th>a₁ factor</th></tr>
-<tr><td>90%</td><td>10%</td><td>1.00</td></tr>
-<tr><td>95%</td><td>5%</td><td>0.62</td></tr>
-<tr><td>96%</td><td>4%</td><td>0.53</td></tr>
-<tr><td>97%</td><td>3%</td><td>0.44</td></tr>
-<tr><td>98%</td><td>2%</td><td>0.33</td></tr>
-<tr><td>99%</td><td>1%</td><td>0.21</td></tr>
-</table>
-<p>For critical applications such as aircraft engines, medical equipment or continuous-process machinery where unplanned downtime is unacceptable, designers routinely target 95% or 99% reliability, accepting the lower calculated life in exchange for a much lower probability of premature failure.</p>
-
-<h3>Life modification factor aISO</h3>
-<p>The aISO factor is the most important refinement in ISO 281:2007. It accounts for three effects that the basic rating life equation ignores:</p>
-<ul>
-<li><b>Lubrication condition.</b> The viscosity ratio κ (the ratio of actual lubricant viscosity to the required viscosity for adequate film formation) determines how effectively the lubricant separates the rolling contacts. A high κ produces a thick, protective film and aISO greater than 1; a low κ allows metal-to-metal contact and aISO below 1.</li>
-<li><b>Contamination.</b> Hard particles in the lubricant indent the raceways and initiate fatigue. The contamination factor eC reflects the cleanliness level of the lubricant and the effectiveness of the seals and filters. Clean oil with eC close to 1 gives aISO close to the lubrication-only value; heavily contaminated oil with eC below 0.3 can drive aISO below 0.5.</li>
-<li><b>Fatigue load limit.</b> Modern bearing steels have a fatigue load limit below which infinite life is theoretically possible. The aISO factor accounts for the ratio of the equivalent load P to the fatigue load limit Pu. When P is below Pu, the aISO factor rises steeply, reflecting the possibility of very long life.</li>
-</ul>
-<p>The aISO factor is limited in practice to a maximum of 50 per ISO 281, although many manufacturers recommend capping it at 3 or 5 for conservative designs. A well-lubricated, clean bearing in a light-load application can have aISO of 2 to 5, multiplying the basic life by that factor. Conversely, a contaminated bearing with poor lubrication may have aISO of 0.2 to 0.5, cutting the attainable life to a fraction of the basic L10.</p>
-
-<h2>Load-life curve: how load and speed affect bearing life</h2>
-<p>The load-life curve is the most powerful visual tool for understanding bearing life. Because life varies with the cube of the C/P ratio for ball bearings, the curve drops steeply as load increases. Doubling the applied load reduces the life by a factor of eight. Tripling the load reduces it by a factor of twenty-seven.</p>
-<p>In the tool, the load-life curve plots L10h on the vertical axis against rotational speed on the horizontal axis for the current load case. As speed increases, the life in hours falls in inverse proportion: the bearing still achieves the same number of revolutions, but it accumulates those revolutions faster in calendar time. The curve shows how a bearing that lasts 20,000 hours at 500 rpm will last only 10,000 hours at 1,000 rpm, all else being equal.</p>
-<p>The practical implication is that load reduction — through better alignment, lower belt tension, reduced gear forces or improved shaft stiffness — is usually far more effective at extending bearing life than selecting a larger bearing. Reducing the load by 20% can roughly double the life, which is often cheaper than moving to the next bearing size.</p>
-
-<h2>Weibull reliability chart: beyond the L10 point</h2>
-<p>The L10 life is a single point on a distribution. A Weibull reliability chart shows the full picture: the probability of survival as a function of operating time. The chart is plotted on Weibull paper, where the cumulative failure probability is plotted against life on logarithmic axes. Bearing fatigue lives typically follow a Weibull distribution with a shape parameter β of approximately 1.5 for ball bearings and 1.1 to 1.5 for roller bearings.</p>
-<p>The chart in the tool shows the reliability curve for the selected bearing type and reliability factor. The L10 point is marked at 90% survival, and the Lnm point is marked at the selected reliability level. The chart makes clear that the L10 life is not a sharp cutoff: bearings fail before and after it, and the distribution has a long tail. For maintenance planning, the chart helps answer questions like “What is the probability that this bearing will survive 50,000 hours?” rather than simply “When will it fail?”</p>
-
-<h2>Reliability levels and when to use them</h2>
-<p>The choice of reliability level is an engineering and economic decision, not a mathematical one. The standard 90% reliability (L10) is appropriate for most general-purpose machinery where a bearing failure is inconvenient but not catastrophic, and where the bearing is accessible for replacement. It is the baseline against which bearing catalogues are published.</p>
-<p>For applications where a failure causes significant downtime, safety risk or secondary damage, higher reliability is warranted. The table below summarises common practice:</p>
-<table class="bl-table">
-<tr><th>Application type</th><th>Typical reliability target</th><th>a₁ factor</th></tr>
-<tr><td>General machinery, accessible bearings</td><td>90% (L10)</td><td>1.00</td></tr>
-<tr><td>Process pumps, fans, conveyors</td><td>95%</td><td>0.62</td></tr>
-<tr><td>Critical process equipment</td><td>97%</td><td>0.44</td></tr>
-<tr><td>Continuous 24/7 plant, inaccessible bearings</td><td>98%</td><td>0.33</td></tr>
-<tr><td>Aerospace, medical, safety-critical</td><td>99% or higher</td><td>0.21</td></tr>
-</table>
-<p>Note that the reliability factor is applied as a multiplier to the basic life. At 99% reliability, the calculated life is 21% of the L10 life. If the L10h is 20,000 hours, the L99h is 4,200 hours. The designer must decide whether the reduced life is acceptable given the consequence of failure, or whether a larger bearing is required to meet the service interval at the higher reliability target.</p>
-
-<h2>Choosing the right bearing: practical guidance</h2>
-<p>Bearing selection is a three-step process. First, calculate the L10h life with the expected load case and compare it to the required service interval. If the life is comfortably above the target — typically 1.5 to 2 times the required interval to account for load uncertainty — the bearing is adequate for basic reliability. Second, if the application demands higher reliability, apply the appropriate a₁ factor and check that the modified life still meets the service interval. Third, apply the aISO factor to account for the real lubrication and contamination conditions; in many industrial applications, aISO is the single largest correction to the basic life.</p>
-<p>Common bearing selection mistakes include using the catalogue C rating without accounting for the actual load direction, ignoring the axial load component, using the wrong exponent for the bearing type, and forgetting that the L10 life is a statistical property of a population rather than a guaranteed service life for the individual bearing.</p>
-<p>For a complete picture, the L10 life should be considered alongside the bearing's static load rating C₀, its limiting speed, its lubrication requirements and the expected contamination level in the application. The L10 life is the starting point for bearing selection, not the end.</p>
-
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a free bearing L10 life calculator online?</summary><p>A free bearing L10 life calculator online computes the basic rating life of a rolling bearing according to ISO 281. It takes the dynamic load rating C, the equivalent dynamic load P and the rotational speed, and returns L10 in millions of revolutions, L10h in operating hours, and optionally the modified life Lnm with reliability and lubrication factors.</p></details>
-<details><summary>What is the L10 life formula according to ISO 281?</summary><p>L10 = (C/P)^p in millions of revolutions, and L10h = (10^6 / (60 n)) × (C/P)^p in operating hours, where p is 3 for ball bearings and 10/3 for roller bearings, C is the dynamic load rating, P is the equivalent dynamic load and n is the speed in rpm.</p></details>
-<details><summary>How do I calculate equivalent dynamic load P?</summary><p>For combined radial and axial load, P = X Fr + Y Fa, where X and Y are the radial and axial load factors from the bearing datasheet. For pure radial load, P = Fr (X = 1, Y = 0). The X and Y factors depend on the bearing type and the ratio Fa/Fr.</p></details>
-<details><summary>What is the modified rating life Lnm?</summary><p>Lnm = a1 × aISO × L10. The a1 factor adjusts for reliability (1.0 at 90%, 0.62 at 95%, 0.21 at 99%) and aISO adjusts for lubrication condition, contamination and the fatigue load limit. Lnm is the life at the selected reliability and operating conditions.</p></details>
-<details><summary>What is the difference between L10 and L10h?</summary><p>L10 is the basic rating life in millions of revolutions. L10h is the same life expressed in operating hours at a given speed: L10h = L10 × 10^6 / (60 n). L10h is more useful for maintenance planning because engineers think in hours of service.</p></details>
-<details><summary>Why does bearing life drop so dramatically when load increases?</summary><p>Because life varies with the cube of the C/P ratio for ball bearings. Doubling the load reduces life by a factor of eight. This extreme sensitivity means accurate load analysis is critical for correct bearing sizing.</p></details>
-<details><summary>What reliability factor should I use?</summary><p>Use 90% (a1 = 1.0) for general machinery. Use 95% (a1 = 0.62) for process equipment, 97% (a1 = 0.44) for critical equipment, and 99% (a1 = 0.21) for safety-critical applications.</p></details>
-<details><summary>What is the aISO factor?</summary><p>aISO is the ISO 281 life modification factor that adjusts for lubrication condition, contamination and the fatigue load limit. A clean, well-lubricated bearing can have aISO of 2 to 5, while a contaminated bearing may have aISO below 0.5.</p></details>
-<details><summary>What is the load-life exponent p?</summary><p>p = 3 for ball bearings and p = 10/3 for roller bearings. It reflects the contact geometry: ball bearings make point contact, roller bearings make line contact, which distributes stress differently and makes roller bearings slightly less sensitive to load increases.</p></details>
-<details><summary>Is this bearing L10 life calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-</div>
-
+<article class="cn-article noembed" id="bearingGuide">
+<h2>Free Online Bearing L10 Life Calculator: Understand the Result</h2>
+<p>This free online bearing life calculator estimates basic L10 bearing life, modified rating life, equivalent dynamic load, and the dynamic load rating needed for a target operating life. Use it for ball bearings and roller bearings when catalogue ratings and application loads are known. It also provides independent static-load checks, bearing comparisons, variable-load duty cycles, and calculation reports. The tool is a transparent engineering worksheet; it does not contain a bearing catalogue or identify a suitable part number automatically.</p>
+<p>Start with the basic tab for a constant-load calculation. Use the modified tab when you have a documented life modification factor, the duty-cycle tab for repeating loads and speeds, or inverse sizing to solve for required dynamic capacity. Results update when you change a field or press Calculate. Changing the force unit converts the entered forces and valid duty-cycle data, rather than simply changing their labels.</p>
+<h2>What Does L10 Bearing Life Mean?</h2>
+<p>L10 is a statistical rolling-contact fatigue rating: under the rating model, 90% of a sufficiently large population of apparently identical bearings are expected to reach or exceed that life before fatigue occurs. It is also called basic rating life or B10 life in some engineering contexts. It is not the mean life, the maximum life, or a promise that one installed bearing will survive for that duration. Individual bearings and real installations can fail earlier or run longer.</p>
+<p>The calculator distinguishes L10 in <strong>million revolutions</strong> from L10h in <strong>operating hours</strong>. A result of 64 million revolutions means 64,000,000 revolutions, not 64 hours. Conversion to hours requires a positive rotational speed. Schedule conversions additionally require your hours per day and operating days per year. Scheduled years are a planning representation of the calculated fatigue hours, not an approved replacement interval.</p>
+<h3>The Basic Bearing Life Formula</h3>
+<div class="bl-formula">L10 = (C / P)<sup>p</sup> million revolutions<br>L10h = 1,000,000 × (C / P)<sup>p</sup> / (60 × n)</div>
+<ul><li><strong>C:</strong> basic dynamic load rating from the bearing manufacturer's catalogue.</li><li><strong>P:</strong> equivalent dynamic bearing load for the application.</li><li><strong>n:</strong> rotational speed in revolutions per minute, RPM.</li><li><strong>p:</strong> 3 for ball bearings, or 10/3 for roller bearings.</li></ul>
+<p>C and P must use the same force unit. This calculator accepts newtons, kilonewtons, and pounds-force. Pounds-force is a force, not a mass measurement. Do not enter a supported mass in kilograms or pounds directly without converting its applicable weight and resolving the forces at the bearing. Shaft reactions, belt tension, gear forces, acceleration, unbalance, and axial thrust can all affect bearing loads.</p>
+<h3>Worked Ball Bearing Life Example</h3>
+<p>For a ball bearing with C = 20,000 N, P = 5,000 N, and n = 1,500 RPM, C/P = 4. Basic L10 is 4³ = 64 million revolutions. L10h is 64,000,000 ÷ 90,000 = approximately 711.11 operating hours. At 8 operating hours per day and 250 operating days per year, this equals approximately 0.356 scheduled years. None of those values establishes a guaranteed service life.</p>
+<p>With the same C/P ratio, the roller-bearing exponent gives 4<sup>10/3</sup>, approximately 101.59 million revolutions. That comparison isolates the exponent only. Actual ball and roller bearings have different catalogue capacities, geometries, load factors, stiffness, friction, and application limits. A larger mathematical life alone does not make a bearing a better choice.</p>
+<h2>Radial Load, Axial Load, and Equivalent Dynamic Load</h2>
+<p>The basic tab offers four explicit methods. Pure radial uses P = Fr and refuses to ignore a nonzero axial load. Combined factors use P = XFr + YFa. Threshold mode uses P = Fr when Fa/Fr is at or below the supplied threshold e and otherwise uses the supplied combined-load factors. Known P accepts a separately verified equivalent dynamic load. The threshold implementation is suitable only when that exact branch rule matches the catalogue for your bearing and installation.</p>
+<p>Fr is radial bearing load, Fa is axial or thrust load, and X and Y are catalogue factors. There is no universal X, Y, or e for all deep-groove ball bearings, angular-contact bearings, tapered roller bearings, cylindrical roller bearings, or spherical roller bearings. Factors may depend on contact angle, arrangement, relative axial load, and which ring rotates. Some designs require additional induced-thrust or arrangement calculations. Obtain the correct equation from the bearing manufacturer before using combined-load mode.</p>
+<p>For pure axial loading, the combined method can evaluate a supplied valid Y with Fr = 0. The calculator does not infer thrust-bearing coefficients. A nonzero Fa with Y = 0 is rejected in combined mode. The optional dynamic multiplier scales the equivalent dynamic load only; it does not automatically alter the independently supplied static load. Document why a multiplier is appropriate, and avoid counting the same application allowance twice.</p>
+<h2>Static Load Rating C₀ and Static Safety Factor s₀</h2>
+<div class="bl-formula">s₀ = C₀ / P₀</div>
+<p>C₀ is the basic static load rating, while P₀ is the equivalent static load. They are separate from dynamic C and P. Static checks concern contact deformation under stationary, slowly moving, peak, or shock loads; fatigue hours do not replace them. Enter a verified P₀ directly, or use catalogue-supported static factors X₀ and Y₀ for the implemented linear combination. Some catalogue static equations require a maximum-of-branches rule: calculate that outside the tool and enter the resulting P₀ directly.</p>
+<p>The selected minimum static factor is an application input, not a universal recommendation. Required values depend on bearing type, shocks, running accuracy, noise, operating conditions, and manufacturer guidance. The result says whether the calculated ratio meets your entered criterion; it does not certify the assembly as safe. Inverse sizing also shows P₀ = C₀/s₀ as the load corresponding to your selected factor.</p>
+<h2>Modified Bearing Rating Life and Reliability</h2>
+<div class="bl-formula">Lnm = a₁ × aISO × (C / P)<sup>p</sup> million revolutions<br>Lnmh = a₁ × aISO × L10h</div>
+<p>The reliability factor a₁ adjusts rating life for a selected reliability level above the basic 90% reference. The life modification factor aISO represents further conditions within its applicable method. This tool keeps the factors separate so that a change in reliability is not confused with a change in lubrication or contamination. With 99% reliability, a₁ = 0.25 in the ISO 281:2007 table used here. If aISO = 1, the worked ball-bearing example becomes 16 million revolutions, approximately 177.78 hours.</p>
+<div class="bl-table-wrap"><table class="bl-table"><thead><tr><th>Reliability</th><th>a₁ used here</th></tr></thead><tbody><tr><td>90%</td><td>1.00</td></tr><tr><td>95%</td><td>0.64</td></tr><tr><td>96%</td><td>0.55</td></tr><tr><td>97%</td><td>0.47</td></tr><tr><td>98%</td><td>0.37</td></tr><tr><td>99%</td><td>0.25</td></tr><tr><td>99.9%</td><td>0.093</td></tr><tr><td>99.95%</td><td>0.077</td></tr></tbody></table></div>
+<p>The selector also includes intermediate tabulated high-reliability levels. Older references and some proprietary bearing-life methods show different a₁ values, including 0.62 at 95% and 0.21 at 99%. Do not silently combine factor tables from different methods. Record the method and source used for the analysis. The reliability chart plots the selected table; connecting lines are visual guides, not a continuous reliability equation.</p>
+<h3>Why There Is No Automatic “Clean Oil” Life Multiplier</h3>
+<p>A lubrication description alone cannot establish aISO. Actual calculations can involve lubricant viscosity at operating temperature, required reference viscosity, contamination factor, fatigue load limit, bearing size, and load. Enter a factor established by the manufacturer's applicable method and identify its source. A default value of 1 is an explicit scenario assumption, not proof that the actual installation has that value.</p>
+<p>The optional helpers show viscosity ratio κ = ν/ν₁ and the ratio ηcCu/P, where ν is actual operating viscosity, ν₁ is reference viscosity, ηc is a contamination factor, and Cu is a fatigue load limit. Viscosity in mm²/s is numerically equivalent to centistokes. These helpers do not convert those ratios into aISO: that requires the appropriate equations, charts, limits, and catalogue data. Oil viscosity at a reference temperature is not automatically the viscosity at the bearing's operating temperature.</p>
+<p>Manufacturer factors such as SKF aSKF and proprietary NSK life methods have their own definitions and applicability. They should not be relabeled as interchangeable ISO factors without checking the source. Water ingress, electrical erosion, corrosion, severe debris, poor alignment, or unsuitable lubrication can invalidate the assumptions behind a fatigue calculation.</p>
+<h2>Variable Load and Variable Speed Bearing Life</h2>
+<p>The duty-cycle calculator accepts up to 100 rows containing equivalent dynamic load P, RPM, duration in hours, and an optional aISO. Use commas, semicolons, or tabs as separators. Loads follow the selected force unit. Each row must describe a segment of a repeating cycle, with a positive duration. Enter equivalent bearing loads rather than unresolved machine forces.</p>
+<div class="bl-formula">Nᵢ = 60 × nᵢ × tᵢ<br>P equivalent = [Σ(Nᵢ × Pᵢ<sup>p</sup>) / ΣNᵢ]<sup>1/p</sup><br>Dᵢ = (Nᵢ / 1,000,000) × (Pᵢ / C)<sup>p</sup><br>Basic elapsed life = cycle hours / ΣDᵢ</div>
+<p>Equivalent load is weighted by revolutions, not simply by time. A high-load segment at a different speed contributes differently from an equal-duration segment at another speed. Averaging the loads arithmetically and applying the life exponent afterward can substantially overestimate life. The segment table shows the basic fatigue allocation share to make the dominant operating condition visible.</p>
+<p>The modified scenario divides each basic segment allocation by its supplied a₁aISO before summing. This is an explicitly stated linear allocation model. The shares are calculated fractions, not measurements of actual fatigue consumed. Changing C, P, or speed can change the physically appropriate modification factor, even though an inverse scenario holds entered factors constant.</p>
+<p>Zero-RPM dwell adds elapsed cycle time without adding rolling revolutions. The output therefore separates elapsed duty life from rolling-time life. Static indentation, fretting, false brinelling, and damage during dwell remain outside the model. Zero-load rotation contributes no modeled fatigue allocation, but minimum-load and skidding requirements still apply. A cycle with no rotation or no modeled fatigue allocation is rejected rather than presented as unlimited service life.</p>
+<h2>Required Dynamic Load Rating and Reverse Sizing</h2>
+<div class="bl-formula">C required = P × [60 × n × target hours / (1,000,000 × a₁ × aISO)]<sup>1/p</sup></div>
+<p>Inverse sizing answers “What dynamic load rating do I need for a target bearing life?” It also solves for equivalent load and RPM when the other quantities remain fixed. For the ball-bearing example at 5,000 N, 1,500 RPM, and a basic target of 20,000 hours, the required ratio is 1,800<sup>1/3</sup>, giving C of approximately 60.82 kN.</p>
+<p>The resulting load is a fatigue-equation limit for that scenario, not an allowable structural load. The resulting RPM is not a limiting speed, reference speed, thermal speed, or safe operating speed. Check manufacturer speed limits, lubrication, heat generation, seals, cage behavior, and assembly requirements independently. For modified sizing, recalculate the life factor if the changed load or speed changes the physical conditions.</p>
+<h2>Load Sensitivity and Comparing Two Bearings</h2>
+<p>The normalized load-versus-life chart illustrates the power law. At unchanged C and speed, raising ball-bearing P by 10% changes life by 1/1.1³, approximately 0.751: about 25% less calculated fatigue life. Reducing P by 20% changes life by 1/0.8³, approximately 1.953. Roller life is more sensitive to a proportional change in load within this equation because its exponent, 10/3, is greater than 3.</p>
+<p>The comparison tab permits separate X and Y factors and independent static loads for each bearing. Shared machine loads do not imply shared catalogue coefficients. Compare calculated hours, capacities, and your entered criteria, then verify bore, outside diameter, width, arrangement, clearance, fits, preload, stiffness, temperature, sealing, and installation constraints. The calculator intentionally avoids fabricated part numbers or universal bearing presets.</p>
+<h2>Optional Weibull and System Survival Illustration</h2>
+<p>The modified tab includes an optional illustrative Weibull model with a user-selected shape β. It is anchored to the unmodified L10h so that S(L10h) = 0.90. It shows S(t) = exp[ln(0.9) × (t/L10h)<sup>β</sup>]. This optional model is distinct from the tabulated ISO reliability factors and is not fitted to the ISO table or to field failure data.</p>
+<p>For an illustrative series system of N identical independent bearings, survival is S(t)<sup>N</sup>. Two such bearings at their individual L10h give 0.9² = 0.81 system survival under those assumptions. Shared contamination, common lubrication failures, unequal loads, and dependent failure mechanisms can violate independence. Use an appropriate reliability analysis for a real machine rather than treating this picture as a certified prediction.</p>
+<h2>Reports, Printing, Saving, and Sharing Inputs</h2>
+<p>Print / Save PDF builds a calculation report containing the active tab's inputs, results, diagrams, and assumptions. The browser's print dialog can save that report as PDF. The explanatory article, navigation, share block, and footer are excluded. Select “all valid calculations” when you want the other currently valid tabs included; review their inputs first because each tab is a separate scenario.</p>
+<p>CSV and TXT exports contain calculation data and warnings, rather than a copy of the HTML page. Copy report provides the same calculation information as text. Shared input links encode the entered fields in the URL fragment. Anyone receiving such a link can read the included inputs and notes, so avoid confidential information. Sharing creates an input snapshot; it is not a validated or signed engineering record.</p>
+<h2>Common Input Errors and Engineering Limits</h2>
+<ul><li>Mixing C in kilonewtons with P in newtons changes the ratio by 1,000. Use the unit selector consistently.</li><li>Using C₀ as C, or using dynamic P as static P₀ without checking the catalogue equation, confuses distinct assessments.</li><li>Ignoring axial load, induced thrust, peak loading, or load sharing can make the equivalent load unsuitable.</li><li>At zero RPM the constant-speed hours conversion is undefined. Stationary loading needs a different assessment.</li><li>Very heavy loads and very light loads can fall outside the ordinary rating model's useful application range. Warnings are prompts for manufacturer review, not automatic acceptance limits.</li><li>A large fatigue-life value does not account for wear, contamination damage, lubricant aging, corrosion, electrical current, misalignment, installation damage, or seizure.</li><li>Calculated fatigue life is not remaining useful life. Condition monitoring, inspection, operating history, and failure analysis provide different information.</li></ul>
+<h2>Frequently Asked Questions</h2>
+<details><summary>What is L10 bearing life?</summary><p>L10 is the basic rolling-contact fatigue rating life that 90% of an apparently identical bearing population is expected to reach or exceed under the rating assumptions. It is not guaranteed individual service life.</p></details><details><summary>How do I calculate bearing life in hours?</summary><p>For positive RPM, L10h = 1,000,000 × (C/P)^p ÷ (60 × RPM), where p is 3 for ball bearings and 10/3 for roller bearings. C and P must use the same force unit.</p></details><details><summary>What is the difference between C and C₀?</summary><p>C is the basic dynamic load rating used for rolling-fatigue life. C₀ is the basic static load rating used with equivalent static load P₀ for the separate static factor C₀/P₀.</p></details><details><summary>Can I use radial and axial loads together?</summary><p>Yes, when the supplied equivalent-load equation and catalogue X, Y, and threshold e are appropriate for your bearing. The tool does not determine universal factors or induced thrust.</p></details><details><summary>What reliability factor is used at 99%?</summary><p>The ISO 281:2007 table used here gives a₁ = 0.25 at 99% reliability. Older or proprietary methods can use different values, so do not mix tables silently.</p></details><details><summary>Does clean lubrication automatically increase life?</summary><p>No. A supported life modification factor requires the applicable manufacturer method and operating data. Viscosity and contamination helper ratios do not independently establish aISO.</p></details><details><summary>Can I calculate life at zero RPM?</summary><p>The tool can show a mathematical revolution rating at zero RPM, but hours are undefined. Stationary loads and dwell damage require independent static and application assessments.</p></details><details><summary>How are variable loads and speeds combined?</summary><p>The duty-cycle model weights load powers by revolutions and sums segment fatigue allocations. It reports both elapsed cycle life and rolling-time life, with a separately stated modified scenario.</p></details><details><summary>Can I find the required bearing dynamic rating?</summary><p>Yes. Inverse sizing solves for required C, equivalent load, or RPM for a target life while holding the other inputs and entered life factors fixed. These are fatigue-equation results, not mechanical limits.</p></details><details><summary>Does printing include the article?</summary><p>No. Printing and Save PDF use a separate report containing calculation data, diagrams, and assumptions. CSV and TXT also export report information only.</p></details><details><summary>Does a longer calculated life prove a bearing is suitable?</summary><p>No. Static capacity, minimum load, speed, fits, clearance, lubrication, temperature, alignment, sealing, and non-fatigue failure mechanisms still need application-specific checks.</p></details><details><summary>Is the Weibull chart an ISO reliability prediction?</summary><p>No. It is an optional illustrative model anchored to 90% survival at basic L10h using your selected shape factor. The ISO reliability factors remain a separate tabulated method.</p></details>
+<h2>Technical References and Scope</h2>
+<p>Reference methods and terminology include ISO 281 bearing rating life and ISO 76 static load concepts. Manufacturer resources used to check the approach include NSK's Bearing Life Calculation Tool help, Timken's Bearing Fatigue Life tool, NSK Technical Calculations, and the PEER bearing catalogue published through SKF's media service. Manufacturer tools add product-specific data and application checks that this general worksheet cannot supply. The reference names below are provided for independent verification; the site's existing navigation and link destinations are preserved.</p>
+<ul><li>NSK life-calculation help: www.nsk.com — Engineering / Knowledge Base / Bearing Life Calculation Tool.</li><li>Timken bearing fatigue life: engineering.timken.com/engineering-tool/bearing-fatigue-life/</li><li>NSK technical calculations: www.nsk.com/eu-en/tools-resources/technical-services/technical-calculations/</li><li>PEER bearing catalogue: manufacturer catalogue sections on basic rating life and equivalent dynamic load.</li></ul>
+<p><strong>Engineering disclaimer:</strong> This free online calculator is for education and preliminary engineering estimates. Results describe statistical rolling-fatigue scenarios and depend on the accuracy and applicability of your inputs. They are not certified service life, safe working limits, guaranteed reliability, remaining useful life, or maintenance instructions. Confirm ratings, factors, load cases, lubrication, static capacity, minimum load, permissible speed, fits, alignment, and the complete assembly with the bearing manufacturer or a qualified engineer before specifying or operating equipment.</p>
 </article>
+
 
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
-<script>
-(function(){
-"use strict";
-function $(id){ return document.getElementById(id); }
-
-function val(id){
-  var el = $(id);
-  if(!el) return NaN;
-  var s = String(el.value).trim();
-  if(s === "") return NaN;
-  var n = parseFloat(s);
-  return isFinite(n) ? n : NaN;
-}
-function nf(n, maxDp){ return n.toLocaleString(undefined, { maximumFractionDigits: maxDp }); }
-
-function copyText(text, btn){
-  function done(ok){
-    if(!btn) return;
-    var o = btn.getAttribute("data-label");
-    if(o === null){ o = btn.textContent; btn.setAttribute("data-label", o); }
-    btn.textContent = ok ? "Copied!" : "Copy failed";
-    setTimeout(function(){ btn.textContent = o; }, 1400);
-  }
-  function fallback(){
-    var ok = false;
-    try{
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-    }catch(e){ ok = false; }
-    done(ok);
-  }
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
-  } else {
-    fallback();
-  }
-}
-
-/* ---------- Bearing cross-section diagram ---------- */
-function drawBearingDiagram(fr, fa, speed){
-  var w = 520, h = 240;
-  var cx = 260, cy = 120;
-  var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Bearing cross-section diagram">';
-
-  /* Outer ring */
-  svg += '<circle cx="' + cx + '" cy="' + cy + '" r="95" fill="none" stroke="#0f766e" stroke-width="14" opacity="0.8"/>';
-  /* Inner ring */
-  svg += '<circle cx="' + cx + '" cy="' + cy + '" r="45" fill="none" stroke="#0f766e" stroke-width="14" opacity="0.8"/>';
-  /* Balls */
-  for(var i = 0; i < 8; i++){
-    var a = (i / 8) * Math.PI * 2;
-    var bx = cx + Math.cos(a) * 70;
-    var by = cy + Math.sin(a) * 70;
-    svg += '<circle cx="' + bx.toFixed(1) + '" cy="' + by.toFixed(1) + '" r="10" fill="#14b8a6" opacity="0.85"/>';
-  }
-  /* Radial load arrow */
-  svg += '<line x1="' + cx + '" y1="' + (cy - 130) + '" x2="' + cx + '" y2="' + (cy - 100) + '" stroke="#dc2626" stroke-width="3" marker-end="url(#arrowRed)"/>';
-  svg += '<text x="' + (cx + 6) + '" y="' + (cy - 118) + '" font-size="11" fill="#dc2626" font-weight="700">Fr</text>';
-  /* Axial load arrow */
-  if(fa > 0){
-    svg += '<line x1="' + (cx + 130) + '" y1="' + cy + '" x2="' + (cx + 100) + '" y2="' + cy + '" stroke="#f59e0b" stroke-width="3" marker-end="url(#arrowAmber)"/>';
-    svg += '<text x="' + (cx + 106) + '" y="' + (cy - 8) + '" font-size="11" fill="#f59e0b" font-weight="700">Fa</text>';
-  }
-  /* Speed arrow */
-  svg += '<path d="M ' + (cx + 40) + ' ' + (cy + 60) + ' A 50 50 0 0 1 ' + (cx + 65) + ' ' + (cy + 20) + '" fill="none" stroke="#64748b" stroke-width="2" marker-end="url(#arrowGrey)"/>';
-  svg += '<text x="' + (cx + 70) + '" y="' + (cy + 58) + '" font-size="11" fill="#64748b" font-weight="700">n</text>';
-
-  svg += '<defs>';
-  svg += '<marker id="arrowRed" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#dc2626"/></marker>';
-  svg += '<marker id="arrowAmber" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#f59e0b"/></marker>';
-  svg += '<marker id="arrowGrey" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 Z" fill="#64748b"/></marker>';
-  svg += '</defs>';
-
-  svg += '<text x="' + cx + '" y="' + (h - 10) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">' + Math.round(fr) + ' N radial · ' + Math.round(fa) + ' N axial · ' + Math.round(speed) + ' rpm</text>';
-  svg += '</svg>';
-  return svg;
-}
-
-/* ---------- Load-life curve SVG ---------- */
-function drawLoadLifeCurve(C, P, p, speed){
-  var W = 520, H = 260;
-  var padL = 65, padR = 25, padT = 25, padB = 45;
-  var plotW = W - padL - padR, plotH = H - padT - padB;
-
-  var maxSpeed = Math.max(speed * 3, 1000);
-  var points = [];
-  var steps = 30;
-  for(var i = 1; i <= steps; i++){
-    var s = (maxSpeed / steps) * i;
-    var L10 = Math.pow(C / P, p) * 1e6;
-    var L10h = L10 / (60 * s);
-    points.push({ s: s, L10h: L10h });
-  }
-  var maxL10h = points[0].L10h * 1.1;
-
-  var path = "M";
-  for(var j = 0; j < points.length; j++){
-    var pt = points[j];
-    var x = padL + (pt.s / maxSpeed) * plotW;
-    var y = padT + plotH - (pt.L10h / maxL10h) * plotH;
-    path += (j === 0 ? " " : " L ") + x.toFixed(1) + " " + y.toFixed(1);
-  }
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Load-life curve" preserveAspectRatio="xMidYMid meet">';
-  svg += '<rect x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--line)"/>';
-  svg += '<path d="' + path + '" fill="none" stroke="#0f766e" stroke-width="3" stroke-linecap="round"/>';
-  svg += '<text x="' + (padL + plotW / 2) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Speed (rpm)</text>';
-  svg += '<text x="16" y="' + (padT + plotH / 2) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 16 ' + (padT + plotH / 2) + ')">L10h (hours)</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + Math.round(maxL10h).toLocaleString() + '</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + plotH + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">0</text>';
-  svg += '<text x="' + (padL + plotW) + '" y="' + (padT + plotH + 16) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + Math.round(maxSpeed) + '</text>';
-  svg += '</svg>';
-  return svg;
-}
-
-/* ---------- Weibull reliability chart SVG ---------- */
-function drawWeibullChart(reliability, a1){
-  var W = 520, H = 260;
-  var padL = 65, padR = 25, padT = 25, padB = 45;
-  var plotW = W - padL - padR, plotH = H - padT - padB;
-
-  var beta = 1.5;
-  var eta = 1;
-  var points = [];
-  var steps = 40;
-  for(var i = 1; i <= steps; i++){
-    var t = (i / steps) * 2.5;
-    var R = Math.exp(-Math.pow(t / eta, beta));
-    points.push({ t: t, R: R });
-  }
-
-  var path = "M";
-  for(var j = 0; j < points.length; j++){
-    var pt = points[j];
-    var x = padL + (pt.t / 2.5) * plotW;
-    var y = padT + plotH - (pt.R) * plotH;
-    path += (j === 0 ? " " : " L ") + x.toFixed(1) + " " + y.toFixed(1);
-  }
-
-  var L10x = padL + (1 / 2.5) * plotW;
-  var L10y = padT + plotH - 0.9 * plotH;
-  var Lnx = padL + (reliability / 2.5) * plotW;
-  var Lny = padT + plotH - reliability * plotH;
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Weibull reliability chart" preserveAspectRatio="xMidYMid meet">';
-  svg += '<rect x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--line)"/>';
-  svg += '<path d="' + path + '" fill="none" stroke="#7c3aed" stroke-width="3" stroke-linecap="round"/>';
-  svg += '<circle cx="' + L10x.toFixed(1) + '" cy="' + L10y.toFixed(1) + '" r="5" fill="#dc2626"/>';
-  svg += '<text x="' + (L10x + 8) + '" y="' + (L10y - 6) + '" font-size="10" fill="#dc2626" font-weight="700">L10 (90%)</text>';
-  if(reliability < 1){
-    svg += '<circle cx="' + Lnx.toFixed(1) + '" cy="' + Lny.toFixed(1) + '" r="5" fill="#0f766e"/>';
-    svg += '<text x="' + (Lnx + 8) + '" y="' + (Lny - 6) + '" font-size="10" fill="#0f766e" font-weight="700">L' + Math.round(reliability * 100) + '</text>';
-  }
-  svg += '<text x="' + (padL + plotW / 2) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Life (normalised)</text>';
-  svg += '<text x="16" y="' + (padT + plotH / 2) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 16 ' + (padT + plotH / 2) + ')">Survival probability</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">1.0</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + plotH + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">0</text>';
-  svg += '<text x="' + (padL + plotW) + '" y="' + (padT + plotH + 16) + '" text-anchor="end" font-size="10" fill="var(--muted)">2.5×</text>';
-  svg += '</svg>';
-  return svg;
-}
-
-/* ---------- Basic L10 calculation ---------- */
-function calcBasic(){
-  var type = $("bType").value;
-  var p = type === "ball" ? 3 : 10 / 3;
-  var C = val("bC");
-  var n = val("bSpeed");
-  var Fr = val("bFr");
-  var Fa = val("bFa");
-  var X = val("bX");
-  var Y = val("bY");
-  var hpd = val("bHours");
-
-  if(!(C > 0) || !(n > 0) || !(Fr >= 0)){
-    return { err: "Dynamic load rating C, speed n and radial load Fr are required and must be greater than zero." };
-  }
-  if(Fa < 0) return { err: "Axial load cannot be negative." };
-
-  var hasFa = Fa > 0;
-  var P;
-  if(hasFa){
-    if(!(X >= 0) || !(Y >= 0)) return { err: "X and Y factors are required when axial load is present." };
-    P = X * Fr + Y * Fa;
-  } else {
-    P = Fr;
-  }
-  if(!(P > 0)) return { err: "Equivalent dynamic load P must be greater than zero." };
-
-  var ratio = C / P;
-  var L10 = Math.pow(ratio, p); /* millions of revolutions */
-  var L10h = L10 * 1e6 / (60 * n);
-  var L10years = hpd > 0 ? L10h / (hpd * 365.25) : null;
-  var L10_95 = L10 * 0.62;
-  var L10_99 = L10 * 0.21;
-  var L10h_95 = L10_95 * 1e6 / (60 * n);
-  var L10h_99 = L10_99 * 1e6 / (60 * n);
-
-  var status = { label: "OK", cls: "ok", notes: [] };
-  if(ratio < 2){
-    status.cls = "err"; status.label = "C/P below 2";
-    status.notes.push("The C/P ratio is " + ratio.toFixed(2) + ". Below C/P = 2 the conventional rating-life theory is no longer fully valid and the result should be treated with caution. Verify the load case or consider a larger bearing.");
-  } else if(ratio < 4){
-    status.cls = "warn"; status.label = "Low C/P ratio";
-    status.notes.push("The C/P ratio is " + ratio.toFixed(2) + ". The bearing is heavily loaded relative to its capacity. Check that the load case is correct and consider whether a larger bearing would be more appropriate.");
-  }
-  if(L10h < 5000){
-    status.notes.push("Calculated L10h is " + Math.round(L10h).toLocaleString() + " hours, which is short for most industrial applications. Consider a larger bearing or reduced load.");
-  } else if(L10h > 100000){
-    status.notes.push("Calculated L10h is " + Math.round(L10h).toLocaleString() + " hours, which is very long. Check that the load case includes shock, misalignment and dynamic components that may not appear in the nominal figures.");
-  }
-
-  if(status.cls === "ok") status.notes.push("The bearing meets the basic ISO 281 rating life criterion for the values entered. Verify against the manufacturer's data and consider the modified life Lnm for lubrication and contamination effects.");
-
-  return {
-    p: p, P: P, ratio: ratio, L10: L10, L10h: L10h, L10years: L10years,
-    L10h_95: L10h_95, L10h_99: L10h_99, L10_95: L10_95, L10_99: L10_99,
-    status: status, C: C, n: n, Fr: Fr, Fa: Fa, type: type
-  };
-}
-
-/* ---------- Modified Lnm calculation ---------- */
-function calcModified(){
-  var type = $("mType").value;
-  var p = type === "ball" ? 3 : 10 / 3;
-  var C = val("mC");
-  var P = val("mP");
-  var n = val("mSpeed");
-  var a1 = parseFloat($("mReliability").value);
-  var aISO = parseFloat($("mAiso").value);
-  var hpd = val("mHours");
-
-  if(!(C > 0) || !(P > 0) || !(n > 0)){
-    return { err: "Dynamic load rating C, equivalent load P and speed n are required and must be greater than zero." };
-  }
-
-  var L10 = Math.pow(C / P, p) * 1e6;
-  var L10h = L10 / (60 * n);
-  var Lnm = a1 * aISO * L10;
-  var Lnmh = a1 * aISO * L10h;
-  var Lnmyears = hpd > 0 ? Lnmh / (hpd * 365.25) : null;
-
-  var status = { label: "OK", cls: "ok", notes: [] };
-  if(aISO <= 0.3){
-    status.cls = "err"; status.label = "Severe contamination or poor lubrication";
-    status.notes.push("aISO = " + aISO + " indicates severe contamination or inadequate lubrication. The attainable life is a fraction of the basic L10. Improve filtration, sealing or lubricant viscosity before relying on this life estimate.");
-  } else if(aISO < 0.7){
-    status.cls = "warn"; status.label = "Degraded operating conditions";
-    status.notes.push("aISO = " + aISO + " indicates that lubrication or cleanliness is reducing the attainable life below the basic rating. Consider improving the lubrication condition or selecting a bearing with a higher C rating.");
-  } else if(aISO > 3){
-    status.notes.push("aISO = " + aISO + " indicates excellent lubrication and cleanliness. The modified life is " + (aISO).toFixed(1) + " times the basic life. Verify that the operating conditions justify this factor.");
-  }
-
-  status.notes.push("Modified rating life Lnm = a1 × aISO × L10 = " + a1 + " × " + aISO + " × " + L10.toExponential(2) + " = " + Lnm.toExponential(2) + " million revolutions.");
-
-  return {
-    p: p, L10: L10, L10h: L10h, Lnm: Lnm, Lnmh: Lnmh, Lnmyears: Lnmyears,
-    a1: a1, aISO: aISO, status: status, C: C, P: P, n: n, type: type
-  };
-}
-
-/* ---------- Compare two bearings ---------- */
-function calcCompare(){
-  var Fr = val("cmpFr");
-  var Fa = val("cmpFa");
-  var n = val("cmpSpeed");
-  var X = val("cmpX");
-  var Y = val("cmpY");
-  var hpd = val("cmpHours");
-
-  if(!(n > 0) || !(Fr >= 0)) return { err: "Speed n and radial load Fr are required." };
-
-  var hasFa = Fa > 0;
-  var P;
-  if(hasFa){
-    if(!(X >= 0) || !(Y >= 0)) return { err: "X and Y factors are required when axial load is present." };
-    P = X * Fr + Y * Fa;
-  } else {
-    P = Fr;
-  }
-  if(!(P > 0)) return { err: "Equivalent dynamic load P must be greater than zero." };
-
-  function evalBearing(typeId, cId, label){
-    var type = $(typeId).value;
-    var p = type === "ball" ? 3 : 10 / 3;
-    var C = val(cId);
-    if(!(C > 0)) return { err: label + ": dynamic load rating C is required." };
-    var ratio = C / P;
-    var L10 = Math.pow(ratio, p) * 1e6;
-    var L10h = L10 / (60 * n);
-    var years = hpd > 0 ? L10h / (hpd * 365.25) : null;
-    return { type: type, p: p, C: C, ratio: ratio, L10: L10, L10h: L10h, years: years };
-  }
-
-  var a = evalBearing("cmpAType", "cmpAC", "Bearing A");
-  var b = evalBearing("cmpBType", "cmpBC", "Bearing B");
-  if(a.err) return { err: a.err };
-  if(b.err) return { err: b.err };
-
-  return { P: P, n: n, Fr: Fr, Fa: Fa, a: a, b: b };
-}
-
-/* ---------- Render functions ---------- */
-function renderBasic(){
-  var r = calcBasic();
-  var out = $("basicOutput");
-  if(r.err){ out.innerHTML = '<div class="bl-warn">' + r.err + '</div>'; $("bearingDiagram").innerHTML = ''; return; }
-
-  $("bearingDiagram").innerHTML = drawBearingDiagram(val("bFr"), val("bFa"), val("bSpeed")) +
-    '<div class="bl-diagram-caption">Bearing cross-section — radial load Fr, axial load Fa and rotational speed n update live</div>';
-
-  var h = '<div class="bl-result">';
-  h += '<div class="bl-result-label">Basic rating life L10h</div>';
-  h += '<div class="bl-result-big">' + Math.round(r.L10h).toLocaleString() + ' hours</div>';
-  h += '<div class="bl-result-sub">' + r.L10.toFixed(2) + ' million revolutions · ' + (r.L10years !== null ? r.L10years.toFixed(1) + ' years at ' + val("bHours") + ' h/day' : '') + '</div>';
-  h += '</div>';
-
-  h += '<div class="bl-stats">';
-  h += '<div class="bl-stat"><div class="lbl">Equivalent load P</div><div class="val">' + Math.round(r.P).toLocaleString() + ' N</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">C/P ratio</div><div class="val ' + (r.ratio < 2 ? 'err' : (r.ratio < 4 ? 'warn' : 'ok')) + '">' + r.ratio.toFixed(2) + '</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">L10 (95% rel.)</div><div class="val">' + Math.round(r.L10h_95).toLocaleString() + ' h</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">L10 (99% rel.)</div><div class="val">' + Math.round(r.L10h_99).toLocaleString() + ' h</div></div>';
-  h += '</div>';
-
-  h += '<div class="bl-panel"><h3>Design status <span class="bl-badge ' + r.status.cls + '">' + r.status.label + '</span></h3>';
-  h += '<ul>';
-  for(var i = 0; i < r.status.notes.length; i++) h += '<li>' + r.status.notes[i] + '</li>';
-  h += '</ul></div>';
-
-  h += '<div class="bl-tip"><b>Formula used:</b> L10 = (C/P)^p × 10⁶ revolutions, L10h = L10 × 10⁶ / (60 n). p = ' + r.p.toFixed(2) + ' for ' + r.type + ' bearings. C = ' + Math.round(r.C).toLocaleString() + ' N, P = ' + Math.round(r.P).toLocaleString() + ' N, n = ' + Math.round(r.n).toLocaleString() + ' rpm.</div>';
-
-  h += '<div class="bl-actions"><button type="button" id="copyBasicBtn" class="primary">Copy result</button><button type="button" id="printBasicBtn">Print / save as PDF</button></div>';
-  out.innerHTML = h;
-
-  $("copyBasicBtn").addEventListener("click", function(){
-    var text = "Bearing L10 Life Calculator Result\n" +
-      "Bearing type: " + r.type + " (p = " + r.p.toFixed(2) + ")\n" +
-      "Dynamic load rating C: " + Math.round(r.C).toLocaleString() + " N\n" +
-      "Equivalent dynamic load P: " + Math.round(r.P).toLocaleString() + " N\n" +
-      "C/P ratio: " + r.ratio.toFixed(2) + "\n" +
-      "L10: " + r.L10.toFixed(2) + " million revolutions\n" +
-      "L10h: " + Math.round(r.L10h).toLocaleString() + " hours\n" +
-      (r.L10years !== null ? "L10 (years at " + val("bHours") + " h/day): " + r.L10years.toFixed(1) + "\n" : "") +
-      "L10h (95% reliability): " + Math.round(r.L10h_95).toLocaleString() + " hours\n" +
-      "L10h (99% reliability): " + Math.round(r.L10h_99).toLocaleString() + " hours\n" +
-      "Status: " + r.status.label + "\n" +
-      "- utiliby.com";
-    copyText(text, $("copyBasicBtn"));
-  });
-  $("printBasicBtn").addEventListener("click", function(){ window.print(); });
-}
-
-function renderModified(){
-  var r = calcModified();
-  var out = $("modifiedOutput");
-  if(r.err){ out.innerHTML = '<div class="bl-warn">' + r.err + '</div>'; return; }
-
-  var h = '<div class="bl-result">';
-  h += '<div class="bl-result-label">Modified rating life Lnmh</div>';
-  h += '<div class="bl-result-big">' + Math.round(r.Lnmh).toLocaleString() + ' hours</div>';
-  h += '<div class="bl-result-sub">' + r.Lnm.toExponential(2) + ' million revolutions · a1 = ' + r.a1 + ', aISO = ' + r.aISO + '</div>';
-  h += '</div>';
-
-  h += '<div class="bl-stats">';
-  h += '<div class="bl-stat"><div class="lbl">Basic L10h</div><div class="val">' + Math.round(r.L10h).toLocaleString() + ' h</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Reliability factor a1</div><div class="val">' + r.a1 + '</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Lubrication factor aISO</div><div class="val">' + r.aISO + '</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Lnm/L10 ratio</div><div class="val">' + (r.Lnm / r.L10).toFixed(2) + '</div></div>';
-  h += '</div>';
-
-  h += '<div class="bl-diagram">' + drawWeibullChart(r.a1 === 1 ? 0.9 : (r.a1 === 0.62 ? 0.95 : 0.99), r.a1) + '<div class="bl-diagram-caption">Weibull reliability chart — L10 point at 90% survival and the selected reliability level</div></div>';
-
-  h += '<div class="bl-panel"><h3>Design status <span class="bl-badge ' + r.status.cls + '">' + r.status.label + '</span></h3><ul>';
-  for(var i = 0; i < r.status.notes.length; i++) h += '<li>' + r.status.notes[i] + '</li>';
-  h += '</ul></div>';
-
-  h += '<div class="bl-tip"><b>Formula used:</b> Lnm = a1 × aISO × L10 = ' + r.a1 + ' × ' + r.aISO + ' × ' + r.L10.toExponential(2) + ' = ' + r.Lnm.toExponential(2) + ' million revolutions. Lnmh = ' + r.a1 + ' × ' + r.aISO + ' × ' + Math.round(r.L10h).toLocaleString() + ' = ' + Math.round(r.Lnmh).toLocaleString() + ' hours.</div>';
-
-  h += '<div class="bl-actions"><button type="button" id="copyModifiedBtn" class="primary">Copy result</button></div>';
-  out.innerHTML = h;
-
-  $("copyModifiedBtn").addEventListener("click", function(){
-    var text = "Bearing Modified Life (ISO 281) Result\n" +
-      "Bearing type: " + r.type + " (p = " + r.p.toFixed(2) + ")\n" +
-      "Basic L10: " + r.L10.toExponential(2) + " million revolutions\n" +
-      "Basic L10h: " + Math.round(r.L10h).toLocaleString() + " hours\n" +
-      "Reliability factor a1: " + r.a1 + "\n" +
-      "Lubrication factor aISO: " + r.aISO + "\n" +
-      "Modified Lnm: " + r.Lnm.toExponential(2) + " million revolutions\n" +
-      "Modified Lnmh: " + Math.round(r.Lnmh).toLocaleString() + " hours\n" +
-      "Status: " + r.status.label + "\n" +
-      "- utiliby.com";
-    copyText(text, $("copyModifiedBtn"));
-  });
-}
-
-function renderCompare(){
-  var r = calcCompare();
-  var out = $("compareOutput");
-  if(r.err){ out.innerHTML = '<div class="bl-warn">' + r.err + '</div>'; return; }
-
-  var h = '<div class="bl-stats">';
-  h += '<div class="bl-stat"><div class="lbl">Equivalent load P</div><div class="val">' + Math.round(r.P).toLocaleString() + ' N</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Speed n</div><div class="val">' + Math.round(r.n).toLocaleString() + ' rpm</div></div>';
-  h += '</div>';
-
-  h += '<div class="bl-compare">';
-  h += '<div class="bl-compare-card"><h4>Bearing A</h4>';
-  h += '<div class="bl-stat"><div class="lbl">Type</div><div class="val">' + r.a.type + ' (p = ' + r.a.p.toFixed(2) + ')</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Dynamic rating C</div><div class="val">' + Math.round(r.a.C).toLocaleString() + ' N</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">C/P ratio</div><div class="val">' + r.a.ratio.toFixed(2) + '</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">L10h</div><div class="val">' + Math.round(r.a.L10h).toLocaleString() + ' h</div></div>';
-  if(r.a.years !== null) h += '<div class="bl-stat"><div class="lbl">L10 (years)</div><div class="val">' + r.a.years.toFixed(1) + ' years</div></div>';
-  h += '</div>';
-
-  h += '<div class="bl-compare-card b"><h4>Bearing B</h4>';
-  h += '<div class="bl-stat"><div class="lbl">Type</div><div class="val">' + r.b.type + ' (p = ' + r.b.p.toFixed(2) + ')</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">Dynamic rating C</div><div class="val">' + Math.round(r.b.C).toLocaleString() + ' N</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">C/P ratio</div><div class="val">' + r.b.ratio.toFixed(2) + '</div></div>';
-  h += '<div class="bl-stat"><div class="lbl">L10h</div><div class="val">' + Math.round(r.b.L10h).toLocaleString() + ' h</div></div>';
-  if(r.b.years !== null) h += '<div class="bl-stat"><div class="lbl">L10 (years)</div><div class="val">' + r.b.years.toFixed(1) + ' years</div></div>';
-  h += '</div>';
-  h += '</div>';
-
-  var better = r.b.L10h > r.a.L10h ? "B" : (r.a.L10h > r.b.L10h ? "A" : "tie");
-  var ratio = r.b.L10h / r.a.L10h;
-  h += '<div class="bl-tip"><b>Comparison:</b> Bearing ' + better + ' has the longer calculated life. ';
-  if(better !== "tie") h += "Bearing " + (better === "A" ? "B" : "A") + " would need C increased by a factor of " + (better === "A" ? Math.pow(ratio, 1/r.a.p).toFixed(2) : Math.pow(1/ratio, 1/r.b.p).toFixed(2)) + " to match it.";
-  h += ' The life ratio is ' + ratio.toFixed(2) + ':1 (B:A).</div>';
-
-  h += '<div class="bl-tip"><b>Formula used:</b> L10 = (C/P)^p × 10⁶ revolutions for each bearing. The same P and n are applied to both.</div>';
-
-  h += '<div class="bl-actions"><button type="button" id="copyCompareBtn" class="primary">Copy comparison</button></div>';
-  out.innerHTML = h;
-
-  $("copyCompareBtn").addEventListener("click", function(){
-    var text = "Bearing Comparison Result\n" +
-      "Load: Fr = " + Math.round(r.Fr) + " N, Fa = " + Math.round(r.Fa) + " N, speed = " + Math.round(r.n) + " rpm, P = " + Math.round(r.P) + " N\n\n" +
-      "Bearing A: " + r.a.type + ", C = " + Math.round(r.a.C) + " N, C/P = " + r.a.ratio.toFixed(2) + ", L10h = " + Math.round(r.a.L10h) + " h\n" +
-      "Bearing B: " + r.b.type + ", C = " + Math.round(r.b.C) + " N, C/P = " + r.b.ratio.toFixed(2) + ", L10h = " + Math.round(r.b.L10h) + " h\n" +
-      "Life ratio (B:A): " + ratio.toFixed(2) + ":1\n" +
-      "- utiliby.com";
-    copyText(text, $("copyCompareBtn"));
-  });
-}
-
-/* ---------- UI wiring ---------- */
-window.addEventListener("DOMContentLoaded", function(){
-  var T = $("tool");
-  if(!T) return;
-
-  document.querySelectorAll(".bl-tab").forEach(function(tab){
-    tab.addEventListener("click", function(){
-      var mode = this.dataset.mode;
-      document.querySelectorAll(".bl-tab").forEach(function(x){
-        x.classList.toggle("on", x.dataset.mode === mode);
-      });
-      $("basicTab").hidden = (mode !== "basic");
-      $("modifiedTab").hidden = (mode !== "modified");
-      $("compareTab").hidden = (mode !== "compare");
-      if(mode === "basic") renderBasic();
-      else if(mode === "modified") renderModified();
-      else if(mode === "compare") renderCompare();
-    });
-  });
-
-  function live(ids, fn){
-    ids.forEach(function(id){
-      var el = $(id);
-      if(el){ el.addEventListener("input", fn); el.addEventListener("change", fn); }
-    });
-  }
-
-  live(["bType","bSpeed","bC","bC0","bFr","bFa","bX","bY","bHours"], renderBasic);
-  live(["mType","mSpeed","mC","mP","mReliability","mAiso","mHours"], renderModified);
-  live(["cmpFr","cmpFa","cmpSpeed","cmpX","cmpY","cmpHours","cmpAType","cmpAC","cmpAC0","cmpBType","cmpBC","cmpBC0"], renderCompare);
-
-  $("calcBasicBtn").addEventListener("click", renderBasic);
-  $("calcModifiedBtn").addEventListener("click", renderModified);
-  $("calcCompareBtn").addEventListener("click", renderCompare);
-
-  $("resetBasicBtn").addEventListener("click", function(){
-    $("bType").value = "ball";
-    $("bSpeed").value = 1500;
-    $("bC").value = 20000;
-    $("bC0").value = 14000;
-    $("bFr").value = 5000;
-    $("bFa").value = 0;
-    $("bX").value = 1;
-    $("bY").value = 0;
-    $("bHours").value = 8;
-    renderBasic();
-  });
-
-  document.addEventListener("click", function(e){
-    var copyBtn = e.target.closest("[data-copy-target]");
-    if(copyBtn){
-      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
-      if(target) copyText(target.value, copyBtn);
-    }
-  });
-
-  renderBasic();
-  renderModified();
-  renderCompare();
-});
+<section id="bearingReport" aria-label="Bearing life calculation report"></section><script>(function(){'use strict';
+const $=id=>document.getElementById(id),PI=Math.PI;
+const ISO=[[90,1],[95,.64],[96,.55],[97,.47],[98,.37],[99,.25],[99.2,.22],[99.4,.19],[99.6,.16],[99.8,.12],[99.9,.093],[99.92,.087],[99.94,.08],[99.95,.077]];
+const forceIds=['bC','bC0','bFr','bFa','bDirectP','bP0','mC','mP','mCu','cmpFr','cmpFa','cmpAC','cmpAC0','cmpBC','cmpBC0','cmpAP0','cmpBP0','dC','zC','zP','zC0'];
+const modes=['basic','modified','compare','duty','sizing'];let mode='basic',oldForce='N';const reports={},errors={};
+const fmt=n=>Number.isFinite(n)?new Intl.NumberFormat('en-US',{maximumSignificantDigits:7}).format(n):'Not evaluated';const raw=n=>Number(n.toPrecision(12)).toString();
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const factor=u=>({N:1,kN:1000,lbf:4.4482216152605}[u]);const forceText=n=>n===null?'Not supplied':fmt(n/factor($('forceUnits').value))+' '+$('forceUnits').value;
+function num(id,min=0,strict=false,optional=false,integer=false){const s=$(id).value.trim(),v=Number(s);if(optional&&s==='')return null;if(s===''||!Number.isFinite(v)||v<min||(strict&&v===min)||(integer&&!Number.isInteger(v)))throw Error($(id).previousElementSibling.textContent+' must be '+(integer?'a whole number ':'')+(strict?'greater than ':'at least ')+min+'.');return v;}
+function fnum(id,optional=false,strict=false){const n=num(id,0,strict,optional);return n===null?null:n*factor($('forceUnits').value);}
+function finite(r){for(const [k,v]of Object.entries(r))if(typeof v==='number'&&!Number.isFinite(v))throw Error('Input scale produces an unrepresentable result ('+k+'). Use realistic loads and life requirements.');return r;}
+function schedule(hours,days){if(!(hours>0&&hours<=24&&days>0&&days<=366))throw Error('Schedule must have more than 0 and at most 24 hours/day, and more than 0 and at most 366 operating days/year.');return hours*days;}
+function exponent(type){return type==='ball'?3:10/3;}
+function a1(reliability){const found=ISO.find(a=>a[0]===Number(reliability));if(!found)throw Error('Choose a tabulated reliability target.');return found[1];}
+function life(C,P,n,type,modifier=1){if(!(C>0&&P>0&&n>=0&&modifier>0))throw Error('Dynamic rating, equivalent load and life modifier must be positive; speed must be nonnegative.');const p=exponent(type),basicM=Math.pow(C/P,p),adjustedM=basicM*modifier;return finite({C,P,n,type,p,ratio:C/P,basicM,basicH:n>0?basicM*1e6/(60*n):null,adjustedM,adjustedH:n>0?adjustedM*1e6/(60*n):null,modifier});}
+function inverse(P,n,h,p,modifier,C){if(!(P>0&&n>0&&h>0&&modifier>0&&C>0))throw Error('Sizing inputs must be positive.');const lifeRevM=h*60*n/1e6/modifier,q=Math.pow(lifeRevM,1/p);return finite({requiredC:P*q,permissibleP:C/q,lifeOnlySpeed:modifier*Math.pow(C/P,p)*1e6/(60*h),requiredRatio:q});}
+function equivalent({method,Fr,Fa,X,Y,e,direct,service=1}){let base;if(method==='direct')base=direct;else if(method==='radial'){if(Fa>0)throw Error('Pure radial mode cannot account for the entered axial load. Select combined factors, threshold or known P.');base=Fr;}else if(method==='threshold'&&Fr>0&&Fa/Fr<=e)base=Fr;else{if(Fa>0&&Y===0)throw Error('Axial load is present but Y is zero. Supply catalogue factors or a verified equivalent load.');base=X*Fr+Y*Fa;}if(!(base>0))throw Error('Equivalent dynamic load must be positive. Check loads and factors.');return finite({base,P:base*service});}
+function parseDuty(text,unitFactor=1){const lines=text.trim().split(/\r?\n/),rows=[];if(!text.trim())throw Error('Enter at least one duty row.');for(let i=0;i<lines.length;i++){const s=lines[i].trim();if(!s)continue;if(i===0&&/^P\s*[,;\t]/i.test(s))continue;const cols=s.split(/[,;\t]/).map(a=>a.trim());if(cols.length<3||cols.length>4||cols.some(c=>c===''||!Number.isFinite(Number(c))))throw Error('Duty line '+(i+1)+' needs P, RPM, positive hours, and optionally positive aISO.');const [p,n,t]=cols.slice(0,3).map(Number),aiso=cols.length===4?Number(cols[3]):1;if(!(p>=0&&n>=0&&t>0&&aiso>0))throw Error('Duty loads and speeds must be nonnegative; times and aISO must be positive.');rows.push({P:p*unitFactor,n,t,aiso});if(rows.length>100)throw Error('Use at most 100 duty rows.');}if(!rows.length)throw Error('Duty data has no rows.');return rows;}
+function duty(rows,C,type,a=1){const p=exponent(type),totalTime=rows.reduce((s,r)=>s+r.t,0),totalRevs=rows.reduce((s,r)=>s+60*r.n*r.t,0),rotatingTime=rows.reduce((s,r)=>s+(r.n>0?r.t:0),0);if(!(totalRevs>0))throw Error('The duty cycle must include rotation. Stationary loading requires static assessment, not an hours-based rolling-fatigue life.');const segments=rows.map(r=>{const N=60*r.n*r.t,D=N/1e6*Math.pow(r.P/C,p);return finite({...r,N,D,Dm:D/(a*r.aiso)});}),D=segments.reduce((s,r)=>s+r.D,0),Dm=segments.reduce((s,r)=>s+r.Dm,0);if(!(D>0&&Dm>0))throw Error('No modeled rolling-fatigue allocation occurs in the supplied cycle. Zero load is not proof of unlimited service life.');const navg=totalRevs/(60*totalTime),Peq=Math.pow(segments.reduce((s,r)=>s+r.N*Math.pow(r.P,p),0)/totalRevs,1/p);return finite({C,type,p,segments,totalTime,totalRevs,rotatingTime,navg,Peq,D,Dm,basicElapsedH:totalTime/D,modifiedElapsedH:totalTime/Dm,basicRotatingH:rotatingTime/D,basicM:totalRevs/D/1e6,modifiedM:totalRevs/Dm/1e6});}
+function survival(time,L10h,beta,count=1){if(!(time>=0&&L10h>0&&beta>0&&count>=1))throw Error('Survival illustration needs nonnegative time, positive L10h and β, and at least one bearing.');const logS=Math.log(.9)*Math.pow(time/L10h,beta);return {single:Math.exp(logS),system:Math.exp(logS*count)};}
+window.BearingMath={ISO,life,inverse,equivalent,parseDuty,duty,survival,exponent};
+function table(rows){return '<div class="bl-table-wrap"><table class="bl-table"><tbody>'+rows.map(([a,b])=>'<tr><th scope="row">'+esc(a)+'</th><td>'+esc(b)+'</td></tr>').join('')+'</tbody></table></div>';}
+function columns(headers,rows){return '<div class="bl-table-wrap"><table class="bl-table"><thead><tr>'+headers.map(h=>'<th scope="col">'+esc(h)+'</th>').join('')+'</tr></thead><tbody>'+rows.map(r=>'<tr>'+r.map(v=>'<td>'+esc(v)+'</td>').join('')+'</tr>').join('')+'</tbody></table></div>';}
+const notes=['Rating life describes rolling-contact fatigue statistics, not guaranteed service life or a maintenance interval.','Minimum load, static/shock capacity, allowable speed, alignment, clearance, lubrication, temperature and non-fatigue failure mechanisms are separate checks.'];
+function complete(k,title,rows,warnings,visual='',extra='',data=null,extraRows=[]){$(k+'Output').innerHTML='<div class="bl-stats">'+rows.slice(0,4).map(([a,b])=>'<div class="bl-stat"><div class="lbl">'+esc(a)+'</div><div class="val">'+esc(b)+'</div></div>').join('')+'</div>'+warnings.map(w=>'<p class="bl-warn">'+esc(w)+'</p>').join('')+visual+table(rows)+extra;reports[k]={title,rows,warnings,visual,extra,data,extraRows};delete errors[k];}
+function attempt(k,fn){try{fn();}catch(e){delete reports[k];errors[k]=e.message;$(k+'Output').innerHTML='<p class="bl-warn">'+esc(e.message)+'</p>';if(k==='basic')$('bearingDiagram').innerHTML='';}}
+function hoursText(h){return h===null?'Not defined at zero RPM':fmt(h)+' h';}
+function calendar(h,annual){return h===null?'Not defined at zero RPM':fmt(h/annual)+' scheduled years (not a service guarantee)';}
+function bearingSVG(Fr,Fa,n,type){const max=Math.max(Fr,Fa,1),rad=15+55*Fr/max,ax=15+55*Fa/max;let s='<svg viewBox="0 0 580 230" role="img" aria-label="Bearing section with radial and axial load arrows"><rect width="580" height="230" fill="#f8fbfc"/><circle cx="225" cy="115" r="78" fill="#e4eeef" stroke="#087a78" stroke-width="3"/><circle cx="225" cy="115" r="56" fill="white" stroke="#087a78"/><circle cx="225" cy="115" r="32" fill="#d2e7e8" stroke="#087a78"/>';for(let i=0;i<10;i++){let a=i*2*PI/10,x=225+45*Math.cos(a),y=115+45*Math.sin(a);s+=type==='ball'?'<circle cx="'+x+'" cy="'+y+'" r="9" fill="#6cbabd" stroke="#087a78"/>':'<rect x="'+(x-6)+'" y="'+(y-11)+'" width="12" height="22" rx="3" fill="#6cbabd" stroke="#087a78" transform="rotate('+(i*36)+' '+x+' '+y+')"/>';}
+ if(Fr>0)s+='<path d="M 225 '+(34-rad/3)+' V 46 l -7 -11 M 225 46 l 7 -11" stroke="#b46a14" stroke-width="3" fill="none"/>';if(Fa>0)s+='<path d="M '+(385+ax)+' 115 H 350 l 11 -7 M 350 115 l 11 7" stroke="#7645b1" stroke-width="3" fill="none"/>';return s+'<text x="30" y="23">Fr: '+esc(forceText(Fr))+' · Fa: '+esc(forceText(Fa))+'</text><text x="370" y="55">'+esc(fmt(n))+' RPM</text><text x="365" y="170">'+esc(type)+' model</text><text x="70" y="217">Illustration only; no contact stress or bearing geometry is simulated</text></svg>';}
+function loadChart(r,change=0){const v=change/100,points=Array.from({length:51},(_,i)=>({q:.5+1.5*i/50,L:Math.pow(1/(.5+1.5*i/50),r.p)})),x=q=>55+500*(q-.5)/1.5,y=l=>185-145*Math.log10(l/.04)/Math.log10(12/.04);let s='<svg viewBox="0 0 580 245" role="img" aria-label="Normalized equivalent load versus fatigue life, logarithmic life axis"><rect width="580" height="245" fill="#f8fbfc"/><path d="M 55 30 V 185 H 555" stroke="#527481" fill="none"/>';for(const l of [.1,1,10])s+='<path d="M 55 '+y(l)+' H 555" stroke="#dfe8e9"/><text x="48" y="'+(y(l)+4)+'" text-anchor="end">'+fmt(l)+'×</text>';for(const q of [.5,1,1.5,2])s+='<text x="'+x(q)+'" y="207" text-anchor="middle">'+fmt(q)+'×</text>';s+='<path d="'+points.map((p,i)=>(i?'L':'M')+' '+x(p.q)+' '+y(p.L)).join(' ')+'" stroke="#087a78" stroke-width="3" fill="none"/><circle cx="'+x(1)+'" cy="'+y(1)+'" r="5" fill="#b46a14"/>';if(1+v>=.5&&1+v<=2)s+='<circle cx="'+x(1+v)+'" cy="'+y(Math.pow(1/(1+v),r.p))+'" r="5" fill="#7645b1"/>';return s+'<text x="62" y="22">Relative life (log scale) · p = '+esc(fmt(r.p))+'</text><text x="190" y="237">Equivalent load / current equivalent load</text></svg>';}
+function targetRows(r,h,modifier=r.modifier){if(h===null)return [];if(r.n===0)return [['Target comparison','Hours-based sizing not defined at zero RPM']];const z=inverse(r.P,r.n,h,r.p,modifier,r.C);return [['Requested fatigue life',fmt(h)+' h'],['Calculated / requested life',fmt((r.basicH*modifier)/h)],['Required dynamic rating C',forceText(z.requiredC)],['Maximum equivalent load for this life only',forceText(z.permissibleP)],['Speed solving this life equation only',fmt(z.lifeOnlySpeed)+' RPM']];}
+function readBasic(){const annual=schedule(num('bHours',0,true),num('bDays',0,true)),Fr=fnum('bFr'),Fa=fnum('bFa'),method=$('bLoadMode').value,X=num('bX'),Y=num('bY'),service=num('bService',0,true),e=num('bE'),direct=method==='direct'?fnum('bDirectP',false,true):0,eq=equivalent({method,Fr,Fa,X,Y,e,direct,service}),r=life(fnum('bC',false,true),eq.P,num('bSpeed'),$('bType').value);return {...r,annual,Fr,Fa,method,X,Y,service,e,base:eq.base,target:num('bTarget',0,true,true)};}
+function renderBasic(){const r=readBasic(),change=num('bPreview',-90);if(change>200)throw Error('Sensitivity change must be at most 200%.');const trialP=r.P*(1+change/100),trial=life(r.C,trialP,r.n,r.type),rows=[['Basic L10 life',fmt(r.basicM)+' million revolutions'],['Basic L10h life',hoursText(r.basicH)],['Equivalent dynamic load P',forceText(r.P)],['Dynamic rating / equivalent load C/P',fmt(r.ratio)],['Bearing type / exponent',r.type+' / '+fmt(r.p)],['Dynamic rating C',forceText(r.C)],['Radial / axial load input',forceText(r.Fr)+' / '+forceText(r.Fa)],['Dynamic load method',r.method],['X / Y / threshold e',fmt(r.X)+' / '+fmt(r.Y)+' / '+fmt(r.e)],['Base equivalent load / multiplier',forceText(r.base)+' / '+fmt(r.service)],['Speed',fmt(r.n)+' RPM'],['Operating schedule',fmt(num('bHours'))+' h/day × '+fmt(num('bDays'))+' days/year'],['Schedule conversion',calendar(r.basicH,r.annual)],...targetRows(r,r.target,1),['Sensitivity load change',fmt(change)+'%'],['Sensitivity load / life',forceText(trialP)+' / '+fmt(trial.basicM)+' million rev; '+hoursText(trial.basicH)]];
+ const warnings=[...notes];if(r.ratio<2)warnings.push('P exceeds half the dynamic rating. Heavy loading may exceed the catalogue applicability of this simple model; seek manufacturer review.');if(r.n===0)warnings.push('Stationary case: life is reported only as a mathematical revolution rating. Static loading and dwell mechanisms require separate analysis.');
+ const C0=fnum('bC0',true),staticMode=$('bStaticMode').value,required=num('bS0',0,true);let P0=null;if(staticMode==='direct')P0=fnum('bP0',true,true);else if(staticMode==='xy'){const x0=num('bX0'),y0=num('bY0');if(r.Fa>0&&y0===0)warnings.push('Static Y₀ is zero despite axial loading. Verify the static equation and catalogue factors.');P0=x0*r.Fr+y0*r.Fa;if(!(P0>0))throw Error('Static equivalent load must be positive; use direct P₀ or skip the check if unknown.');}const s0=C0>0&&P0>0?C0/P0:null;rows.push(['Static rating C₀',forceText(C0)],['Independent static load P₀',forceText(P0)],['Static check method',staticMode],['Static X₀ / Y₀ inputs',fmt(num('bX0'))+' / '+fmt(num('bY0'))],['Static factor C₀/P₀ / selected minimum',s0===null?'Not evaluated':fmt(s0)+' / '+fmt(required)]);if(s0===null)warnings.push('Static capacity is not established: supply positive C₀ and a verified P₀.');else if(s0<required)warnings.push('Calculated static factor is below the selected required value. This check does not establish application safety.');
+ const samples=[.5,.75,1,1.25,1.5,2].map(q=>['P × '+q,fmt(r.basicM/Math.pow(q,r.p))+' million rev; '+hoursText(r.basicH===null?null:r.basicH/Math.pow(q,r.p))]);const svg=bearingSVG(r.Fr,r.Fa,r.n,r.type);$('bearingDiagram').innerHTML=svg+'<p class="bl-diagram-caption">Radial and axial load directions; catalogue factors determine equivalent loads.</p>';complete('basic','Basic rating life & independent static screening',rows,warnings,'<div class="bl-diagram">'+loadChart(r,change)+'</div>','<h3>Load sensitivity samples</h3>'+table(samples),r,samples);reports.basic.visual='<div class="report-visual">'+svg+'</div>'+reports.basic.visual;}
+function reliabilityChart(r){const data=ISO.map(([R,a])=>({R,L:a})),x=l=>65+480*l,y=R=>190-150*(R-90)/10;return '<svg viewBox="0 0 580 245" role="img" aria-label="ISO 281 reliability factor versus requested survival probability"><rect width="580" height="245" fill="#f8fbfc"/><path d="M 65 28 V 190 H 545" stroke="#527481" fill="none"/><path d="'+data.map((p,i)=>(i?'L':'M')+' '+x(p.L)+' '+y(p.R)).join(' ')+'" fill="none" stroke="#087a78" stroke-width="2"/>'+data.map(p=>'<circle cx="'+x(p.L)+'" cy="'+y(p.R)+'" r="3" fill="#087a78"/>').join('')+'<circle cx="'+x(r.a)+'" cy="'+y(r.R)+'" r="6" fill="#b46a14"/><text x="15" y="192">90%</text><text x="15" y="40">99.95%</text><text x="60" y="210">0</text><text x="525" y="210">1</text><text x="150" y="237">Tabulated a₁ (points; line is a visual guide only)</text><text x="70" y="23">ISO 281:2007 reliability targets</text></svg>';}
+function weibullSVG(L,beta,mission,count){const end=Math.max(2*L,mission);if(!Number.isFinite(end))throw Error('Life scale is too large for the survival illustration.');const x=t=>55+500*t/end,y=s=>190-150*s,points=Array.from({length:61},(_,i)=>{const t=end*i/60;return {t,S:survival(t,L,beta).single};});return '<svg viewBox="0 0 580 240" role="img" aria-label="Illustrative Weibull survival anchored at 90 percent at basic L10 hours"><rect width="580" height="240" fill="#f8fbfc"/><path d="M 55 30 V 190 H 555" fill="none" stroke="#527481"/><path d="'+points.map((p,i)=>(i?'L':'M')+' '+x(p.t)+' '+y(p.S)).join(' ')+'" stroke="#7645b1" stroke-width="3" fill="none"/><circle cx="'+x(L)+'" cy="'+y(.9)+'" r="5" fill="#b46a14"/><text x="60" y="22">Illustration only · assumed β = '+esc(fmt(beta))+'</text><text x="10" y="45">100%</text><text x="14" y="193">0%</text><text x="55" y="209">0</text><text x="455" y="209">'+esc(fmt(end))+' h</text><text x="160" y="234">Unmodified life model: S(L10h) = 90%</text></svg>';}
+function renderModified(){const R=num('mReliability'),a=a1(R),aiso=num('mAiso',0,true),r=life(fnum('mC',false,true),fnum('mP',false,true),num('mSpeed'),$('mType').value,a*aiso),annual=schedule(num('mHours',0,true),num('mDays',0,true));const rows=[['Modified Lnm life',fmt(r.adjustedM)+' million revolutions'],['Modified Lnmh life',hoursText(r.adjustedH)],['Selected reliability / a₁',fmt(R)+'% / '+fmt(a)],['Verified aISO input',fmt(aiso)],['Basic L10 / L10h',fmt(r.basicM)+' million rev / '+hoursText(r.basicH)],['Bearing type / exponent',r.type+' / '+fmt(r.p)],['Dynamic rating C / equivalent load P',forceText(r.C)+' / '+forceText(r.P)],['Speed',fmt(r.n)+' RPM'],['Operating schedule',fmt(num('mHours'))+' h/day × '+fmt(num('mDays'))+' days/year'],['Schedule conversion',calendar(r.adjustedH,annual)],['aISO provenance',$('mSource').value.trim()||'Not provided'],...targetRows(r,num('mTarget',0,true,true))],warnings=[...notes,'aISO is a supplied factor, not calculated from this page’s viscosity or contamination inputs. Verify it for this exact bearing and operating point.'];if(!$('mSource').value.trim())warnings.push('No factor source supplied. Modified life is a scenario calculation until the input is substantiated.');if(r.ratio<2)warnings.push('Heavy loading requires manufacturer review of the modified-life model.');if(aiso>50)warnings.push('Entered aISO exceeds 50. Check the governing manufacturer method and any factor caps before using this scenario.');
+ try{const nu=num('mNu',0,true,true),nu1=num('mNu1',0,true,true),eta=num('mEta',0,false,true),Cu=fnum('mCu',true);if(eta!==null&&eta>1)throw Error('Contamination factor ηc must not exceed 1.');rows.push(['Actual / reference viscosity',nu===null||nu1===null?'Not supplied as a pair':fmt(nu)+' / '+fmt(nu1)+' mm²/s'],['Viscosity ratio κ',nu===null||nu1===null?'Not evaluated':fmt(nu/nu1)],['Contamination factor ηc',eta===null?'Not supplied':fmt(eta)],['Fatigue load limit Cu',forceText(Cu)],['ηc Cu/P',eta===null||Cu===null?'Not evaluated':fmt(eta*Cu/r.P)]);if(nu!==null&&nu1!==null&&nu/nu1<1)warnings.push('κ is below 1. Review lubricant viscosity at operating temperature and the applicable life modification method.');}catch(e){warnings.push('Lubrication helper: '+e.message);}
+ let visual='<div class="bl-diagram">'+reliabilityChart({...r,R,a})+'</div>',extra='',extraRows=ISO.map(([R,a])=>[R+'%','a₁ '+a+'; '+fmt(a*aiso*r.basicM)+' million rev; '+hoursText(r.basicH===null?null:a*aiso*r.basicH)]);extra='<h3>Reliability-factor reference (same supplied aISO)</h3>'+table(extraRows);if($('mWeibull').checked){try{if(r.basicH===null)throw Error('Positive speed is required for the hours-based illustration.');const beta=num('mBeta',0,true),mission=num('mMission'),count=num('mCount',1,false,false,true),s=survival(mission,r.basicH,beta,count);rows.push(['Illustrative Weibull β / mission',fmt(beta)+' / '+fmt(mission)+' h'],['Illustrative mission survival per bearing',fmt(s.single*100)+'%'],['Illustrative independent series bearings',fmt(count)],['Illustrative series survival',fmt(s.system*100)+'%']);visual+='<div class="bl-diagram">'+weibullSVG(r.basicH,beta,mission,count)+'</div>';warnings.push('Weibull and system-survival values use an assumed shape and unmodified L10h anchor. They are separate from the ISO reliability table and do not represent validated failure probabilities.');}catch(e){warnings.push('Survival illustration: '+e.message);}}
+ complete('modified','Modified rating life & reliability scenarios',rows,warnings,visual,extra,{...r,R,a,aiso,annual},extraRows);}
+function renderCompare(){const Fr=fnum('cmpFr'),Fa=fnum('cmpFa'),n=num('cmpSpeed'),annual=schedule(num('cmpHours',0,true),num('cmpDays',0,true)),target=num('cmpTarget',0,true),req=num('cmpRequiredS0',0,true);const data=['A','B'].map(k=>{const X=num('cmp'+k+'X'),Y=num('cmp'+k+'Y'),eq=equivalent({method:'xy',Fr,Fa,X,Y}),r=life(fnum('cmp'+k+'C',false,true),eq.P,n,$('cmp'+k+'Type').value),C0=fnum('cmp'+k+'C0',true),P0=fnum('cmp'+k+'P0',true,true);return {...r,k,X,Y,C0,P0,s0:C0>0&&P0>0?C0/P0:null};});const rows=[['Bearing A basic L10h',hoursText(data[0].basicH)],['Bearing B basic L10h',hoursText(data[1].basicH)],['B / A basic life ratio',fmt(data[1].basicM/data[0].basicM)],['Longer calculated fatigue life',data[0].basicM===data[1].basicM?'Equal':data[0].basicM>data[1].basicM?'Bearing A':'Bearing B'],['Common radial / axial loads',forceText(Fr)+' / '+forceText(Fa)],['Common speed / schedule',fmt(n)+' RPM / '+fmt(num('cmpHours'))+' h/day × '+fmt(num('cmpDays'))+' days/year'],['Selected life target',fmt(target)+' h'],['Selected static minimum',fmt(req)]];for(const r of data)rows.push(['Bearing '+r.k+' type / p / X / Y',r.type+' / '+fmt(r.p)+' / '+fmt(r.X)+' / '+fmt(r.Y)],['Bearing '+r.k+' C / P',forceText(r.C)+' / '+forceText(r.P)],['Bearing '+r.k+' L10',fmt(r.basicM)+' million revolutions'],['Bearing '+r.k+' schedule conversion',calendar(r.basicH,annual)],['Bearing '+r.k+' C₀ / independent P₀',forceText(r.C0)+' / '+forceText(r.P0)],['Bearing '+r.k+' static factor',r.s0===null?'Not evaluated':fmt(r.s0)],['Bearing '+r.k+' target-life required C',n>0?forceText(inverse(r.P,n,target,r.p,1,r.C).requiredC):'Not defined at zero RPM']);const warnings=[...notes,'Longer calculated fatigue life does not establish interchangeability, fit, speed capability, axial capacity, stiffness or total suitability.'];for(const r of data){if(r.ratio<2)warnings.push('Bearing '+r.k+': heavy loading requires catalogue review.');if(r.s0===null)warnings.push('Bearing '+r.k+': static check unavailable.');else if(r.s0<req)warnings.push('Bearing '+r.k+': static factor is below the selected minimum.');}complete('compare','Bearing A/B comparison',rows,warnings,'','',data);}
+function dutySVG(r){const max=Math.max(...r.segments.map(x=>x.P),1);let x=55,s='<svg viewBox="0 0 580 220" role="img" aria-label="Duty-cycle equivalent load blocks proportional to time"><rect width="580" height="220" fill="#f8fbfc"/><path d="M 55 25 V 170 H 555" fill="none" stroke="#527481"/>';r.segments.forEach((b,i)=>{const w=500*b.t/r.totalTime,h=125*b.P/max;s+='<rect x="'+x+'" y="'+(170-h)+'" width="'+w+'" height="'+h+'" fill="'+(b.n===0?'#d5dce3':i%2?'#76b8ba':'#087a78')+'" stroke="white"/>';if(w>42)s+='<text x="'+(x+w/2)+'" y="190" text-anchor="middle">'+(i+1)+'</text>';x+=w;});return s+'<text x="60" y="20">Equivalent load · block width = time share</text><text x="130" y="215">Grey = stationary; no modeled rolling-fatigue revolutions</text></svg>';}
+function renderDuty(){const C=fnum('dC',false,true),type=$('dType').value,R=num('dReliability'),a=a1(R),r=duty(parseDuty($('dData').value,factor($('forceUnits').value)),C,type,a),annual=schedule(num('dHours',0,true),num('dDays',0,true)),target=num('dTarget',0,true,true),rows=[['Basic elapsed duty life',fmt(r.basicElapsedH)+' h'],['Modified elapsed duty life',fmt(r.modifiedElapsedH)+' h'],['Revolution-weighted equivalent P',forceText(r.Peq)],['Time-weighted average speed',fmt(r.navg)+' RPM'],['Bearing type / p / C',type+' / '+fmt(r.p)+' / '+forceText(C)],['Reliability / a₁',fmt(R)+'% / '+fmt(a)],['Nominal cycle duration / rotating duration',fmt(r.totalTime)+' / '+fmt(r.rotatingTime)+' h'],['Revolutions per nominal cycle',fmt(r.totalRevs)],['Basic / modified fatigue allocation per cycle',fmt(r.D)+' / '+fmt(r.Dm)],['Basic rolling-time life (excludes dwell)',fmt(r.basicRotatingH)+' h'],['Basic / modified rating revolutions',fmt(r.basicM)+' / '+fmt(r.modifiedM)+' million rev'],['Schedule',fmt(num('dHours'))+' h/day × '+fmt(num('dDays'))+' days/year'],['Basic / modified schedule duration',calendar(r.basicElapsedH,annual)+' / '+calendar(r.modifiedElapsedH,annual)]];if(target!==null)rows.push(['Target elapsed duty life',fmt(target)+' h'],['Basic / target ratio',fmt(r.basicElapsedH/target)],['Required C for basic duty target',forceText(C*Math.pow(target/r.basicElapsedH,1/r.p))],['Required C for modified scenario target',forceText(C*Math.pow(target/r.modifiedElapsedH,1/r.p))+' (holds each supplied aISO fixed)']);const warnings=[...notes,'Fatigue allocations are linear model fractions, not measured life consumed. Segment aISO inputs must be substantiated independently.'];if(r.segments.some(b=>b.n===0))warnings.push('Stationary periods add elapsed time only. Fretting, false brinelling, static indentation and dwell lubrication are not assessed.');if(r.segments.some(b=>b.P===0&&b.n>0))warnings.push('Zero-load rotation is treated as zero rolling-fatigue allocation, but minimum-load/skidding requirements are not assessed.');const samples=r.segments.map((b,i)=>[String(i+1),forceText(b.P),fmt(b.n),fmt(b.t),fmt(b.aiso),fmt(100*b.D/r.D)+'%']);complete('duty','Repeating variable-load duty cycle',rows,warnings,'<div class="bl-diagram">'+dutySVG(r)+'</div>',columns(['Segment','Equivalent P','RPM','Time h','aISO','Basic fatigue share'],samples),r,samples.map(s=>['Segment '+s[0],s.slice(1).join(' | ')]));}
+function renderSizing(){const C=fnum('zC',false,true),P=fnum('zP',false,true),n=num('zSpeed',0,true),h=num('zTarget',0,true),type=$('zType').value,R=num('zReliability'),a=a1(R),aiso=num('zAiso',0,true),z=inverse(P,n,h,exponent(type),a*aiso,C),r=life(C,P,n,type,a*aiso),C0=fnum('zC0',true),s0=num('zS0',0,true),rows=[['Required dynamic rating C',forceText(z.requiredC)],['Maximum P for target life only',forceText(z.permissibleP)],['Speed solving target life only',fmt(z.lifeOnlySpeed)+' RPM'],['Required dynamic C/P ratio',fmt(z.requiredRatio)],['Existing C / entered P',forceText(C)+' / '+forceText(P)],['Bearing type / p',type+' / '+fmt(r.p)],['Speed / target',fmt(n)+' RPM / '+fmt(h)+' h'],['Reliability / a₁ / aISO',fmt(R)+'% / '+fmt(a)+' / '+fmt(aiso)],['Existing bearing scenario life',hoursText(r.adjustedH)],['Existing scenario / target',fmt(r.adjustedH/h)],['Static C₀ / selected s₀',forceText(C0)+' / '+fmt(s0)],['Maximum P₀ for selected static factor',C0>0?forceText(C0/s0):'Static rating needed']];complete('sizing','Inverse fatigue-life and static sizing',rows,[...notes,'Each candidate changes one variable only. Life-based load and RPM are not mechanical, thermal or catalogue speed limits.','The inverse modified calculation holds aISO fixed. Changing load or speed can require recalculating the physical life modifier.'],'','',z);}
+function refresh(){for(const k of modes)$(k+'Tab').hidden=k!==mode;document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('on',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode));});document.querySelectorAll('[data-force-unit]').forEach(e=>e.textContent=$('forceUnits').value);$('bDirectP').disabled=$('bLoadMode').value!=='direct';$('bE').disabled=$('bLoadMode').value!=='threshold';for(const id of ['bX','bY'])$(id).disabled=!['xy','threshold'].includes($('bLoadMode').value);$('bP0').disabled=$('bStaticMode').value!=='direct';for(const id of ['bX0','bY0'])$(id).disabled=$('bStaticMode').value!=='xy';}
+function update(){refresh();attempt('basic',renderBasic);attempt('modified',renderModified);attempt('compare',renderCompare);attempt('duty',renderDuty);attempt('sizing',renderSizing);for(const id of ['printBearing','csvBearing','txtBearing','copyBearing'])$(id).disabled=!reports[mode];$('bearingStatus').textContent=reports[mode]?'Updated '+reports[mode].title+'. Review the assumptions.':errors[mode];}
+function convert(){const next=$('forceUnits').value;if(next===oldForce)return;const rows=parseDuty($('dData').value,factor(oldForce)),mult=factor(oldForce)/factor(next);for(const id of forceIds)if($(id).value.trim()!==''&&Number.isFinite(Number($(id).value)))$(id).value=raw(Number($(id).value)*mult);$('dData').value='P,rpm,hours,aISO\n'+rows.map(r=>[raw(r.P/factor(next)),raw(r.n),raw(r.t),raw(r.aiso)].join(',')).join('\n');oldForce=next;}
+function selection(){return $('reportAll').checked?modes.filter(k=>reports[k]):reports[mode]?[mode]:[];}
+const disclaimer='Statistical rolling-fatigue estimates only. Not certified service life, application safety, remaining useful life or a maintenance/replacement interval. Verify catalogue ratings, equivalent loads, factors, static capacity, lubrication, limits and the complete application.';
+function printSnapshot(){const keys=selection();$('bearingReport').innerHTML='<h1>Bearing Life Calculation Report</h1><p>Utiliby · '+esc(new Date().toLocaleString())+'</p>'+keys.map(k=>{const r=reports[k];return '<h2>'+esc(r.title)+'</h2>'+table(r.rows)+r.visual+r.extra+'<h3>Assumptions &amp; warnings</h3><ul>'+r.warnings.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul>';}).join('')+(keys.length?'':'<p>No valid active calculation. Correct the inputs before exporting.</p>')+'<p>'+esc(disclaimer)+'</p>';return keys.length>0;}
+function reportRows(){const rows=[['Report','Bearing L10 Life Calculator — Utiliby'],['Generated',new Date().toISOString()]];for(const k of selection()){const r=reports[k];rows.push(['Section',r.title],...r.rows,...r.extraRows,...r.warnings.map(w=>['Warning',w]));}rows.push(['Disclaimer',disclaimer]);return rows;}
+function save(text,type,name){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function copy(text){try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const a=document.createElement('textarea');a.value=text;a.style.position='fixed';a.style.left='-9999px';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();if(!ok)throw Error();}$('bearingStatus').textContent='Copied.';}catch(e){$('bearingStatus').textContent='Copy unavailable. Use the selectable share fields or save TXT.';}}
+const inputs=[...document.querySelectorAll('#tool input,#tool select,#tool textarea')].filter(e=>e.id&&e.id!=='reportAll');
+function loadHash(){try{if(!location.hash.startsWith('#bl='))return;const a=JSON.parse(decodeURIComponent(location.hash.slice(4)));for(const e of inputs){if(!(e.id in a))continue;const v=String(a[e.id]);if(e.type==='checkbox')e.checked=a[e.id]===true;else if(e.tagName==='SELECT'){if([...e.options].some(o=>o.value===v))e.value=v;}else if(e.tagName==='TEXTAREA'){if(v.length<=16000)e.value=v;}else if(e.type==='text'){if(v.length<=240)e.value=v;}else if(v===''||(v.length<32&&Number.isFinite(Number(v))))e.value=v;}if(modes.includes(a.mode))mode=a.mode;oldForce=$('forceUnits').value;}catch(e){$('bearingStatus').textContent='Shared inputs could not be read.';}}
+loadHash();document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;update();}));for(const e of inputs)e.addEventListener('change',()=>{if(e.id==='forceUnits')try{convert();}catch(err){$('forceUnits').value=oldForce;update();$('bearingStatus').textContent='Unit change skipped: correct the duty-cycle data first. '+err.message;return;}update();});for(const id of ['calcBasicBtn','calcModifiedBtn','calcCompareBtn','calcDutyBtn','calcSizingBtn'])$(id).addEventListener('click',update);
+function reset(){for(const e of inputs){if(e.tagName==='SELECT'){const i=[...e.options].findIndex(o=>o.defaultSelected);e.selectedIndex=i>=0?i:0;}else if(e.type==='checkbox')e.checked=e.defaultChecked;else e.value=e.defaultValue;}$('reportAll').checked=false;oldForce=$('forceUnits').value;update();}$('resetAll').addEventListener('click',reset);$('resetBasicBtn').addEventListener('click',reset);
+function useBasic(prefix){try{const r=readBasic(),f=factor($('forceUnits').value);$(prefix+'C').value=raw(r.C/f);$(prefix+'P').value=raw(r.P/f);$(prefix+'Speed').value=raw(r.n);$(prefix+'Type').value=r.type;if(prefix==='m'){$('mHours').value=$('bHours').value;$('mDays').value=$('bDays').value;}update();}catch(e){$('bearingStatus').textContent=e.message;}}$('useBasic').addEventListener('click',()=>useBasic('m'));$('sizeFromBasic').addEventListener('click',()=>useBasic('z'));$('sameFactors').addEventListener('click',()=>{for(const k of ['A','B']){$('cmp'+k+'X').value=$('cmpX').value;$('cmp'+k+'Y').value=$('cmpY').value;}update();});
+$('printBearing').addEventListener('click',()=>{update();if(printSnapshot())window.print();});window.addEventListener('beforeprint',()=>{update();printSnapshot();});window.addEventListener('afterprint',()=>{$('bearingReport').innerHTML='';});$('csvBearing').addEventListener('click',()=>{update();if(selection().length)save('\ufeff'+reportRows().map(a=>a.map(v=>'"'+String(v).replace(/^[=+@-]/,m=>"'"+m).replace(/"/g,'""')+'"').join(',')).join('\r\n'),'text/csv;charset=utf-8','bearing-life-report.csv');});$('txtBearing').addEventListener('click',()=>{update();if(selection().length)save(reportRows().map(a=>a[0]+': '+a[1]).join('\n'),'text/plain;charset=utf-8','bearing-life-report.txt');});$('copyBearing').addEventListener('click',()=>{update();if(selection().length)copy(reportRows().map(a=>a[0]+': '+a[1]).join('\n'));});$('shareBearing').addEventListener('click',()=>{const a={mode};for(const e of inputs)a[e.id]=e.type==='checkbox'?e.checked:e.value;const url='https://utiliby.com/tools/engineering/bearing-l10-life-calculator/#bl='+encodeURIComponent(JSON.stringify(a));if(url.length>24000){$('bearingStatus').textContent='Duty data is too long for a shared link. Export a report instead.';return;}$('bl-share-link').value=url;copy(url);});document.querySelectorAll('[data-copy-target]').forEach(b=>b.addEventListener('click',()=>copy($(b.dataset.copyTarget).value)));update();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
