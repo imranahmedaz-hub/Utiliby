@@ -144,6 +144,7 @@
 var $=function(i){return document.getElementById(i)},LAST='';
 var S={mode:'even',people:['Person 1','Person 2','Person 3'],items:[{n:'',p:'',a:[1,1,1]}]};
 var IDS={c:'cur',x:'tax',t:'tip',b:'tb',r:'rnd',a:'bill',n:'ppl'};
+var ITEM_COLORS=['#0ea5e9','#8b5cf6','#ec4899','#f59e0b','#10b981','#ef4444','#6366f1','#14b8a6','#f97316','#a855f7','#06b6d4','#84cc16'];
 function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;')}
 function money(n){try{return new Intl.NumberFormat(undefined,{style:'currency',currency:$('cur').value}).format(n)}catch(e){return n.toFixed(2)}}
 function rd(x,up){return up?Math.ceil(x-1e-9):x}
@@ -157,14 +158,14 @@ return{sub:sub,tax:tax,tip:tip,tot:tot,head:sh,got:sh*n,un:0};
 function calcItem(c){
 var pp=S.people.map(function(){return 0}),sub=0,un=0;
 var att=S.people.map(function(){return []});
-S.items.forEach(function(it){
+S.items.forEach(function(it,idx){
 var p=parseFloat(it.p);if(!(p>0))return;
 var who=[];S.people.forEach(function(_,i){if(it.a[i])who.push(i)});
 if(!who.length){un+=p;return}
 sub+=p;
 who.forEach(function(i){pp[i]+=p/who.length});
 who.forEach(function(i){
-att[i].push({name:it.n||'Item',share:p/who.length,shared:who.length});
+att[i].push({name:it.n||'Item',share:p/who.length,shared:who.length,color:ITEM_COLORS[idx%ITEM_COLORS.length]});
 });
 });
 if(sub<=0)return null;
@@ -190,6 +191,12 @@ h+='<div style="display:flex;justify-content:space-between;font-weight:800;font-
 h+='</div>';
 return h;
 }
+function renderItemsList(att){
+if(!att||!att.length)return '<span style="color:var(--muted)">—</span>';
+return att.map(function(a){
+return '<span style="font-style:italic;font-size:.82em;color:'+a.color+';font-weight:600;margin-right:8px;white-space:nowrap">'+esc(a.name)+'</span>';
+}).join('');
+}
 function render(){
 var c=cfg(),r=S.mode==='even'?calcEven(c):calcItem(c),out=$('out'),h='',t='';
 out.hidden=false;
@@ -204,10 +211,10 @@ t='Total bill: '+money(r.tot)+'\nEach person pays: '+money(r.head)+'\n';
 h+='<h3 style="margin:18px 0 8px">Per-person breakdown</h3>';
 h+='<div style="overflow-x:auto"><table class="res"><tr><th>Person</th><th>Items ordered</th><th>Subtotal</th><th>Tax</th><th>Tip</th><th>Total</th></tr>';
 r.rows.forEach(function(x){
-var list=x.att.map(function(a){return (a.shared>1?'½ ':'')+a.name}).join(', ');
-if(!list)list='<span style="color:var(--muted)">—</span>';
-h+='<tr><td>'+esc(x.name)+'</td><td>'+esc(list)+'</td><td>'+money(x.items)+'</td><td>'+money(x.tax)+'</td><td>'+money(x.tip)+'</td><td><b>'+money(x.total)+'</b></td></tr>';
-t+=x.name+': '+money(x.total)+'\n';
+var listHTML=renderItemsList(x.att);
+var listText=x.att.map(function(a){return a.name}).join(', ');
+h+='<tr><td>'+esc(x.name)+'</td><td>'+listHTML+'</td><td>'+money(x.items)+'</td><td>'+money(x.tax)+'</td><td>'+money(x.tip)+'</td><td><b>'+money(x.total)+'</b></td></tr>';
+t+=x.name+' ('+(listText||'no items')+'): '+money(x.total)+'\n';
 });
 h+='</table></div>';
 }
