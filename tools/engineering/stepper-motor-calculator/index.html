@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
 <title>Free Stepper Motor Calculator Online – Speed, Torque, Steps/mm &amp; CNC</title>
-<meta name="description" content="Free stepper motor calculator online. Calculate maximum speed, minimum time per step, power, steps per mm for CNC, resonance frequency, torque-speed curve and microstepping. 100% browser-based, no sign-up.">
+<meta name="description" content="Free stepper motor calculator online. Calculate stepper RPM, pulse rate, steps/mm, microstep resolution, motion time and load torque. Includes calibration, winding estimates, manufacturer torque curves and report-only printing.">
 <link rel="canonical" href="https://utiliby.com/tools/engineering/stepper-motor-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
 <meta property="og:title" content="Free Stepper Motor Calculator Online – Speed, Torque, Steps/mm &amp; CNC">
-<meta property="og:description" content="Free stepper motor calculator online. Max speed, min time per step, power, steps/mm, resonance and microstepping.">
+<meta property="og:description" content="Free stepper motor calculator online. Steps/mm, RPM, pulse limits, calibration, acceleration torque and manufacturer curve analysis.">
 <meta property="og:url" content="https://utiliby.com/tools/engineering/stepper-motor-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -93,28 +93,43 @@
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+
+/* Additions remain inside the original tool: no site width, body, header or footer overrides. */
+#tool *,#stepperReport *{box-sizing:border-box}#tool [hidden]{display:none!important}
+#tool .sm-note{font-size:.85rem;line-height:1.6;color:var(--muted);margin:8px 0}
+#tool textarea{width:100%;min-height:130px;padding:10px;background:var(--bg);color:var(--fg);border:1px solid var(--line);border-radius:8px;font: .85rem/1.5 ui-monospace,SFMono-Regular,Menlo,monospace}
+#tool .sm-table-wrap,.cn-article .sm-table-wrap{overflow-x:auto}
+#tool svg text,#stepperReport svg text{font:12px system-ui,sans-serif;fill:#254453}
+#tool .sm-diagram svg{max-width:580px}#tool input[type=range]{width:100%;accent-color:#1e40af}
+#tool :focus-visible,.sm-share :focus-visible{outline:3px solid #b97800;outline-offset:3px}
+#tool summary{cursor:pointer;font-weight:600}#tool details{margin:12px 0}#tool .sm-actions button:disabled{opacity:.5;cursor:default}
+#tool .sm-formula,.cn-article .sm-formula{background:var(--card);border:1px solid var(--line);padding:12px;border-radius:8px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;overflow-wrap:anywhere}
+#tool .sm-live-status{font-size:.85rem;color:var(--muted);margin:10px 0}
+#stepperReport{display:none}
+@media print{@page{size:auto;margin:14mm}body>*:not(#stepperReport){display:none!important}#stepperReport{display:block!important;background:#fff;color:#000;font:11pt/1.4 Arial,sans-serif}#stepperReport h1{font-size:19pt}#stepperReport h2{font-size:14pt}#stepperReport table{width:100%;border-collapse:collapse;font-size:10pt}#stepperReport th,#stepperReport td{padding:6px;border:1px solid #ccc;text-align:left}#stepperReport tr,#stepperReport .report-visual{break-inside:avoid}#stepperReport svg{display:block;width:100%;max-height:230px;max-width:600px;margin:auto}#stepperReport pre{white-space:pre-wrap;overflow-wrap:anywhere;font-size:9pt}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Stepper Motor Calculator","url":"https://utiliby.com/tools/engineering/stepper-motor-calculator/","applicationCategory":"EngineeringApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free stepper motor calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free stepper motor calculator online is a tool that computes the key electrical and mechanical parameters of a stepper motor from its datasheet values. This calculator includes maximum speed, minimum time per step, supply power and winding loss, steps per millimetre for CNC and 3D printing, resonance frequency and microstepping resolution, all running in your browser with no sign-up."}},{"@type":"Question","name":"How do I calculate the maximum speed of a stepper motor?","acceptedAnswer":{"@type":"Answer","text":"The maximum full-step rate in steps per second is V / (2 x L x Imax), where V is the supply voltage, L is the winding inductance in henries and Imax is the rated current per phase in amps. This is a first-order approximation of the point where the winding current can no longer keep up with the commanded step rate."}},{"@type":"Question","name":"How do I calculate steps per mm for a CNC machine or 3D printer?","acceptedAnswer":{"@type":"Answer","text":"For a lead screw: steps per mm = (steps per revolution x microstepping x gear ratio) / lead in mm. For a belt drive: steps per mm = (steps per revolution x microstepping x gear ratio) / (belt pitch in mm x pulley teeth). The gear ratio is motor revolutions per output revolution. For example, a 200-step motor, 16 microstepping, a 5 mm lead screw and a 1:1 ratio gives 200 x 16 / 5 = 640 steps per mm."}},{"@type":"Question","name":"What is microstepping and how does it affect torque?","acceptedAnswer":{"@type":"Answer","text":"Microstepping subdivides each full step into smaller increments by driving the coils with sinusoidal currents. It improves positional resolution and smoothness but does not add torque, and the torque available to hold one specific microstep position is small (about sin(90 degrees / n) of holding torque), so accuracy under load is lower than the step count implies."}},{"@type":"Question","name":"What is stepper motor resonance and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Resonance occurs when the step rate matches the natural frequency of the motor and attached load. At that point the rotor oscillates with increasing amplitude, causing vibration, noise, lost steps, and in extreme cases mechanical failure."}},{"@type":"Question","name":"What is the load inertia ratio and what value should it be?","acceptedAnswer":{"@type":"Answer","text":"The inertia ratio is load inertia divided by rotor inertia. For stepper motors, a ratio of up to 10:1 is generally workable, but for smooth, quiet and fast motion the ratio should be closer to 1:1 to 3:1. High inertia ratios cause ringing, overshoot and lost steps."}},{"@type":"Question","name":"What voltage should I use for a stepper motor?","acceptedAnswer":{"@type":"Answer","text":"A common rule of thumb is to run the motor at 8 to 20 times its rated voltage if using a current-chopping (PWM) driver. For a motor rated at 3 V, a 24 V or 36 V supply is typical. Higher supply voltage increases maximum speed at the cost of more heat and higher driver requirements."}},{"@type":"Question","name":"What does the minimum time per step mean?","acceptedAnswer":{"@type":"Answer","text":"The minimum time per step is the shortest interval the driver can send pulses before the winding current fails to reach its target value. It is calculated as 2 x L x Imax / V. If you try to step faster than this, the motor will not have enough torque and may stall or lose steps."}},{"@type":"Question","name":"Is this stepper motor calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}},{"@type":"Question","name":"Does this calculator handle both metric and imperial units?","acceptedAnswer":{"@type":"Answer","text":"The CNC tab outputs steps per mm or steps per inch, and the feed-rate target follows the unit you choose (mm/min or in/min). Motor electrical inputs use SI units (V, A, mH, N.m, g.cm2)."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Stepper Motor Calculator","url":"https://utiliby.com/tools/engineering/stepper-motor-calculator/","applicationCategory":"EngineeringApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free stepper motor calculator online?","acceptedAnswer":{"@type":"Answer","text":"It calculates step commands, mechanism travel, calibration, motion timing and preliminary torque demand in a browser. Electrical screening and illustrative models are distinguished from actual motor ratings."}},{"@type":"Question","name":"How do I calculate the maximum speed of a stepper motor?","acceptedAnswer":{"@type":"Answer","text":"There is no dependable maximum-RPM calculation from supply voltage and winding inductance alone. Check driver pulse limits, the actual torque-speed curve, acceleration, load and thermal conditions. The displayed command ceiling is a signal limit, not a certified motor speed."}},{"@type":"Question","name":"How do I calculate steps per mm for a CNC machine or 3D printer?","acceptedAnswer":{"@type":"Answer","text":"Multiply full steps per motor revolution by input microsteps and motor-to-output reduction, then divide by travel per output revolution. Screw travel is lead; belt travel is pitch times pulley teeth."}},{"@type":"Question","name":"What is microstepping and how does it affect torque?","acceptedAnswer":{"@type":"Answer","text":"Microstepping subdivides command positions and can improve smoothness. The ideal incremental restoring torque is proportional to sin(90 degrees divided by the microstep count). It does not mean total running torque falls by that fraction, and command resolution does not guarantee accuracy."}},{"@type":"Question","name":"What is stepper motor resonance and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"The rotor and load can oscillate under excitation. The tool reports an ideal small-angle natural-frequency estimate when suitable inputs are present, without certifying an operating resonance band or stability."}},{"@type":"Question","name":"What is the load inertia ratio and what value should it be?","acceptedAnswer":{"@type":"Answer","text":"It is motor-reflected load inertia divided by rotor inertia. Acceptable ratios depend on the actual motor, driver, gearing, acceleration and required settling. The calculator does not apply a universal pass/fail threshold."}},{"@type":"Question","name":"What voltage should I use for a stepper motor?","acceptedAnswer":{"@type":"Answer","text":"Use a supply within the driver’s documented operating limits and a verified phase-current setting suitable for the motor. Consider the specified torque-speed conditions, thermal performance and regeneration. Do not select voltage from an arbitrary multiplier alone."}},{"@type":"Question","name":"What does the minimum time per step mean?","acceptedAnswer":{"@type":"Answer","text":"STEP pulse high/low timing is an interface constraint. RL current-rise time is a separate electrical estimate. Neither should be treated as a universal motor step interval or stall boundary."}},{"@type":"Question","name":"Is this stepper motor calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Calculator use is free and does not require an account. Calculations run in the browser; shared links encode the inputs you choose to share."}},{"@type":"Question","name":"Does this calculator handle both metric and imperial units?","acceptedAnswer":{"@type":"Answer","text":"Linear output supports steps/mm and steps/inch with physical feed and travel conversion. Rotary output uses steps/degree. Geometry stays in labelled millimetres and motor electrical and inertia inputs retain their stated units."}},{"@type":"Question","name":"Can I print the results without the explanatory article?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / Save PDF exports a dedicated report for the active calculator, or all valid sections if selected. Navigation, share controls and explanatory article content are excluded."}},{"@type":"Question","name":"Can I use the results directly in Marlin, GRBL or Klipper?","acceptedAnswer":{"@type":"Answer","text":"The CNC tab shows reviewed geometry examples, not a complete machine configuration. Check axis assignment, reduction convention, current, limits and firmware documentation before applying values."}}]}]}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/engineering/">Engineering</a> › Stepper Motor Calculator</nav>
 <h1 class="noembed">Stepper Motor Calculator</h1>
-<p class="lead noembed">Calculate maximum speed, minimum time per step, power, steps per mm for CNC, resonance frequency and microstepping resolution. Interactive diagram, steps/mm and steps/inch output. Free, private and no sign-up.</p>
+<p class="lead noembed">Free online stepper motor calculator for RPM, pulse timing, winding current, CNC steps/mm, calibration and acceleration torque. Explore lead screw, belt, rack and rotary motion with illustrated results and calculation-only reports.</p>
 <p class="onlyembed"><a href="https://utiliby.com/tools/engineering/stepper-motor-calculator/" target="_blank" rel="noopener">Stepper Motor Calculator by Utiliby</a></p>
 
 <section class="tool" id="tool" aria-label="Stepper motor calculator">
 
 <div class="sm-hero noembed">
 <h2>Free Stepper Motor Calculator</h2>
-<p>Three calculators in one: motor speed and power, CNC steps-per-mm setup, and a torque-speed curve.</p>
+<p>Four connected calculators: motor electrical checks, CNC setup, torque curves and motion-load sizing.</p>
 </div>
 
 <div class="sm-tabs noembed" role="group" aria-label="Calculator mode">
 <button type="button" class="sm-tab on" data-mode="speed">Speed &amp; Power</button>
 <button type="button" class="sm-tab" data-mode="cnc">CNC / Steps per mm</button>
 <button type="button" class="sm-tab" data-mode="curve">Torque-Speed Curve</button>
+<button type="button" class="sm-tab" data-mode="motion">Motion &amp; Load</button>
 </div>
 
 <!-- SPEED TAB -->
@@ -147,12 +162,13 @@
 <div><label for="sRotorInertia">Rotor inertia (g.cm2, optional)</label><input type="number" id="sRotorInertia" min="0" step="1" value="54"></div>
 </div>
 <div class="sm-row">
-<div><label for="sLoadInertia">Load inertia (g.cm2, optional)</label><input type="number" id="sLoadInertia" min="0" step="1" value="100"></div>
+<div><label for="sLoadInertia">Motor-reflected load inertia (g.cm2, optional)</label><input type="number" id="sLoadInertia" min="0" step="1" value="100"></div>
 <div><label for="sLoadTorque">Load torque (N.m, optional)</label><input type="number" id="sLoadTorque" min="0" step="0.01" value="0.05"></div>
 </div>
 </div>
 
-<div class="sm-diagram" id="diagramWrap"></div>
+<div class="sm-panel"><h3>Operating speed &amp; driver timing</h3><div class="sm-row3"><div><label for="sRpm">Requested motor speed (RPM)</label><input type="number" id="sRpm" min="0" step="any" value="300"></div><div><label for="sPulseLimit">Controller STEP ceiling (kHz, optional)</label><input type="number" id="sPulseLimit" min="0" step="any" value="100"></div><div><label for="sHigh">Minimum STEP high time (µs)</label><input type="number" id="sHigh" min="0" step="any" value="2"></div></div><div class="sm-row3"><div><label for="sLow">Minimum STEP low time (µs)</label><input type="number" id="sLow" min="0" step="any" value="2"></div><div><label for="sKe">Back-EMF estimate (V per 1,000 RPM)</label><input type="number" id="sKe" min="0" step="any" value="0"></div><div><label for="sFraction">Target fraction of set current (%)</label><input type="number" id="sFraction" min="0" step="any" value="90"></div></div><div><label for="sCurrentBasis">Current convention for two-phase copper-loss estimate</label><select id="sCurrentBasis"><option value="peak">Sinusoidal phase peak / full-scale current</option><option value="rms">Per-phase RMS current</option><option value="both">Two phases each continuously at entered current</option></select></div><p class="sm-note">Set the current convention from the actual driver documentation. Back-EMF is an approximate opposing winding voltage; zero omits it. The current-rise check assumes a zero-current RL winding, not a real commutation sequence.</p></div><div class="sm-diagram" id="diagramWrap"></div>
+<label for="sPreview">Illustrated commanded shaft angle (°)</label><input id="sPreview" type="range" min="0" max="360" step="1" value="45">
 
 <button type="button" class="sm-btn" id="calcSpeedBtn">Calculate</button>
 <button type="button" class="sm-btn ghost" id="resetSpeedBtn">Reset</button>
@@ -183,10 +199,10 @@
 <option value="leadscrew" selected>Lead screw / ball screw</option>
 <option value="belt">Belt &amp; pulley</option>
 <option value="rack">Rack &amp; pinion</option>
-<option value="direct">Direct (rotation)</option>
+<option value="direct">Direct (rotation)</option><option value="roller">Friction roller / extruder hob</option>
 </select></div>
 </div>
-<div id="leadscrewFields">
+<div id="leadscrewFields"><div class="sm-row3"><div><label for="cLeadBasis">Screw specification</label><select id="cLeadBasis"><option value="lead">Enter lead directly</option><option value="pitch">Calculate lead = pitch × starts</option></select></div><div><label for="cPitch">Thread pitch (mm)</label><input type="number" id="cPitch" min="0" step="any" value="2"></div><div><label for="cStarts">Number of thread starts</label><input type="number" id="cStarts" min="1" step="1" value="4"></div></div>
 <div class="sm-row">
 <div><label for="cLead">Screw lead (mm per revolution)</label><input type="number" id="cLead" min="0.1" step="0.1" value="5"></div>
 <div><label for="cGearRatio">Gear reduction ratio (motor : screw, e.g. 5 for 5:1)</label><input type="number" id="cGearRatio" min="0.01" step="0.01" value="1"></div>
@@ -206,6 +222,7 @@
 <div></div>
 </div>
 </div>
+<div id="rollerFields" hidden><div class="sm-row"><div><label for="cRollerDia">Effective roller / hob diameter (mm)</label><input type="number" id="cRollerDia" min="0" step="any" value="10"></div><div><label for="cRollerGearRatio">Gear reduction (motor rev : output rev)</label><input type="number" id="cRollerGearRatio" min="1e-06" step="any" value="1"></div></div></div>
 <div id="directFields" hidden>
 <div class="sm-row">
 <div><label for="cDirectGearRatio">Gear reduction ratio (motor : output, e.g. 5 for 5:1)</label><input type="number" id="cDirectGearRatio" min="0.01" step="0.01" value="1"></div>
@@ -218,36 +235,16 @@
 <option value="mm" selected>Millimetres (steps/mm)</option>
 <option value="inch">Inches (steps/inch)</option>
 </select></div>
-<div><label for="cMaxFeed">Max feed rate target (mm/min, optional)</label><input type="number" id="cMaxFeed" min="0" step="1" value="3000"></div>
+<div><label for="cMaxFeed">Target feed rate (<span id="feedUnit">mm/min</span>)</label><input type="number" id="cMaxFeed" min="0" step="1" value="3000"></div>
 </div>
 </div>
 
-<button type="button" class="sm-btn" id="calcCncBtn">Calculate steps per unit</button>
+<div class="sm-panel"><h3>Travel, motion profile &amp; pulse ceiling</h3><div class="sm-row3"><div><label for="cDistance">Commanded move (<span data-axis-unit>mm</span>)</label><input type="number" id="cDistance" min="0" step="any" value="100"></div><div><label for="cAccel">Acceleration (<span data-axis-unit>mm</span>/s²)</label><input type="number" id="cAccel" min="0" step="any" value="500"></div><div><label for="cPulseLimit">Controller STEP ceiling (kHz)</label><input type="number" id="cPulseLimit" min="1e-06" step="any" value="100"></div></div><p class="sm-note">Motion starts and ends at rest with equal constant acceleration and deceleration. No jerk, corner blending, controller scheduling or motor stall limit is modeled.</p><label for="cPreview">Illustrated move progress</label><input id="cPreview" type="range" min="0" max="100" value="35" step="1"><div class="sm-actions"><button type="button" id="copyMotor">Use Speed tab steps &amp; microsteps</button></div></div><div class="sm-panel"><h3>Measured travel calibration</h3><div class="sm-row3"><div><label for="cCalCurrent">Current steps/<span data-axis-unit>mm</span> (blank = calculated)</label><input type="number" id="cCalCurrent" min="0" step="any" value=""></div><div><label for="cCalCommand">Commanded calibration travel (<span data-axis-unit>mm</span>)</label><input type="number" id="cCalCommand" min="1e-06" step="any" value="100"></div><div><label for="cCalActual">Measured actual travel (<span data-axis-unit>mm</span>)</label><input type="number" id="cCalActual" min="1e-06" step="any" value="99.5"></div></div><p class="sm-note">Corrected steps/unit = old setting × commanded / measured. Corrected rotation distance changes in the opposite direction. Diagnose backlash, slip and lost steps before adjusting scale.</p></div><button type="button" class="sm-btn" id="calcCncBtn">Calculate steps per unit</button>
 
 <div id="cncOutput"></div>
 </div>
 
-<!-- CURVE TAB -->
-<div id="curveTab" hidden>
-<div class="sm-panel">
-<h3>Torque-speed curve parameters</h3>
-<p class="meta" style="margin-bottom:10px">Enter motor holding torque, winding L/R and supply voltage to see how torque drops off as speed increases.</p>
-<div class="sm-row3">
-<div><label for="tHolding">Holding torque (N.m)</label><input type="number" id="tHolding" min="0.01" step="0.01" value="0.4"></div>
-<div><label for="tInductance">Inductance (mH)</label><input type="number" id="tInductance" min="0.1" step="0.1" value="4"></div>
-<div><label for="tResistance">Resistance (ohm)</label><input type="number" id="tResistance" min="0.1" step="0.1" value="3.3"></div>
-</div>
-<div class="sm-row3">
-<div><label for="tVoltage">Supply voltage (V)</label><input type="number" id="tVoltage" min="1" step="0.1" value="24"></div>
-<div><label for="tCurrent">Rated current (A)</label><input type="number" id="tCurrent" min="0.1" step="0.1" value="1.5"></div>
-<div><label for="tStepsRev">Steps per revolution</label><input type="number" id="tStepsRev" min="1" step="1" value="200"></div>
-</div>
-</div>
-<button type="button" class="sm-btn" id="calcCurveBtn">Calculate curve</button>
-
-<div id="curveOutput"></div>
-</div>
-
+<div id="curveTab" hidden><div class="sm-panel"><h3>Torque curve source</h3><div><label for="tSource">Curve method</label><select id="tSource"><option value="datasheet">User-supplied manufacturer / measured curve</option><option value="illustrative">Illustrative current-rise proxy — not a motor rating</option></select></div><div id="tDataFields"><label for="tConditions">Curve identifier and test conditions (optional)</label><input id="tConditions" type="text" maxlength="240" placeholder="Motor model, driver, voltage, phase current, connection"><label for="tData">RPM, torque in N·m — one point per line</label><textarea id="tData" placeholder="rpm,torque_Nm&#10;0,0.40&#10;300,0.28&#10;600,0.18"></textarea><p class="sm-note">Placeholder numbers show the input format only. Use at least two points from the actual motor/driver curve at your voltage, phase current, connection and microstepping. No extrapolation beyond the data range.</p></div><div id="tModelFields" hidden><div class="sm-row3"><div><label for="tHolding">Holding torque (N·m)</label><input type="number" id="tHolding" min="1e-06" step="any" value="0.4"></div><div><label for="tInductance">Inductance (mH)</label><input type="number" id="tInductance" min="1e-06" step="any" value="4"></div><div><label for="tResistance">Phase resistance (Ω)</label><input type="number" id="tResistance" min="1e-06" step="any" value="3.3"></div></div><div class="sm-row3"><div><label for="tVoltage">Supply voltage (V)</label><input type="number" id="tVoltage" min="1e-06" step="any" value="24"></div><div><label for="tCurrent">Sinusoidal phase peak current (A)</label><input type="number" id="tCurrent" min="1e-06" step="any" value="1.5"></div><div><label for="tStepsRev">Full steps/revolution</label><input type="number" id="tStepsRev" min="1" step="1" value="200"></div></div><div><label for="tKe">Back-EMF estimate (V per 1,000 RPM)</label><input type="number" id="tKe" min="0" step="any" value="0"></div><p class="sm-warn">This proxy assumes each full-step interval is available to raise current from zero. It ignores commutation history, decay mode, magnetic saturation, detent torque and dynamics. It is not a pull-out torque curve or a maximum-speed prediction.</p></div><div class="sm-row3"><div><label for="tRpm">Operating motor speed (RPM)</label><input type="number" id="tRpm" min="0" step="any" value="300"></div><div><label for="tRequired">Required motor torque (N·m)</label><input type="number" id="tRequired" min="0" step="any" value="0.1"></div><div><label for="tFactor">Selected design margin multiplier</label><input type="number" id="tFactor" min="1" step="any" value="1.5"></div></div><div class="sm-actions"><button type="button" id="exampleCurve">Load illustrative sample data</button></div></div><button type="button" class="sm-btn" id="calcCurveBtn">Analyze curve</button><div id="curveOutput"></div></div><div id="motionTab" hidden><div class="sm-panel"><h3>Load &amp; acceleration torque at the motor</h3><div class="sm-row3"><div><label for="mMass">Translating mass (kg)</label><input type="number" id="mMass" min="0" step="any" value="2"></div><div><label for="mAngle">Uphill axis angle (0–90°)</label><input type="number" id="mAngle" min="0" step="any" value="0"></div><div><label for="mForce">Additional opposing force (N)</label><input type="number" id="mForce" min="0" step="any" value="5"></div></div><div class="sm-row3"><div><label for="mEfficiency">Total transmission efficiency (0–1)</label><input type="number" id="mEfficiency" min="1e-06" step="any" value="0.9"></div><div><label for="mRotor">Motor rotor inertia (g·cm²)</label><input type="number" id="mRotor" min="0" step="any" value="54"></div><div><label for="mOutputJ">Rotating output inertia (g·cm²)</label><input type="number" id="mOutputJ" min="0" step="any" value="0"></div></div><div class="sm-row3"><div><label for="mFriction">Additional motor-shaft friction torque (N·m)</label><input type="number" id="mFriction" min="0" step="any" value="0"></div><div><label for="mRotLoad">Opposing output torque for rotary drive (N·m)</label><input type="number" id="mRotLoad" min="0" step="any" value="0.1"></div><div><label for="mFactor">Selected torque margin multiplier</label><input type="number" id="mFactor" min="1" step="any" value="1.5"></div></div><div><label for="mAvailable">Known running torque at calculated motor RPM (N·m, optional)</label><input type="number" id="mAvailable" min="0" step="any" value=""></div><p class="sm-note">Uses the current CNC mechanism, ratio, target feed, move distance and acceleration. Linear loads include uphill gravity and added opposing force. Rotary mode uses output torque and inertia. Gear and screw inertia not included in the output field must be assessed separately.</p><div class="sm-actions"><button type="button" class="primary" id="calcMotionBtn">Calculate load</button><button type="button" id="useCurve">Use supplied curve torque at motion RPM</button></div></div><div id="motionOutput"></div></div><div class="sm-actions"><button type="button" class="primary" id="printReportBtn">Print / Save PDF</button><button type="button" id="exportCsv">Save report CSV</button><button type="button" id="exportTxt">Save report TXT</button><button type="button" id="copyReport">Copy report</button><button type="button" id="shareInputs">Share these inputs</button><button type="button" id="resetAll">Reset examples</button></div><label><input type="checkbox" id="reportAll"> Include all valid calculator sections in report</label><p class="sm-note">Default export: the active calculator only, including its inputs, results, diagrams and assumptions. Navigation, share controls and the explanatory article are excluded. Save PDF through the browser’s print dialog.</p><p id="toolStatus" class="sm-live-status" role="status" aria-live="polite"></p><p class="sm-tip">Preliminary calculations only. Electrical estimates cannot certify maximum RPM, driver compatibility, temperature or available running torque. Verify the actual motor, driver, mechanism and operating profile.</p>
 </section>
 
 <div class="sm-share noembed">
@@ -264,651 +261,145 @@
 <button type="button" data-copy-target="sm-embed">Copy embed code</button>
 </div>
 
-<article class="cn-article noembed">
-
-<h2>What is a free stepper motor calculator online?</h2>
-<p>A free stepper motor calculator online is a tool that computes the key electrical and mechanical parameters of a stepper motor from the numbers printed on its datasheet. Instead of guessing whether a motor will reach the speed your CNC machine needs or whether it has enough torque to move a given load, you enter a few datasheet values and the calculator tells you the maximum step rate, the minimum time per step, the supply power and winding loss, and — for CNC and 3D printing — the exact number of steps per millimetre to configure in your controller.</p>
-<p>This stepper motor calculator online goes beyond a basic four-input calculator. It combines three tools in one page: a speed and power calculator, a CNC steps-per-mm setup tool with lead screw, belt, rack-and-pinion and direct drive modes, and a torque-speed curve visualiser. It also calculates the resonance frequency and the load-to-rotor inertia ratio, and includes a microstepping reference table. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-
-<h2>How to use this free stepper motor calculator</h2>
-<ol>
-<li><b>Speed &amp; Power tab.</b> Enter the supply voltage, rated current per phase and winding inductance from your motor's datasheet. Select the microstepping setting and the motor's full-step resolution (200 for a standard 1.8° motor). Optionally add phase resistance, holding torque, rotor inertia, load inertia and load torque for torque, resonance and inertia-ratio checks. Optional fields left blank are skipped, not guessed.</li>
-<li><b>CNC / Steps per mm tab.</b> Choose your drive type — lead screw, belt, rack and pinion, or direct rotation. Enter the mechanical parameters and the calculator returns steps per mm or steps per inch for your firmware.</li>
-<li><b>Torque-Speed Curve tab.</b> Enter the motor holding torque, winding L and R, and supply voltage to see how available torque drops off as speed increases.</li>
-<li>Copy the result to your clipboard, save it as a PDF, or check the reference tables in the article below.</li>
-</ol>
-
-<h2>What is a stepper motor?</h2>
-<p>A stepper motor is a brushless DC motor that divides a full rotation into a fixed number of equal steps. Unlike a conventional DC motor that spins continuously when power is applied, a stepper motor moves in discrete increments each time the driver sends a pulse. A standard hybrid stepper has 200 steps per revolution — a step angle of 1.8° — and holding torque strong enough to stop and hold a load without feedback.</p>
-<p>Because the position is determined by the number of pulses sent rather than by any feedback sensor, stepper motors operate in an <b>open-loop</b> system. The controller assumes the motor moved when it was told to move, which is why lost steps are the main failure mode.</p>
-<p>Stepper motors are the default choice for 3D printers, CNC routers, laser cutters, camera sliders, robot arms, packaging machinery and scientific instruments.</p>
-
-<h2>Key stepper motor formulas</h2>
-
-<h3>Maximum speed and minimum time per step</h3>
-<p>At high step rates the winding becomes inductive and the current cannot rise fast enough to produce full torque. The first-order approximation for the maximum step rate is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Max Speed (steps/sec) = V / (2 × L × Imax)</b></p>
-<p>Where V is the supply voltage in volts, L is the winding inductance in henries and Imax is the rated current per phase in amps. The minimum time per step is the inverse:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Min Time/Step (ms) = (2 × L × Imax) / V × 1000</b></p>
-<p>When L is given in millihenries (as most datasheets do), remember to divide by 1000 before using it in the formula. This is the full-step rate: with microstepping your driver must receive proportionally more pulses per second (16× as many at 1/16) for the same speed. It is a rough current-rise estimate, not a guaranteed speed limit.</p>
-
-<h3>Power and heat</h3>
-<p>The most electrical power the supply can deliver to the windings is the product of the supply voltage and the rated current:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Psupply = Imax × V</b></p>
-<p>This is an upper bound used for power supply and driver sizing — it is not heat produced in the motor. The heat produced in the windings is the copper loss, which for a two-phase motor at rated current is approximately:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Pwinding ≈ 2 × Imax² × R</b></p>
-<p>Real consumption also depends on the driver's current-chopping behaviour, the duty cycle of the motion profile and iron losses, so treat both figures as estimates.</p>
-
-<h3>Steps per millimetre (CNC and 3D printing)</h3>
-<p>The number of motor steps required to move the tool or bed by 1 mm depends on the drive mechanism. For a lead screw or ball screw:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Steps/mm = (steps/rev × microstepping × gear ratio) / lead in mm</b></p>
-<p>For a belt-and-pulley drive:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Steps/mm = (steps/rev × microstepping × gear ratio) / (belt pitch × pulley teeth)</b></p>
-<p>For rack-and-pinion:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Steps/mm = (steps/rev × microstepping × gear ratio) / (π × pinion pitch diameter)</b></p>
-<p>These are the numbers you enter into GRBL, Mach3, Marlin, Klipper or any other motion controller as <code>steps_per_mm</code>. The gear ratio is motor revolutions per output revolution — a 5:1 reduction is entered as 5, which increases the steps needed per mm. For direct rotation the equivalent is steps/degree = (steps/rev × microstepping × gear ratio) / 360.</p>
-
-<h3>Resonance frequency</h3>
-<p>A stepper motor and its attached load form a spring-mass system. The natural frequency at which the rotor oscillates is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>f_res = (1 / 2π) × √(T_holding × N_r / (J_rotor + J_load))</b></p>
-<p>Where N_r is the number of rotor teeth (steps per revolution ÷ 4, so 50 for a 200-step motor), J is in kg·m² and T is in N·m. This is an approximate small-oscillation frequency. When the step rate crosses this frequency the rotor resonates with increasing amplitude, causing noise, vibration and — if sustained — lost steps.</p>
-
-<h3>Torque at a given speed</h3>
-<p>Available torque drops as step frequency rises, following the winding's RL time constant:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>T(f) = T₀ / √(1 + (2π f L / R)²)</b></p>
-<p>Where T₀ is the low-speed holding torque, f is the electrical frequency (step rate ÷ 4 for a two-phase motor), L is the inductance and R is the phase resistance. This first-order model ignores back-EMF and driver chopping, so use the manufacturer's curve for final selection. Plotting this curve against your load torque tells you the maximum speed at which the motor can still drive the load without stalling.</p>
-
-<h2>Microstepping: resolution vs torque</h2>
-<p>Microstepping subdivides each full step by driving the two coils with sinusoidal currents of varying amplitude. A 1/16 microstep setting turns a 200-step motor into a 3,200-step motor — a 16× improvement in positional resolution. But microstepping does not add torque, and the torque available to hold any single microstep position is much smaller than at full step.</p>
-<table class="sm-table">
-<tr><th>Microstepping</th><th>Steps/rev</th><th>Step angle</th><th>Torque per microstep (≈ sin(90°/n))</th></tr>
-<tr><td>x1 (full)</td><td>200</td><td>1.800°</td><td>1.000</td></tr>
-<tr><td>x2</td><td>400</td><td>0.900°</td><td>0.707</td></tr>
-<tr><td>x4</td><td>800</td><td>0.450°</td><td>0.383</td></tr>
-<tr><td>x8</td><td>1,600</td><td>0.225°</td><td>0.195</td></tr>
-<tr><td>x16</td><td>3,200</td><td>0.113°</td><td>0.098</td></tr>
-<tr><td>x32</td><td>6,400</td><td>0.056°</td><td>0.049</td></tr>
-<tr><td>x64</td><td>12,800</td><td>0.028°</td><td>0.025</td></tr>
-<tr><td>x128</td><td>25,600</td><td>0.014°</td><td>0.012</td></tr>
-<tr><td>x256</td><td>51,200</td><td>0.007°</td><td>0.006</td></tr>
-</table>
-<p>The last column is the theoretical restoring torque, as a fraction of holding torque, for a displacement of one microstep. It shrinks quickly as the divisor grows, so at x32 and beyond individual microsteps produce almost no torque — the motor relies on averaging many microsteps to move. Peak holding torque is roughly unchanged, but positioning accuracy under load is far lower than the step count suggests. For high-torque applications, full-step or half-step modes typically deliver the most usable torque.</p>
-
-<h2>Choosing the right stepper motor: NEMA sizes and torque classes</h2>
-<p>Stepper motors are sold by NEMA frame size, which describes the faceplate dimensions in inches — not the torque, current or inductance. Two NEMA 17 motors can differ by 10× in holding torque.</p>
-<table class="sm-table">
-<tr><th>NEMA size</th><th>Faceplate</th><th>Typical holding torque</th><th>Common use</th></tr>
-<tr><td>NEMA 8</td><td>20 mm</td><td>0.02–0.05 N·m</td><td>Small robotics, camera focus</td></tr>
-<tr><td>NEMA 11</td><td>28 mm</td><td>0.05–0.10 N·m</td><td>3D printer extruders, small CNC</td></tr>
-<tr><td>NEMA 14</td><td>35 mm</td><td>0.10–0.20 N·m</td><td>Light CNC, camera sliders</td></tr>
-<tr><td>NEMA 17</td><td>42 mm</td><td>0.20–0.65 N·m</td><td>3D printers, light CNC, laser cutters</td></tr>
-<tr><td>NEMA 23</td><td>57 mm</td><td>1.0–3.0 N·m</td><td>CNC routers, plasma tables</td></tr>
-<tr><td>NEMA 34</td><td>86 mm</td><td>3.0–12.0 N·m</td><td>Heavy CNC, industrial machinery</td></tr>
-</table>
-<p>Selection is a three-step process: choose the frame size that fits your mounting, verify that the torque-speed curve covers your required load at your required speed, and confirm the load-to-rotor inertia ratio is under 10:1 (ideally under 5:1).</p>
-
-<h2>Common stepper motor selection mistakes</h2>
-<ul>
-<li><b>Selecting on holding torque alone.</b> Holding torque is the torque at zero speed. The torque that matters is at your operating speed — which is often 30 to 70 percent lower.</li>
-<li><b>Ignoring the inertia ratio.</b> A load more than 10× the rotor inertia causes ringing, overshoot and lost steps.</li>
-<li><b>Undersizing the power supply.</b> A chopper driver typically runs best from a supply 8 to 20× the motor's rated voltage (within the driver's limit) — and higher voltage means higher top speed.</li>
-<li><b>Using microstepping for torque.</b> Microstepping improves resolution, not torque. If you need more torque, buy a bigger motor or increase the supply voltage.</li>
-<li><b>Running at resonance.</b> A motor driven exactly at its natural frequency will vibrate, lose steps and eventually fail.</li>
-<li><b>Forgetting acceleration.</b> Starting a motor at full speed is impossible. Ramp the step rate up gradually.</li>
-<li><b>Setting the current too high.</b> Rated current is a thermal limit, not a performance target. Overcurrent burns motors without improving torque.</li>
-</ul>
-
-<h2>Stepper motor vs servo motor</h2>
-<p>Steppers and servos are the two main options for precise motion control. Steppers are simpler and cheaper; servos are faster and more accurate under varying load.</p>
-<table class="sm-table">
-<tr><th>Feature</th><th>Stepper</th><th>Servo</th></tr>
-<tr><td>Cost</td><td>Low</td><td>High</td></tr>
-<tr><td>Feedback</td><td>None (open loop)</td><td>Encoder (closed loop)</td></tr>
-<tr><td>Torque at speed</td><td>Drops with speed</td><td>Flat up to rated speed</td></tr>
-<tr><td>Position accuracy</td><td>Excellent at low speed</td><td>Excellent at all speeds</td></tr>
-<tr><td>Lost steps</td><td>Possible under overload</td><td>Automatically corrected</td></tr>
-<tr><td>Typical use</td><td>3D printers, light CNC</td><td>Industrial motion, robotics</td></tr>
-</table>
-<p>For hobbyist and small-batch applications, steppers remain the dominant choice. Servos take over where high dynamic performance, heavy load variation or closed-loop reliability are required.</p>
-
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a free stepper motor calculator online?</summary><p>A free stepper motor calculator online is a tool that computes the key electrical and mechanical parameters of a stepper motor from its datasheet values. This calculator includes maximum step rate, minimum time per step, supply power and winding loss, steps per millimetre for CNC and 3D printing, resonance frequency and microstepping resolution.</p></details>
-<details><summary>How do I calculate the maximum speed of a stepper motor?</summary><p>Max speed (steps/sec) = V / (2 × L × Imax), where V is supply voltage, L is winding inductance in henries and Imax is rated current per phase. It is a first-order full-step estimate, not a guaranteed limit.</p></details>
-<details><summary>How do I calculate steps per mm for a CNC machine?</summary><p>For a lead screw: steps/mm = (steps per rev × microstepping × gear ratio) / lead in mm. For a belt: steps/mm = (steps per rev × microstepping × gear ratio) / (belt pitch × pulley teeth). The gear ratio is motor revolutions per output revolution (5 for a 5:1 reduction).</p></details>
-<details><summary>What is microstepping and how does it affect torque?</summary><p>Microstepping subdivides each full step into smaller increments. It improves resolution and smoothness but does not add torque, and the torque available to hold one specific microstep position is small (about sin(90°/n) of holding torque), so accuracy under load is lower than the step count implies.</p></details>
-<details><summary>What is stepper motor resonance?</summary><p>Resonance occurs when the step rate matches the natural frequency of the motor and load. At that point the rotor oscillates with increasing amplitude, causing vibration, noise and lost steps.</p></details>
-<details><summary>What is the load inertia ratio?</summary><p>The ratio of load inertia to rotor inertia. For stepper motors, aim for under 10:1, ideally between 1:1 and 5:1 for smooth motion.</p></details>
-<details><summary>What voltage should I use for a stepper motor?</summary><p>A common rule is 8 to 20 times the motor's rated voltage when using a current-chopping driver. A 3 V motor typically runs well on 24 V or 36 V.</p></details>
-<details><summary>Is this stepper motor calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-<details><summary>Does this calculator handle metric and imperial units?</summary><p>The CNC tab outputs steps/mm or steps/inch, and the feed-rate target follows the unit you choose (mm/min or in/min). Motor electrical inputs use SI units (V, A, mH, N·m, g·cm²).</p></details>
-<details><summary>What is the minimum time per step?</summary><p>The shortest interval the driver can send pulses before the winding current fails to reach its target. Calculated as 2 × L × Imax / V.</p></details>
-</div>
-
+<article class="cn-article noembed" aria-labelledby="stepperGuide">
+<h2 id="stepperGuide">Free online stepper motor calculator: from datasheet to motion settings</h2>
+<p>A stepper motor calculator connects three different questions: how many STEP pulses a controller must generate, how far a mechanism moves for those pulses, and whether a motor can supply the required torque during the motion. Answering one question does not answer the others. A mechanically correct steps-per-millimetre setting can still demand too many pulses from a controller or too much acceleration torque from a motor.</p>
+<p>This tool supports preliminary checks for common two-phase stepper systems used in CNC routers, 3D printers, laser machines, positioning stages, camera sliders and rotary tables. It calculates motor RPM, full-step and microstep resolution, pulse timing, winding estimates, drive geometry, measured travel calibration, rest-to-rest motion time and load torque. The torque curve tab accepts actual manufacturer or measured data instead of treating a generic curve as a motor specification.</p>
+<h2>How to use the four calculator modes</h2>
+<ol><li><strong>Speed &amp; Power:</strong> enter full steps per motor revolution, input microsteps per full step, requested RPM and driver timing requirements. Add winding resistance and inductance for electrical screening. Select whether the entered current is sinusoidal peak, per-phase RMS, or a constant current in both phases.</li><li><strong>CNC / Steps per mm:</strong> choose a lead screw, timing belt, rack and pinion, friction roller or rotary output. Enter the actual travel geometry and motor-to-output reduction. Select output length units, then set feed, acceleration and move distance.</li><li><strong>Torque-Speed Curve:</strong> enter at least two increasing RPM points from the actual motor/driver curve. Record the conditions in the annotation field. Compare the curve with required torque and your selected margin. The optional illustrative model is educational, not a motor rating.</li><li><strong>Motion &amp; Load:</strong> use the CNC mechanism and motion settings to estimate the uphill acceleration-stage torque. Enter translating mass, opposing force, transmission efficiency and relevant rotating inertia. Supply running torque at the calculated speed to make a capacity comparison.</li><li><strong>Export the relevant calculation:</strong> use Print / Save PDF, CSV, TXT or Copy report. The active mode is exported by default. Select “Include all valid calculator sections” when a combined report is useful.</li></ol>
+<p>Required fields are validated rather than silently replaced with defaults. Blank optional fields skip the corresponding assessment. The included values are examples, not recommendations for a particular NEMA frame size, driver board or machine. The motor-angle and travel sliders preview commanded positions; they do not read an encoder or verify that a physical motor followed the command.</p>
+<h2>Stepper RPM, step angle and pulse frequency</h2>
+<p>Full steps per revolution describe the motor’s native stepping geometry. A 1.8° motor has 200 full steps per revolution; a 0.9° motor has 400. Driver microstepping divides a full step into additional command increments. For a STEP/DIR interface:</p>
+<p class="sm-formula">Full steps/revolution = 360° / full-step angle<br>Pulses/revolution = full steps/revolution × input microsteps<br>STEP frequency = RPM × pulses/revolution / 60<br>RPM = 60 × STEP frequency / pulses/revolution</p>
+<p>For a 200-step motor at 16 microsteps and 300 RPM, the controller needs 16,000 pulses/s, or 16 kHz. Its STEP period is 62.5 µs. The full-step-equivalent rate is 1,000 steps/s. These are command-rate calculations; they do not show that the motor has enough running torque to maintain 300 RPM under load.</p>
+<p>Use the microstep subdivision actually commanded at the STEP input. Some drivers internally interpolate lower-resolution input pulses into finer phase-current waveforms. If a driver accepts 16 input microsteps and internally interpolates to 256, entering 256 in the steps/mm formula would overcount the required input pulses. Consult the driver’s interface configuration.</p>
+<h3>Pulse width limits and controller ceilings</h3>
+<p>Both the minimum high time and the minimum low time matter. A simple pulse-timing ceiling is 1,000,000 divided by the sum of those times in microseconds. The calculator uses the lower of this ceiling and the optional controller STEP-rate limit. Setup and hold times for direction changes, processing capacity, simultaneous axes, communication, acceleration scheduling and real firmware implementation can impose additional limits.</p>
+<p>For 2 µs high and 2 µs low, the timing-only ceiling is 250 kHz. If the controller ceiling is 100 kHz, the effective ceiling is 100 kHz. With 3,200 input pulses per revolution, that corresponds to a command ceiling of 1,875 RPM. It is not a claim that the motor can run at that speed.</p>
+<h2>Steps per mm for a lead screw or ball screw</h2>
+<p>A screw’s <strong>lead</strong> is the axial movement per output revolution. Thread pitch is the spacing between adjacent threads. They are equal for a single-start screw, while a multi-start screw has lead = pitch × number of starts.</p>
+<p class="sm-formula">Steps/mm = (full steps/revolution × microsteps × reduction ratio) / screw lead in mm</p>
+<p>A 200-step motor, 16× input microstepping, 5 mm screw lead and direct coupling give 640 steps/mm. The command increment is 0.0015625 mm per pulse, or 1.5625 µm. The full-step increment is 0.025 mm. Those values describe commanded geometry, not verified repeatability or positioning accuracy.</p>
+<p>A screw with 2 mm pitch and four starts has 8 mm lead. With the same motor and microstepping, it gives 400 steps/mm. Entering pitch as lead would produce a fourfold scale error. Use the screw drawing or measured travel per revolution if the designation is unclear.</p>
+<h2>Timing belt, rack-and-pinion and roller calculations</h2>
+<div class="sm-table-wrap"><table><thead><tr><th scope="col">Mechanism</th><th scope="col">Travel per output revolution</th><th scope="col">Important measurement</th></tr></thead><tbody><tr><td>Lead screw / ball screw</td><td>Lead</td><td>Lead rather than thread pitch alone</td></tr><tr><td>Timing belt and pulley</td><td>Belt pitch × pulley tooth count</td><td>Actual belt pitch and engaged drive-pulley teeth</td></tr><tr><td>Rack and pinion</td><td>π × pinion pitch diameter</td><td>Pitch diameter rather than outside tooth diameter</td></tr><tr><td>Friction roller / extruder hob</td><td>π × effective rolling diameter</td><td>Loaded effective diameter and slip</td></tr><tr><td>Rotary output</td><td>360°</td><td>Output angle and reduction ratio</td></tr></tbody></table></div>
+<p>All linear mechanisms use pulses per output revolution divided by travel per output revolution. For a 2 mm pitch belt and a 20-tooth pulley, travel is 40 mm per revolution. A 200-step motor at 16× gives 80 steps/mm, or a 12.5 µm command increment. At 3,000 mm/min, the controller needs 4 kHz and the motor runs at 75 RPM with direct coupling.</p>
+<p>The belt pitch circle, rack pitch diameter and effective roller diameter describe working contact geometry. Outside diameters are generally not interchangeable with these quantities. Filament compression against an extruder hob, belt elasticity, rack backlash, roller slip and loaded deformation can all make measured travel differ from ideal geometry.</p>
+<h3>Gear reduction direction matters</h3>
+<p>The ratio is <strong>motor revolutions per output revolution</strong>. Enter 5 for a 5:1 reduction: the motor makes five revolutions while the screw, pulley or output makes one. The ratio multiplies steps per unit and motor RPM for the same output feed. It also reduces ideal motor-reflected output inertia by the square of the ratio.</p>
+<p>For a toothed reduction, calculate the ratio from driven teeth divided by driving teeth. Multiple stages multiply. Use the actual tooth counts when an advertised ratio is rounded. A reduction can improve torque leverage while increasing motor speed and introducing efficiency losses, inertia, backlash and gearbox constraints.</p>
+<h2>Steps per degree and imperial output</h2>
+<p>For rotary motion, steps/degree = full steps/revolution × microsteps × reduction / 360. A 200-step motor at 16× with a 5:1 reduction gives about 44.4444 pulses per degree of output rotation. Feed is degrees/minute and acceleration is degrees/s² in this mode. A length-unit selector does not apply to rotary output.</p>
+<p>For a linear axis, steps/inch = steps/mm × 25.4. The output-unit switch converts entered feed, acceleration, move distance and calibration travel to preserve the same physical motion. Mechanical pitch, lead and diameter inputs remain in millimetres as their labels specify. Motor electrical and inertia inputs retain their stated SI-based units.</p>
+<h2>Travel calibration, E-steps and rotation distance</h2>
+<p>Compare a commanded move with measured movement only after the axis is mechanically sound and not losing steps. The scale correction is:</p>
+<p class="sm-formula">Corrected steps/unit = old steps/unit × commanded travel / measured travel</p>
+<p>If the current value is 80 steps/mm, a 100 mm command that moves 99.5 mm implies approximately 80.40201 steps/mm. Recheck with a suitable measuring instrument and several movements. A reverse-direction discrepancy suggests backlash or lost motion; a load-dependent discrepancy suggests slip, compliance or missed steps. Scaling the firmware to hide those effects can make other moves worse.</p>
+<p>For the corresponding effective travel per motor revolution, the correction runs in the opposite direction: new rotation distance = old rotation distance × measured / commanded. The tool reports both directions of correction so an E-steps correction is not accidentally applied to a rotation-distance setting.</p>
+<p>Extruders need special care because effective hob diameter can vary with grip, filament and load. Calibrate under an appropriate controlled procedure and avoid compensating for a blocked nozzle or slipping drive with a scale change. For geometrically defined Cartesian axes, begin with hardware-derived travel rather than treating every dimensional printing error as an axis scale problem.</p>
+<h3>Marlin, GRBL and Klipper settings</h3>
+<p>The CNC tab provides examples for one X axis. Marlin commonly expresses steps/mm through an M92 value; GRBL’s $100 is the X-axis steps/mm setting. These examples always use millimetres even when the report displays inches. They do not configure current, maximum feed, acceleration, pins or the rest of the machine.</p>
+<p>Klipper uses rotation distance together with full steps per rotation and input microsteps. The example keeps output travel per revolution in rotation_distance and declares the reduction separately with gear_ratio. An alternative effective distance per motor revolution omits a separate ratio; applying both reductions would count gearing twice. Review the actual firmware documentation and existing axis configuration before making changes.</p>
+<h2>Acceleration distance, triangular moves and motion time</h2>
+<p>A short move may never reach the requested feed. This calculator models a symmetric rest-to-rest move with constant acceleration, constant-speed cruise when possible and equal deceleration. It excludes jerk limits, corner blending and controller-specific motion planning.</p>
+<p class="sm-formula">Distance to accelerate to v = v²/(2a)<br>Rest-to-rest distance needed for cruise = v²/a<br>Short-move peak velocity = √(distance × acceleration)</p>
+<p>At 50 mm/s and 500 mm/s², acceleration needs 2.5 mm, and deceleration needs another 2.5 mm. A 100 mm move has a trapezoidal velocity profile: 0.1 s acceleration, 1.9 s cruise and 0.1 s deceleration, totaling 2.1 s. A 1 mm move instead has a triangular profile, peaks at about 22.3607 mm/s and takes approximately 0.0894427 s.</p>
+<p>The integer pulse count rounds a requested move to the nearest command increment and reports the geometric rounding error. This is a discrete-command effect only. It does not represent backlash, full-step angle error, microstep current distortion or measured machine accuracy.</p>
+<h2>Load torque, inertia and stepper motor sizing</h2>
+<p>Motor selection needs operating torque at operating speed, including acceleration. The mechanical tab estimates an uphill acceleration stage. Added opposing force can represent drag or process force. For a translating load, gravity adds m g sin(incline), with g = 9.80665 m/s².</p>
+<p class="sm-formula">Linear steady motor torque = opposing force × travel per output revolution / (2π × reduction × efficiency)<br>Rotary steady motor torque = opposing output torque / (reduction × efficiency)<br>Acceleration torque = effective motor-side inertia × motor angular acceleration</p>
+<p>Use metres in the linear torque expression to obtain N·m. The calculator makes that conversion internally. Translating mass reflects through the mechanism as m[travel/(2π × reduction)]². Rotating output inertia reflects as Joutput/reduction². Rotor inertia remains at the motor shaft. Transmission efficiency increases load-side torque demand; it does not increase the motor’s own rotor inertia.</p>
+<p>The tab adds steady load, acceleration torque and additional motor friction, then multiplies by your selected margin. Compare that result with known running torque at the peak attained motor RPM. The curve-transfer button accepts actual user-supplied curve data within its range and refuses the illustrative sample or proxy. This comparison does not evaluate every instant of a duty cycle.</p>
+<p>Inertia ratio is reflected load inertia divided by rotor inertia. A large ratio can complicate acceleration and settling, but there is no universal limit applicable to all open-loop, closed-loop and geared systems. Reported inertia units are g·cm², with 1 g·cm² = 10⁻⁷ kg·m². Include screw, pulley, coupling, gearbox and fixture inertia where relevant.</p>
+<h2>Holding torque versus running torque</h2>
+<p>Holding torque describes an energized stationary motor under specified conditions. It is not the torque available across all RPM. Pull-out torque curves describe running capability under particular motor, driver, current, supply, connection and test conditions. Start/stop capability and acceleration can impose additional restrictions.</p>
+<p>The curve tab uses piecewise linear interpolation between supplied points and refuses to extrapolate outside them. A positive comparison at one RPM is not a stability, fatigue or thermal certification. Verify that the curve conditions match your system, and consider torque over the whole operating range rather than only at the endpoint.</p>
+<p>The optional current-rise proxy is deliberately labeled illustrative. It estimates current built from zero over a full-step interval, caps it at the entered current and scales holding torque by the current fraction. It omits current-vector rotation, magnetic and mechanical behavior and driver regulation details. Use it to discuss parameter sensitivity, not to order a motor or establish maximum feed.</p>
+<h2>Winding inductance, current rise and electrical power</h2>
+<p>For an ideal RL winding with initially zero current and constant effective voltage, i(t) = (Veffective/R)[1 − exp(−tR/L)]. The RL time constant is L/R. Effective voltage here is bus voltage minus the optional opposing back-EMF estimate. Driver drops are omitted. If the requested target current is at or above the asymptotic Veffective/R value, it cannot be reached in finite time in this model.</p>
+<p>Real stepper drivers commutate, regulate and decay winding current. Their behavior is not equivalent to independently charging an empty winding on every pulse. Supply voltage, phase resistance and inductance alone cannot determine a reliable maximum motor RPM. Use verified torque-speed data, driver timing and load checks.</p>
+<p>Copper heat is the sum of winding RMS current squared times resistance. With sinusoidal phase currents having peak I, the ideal total for two equal phases is I²R. With per-phase RMS I, it is 2I²R. Two phases continuously carrying I also give 2I²R. For 1.5 A and 3.3 Ω, these conventions give 7.425 W or 14.85 W respectively.</p>
+<p>These values exclude driver loss, iron loss, mechanical output and changing duty. Bus voltage multiplied by a phase-current setting is not a dependable supply-power estimate for a chopping driver. Supply selection also needs measured or modeled bus current, simultaneous motors, duty, efficiency, regeneration, headroom and the driver’s operating voltage limits. Do not use an arbitrary voltage multiplier in place of a driver datasheet.</p>
+<h2>Microstepping resolution, incremental torque and resonance</h2>
+<p>Microstepping increases the number of commanded positions and can smooth motion. It does not guarantee equal physical increments or proportionally better absolute accuracy. An ideal incremental-torque comparison is holding torque × sin(90°/microsteps). At 16×, this is about 9.8% of holding torque for the single-increment restoring change, not a statement that total running torque falls to 9.8%.</p>
+<p>Friction, detent torque, load and current-control error can prevent the shaft from responding to each individual microstep. Increasing microsteps also increases required STEP frequency at the same RPM. Choose a setting that balances smoothness, controller capacity and actual positioning requirements. NEMA frame numbers specify mounting dimensions; they do not uniquely specify torque, current, inductance or safe speed.</p>
+<p>The electrical tab’s natural-frequency estimate assumes a two-phase sinusoidal torque-angle stiffness with effective rotor tooth count equal to full steps/revolution divided by four. It is a small-angle, undamped estimate, not a measured resonance band. Excitation, damping, load, driver behavior and system compliance affect oscillation and lost-step behavior. No displayed frequency or fixed frequency ratio establishes resonance-free motion.</p>
+<h2>Common mistakes and practical checks</h2>
+<ul><li>Entering multi-start thread pitch where the calculation requires screw lead.</li><li>Reversing reduction ratio or counting it twice in firmware rotation distance.</li><li>Using rack outside diameter instead of pitch diameter.</li><li>Using driver interpolation instead of actual input microsteps.</li><li>Comparing acceleration demand with holding torque rather than running torque.</li><li>Confusing peak and RMS phase current when estimating copper heat.</li><li>Assuming a small command increment proves machine accuracy.</li><li>Correcting steps/mm to mask backlash, belt slip or lost steps.</li><li>Ignoring direction timing, controller limits, driver temperature or regenerated voltage.</li></ul>
+<h2>Frequently asked questions</h2><div class="cn-faq"><details><summary>What is a free stepper motor calculator online?</summary><p>It calculates step commands, mechanism travel, calibration, motion timing and preliminary torque demand in a browser. Electrical screening and illustrative models are distinguished from actual motor ratings.</p></details><details><summary>How do I calculate the maximum speed of a stepper motor?</summary><p>There is no dependable maximum-RPM calculation from supply voltage and winding inductance alone. Check driver pulse limits, the actual torque-speed curve, acceleration, load and thermal conditions. The displayed command ceiling is a signal limit, not a certified motor speed.</p></details><details><summary>How do I calculate steps per mm for a CNC machine or 3D printer?</summary><p>Multiply full steps per motor revolution by input microsteps and motor-to-output reduction, then divide by travel per output revolution. Screw travel is lead; belt travel is pitch times pulley teeth.</p></details><details><summary>What is microstepping and how does it affect torque?</summary><p>Microstepping subdivides command positions and can improve smoothness. The ideal incremental restoring torque is proportional to sin(90 degrees divided by the microstep count). It does not mean total running torque falls by that fraction, and command resolution does not guarantee accuracy.</p></details><details><summary>What is stepper motor resonance and why does it matter?</summary><p>The rotor and load can oscillate under excitation. The tool reports an ideal small-angle natural-frequency estimate when suitable inputs are present, without certifying an operating resonance band or stability.</p></details><details><summary>What is the load inertia ratio and what value should it be?</summary><p>It is motor-reflected load inertia divided by rotor inertia. Acceptable ratios depend on the actual motor, driver, gearing, acceleration and required settling. The calculator does not apply a universal pass/fail threshold.</p></details><details><summary>What voltage should I use for a stepper motor?</summary><p>Use a supply within the driver’s documented operating limits and a verified phase-current setting suitable for the motor. Consider the specified torque-speed conditions, thermal performance and regeneration. Do not select voltage from an arbitrary multiplier alone.</p></details><details><summary>What does the minimum time per step mean?</summary><p>STEP pulse high/low timing is an interface constraint. RL current-rise time is a separate electrical estimate. Neither should be treated as a universal motor step interval or stall boundary.</p></details><details><summary>Is this stepper motor calculator free?</summary><p>Yes. Calculator use is free and does not require an account. Calculations run in the browser; shared links encode the inputs you choose to share.</p></details><details><summary>Does this calculator handle both metric and imperial units?</summary><p>Linear output supports steps/mm and steps/inch with physical feed and travel conversion. Rotary output uses steps/degree. Geometry stays in labelled millimetres and motor electrical and inertia inputs retain their stated units.</p></details><details><summary>Can I print the results without the explanatory article?</summary><p>Yes. Print / Save PDF exports a dedicated report for the active calculator, or all valid sections if selected. Navigation, share controls and explanatory article content are excluded.</p></details><details><summary>Can I use the results directly in Marlin, GRBL or Klipper?</summary><p>The CNC tab shows reviewed geometry examples, not a complete machine configuration. Check axis assignment, reduction convention, current, limits and firmware documentation before applying values.</p></details></div>
+<h2>Research basis and technical references</h2>
+<p>Feature research included Prusa’s RepRap calculator, Oriental Motor’s mechanism-specific sizing tools and other web calculators for steps/mm and RPM. This implementation combines command geometry, calibration, motion timing and torque review in one page while distinguishing exact unit relationships from simplified electrical and mechanical estimates.</p>
+<p>Technical references: Original Prusa 3D Printers, “RepRap Calculator” (blog.prusa3d.com/calculator_3416/); Klipper documentation, “Rotation distance” (klipper3d.org/Rotation_Distance.html); Oriental Motor, “Motor Sizing Calculations” (orientalmotor.com/technology/motor-sizing-calculations.html); Texas Instruments, “How to Improve Motion Smoothness and Accuracy of Stepper Motors,” application note SLOA293A. These organizations do not endorse this independent calculator.</p>
+<h2>Engineering disclaimer</h2>
+<p>This free online calculator and guide are for education and preliminary estimation. They do not certify motor capacity, maximum speed, positioning accuracy, driver compatibility, component temperature, machine safety or compliance with a standard. Verify the actual motor/driver datasheets, current convention, pulse timing, mechanism, torque-speed curve and complete duty cycle. Physical commissioning requires suitable guarding, limits, emergency stopping and qualified judgment. Vertical or suspended loads may need independent holding or braking protection; energized stepper holding torque alone is not a safety brake.</p>
+<p>Calculations run locally in the browser. A shared-input link contains the values you choose to share, so anyone receiving it can read those values. Reports are calculation snapshots and should be checked against the final machine configuration.</p>
 </article>
+
 
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
-<script>
-(function(){
-"use strict";
-function $(id){ return document.getElementById(id); }
-
-/* Read a numeric input. Returns NaN when the field is blank or invalid,
-   so blank fields are never silently replaced with hidden defaults. */
-function val(id){
-  var el = $(id);
-  if(!el) return NaN;
-  var s = String(el.value).trim();
-  if(s === "") return NaN;
-  var n = parseFloat(s);
-  return isFinite(n) ? n : NaN;
-}
-function nf(n, maxDp){ return n.toLocaleString(undefined, { maximumFractionDigits: maxDp }); }
-
-function copyText(text, btn){
-  function done(ok){
-    if(!btn) return;
-    var o = btn.getAttribute("data-label");
-    if(o === null){ o = btn.textContent; btn.setAttribute("data-label", o); }
-    btn.textContent = ok ? "Copied!" : "Copy failed";
-    setTimeout(function(){ btn.textContent = o; }, 1400);
-  }
-  function fallback(){
-    var ok = false;
-    try{
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed";
-      ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select();
-      ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-    }catch(e){ ok = false; }
-    done(ok);
-  }
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
-  } else {
-    fallback();
-  }
-}
-
-function drawDiagram(voltage, current, microstep){
-  var w = 520, h = 200;
-  var m = parseInt(microstep, 10) || 1;
-  var mLabel = m === 1 ? "full step" : "1/" + m + " microstep";
-  var svg = '<svg viewBox="0 0 ' + w + ' ' + h + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Stepper motor diagram">';
-  svg += '<rect x="140" y="60" width="90" height="90" rx="8" fill="#1e40af" opacity="0.9"/>';
-  svg += '<rect x="155" y="75" width="60" height="60" rx="4" fill="#3b82f6" opacity="0.6"/>';
-  svg += '<rect x="230" y="98" width="30" height="14" fill="#64748b"/>';
-  svg += '<rect x="260" y="92" width="20" height="26" rx="3" fill="#94a3b8"/>';
-  svg += '<rect x="280" y="100" width="180" height="10" fill="#cbd5e1"/>';
-  for(var i = 0; i < 12; i++){
-    svg += '<line x1="' + (285 + i * 15) + '" y1="100" x2="' + (295 + i * 15) + '" y2="110" stroke="#94a3b8" stroke-width="1.5"/>';
-  }
-  svg += '<text x="185" y="170" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="700">STEPPER MOTOR</text>';
-  svg += '<text x="370" y="170" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="700">LEAD SCREW / BELT</text>';
-  svg += '<text x="185" y="45" text-anchor="middle" font-size="12" fill="#1e40af" font-weight="700">' + voltage + ' V</text>';
-  svg += '<text x="185" y="195" text-anchor="middle" font-size="11" fill="var(--muted)">' + current + ' A per phase &middot; ' + mLabel + '</text>';
-  svg += '</svg>';
-  return svg;
-}
-
-/* ---------- Speed & power ---------- */
-function calcSpeed(){
-  var V = val("sVoltage");
-  var I = val("sCurrent");
-  var Lmh = val("sInductance");
-  var spr = val("sStepsRev");
-  var micro = parseInt($("sMicrostep").value, 10) || 1;
-
-  if(!(V > 0) || !(I > 0) || !(Lmh > 0) || !(spr > 0)){
-    return { err: "Voltage, current, inductance and steps per revolution are required and must be greater than zero." };
-  }
-
-  /* Optional inputs: blank means "not provided" (NaN), never a hidden default. */
-  var R = val("sResistance");
-  var holdT = val("sHolding");
-  var JrIn = val("sRotorInertia");
-  var JlIn = val("sLoadInertia");
-  var loadT = val("sLoadTorque");
-  if(R < 0 || holdT < 0 || JrIn < 0 || JlIn < 0 || loadT < 0){
-    return { err: "Optional values cannot be negative. Leave a field blank to skip it." };
-  }
-
-  var L = Lmh / 1000;
-  var hasR = R > 0, hasHold = holdT > 0, hasJr = JrIn > 0, hasJl = JlIn >= 0, hasLoad = loadT > 0;
-
-  /* Full-step rate limit from current rise time (first-order estimate). */
-  var maxStepsSec = V / (2 * L * I);
-  var minTimeMs = (2 * L * I / V) * 1000;
-  var maxRevSec = maxStepsSec / spr;
-  var totalSteps = spr * micro;
-  var pulseRate = maxStepsSec * micro;
-
-  var psupply = I * V;
-  var pwinding = hasR ? 2 * I * I * R : null;
-
-  /* Resonance: small-oscillation frequency, rotor teeth Nr = spr / 4. */
-  var fRes = null;
-  if(hasHold && hasJr){
-    var J = JrIn * 1e-7 + (hasJl ? JlIn * 1e-7 : 0);
-    var Nr = spr / 4;
-    fRes = (1 / (2 * Math.PI)) * Math.sqrt((holdT * Nr) / J);
-  }
-
-  /* Torque roll-off uses the electrical frequency (step rate / 4 for a 2-phase motor). */
-  var torqueAtSpeed = null;
-  if(hasHold && hasR){
-    var fe = maxStepsSec / 4;
-    torqueAtSpeed = holdT / Math.sqrt(1 + Math.pow(2 * Math.PI * fe * L / R, 2));
-  }
-
-  var inertiaRatio = (hasJr && hasJl) ? JlIn / JrIn : null;
-
-  var status = { label: "OK", cls: "ok", notes: [] };
-  if(inertiaRatio !== null){
-    if(inertiaRatio > 10){
-      status.cls = "err"; status.label = "Inertia ratio too high";
-      status.notes.push("Load-to-rotor inertia ratio is " + inertiaRatio.toFixed(1) + ":1 - above the 10:1 limit. Expect ringing and lost steps.");
-    } else if(inertiaRatio > 5){
-      status.cls = "warn"; status.label = "Inertia ratio high";
-      status.notes.push("Inertia ratio is " + inertiaRatio.toFixed(1) + ":1 - consider a larger motor or gear reduction.");
-    }
-  }
-  if(torqueAtSpeed !== null && hasLoad && loadT > torqueAtSpeed){
-    status.cls = "err"; status.label = "Torque shortfall";
-    status.notes.push("Load torque " + loadT + " N.m exceeds estimated torque " + torqueAtSpeed.toFixed(3) + " N.m at the max step rate.");
-  }
-
-  var skipped = [];
-  if(fRes === null) skipped.push("resonance frequency (needs holding torque and rotor inertia)");
-  if(inertiaRatio === null) skipped.push("inertia ratio (needs rotor and load inertia)");
-  if(torqueAtSpeed === null) skipped.push("torque at max step rate (needs holding torque and phase resistance)");
-  else if(!hasLoad) skipped.push("load torque check (needs load torque)");
-
-  var checked = (inertiaRatio !== null) || (torqueAtSpeed !== null && hasLoad);
-  if(status.cls === "ok"){
-    if(checked) status.notes.push("Checks passed for the values entered. Verify against the motor's torque-speed curve before ordering.");
-    else status.label = "Basic results";
-  }
-  if(skipped.length) status.notes.push("Not checked: " + skipped.join("; ") + ".");
-
-  return {
-    maxStepsSec: maxStepsSec,
-    maxRevSec: maxRevSec,
-    maxRpm: maxRevSec * 60,
-    pulseRate: pulseRate,
-    micro: micro,
-    minTimeMs: minTimeMs,
-    psupply: psupply,
-    pwinding: pwinding,
-    stepsRevTotal: totalSteps,
-    fRes: fRes,
-    torqueAtSpeed: torqueAtSpeed,
-    inertiaRatio: inertiaRatio,
-    status: status
-  };
-}
-
-/* ---------- CNC / steps per unit ---------- */
-function calcCnc(){
-  var spr = val("cStepsRev");
-  var micro = parseInt($("cMicrostep").value, 10) || 1;
-  var drive = $("cDriveType").value;
-  var units = $("cUnits").value;
-
-  if(!(spr > 0)) return { err: "Steps per revolution is required and must be greater than zero." };
-
-  var stepsPerRev = spr * micro;
-  var r = { stepsPerRev: stepsPerRev, drive: drive, units: units, pulseFreq: 0 };
-  var ratio;
-
-  /* Gear ratio = motor revolutions per output revolution (5 means a 5:1 reduction),
-     so a higher ratio needs MORE steps per unit of travel. */
-  if(drive === "leadscrew"){
-    var lead = val("cLead");
-    ratio = val("cGearRatio");
-    if(!(lead > 0) || !(ratio > 0)) return { err: "Screw lead and gear ratio are required and must be greater than zero." };
-    r.stepsPerMm = stepsPerRev * ratio / lead;
-    r.formula = "(" + spr + " x " + micro + " x " + ratio + ") / " + lead + " mm";
-  } else if(drive === "belt"){
-    var beltPitch = val("cBeltPitch");
-    var teeth = val("cPulleyTeeth");
-    ratio = val("cBeltGearRatio");
-    if(!(beltPitch > 0) || !(teeth > 0) || !(ratio > 0)) return { err: "Belt pitch, pulley teeth and gear ratio are required and must be greater than zero." };
-    r.stepsPerMm = stepsPerRev * ratio / (beltPitch * teeth);
-    r.formula = "(" + spr + " x " + micro + " x " + ratio + ") / (" + beltPitch + " mm x " + teeth + " teeth)";
-  } else if(drive === "rack"){
-    var pinionDia = val("cPinionPitch");
-    ratio = val("cRackGearRatio");
-    if(!(pinionDia > 0) || !(ratio > 0)) return { err: "Pinion pitch diameter and gear ratio are required and must be greater than zero." };
-    r.stepsPerMm = stepsPerRev * ratio / (Math.PI * pinionDia);
-    r.formula = "(" + spr + " x " + micro + " x " + ratio + ") / (pi x " + pinionDia + " mm)";
-  } else {
-    ratio = val("cDirectGearRatio");
-    if(!(ratio > 0)) return { err: "Gear ratio is required and must be greater than zero." };
-    r.stepsPerOutRev = stepsPerRev * ratio;
-    r.stepsPerDeg = r.stepsPerOutRev / 360;
-    r.formula = "(" + spr + " x " + micro + " x " + ratio + ") / 360 deg";
-    return r;
-  }
-
-  r.stepsPerInch = r.stepsPerMm * 25.4;
-  r.outputStepsPerUnit = units === "inch" ? r.stepsPerInch : r.stepsPerMm;
-
-  /* Feed rate target is entered in the selected unit (mm/min or in/min). */
-  var feed = val("cMaxFeed");
-  if(feed > 0) r.pulseFreq = (feed / 60) * r.outputStepsPerUnit;
-  return r;
-}
-
-/* ---------- Torque-speed curve ---------- */
-function calcCurve(){
-  var holdT = val("tHolding");
-  var Lmh = val("tInductance");
-  var R = val("tResistance");
-  var V = val("tVoltage");
-  var I = val("tCurrent");
-  var spr = val("tStepsRev");
-
-  if(!(holdT > 0) || !(Lmh > 0) || !(R > 0) || !(V > 0) || !(I > 0) || !(spr > 0)){
-    return { err: "All values are required and must be greater than zero." };
-  }
-
-  var L = Lmh / 1000;
-  var maxStepsSec = V / (2 * L * I);
-
-  function torqueAt(stepRate){
-    var fe = stepRate / 4; /* electrical frequency of a 2-phase motor */
-    return holdT / Math.sqrt(1 + Math.pow(2 * Math.PI * fe * L / R, 2));
-  }
-
-  var points = [];
-  var steps = 30;
-  for(var i = 0; i <= steps; i++){
-    var f = (maxStepsSec * 1.2) * (i / steps);
-    points.push({ f: f, t: torqueAt(f) });
-  }
-
-  return {
-    points: points,
-    maxStepsSec: maxStepsSec,
-    holdT: holdT,
-    torqueAtMax: torqueAt(maxStepsSec),
-    rpmAtMax: (maxStepsSec / spr) * 60
-  };
-}
-
-/* ---------- Rendering ---------- */
-function renderSpeed(){
-  var r = calcSpeed();
-  var out = $("speedOutput");
-  if(r.err){ out.innerHTML = '<div class="sm-warn">' + r.err + '</div>'; $("diagramWrap").innerHTML = ''; return; }
-
-  $("diagramWrap").innerHTML = drawDiagram(val("sVoltage"), val("sCurrent"), $("sMicrostep").value) +
-    '<div class="sm-diagram-caption">Motor and drive train - parameters update live</div>';
-
-  var dash = "-";
-  var h = '<div class="sm-result">';
-  h += '<div class="sm-result-label">Maximum step rate (full steps)</div>';
-  h += '<div class="sm-result-big">' + Math.round(r.maxStepsSec).toLocaleString() + ' steps/sec</div>';
-  h += '<div class="sm-result-sub">' + r.maxRpm.toFixed(1) + ' RPM &middot; ' + r.maxRevSec.toFixed(2) + ' rev/sec (full-step basis, independent of microstepping)</div>';
-  h += '</div>';
-
-  h += '<div class="sm-stats">';
-  h += '<div class="sm-stat"><div class="lbl">Min time per step</div><div class="val">' + r.minTimeMs.toFixed(3) + ' ms</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Supply power (V x I)</div><div class="val">' + r.psupply.toFixed(1) + ' W</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Total steps/rev</div><div class="val">' + r.stepsRevTotal.toLocaleString() + '</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Resonance freq</div><div class="val">' + (r.fRes !== null ? r.fRes.toFixed(1) + ' Hz' : dash) + '</div></div>';
-  h += '</div>';
-
-  h += '<div class="sm-stats">';
-  h += '<div class="sm-stat"><div class="lbl">Torque at max step rate</div><div class="val">' + (r.torqueAtSpeed !== null ? r.torqueAtSpeed.toFixed(3) + ' N.m' : dash) + '</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Inertia ratio</div><div class="val ' + (r.inertiaRatio === null ? "" : (r.inertiaRatio > 10 ? "err" : (r.inertiaRatio > 5 ? "warn" : "ok"))) + '">' + (r.inertiaRatio !== null ? r.inertiaRatio.toFixed(1) + ' : 1' : dash) + '</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Driver pulse rate at max (' + (r.micro === 1 ? 'full step' : '1/' + r.micro) + ')</div><div class="val">' + Math.round(r.pulseRate).toLocaleString() + ' Hz</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Winding loss (2 x I&sup2; x R)</div><div class="val">' + (r.pwinding !== null ? r.pwinding.toFixed(1) + ' W' : dash) + '</div></div>';
-  h += '</div>';
-
-  h += '<div class="sm-panel"><h3>Design status <span class="sm-badge ' + r.status.cls + '">' + r.status.label + '</span></h3>';
-  h += '<ul>';
-  for(var i = 0; i < r.status.notes.length; i++) h += '<li>' + r.status.notes[i] + '</li>';
-  h += '</ul></div>';
-
-  h += '<div class="sm-tip"><b>Formula used:</b> Max step rate = V / (2 x L x Imax), a first-order current-rise estimate. With V = ' + val("sVoltage") + ' V, L = ' + val("sInductance") + ' mH, Imax = ' + val("sCurrent") + ' A. It is a rough guide, not a guaranteed speed limit - check the torque-speed curve for your load.</div>';
-
-  h += '<div class="sm-actions">';
-  h += '<button type="button" id="copySpeedBtn" class="primary">Copy result</button>';
-  h += '<button type="button" id="printSpeedBtn">Print / save as PDF</button>';
-  h += '</div>';
-
-  out.innerHTML = h;
-
-  $("copySpeedBtn").addEventListener("click", function(){
-    var text = "Stepper Motor Calculator Result\n" +
-      "Max step rate (full steps): " + Math.round(r.maxStepsSec) + " steps/sec\n" +
-      "Max RPM: " + r.maxRpm.toFixed(1) + "\n" +
-      "Min time per step: " + r.minTimeMs.toFixed(3) + " ms\n" +
-      "Supply power (V x I): " + r.psupply.toFixed(1) + " W\n" +
-      "Winding loss (2 x I^2 x R): " + (r.pwinding !== null ? r.pwinding.toFixed(1) + " W" : dash) + "\n" +
-      "Total steps/rev: " + r.stepsRevTotal + "\n" +
-      "Driver pulse rate at max: " + Math.round(r.pulseRate) + " Hz\n" +
-      "Resonance freq: " + (r.fRes !== null ? r.fRes.toFixed(1) + " Hz" : dash) + "\n" +
-      "Torque at max step rate: " + (r.torqueAtSpeed !== null ? r.torqueAtSpeed.toFixed(3) + " N.m" : dash) + "\n" +
-      "Inertia ratio: " + (r.inertiaRatio !== null ? r.inertiaRatio.toFixed(1) + ":1" : dash) + "\n" +
-      "Status: " + r.status.label + "\n" +
-      "- utiliby.com";
-    copyText(text, $("copySpeedBtn"));
-  });
-  $("printSpeedBtn").addEventListener("click", function(){ window.print(); });
-}
-
-function renderCnc(){
-  var r = calcCnc();
-  var out = $("cncOutput");
-  if(r.err){ out.innerHTML = '<div class="sm-warn">' + r.err + '</div>'; return; }
-
-  var h, text;
-
-  if(r.drive === "direct"){
-    h = '<div class="sm-result">';
-    h += '<div class="sm-result-label">Steps per degree</div>';
-    h += '<div class="sm-result-big">' + nf(r.stepsPerDeg, 4) + '</div>';
-    h += '<div class="sm-result-sub">steps per degree of output rotation - direct rotation has no linear distance, so steps/mm and steps/inch do not apply</div>';
-    h += '</div>';
-    h += '<div class="sm-stats">';
-    h += '<div class="sm-stat"><div class="lbl">Total steps/rev (motor)</div><div class="val">' + r.stepsPerRev.toLocaleString() + '</div></div>';
-    h += '<div class="sm-stat"><div class="lbl">Steps per output rev</div><div class="val">' + nf(r.stepsPerOutRev, 3) + '</div></div>';
-    h += '<div class="sm-stat"><div class="lbl">Degrees per step</div><div class="val">' + (360 / r.stepsPerOutRev).toFixed(4) + '&deg;</div></div>';
-    h += '</div>';
-    h += '<div class="sm-tip"><b>Formula:</b> ' + r.formula + ' = ' + r.stepsPerDeg.toFixed(4) + ' steps/degree</div>';
-    h += '<div class="sm-actions"><button type="button" id="copyCncBtn" class="primary">Copy result</button></div>';
-    out.innerHTML = h;
-    text = "Stepper Motor Rotary Setup\n" +
-      "Total steps/rev (motor): " + r.stepsPerRev + "\n" +
-      "Steps per output rev: " + r.stepsPerOutRev + "\n" +
-      "Steps/degree: " + r.stepsPerDeg.toFixed(4) + "\n" +
-      "Formula: " + r.formula + "\n" +
-      "- utiliby.com";
-  } else {
-    var unitLabel = r.units === "inch" ? "steps/inch" : "steps/mm";
-    var feedUnit = r.units === "inch" ? "in/min" : "mm/min";
-    var big = r.outputStepsPerUnit;
-    h = '<div class="sm-result">';
-    h += '<div class="sm-result-label">Steps per unit</div>';
-    h += '<div class="sm-result-big">' + nf(big, 3) + '</div>';
-    h += '<div class="sm-result-sub">' + unitLabel + ' - enter this in your firmware as <code>steps_per_mm</code> (or <code>steps_per_inch</code>)</div>';
-    h += '</div>';
-
-    h += '<div class="sm-stats">';
-    h += '<div class="sm-stat"><div class="lbl">Total steps/rev</div><div class="val">' + r.stepsPerRev.toLocaleString() + '</div></div>';
-    h += '<div class="sm-stat"><div class="lbl">Steps/mm</div><div class="val">' + r.stepsPerMm.toFixed(3) + '</div></div>';
-    h += '<div class="sm-stat"><div class="lbl">Steps/inch</div><div class="val">' + r.stepsPerInch.toFixed(1) + '</div></div>';
-    if(r.pulseFreq > 0) h += '<div class="sm-stat"><div class="lbl">Pulse freq at max feed (' + feedUnit + ')</div><div class="val">' + Math.round(r.pulseFreq).toLocaleString() + ' Hz</div></div>';
-    h += '</div>';
-
-    h += '<div class="sm-tip"><b>Formula:</b> ' + r.formula + ' = ' + r.stepsPerMm.toFixed(3) + ' steps/mm</div>';
-    if(Math.abs(big - Math.round(big)) > 0.0005){
-      h += '<div class="sm-tip"><b>Note:</b> this is not a whole number. Most firmware accepts decimals - enter all the digits shown, because rounding causes a small cumulative position error over long moves.</div>';
-    }
-
-    h += '<div class="sm-actions">';
-    h += '<button type="button" id="copyCncBtn" class="primary">Copy result</button>';
-    h += '</div>';
-    out.innerHTML = h;
-
-    text = "Stepper Motor CNC Setup\n" +
-      "Total steps/rev: " + r.stepsPerRev + "\n" +
-      "Steps/mm: " + r.stepsPerMm.toFixed(3) + "\n" +
-      "Steps/inch: " + r.stepsPerInch.toFixed(1) + "\n" +
-      (r.pulseFreq > 0 ? "Pulse frequency at max feed (" + feedUnit + "): " + Math.round(r.pulseFreq) + " Hz\n" : "") +
-      "Formula: " + r.formula + "\n" +
-      "- utiliby.com";
-  }
-
-  $("copyCncBtn").addEventListener("click", function(){ copyText(text, $("copyCncBtn")); });
-}
-
-function renderCurve(){
-  var r = calcCurve();
-  var out = $("curveOutput");
-  if(r.err){ out.innerHTML = '<div class="sm-warn">' + r.err + '</div>'; return; }
-
-  var W = 520, H = 260;
-  var padL = 60, padR = 20, padT = 20, padB = 40;
-  var plotW = W - padL - padR, plotH = H - padT - padB;
-  var maxF = r.points[r.points.length - 1].f;
-  var maxT = r.holdT;
-
-  var path = "M";
-  for(var i = 0; i < r.points.length; i++){
-    var p = r.points[i];
-    var x = padL + (p.f / maxF) * plotW;
-    var y = padT + plotH - (p.t / maxT) * plotH;
-    path += (i === 0 ? " " : " L ") + x.toFixed(1) + " " + y.toFixed(1);
-  }
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Torque-speed curve" preserveAspectRatio="xMidYMid meet">';
-  svg += '<rect x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + plotH + '" fill="none" stroke="var(--line)"/>';
-  svg += '<line x1="' + padL + '" y1="' + (padT + plotH) + '" x2="' + (padL + plotW) + '" y2="' + (padT + plotH) + '" stroke="var(--line)"/>';
-  svg += '<line x1="' + padL + '" y1="' + padT + '" x2="' + padL + '" y2="' + (padT + plotH) + '" stroke="var(--line)"/>';
-  svg += '<path d="' + path + '" fill="none" stroke="#1e40af" stroke-width="3" stroke-linecap="round"/>';
-  svg += '<text x="' + (padL + plotW / 2) + '" y="' + (H - 10) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Step frequency (steps/sec)</text>';
-  svg += '<text x="15" y="' + (padT + plotH / 2) + '" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 15 ' + (padT + plotH / 2) + ')">Torque (N.m)</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + r.holdT.toFixed(2) + '</text>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (padT + plotH + 4) + '" text-anchor="end" font-size="10" fill="var(--muted)">0</text>';
-  svg += '<text x="' + (padL + plotW) + '" y="' + (padT + plotH + 14) + '" text-anchor="end" font-size="10" fill="var(--muted)">' + Math.round(maxF) + '</text>';
-  svg += '</svg>';
-
-  var h = '<div class="sm-diagram">' + svg + '<div class="sm-diagram-caption">Torque falls as speed rises - where the curve meets your load torque is your practical speed limit</div></div>';
-  h += '<div class="sm-stats">';
-  h += '<div class="sm-stat"><div class="lbl">Holding torque</div><div class="val">' + r.holdT.toFixed(3) + ' N.m</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Max step rate</div><div class="val">' + Math.round(r.maxStepsSec).toLocaleString() + ' steps/sec</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">RPM at max</div><div class="val">' + r.rpmAtMax.toFixed(1) + '</div></div>';
-  h += '<div class="sm-stat"><div class="lbl">Torque at max step rate</div><div class="val">' + r.torqueAtMax.toFixed(3) + ' N.m</div></div>';
-  h += '</div>';
-  h += '<div class="sm-tip"><b>How to read this curve:</b> Draw a horizontal line at your load torque. The point where it crosses the curve is the maximum speed the motor can drive that load without stalling. Always leave a 30% margin below the curve. This is a first-order L/R model (electrical frequency = step rate / 4) that ignores back-EMF and driver chopping - use the manufacturer\'s torque-speed curve for final selection.</div>';
-
-  out.innerHTML = h;
-}
-
-/* Keep CNC label / controls consistent with the chosen drive type and units. */
-function updateCncUi(){
-  var direct = $("cDriveType").value === "direct";
-  var inch = $("cUnits").value === "inch";
-  $("cUnits").disabled = direct;
-  $("cMaxFeed").disabled = direct;
-  var lab = document.querySelector('label[for="cMaxFeed"]');
-  if(lab) lab.textContent = direct ? "Max feed rate target (not used for direct rotation)" : "Max feed rate target (" + (inch ? "in/min" : "mm/min") + ", optional)";
-}
-
-window.addEventListener("DOMContentLoaded", function(){
-  var T = $("tool");
-  if(!T) return;
-
-  document.querySelectorAll(".sm-tab").forEach(function(tab){
-    tab.addEventListener("click", function(){
-      var mode = this.dataset.mode;
-      document.querySelectorAll(".sm-tab").forEach(function(x){
-        x.classList.toggle("on", x.dataset.mode === mode);
-      });
-      $("speedTab").hidden = (mode !== "speed");
-      $("cncTab").hidden = (mode !== "cnc");
-      $("curveTab").hidden = (mode !== "curve");
-      if(mode === "speed") renderSpeed();
-      else if(mode === "cnc") renderCnc();
-      else if(mode === "curve") renderCurve();
-    });
-  });
-
-  var lastUnit = $("cUnits").value;
-  $("cUnits").addEventListener("change", function(){
-    var u = this.value;
-    var f = val("cMaxFeed");
-    if(f > 0 && u !== lastUnit){
-      $("cMaxFeed").value = u === "inch" ? +(f / 25.4).toFixed(2) : +(f * 25.4).toFixed(1);
-    }
-    lastUnit = u;
-    updateCncUi();
-    renderCnc();
-  });
-
-  $("cDriveType").addEventListener("change", function(){
-    var v = this.value;
-    $("leadscrewFields").hidden = v !== "leadscrew";
-    $("beltFields").hidden = v !== "belt";
-    $("rackFields").hidden = v !== "rack";
-    $("directFields").hidden = v !== "direct";
-    updateCncUi();
-    renderCnc();
-  });
-
-  function live(ids, fn){
-    ids.forEach(function(id){
-      $(id).addEventListener("input", fn);
-      $(id).addEventListener("change", fn);
-    });
-  }
-  live(["sVoltage","sCurrent","sInductance","sStepsRev","sMicrostep","sResistance","sHolding","sRotorInertia","sLoadInertia","sLoadTorque"], renderSpeed);
-  live(["cStepsRev","cMicrostep","cLead","cGearRatio","cBeltPitch","cPulleyTeeth","cBeltGearRatio","cPinionPitch","cRackGearRatio","cDirectGearRatio","cMaxFeed"], renderCnc);
-  live(["tHolding","tInductance","tResistance","tVoltage","tCurrent","tStepsRev"], renderCurve);
-
-  $("calcSpeedBtn").addEventListener("click", renderSpeed);
-  $("calcCncBtn").addEventListener("click", renderCnc);
-  $("calcCurveBtn").addEventListener("click", renderCurve);
-
-  $("resetSpeedBtn").addEventListener("click", function(){
-    $("sVoltage").value = 24;
-    $("sCurrent").value = 1.5;
-    $("sInductance").value = 4;
-    $("sStepsRev").value = 200;
-    $("sMicrostep").value = "16";
-    $("sResistance").value = 3.3;
-    $("sHolding").value = 0.4;
-    $("sRotorInertia").value = 54;
-    $("sLoadInertia").value = 100;
-    $("sLoadTorque").value = 0.05;
-    renderSpeed();
-  });
-
-  document.addEventListener("click", function(e){
-    var copyBtn = e.target.closest("[data-copy-target]");
-    if(copyBtn){
-      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
-      if(target) copyText(target.value, copyBtn);
-    }
-  });
-
-  updateCncUi();
-  renderSpeed();
-  renderCnc();
-  renderCurve();
-});
+<section id="stepperReport" aria-label="Stepper calculation report"></section><script>(function(){'use strict';
+const $=id=>document.getElementById(id),PI=Math.PI;
+let mode='speed',oldUnits='mm';const reports={},errors={};
+const fmt=n=>Number.isFinite(n)?new Intl.NumberFormat('en-US',{maximumSignificantDigits:7}).format(n):'Not evaluated';
+const raw=n=>Number(n.toPrecision(12)).toString();
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function num(id,min=0,strict=false,optional=false,integer=false){const v=$(id).value.trim(),n=Number(v);if(optional&&v==='')return null;if(v===''||!Number.isFinite(n)||n<min||(strict&&n===min)||(integer&&!Number.isInteger(n)))throw Error($(id).previousElementSibling.textContent+' must be '+(integer?'a whole number ':'')+(strict?'greater than ':'at least ')+min+'.');return n;}
+function finite(obj){for(const [k,n]of Object.entries(obj))if(typeof n==='number'&&!Number.isFinite(n))throw Error('Unrepresentable result ('+k+'). Use realistic input magnitudes.');return obj;}
+function electrical(p){const peak=p.basis==='rms'?p.I*Math.SQRT2:p.I,fe=p.spr*p.rpm/60,fp=fe*p.micro,ceiling=Math.min(p.ceiling??Infinity,1e6/(p.high+p.low)),Veff=p.V-p.Ke*p.rpm/1000,target=peak*p.fraction/100;let tau=null,rise=null,current=null,loss=null;
+ if(p.R!==null){tau=p.L/p.R;const steady=Math.max(0,Veff)/p.R;if(steady>target)rise=-tau*Math.log1p(-target/steady);current=Math.min(peak,steady*(fe===0?1:-Math.expm1(-1/(fe*tau))));loss=p.basis==='peak'?p.I*p.I*p.R:2*p.I*p.I*p.R;}
+ const J=(p.Jr??0)+(p.Jl??0),freq=p.hold!==null&&p.Jr>0?Math.sqrt(p.hold*(p.spr/4)/(J*1e-7))/(2*PI):null;
+ return finite({...p,peak,fullRate:fe,pulseRate:fp,ceiling,pulsePeriod:fp>0?1e6/fp:null,maxCommandRpm:ceiling*60/(p.spr*p.micro),stepAngle:360/p.spr,microAngle:360/(p.spr*p.micro),Veff,tau,rise,current,loss,freq,inertiaRatio:p.Jr>0&&p.Jl!==null?p.Jl/p.Jr:null});}
+function profile(distance,v,a){if(distance===0)return {kind:'Zero distance',peak:0,time:0,tAccel:0,tCruise:0,dAccel:0};const peak=Math.min(v,Math.sqrt(distance*a)),tAccel=peak/a,dAccel=peak*peak/(2*a),tCruise=Math.max(0,(distance-2*dAccel)/peak);return finite({kind:tCruise>1e-10?'Trapezoidal':'Triangular',peak,time:2*tAccel+tCruise,tAccel,tCruise,dAccel});}
+function cnc(p){const rotation=p.drive==='direct',travel=rotation?360:p.drive==='leadscrew'?p.lead:p.drive==='belt'?p.pitch*p.teeth:PI*p.diameter;const scale=rotation?1:p.units==='inch'?25.4:1,perMm=p.spr*p.micro*p.ratio/travel,perUnit=perMm*scale,velocity=p.feed*scale/60,accel=p.accel*scale,distance=p.distance*scale,rpm=velocity/travel*p.ratio*60,pulse=velocity*perMm,prof=profile(distance,velocity,accel),pulses=Math.round(distance*perMm);if(!Number.isSafeInteger(pulses))throw Error('Move pulse count exceeds exact integer precision. Reduce the commanded distance or resolution.');return finite({...p,rotation,travel,scale,perMm,perUnit,velocity,accel,distance,rpm,pulse,prof,pulses,quantized:pulses/perUnit,error:pulses/perUnit-p.distance,resolution:1/perUnit,fullResolution:p.micro/perUnit,ceilingFeed:p.ceiling/perUnit*60,peakRpm:prof.peak/travel*p.ratio*60,peakPulse:prof.peak*perMm});}
+function parseCurve(text){const lines=text.trim().split(/\r?\n/);if(!text.trim())throw Error('Enter at least two RPM/torque points from a manufacturer curve, or explicitly select the illustrative model.');let points=[];for(let i=0;i<lines.length;i++){let line=lines[i].trim();if(!line)continue;if(i===0&&/^rpm\s*[,;\t]\s*(torque|n)/i.test(line))continue;const a=line.split(/[,;\t]/).map(x=>x.trim());if(a.length!==2||a.some(x=>x===''||!Number.isFinite(Number(x))))throw Error('Curve line '+(i+1)+' must contain exactly two finite numbers: RPM, torque_Nm.');const rpm=Number(a[0]),torque=Number(a[1]);if(rpm<0||torque<0)throw Error('Curve RPM and torque must be nonnegative.');if(points.length&&rpm<=points[points.length-1].rpm)throw Error('Curve RPM values must strictly increase; remove duplicates or reorder rows.');points.push({rpm,torque});if(points.length>500)throw Error('Use at most 500 curve points.');}if(points.length<2)throw Error('A curve needs at least two points.');return points;}
+function interpolate(points,rpm){if(rpm<points[0].rpm||rpm>points[points.length-1].rpm)return null;for(let i=1;i<points.length;i++)if(rpm<=points[i].rpm){const a=points[i-1],b=points[i];return a.torque+(b.torque-a.torque)*(rpm-a.rpm)/(b.rpm-a.rpm);}return points[0].torque;}
+function proxy(p,rpm){const steady=Math.max(0,p.V-p.Ke*rpm/1000)/p.R,rate=p.spr*rpm/60,current=steady*(rate===0?1:-Math.expm1(-p.R/(p.L*rate)));return p.hold*Math.min(1,current/p.I);}
+function motion(c,p){if(!(p.efficiency<=1))throw Error('Transmission efficiency must be at most 1.');if(p.angle>90)throw Error('Uphill angle must be between 0° and 90°.');const radPerUnit=c.rotation?PI/180:2*PI/c.travel,alphaOut=c.accel*radPerUnit,alphaMotor=alphaOut*c.ratio,Jr=p.rotor*1e-7,Jout=p.outputJ*1e-7,Jlinear=c.rotation?0:p.mass*(c.travel/1000/(2*PI*c.ratio))**2,reflected=Jlinear+Jout/c.ratio**2;
+ const force=c.rotation?0:p.force+p.mass*9.80665*Math.sin(p.angle*PI/180),load=c.rotation?p.rotLoad/(c.ratio*p.efficiency):force*c.travel/1000/(2*PI*c.ratio*p.efficiency),accelTorque=(Jr+reflected/p.efficiency)*alphaMotor,steady=load+p.friction,required=steady+accelTorque,withMargin=required*p.factor;return finite({...p,linearForce:force,reflected,alphaMotor,load,accelTorque,steady,required,withMargin,ratio:Jr>0?reflected/Jr:null,margin:p.available!==null&&withMargin>0?p.available/withMargin:null});}
+window.StepperMath={electrical,cnc,profile,parseCurve,interpolate,proxy,motion};
+function table(rows){return '<div class="sm-table-wrap"><table class="sm-table"><tbody>'+rows.map(([a,b])=>'<tr><th scope="row">'+esc(a)+'</th><td>'+esc(b)+'</td></tr>').join('')+'</tbody></table></div>';}
+function stat(a,b){return '<div class="sm-stat"><div class="lbl">'+esc(a)+'</div><div class="val">'+esc(b)+'</div></div>';}
+function complete(which,title,rows,warnings,visual='',extra='',data=null){const h='<div class="sm-stats">'+rows.slice(0,4).map(a=>stat(...a)).join('')+'</div>'+warnings.map(w=>'<p class="sm-warn">'+esc(w)+'</p>').join('')+visual+table(rows)+extra;$(which+'Output').innerHTML=h;reports[which]={title,rows,warnings,visual,extra,data};delete errors[which];}
+function attempt(which,fn){try{fn();}catch(e){delete reports[which];errors[which]=e.message;$(which+'Output').innerHTML='<p class="sm-warn">'+esc(e.message)+'</p>';if(which==='speed')$('diagramWrap').innerHTML='';}}
+function motorSVG(p){const angle=num('sPreview'),a=angle*PI/180,x=127+44*Math.cos(a),y=102-44*Math.sin(a);return '<svg viewBox="0 0 580 215" role="img" aria-label="Motor rotor command angle, driver and pulse timing"><rect width="580" height="215" fill="#f8fbfc"/><circle cx="127" cy="102" r="64" fill="#e0eaff" stroke="#1e40af" stroke-width="3"/><circle cx="127" cy="102" r="48" fill="white" stroke="#9ab1d7"/><path d="M 127 102 L '+x+' '+y+'" stroke="#b36c16" stroke-width="6"/><rect x="295" y="50" width="130" height="87" rx="10" fill="#e0eaff" stroke="#1e40af"/><path d="M 193 91 H 295 M 193 112 H 295" stroke="#1e40af" stroke-width="3"/><text x="100" y="190">'+esc(fmt(angle))+'° command</text><text x="320" y="84">STEP/DIR</text><text x="316" y="108">'+esc(fmt(p.V))+' V bus</text><text x="210" y="28">'+esc(fmt(p.rpm))+' RPM · '+esc(fmt(p.pulseRate/1000))+' kHz</text><path d="M 270 179 h 18 v -22 h 20 v 22 h 20 v -22 h 20 v 22 h 20 v -22 h 20 v 22 h 20" fill="none" stroke="#1e40af" stroke-width="2"/><text x="270" y="204">Pulse illustration; not measured rotor feedback</text></svg>';}
+function renderSpeed(){const p={V:num('sVoltage',0,true),I:num('sCurrent',0,true),L:num('sInductance',0,true)/1000,spr:num('sStepsRev',0,true,false,true),micro:num('sMicrostep',0,true),R:num('sResistance',0,true,true),hold:num('sHolding',0,false,true),Jr:num('sRotorInertia',0,false,true),Jl:num('sLoadInertia',0,false,true),load:num('sLoadTorque',0,false,true),rpm:num('sRpm'),ceiling:num('sPulseLimit',0,true,true),high:num('sHigh',0,true),low:num('sLow',0,true),Ke:num('sKe'),fraction:num('sFraction',0,true),basis:$('sCurrentBasis').value};if(p.fraction>=100)throw Error('Current-rise target must be less than 100%.');p.ceiling=p.ceiling===null?null:p.ceiling*1000;const r=electrical(p),rows=[['Requested motor speed',fmt(r.rpm)+' RPM'],['Required STEP rate',fmt(r.pulseRate/1000)+' kHz'],['Command-rate ceiling only',fmt(r.maxCommandRpm)+' RPM'],['Two-phase winding copper loss',r.loss===null?'Resistance needed':fmt(r.loss)+' W'],['Bus voltage / entered phase current',fmt(r.V)+' V / '+fmt(r.I)+' A ('+$('sCurrentBasis').selectedOptions[0].textContent+')'],['Full steps / input microsteps',r.spr+' / '+r.micro],['Full-step / microstep angle',fmt(r.stepAngle)+'° / '+fmt(r.microAngle)+'°'],['Pulses per motor revolution',fmt(r.spr*r.micro)],['Full-step-equivalent rate',fmt(r.fullRate)+' steps/s'],['STEP period',r.pulsePeriod===null?'Stationary':fmt(r.pulsePeriod)+' µs'],['Effective pulse ceiling',fmt(r.ceiling/1000)+' kHz'],['STEP minimum high / low time',fmt(r.high)+' / '+fmt(r.low)+' µs'],['Winding L / R',fmt(r.L*1000)+' mH / '+(r.R===null?'not supplied':fmt(r.R)+' Ω')],['Approximate opposing back-EMF',fmt(r.Ke*r.rpm/1000)+' V'],['RL time constant',r.tau===null?'Not evaluated':fmt(r.tau*1000)+' ms'],['Time to '+fmt(r.fraction)+'% of set peak current',r.R===null?'Resistance needed':r.rise===null?'Unreachable at effective voltage':fmt(r.rise*1e6)+' µs'],['Zero-current full-step-interval current estimate',r.current===null?'Not evaluated':fmt(r.current)+' A'],['Rated phase voltage at entered current',r.R===null?'Not evaluated':fmt(r.I*r.R)+' V'],['Holding torque / motor-shaft load torque',fmt(r.hold)+' / '+fmt(r.load)+' N·m'],['Rotor / motor-reflected load inertia',fmt(r.Jr)+' / '+fmt(r.Jl)+' g·cm²'],['Load / rotor inertia ratio',r.inertiaRatio===null?'Not evaluated':fmt(r.inertiaRatio)+':1'],['Ideal small-angle natural frequency',r.freq===null?'Holding torque and positive rotor inertia needed':fmt(r.freq)+' Hz']];
+ const warnings=['Command-rate ceiling is a pulse timing limit, not a guaranteed motor RPM. Use an actual torque-speed curve and acceleration/load checks.','RL estimates neglect driver voltage drops, decay modes and current history. Copper loss excludes iron and driver losses; V × phase current is not supply power.'];if(r.pulseRate>r.ceiling)warnings.push('Requested pulse rate exceeds the entered controller/timing ceiling.');if(r.rise===null&&r.R!==null)warnings.push('The RL target current cannot be reached with the entered effective voltage.');if(r.current!==null&&r.current<r.peak*r.fraction/100)warnings.push('The zero-current interval estimate is below the selected current fraction. This is an electrical screening warning, not a measured torque result.');if(r.freq!==null)warnings.push('Natural frequency is an ideal two-phase sinusoidal stiffness estimate. No damping, stability or resonance clearance is certified.');
+ const svg=motorSVG(r);$('diagramWrap').innerHTML=svg+'<p class="sm-diagram-caption">Command angle preview and signal requirements. Open-loop motion is not verified by this illustration.</p>';let microRows=[1,2,4,8,16,32,64,128,256].map(m=>['×'+m,fmt(r.spr*m)+' pulses/rev; '+fmt(360/(r.spr*m))+'°; '+fmt(100*Math.sin(PI/(2*m)))+'% ideal incremental torque']);complete('speed','Motor electrical & signal checks',rows,warnings,'', '<h3>Microstepping comparison</h3>'+table(microRows),r);reports.speed.tableRows=microRows;reports.speed.visual='<div class="report-visual">'+svg+'</div>';}
+function readCnc(){const drive=$('cDriveType').value,rotation=drive==='direct',ratioId={leadscrew:'cGearRatio',belt:'cBeltGearRatio',rack:'cRackGearRatio',direct:'cDirectGearRatio',roller:'cRollerGearRatio'}[drive];let lead=1,pitch=1,teeth=1,diameter=1;if(drive==='leadscrew')lead=$('cLeadBasis').value==='pitch'?num('cPitch',0,true)*num('cStarts',0,true,false,true):num('cLead',0,true);if(drive==='belt'){pitch=num('cBeltPitch',0,true);teeth=num('cPulleyTeeth',0,true,false,true);}if(drive==='rack'||drive==='roller')diameter=num(drive==='rack'?'cPinionPitch':'cRollerDia',0,true);return cnc({drive,rotation,lead,pitch,teeth,diameter,ratio:num(ratioId,0,true),spr:num('cStepsRev',0,true,false,true),micro:num('cMicrostep',0,true),units:$('cUnits').value,feed:num('cMaxFeed',0,true),distance:num('cDistance'),accel:num('cAccel',0,true),ceiling:num('cPulseLimit',0,true)*1000});}
+function axisUnit(c){return c.rotation?'deg':c.units==='inch'?'in':'mm';}
+function driveSVG(c){const u=axisUnit(c),pct=num('cPreview'),x=150+260*pct/100;return '<svg viewBox="0 0 580 200" role="img" aria-label="Drive mechanism and selected move progress"><rect width="580" height="200" fill="#f8fbfc"/><rect x="30" y="70" width="88" height="65" rx="9" fill="#e0eaff" stroke="#1e40af"/><text x="41" y="98">Stepper</text><text x="39" y="119">'+esc(fmt(c.rpm))+' RPM</text><path d="M 118 104 H 465" stroke="#1e40af" stroke-width="5"/>'+ (c.rotation?'<circle cx="350" cy="102" r="52" fill="#e0eaff" stroke="#1e40af"/><path d="M 350 102 l '+(45*Math.cos(c.distance*pct/100*PI/180))+' '+(-45*Math.sin(c.distance*pct/100*PI/180))+'" stroke="#b36c16" stroke-width="5"/>':'<path d="M 140 78 H 480 M 140 133 H 480" stroke="#9ab1d7" stroke-width="2"/><rect x="'+x+'" y="76" width="44" height="58" rx="5" fill="#ffe6b0" stroke="#b36c16"/>')+'<text x="155" y="35">'+esc(c.drive)+' · '+esc(fmt(c.ratio))+':1 reduction</text><text x="150" y="177">Move: '+esc(fmt(c.distance/c.scale*pct/100))+' / '+esc(fmt(c.distance/c.scale))+' '+u+' · preview '+fmt(pct)+'%</text></svg>';}
+function profileSVG(c){const p=c.prof,tm=Math.max(p.time,.001),v=Math.max(p.peak,.001),x=t=>55+490*t/tm,y=s=>165-125*s/v;return '<svg viewBox="0 0 580 215" role="img" aria-label="Ideal move velocity versus time"><rect width="580" height="215" fill="#f8fbfc"/><path d="M 55 28 V 165 H 550" stroke="#527481" fill="none"/><path d="M 55 165 L '+x(p.tAccel)+' '+y(p.peak)+' L '+x(p.tAccel+p.tCruise)+' '+y(p.peak)+' L '+x(p.time)+' 165" stroke="#1e40af" stroke-width="3" fill="none"/><text x="60" y="23">'+esc(p.kind)+' · peak '+esc(fmt(p.peak/c.scale))+' '+axisUnit(c)+'/s</text><text x="50" y="185">0</text><text x="510" y="185">'+esc(fmt(p.time))+' s</text><text x="210" y="207">Ideal symmetric acceleration profile</text></svg>';}
+function renderCnc(){const c=readCnc(),u=axisUnit(c),rows=[['Commanded steps/'+u,fmt(c.perUnit)],['Command increment',fmt(c.resolution)+' '+u+'/pulse'],['Motor speed at target feed',fmt(c.rpm)+' RPM'],['STEP rate at target feed',fmt(c.pulse/1000)+' kHz'],['Drive / gear ratio',c.drive+' / '+fmt(c.ratio)+' motor rev per output rev'],['Full steps/revolution / microsteps',fmt(c.spr)+' / '+fmt(c.micro)],['Travel per output revolution',fmt(c.travel)+(c.rotation?'°':' mm')],['Travel per motor revolution',fmt(c.travel/c.ratio)+(c.rotation?'°':' mm')],['Full-step travel',fmt(c.fullResolution)+' '+u],['Target feed / acceleration',fmt(c.feed)+' '+u+'/min / '+fmt(c.accel/c.scale)+' '+u+'/s²'],['Commanded distance',fmt(c.distance/c.scale)+' '+u],['Integer pulse count',fmt(c.pulses)],['Quantized travel / command rounding error',fmt(c.quantized)+' / '+fmt(c.error)+' '+u],['Controller pulse ceiling',fmt(c.ceiling/1000)+' kHz'],['Pulse-limited feed only',fmt(c.ceilingFeed)+' '+u+'/min'],['Motion profile / rest-to-rest time',c.prof.kind+' / '+fmt(c.prof.time)+' s'],['Peak attained feed',fmt(c.prof.peak/c.scale*60)+' '+u+'/min'],['Peak motor speed / pulse rate',fmt(c.peakRpm)+' RPM / '+fmt(c.peakPulse/1000)+' kHz'],['Acceleration time / cruise time',fmt(c.prof.tAccel)+' / '+fmt(c.prof.tCruise)+' s']];if(c.drive==='belt')rows.push(['Belt pitch / pulley teeth',fmt(c.pitch)+' mm / '+fmt(c.teeth)]);if(c.drive==='rack'||c.drive==='roller')rows.push(['Working diameter',fmt(c.diameter)+' mm']);if(c.drive==='leadscrew'&&$('cLeadBasis').value==='pitch')rows.push(['Thread pitch × starts',$('cPitch').value+' mm × '+$('cStarts').value]);if(!c.rotation)rows.push(['Steps/mm / steps/inch',fmt(c.perMm)+' / '+fmt(c.perMm*25.4)]);
+ const warnings=['Steps/unit and command increments are geometric values, not guaranteed positioning accuracy. Backlash, compliance, microstep nonlinearity and lost steps are excluded.'];if(c.pulse>c.ceiling)warnings.push('Target feed requires more pulses than the entered controller ceiling permits.');if(c.drive==='roller')warnings.push('Effective rolling diameter and slip need measured calibration; nominal diameter does not establish accurate extruder feed.');
+ let extra='';try{const current=num('cCalCurrent',0,true,true)??c.perUnit,command=num('cCalCommand',0,true),actual=num('cCalActual',0,true),corrected=current*command/actual,newMotorDistance=c.spr*c.micro/(corrected/(c.scale));rows.push(['Calibration current setting',fmt(current)+' steps/'+u],['Calibration commanded / measured',fmt(command)+' / '+fmt(actual)+' '+u],['Calibration corrected steps/'+u,fmt(corrected)],['Calibrated effective motor rotation distance',fmt(newMotorDistance)+(c.rotation?'°':' mm')]);}catch(e){warnings.push('Calibration helper: '+e.message);}
+ if(!c.rotation){const config='Marlin example (X axis, mm):\nM92 X'+raw(c.perMm)+'\n\nGRBL example (X axis, mm):\n$100='+raw(c.perMm)+'\n\nKlipper geometry example (mm, gear kept separate):\nfull_steps_per_rotation: '+c.spr+'\nmicrosteps: '+c.micro+'\nrotation_distance: '+raw(c.travel)+(c.ratio!==1?'\ngear_ratio: '+raw(c.ratio)+':1':'');extra='<h3>Firmware values — review before applying</h3><pre class="sm-formula">'+esc(config)+'</pre><p class="sm-note">Examples describe this one axis only and omit pins, electrical current and machine limits. They are not executed or saved to firmware by this page.</p>';}
+ const visual='<div class="sm-diagram">'+driveSVG(c)+'</div><div class="sm-diagram">'+profileSVG(c)+'</div>';complete('cnc','CNC geometry, calibration & motion timing',rows,warnings,visual,extra,c);}
+const SAMPLE='rpm,torque_Nm\n0,0.40\n300,0.28\n600,0.18\n1000,0.08';
+function curveData(){const source=$('tSource').value;if(source==='datasheet')return {source,points:parseCurve($('tData').value),sample:$('tData').value.trim()===SAMPLE};const p={hold:num('tHolding',0,true),L:num('tInductance',0,true)/1000,R:num('tResistance',0,true),V:num('tVoltage',0,true),I:num('tCurrent',0,true),spr:num('tStepsRev',0,true,false,true),Ke:num('tKe')};const end=Math.max(num('tRpm'),3000);return {source,model:p,points:Array.from({length:61},(_,i)=>({rpm:end*i/60,torque:proxy(p,end*i/60)}))};}
+function curveSVG(d,rpm,required){const points=d.points,xmax=Math.max(points.at(-1).rpm,rpm,1),ymax=Math.max(...points.map(p=>p.torque),required,.001)*1.15,x=r=>55+500*r/xmax,y=t=>195-145*t/ymax;let s='<svg viewBox="0 0 580 245" role="img" aria-label="Torque versus motor RPM with required torque line"><rect width="580" height="245" fill="#f8fbfc"/><path d="M 55 35 V 195 H 555" fill="none" stroke="#527481"/>';for(let i=0;i<=4;i++){const t=ymax*i/4,r=xmax*i/4;s+='<path d="M 55 '+y(t)+' H 555" stroke="#dfe8f4"/><text x="48" y="'+(y(t)+4)+'" text-anchor="end">'+esc(fmt(t))+'</text><text x="'+x(r)+'" y="215" text-anchor="middle">'+esc(fmt(r))+'</text>';}
+ s+='<path d="'+points.map((p,i)=>(i?'L':'M')+' '+x(p.rpm)+' '+y(p.torque)).join(' ')+'" fill="none" stroke="#1e40af" stroke-width="3"/><path d="M 55 '+y(required)+' H 555 M '+x(rpm)+' 35 V 195" stroke="#b36c16" stroke-width="2" stroke-dasharray="5 4"/><text x="62" y="23">Torque (N·m) · '+(d.source==='datasheet'?(d.sample?'illustrative sample':'user-supplied curve'):'illustrative proxy')+'</text><text x="275" y="240">Motor RPM</text></svg>';return s;}
+function renderCurve(){const d=curveData(),rpm=num('tRpm'),required=num('tRequired'),factor=num('tFactor',1),available=d.source==='datasheet'?interpolate(d.points,rpm):proxy(d.model,rpm),demand=required*factor;finite({demand,available});if(!Number.isFinite(Math.max(...d.points.map(p=>p.torque),demand,.001)*1.15))throw Error('Curve scale is too large to plot. Use realistic torque values.');const rows=[['Curve source',d.source==='datasheet'?(d.sample?'Illustrative sample data — not a rated motor':'User supplied; condition matching not verified'):'Illustrative current-rise proxy only'],['Operating motor speed',fmt(rpm)+' RPM'],['Curve torque at selected RPM',available===null?'Outside supplied range — no extrapolation':fmt(available)+' N·m'],['Demand × selected margin',fmt(demand)+' N·m'],['Required torque / margin multiplier',fmt(required)+' N·m / '+fmt(factor)],['Available / margin-adjusted demand',available===null||demand===0?'Not evaluated':fmt(available/demand)],['Curve data range',fmt(d.points[0].rpm)+'–'+fmt(d.points.at(-1).rpm)+' RPM'],['User curve conditions',$('tConditions').value.trim()||'Not supplied']];if(d.model)rows.push(['Proxy holding torque',fmt(d.model.hold)+' N·m'],['Proxy L / R',fmt(d.model.L*1000)+' mH / '+fmt(d.model.R)+' Ω'],['Proxy supply / peak phase current',fmt(d.model.V)+' V / '+fmt(d.model.I)+' A'],['Proxy full steps/revolution / back-EMF constant',fmt(d.model.spr)+' / '+fmt(d.model.Ke)+' V/1,000 RPM']);const warnings=['A curve comparison applies only to the conditions of the supplied data. Holding torque is not running torque; resonance, acceleration, thermal and drive limits need separate review.'];if(d.source!=='datasheet'||d.sample)warnings.push('Illustrative curve: do not use it to certify motor size or maximum operating speed.');if(available!==null&&available<demand)warnings.push('Curve torque is below your margin-adjusted demand at the selected RPM.');if(available===null)warnings.push('Operating RPM is outside the supplied curve. Obtain data for this speed.');const samples=d.points.filter((_,i)=>i%Math.max(1,Math.floor(d.points.length/12))===0).map(p=>[fmt(p.rpm)+' RPM',fmt(p.torque)+' N·m']);complete('curve','Torque-speed curve comparison',rows,warnings,'<div class="sm-diagram">'+curveSVG(d,rpm,demand)+'</div>','<h3>Curve samples</h3>'+table(samples),d);reports.curve.sampleRows=d.points.map(p=>[fmt(p.rpm)+' RPM',fmt(p.torque)+' N·m']);}
+function readMotion(){return {mass:num('mMass'),angle:num('mAngle'),force:num('mForce'),efficiency:num('mEfficiency',0,true),rotor:num('mRotor'),outputJ:num('mOutputJ'),friction:num('mFriction'),rotLoad:num('mRotLoad'),factor:num('mFactor',1),available:num('mAvailable',0,false,true)};}
+function renderMotion(){const c=readCnc(),p=readMotion(),r=motion(c,p),rows=[['Required motor torque with selected margin',fmt(r.withMargin)+' N·m'],['Steady / acceleration motor torque',fmt(r.steady)+' / '+fmt(r.accelTorque)+' N·m'],['Peak attained motor speed',fmt(c.peakRpm)+' RPM'],['Available running torque supplied',r.available===null?'Not supplied':fmt(r.available)+' N·m'],['Mechanism / ratio / efficiency',c.drive+' / '+fmt(c.ratio)+':1 / '+fmt(r.efficiency)],['Mass / uphill angle / additional force',fmt(r.mass)+' kg / '+fmt(r.angle)+'° / '+fmt(r.force)+' N'],['Total opposing linear force',fmt(r.linearForce)+' N'],['Opposing rotary output torque input',fmt(r.rotLoad)+' N·m'],['Rotor / rotating output inertia',fmt(r.rotor)+' / '+fmt(r.outputJ)+' g·cm²'],['Ideal motor-reflected load inertia',fmt(r.reflected/1e-7)+' g·cm²'],['Load / rotor inertia ratio',r.ratio===null?'Positive rotor inertia needed':fmt(r.ratio)+':1'],['Motor angular acceleration',fmt(r.alphaMotor)+' rad/s²'],['Extra motor friction torque',fmt(r.friction)+' N·m'],['Unfactored acceleration-stage demand',fmt(r.required)+' N·m'],['Selected torque margin multiplier',fmt(r.factor)],['Available / margin-adjusted demand',r.margin===null?'Not evaluated':fmt(r.margin)],['Steady shaft load power at attained peak RPM',fmt(r.steady*c.peakRpm*2*PI/60)+' W (excludes electrical and other losses)'],['Motion profile / time',c.prof.kind+' / '+fmt(c.prof.time)+' s'],['CNC feed / acceleration',fmt(c.feed)+' '+axisUnit(c)+'/min / '+fmt(c.accel/c.scale)+' '+axisUnit(c)+'/s²'],['CNC distance / travel per output revolution',fmt(c.distance/c.scale)+' '+axisUnit(c)+' / '+fmt(c.travel)+(c.rotation?'°':' mm')]];
+ const warnings=['This is an uphill acceleration-stage estimate. Braking, regeneration, descending travel, load changes, torsional compliance, gearbox limits and holding safety are not evaluated.','The inertia ratio is descriptive, not a universal pass/fail test. Use motor/driver-specific guidance.'];if(c.distance===0)warnings.push('Commanded distance is zero: the torque demand represents a hypothetical acceleration setting, not a moving cycle.');if(c.peakPulse>c.ceiling)warnings.push('The modeled peak motion exceeds the entered CNC controller pulse ceiling.');if(r.available===null)warnings.push('No running torque supplied. Motor capacity has not been established.');else if(r.margin!==null&&r.margin<1)warnings.push('The supplied running torque is below margin-adjusted acceleration demand.');complete('motion','Mechanical load & acceleration sizing',rows,warnings,'<div class="sm-diagram">'+profileSVG(c)+'</div>','',r);}
+function refresh(){for(const k of ['speed','cnc','curve','motion'])$(k+'Tab').hidden=k!==mode;document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('on',b.dataset.mode===mode);b.setAttribute('aria-pressed',String(b.dataset.mode===mode));});for(const k of ['leadscrew','belt','rack','direct','roller'])$(k+'Fields').hidden=$('cDriveType').value!==k;$('cLead').disabled=$('cLeadBasis').value==='pitch';const rotary=$('cDriveType').value==='direct',u=rotary?'deg':$('cUnits').value==='inch'?'in':'mm';$('cUnits').disabled=rotary;$('feedUnit').textContent=u+'/min';document.querySelectorAll('[data-axis-unit]').forEach(e=>e.textContent=u);$('tDataFields').hidden=$('tSource').value!=='datasheet';$('tModelFields').hidden=$('tSource').value==='datasheet';}
+function update(){refresh();attempt('speed',renderSpeed);attempt('cnc',renderCnc);attempt('curve',renderCurve);attempt('motion',renderMotion);for(const id of ['printReportBtn','exportCsv','exportTxt','copyReport'])$(id).disabled=!reports[mode];$('toolStatus').textContent=reports[mode]?'Updated '+reports[mode].title+'. Review its assumptions.':errors[mode];}
+function convert(){const next=$('cUnits').value;if(next!==oldUnits&&$('cDriveType').value!=='direct'){const factor=next==='inch'?1/25.4:25.4;for(const id of ['cMaxFeed','cDistance','cAccel','cCalCommand','cCalActual'])if($(id).value.trim()!==''&&Number.isFinite(Number($(id).value)))$(id).value=raw(Number($(id).value)*factor);if($('cCalCurrent').value.trim()!==''&&Number.isFinite(Number($('cCalCurrent').value)))$('cCalCurrent').value=raw(Number($('cCalCurrent').value)/factor);}oldUnits=next;}
+function reportSelection(){return $('reportAll').checked?['speed','cnc','curve','motion'].filter(k=>reports[k]):reports[mode]?[mode]:[];}
+const disclaimer='Preliminary calculations, not a guarantee of positioning accuracy, maximum speed, safe load or electrical compatibility. Verify actual motor/driver data, pulse timing, temperatures, torque-speed curves and complete machine safety. Illustrations do not measure rotor position.';
+function reportHTML(){const selection=reportSelection();$('stepperReport').innerHTML='<h1>Stepper Motor Calculation Report</h1><p>Utiliby · '+esc(new Date().toLocaleString())+'</p>'+selection.map(k=>{const r=reports[k];return '<h2>'+esc(r.title)+'</h2>'+table(r.rows)+r.visual+r.extra+'<h3>Assumptions &amp; warnings</h3><ul>'+r.warnings.map(w=>'<li>'+esc(w)+'</li>').join('')+'</ul>';}).join('')+(selection.length?'':'<p>No valid active calculation. Correct the inputs before saving.</p>')+'<p>'+esc(disclaimer)+'</p>';return selection.length>0;}
+function dataRows(){const rows=[['Report','Stepper Motor Calculator — Utiliby'],['Generated',new Date().toISOString()]];for(const k of reportSelection()){const r=reports[k];rows.push(['Section',r.title],...r.rows,...r.warnings.map(w=>['Warning',w]));if(r.sampleRows)rows.push(['Curve samples','RPM; torque N·m'],...r.sampleRows);if(r.tableRows)rows.push(['Microstepping comparison','Command geometry and ideal incremental torque'],...r.tableRows);const pre=$(k+'Output').querySelector('pre');if(pre)rows.push(['Firmware examples',pre.textContent]);}rows.push(['Disclaimer',disclaimer]);return rows;}
+function textReport(){return dataRows().map(a=>a[0]+': '+a[1]).join('\n');}
+function save(text,type,name){const url=URL.createObjectURL(new Blob([text],{type})),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);}
+async function copy(text){try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const a=document.createElement('textarea');a.value=text;a.style.position='fixed';a.style.left='-9999px';document.body.appendChild(a);a.select();const ok=document.execCommand('copy');a.remove();if(!ok)throw Error();}$('toolStatus').textContent='Copied.';}catch(e){$('toolStatus').textContent='Copy unavailable. Use the selectable share fields or save a TXT report.';}}
+const inputs=[...document.querySelectorAll('#tool input:not([type=range]),#tool select,#tool textarea')].filter(e=>e.id&&e.id!=='reportAll');
+function share(){const state={mode};for(const e of inputs)state[e.id]=e.value;const url='https://utiliby.com/tools/engineering/stepper-motor-calculator/#sm='+encodeURIComponent(JSON.stringify(state));if(url.length>24000){$('toolStatus').textContent='Curve data is too large for a share link. Save a CSV report instead.';return;}$('sm-share-link').value=url;copy(url);}
+function loadHash(){try{if(!location.hash.startsWith('#sm='))return;const a=JSON.parse(decodeURIComponent(location.hash.slice(4)));for(const e of inputs){if(!(e.id in a))continue;const v=String(a[e.id]);if(e.tagName==='SELECT'){if([...e.options].some(o=>o.value===v))e.value=v;}else if(e.tagName==='TEXTAREA'){if(v.length<=16000)e.value=v;}else if(e.type==='text'){if(v.length<=240)e.value=v;}else if(v===''||(v.length<32&&Number.isFinite(Number(v))))e.value=v;}if(['speed','cnc','curve','motion'].includes(a.mode))mode=a.mode;oldUnits=$('cUnits').value;}catch(e){$('toolStatus').textContent='Invalid shared input link. Defaults are shown.';}}
+loadHash();document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>{mode=b.dataset.mode;update();}));for(const e of inputs)e.addEventListener('change',()=>{if(e.id==='cUnits')convert();update();});for(const id of ['sPreview','cPreview'])$(id).addEventListener('input',update);for(const id of ['calcSpeedBtn','calcCncBtn','calcCurveBtn','calcMotionBtn'])$(id).addEventListener('click',update);
+function reset(){for(const e of inputs){if(e.tagName==='SELECT'){const index=[...e.options].findIndex(o=>o.defaultSelected);e.selectedIndex=index>=0?index:0;}else e.value=e.defaultValue;}for(const id of ['sPreview','cPreview'])$(id).value=$(id).defaultValue;$('reportAll').checked=false;oldUnits=$('cUnits').value;update();}$('resetAll').addEventListener('click',reset);$('resetSpeedBtn').addEventListener('click',reset);
+$('copyMotor').addEventListener('click',()=>{$('cStepsRev').value=$('sStepsRev').value;$('cMicrostep').value=$('sMicrostep').value;update();});$('exampleCurve').addEventListener('click',()=>{$('tSource').value='datasheet';$('tData').value=SAMPLE;update();$('toolStatus').textContent='Illustrative sample loaded. Replace it with your motor’s actual curve for selection.';});$('useCurve').addEventListener('click',()=>{try{const c=readCnc(),d=curveData();if(d.source!=='datasheet'||d.sample)throw Error('Use actual manufacturer/measured data, not the illustrative proxy or sample, for this transfer.');const value=interpolate(d.points,c.peakRpm);if(value===null)throw Error('Peak motion RPM is outside the curve data range.');$('mAvailable').value=raw(value);update();$('toolStatus').textContent='Curve torque at '+fmt(c.peakRpm)+' RPM transferred. Verify matching conditions.';}catch(e){$('toolStatus').textContent=e.message;}});
+$('printReportBtn').addEventListener('click',()=>{update();if(reportHTML())window.print();});window.addEventListener('beforeprint',()=>{update();reportHTML();});window.addEventListener('afterprint',()=>{$('stepperReport').innerHTML='';});$('exportCsv').addEventListener('click',()=>{update();if(reportSelection().length)save('\ufeff'+dataRows().map(a=>a.map(v=>'"'+String(v).replace(/"/g,'""')+'"').join(',')).join('\r\n'),'text/csv;charset=utf-8','stepper-calculation-report.csv');});$('exportTxt').addEventListener('click',()=>{update();if(reportSelection().length)save(textReport(),'text/plain;charset=utf-8','stepper-calculation-report.txt');});$('copyReport').addEventListener('click',()=>{update();if(reportSelection().length)copy(textReport());});$('shareInputs').addEventListener('click',share);document.querySelectorAll('[data-copy-target]').forEach(b=>b.addEventListener('click',()=>copy($(b.dataset.copyTarget).value)));update();
 })();
-</script>
-</body>
-</html>
+</script></body></html>
