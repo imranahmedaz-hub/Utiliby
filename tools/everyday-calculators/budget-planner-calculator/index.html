@@ -88,6 +88,45 @@
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
 @media(max-width:560px){.bp-btn{font-size:.82rem;padding:8px 14px}}
+
+/* ---------- PRINT VIEW ---------- */
+.print-only{display:none}
+#printView{font-family:Georgia,"Times New Roman",serif;font-size:10.5pt;color:#000;line-height:1.4}
+#printView h2{margin:0 0 4px;font-size:1.4em;font-family:system-ui,-apple-system,sans-serif;font-weight:800;letter-spacing:-.01em}
+#printView h3{margin:12px 0 4px;font-size:1em;font-family:system-ui,-apple-system,sans-serif;font-weight:700;border-bottom:1.5px solid #333;padding-bottom:3px}
+#printView .meta-line{font-size:.82em;color:#555;margin-bottom:12px;font-family:system-ui,sans-serif}
+#printView table{width:100%;border-collapse:collapse;margin:0}
+#printView td{padding:3px 0;vertical-align:top}
+#printView .num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+#printView .rule{font-weight:700}
+#printView .planned td{border-top:1px solid #333;font-weight:700;padding-top:5px}
+#printView .remaining td{color:#555;font-style:italic}
+#printView .over{color:#b00020 !important;font-weight:700}
+#printView .grand{border-top:2px solid #000;padding-top:6px;font-weight:700}
+#printView .block{margin-bottom:14px;page-break-inside:avoid}
+#printView .summary-box{background:#f5f5f5;border:1px solid #ccc;padding:10px 12px;page-break-inside:avoid}
+#printView .footer-note{margin-top:18px;padding-top:8px;border-top:1px solid #ccc;font-size:.78em;color:#777;font-family:system-ui,sans-serif}
+
+@media print{
+  /* Hide everything on the page */
+  body *{visibility:hidden !important}
+  /* Show only the print view and its contents */
+  #printView, #printView *{visibility:visible !important}
+  #printView{
+    display:block !important;
+    position:absolute;
+    left:0;
+    top:0;
+    width:100%;
+    padding:0;
+    margin:0;
+  }
+  @page{size:A4 portrait;margin:14mm}
+  html,body{background:#fff !important;color:#000 !important;margin:0 !important;padding:0 !important}
+  .wrap{max-width:100% !important;padding:0 !important;margin:0 !important}
+  h2,h3{page-break-after:avoid}
+  table{page-break-inside:avoid}
+}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Budget Planner Calculator","url":"https://utiliby.com/tools/everyday-calculators/budget-planner-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free budget planner calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free budget planner calculator online is a tool that helps you allocate your monthly income across spending categories. This budget planner calculator online uses the 50/30/20 rule and four other presets, supports custom splits, tracks real line items under each bucket, and shows a live donut chart. Everything runs in your browser with no sign-up."}},{"@type":"Question","name":"What is the 50/30/20 budget rule?","acceptedAnswer":{"@type":"Answer","text":"The 50/30/20 rule is a simple budgeting framework popularised by US Senator Elizabeth Warren in her book All Your Worth. It divides your after-tax income into three buckets: 50 percent for needs (rent, groceries, utilities, insurance, minimum debt payments), 30 percent for wants (dining out, subscriptions, hobbies, travel), and 20 percent for savings and extra debt payments."}},{"@type":"Question","name":"Should I use net pay or gross salary for budgeting?","acceptedAnswer":{"@type":"Answer","text":"Always use net pay, also called take-home pay. Net pay is the money that actually lands in your bank account after tax, national insurance, pension contributions and any other deductions. Gross salary is the headline number before deductions and does not reflect what you can actually spend."}},{"@type":"Question","name":"What counts as a need versus a want?","acceptedAnswer":{"@type":"Answer","text":"Needs are essential for survival and to maintain your current obligations: rent or mortgage, utilities, groceries, basic transportation, insurance, healthcare, childcare and minimum debt payments. Wants are lifestyle choices that improve quality of life but are optional: dining out, streaming subscriptions, new gadgets, travel, entertainment, hobbies and upgrades. When in doubt, ask: would my life fall apart without this?"}},{"@type":"Question","name":"Can I use a different budget split?","acceptedAnswer":{"@type":"Answer","text":"Yes. This calculator offers five presets: 50/30/20 (the classic), 60/20/20 (for high cost-of-living areas), 70/20/10 (for aggressive debt payoff), 40/30/30 (for aggressive savings), and a fully custom split that you set with sliders. The custom split must total exactly 100 percent."}},{"@type":"Question","name":"How much should I save each month?","acceptedAnswer":{"@type":"Answer","text":"Financial planners typically recommend saving 20 percent of your take-home pay for long-term goals. However, the right savings rate depends on your circumstances. Someone paying off high-interest debt may temporarily reduce savings to 10 percent while aggressively paying down the balance. Someone approaching retirement or building an emergency fund may push savings to 30 or 40 percent."}},{"@type":"Question","name":"What is zero-based budgeting?","acceptedAnswer":{"@type":"Answer","text":"Zero-based budgeting assigns every dollar of income to a specific category so that income minus planned expenses equals zero. Unlike the 50/30/20 rule, which divides income into three broad buckets, zero-based budgeting requires you to allocate every pound or dollar to a named line item. This tool supports a zero-based mode that highlights unallocated funds."}},{"@type":"Question","name":"Is this budget planner free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere. There are no ads, no accounts and no rate limits."}},{"@type":"Question","name":"Does the calculator save my data?","acceptedAnswer":{"@type":"Answer","text":"Your budget is saved to your browser's local storage so you can return to it later. Nothing is ever uploaded, shared or tracked. Clearing your browser data will delete the saved budget."}},{"@type":"Question","name":"How do I export my budget?","acceptedAnswer":{"@type":"Answer","text":"Use the Copy summary button to copy a plain-text version of your budget to your clipboard, or click Download CSV to save a structured spreadsheet-compatible file. Both options work offline."}}]}]}</script>
 </head>
@@ -344,6 +383,8 @@
 
 </article>
 
+<div id="printView" class="print-only"></div>
+
 </main>
 <footer class="site"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
@@ -383,6 +424,15 @@ function fmtMoney(n){
   var sym = CURRENCIES[state.currency] || "$";
   return sym + Math.round(n).toLocaleString();
 }
+function fmtMoneyDec(n){
+  var sym = CURRENCIES[state.currency] || "$";
+  return sym + (Math.round(n * 100) / 100).toFixed(2);
+}
+function fmtMoneyCSV(n){
+  /* no thousands separator, currency prefix for readability, 2 dp */
+  var sym = CURRENCIES[state.currency] || "$";
+  return sym + (Math.round(n * 100) / 100).toFixed(2);
+}
 function pct(){
   if(state.rule === "custom") return state.custom;
   var parts = state.rule.split("/");
@@ -395,6 +445,9 @@ function bucketTotal(key){
 }
 function totalPlanned(){
   return bucketTotal("needs") + bucketTotal("wants") + bucketTotal("savings");
+}
+function bucketLabel(key){
+  return { needs: "Needs", wants: "Wants", savings: "Savings & Debt" }[key] || key;
 }
 
 /* ---------- RENDER ---------- */
@@ -463,6 +516,9 @@ function render(){
   } else {
     $("splitWarning").hidden = true;
   }
+
+  // Rebuild print view
+  buildPrintView();
 
   saveState();
 }
@@ -536,6 +592,80 @@ function updateGoal(savingsSpent){
   }
 }
 
+/* ---------- PRINT VIEW ---------- */
+function buildPrintView(){
+  var income = monthlyIncome();
+  var p = pct();
+  var keys = ["needs","wants","savings"];
+  var h = '';
+
+  h += '<h2>Budget Plan</h2>';
+  h += '<div class="meta-line">Prepared ' + new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' }) + ' &nbsp;·&nbsp; Currency: ' + esc(state.currency) + ' &nbsp;·&nbsp; Rule: ' + esc(state.rule) + ' (' + p.needs + '/' + p.wants + '/' + p.savings + ')</div>';
+
+  /* Income line */
+  h += '<div class="block"><table>';
+  h += '<tr><td class="rule">Monthly take-home income</td><td class="num rule">' + fmtMoneyDec(income) + '</td></tr>';
+  h += '</table></div>';
+
+  /* Buckets */
+  keys.forEach(function(key){
+    var alloc = income * p[key] / 100;
+    var spent = bucketTotal(key);
+    var rem = alloc - spent;
+    var items = state.buckets[key].filter(function(it){ return (it.name && it.name.trim()) || num(it.amount, 0) > 0; });
+
+    h += '<div class="block">';
+    h += '<h3>' + esc(bucketLabel(key)) + ' &nbsp;—&nbsp; ' + p[key] + '% allocation (' + fmtMoneyDec(alloc) + ')</h3>';
+    h += '<table>';
+    if(items.length){
+      items.forEach(function(it){
+        var name = (it.name && it.name.trim()) ? it.name : '(unnamed item)';
+        var amt = num(it.amount, 0);
+        h += '<tr><td>' + esc(name) + '</td><td class="num">' + fmtMoneyDec(amt) + '</td></tr>';
+      });
+      h += '<tr class="planned"><td>Total planned</td><td class="num">' + fmtMoneyDec(spent) + '</td></tr>';
+      h += '<tr class="remaining' + (rem < -0.01 ? ' over' : '') + '"><td>' + (rem < -0.01 ? 'Over by' : 'Remaining') + '</td><td class="num">' + fmtMoneyDec(Math.abs(rem)) + '</td></tr>';
+    } else {
+      h += '<tr><td style="color:#888;font-style:italic">No items added</td><td class="num">—</td></tr>';
+      h += '<tr class="planned"><td>Total planned</td><td class="num">' + fmtMoneyDec(0) + '</td></tr>';
+      h += '<tr class="remaining"><td>Remaining</td><td class="num">' + fmtMoneyDec(alloc) + '</td></tr>';
+    }
+    h += '</table>';
+    h += '</div>';
+  });
+
+  /* Summary */
+  var planned = totalPlanned();
+  var unallocated = income - planned;
+  var annualSavings = bucketTotal("savings") * 12;
+
+  h += '<div class="block summary-box">';
+  h += '<h3 style="margin-top:0;border-bottom:none">Summary</h3>';
+  h += '<table>';
+  h += '<tr><td>Total planned spending</td><td class="num">' + fmtMoneyDec(planned) + '</td></tr>';
+  h += '<tr><td>Unallocated balance</td><td class="num">' + fmtMoneyDec(unallocated) + '</td></tr>';
+  h += '<tr class="grand"><td>Annual savings (savings bucket × 12)</td><td class="num">' + fmtMoneyDec(annualSavings) + '</td></tr>';
+  h += '</table>';
+  h += '</div>';
+
+  /* Savings goal */
+  var target = num(state.goal.amount, 0);
+  var already = num(state.goal.already, 0);
+  if(target > 0 && bucketTotal("savings") > 0){
+    var remaining = Math.max(0, target - already);
+    var months = Math.ceil(remaining / bucketTotal("savings"));
+    h += '<div class="block"><h3>Savings Goal</h3><table>';
+    h += '<tr><td>Target amount</td><td class="num">' + fmtMoneyDec(target) + '</td></tr>';
+    h += '<tr><td>Already saved</td><td class="num">' + fmtMoneyDec(already) + '</td></tr>';
+    h += '<tr><td>Time to goal at current rate</td><td class="num">' + (months <= 0 ? 'Reached' : months + ' month' + (months === 1 ? '' : 's')) + '</td></tr>';
+    h += '</table></div>';
+  }
+
+  h += '<div class="footer-note">Generated with the Utiliby Budget Planner Calculator — utiliby.com</div>';
+
+  $("printView").innerHTML = h;
+}
+
 /* ---------- BUCKET ITEMS ---------- */
 function renderItems(key){
   var el = $(key + "Items");
@@ -543,8 +673,8 @@ function renderItems(key){
   for(var i = 0; i < state.buckets[key].length; i++){
     var it = state.buckets[key][i];
     h += '<div class="bp-item" data-bucket="' + key + '" data-idx="' + i + '">';
-    h += '<input type="text" value="' + esc(it.name) + '" data-field="name" placeholder="Item name">';
-    h += '<input type="number" min="0" step="1" value="' + esc(it.amount) + '" data-field="amount" placeholder="0">';
+    h += '<input type="text" value="' + esc(it.name) + '" data-field="name" placeholder="Item name" aria-label="Item name">';
+    h += '<input type="number" min="0" step="1" value="' + esc(it.amount) + '" data-field="amount" placeholder="Amount" aria-label="Amount">';
     h += '<button type="button" class="remove" data-remove="' + i + '" title="Remove">×</button>';
     h += '</div>';
   }
@@ -552,9 +682,8 @@ function renderItems(key){
 }
 
 function addItem(key){
-  state.buckets[key].push({ name: "", amount: 0 });
+  state.buckets[key].push({ name: "", amount: "" });
   renderItems(key);
-  // Focus the new name input
   var items = $(key + "Items").querySelectorAll(".bp-item");
   if(items.length){
     var last = items[items.length - 1];
@@ -619,7 +748,7 @@ function wire(){
     if(!state.buckets[key] || !state.buckets[key][idx]) return;
     if(field === "name") state.buckets[key][idx].name = e.target.value;
     else if(field === "amount"){
-      state.buckets[key][idx].amount = num(e.target.value, 0);
+      state.buckets[key][idx].amount = e.target.value;
       render();
     }
   });
@@ -631,7 +760,12 @@ function wire(){
   // Actions
   $("copySummaryBtn").addEventListener("click", copySummary);
   $("downloadCsvBtn").addEventListener("click", downloadCSV);
-  $("printBtn").addEventListener("click", function(){ window.print(); });
+  $("printBtn").addEventListener("click", function(){
+    buildPrintView();
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ window.print(); }); });
+  });
+  window.addEventListener("beforeprint", buildPrintView);
+
   $("resetBtn").addEventListener("click", function(){
     if(!confirm("Reset all budget data? This cannot be undone.")) return;
     try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
@@ -687,36 +821,74 @@ function copySummary(){
   }
 }
 
+function csvRow(cells){
+  return cells.map(function(c){
+    var s = String(c == null ? "" : c);
+    if(/[",\n\r]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+    return s;
+  }).join(",");
+}
+
 function downloadCSV(){
   var p = pct();
   var income = monthlyIncome();
   var rows = [];
-  rows.push(["Category", "Item", "Amount"]);
-  rows.push(["Income", "Monthly take-home", income.toFixed(2)]);
+
+  /* Header block */
+  rows.push(csvRow(["Section","Item","Amount"]));
+  rows.push(csvRow(["Report","Utiliby Budget Planner Export",""]));
+  rows.push(csvRow(["Report","Generated", new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' })]));
+  rows.push(csvRow(["Report","Currency", state.currency + " (" + (CURRENCIES[state.currency] || "$") + ")"]));
+  rows.push(csvRow(["Report","Budget rule", state.rule + " (" + p.needs + "/" + p.wants + "/" + p.savings + ")"]));
+  rows.push(csvRow(["Report","Monthly take-home income", fmtMoneyCSV(income)]));
+
+  /* Summary block */
+  rows.push(csvRow(["","",""]));
+  rows.push(csvRow(["Summary","Monthly income", fmtMoneyCSV(income)]));
+  rows.push(csvRow(["Summary","Total planned", fmtMoneyCSV(totalPlanned())]));
+  rows.push(csvRow(["Summary","Unallocated", fmtMoneyCSV(income - totalPlanned())]));
+  rows.push(csvRow(["Summary","Annual savings", fmtMoneyCSV(bucketTotal("savings") * 12)]));
+
+  /* Per-bucket blocks */
   ["needs","wants","savings"].forEach(function(key){
-    rows.push([key.charAt(0).toUpperCase() + key.slice(1), "Allocated", (income * p[key] / 100).toFixed(2)]);
-    for(var i = 0; i < state.buckets[key].length; i++){
-      var it = state.buckets[key][i];
-      rows.push([key.charAt(0).toUpperCase() + key.slice(1), it.name || "", num(it.amount, 0).toFixed(2)]);
+    var alloc = income * p[key] / 100;
+    var spent = bucketTotal(key);
+    var rem = alloc - spent;
+    rows.push(csvRow(["","",""]));
+    rows.push(csvRow([bucketLabel(key), "Allocated", fmtMoneyCSV(alloc)]));
+    var items = state.buckets[key].filter(function(it){ return (it.name && it.name.trim()) || num(it.amount, 0) > 0; });
+    if(items.length){
+      items.forEach(function(it){
+        var name = (it.name && it.name.trim()) ? it.name : "(unnamed item)";
+        rows.push(csvRow([bucketLabel(key), name, fmtMoneyCSV(num(it.amount, 0))]));
+      });
+    } else {
+      rows.push(csvRow([bucketLabel(key), "(no items)", ""]));
     }
+    rows.push(csvRow([bucketLabel(key), "Total planned", fmtMoneyCSV(spent)]));
+    rows.push(csvRow([bucketLabel(key), rem < -0.01 ? "Over by" : "Remaining", fmtMoneyCSV(Math.abs(rem))]));
   });
-  rows.push(["Summary", "Total planned", totalPlanned().toFixed(2)]);
-  rows.push(["Summary", "Unallocated", (income - totalPlanned()).toFixed(2)]);
-  rows.push(["Summary", "Annual savings", (bucketTotal("savings") * 12).toFixed(2)]);
 
-  var csv = rows.map(function(r){
-    return r.map(function(c){
-      var s = String(c == null ? "" : c);
-      if(/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
-      return s;
-    }).join(",");
-  }).join("\n");
+  /* Goal block */
+  var target = num(state.goal.amount, 0);
+  var already = num(state.goal.already, 0);
+  var savTotal = bucketTotal("savings");
+  if(target > 0){
+    rows.push(csvRow(["","",""]));
+    rows.push(csvRow(["Savings Goal", "Target amount", fmtMoneyCSV(target)]));
+    rows.push(csvRow(["Savings Goal", "Already saved", fmtMoneyCSV(already)]));
+    if(savTotal > 0){
+      var months = Math.ceil(Math.max(0, target - already) / savTotal);
+      rows.push(csvRow(["Savings Goal", "Months to goal", months <= 0 ? "Reached" : String(months)]));
+    }
+  }
 
-  var blob = new Blob([csv], { type: "text/csv;charset=utf-8" });
+  var csv = rows.join("\r\n");
+  var blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8" });
   var url = URL.createObjectURL(blob);
   var a = document.createElement("a");
   a.href = url;
-  a.download = "utiliby-budget.csv";
+  a.download = "utiliby-budget-" + new Date().toISOString().slice(0,10) + ".csv";
   a.click();
   URL.revokeObjectURL(url);
 }
@@ -731,7 +903,6 @@ function loadState(){
     if(!raw) return;
     var saved = JSON.parse(raw);
     if(saved && typeof saved === "object"){
-      // Merge carefully
       if(saved.currency) state.currency = saved.currency;
       if(typeof saved.income === "number") state.income = saved.income;
       if(saved.frequency) state.frequency = saved.frequency;
