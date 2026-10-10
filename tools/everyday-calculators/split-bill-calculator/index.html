@@ -156,29 +156,63 @@ return{sub:sub,tax:tax,tip:tip,tot:tot,head:sh,got:sh*n,un:0};
 }
 function calcItem(c){
 var pp=S.people.map(function(){return 0}),sub=0,un=0;
+var att=S.people.map(function(){return []});
 S.items.forEach(function(it){
 var p=parseFloat(it.p);if(!(p>0))return;
 var who=[];S.people.forEach(function(_,i){if(it.a[i])who.push(i)});
 if(!who.length){un+=p;return}
-sub+=p;who.forEach(function(i){pp[i]+=p/who.length});
+sub+=p;
+who.forEach(function(i){pp[i]+=p/who.length});
+who.forEach(function(i){
+att[i].push({name:it.n||'Item',share:p/who.length,shared:who.length});
+});
 });
 if(sub<=0)return null;
 var tax=sub*c.tax/100,tip=(c.pre?sub:sub+tax)*c.tip/100;
-var rows=S.people.map(function(nm,i){var t=pp[i]/sub*tax,g=pp[i]/sub*tip;return{name:nm||'Person '+(i+1),items:pp[i],tax:t,tip:g,total:rd(pp[i]+t+g,c.up)}});
+var rows=S.people.map(function(nm,i){var t=pp[i]/sub*tax,g=pp[i]/sub*tip;return{name:nm||'Person '+(i+1),items:pp[i],tax:t,tip:g,total:rd(pp[i]+t+g,c.up),att:att[i]}});
 return{sub:sub,tax:tax,tip:tip,tot:sub+tax+tip,rows:rows,got:rows.reduce(function(a,r){return a+r.total},0),un:un};
+}
+function receipt(r,c,items){
+var B='var(--line-strong)';
+var h='<div style="max-width:340px;margin:14px auto;border:2px solid '+B+';border-radius:8px;padding:16px;background:var(--bg);font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.85rem;line-height:1.65;color:var(--fg)">';
+h+='<div style="text-align:center;font-weight:800;font-size:.95rem;letter-spacing:.2em;padding-bottom:8px;border-bottom:2px dashed '+B+';margin-bottom:10px">YOUR BILL</div>';
+if(items&&items.length){
+items.forEach(function(it){
+h+='<div style="display:flex;justify-content:space-between;gap:10px"><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap">'+esc(it.n||'Item')+'</span><span style="flex-shrink:0">'+money(parseFloat(it.p)||0)+'</span></div>';
+});
+h+='<div style="border-top:1px dashed '+B+';margin:8px 0"></div>';
+}
+h+='<div style="display:flex;justify-content:space-between"><span>Subtotal</span><span>'+money(r.sub)+'</span></div>';
+h+='<div style="display:flex;justify-content:space-between"><span>Tax ('+c.tax+'%)</span><span>'+money(r.tax)+'</span></div>';
+h+='<div style="display:flex;justify-content:space-between"><span>Tip ('+c.tip+'%)</span><span>'+money(r.tip)+'</span></div>';
+h+='<div style="border-top:2px dashed '+B+';margin:8px 0"></div>';
+h+='<div style="display:flex;justify-content:space-between;font-weight:800;font-size:1.05rem"><span>TOTAL</span><span>'+money(r.tot)+'</span></div>';
+h+='</div>';
+return h;
 }
 function render(){
 var c=cfg(),r=S.mode==='even'?calcEven(c):calcItem(c),out=$('out'),h='',t='';
 out.hidden=false;
 if(!r){out.textContent=S.mode==='even'?'Enter the bill subtotal to see the split.':'Add at least one item with a price and tick who shared it.';LAST='';return}
-if(S.mode==='even'){h='<div>Each person pays</div><div class="big">'+money(r.head)+'</div>';t='Each person pays '+money(r.head)+'\n'}
-else{
-h='<div style="overflow-x:auto"><table class="res"><tr><th>Person</th><th>Items</th><th>Tax</th><th>Tip</th><th>Total</th></tr>';
-r.rows.forEach(function(x){h+='<tr><td>'+esc(x.name)+'</td><td>'+money(x.items)+'</td><td>'+money(x.tax)+'</td><td>'+money(x.tip)+'</td><td><b>'+money(x.total)+'</b></td></tr>';t+=x.name+': '+money(x.total)+'\n'});
+h+='<div style="text-align:center;margin-bottom:12px"><div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700">Total bill (including tax and tip)</div><div style="font-size:1.7rem;font-weight:800;color:var(--brand);line-height:1.15">'+money(r.tot)+'</div></div>';
+var itemsForReceipt = S.mode==='item' ? S.items.filter(function(it){return parseFloat(it.p)>0}) : null;
+h+=receipt(r,c,itemsForReceipt);
+if(S.mode==='even'){
+h+='<div style="text-align:center;margin-top:16px"><div style="font-size:.75rem;text-transform:uppercase;letter-spacing:.05em;color:var(--muted);font-weight:700">Each person pays</div><div class="big">'+money(r.head)+'</div></div>';
+t='Total bill: '+money(r.tot)+'\nEach person pays: '+money(r.head)+'\n';
+} else {
+h+='<h3 style="margin:18px 0 8px">Per-person breakdown</h3>';
+h+='<div style="overflow-x:auto"><table class="res"><tr><th>Person</th><th>Items ordered</th><th>Subtotal</th><th>Tax</th><th>Tip</th><th>Total</th></tr>';
+r.rows.forEach(function(x){
+var list=x.att.map(function(a){return (a.shared>1?'½ ':'')+a.name}).join(', ');
+if(!list)list='<span style="color:var(--muted)">—</span>';
+h+='<tr><td>'+esc(x.name)+'</td><td>'+esc(list)+'</td><td>'+money(x.items)+'</td><td>'+money(x.tax)+'</td><td>'+money(x.tip)+'</td><td><b>'+money(x.total)+'</b></td></tr>';
+t+=x.name+': '+money(x.total)+'\n';
+});
 h+='</table></div>';
 }
 var s='Subtotal: '+money(r.sub)+' · Tax: '+money(r.tax)+' · Tip: '+money(r.tip)+' · Total: '+money(r.tot)+(r.got>r.tot+0.005?' · Collected after rounding: '+money(r.got):'');
-h+='<p>'+s+'</p>';t+=s;
+h+='<p style="margin-top:10px">'+s+'</p>';t+=s;
 if(r.un>0)h+='<p>Note: '+money(r.un)+' of items are not assigned to anyone and are left out.</p>';
 out.innerHTML=h;LAST=t;
 }
@@ -229,7 +263,6 @@ render();
 });
 var shared=load();drawAll();setMode();if(shared)render();
 })();
-
 </script>
 </body>
 </html>
