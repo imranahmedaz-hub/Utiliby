@@ -5,13 +5,13 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
 <title>Free Deck Footing Calculator Online – Frost Depth, Size, Concrete &amp; Rebar</title>
-<meta name="description" content="Free online deck footing calculator with frost depth. Calculate footing size, tributary area, frost depth protection, concrete volume, bag count, rebar and cost. IRC R403.1.4 code check, frost depth by state, dynamic cross-section diagram. 100% browser-based, no sign-up.">
+<meta name="description" content="Free online deck footing calculator for bearing size, tributary loads, frost-depth checks, concrete bags, spread pads, pier volume, materials and costs.">
 <link rel="canonical" href="https://utiliby.com/tools/construction/deck-footing-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
 <meta property="og:title" content="Free Deck Footing Calculator Online – Frost Depth, Size, Concrete &amp; Rebar">
-<meta property="og:description" content="Calculate deck footing size, frost depth protection, concrete volume, bag count, rebar and cost. IRC R403.1.4 code check and frost depth by state.">
+<meta property="og:description" content="Free online deck footing calculator for bearing size, tributary loads, frost-depth checks, concrete bags, spread pads, pier volume, materials and costs.">
 <meta property="og:url" content="https://utiliby.com/tools/construction/deck-footing-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
@@ -79,11 +79,7 @@
 .df-share button:hover{border-color:#0369a1;background:rgba(3,105,161,.06)}
 .df-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
 .df-disclaimer b{color:var(--fg)}
-@media print{
-  header.site,footer.site,.df-tabs,.df-btn,.df-hero,.cn-article,.no-print,.df-panel form,.df-share,.df-actions{display:none !important}
-  .tool{border:0 !important;background:#fff !important}
-  body{background:#fff !important;color:#000 !important}
-}
+
 .cn-article h2{margin-top:2em}
 .cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
@@ -94,148 +90,42 @@
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+
+#tool input,#tool select{box-sizing:border-box;min-width:0}
+#tool [hidden]{display:none!important}
+#tool .df-panel p.meta{font-size:.82rem;line-height:1.6}
+#tool .df-table-wrap{overflow:auto}
+#tool .df-row>div,#tool .df-row3>div{min-width:0}
+#tool .df-error{color:#b91c1c;font-weight:700}
+#tool button:focus-visible,#tool input:focus-visible,#tool select:focus-visible{outline:3px solid #0ea5e9;outline-offset:2px}
+#deckPrintReport{display:none}
+@media print{
+@page{margin:14mm}
+body> :not(#deckPrintReport){display:none!important}
+body>#deckPrintReport{display:block!important;color:#000;background:#fff;font:11pt/1.45 Arial,sans-serif}
+#deckPrintReport h1{font-size:20pt}#deckPrintReport h2{font-size:15pt;margin-top:18pt}
+#deckPrintReport table{border-collapse:collapse;width:100%;margin:8pt 0;font-size:10pt}
+#deckPrintReport th,#deckPrintReport td{border:1px solid #aaa;padding:5pt;text-align:left;overflow-wrap:anywhere;background:#fff!important;color:#000!important}
+#deckPrintReport svg{max-width:500px;width:100%;height:auto;display:block;margin:8pt auto}
+#deckPrintReport tr,#deckPrintReport svg{break-inside:avoid}
+#deckPrintReport p{margin:6pt 0}#deckPrintReport thead{display:table-header-group}
+}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Deck Footing Calculator (Frost Depth)","url":"https://utiliby.com/tools/construction/deck-footing-calculator/","applicationCategory":"ConstructionApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free deck footing calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free deck footing calculator online turns your deck layout, post spacing and soil conditions into a complete footing plan: footing size, frost depth protection, concrete volume, bag count, rebar and cost. It checks everything against IRC R403.1.4, which requires exterior footings to sit at least 12 inches below undisturbed grade AND below the local frost line, whichever is deeper."}},{"@type":"Question","name":"How deep should deck footings be?","acceptedAnswer":{"@type":"Answer","text":"IRC R403.1.4 requires deck footings to be at least 12 inches below undisturbed grade and below the local frost depth, whichever is deeper. Frost depth varies from 0 inches in southern Florida to more than 60 inches in northern Minnesota and Maine. Add 6 inches of safety margin below the frost line as good practice."}},{"@type":"Question","name":"What is tributary area and why does it matter for footing size?","acceptedAnswer":{"@type":"Answer","text":"Tributary area is the portion of the deck's load that one footing must support. It is calculated by measuring halfway to the next support in each direction, then multiplying the two distances. A footing's tributary load = tributary area × design load (typically 50 psf for a residential deck: 40 psf live + 10 psf dead)."}},{"@type":"Question","name":"How do I size a deck footing?","acceptedAnswer":{"@type":"Answer","text":"Divide the tributary load by the soil bearing capacity to get the required footing area. For a round footing, diameter = sqrt(4 × area / π). For a square footing, side = sqrt(area). Then compare the required size against the minimum for your post size and the local frost depth requirement."}},{"@type":"Question","name":"How many bags of concrete for a deck footing?","acceptedAnswer":{"@type":"Answer","text":"An 80 lb bag of concrete mix yields about 0.60 cubic feet, a 60 lb bag about 0.45 cubic feet, and a 40 lb bag about 0.30 cubic feet. Divide the footing volume by the bag yield and round up. A 12-inch diameter Sonotube footing 36 inches deep needs about 6 bags of 80 lb mix."}},{"@type":"Question","name":"Do deck footings need rebar?","acceptedAnswer":{"@type":"Answer","text":"Rebar is not always strictly required for small residential deck footings, but it is strongly recommended. A minimum of #4 (1/2 inch) rebar at 12 to 16 inches on center or a cage of 3 to 4 vertical #4 bars is common practice. Rebar controls cracking and ties the footing to the pier above."}},{"@type":"Question","name":"What is the minimum footing depth if there is no frost?","acceptedAnswer":{"@type":"Answer","text":"Even in frost-free areas, IRC R403.1.4 requires a minimum depth of 12 inches below undisturbed grade. This ensures the footing bears on stable, undisturbed soil below the topsoil and organic layer."}},{"@type":"Question","name":"What is a frost-protected shallow foundation (FPSF)?","acceptedAnswer":{"@type":"Answer","text":"IRC R403.3 allows a frost-protected shallow foundation (FPSF) as an alternative to deep frost-line footings. Insulation is placed around the footing to prevent the soil beneath it from freezing, allowing a shallower depth of 12 to 16 inches depending on the climate. FPSF is typically used for heated buildings, not open decks."}},{"@type":"Question","name":"What soil bearing capacity should I use?","acceptedAnswer":{"@type":"Answer","text":"If you do not have a soil test, use the presumptive values from IRC Table R401.4.1: 1,500 psf for clay, 2,000 psf for sand, 3,000 psf for gravel, and 4,000 psf for crystalline bedrock. For anything below 1,500 psf, an engineered design is required."}},{"@type":"Question","name":"Is this deck footing calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Deck Footing Calculator (Frost Depth)","url":"https://utiliby.com/tools/construction/deck-footing-calculator/","applicationCategory":"ConstructionApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free deck footing calculator online?","acceptedAnswer":{"@type":"Answer","text":"It estimates centered bearing size, concrete and supplied reinforcement quantities, costs and entered depth comparisons. It is a planning worksheet, not an approved deck foundation design."}},{"@type":"Question","name":"How do I calculate deck footing diameter?","acceptedAnswer":{"@type":"Answer","text":"Divide the compatible downward bearing load by allowable soil pressure to obtain area. Round diameter is the square root of four times that area divided by pi. Round upward and check all separate structural and local requirements."}},{"@type":"Question","name":"How deep should deck footings be?","acceptedAnswer":{"@type":"Answer","text":"Use the adopted local requirements and approved project design. This worksheet compares the proposed concrete bottom with the larger of your entered minimum or frost depth plus an optional allowance. It cannot establish local requirements or exceptions."}},{"@type":"Question","name":"Can a state frost-depth map determine my footing depth?","acceptedAnswer":{"@type":"Answer","text":"No. State averages do not establish a site-specific adopted requirement. Record the local building-department or design source and its specified depth in the Frost Depth tab."}},{"@type":"Question","name":"What is tributary area?","acceptedAnswer":{"@type":"Answer","text":"It is the deck load area assigned to a particular support. Its relationship to reaction depends on framing, continuity, cantilevers and load distribution. Use an appropriate analysis for the actual post rather than dividing total deck area equally by post count."}},{"@type":"Question","name":"Can I use a known post reaction instead of tributary area?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter a compatible service-level downward post reaction and a verified allowable bearing pressure. Add only loads that are not already included in that reaction or its bearing basis."}},{"@type":"Question","name":"How many 80 lb bags for a 12-inch by 36-inch concrete footing?","acceptedAnswer":{"@type":"Answer","text":"A solid 12-inch-diameter cylinder with 36 inches of concrete and no projection contains about 2.356 cubic feet. At 0.60 cubic feet per bag, it requires 4 bags without waste or 5 bags with 10% waste."}},{"@type":"Question","name":"How does a spread footing and pier volume calculation work?","acceptedAnswer":{"@type":"Answer","text":"Add the full pad volume to the pier volume above the pad top. Subtract pad thickness from the total concrete height used for the pier so the overlapping concrete is not counted twice."}},{"@type":"Question","name":"What soil bearing capacity should I use?","acceptedAnswer":{"@type":"Answer","text":"Use a value authorized for the actual site and bearing stratum by the local authority or geotechnical/design documents. The calculator cannot identify soil, verify presumptive values or assess settlement."}},{"@type":"Question","name":"Does the calculator design rebar for deck footings?","acceptedAnswer":{"@type":"Answer","text":"No. It estimates pieces, stock bars, offcuts, ties and cost from your supplied reinforcement schedule. Bar size, spacing, cover, hooks, laps and structural adequacy require a separate suitable design."}},{"@type":"Question","name":"Does gravel below a footing count toward concrete depth?","acceptedAnswer":{"@type":"Answer","text":"No. An approved layer below concrete increases excavation depth. The depth to the underside of concrete remains a separate dimension and must satisfy the applicable bearing and frost requirements."}},{"@type":"Question","name":"Can I calculate footings for a hot tub or roof?","acceptedAnswer":{"@type":"Answer","text":"You may enter an independently established compatible post reaction for a bearing estimate. The calculator does not determine special-load reactions or design the deck framing, foundation, uplift or connections for those features."}},{"@type":"Question","name":"Does print or save include the explanatory article?","acceptedAnswer":{"@type":"Answer","text":"No. The report contains the selected worksheet inputs, results, assumptions, optional diagrams and a short disclaimer. Print/PDF, text, CSV and copied reports exclude the website article and navigation."}},{"@type":"Question","name":"Can I use metric inputs?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch between imperial and metric inputs to convert dimensions, surface loads, reactions, areas and custom bag yield. Ready-mix order increments and prices per cubic yard remain in their explicitly labeled purchasing units."}},{"@type":"Question","name":"Is this deck footing calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator is free to use online and requires no calculator account. Its calculation code runs in the browser; website-level privacy and advertising practices depend on the host site's policies."}}]}]}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/construction/">Construction</a> › Deck Footing Calculator</nav>
 <h1 class="noembed">Deck Footing Calculator (Frost Depth)</h1>
-<p class="lead noembed">Calculate footing size, frost depth protection, concrete volume, bag count, rebar and cost. IRC R403.1.4 code check, frost depth by state, dynamic cross-section diagram. Free, private and no sign-up.</p>
+<p class="lead noembed">Estimate round, square or rectangular footing bearing size, concrete and materials with a dynamic diagram. Record local frost requirements and export only your calculation report. Free online, with imperial and metric inputs.</p>
 <p class="onlyembed"><a href="https://utiliby.com/tools/construction/deck-footing-calculator/" target="_blank" rel="noopener">Deck Footing Calculator by Utiliby</a></p>
 
 <section class="tool" id="tool" aria-label="Deck footing calculator">
-
-<div class="df-hero noembed">
-<h2>Free Deck Footing Calculator with Frost Depth</h2>
-<p>Three calculators in one: footing sizing, concrete &amp; materials, and frost depth reference by state.</p>
-</div>
-
-<div class="df-tabs noembed" role="group" aria-label="Calculator mode">
-<button type="button" class="df-tab on" data-mode="sizing">Footing Sizing</button>
-<button type="button" class="df-tab" data-mode="materials">Concrete &amp; Materials</button>
-<button type="button" class="df-tab" data-mode="frost">Frost Depth by State</button>
-</div>
-
-<!-- SIZING TAB -->
-<div id="sizingTab">
-<div class="df-panel">
-<h3>Deck layout &amp; post spacing</h3>
-<div class="df-row3">
-<div><label for="s_beamSpan">Beam span / distance to adjacent beam (ft)</label><input type="number" id="s_beamSpan" min="0" step="0.5" value="8"></div>
-<div><label for="s_postSpacing">Post spacing along beam (ft)</label><input type="number" id="s_postSpacing" min="0" step="0.5" value="8"></div>
-<div><label for="s_overhang">Cantilever / overhang beyond post (ft)</label><input type="number" id="s_overhang" min="0" step="0.5" value="2"></div>
-</div>
-<p class="meta" style="margin:6px 0 0;font-size:.8rem">Enter 0 for any dimension that does not apply (e.g., the ledger side of a corner post).</p>
-</div>
-
-<div class="df-panel">
-<h3>Loads &amp; soil</h3>
-<div class="df-row3">
-<div><label for="s_liveLoad">Live load (psf)</label><input type="number" id="s_liveLoad" min="20" step="5" value="40"></div>
-<div><label for="s_deadLoad">Dead load (psf)</label><input type="number" id="s_deadLoad" min="5" step="5" value="10"></div>
-<div><label for="s_soil">Soil bearing capacity (psf)</label>
-<select id="s_soil">
-<option value="1500" selected>1,500 psf — Clay / silt (presumptive)</option>
-<option value="2000">2,000 psf — Sand / gravel (presumptive)</option>
-<option value="3000">3,000 psf — Dense gravel / sandy gravel</option>
-<option value="4000">4,000 psf — Crystalline bedrock</option>
-<option value="custom">Custom value…</option>
-</select></div>
-</div>
-<div class="df-row" id="s_customSoilRow" hidden>
-<div><label for="s_customSoil">Custom soil bearing capacity (psf)</label><input type="number" id="s_customSoil" min="500" step="100" value="1500"></div>
-<div></div>
-</div>
-</div>
-
-<div class="df-panel">
-<h3>Frost depth &amp; footing</h3>
-<div class="df-row3">
-<div><label for="s_frostDepth">Local frost depth (in)</label><input type="number" id="s_frostDepth" min="0" step="1" value="36"></div>
-<div><label for="s_margin">Safety margin below frost (in)</label>
-<select id="s_margin">
-<option value="0">0 in — code minimum</option>
-<option value="6" selected>6 in — recommended</option>
-<option value="12">12 in — conservative</option>
-</select></div>
-<div><label for="s_shape">Footing shape</label>
-<select id="s_shape">
-<option value="round" selected>Round (Sonotube)</option>
-<option value="square">Square (formed pad)</option>
-</select></div>
-</div>
-</div>
-
-<div class="df-diagram" id="footingDiagram"></div>
-
-<button type="button" class="df-btn" id="calcSizingBtn">Calculate Footing Size</button>
-<button type="button" class="df-btn ghost" id="resetSizingBtn">Reset</button>
-
-<div id="sizingOutput"></div>
-</div>
-
-<!-- MATERIALS TAB -->
-<div id="materialsTab" hidden>
-<div class="df-panel">
-<h3>Concrete &amp; rebar estimate</h3>
-<div class="df-row3">
-<div><label for="m_diameter">Footing diameter / side (in)</label><input type="number" id="m_diameter" min="6" step="1" value="12"></div>
-<div><label for="m_depth">Footing depth (in)</label><input type="number" id="m_depth" min="12" step="1" value="36"></div>
-<div><label for="m_count">Number of footings</label><input type="number" id="m_count" min="1" step="1" value="6"></div>
-</div>
-<div class="df-row3">
-<div><label for="m_shape">Shape</label>
-<select id="m_shape">
-<option value="round" selected>Round</option>
-<option value="square">Square</option>
-</select></div>
-<div><label for="m_bag">Concrete bag size</label>
-<select id="m_bag">
-<option value="80" selected>80 lb (0.60 ft³)</option>
-<option value="60">60 lb (0.45 ft³)</option>
-<option value="40">40 lb (0.30 ft³)</option>
-</select></div>
-<div><label for="m_waste">Waste allowance (%)</label><input type="number" id="m_waste" min="0" step="1" value="10"></div>
-</div>
-<div class="df-row">
-<div><label for="m_rebar">Rebar type</label>
-<select id="m_rebar">
-<option value="0">None</option>
-<option value="4" selected>#4 (1/2") rebar cage</option>
-<option value="5">#5 (5/8") rebar cage</option>
-</select></div>
-<div><label for="m_rebarBars">Bars per footing</label><input type="number" id="m_rebarBars" min="0" max="8" step="1" value="4"></div>
-</div>
-<div class="df-row">
-<div><label for="m_concreteCost">Concrete cost per bag ($)</label><input type="number" id="m_concreteCost" min="0" step="0.5" value="7.50"></div>
-<div><label for="m_rebarCost">Rebar cost per ft ($)</label><input type="number" id="m_rebarCost" min="0" step="0.1" value="0.75"></div>
-</div>
-</div>
-
-<button type="button" class="df-btn" id="calcMaterialsBtn">Calculate Materials</button>
-
-<div id="materialsOutput"></div>
-</div>
-
-<!-- FROST DEPTH TAB -->
-<div id="frostTab" hidden>
-<div class="df-panel">
-<h3>Frost depth by state (reference)</h3>
-<p class="meta" style="margin-bottom:10px">Typical residential frost depth ranges. Your local building department is the authoritative source — always confirm before digging.</p>
-<div class="df-row">
-<div><label for="f_state">Select your state</label>
-<select id="f_state">
-<option value="">— Select a state —</option>
-</select></div>
-<div><label for="f_manual">Or enter your frost depth manually (in)</label><input type="number" id="f_manual" min="0" step="1" placeholder="e.g. 36"></div>
-</div>
-</div>
-
-<div id="frostOutput"></div>
-</div>
-
+<div class="df-hero noembed"><h2>Free Deck Footing Calculator Online</h2><p>Compare bearing sizes, estimate concrete and reinforcement quantities, and record verified local frost requirements.</p></div>
+<div class="df-tabs" role="group" aria-label="Calculator mode"><button type="button" class="df-tab on" data-mode="sizing" aria-pressed="true">Footing Sizing</button><button type="button" class="df-tab" data-mode="materials" aria-pressed="false">Concrete &amp; Materials</button><button type="button" class="df-tab" data-mode="frost" aria-pressed="false">Frost Depth</button></div>
+<div class="df-panel"><h3>Worksheet settings</h3><div class="df-row"><div><label for="units">Input units</label><select id="units"><option value="us">Feet, inches, psf & pounds</option><option value="si">Metres, millimetres, kPa & kN</option></select></div><div><label for="project">Project / footing reference</label><input type="text" id="project" value="Deck footing estimate" step="any"></div></div><p class="meta">Example values are starting scenarios, not site recommendations. The sizing worksheet checks centered vertical bearing only; it does not certify a footing or deck design.</p></div><div id="sizingTab"><div class="df-panel"><h3>Load method</h3><div><label for="s_method">How is this post load determined?</label><select id="s_method"><option value="area">Known tributary area</option><option value="reaction">Known service-level post reaction</option><option value="simple">Simple beam on two posts — uniform load model</option></select></div><div class="df-row"><div><label for="s_area">Tributary area for one post (<span data-unit="area">ft²</span>)</label><input type="number" id="s_area" value="64" step="any" data-measure="area"></div><div><label for="s_reaction">Known downward post reaction (<span data-unit="force">lb</span>)</label><input type="number" id="s_reaction" value="3200" step="any" data-measure="force"></div></div><div id="simpleFields" hidden><div class="df-row3"><div><label for="s_beamSpan">Joist support span (ledger to beam) (<span data-unit="ft">ft</span>)</label><input type="number" id="s_beamSpan" value="8" step="any" data-measure="ft"></div><div><label for="s_postSpacing">Beam span between two posts (<span data-unit="ft">ft</span>)</label><input type="number" id="s_postSpacing" value="8" step="any" data-measure="ft"></div><div><label for="s_overhang">Joist cantilever beyond beam (<span data-unit="ft">ft</span>)</label><input type="number" id="s_overhang" value="2" step="any" data-measure="ft"></div></div><div class="df-row3"><div><label for="s_leftOver">Beam overhang left of left post (<span data-unit="ft">ft</span>)</label><input type="number" id="s_leftOver" value="0" step="any" data-measure="ft"></div><div><label for="s_rightOver">Beam overhang right of right post (<span data-unit="ft">ft</span>)</label><input type="number" id="s_rightOver" value="0" step="any" data-measure="ft"></div><div><label for="s_support">Post to evaluate</label><select id="s_support"><option value="max">Larger of the two post reactions</option><option value="left">Left post</option><option value="right">Right post</option></select></div></div><p class="meta">Only two beam supports, one joist support span, and a uniform load over the whole loaded deck are modeled. Continuous multi-post beams, point-load distribution, framing capacity and connections require separate analysis.</p></div></div><div class="df-panel"><h3>Loads &amp; allowable soil bearing</h3><div class="df-row3"><div><label for="s_liveLoad">Live load (<span data-unit="pressure">psf</span>)</label><input type="number" id="s_liveLoad" value="40" step="any" data-measure="pressure"></div><div><label for="s_deadLoad">Dead load (<span data-unit="pressure">psf</span>)</label><input type="number" id="s_deadLoad" value="10" step="any" data-measure="pressure"></div><div><label for="s_snowLoad">Applicable deck snow load (<span data-unit="pressure">psf</span>)</label><input type="number" id="s_snowLoad" value="0" step="any" data-measure="pressure"></div></div><div class="df-row3"><div><label for="s_loadCase">Variable load scenario</label><select id="s_loadCase"><option value="max">Larger of live or snow + dead</option><option value="live">Live + dead</option><option value="snow">Snow + dead</option><option value="sum">Live + snow + dead (user-selected)</option></select></div><div><label for="s_extra">Additional downward reaction at this post (<span data-unit="force">lb</span>)</label><input type="number" id="s_extra" value="0" step="any" data-measure="force"></div><div><label for="s_foundationWeight">Foundation / other bearing load allowance (<span data-unit="force">lb</span>)</label><input type="number" id="s_foundationWeight" value="0" step="any" data-measure="force"></div></div><div class="df-row3"><div><label for="s_soil">Allowable soil bearing pressure (<span data-unit="pressure">psf</span>)</label><input type="number" id="s_soil" value="1500" step="any" data-measure="pressure"></div><div><label for="s_increment">Dimension rounding increment (<span data-unit="inch">in</span>)</label><input type="number" id="s_increment" value="2" step="any" data-measure="inch"></div><div><label for="s_minSize">User-required minimum bearing dimension (<span data-unit="inch">in</span>)</label><input type="number" id="s_minSize" value="12" step="any" data-measure="inch"></div></div><div><label for="s_soilSource">Soil value source / basis</label><input type="text" id="s_soilSource" value="Unverified example — confirm before use" step="any"></div><p class="meta">Use compatible service-level reactions and allowable bearing values. Confirm gross versus net bearing and which foundation weights are already included. A numeric pressure cannot identify soil or establish allowable capacity.</p></div><div class="df-panel"><h3>Footing shape &amp; depth scenario</h3><div class="df-row3"><div><label for="s_shape">Bearing base shape</label><select id="s_shape"><option value="round">Round</option><option value="square">Square</option><option value="rect">Rectangular</option></select></div><div><label for="s_ratio">Rectangular length / width ratio</label><input type="number" id="s_ratio" value="1.5" step="any"></div><div><label for="s_candidate">Optional candidate diameter / width (<span data-unit="inch">in</span>)</label><input type="number" id="s_candidate" value="0" step="any" data-measure="inch"></div></div><div class="df-row3"><div><label for="s_frostDepth">Local design frost depth (<span data-unit="inch">in</span>)</label><input type="number" id="s_frostDepth" value="36" step="any" data-measure="inch"></div><div><label for="s_minDepth">Local minimum embedment / bearing depth (<span data-unit="inch">in</span>)</label><input type="number" id="s_minDepth" value="12" step="any" data-measure="inch"></div><div><label for="s_margin">Additional depth allowance (<span data-unit="inch">in</span>)</label><input type="number" id="s_margin" value="0" step="any" data-measure="inch"></div></div><p class="meta">Candidate 0 uses the rounded bearing dimension. Depth = larger of entered minimum or frost depth + allowance. Verify applicability and any exceptions locally. Pad thickness and pier diameter are separate design decisions.</p></div><div class="df-diagram" id="footingDiagram"></div><button type="button" class="df-btn" id="calcSizingBtn">Calculate Footing Size</button><button type="button" class="df-btn ghost" id="resetSizingBtn">Reset worksheet</button><button type="button" class="df-btn ghost" id="transferSizingBtn">Use bearing base in materials</button><div id="sizingOutput" aria-live="polite"></div></div><div id="materialsTab" hidden><div class="df-panel"><h3>Concrete geometry</h3><div><label for="m_geometry">Foundation geometry</label><select id="m_geometry"><option value="solid">Solid full-height footing / pier</option><option value="spread">Spread pad + round pier above pad</option></select></div><div class="df-row3"><div><label for="m_diameter">Bearing base diameter / width (<span data-unit="inch">in</span>)</label><input type="number" id="m_diameter" value="12" step="any" data-measure="inch"></div><div><label for="m_length">Rectangular base length (<span data-unit="inch">in</span>)</label><input type="number" id="m_length" value="24" step="any" data-measure="inch"></div><div><label for="m_shape">Bearing base shape</label><select id="m_shape"><option value="round">Round</option><option value="square">Square</option><option value="rect">Rectangular</option></select></div></div><div class="df-row3"><div><label for="m_depth">Concrete bottom below grade (<span data-unit="inch">in</span>)</label><input type="number" id="m_depth" value="36" step="any" data-measure="inch"></div><div><label for="m_projection">Concrete projection above grade (<span data-unit="inch">in</span>)</label><input type="number" id="m_projection" value="0" step="any" data-measure="inch"></div><div><label for="m_count">Identical footings in this group</label><input type="number" id="m_count" value="6" step="1"></div></div><div id="spreadFields" hidden><div class="df-row"><div><label for="m_pad">Pad thickness (design supplied) (<span data-unit="inch">in</span>)</label><input type="number" id="m_pad" value="8" step="any" data-measure="inch"></div><div><label for="m_pier">Round pier diameter (design supplied) (<span data-unit="inch">in</span>)</label><input type="number" id="m_pier" value="12" step="any" data-measure="inch"></div></div></div><div class="df-row3"><div><label for="m_gravel">Approved base layer below concrete (<span data-unit="inch">in</span>)</label><input type="number" id="m_gravel" value="0" step="any" data-measure="inch"></div><div><label for="m_holeExtra">Excavation clearance each side (<span data-unit="inch">in</span>)</label><input type="number" id="m_holeExtra" value="0" step="any" data-measure="inch"></div><div><label for="m_waste">Concrete waste allowance (%)</label><input type="number" id="m_waste" value="10" step="any"></div></div><p class="meta">Spread-pad volume is counted once; the pier starts at the pad top. Excavation is a vertical-sided planning envelope, not an excavation safety plan. Base layers require approval and never substitute for concrete bearing depth.</p></div><div class="df-panel"><h3>Concrete purchasing &amp; cost</h3><div class="df-row3"><div><label for="m_bag">Bag product / nominal yield</label><select id="m_bag"><option value="80">80 lb / 0.60 ft³</option><option value="60">60 lb / 0.45 ft³</option><option value="50">50 lb / 0.375 ft³</option><option value="40">40 lb / 0.30 ft³</option><option value="90">90 lb / 0.675 ft³</option><option value="custom">Custom product</option></select></div><div><label for="m_yield">Custom product yield per bag (<span data-unit="vol">ft³</span>)</label><input type="number" id="m_yield" value="0.6" step="any" data-measure="vol"></div><div><label for="m_batch">Bag rounding</label><select id="m_batch"><option value="pooled">Pooled batch for this group</option><option value="each">Separate batch for each footing</option></select></div></div><div class="df-row3"><div><label for="m_concreteCost">Bag price ($ per bag)</label><input type="number" id="m_concreteCost" value="7.5" step="any"></div><div><label for="m_readyPrice">Ready-mix price ($ per yd³)</label><input type="number" id="m_readyPrice" value="160" step="any"></div><div><label for="m_delivery">Ready-mix delivery / minimum-charge allowance ($)</label><input type="number" id="m_delivery" value="0" step="any"></div></div><div class="df-row3"><div><label for="m_orderStep">Ready-mix order increment (yd³)</label><input type="number" id="m_orderStep" value="0.25" step="any"></div><div><label for="m_orderMin">Supplier minimum order (yd³)</label><input type="number" id="m_orderMin" value="0" step="any"></div><div><label for="m_otherCost">Other project costs ($)</label><input type="number" id="m_otherCost" value="0" step="any"></div></div><p class="meta">Prices are editable examples in dollars; check local quotes. Supplier minimums, delivery, short-load charges, pumping and labor can dominate small pours. Custom product yield must come from its current label.</p></div><div class="df-panel"><h3>Reinforcement takeoff — use an approved schedule</h3><div class="df-row3"><div><label for="m_rebar">Bar identification</label><select id="m_rebar"><option value="0">No bar schedule entered</option><option value="4">#4 bar — quantity only</option><option value="5">#5 bar — quantity only</option><option value="other">Other — quantity only</option></select></div><div><label for="m_rebarBars">Straight pieces per footing</label><input type="number" id="m_rebarBars" value="4" step="1"></div><div><label for="m_barLength">Cut length per piece (incl. specified hooks/laps) (<span data-unit="inch">in</span>)</label><input type="number" id="m_barLength" value="30" step="any" data-measure="inch"></div></div><div class="df-row3"><div><label for="m_stock">Stock bar length (<span data-unit="ft">ft</span>)</label><input type="number" id="m_stock" value="20" step="any" data-measure="ft"></div><div><label for="m_rebarCost">Stock bar price ($ per ft)</label><input type="number" id="m_rebarCost" value="0.75" step="any"></div><div><label for="m_ties">Ties per footing (schedule supplied)</label><input type="number" id="m_ties" value="0" step="1"></div></div><div class="df-row"><div><label for="m_tieLength">Cut length per tie (<span data-unit="inch">in</span>)</label><input type="number" id="m_tieLength" value="30" step="any" data-measure="inch"></div><div><label for="m_tieCost">Price per completed tie ($)</label><input type="number" id="m_tieCost" value="0" step="any"></div></div><p class="meta">No reinforcement requirement is inferred. Stock estimate fits whole equal-length pieces in each stock bar; it cannot splice a short stock bar to satisfy a longer cut. Tie bending, cover, anchorage and cage adequacy are not checked.</p></div><div class="df-diagram" id="materialsDiagram"></div><button type="button" class="df-btn" id="calcMaterialsBtn">Calculate Materials</button><div id="materialsOutput" aria-live="polite"></div></div><div id="frostTab" hidden><div class="df-panel"><h3>Record a verified local depth</h3><div class="df-row"><div><label for="f_locality">Jurisdiction / site</label><input type="text" id="f_locality" value="" step="any"></div><div><label for="f_source">Published requirement / permit source</label><input type="text" id="f_source" value="" step="any"></div></div><div class="df-row3"><div><label for="f_manual">Local design frost depth (<span data-unit="inch">in</span>)</label><input type="number" id="f_manual" value="" step="any" data-measure="inch"></div><div><label for="f_min">Local minimum bearing depth (<span data-unit="inch">in</span>)</label><input type="number" id="f_min" value="12" step="any" data-measure="inch"></div><div><label for="f_margin">Additional allowance (<span data-unit="inch">in</span>)</label><input type="number" id="f_margin" value="0" step="any" data-measure="inch"></div></div><div class="df-row"><div><label for="f_actual">Proposed concrete bottom below grade (<span data-unit="inch">in</span>)</label><input type="number" id="f_actual" value="36" step="any" data-measure="inch"></div><div><label for="f_gravel">Approved base layer below concrete (<span data-unit="inch">in</span>)</label><input type="number" id="f_gravel" value="0" step="any" data-measure="inch"></div></div><p class="meta">State averages cannot determine your site requirement. Obtain the adopted requirement from your building department or project design. This worksheet records that value and compares your proposed depth; it does not determine frost depth from climate data.</p></div><button type="button" class="df-btn" id="transferFrostBtn">Use these depth inputs in sizing</button><div id="frostOutput" aria-live="polite"></div></div><div class="df-panel"><h3>Copy, print or save your calculation report</h3><div class="df-row"><div><label for="exportScope">Report sections</label><select id="exportScope"><option value="active">Current calculator tab only</option><option value="all">All three worksheet sections</option></select></div><div><label for="exportDiagram">Include illustrative diagrams</label><select id="exportDiagram"><option value="yes">Yes</option><option value="no">No</option></select></div></div><div class="df-actions"><button type="button" class="primary" id="printReportBtn">Print / save as PDF</button><button type="button" id="saveTextBtn">Save report (.txt)</button><button type="button" id="saveCsvBtn">Save results (.csv)</button><button type="button" id="copyReportBtn">Copy report</button></div><p class="meta" id="exportStatus" role="status">Exports include worksheet inputs, results, assumptions and a short disclaimer. Website navigation, sharing controls and the article are excluded.</p></div>
+<noscript><p class="df-warn">Enable JavaScript to calculate. The formulas and examples below remain available.</p></noscript>
 </section>
 
 <div class="df-share noembed">
@@ -253,616 +143,213 @@
 </div>
 
 <article class="cn-article noembed">
+<h2>Free deck footing calculator online: size, depth and concrete quantities</h2>
+<p>This free online deck footing calculator helps you compare the bearing area needed beneath a deck post, record a local frost-depth requirement, and estimate concrete, bags, ready-mix orders and reinforcement quantities. It covers round concrete footings, square pads and rectangular bearing bases, with an optional round pier above a spread footing. The diagram changes with your inputs so that bearing width, concrete depth, above-grade projection and an approved base layer are easier to distinguish.</p>
+<p>Use it as a planning worksheet for a deck foundation estimate, a concrete pier quantity check or a discussion with your contractor. A footing-size calculation is one part of a foundation design. It cannot establish soil capacity from an address, choose a reinforcement cage, approve beam spans, or confirm that a deck meets the adopted building code. The calculator deliberately identifies these limits rather than displaying a blanket “code compliant” result.</p>
+<p>The default loads, prices and dimensions are example scenarios. They are not recommendations for your site. Imperial inputs use feet, inches, pounds and pounds per square foot; metric inputs use metres, millimetres, kilonewtons and kilopascals. The unit switch converts entered physical quantities instead of simply changing their labels. Common concrete bag weights remain in pounds, and the ready-mix purchasing controls remain in cubic yards, as explicitly labeled.</p>
 
-<h2>What is a free deck footing calculator online?</h2>
-<p>A free deck footing calculator online is a tool that turns your deck layout, post spacing and soil conditions into a complete footing plan. Instead of guessing the footing size and hoping the depth is enough, you enter the tributary area each post carries, the soil bearing capacity and your local frost depth, and the calculator returns the required footing diameter or side length, the minimum depth below frost, the concrete volume, the bag count, the rebar requirement and an estimated cost.</p>
-<p>This deck footing calculator with frost depth goes beyond a basic size chart. It combines three calculators in one page: a footing sizing calculator that uses the tributary area method behind IRC Table R507.3.1 and AWC DCA 6, a concrete and materials estimator with bag counts for 80 lb, 60 lb and 40 lb mixes, and a frost depth reference table for all 50 states. It also draws a dynamic cross-section diagram showing the footing relative to the frost line, and checks everything against IRC R403.1.4. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-
-<h2>How to use this free deck footing calculator with frost depth</h2>
+<h2>How to use the deck footing calculator</h2>
 <ol>
-<li><b>Footing Sizing tab.</b> Enter the beam span (the distance from the post to the nearest adjacent beam or ledger), the post spacing along the beam, and any cantilever beyond the post. Enter the live load (typically 40 psf for a residential deck) and dead load (typically 10 psf). Select or enter your soil bearing capacity. Enter your local frost depth and choose a safety margin. The calculator returns the required footing size and the minimum depth.</li>
-<li><b>Concrete &amp; Materials tab.</b> Enter the footing diameter, depth and count. Select the shape, bag size and waste allowance. The calculator returns the concrete volume, the exact number of bags, the rebar length and an estimated cost.</li>
-<li><b>Frost Depth by State tab.</b> Select your state to see the typical frost depth range. Always confirm with your local building department — the state-level values are guidance, not code.</li>
-<li>Copy the result, print it as a PDF, or use the share module below the tool.</li>
+<li><b>Choose the load basis.</b> Enter a known tributary area for one post, an independently established service-level post reaction, or a simple uniformly loaded beam on exactly two posts. Do not divide the whole deck area equally among posts unless the actual support arrangement supports that assumption.</li>
+<li><b>Enter compatible loads and soil pressure.</b> Select the live, snow and dead-load scenario, include any additional reaction at that post, and record the source of the allowable bearing pressure. Check whether the soil value is gross or net and whether the supplied reaction already contains the allowances you add.</li>
+<li><b>Compare bearing bases.</b> Choose round, square or rectangular. Set a dimensional rounding increment and any minimum dimension required by your approved design. Enter a candidate width or diameter to assess a particular proposed base against the entered pressure.</li>
+<li><b>Record local depth requirements.</b> Confirm the local frost depth and minimum bearing depth before using those inputs. The additional allowance is optional and user-selected; it is not a universal code requirement.</li>
+<li><b>Estimate materials separately.</b> Transfer the bearing-base dimensions into the materials tab, then choose a solid section or spread pad with a round pier. Enter pad thickness and pier size from an appropriate design. Verify quantities and supplier yields before purchase.</li>
+<li><b>Export a focused report.</b> Choose the current tab or all three worksheets. Print or save as PDF, download text or CSV, or copy the report. Exports contain inputs, results and assumptions, without the website article, navigation or sharing controls.</li>
 </ol>
 
-<h2>Why frost depth matters for deck footings</h2>
-<p>When soil moisture freezes, the ice crystals expand and push upward with enormous force — sometimes several tons per square foot. This phenomenon is called frost heave. If a footing sits in or above the frost zone, the frozen soil lifts that footing, and when the soil thaws in spring, the footing drops again. This repeated cycle creates differential movement across the deck, leading to cracked concrete, twisted posts, loose railings and, in severe cases, structural failure.</p>
-<p>IRC R403.1.4 requires all exterior footings to be placed at least 12 inches below undisturbed grade and below the local frost depth, whichever is deeper. Both conditions must be met. The code does not set a single national frost depth — it defers to the local jurisdiction. Frost depth varies from 0 inches in southern Florida to more than 60 inches in northern Minnesota and Maine. A footing that stops above the frost line is vulnerable to frost heave regardless of how wide it is.</p>
-<p>Adding a 6-inch safety margin below the frost line is good practice. Soil conditions, drainage and the severity of local winters can vary within a single jurisdiction, and the extra depth costs very little compared to the cost of repairing a heaved deck.</p>
+<h2>Footing, pier, concrete tube and excavation: four different dimensions</h2>
+<p>A <b>deck footing</b> spreads load onto the supporting ground. A <b>pier</b> carries load upward from that bearing base to the post connection. A cylindrical concrete foundation may perform both functions; a narrower pier over a wider pad separates them. A concrete forming tube, often described as a Sonotube, establishes the shaft shape but does not automatically establish an adequate bearing base.</p>
+<p>When a materials list calls for a 12-inch tube over a 24-inch spread footing, the bearing calculation uses the base area, while the concrete calculation includes both the pad and the pier. It would be incorrect to calculate all the concrete as a 24-inch cylinder or to use only the 12-inch shaft area as the pad's bearing area. Likewise, an excavation depth including a base layer is not the same as the depth to the underside of concrete.</p>
+<table class="df-table"><thead><tr><th scope="col">Dimension</th><th scope="col">What it describes</th><th scope="col">How the worksheet uses it</th></tr></thead><tbody>
+<tr><td>Bearing width or diameter</td><td>Concrete base contacting the bearing stratum</td><td>Area and average centered bearing pressure</td></tr>
+<tr><td>Concrete bottom below grade</td><td>Vertical distance from grade to underside of concrete</td><td>Depth comparison and foundation volume</td></tr>
+<tr><td>Pad thickness</td><td>Thickness of the widened spread footing</td><td>Pad volume; its structural adequacy is not checked</td></tr>
+<tr><td>Pier diameter</td><td>Round shaft above the spread pad</td><td>Concrete volume above the pad top</td></tr>
+<tr><td>Projection above grade</td><td>Concrete extending above the depth datum</td><td>Additional shaft volume</td></tr>
+<tr><td>Approved base-layer thickness</td><td>Material below the underside of concrete</td><td>Additional excavation and base-material volume</td></tr>
+</tbody></table>
 
-<h2>IRC R403.1.4 requirements at a glance</h2>
-<table class="df-table">
-<tr><th>Requirement</th><th>IRC R403.1.4 limit</th><th>Practical target</th></tr>
-<tr><td>Minimum depth below grade</td><td>12″ (305 mm)</td><td>12″ minimum</td></tr>
-<tr><td>Frost depth protection</td><td>Below local frost line</td><td>Frost depth + 6″</td></tr>
-<tr><td>Bearing soil</td><td>Undisturbed natural soil or engineered fill</td><td>Not topsoil or loose fill</td></tr>
-<tr><td>Footing thickness</td><td>6″ minimum (R403.1.1)</td><td>8″ – 12″ typical</td></tr>
-<tr><td>Footing projection</td><td>≥2″ and ≤ thickness</td><td>3″ – 4″ typical</td></tr>
-<tr><td>Frost-protected shallow foundation</td><td>IRC R403.3 alternative</td><td>12″ – 16″ with insulation</td></tr>
-</table>
+<h2>Deck footing size calculation: load divided by allowable bearing pressure</h2>
+<p>For a centered downward load, the basic bearing-area relationship is <b>A = W / q<sub>a</sub></b>. Here A is required bearing area, W is the total load included in the bearing check, and q<sub>a</sub> is the compatible allowable soil pressure. With W in pounds and q<sub>a</sub> in psf, A is in square feet. With force in kN and pressure in kPa, the resulting area is in square metres.</p>
+<p>For a round footing, diameter in feet is <b>√(4A / π)</b>; multiply by 12 for inches. For a square base, side in feet is <b>√A</b>. For a rectangular base with length-to-width ratio r, the unrounded width is <b>√(A / r)</b>, and length is r times that width. This tool rounds the width upward to your increment and rounds the rectangular length upward separately. It also respects your entered minimum width or diameter.</p>
+<p>The candidate-size control lets you evaluate an available tube or proposed pad. Candidate 0 uses the calculated rounded dimension. A positive candidate replaces that diameter or width and recalculates actual area and average pressure. A proposed base can therefore fail the entered bearing-pressure comparison even when the tool previously displayed a larger calculated size.</p>
+<p><b>Worked bearing example:</b> a confirmed 64 ft² equivalent load area at 50 psf produces 3,200 lb before additional allowances. At an allowable 1,500 psf, required area is 3,200 ÷ 1,500 = 2.133 ft². The round diameter is approximately 19.78 inches; rounding up in 2-inch increments gives 20 inches. A 20-inch round base has approximately 2.182 ft² of area and an average pressure of 1,467 psf. The square side for the same unrounded area is approximately 17.53 inches. These are bearing arithmetic examples, not approved footing dimensions or thicknesses.</p>
+<p>The utilization percentage is calculated average pressure divided by entered allowable pressure. Below 100% means that this centered bearing comparison is within the supplied pressure. It says nothing about settlement limits, bending or punching of the pad, off-center posts, overturning, uplift, lateral resistance or the reliability of the input soil value.</p>
 
-<h2>Key deck footing calculations</h2>
+<h2>Tributary area, deck post spacing and cantilever reactions</h2>
+<p>Tributary area describes the deck load assigned to a particular support. Interior posts, end posts, corners and posts receiving stair or landing loads can carry different reactions. Halfway-to-adjacent-support geometry is useful for appropriate regular framing, but it is not a universal reaction analysis. Unequal spans, beam continuity, joist cantilevers and concentrated loads can change the result.</p>
+<p>Use the <b>known tributary area</b> mode when you have established the area appropriate to the post and load case. Use the <b>known post reaction</b> mode when a designer or a suitable structural analysis provides a downward service-level reaction directly. The latter avoids converting a nonuniform load back into a fictitious deck area. Extra downward reaction can be added only when it is a load at this specific post, not merely the weight of an object somewhere on the deck.</p>
+<h3>The optional simple two-post beam model</h3>
+<p>This model assumes joists uniformly loaded over a support span J from a ledger to a beam, with a joist cantilever c beyond that beam. Static equilibrium gives a beam reaction per foot of beam length equal to surface load multiplied by <b>(J + c)² / (2J)</b>. With no cantilever, this reduces to half the joist support span. With a cantilever, it includes the additional cantilever contribution and its effect on the support reactions.</p>
+<p>The resulting uniform beam line load is then applied to one beam supported by exactly two posts separated by span S. Let a be the loaded beam overhang to the left and b the loaded overhang to the right. The right reaction is <b>w[(S + b)² − a²] / (2S)</b>, and the left reaction is <b>w(S + a + b) − right reaction</b>. The worksheet displays both reactions and lets you size for either post or the larger reaction.</p>
+<p>These equations describe the stated static model, not an arbitrary freestanding deck or a continuous beam over three or more posts. The displayed equivalent area is reaction divided by uniform surface load. If the model produces an upward reaction, the bearing result is withheld because anchorage and uplift need a separate design. Joist and beam strength, deflection and allowable overhangs remain outside the calculator.</p>
 
-<h3>Tributary area</h3>
-<p>Tributary area is the portion of the deck's load that one footing must support. It is calculated by measuring halfway to the next support in each direction, then multiplying the two distances:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Tributary Area = (½ × Beam Span + Overhang) × (½ × Post Spacing + ½ × Adjacent Post Spacing)</b></p>
-<p>For a corner post, one direction may have no adjacent beam (the ledger side), so that term is zero. For an interior post, all four directions contribute. This is why interior footings are frequently the largest on a deck — they collect load from all four directions.</p>
+<h2>Live load, dead load, snow load and heavy deck features</h2>
+<p>Live load represents the appropriate occupancy loading; dead load represents the permanent supported construction. The surface-load selector offers dead plus live, dead plus snow, dead plus the larger of live or snow, or a user-selected sum. These are transparent worksheet scenarios. They are not a substitute for the governing load combinations in the project design, and a climate-map ground snow number is not automatically the correct deck snow load.</p>
+<p>The familiar 40 psf live and 10 psf dead values appear as examples. They may be unsuitable for unusually heavy finishes, public occupancy, roofs, snow drift, masonry, planters, storage, hot tubs or other special features. A hot tub introduces substantial and often concentrated loads. Do not spread its weight uniformly over the whole deck or assume the simple beam mode determines its post reactions.</p>
+<p>Allowable-bearing checks must use a compatible load basis. Do not combine a factored ultimate reaction with an allowable service pressure without the necessary design interpretation. Foundation self-weight and soil over a footing may also matter. The additional bearing-load allowance provides a place for an independently established value; it does not calculate gross-to-net bearing adjustments or decide whether those weights should be included twice.</p>
 
-<h3>Required footing size</h3>
-<p>Divide the tributary load by the soil bearing capacity to get the required footing area:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Required Area = (Tributary Area × Design Load) / Soil Bearing Capacity</b></p>
-<p>For a round footing, the required diameter is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Diameter = √(4 × Area / π)</b></p>
-<p>For a square footing, the required side length is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Side = √Area</b></p>
-<p>Round the result up to the nearest standard size: 8″, 10″, 12″, 14″, 16″ or larger.</p>
+<h2>What soil bearing capacity should I use for deck footings?</h2>
+<p>Use a value permitted for the actual bearing stratum and project by your local authority or geotechnical/design documents. Soil appearance alone cannot establish allowable bearing pressure. A dropdown that labels a generic pressure as “bedrock” or “sand” is not a field investigation, and increasing the pressure merely to obtain a smaller footing is not a defensible design choice.</p>
+<p>Soft soils, organic material, uncontrolled fill, groundwater, expansive ground and a footing near a slope or another foundation can require site-specific assessment. The worksheet accepts a positive numerical value so that it can support different verified scenarios, but it cannot determine whether a presumptive value is permitted or whether deeper competent bearing material is necessary.</p>
+<p>Settlement can govern even when average pressure is below a supplied bearing limit. An off-center load also changes pressure distribution; this calculator assumes a centered resultant and uniform average pressure. If the post is close to a pad edge, a retaining wall, the house foundation or a property constraint, obtain a design that accounts for the actual geometry and eccentricity.</p>
 
-<h3>Concrete volume and bag count</h3>
-<p>For a round footing, volume = π × (diameter/2)² × depth. For a square footing, volume = side² × depth. Convert to cubic feet, then divide by the bag yield:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>80 lb bag ≈ 0.60 ft³ · 60 lb bag ≈ 0.45 ft³ · 40 lb bag ≈ 0.30 ft³</b></p>
-<p>Add 10% waste for spillage and uneven excavation. Round up to the nearest whole bag.</p>
+<h2>Deck footing depth and the local frost line</h2>
+<p>The Frost Depth tab is a record of your local requirement, its source and your proposed concrete-bottom depth. It intentionally avoids assigning a construction depth from a state name. County, municipal, elevation and project conditions can vary, and a broad frost-depth map does not establish the adopted requirement for a particular footing.</p>
+<p>The calculation is <b>required concrete-bottom depth = max(entered local minimum, entered frost depth + entered allowance)</b>. The comparison indicates whether your proposed underside of concrete reaches that scenario. If an approved gravel or other base layer is placed beneath it, excavation goes deeper by that layer thickness. A deeper hole alone does not compensate for concrete terminating above the required bearing elevation.</p>
+<p>American Wood Council DCA 6, based on the 2015 IRC, provides one prescriptive residential deck reference. Its footing guidance uses undisturbed bearing soil, a minimum depth and the locally specified frost line. Its scope and details must be checked as a whole; this worksheet does not reproduce its footing tables or claim that an area formula alone satisfies them. The adopted local code, amendments, site conditions and approved project documents govern.</p>
+<p>Freestanding-deck exceptions, bearing on rock and approved alternative foundation systems can have different requirements. A frost-protected shallow foundation relies on a specific design and applicable conditions; it is not achieved by choosing an arbitrary shallow depth. Sloping grade also requires a clear datum for each footing. Record the applicable grade and depth separately where supports differ.</p>
 
-<h3>Rebar</h3>
-<p>Rebar is not always strictly required for small residential deck footings, but it is strongly recommended. A minimum of #4 (1/2 inch) rebar at 12 to 16 inches on center, or a cage of 3 to 4 vertical #4 bars with horizontal ties, is common practice. Rebar controls cracking and ties the footing to the pier above. For a typical 12-inch diameter footing 36 inches deep, a cage of four #4 vertical bars is adequate.</p>
+<h2>Concrete volume for a spread footing and pier</h2>
+<p>For a solid cylindrical section, volume is <b>π × diameter² / 4 × height</b>. For a square or rectangular solid section, use base area multiplied by height. Height includes concrete below grade plus its projection above grade. When dimensions are in inches, divide cubic inches by 1,728 for cubic feet; divide cubic feet by 27 for cubic yards.</p>
+<p>For the spread-pad geometry, the tool adds <b>pad area × pad thickness</b> to <b>round pier area × (below-grade depth + projection − pad thickness)</b>. The subtraction is essential: counting a full-height pier and then adding the whole pad would count the pier portion inside the pad twice. The tool requires the pier to fit inside the base and the pad to fit below grade.</p>
+<p><b>Worked volume example:</b> a 24 × 24 inch square pad, 8 inches thick, with a 12-inch round pier, concrete bottom 36 inches below grade and 6 inches above grade has 2.667 ft³ of pad concrete. The pier above the pad is 34 inches tall and contains approximately 2.225 ft³. Total concrete is approximately 4.892 ft³ per footing. Six identical footings need approximately 29.352 ft³ net; 10% waste raises that to approximately 32.287 ft³, or 1.196 yd³.</p>
+<p>The excavation estimate uses a vertical envelope around the bearing-base footprint plus your entered clearance on every side. It is useful for a preliminary spoil or approved base-material quantity, but actual excavations may need battering, shoring, access or different shapes. It does not provide an excavation method or verify stability. Irregular holes and concrete overbreak also make field quantities larger than ideal geometric volume.</p>
 
-<h2>Frost depth by state: what to expect</h2>
-<p>Frost depth varies dramatically across the United States. The table below summarises typical ranges by state. These are guidance values — your local building department is the authoritative source. Many jurisdictions publish their own frost depth in the local amendments to the IRC.</p>
-<table class="df-table">
-<tr><th>Region</th><th>Typical frost depth</th><th>Example states</th></tr>
-<tr><td>Deep South</td><td>0″ – 12″</td><td>FL, HI, LA, MS, AL, GA, SC</td></tr>
-<tr><td>Mid-South / Southeast</td><td>12″ – 18″</td><td>TX, AR, TN, NC, VA, KY</td></tr>
-<tr><td>Mid-Atlantic / Pacific NW</td><td>18″ – 30″</td><td>MD, DE, NJ, PA, OR, WA</td></tr>
-<tr><td>Midwest / Mountain West</td><td>30″ – 48″</td><td>IL, IN, OH, MO, KS, CO, UT</td></tr>
-<tr><td>Upper Midwest / New England</td><td>42″ – 60″</td><td>MN, WI, MI, NY, MA, ME</td></tr>
-<tr><td>Far North / Alaska</td><td>60″ – 100″+</td><td>AK, northern MN, ND</td></tr>
-</table>
-<p>Select your state in the Frost Depth tab for a more detailed range and typical values for major cities.</p>
+<h2>How many concrete bags do I need for deck footings?</h2>
+<p>Divide waste-adjusted concrete volume by the product's yield and round upward. Common planning yields for the referenced QUIKRETE Concrete Mix are approximately 0.30 ft³ for 40 lb, 0.375 ft³ for 50 lb, 0.45 ft³ for 60 lb, 0.60 ft³ for 80 lb and 0.675 ft³ for 90 lb. Other formulations and package sizes may differ. Use the custom yield control when the selected product label specifies another value.</p>
+<p>A 12-inch-diameter cylinder with 36 inches of concrete and no projection contains approximately 2.356 ft³. At 0.60 ft³ per 80 lb bag, it needs 4 bags without waste, or 5 bags with 10% waste. Bag count depends on the actual volume and allowance, not the tube diameter alone.</p>
+<p><b>Pooled versus separate batches:</b> rounding after combining all footing volumes can buy fewer bags than rounding each footing separately. Use pooled rounding when the group is mixed and placed as one coordinated batch. Separate rounding is useful when each footing must have its own allocated bags. The report shows the chosen purchase total and an alternative bag-size comparison using the same batching assumption.</p>
+<p>Waste allowance is an estimate, not a fixed standard. Account for uneven holes, placement losses and your supplier's practical order requirements. Follow the current product instructions for mixing, water, consolidation, curing and load-bearing applications. A fence-post method or short initial set time does not establish that a structural deck footing is ready to load.</p>
 
-<h2>Soil bearing capacity: what value to use</h2>
-<p>If you do not have a soil test, the IRC provides presumptive soil bearing values in Table R401.4.1. These are conservative estimates that can be used for conventional light-frame construction:</p>
-<table class="df-table">
-<tr><th>Soil class</th><th>Presumptive bearing capacity</th><th>Notes</th></tr>
-<tr><td>Crystalline bedrock</td><td>4,000 psf</td><td>Rare in residential decks</td></tr>
-<tr><td>Sedimentary / foliated rock</td><td>2,000 – 3,000 psf</td><td>Requires confirmation</td></tr>
-<tr><td>Sand / gravel</td><td>2,000 psf</td><td>Good bearing, drains well</td></tr>
-<tr><td>Clay / silt</td><td>1,500 psf</td><td>Common in many regions</td></tr>
-<tr><td>Fills / organic soil</td><td>Not permitted</td><td>Requires geotechnical report</td></tr>
-</table>
-<p>Soil rated below 1,500 psf falls outside the prescriptive table and requires a geotechnical investigation and an engineered footing design.</p>
+<h2>Ready-mix quantity and deck footing material cost</h2>
+<p>The ready-mix order is waste-adjusted group volume converted to cubic yards, raised to any entered supplier minimum and rounded upward to the order increment. The cost comparison adds the quoted concrete price and your delivery or minimum-charge allowance. The bagged option uses whole purchased bags and bag price. Both alternatives then add the entered reinforcement quantity cost and other project costs.</p>
+<p>Obtain local quotes for delivery, short loads, pumping, taxes, access, truck waiting and disposal. The calculator only includes charges you enter. Comparing a low ready-mix price per yard with retail bag price can be misleading if a small order has a large minimum charge. Conversely, a larger pour may make ready-mix attractive even when handling equipment adds cost.</p>
+<p>If your deck uses several footing sizes, run each group separately. When combining groups into one delivery, add their waste-adjusted volumes first, then apply the supplier's increment and minimum once. Do not simply add separately rounded ready-mix orders unless you intend separate deliveries.</p>
 
-<h2>Frost-protected shallow foundations (FPSF)</h2>
-<p>IRC R403.3 allows a frost-protected shallow foundation (FPSF) as an alternative to deep frost-line footings for heated buildings. Insulation is placed around the footing to prevent the soil beneath it from freezing, allowing a shallower depth of 12 to 16 inches depending on the air-freezing index of the area. FPSF is typically used for heated buildings with slab-on-grade or crawlspace foundations, not for open decks. If you are building a covered, heated deck or a room addition, FPSF may be an option — but it requires an engineered design and should not be attempted without professional guidance.</p>
+<h2>Rebar quantities without an invented cage design</h2>
+<p>Reinforcement requirements depend on the design, footing geometry, concrete strength, loads, anchorage and applicable provisions. A generic “four bars are adequate” statement cannot establish those requirements. The rebar controls here take a supplied schedule: number of straight pieces per footing, cut length including specified hooks or laps, available stock length, and any scheduled ties.</p>
+<p>The stock calculation finds how many complete equal-length pieces fit into one stock bar and rounds the required stock-bar count upward. It reports purchased length and offcut. A cut longer than the stock length is rejected; the calculator does not assume you can create a structural splice from scraps. Cutting kerf, bend deductions, fabrication tolerances, multiple mixed cut lengths and reusable offcuts need a separate fabrication plan.</p>
+<p>Tie cut lengths and completed-tie price are entered independently. The tool reports tie quantity and total tie cut length but does not design their shape or estimate tie stock-bar purchases. Selecting no bar schedule means that reinforcement has not been included in this takeoff; it does not mean reinforcement is unnecessary. Maintain the cover, placement, anchorage and inspection requirements specified for the actual foundation.</p>
 
-<h2>Common deck footing mistakes</h2>
-<ul>
-<li><b>Ignoring frost depth.</b> A footing that stops above the frost line will heave, regardless of how wide it is. This is the single most common cause of deck footing failure in cold climates.</li>
-<li><b>Using the wrong tributary area.</b> A corner post and an interior post carry very different loads. Calculating tributary area for the wrong post position leads to an undersized footing.</li>
-<li><b>Using topsoil or loose fill as bearing soil.</b> Footings must bear on undisturbed natural soil or engineered fill. Topsoil, organic material and loose fill do not qualify.</li>
-<li><b>Forgetting the safety margin.</b> Digging exactly to the frost line leaves no margin for variation in soil conditions or winter severity. Add 6 inches.</li>
-<li><b>Not compacting the base.</b> The bottom of the excavation must be level and compacted. A loose base allows the footing to settle.</li>
-<li><b>Skipping rebar.</b> Rebar is inexpensive and controls cracking. It is not worth omitting.</li>
-<li><b>Assuming one depth fits every post.</b> Sloping sites may require different footing depths for different posts. Each footing must bear on undisturbed soil below frost.</li>
-</ul>
-
+<h2>Using the result responsibly</h2>
+<p>A useful deck foundation worksheet preserves its assumptions. Before acting on a result, check the post's load path, the soil-value source, footing bearing elevation, pad thickness and connection details. Coordinate footing locations with utilities, drainage, property constraints and nearby foundations. Obtain the required utility-location service before excavation and follow your local inspection process before concrete placement.</p>
+<p>Consult a qualified design professional for unusual loads, hot tubs, roofs, elevated or irregular decks, eccentric supports, uncertain soils, slopes, foundation interactions, uplift or any configuration outside an applicable prescriptive method. Keep the exported report with the corresponding approved drawings so that its quantities cannot be mistaken for a construction plan.</p>
+<h2>Reference basis and calculation transparency</h2>
+<p>The formulas above describe the calculator's own bearing, static-equilibrium and quantity methods. Reference reading includes American Wood Council <i>DCA 6: Prescriptive Residential Wood Deck Construction Guide</i>, based on the 2015 IRC (footing provisions, limitations and Appendix B), and QUIKRETE <i>Concrete Mix Product No. 1101</i> technical data, revised October 2022. These are background references, not confirmation of the code adopted at your site. Current local requirements and product documents take precedence.</p>
+<p>Publisher source locations: <code style="overflow-wrap:anywhere">web-media.awc.org/wp-content/uploads/2022/02/17210514/AWC-DCA62015-DeckGuide-1804.pdf</code>; <code style="overflow-wrap:anywhere">quikrete.com/pdfs/data_sheet-concrete%20mix%201101.pdf</code>. The page provides editable assumptions, worked examples, visible formulas and explicit limits so that users can check what the outputs mean.</p>
 <h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a free deck footing calculator online?</summary><p>A free deck footing calculator online turns your deck layout, post spacing and soil conditions into a complete footing plan: footing size, frost depth protection, concrete volume, bag count, rebar and cost. It checks everything against IRC R403.1.4.</p></details>
-<details><summary>How deep should deck footings be?</summary><p>IRC R403.1.4 requires deck footings to be at least 12 inches below undisturbed grade and below the local frost depth, whichever is deeper. Frost depth varies from 0 inches in southern Florida to more than 60 inches in northern Minnesota and Maine. Add 6 inches of safety margin below the frost line as good practice.</p></details>
-<details><summary>What is tributary area?</summary><p>Tributary area is the portion of the deck's load that one footing must support. It is calculated by measuring halfway to the next support in each direction, then multiplying the two distances. A footing's tributary load = tributary area × design load (typically 50 psf for a residential deck).</p></details>
-<details><summary>How do I size a deck footing?</summary><p>Divide the tributary load by the soil bearing capacity to get the required footing area. For a round footing, diameter = sqrt(4 × area / π). For a square footing, side = sqrt(area). Round up to the nearest standard size.</p></details>
-<details><summary>How many bags of concrete for a deck footing?</summary><p>An 80 lb bag of concrete mix yields about 0.60 cubic feet, a 60 lb bag about 0.45 cubic feet, and a 40 lb bag about 0.30 cubic feet. Divide the footing volume by the bag yield and round up. A 12-inch diameter Sonotube footing 36 inches deep needs about 6 bags of 80 lb mix.</p></details>
-<details><summary>Do deck footings need rebar?</summary><p>Rebar is not always strictly required for small residential deck footings, but it is strongly recommended. A minimum of #4 (1/2 inch) rebar at 12 to 16 inches on center or a cage of 3 to 4 vertical #4 bars is common practice.</p></details>
-<details><summary>What is the minimum footing depth if there is no frost?</summary><p>Even in frost-free areas, IRC R403.1.4 requires a minimum depth of 12 inches below undisturbed grade. This ensures the footing bears on stable, undisturbed soil below the topsoil and organic layer.</p></details>
-<details><summary>What is a frost-protected shallow foundation (FPSF)?</summary><p>IRC R403.3 allows a frost-protected shallow foundation (FPSF) as an alternative to deep frost-line footings. Insulation is placed around the footing to prevent the soil beneath it from freezing, allowing a shallower depth of 12 to 16 inches depending on the climate. FPSF is typically used for heated buildings, not open decks.</p></details>
-<details><summary>What soil bearing capacity should I use?</summary><p>If you do not have a soil test, use the presumptive values from IRC Table R401.4.1: 1,500 psf for clay, 2,000 psf for sand, 3,000 psf for gravel, and 4,000 psf for crystalline bedrock. For anything below 1,500 psf, an engineered design is required.</p></details>
-<details><summary>Is this deck footing calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-</div>
-
-<div class="df-disclaimer">
-<b>Disclaimer:</b> This calculator is provided for preliminary design and estimation only. Building codes vary by jurisdiction and are updated periodically. The IRC values shown are based on the model code and may not reflect local amendments, engineering requirements, or site-specific conditions. Frost depth, soil bearing capacity, and load requirements vary widely and must be confirmed with your local building department and a licensed design professional before construction. Utiliby accepts no liability for errors, omissions, or construction outcomes resulting from the use of this tool.
-</div>
-
+<div class="cn-faq" id="deckFaq"><details><summary>What is a free deck footing calculator online?</summary><p>It estimates centered bearing size, concrete and supplied reinforcement quantities, costs and entered depth comparisons. It is a planning worksheet, not an approved deck foundation design.</p></details><details><summary>How do I calculate deck footing diameter?</summary><p>Divide the compatible downward bearing load by allowable soil pressure to obtain area. Round diameter is the square root of four times that area divided by pi. Round upward and check all separate structural and local requirements.</p></details><details><summary>How deep should deck footings be?</summary><p>Use the adopted local requirements and approved project design. This worksheet compares the proposed concrete bottom with the larger of your entered minimum or frost depth plus an optional allowance. It cannot establish local requirements or exceptions.</p></details><details><summary>Can a state frost-depth map determine my footing depth?</summary><p>No. State averages do not establish a site-specific adopted requirement. Record the local building-department or design source and its specified depth in the Frost Depth tab.</p></details><details><summary>What is tributary area?</summary><p>It is the deck load area assigned to a particular support. Its relationship to reaction depends on framing, continuity, cantilevers and load distribution. Use an appropriate analysis for the actual post rather than dividing total deck area equally by post count.</p></details><details><summary>Can I use a known post reaction instead of tributary area?</summary><p>Yes. Enter a compatible service-level downward post reaction and a verified allowable bearing pressure. Add only loads that are not already included in that reaction or its bearing basis.</p></details><details><summary>How many 80 lb bags for a 12-inch by 36-inch concrete footing?</summary><p>A solid 12-inch-diameter cylinder with 36 inches of concrete and no projection contains about 2.356 cubic feet. At 0.60 cubic feet per bag, it requires 4 bags without waste or 5 bags with 10% waste.</p></details><details><summary>How does a spread footing and pier volume calculation work?</summary><p>Add the full pad volume to the pier volume above the pad top. Subtract pad thickness from the total concrete height used for the pier so the overlapping concrete is not counted twice.</p></details><details><summary>What soil bearing capacity should I use?</summary><p>Use a value authorized for the actual site and bearing stratum by the local authority or geotechnical/design documents. The calculator cannot identify soil, verify presumptive values or assess settlement.</p></details><details><summary>Does the calculator design rebar for deck footings?</summary><p>No. It estimates pieces, stock bars, offcuts, ties and cost from your supplied reinforcement schedule. Bar size, spacing, cover, hooks, laps and structural adequacy require a separate suitable design.</p></details><details><summary>Does gravel below a footing count toward concrete depth?</summary><p>No. An approved layer below concrete increases excavation depth. The depth to the underside of concrete remains a separate dimension and must satisfy the applicable bearing and frost requirements.</p></details><details><summary>Can I calculate footings for a hot tub or roof?</summary><p>You may enter an independently established compatible post reaction for a bearing estimate. The calculator does not determine special-load reactions or design the deck framing, foundation, uplift or connections for those features.</p></details><details><summary>Does print or save include the explanatory article?</summary><p>No. The report contains the selected worksheet inputs, results, assumptions, optional diagrams and a short disclaimer. Print/PDF, text, CSV and copied reports exclude the website article and navigation.</p></details><details><summary>Can I use metric inputs?</summary><p>Yes. Switch between imperial and metric inputs to convert dimensions, surface loads, reactions, areas and custom bag yield. Ready-mix order increments and prices per cubic yard remain in their explicitly labeled purchasing units.</p></details><details><summary>Is this deck footing calculator free?</summary><p>Yes. The calculator is free to use online and requires no calculator account. Its calculation code runs in the browser; website-level privacy and advertising practices depend on the host site&#x27;s policies.</p></details></div>
+<div class="df-disclaimer"><b>Disclaimer:</b> This free online calculator is for preliminary estimation and education. It does not provide a structural design, determine local frost depth or soil capacity, establish code compliance, or authorize construction. Confirm loads, bearing values, foundation depth, concrete, reinforcement, connections and site conditions with the authority having jurisdiction and a qualified design professional. Prices and quantities are estimates; site and supplier conditions can change actual requirements. The user remains responsible for verifying inputs and obtaining required approvals before excavation or construction.</div>
 </article>
+
 
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
-"use strict";
-function $(id){ return document.getElementById(id); }
-
-function val(id){
-  var el = $(id);
-  if(!el) return NaN;
-  var s = String(el.value).trim();
-  if(s === "") return NaN;
-  var n = parseFloat(s);
-  return isFinite(n) ? n : NaN;
+'use strict';
+const $=id=>document.getElementById(id),factor={ft:.3048,inch:25.4,area:.09290304,pressure:.04788025898033584,force:.0044482216152605,vol:.028316846592};
+const labels={us:{ft:'ft',inch:'in',area:'ft²',pressure:'psf',force:'lb',vol:'ft³'},si:{ft:'m',inch:'mm',area:'m²',pressure:'kPa',force:'kN',vol:'m³'}};
+let mode='sizing',unit='us';
+const allControls=Array.from(document.querySelectorAll('#tool input,#tool select'));
+const initial=allControls.map(e=>[e.id,e.value]);
+const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const nf=(n,d=2)=>Number(n).toLocaleString('en-US',{maximumFractionDigits:d});
+function num(id,min=0,strict=false,integer=false){const e=$(id),s=e.value.trim();if(s==='')throw Error('Enter '+fieldName(e)+'.');let n=Number(s);if(e.dataset.measure&&unit==='si')n/=factor[e.dataset.measure];if(!Number.isFinite(n)||Math.abs(n)>1e9||n<min||(strict&&n===min)||(integer&&!Number.isInteger(n)))throw Error(fieldName(e)+' must be '+(integer?'a whole number ':'')+(strict?'greater than ':'at least ')+min+' in the worksheet base units.');return n;}
+function fieldName(e){return e.previousElementSibling?e.previousElementSibling.textContent.trim():e.id;}
+function put(id,n){const e=$(id),f=unit==='si'&&e.dataset.measure?factor[e.dataset.measure]:1;e.value=String(Number((n*f).toPrecision(12)));}
+function up(n,step){let t=n/step,k=Math.round(t);return (Math.abs(t-k)<=1e-12*Math.max(1,Math.abs(t))?k:Math.ceil(t))*step;}
+function area(shape,w,l=w){return (shape==='round'?Math.PI*w*w/4:w*l)/144;}
+function dim(n){return unit==='si'?nf(n*25.4)+' mm ('+nf(n)+' in)':nf(n)+' in ('+nf(n*25.4)+' mm)';}
+function force(n){return nf(n,0)+' lb / '+nf(n*.0044482216152605)+' kN';}
+function pressure(n){return nf(n)+' psf / '+nf(n*.04788025898033584)+' kPa';}
+function volume(n){return nf(n,3)+' ft³ / '+nf(n/27,3)+' yd³ / '+nf(n*.028316846592,3)+' m³';}
+function beam(j,c,s,a,b,q){const effective=(j+c)*(j+c)/(2*j),line=q*effective;
+const right=line*((s+b)*(s+b)-a*a)/(2*s),left=line*(s+a+b)-right;
+return {effective,line,left,right,ledger:q*(j+c-effective)*(s+a+b),total:q*(j+c)*(s+a+b)};}
+function sizing(){const method=$('s_method').value;let q=0,A=0,reaction,model=null;
+if(method==='reaction')reaction=num('s_reaction',0,true);else{
+const live=num('s_liveLoad'),dead=num('s_deadLoad'),snow=num('s_snowLoad'),c=$('s_loadCase').value;
+q=dead+(c==='live'?live:c==='snow'?snow:c==='sum'?live+snow:Math.max(live,snow));if(!(q>0))throw Error('The combined surface load must be greater than zero.');
+if(method==='area'){A=num('s_area',0,true);reaction=A*q;}else{
+model=beam(num('s_beamSpan',0,true),num('s_overhang'),num('s_postSpacing',0,true),num('s_leftOver'),num('s_rightOver'),q);
+if(model.left<0||model.right<0||model.ledger<0)throw Error('This layout produces an uplift reaction. Downward bearing sizing alone cannot evaluate it; obtain a structural load and anchorage design.');
+reaction=$('s_support').value==='left'?model.left:$('s_support').value==='right'?model.right:Math.max(model.left,model.right);A=reaction/q;
+}}
+let extra=num('s_extra'),weight=num('s_foundationWeight'),W=reaction+extra+weight,soil=num('s_soil',0,true),required=W/soil,step=num('s_increment',0,true),minimum=num('s_minSize',0,true),shape=$('s_shape').value,ratio=shape==='rect'?num('s_ratio',0,true):1;
+if(ratio<1)throw Error('Rectangular length / width ratio must be at least 1.');
+const raw=shape==='round'?12*Math.sqrt(4*required/Math.PI):12*Math.sqrt(required/ratio),rounded=up(Math.max(raw,minimum),step),candidate=num('s_candidate');
+const w=candidate||rounded,l=shape==='rect'?up(w*ratio,step):w,actualArea=area(shape,w,l),p=W/actualArea;
+const frost=num('s_frostDepth'),min=num('s_minDepth'),margin=num('s_margin'),depth=Math.max(min,frost+margin);
+if(!(depth>0))throw Error('Enter a positive bearing-depth scenario.');
+const utilization=p/soil*100,passes=p<=soil*(1+1e-12)&&w>=minimum;
+return {method,q,A,reaction,model,extra,weight,W,soil,required,raw,rounded,w,l,actualArea,p,frost,min,margin,depth,shape,utilization,passes,
+capacity:Math.max(0,actualArea*soil-extra-weight),maxArea:q>0?Math.max(0,(actualArea*soil-extra-weight)/q):null};}
+function materials(){const w=num('m_diameter',0,true),shape=$('m_shape').value,l=shape==='rect'?num('m_length',0,true):w,d=num('m_depth',0,true),h=num('m_projection'),count=num('m_count',0,true,true),spread=$('m_geometry').value==='spread',t=spread?num('m_pad',0,true):0,pier=spread?num('m_pier',0,true):w;
+if(count>100000)throw Error('Use 100,000 or fewer footings per group.');
+if(spread&&(t>d||pier>Math.min(w,l)))throw Error('The pad must fit below grade and the round pier must fit within the bearing base.');
+const baseArea=area(shape,w,l),shaftArea=spread?area('round',pier):baseArea,shaftHeight=d+h-t,per=baseArea*t/12+shaftArea*shaftHeight/12,total=per*count,waste=num('m_waste');
+if(waste>100)throw Error('Waste allowance must be between 0% and 100%.');
+const order=total*(1+waste/100),bag=$('m_bag').value,yields={40:.3,50:.375,60:.45,80:.6,90:.675},yieldVol=bag==='custom'?num('m_yield',0,true):yields[bag],each=Math.ceil(per*(1+waste/100)/yieldVol-1e-12),bags=$('m_batch').value==='each'?each*count:Math.ceil(order/yieldVol-1e-12),bagCost=bags*num('m_concreteCost');
+const ready=up(Math.max(order/27,num('m_orderMin')),num('m_orderStep',0,true)),readyCost=ready*num('m_readyPrice')+num('m_delivery');
+const gravel=num('m_gravel'),clear=num('m_holeExtra'),holeArea=area(shape,w+2*clear,l+2*clear),excavation=holeArea*(d+gravel)/12*count,baseLayer=holeArea*gravel/12*count;
+let pieces=0,cut=0,stock=0,perStock=0,stockCount=0,stockFeet=0,offcut=0,ties=0,tieFeet=0,rebarCost=0;
+if($('m_rebar').value!=='0'){
+pieces=num('m_rebarBars',0,false,true)*count;ties=num('m_ties',0,false,true)*count;
+if(pieces){cut=num('m_barLength',0,true)/12;stock=num('m_stock',0,true);perStock=Math.floor(stock/cut+1e-12);if(!perStock)throw Error('The bar cut length exceeds stock length. Supply a longer stock bar or a revised approved schedule.');stockCount=Math.ceil(pieces/perStock);stockFeet=stockCount*stock;offcut=stockFeet-pieces*cut;}
+if(ties)tieFeet=ties*num('m_tieLength',0,true)/12;
+rebarCost=stockFeet*num('m_rebarCost')+ties*num('m_tieCost');
 }
-function nf(n, maxDp){ return n.toLocaleString(undefined, { maximumFractionDigits: maxDp }); }
-function frac(n){
-  var whole = Math.floor(n);
-  var dec = n - whole;
-  var fracMap = [[0.0625,"1/16"],[0.125,"1/8"],[0.1875,"3/16"],[0.25,"1/4"],[0.3125,"5/16"],[0.375,"3/8"],[0.4375,"7/16"],[0.5,"1/2"],[0.5625,"9/16"],[0.625,"5/8"],[0.6875,"11/16"],[0.75,"3/4"],[0.8125,"13/16"],[0.875,"7/8"],[0.9375,"15/16"]];
-  var best = "", bestD = 1;
-  for(var i=0;i<fracMap.length;i++){
-    var d = Math.abs(dec - fracMap[i][0]);
-    if(d < bestD){ bestD = d; best = fracMap[i][1]; }
-  }
-  if(best === "") return whole + "″";
-  if(whole === 0) return best + "″";
-  return whole + " " + best + "″";
+const other=num('m_otherCost'),bagTotal=bagCost+rebarCost+other,readyTotal=readyCost+rebarCost+other;
+return {w,l,shape,d,h,count,spread,t,pier,baseArea,shaftArea,shaftHeight,per,total,waste,order,yieldVol,each,bags,bagCost,ready,readyCost,gravel,clear,excavation,baseLayer,pieces,cut,stock,perStock,stockCount,stockFeet,offcut,ties,tieFeet,rebarCost,other,bagTotal,readyTotal};}
+function frost(){const f=num('f_manual'),m=num('f_min'),a=num('f_margin'),actual=num('f_actual',0,true),gravel=num('f_gravel'),depth=Math.max(m,f+a);if(!(depth>0))throw Error('Enter a positive required bearing-depth scenario.');return {f,m,a,actual,gravel,depth,excavation:actual+gravel,match:actual>=depth};}
+function cross(w,d,f,h=0,t=0,pier=w,gravel=0,shape='round'){
+const scale=Math.min(210/w,190/Math.max(d+gravel,f,1),40/Math.max(h,1)),x=260,bottom=95+d*scale,top=95-h*scale,ww=w*scale,pw=pier*scale,pad=t*scale;
+const title='Footing section: '+dim(w)+' bearing base, concrete bottom '+dim(d)+' below grade';
+return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 350" role="img" aria-label="'+esc(title)+'"><title>'+esc(title)+'</title><rect x="0" y="0" width="560" height="350" fill="#f8fafc"/><rect x="28" y="95" width="504" height="217" fill="#f3e8d4"/><line x1="28" y1="95" x2="532" y2="95" stroke="#166534" stroke-width="3"/><text x="30" y="84" font-family="Arial" font-size="13" fill="#166534">Grade / depth datum</text>'+ (f!==null?'<line x1="28" y1="'+(95+f*scale)+'" x2="532" y2="'+(95+f*scale)+'" stroke="#0369a1" stroke-width="2" stroke-dasharray="6 4"/><text x="30" y="'+Math.min(330,Math.max(113,95+f*scale+16))+'" font-family="Arial" font-size="12" fill="#0369a1">Frost: '+esc(dim(f))+'</text>':'')+
+(gravel?'<rect x="'+(x-ww/2)+'" y="'+bottom+'" width="'+ww+'" height="'+gravel*scale+'" fill="#b5a88e"/>':'')+
+'<rect x="'+(x-pw/2)+'" y="'+top+'" width="'+pw+'" height="'+Math.max(0,bottom-top-pad)+'" fill="#cbd5e1" stroke="#475569" stroke-width="2"/>'+(t?'<rect x="'+(x-ww/2)+'" y="'+(bottom-pad)+'" width="'+ww+'" height="'+pad+'" fill="#94a3b8" stroke="#475569" stroke-width="2"/>':'')+
+'<line x1="260" y1="20" x2="260" y2="'+Math.max(30,top-3)+'" stroke="#b91c1c" stroke-width="3"/><path d="M254 '+Math.max(24,top-10)+' L260 '+Math.max(30,top-3)+' L266 '+Math.max(24,top-10)+'" fill="none" stroke="#b91c1c" stroke-width="3"/><text x="280" y="32" font-family="Arial" font-size="13" fill="#b91c1c">Centered load</text><text x="335" y="55" font-family="Arial" font-size="12" fill="#334155">'+esc(shape)+' bearing base</text><text x="335" y="71" font-family="Arial" font-size="12" fill="#334155">Width / diameter: '+esc(dim(w))+'</text><text x="335" y="'+Math.min(305,bottom-5)+'" font-family="Arial" font-size="12" fill="#334155">Bottom: '+esc(dim(d))+'</text><text x="30" y="344" font-family="Arial" font-size="11" fill="#334155">Illustration only; no reinforcement or anchorage design shown.</text></svg>';
 }
-
-function copyText(text, btn){
-  function done(ok){
-    if(!btn) return;
-    var o = btn.getAttribute("data-label");
-    if(o === null){ o = btn.textContent; btn.setAttribute("data-label", o); }
-    btn.textContent = ok ? "Copied!" : "Copy failed";
-    setTimeout(function(){ btn.textContent = o; }, 1400);
-  }
-  function fallback(){
-    var ok = false;
-    try{
-      var ta = document.createElement("textarea");
-      ta.value = text;
-      ta.setAttribute("readonly", "");
-      ta.style.position = "fixed"; ta.style.opacity = "0";
-      document.body.appendChild(ta);
-      ta.select(); ok = document.execCommand("copy");
-      document.body.removeChild(ta);
-    }catch(e){ ok = false; }
-    done(ok);
-  }
-  if(navigator.clipboard && navigator.clipboard.writeText){
-    navigator.clipboard.writeText(text).then(function(){ done(true); }, fallback);
-  } else { fallback(); }
+function plan(r){if(!r.model)return '';const j=num('s_beamSpan'),c=num('s_overhang'),s=num('s_postSpacing'),a=num('s_leftOver'),b=num('s_rightOver'),sc=440/(s+a+b),x1=60+a*sc,x2=x1+s*sc;
+return '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 200" role="img" aria-label="Simple two-post beam load model"><title>Simple two-post beam load model</title><rect width="560" height="200" fill="#f8fafc"/><text x="28" y="25" font-family="Arial" font-size="13" fill="#334155">Uniform beam line load: '+nf(r.model.line)+' lb/ft</text><line x1="60" y1="95" x2="500" y2="95" stroke="#0369a1" stroke-width="8"/><path d="M'+x1+' 101 l-9 18 h18 z M'+x2+' 101 l-9 18 h18 z" fill="#475569"/><text x="30" y="148" font-family="Arial" font-size="12" fill="#334155">Left: '+esc(force(r.model.left))+'</text><text x="300" y="148" font-family="Arial" font-size="12" fill="#334155">Right: '+esc(force(r.model.right))+'</text><text x="30" y="175" font-family="Arial" font-size="12" fill="#334155">Joist span '+nf(j)+' ft + '+nf(c)+' ft cantilever; beam support span '+nf(s)+' ft</text></svg>';}
+function table(rows){return '<div class="df-table-wrap"><table class="df-table"><thead><tr><th scope="col">Quantity / check</th><th scope="col">Result</th></tr></thead><tbody>'+rows.map(r=>'<tr><th scope="row">'+esc(r[0])+'</th><td>'+esc(r[1])+'</td></tr>').join('')+'</tbody></table></div>';}
+function result(title,big,rows,notes,diagram){return {title,big,rows,notes,diagram,html:'<div class="df-result"><div class="df-result-label">'+esc(title)+'</div><div class="df-result-big">'+esc(big)+'</div></div>'+table(rows)+notes.map(n=>'<p class="df-tip">'+esc(n)+'</p>').join('')};}
+function calcSection(m){try{
+if(m==='sizing'){const r=sizing(),rows=[['Load method',r.method==='area'?'Known tributary area':r.method==='reaction'?'Known service-level reaction':'Simple two-post beam model'],['Effective load area',r.method==='reaction'?'Not applicable':nf(r.A)+' ft² / '+nf(r.A*.09290304)+' m²'],['Combined surface load',r.method==='reaction'?'Not applicable':pressure(r.q)],['Post reaction before added allowances',force(r.reaction)],['Additional post / foundation allowances',force(r.extra)+' / '+force(r.weight)],['Total bearing load',force(r.W)],['Entered allowable soil pressure',pressure(r.soil)],['Required bearing area',nf(r.required,3)+' ft² / '+nf(r.required*.09290304,3)+' m²'],['Unrounded round diameter (same required area)',dim(12*Math.sqrt(4*r.required/Math.PI))],['Unrounded square side (same required area)',dim(12*Math.sqrt(r.required))],['Calculated rounded diameter / width',dim(r.rounded)],['Candidate / selected base',r.shape==='round'?'Diameter '+dim(r.w):dim(r.w)+' × '+dim(r.l)],['Selected bearing area',nf(r.actualArea,3)+' ft²'],['Average centered soil pressure',pressure(r.p)],['Bearing-pressure utilization',nf(r.utilization)+'%'],['Bearing-only comparison',r.passes?'Within entered pressure and minimum dimension':'Does not meet entered pressure or minimum dimension'],['Bearing load capacity at entered pressure',force(r.actualArea*r.soil)],['Available capacity for post reaction after allowances',force(r.capacity)],['Maximum equivalent area at entered surface load',r.maxArea===null?'Not applicable':nf(r.maxArea)+' ft²'],['Depth scenario: frost / minimum / allowance',dim(r.frost)+' / '+dim(r.min)+' / '+dim(r.margin)],['Required concrete-bottom depth for this scenario',dim(r.depth)]];
+if(r.model)rows.push(['Left / right model reactions',force(r.model.left)+' / '+force(r.model.right)],['Ledger reaction (total modeled beam width)',force(r.model.ledger)],['Uniform loaded deck total',force(r.model.total)]);
+let notes=['Preliminary centered vertical-bearing worksheet. This is not an IRC table selection, approved plan, or check of pad thickness, reinforcement, settlement, wind, uplift, eccentricity, post/beam capacity or connections.','Soil basis: '+($('s_soilSource').value||'Not supplied')+'. Verify all loads, soil pressure and depth requirements before construction.','Dimension rounding does not establish an available tube size or a required structural minimum. The bearing base may be wider than the pier above it.'];
+if(r.model)notes.push('Model assumes a uniformly loaded joist supported at a ledger and beam, followed by a uniformly loaded beam on exactly two posts. Its cantilever reactions are static reactions, not ordinary geometric tributary areas. Continuous framing or concentrated loads need an appropriate analysis.');
+return result('Bearing size estimate',r.shape==='round'?'Ø '+dim(r.w):dim(r.w)+' × '+dim(r.l),rows,notes,cross(r.w,r.depth,r.frost,0,0,r.w,0,r.shape)+plan(r));
 }
-
-/* ---------- Frost depth data by state ---------- */
-var frostData = {
-  "AL": { name: "Alabama", range: "6″ – 12″", note: "Minimal frost in most of the state. Coastal areas may be frost-free." },
-  "AK": { name: "Alaska", range: "60″ – 100″+", note: "Extreme permafrost considerations in northern regions. Engineered design required." },
-  "AZ": { name: "Arizona", range: "0″ – 12″", note: "Most of the state is frost-free. Northern highlands may see 12″ – 24″." },
-  "AR": { name: "Arkansas", range: "6″ – 12″", note: "Light frost in the northern part of the state." },
-  "CA": { name: "California", range: "0″ – 24″", note: "Coast is frost-free. Mountain regions may require 24″ – 36″." },
-  "CO": { name: "Colorado", range: "18″ – 36″", note: "Higher elevations require deeper footings." },
-  "CT": { name: "Connecticut", range: "30″ – 42″", note: "Coastal areas may be shallower." },
-  "DE": { name: "Delaware", range: "18″ – 24″", note: "Moderate frost." },
-  "FL": { name: "Florida", range: "0″", note: "Frost-free. Minimum 12″ depth per IRC still applies." },
-  "GA": { name: "Georgia", range: "6″ – 12″", note: "Minimal frost. Northern mountains may see 12″." },
-  "HI": { name: "Hawaii", range: "0″", note: "Frost-free. Minimum 12″ depth per IRC still applies." },
-  "ID": { name: "Idaho", range: "18″ – 36″", note: "Varies widely by elevation." },
-  "IL": { name: "Illinois", range: "30″ – 48″", note: "Northern Illinois requires deeper footings." },
-  "IN": { name: "Indiana", range: "24″ – 36″", note: "Moderate to deep frost." },
-  "IA": { name: "Iowa", range: "30″ – 48″", note: "Deep frost across most of the state." },
-  "KS": { name: "Kansas", range: "24″ – 36″", note: "Varies by latitude." },
-  "KY": { name: "Kentucky", range: "18″ – 30″", note: "Moderate frost." },
-  "LA": { name: "Louisiana", range: "0″ – 6″", note: "Essentially frost-free." },
-  "ME": { name: "Maine", range: "48″ – 60″", note: "Deep frost. Coastal areas may be shallower." },
-  "MD": { name: "Maryland", range: "18″ – 30″", note: "Western Maryland requires deeper footings." },
-  "MA": { name: "Massachusetts", range: "36″ – 48″", note: "Deep frost across most of the state." },
-  "MI": { name: "Michigan", range: "36″ – 48″", note: "Upper peninsula requires deeper footings." },
-  "MN": { name: "Minnesota", range: "48″ – 80″", note: "One of the deepest frost depths in the contiguous US." },
-  "MS": { name: "Mississippi", range: "6″ – 12″", note: "Minimal frost." },
-  "MO": { name: "Missouri", range: "24″ – 36″", note: "Northern Missouri requires deeper footings." },
-  "MT": { name: "Montana", range: "36″ – 60″", note: "Deep frost in mountain regions." },
-  "NE": { name: "Nebraska", range: "30″ – 48″", note: "Deep frost across most of the state." },
-  "NV": { name: "Nevada", range: "12″ – 24″", note: "Northern Nevada requires deeper footings." },
-  "NH": { name: "New Hampshire", range: "36″ – 48″", note: "Deep frost." },
-  "NJ": { name: "New Jersey", range: "24″ – 36″", note: "Northern New Jersey requires deeper footings." },
-  "NM": { name: "New Mexico", range: "12″ – 24″", note: "Higher elevations require deeper footings." },
-  "NY": { name: "New York", range: "36″ – 48″", note: "Upstate requires deeper footings than NYC." },
-  "NC": { name: "North Carolina", range: "12″ – 18″", note: "Western mountains require deeper footings." },
-  "ND": { name: "North Dakota", range: "48″ – 75″", note: "Very deep frost." },
-  "OH": { name: "Ohio", range: "24″ – 36″", note: "Northern Ohio requires deeper footings." },
-  "OK": { name: "Oklahoma", range: "18″ – 30″", note: "Varies by latitude." },
-  "OR": { name: "Oregon", range: "12″ – 24″", note: "Coastal areas are shallower. Cascades require deeper footings." },
-  "PA": { name: "Pennsylvania", range: "24″ – 36″", note: "Northern Pennsylvania requires deeper footings." },
-  "RI": { name: "Rhode Island", range: "30″ – 42″", note: "Moderate to deep frost." },
-  "SC": { name: "South Carolina", range: "6″ – 12″", note: "Minimal frost." },
-  "SD": { name: "South Dakota", range: "36″ – 48″", note: "Deep frost." },
-  "TN": { name: "Tennessee", range: "12″ – 18″", note: "Eastern mountains require deeper footings." },
-  "TX": { name: "Texas", range: "6″ – 12″", note: "Panhandle may see 12″ – 18″." },
-  "UT": { name: "Utah", range: "18″ – 36″", note: "Higher elevations require deeper footings." },
-  "VT": { name: "Vermont", range: "42″ – 60″", note: "Deep frost." },
-  "VA": { name: "Virginia", range: "18″ – 24″", note: "Western Virginia requires deeper footings." },
-  "WA": { name: "Washington", range: "12″ – 24″", note: "Cascades require deeper footings." },
-  "WV": { name: "West Virginia", range: "18″ – 30″", note: "Mountain regions require deeper footings." },
-  "WI": { name: "Wisconsin", range: "42″ – 60″", note: "Deep frost across the state." },
-  "WY": { name: "Wyoming", range: "36″ – 48″", note: "Deep frost in mountain regions." }
-};
-
-/* Populate state select */
-(function(){
-  var sel = $("f_state");
-  if(!sel) return;
-  var keys = Object.keys(frostData).sort(function(a,b){ return frostData[a].name.localeCompare(frostData[b].name); });
-  for(var i=0;i<keys.length;i++){
-    var opt = document.createElement("option");
-    opt.value = keys[i];
-    opt.textContent = frostData[keys[i]].name;
-    sel.appendChild(opt);
-  }
+if(m==='materials'){const r=materials(),rows=[['Foundation group',r.count+' identical '+r.shape+' bases; '+(r.spread?'spread pad + round pier':'full-height solid section')],['Base dimensions',dim(r.w)+(r.shape!=='round'?' × '+dim(r.l):' diameter')],['Concrete bottom / above-grade projection',dim(r.d)+' / '+dim(r.h)],['Pad thickness / pier diameter',r.spread?dim(r.t)+' / '+dim(r.pier):'Not applicable to solid section'],['Concrete per footing',volume(r.per)],['Net group concrete',volume(r.total)],['Concrete including '+nf(r.waste)+'% waste',volume(r.order)],['Yield used per bag',volume(r.yieldVol)],['Bags per separate footing batch',String(r.each)],['Purchased bags under selected batch method',String(r.bags)],['80 / 60 / 50 / 40 / 90 lb bag comparison (same batching)',[.6,.45,.375,.3,.675].map(y=>$('m_batch').value==='each'?Math.ceil(r.per*(1+r.waste/100)/y-1e-12)*r.count:Math.ceil(r.order/y-1e-12)).join(' / ')],['Ready-mix order after increment / minimum',nf(r.ready,3)+' yd³ / '+nf(r.ready*.764554857984,3)+' m³'],['Excavation bottom below grade',dim(r.d+r.gravel)],['Vertical-sided excavation envelope',volume(r.excavation)],['Approved base-layer volume',volume(r.baseLayer)],['Total concrete pier / shaft length above pad',nf(r.shaftHeight/12*r.count)+' ft / '+nf(r.shaftHeight/12*r.count*.3048)+' m'],['Scheduled straight pieces / ties',r.pieces+' / '+r.ties],['Straight-bar cut length total',nf(r.pieces*r.cut)+' ft / '+nf(r.pieces*r.cut*.3048)+' m'],['Pieces per stock bar / stock bars to buy',r.perStock+' / '+r.stockCount],['Purchased straight-bar length / offcut',nf(r.stockFeet)+' ft / '+nf(r.offcut)+' ft'],['Tie cut length total',nf(r.tieFeet)+' ft / '+nf(r.tieFeet*.3048)+' m'],['Bagged concrete material cost','$'+nf(r.bagCost)],['Ready-mix concrete + entered delivery allowance','$'+nf(r.readyCost)],['Scheduled reinforcement cost','$'+nf(r.rebarCost)],['Bagged option + reinforcement + other entered costs','$'+nf(r.bagTotal)],['Ready-mix option + reinforcement + other entered costs','$'+nf(r.readyTotal)]];
+return result('Concrete & materials estimate',r.bags+' bags · '+nf(r.order/27,3)+' yd³ incl. waste',rows,['Geometry estimate only. Base thickness, pier diameter, concrete specification, post anchorage and all reinforcement must come from a suitable approved design.','Rebar results are quantities for the supplied schedule, not a cage design. Equal-length stock cutting excludes saw kerf and fabrication tolerance. Purchased ties are costed separately; tie stock bars are not estimated.','Form/tube length is concrete shaft length above the pad. Actual buried form use, excavation slopes, pumping, disposal, taxes, labor and unentered charges are excluded. Neither cost option guarantees the lowest local purchase price.','Multiple groups with different dimensions should be calculated separately. For one combined ready-mix order, sum their waste-adjusted volumes before applying supplier rounding and minimums.'],cross(r.w,r.d,null,r.h,r.t,r.pier,r.gravel,r.shape));
+}
+const r=frost();return result('Local depth worksheet',r.match?'Entered depth meets this depth scenario':'Entered depth is short of this depth scenario',[['Jurisdiction / site',$('f_locality').value||'Not supplied'],['Local requirement source',$('f_source').value||'Not supplied — verification required'],['Entered frost depth',dim(r.f)],['Entered minimum / additional allowance',dim(r.m)+' / '+dim(r.a)],['Required concrete bottom for entered scenario',dim(r.depth)],['Proposed concrete bottom',dim(r.actual)],['Depth surplus / shortfall',dim(r.actual-r.depth)],['Base layer below concrete',dim(r.gravel)],['Excavation bottom for proposed geometry',dim(r.excavation)]],['Comparison of entered depths only. The calculator cannot verify a local frost requirement, exemption, soil condition or approval. A passing numerical depth comparison does not establish compliance.','Depth is measured from the applicable grade datum to the underside of concrete. Approved material below that concrete increases excavation depth; it is not counted as concrete embedment.'],cross(24,r.actual,r.f,0,0,24,r.gravel));
+}catch(e){return {title:m==='sizing'?'Bearing sizing':m==='materials'?'Materials estimate':'Local depth worksheet',error:e.message,rows:[],notes:[],diagram:'',html:'<p class="df-warn" role="alert">'+esc(e.message)+'</p>'};}}
+function render(){ $('simpleFields').hidden=$('s_method').value!=='simple';$('s_area').disabled=$('s_method').value!=='area';$('s_reaction').disabled=$('s_method').value!=='reaction';$('spreadFields').hidden=$('m_geometry').value!=='spread';$('m_yield').disabled=$('m_bag').value!=='custom';
+['sizing','materials','frost'].forEach(m=>{const r=calcSection(m);$(m+'Output').innerHTML=r.html;if(m==='sizing')$('footingDiagram').innerHTML=r.diagram+(r.diagram?'<div class="df-diagram-caption">Bearing envelope and load model — illustration only</div>':'');if(m==='materials')$('materialsDiagram').innerHTML=r.diagram;});}
+function setMode(m){mode=m;['sizing','materials','frost'].forEach(k=>$(k+'Tab').hidden=k!==m);document.querySelectorAll('[data-mode]').forEach(b=>{b.classList.toggle('on',b.dataset.mode===m);b.setAttribute('aria-pressed',String(b.dataset.mode===m));});render();}
+function convertUnits(){const next=$('units').value;if(next===unit)return;allControls.filter(e=>e.dataset.measure).forEach(e=>{if(e.value.trim()===''||!Number.isFinite(Number(e.value)))return;let n=Number(e.value)/(unit==='si'?factor[e.dataset.measure]:1);e.value=String(Number((n*(next==='si'?factor[e.dataset.measure]:1)).toPrecision(12)));});unit=next;document.querySelectorAll('[data-unit]').forEach(e=>e.textContent=labels[unit][e.dataset.unit]);render();}
+function inputRows(m){let ids=allControls.filter(e=>e.id.startsWith(m[0]+'_')).map(e=>e.id);
+if(m==='sizing'){const method=$('s_method').value;ids=ids.filter(id=>{if(id==='s_area')return method==='area';if(id==='s_reaction')return method==='reaction';if(['s_beamSpan','s_postSpacing','s_overhang','s_leftOver','s_rightOver','s_support'].includes(id))return method==='simple';if(['s_liveLoad','s_deadLoad','s_snowLoad','s_loadCase'].includes(id))return method!=='reaction';if(id==='s_ratio')return $('s_shape').value==='rect';return true;});}
+if(m==='materials')ids=ids.filter(id=>{if(id==='m_length')return $('m_shape').value==='rect';if(id==='m_pad'||id==='m_pier')return $('m_geometry').value==='spread';if(id==='m_yield')return $('m_bag').value==='custom';if(['m_rebarBars','m_barLength','m_stock','m_rebarCost','m_ties','m_tieLength','m_tieCost'].includes(id))return $('m_rebar').value!=='0';return true;});
+return ids.map(id=>{const e=$(id);return [fieldName(e),e.tagName==='SELECT'?e.selectedOptions[0].textContent:(e.value||'Not supplied')];});}
+const disclaimer='Preliminary estimation only. Confirm site loads, allowable soil bearing, adopted code and local frost depth with the authority having jurisdiction and a qualified design professional. This worksheet is not a structural design, permit approval or authorization to excavate/build.';
+function report(){const ms=$('exportScope').value==='all'?['sizing','materials','frost']:[mode];return ms.map(m=>({m,r:calcSection(m),inputs:inputRows(m)}));}
+function preparePrint(){const items=report();$('deckPrintReport').innerHTML='<h1>Deck footing calculation report</h1><p>Utiliby · '+esc($('project').value||'Untitled worksheet')+' · '+esc(new Date().toLocaleString())+'</p><p>Input units: '+esc(unit==='si'?'Metric':'Imperial')+'</p>'+items.map(({r,inputs})=>'<section><h2>'+esc(r.title)+'</h2><h3>Worksheet inputs</h3>'+table(inputs)+(r.error?'<p>Calculation unavailable: '+esc(r.error)+'</p>':'<h3>Calculated results</h3>'+table(r.rows)+($('exportDiagram').value==='yes'?r.diagram:'')+r.notes.map(n=>'<p>'+esc(n)+'</p>').join(''))+'</section>').join('')+'<p><strong>Disclaimer:</strong> '+esc(disclaimer)+'</p>';}
+function textReport(){return 'DECK FOOTING CALCULATION REPORT\nUtiliby | '+$('project').value+'\n'+new Date().toLocaleString()+'\nInput units: '+unit+'\n\n'+report().map(({r,inputs})=>r.title+'\nINPUTS\n'+inputs.map(x=>x.join(': ')).join('\n')+'\nRESULTS\n'+(r.error?'Calculation unavailable: '+r.error:r.rows.map(x=>x.join(': ')).join('\n')+'\n'+r.notes.join('\n'))).join('\n\n')+'\n\nDISCLAIMER: '+disclaimer;}
+function csvReport(){let rows=[['Section','Type','Quantity','Value'],['Report','Metadata','Project',$('project').value],['Report','Metadata','Input units',unit]];report().forEach(({r,inputs})=>{inputs.forEach(x=>rows.push([r.title,'Input',...x]));if(r.error)rows.push([r.title,'Error','Calculation unavailable',r.error]);else{r.rows.forEach(x=>rows.push([r.title,'Result',...x]));r.notes.forEach(x=>rows.push([r.title,'Assumption','Note',x]));}});rows.push(['Report','Disclaimer','Use limitation',disclaimer]);return rows.map(row=>row.map(v=>'"'+String(v).replace(/^[\s]*[=+@-]/,"'$&").replace(/"/g,'""')+'"').join(',')).join('\r\n');}
+function save(content,name,type){const blob=new Blob([content],{type}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=name;document.body.appendChild(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),1000);$('exportStatus').textContent='Saved calculation report: '+name;}
+async function copy(text,status){try{if(navigator.clipboard&&window.isSecureContext)await navigator.clipboard.writeText(text);else{const e=document.createElement('textarea');e.value=text;document.body.appendChild(e);e.select();if(!document.execCommand('copy'))throw Error('Clipboard unavailable');e.remove();}if(status)status.textContent='Copied calculation report.';}catch(e){if(status)status.textContent='Clipboard unavailable. Use the text download.';}}
+allControls.forEach(e=>{if(e.id==='units')e.addEventListener('change',convertUnits);else if(!e.id.startsWith('export')&&e.id!=='project')e.addEventListener('input',render);});
+document.querySelectorAll('[data-mode]').forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+$('calcSizingBtn').addEventListener('click',render);$('calcMaterialsBtn').addEventListener('click',render);
+$('resetSizingBtn').addEventListener('click',()=>{initial.forEach(([id,v])=>$(id).value=v);unit='us';document.querySelectorAll('[data-unit]').forEach(e=>e.textContent=labels.us[e.dataset.unit]);setMode('sizing');$('exportStatus').textContent='Worksheet reset to example inputs.';});
+$('transferSizingBtn').addEventListener('click',()=>{try{const r=sizing();$('m_shape').value=r.shape;put('m_diameter',r.w);put('m_length',r.l);put('m_depth',r.depth);setMode('materials');$('exportStatus').textContent='Transferred bearing-base dimensions and depth only. Select concrete geometry and supply pad / pier dimensions from your design.';}catch(e){$('exportStatus').textContent=e.message;}});
+$('transferFrostBtn').addEventListener('click',()=>{try{const r=frost();put('s_frostDepth',r.f);put('s_minDepth',r.m);put('s_margin',r.a);setMode('sizing');$('exportStatus').textContent='Transferred entered frost, minimum depth and allowance. Verify the local source.';}catch(e){$('exportStatus').textContent=e.message;}});
+$('printReportBtn').addEventListener('click',()=>{preparePrint();window.print();});window.addEventListener('beforeprint',preparePrint);
+$('saveTextBtn').addEventListener('click',()=>save(textReport(),'deck-footing-report.txt','text/plain;charset=utf-8'));
+$('saveCsvBtn').addEventListener('click',()=>save('\uFEFF'+csvReport(),'deck-footing-results.csv','text/csv;charset=utf-8'));
+$('copyReportBtn').addEventListener('click',()=>copy(textReport(),$('exportStatus')));
+document.querySelectorAll('[data-copy-target]').forEach(b=>b.addEventListener('click',()=>copy($(b.dataset.copyTarget).value,null)));
+window.DeckMath={area,beam,up,sizing,materials,frost,report,textReport,csvReport,preparePrint};render();
 })();
 
-/* ---------- Footing cross-section diagram ---------- */
-function drawFootingDiagram(diameter, depth, frostDepth, margin, shape, tributaryArea){
-  var W = 560, H = 340;
-  var padL = 80, padR = 40, padT = 30, padB = 60;
-  var plotW = W - padL - padR, plotH = H - padT - padB;
-
-  var maxDepth = Math.max(depth + 12, frostDepth + margin + 12, 48);
-  var scaleY = plotH / maxDepth;
-  var scaleX = Math.min(scaleY, plotW / (diameter * 3));
-
-  var gradeY = padT + 30;
-  var frostY = gradeY + frostDepth * scaleY;
-  var bottomY = gradeY + depth * scaleY;
-
-  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Footing cross-section diagram">';
-
-  /* Sky / grade */
-  svg += '<rect x="' + padL + '" y="' + padT + '" width="' + plotW + '" height="' + (gradeY - padT) + '" fill="#e0f2fe" opacity="0.5"/>';
-  svg += '<line x1="' + (padL - 10) + '" y1="' + gradeY + '" x2="' + (W - padR + 10) + '" y2="' + gradeY + '" stroke="#64748b" stroke-width="2"/>';
-  svg += '<text x="' + (padL - 6) + '" y="' + (gradeY - 6) + '" text-anchor="end" font-size="10" fill="#64748b" font-weight="600">Grade</text>';
-
-  /* Frost line */
-  if(frostDepth > 0){
-    svg += '<line x1="' + (padL - 10) + '" y1="' + frostY + '" x2="' + (W - padR + 10) + '" y2="' + frostY + '" stroke="#3b82f6" stroke-width="2" stroke-dasharray="6,4"/>';
-    svg += '<text x="' + (padL - 6) + '" y="' + (frostY + 4) + '" text-anchor="end" font-size="10" fill="#3b82f6" font-weight="600">Frost ' + frostDepth + '″</text>';
-  }
-
-  /* Excavation / soil */
-  var cx = padL + plotW / 2;
-  var footingW = diameter * scaleX;
-  var footingH = (depth - frostDepth) * scaleY;
-  if(footingH < 20) footingH = 20;
-  var footingTop = bottomY - footingH;
-
-  /* Soil fill */
-  svg += '<rect x="' + cx + '" y="' + gradeY + '" width="' + (footingW + 30) + '" height="' + (bottomY - gradeY + 10) + '" fill="#d6d3d1" opacity="0.4" transform="translate(' + (-footingW/2 - 15) + ',0)"/>';
-
-  /* Footing */
-  if(shape === "round"){
-    svg += '<rect x="' + (cx - footingW/2) + '" y="' + footingTop + '" width="' + footingW + '" height="' + footingH + '" rx="' + (footingW/2) + '" fill="#0369a1" opacity="0.85"/>';
-    svg += '<rect x="' + (cx - footingW/2) + '" y="' + footingTop + '" width="' + footingW + '" height="' + (footingH * 0.3) + '" rx="' + (footingW/2) + '" fill="#0ea5e9" opacity="0.5"/>';
-  } else {
-    svg += '<rect x="' + (cx - footingW/2) + '" y="' + footingTop + '" width="' + footingW + '" height="' + footingH + '" fill="#0369a1" opacity="0.85"/>';
-    svg += '<rect x="' + (cx - footingW/2) + '" y="' + footingTop + '" width="' + footingW + '" height="' + (footingH * 0.3) + '" fill="#0ea5e9" opacity="0.5"/>';
-  }
-
-  /* Depth dimension */
-  svg += '<line x1="' + (W - padR + 20) + '" y1="' + gradeY + '" x2="' + (W - padR + 20) + '" y2="' + bottomY + '" stroke="#64748b" stroke-width="1.5"/>';
-  svg += '<text x="' + (W - padR + 24) + '" y="' + ((gradeY + bottomY) / 2) + '" font-size="10" fill="#64748b" font-weight="600">' + Math.round(depth) + '″ deep</text>';
-
-  /* Margin annotation */
-  if(margin > 0){
-    var marginY = frostY + margin * scaleY;
-    svg += '<line x1="' + (cx + footingW/2 + 8) + '" y1="' + frostY + '" x2="' + (cx + footingW/2 + 8) + '" y2="' + marginY + '" stroke="#f59e0b" stroke-width="1.5"/>';
-    svg += '<text x="' + (cx + footingW/2 + 12) + '" y="' + ((frostY + marginY) / 2 + 3) + '" font-size="9" fill="#f59e0b" font-weight="600">' + margin + '″ margin</text>';
-  }
-
-  /* Labels */
-  svg += '<text x="' + cx + '" y="' + (H - 10) + '" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="600">' + (shape === "round" ? "Ø" : "") + diameter + '″ ' + (shape === "round" ? "round" : "square") + ' footing · ' + Math.round(tributaryArea) + ' ft² tributary area</text>';
-
-  svg += '</svg>';
-  return svg;
-}
-
-/* ---------- Core sizing calculation ---------- */
-function calcSizing(){
-  var beamSpan = val("s_beamSpan");
-  var postSpacing = val("s_postSpacing");
-  var overhang = val("s_overhang") || 0;
-  var liveLoad = val("s_liveLoad");
-  var deadLoad = val("s_deadLoad");
-  var soilSel = $("s_soil").value;
-  var soil = soilSel === "custom" ? val("s_customSoil") : parseFloat(soilSel);
-  var frostDepth = val("s_frostDepth") || 0;
-  var margin = parseFloat($("s_margin").value) || 0;
-  var shape = $("s_shape").value;
-
-  if(!(liveLoad > 0) || !(deadLoad > 0) || !(soil > 0)){
-    return { err: "Live load, dead load and soil bearing capacity are required and must be greater than zero." };
-  }
-
-  /* Tributary area: (half beam span + overhang) × (half post spacing + half adjacent post spacing).
-     For a single post check, the adjacent post spacing is the same as the post spacing on both sides. */
-  var halfBeam = beamSpan > 0 ? beamSpan / 2 : 0;
-  var halfPost = postSpacing > 0 ? postSpacing / 2 : 0;
-  var tributaryArea = (halfBeam + overhang) * (halfPost + halfPost);
-  if(tributaryArea <= 0) tributaryArea = (halfBeam + overhang) * halfPost;
-  if(tributaryArea <= 0) return { err: "Tributary area is zero. Enter at least a beam span or post spacing." };
-
-  var designLoad = liveLoad + deadLoad;
-  var tributaryLoad = tributaryArea * designLoad;
-  var requiredArea = tributaryLoad / soil;
-
-  /* Required dimensions */
-  var reqDiameter = Math.sqrt(4 * requiredArea / Math.PI);
-  var reqSide = Math.sqrt(requiredArea);
-
-  /* Depth = max(frost + margin, 12) */
-  var minDepth = Math.max(frostDepth + margin, 12);
-  var footingDepth = Math.max(minDepth, 12);
-
-  /* Standard sizes */
-  var stdSizes = [8, 10, 12, 14, 16, 18, 20, 24, 30, 36];
-  var chosenSize = null;
-  var reqSize = shape === "round" ? reqDiameter : reqSide;
-  for(var i=0;i<stdSizes.length;i++){
-    if(stdSizes[i] >= reqSize){ chosenSize = stdSizes[i]; break; }
-  }
-  if(!chosenSize) chosenSize = 36;
-
-  /* Actual area with chosen size */
-  var actualArea = shape === "round" ? Math.PI * Math.pow(chosenSize/2, 2) : chosenSize * chosenSize;
-  var actualPressure = tributaryLoad / actualArea;
-
-  /* Checks */
-  var checks = [];
-  checks.push({ name: "Minimum depth below grade", value: Math.round(footingDepth) + "″", limit: "≥ 12″", ok: footingDepth >= 12, ref: "IRC R403.1.4" });
-  checks.push({ name: "Below frost line", value: (footingDepth - frostDepth) + "″ below frost", limit: "Below frost", ok: footingDepth >= frostDepth, ref: "IRC R403.1.4" });
-  checks.push({ name: "Soil pressure", value: actualPressure.toFixed(0) + " psf", limit: "≤ " + soil + " psf", ok: actualPressure <= soil + 0.1, ref: "IRC Table R401.4.1" });
-  checks.push({ name: "Footing size", value: chosenSize + "″", limit: "≥ " + (shape === "round" ? reqDiameter.toFixed(1) : reqSide.toFixed(1)) + "″", ok: chosenSize >= reqSize, ref: "IRC Table R507.3.1" });
-
-  var status = { label: "IRC Compliant", cls: "ok", notes: [] };
-  var violations = checks.filter(function(c){ return !c.ok; });
-  if(violations.length > 0){
-    status.cls = "err"; status.label = "Check required";
-    for(var i=0;i<violations.length;i++){
-      status.notes.push(violations[i].name + " is " + violations[i].value + " — " + violations[i].limit + " (" + violations[i].ref + ").");
-    }
-  } else {
-    status.notes.push("All checked dimensions meet IRC R403.1.4 requirements for the values entered.");
-  }
-
-  if(frostDepth === 0){
-    status.notes.push("Frost depth is 0″ — this location may be frost-free. The 12″ minimum depth still applies.");
-  }
-  if(frostDepth > 48){
-    status.notes.push("Frost depth is " + frostDepth + "″ — deep frost climate. Verify the local frost depth with your building department, as it may be even deeper.");
-  }
-
-  return {
-    tributaryArea: tributaryArea, tributaryLoad: tributaryLoad,
-    requiredArea: requiredArea, reqDiameter: reqDiameter, reqSide: reqSide,
-    chosenSize: chosenSize, actualArea: actualArea, actualPressure: actualPressure,
-    footingDepth: footingDepth, frostDepth: frostDepth, margin: margin,
-    minDepth: minDepth, shape: shape, soil: soil, checks: checks,
-    status: status, designLoad: designLoad
-  };
-}
-
-/* ---------- Render Sizing ---------- */
-function renderSizing(){
-  var soilSel = $("s_soil").value;
-  $("s_customSoilRow").hidden = soilSel !== "custom";
-
-  var r = calcSizing();
-  var out = $("sizingOutput");
-  if(r.err){
-    out.innerHTML = '<div class="df-warn">' + r.err + '</div>';
-    $("footingDiagram").innerHTML = '';
-    return;
-  }
-
-  $("footingDiagram").innerHTML = drawFootingDiagram(
-    r.chosenSize, r.footingDepth, r.frostDepth, r.margin, r.shape, r.tributaryArea
-  ) + '<div class="df-diagram-caption">Footing cross-section — frost line, depth and size update live</div>';
-
-  var h = '<div class="df-result">';
-  h += '<div class="df-result-label">Required footing size</div>';
-  h += '<div class="df-result-big">' + (r.shape === "round" ? "Ø " : "") + r.chosenSize + '″</div>';
-  h += '<div class="df-result-sub">' + (r.shape === "round" ? "Round" : "Square") + ' footing · ' + Math.round(r.footingDepth) + '″ deep · tributary area ' + r.tributaryArea.toFixed(1) + ' ft² · load ' + Math.round(r.tributaryLoad).toLocaleString() + ' lb</div>';
-  h += '</div>';
-
-  h += '<div class="df-stats">';
-  h += '<div class="df-stat"><div class="lbl">Tributary load</div><div class="val">' + Math.round(r.tributaryLoad).toLocaleString() + ' lb</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Required area</div><div class="val">' + r.requiredArea.toFixed(0) + ' in²</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Required size</div><div class="val">' + (r.shape === "round" ? "Ø " : "") + (r.shape === "round" ? r.reqDiameter.toFixed(1) : r.reqSide.toFixed(1)) + '″</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Actual soil pressure</div><div class="val ' + (r.actualPressure <= r.soil ? 'ok' : 'err') + '">' + r.actualPressure.toFixed(0) + ' psf</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Footing depth</div><div class="val ' + (r.footingDepth >= r.minDepth ? 'ok' : 'err') + '">' + Math.round(r.footingDepth) + '″</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Depth below frost</div><div class="val">' + (r.footingDepth - r.frostDepth) + '″</div></div>';
-  h += '</div>';
-
-  h += '<div class="df-panel"><h3>IRC R403.1.4 check <span class="df-badge ' + r.status.cls + '">' + r.status.label + '</span></h3>';
-  h += '<table class="df-table"><tr><th>Check</th><th>Your value</th><th>Limit</th><th>Ref</th></tr>';
-  for(var i=0;i<r.checks.length;i++){
-    var c = r.checks[i];
-    h += '<tr><td>' + c.name + '</td><td>' + c.value + '</td><td>' + c.limit + '</td><td>' + c.ref + '</td></tr>';
-  }
-  h += '</table>';
-  h += '<ul>';
-  for(var j=0;j<r.status.notes.length;j++) h += '<li>' + r.status.notes[j] + '</li>';
-  h += '</ul></div>';
-
-  h += '<div class="df-tip"><b>Design load:</b> ' + val("s_liveLoad") + ' psf live + ' + val("s_deadLoad") + ' psf dead = ' + r.designLoad + ' psf total. Tributary area × design load = ' + Math.round(r.tributaryLoad).toLocaleString() + ' lb per footing.</div>';
-  h += '<div class="df-tip"><b>Depth:</b> Frost depth ' + r.frostDepth + '″ + ' + r.margin + '″ margin = ' + Math.round(r.frostDepth + r.margin) + '″. The 12″ IRC minimum also applies. The governing depth is ' + Math.round(r.footingDepth) + '″.</div>';
-
-  h += '<div class="df-actions"><button type="button" id="copySizingBtn" class="primary">Copy sizing result</button><button type="button" id="printSizingBtn">Print / save as PDF</button></div>';
-  out.innerHTML = h;
-
-  $("copySizingBtn").addEventListener("click", function(){
-    var text = "Deck Footing Sizing (IRC R403.1.4)\n" +
-      "Tributary area: " + r.tributaryArea.toFixed(1) + " ft²\n" +
-      "Design load: " + r.designLoad + " psf\n" +
-      "Tributary load: " + Math.round(r.tributaryLoad) + " lb\n" +
-      "Soil bearing: " + r.soil + " psf\n" +
-      "Required area: " + r.requiredArea.toFixed(0) + " in²\n" +
-      "Required size: " + (r.shape === "round" ? "Ø " : "") + (r.shape === "round" ? r.reqDiameter.toFixed(1) : r.reqSide.toFixed(1)) + "\"\n" +
-      "Chosen size: " + (r.shape === "round" ? "Ø " : "") + r.chosenSize + "\"\n" +
-      "Footing depth: " + Math.round(r.footingDepth) + "\"\n" +
-      "Frost depth: " + r.frostDepth + "\"\n" +
-      "Status: " + r.status.label + "\n" +
-      "- utiliby.com";
-    copyText(text, $("copySizingBtn"));
-  });
-  $("printSizingBtn").addEventListener("click", function(){ window.print(); });
-}
-
-/* ---------- Render Materials ---------- */
-function renderMaterials(){
-  var diameter = val("m_diameter");
-  var depth = val("m_depth");
-  var count = val("m_count");
-  var shape = $("m_shape").value;
-  var bagSize = parseFloat($("m_bag").value);
-  var wastePct = val("m_waste") || 0;
-  var rebarSize = $("m_rebar").value;
-  var rebarBars = val("m_rebarBars") || 0;
-  var concreteCost = val("m_concreteCost") || 0;
-  var rebarCost = val("m_rebarCost") || 0;
-
-  if(!(diameter > 0) || !(depth > 0) || !(count > 0)){
-    $("materialsOutput").innerHTML = '<div class="df-warn">Diameter, depth and footing count are required and must be greater than zero.</div>';
-    return;
-  }
-
-  var volumePerFooting = shape === "round"
-    ? Math.PI * Math.pow(diameter / 2, 2) * depth / 1728 /* cubic feet */
-    : diameter * diameter * depth / 1728;
-  var totalVolume = volumePerFooting * count;
-  var wasteVolume = totalVolume * (1 + wastePct / 100);
-  var bagYield = bagSize === 80 ? 0.60 : (bagSize === 60 ? 0.45 : 0.30);
-  var bagsPerFooting = Math.ceil(volumePerFooting / bagYield);
-  var totalBags = Math.ceil(wasteVolume / bagYield);
-
-  var rebarPerFooting = 0;
-  var totalRebar = 0;
-  if(rebarSize !== "0" && rebarBars > 0){
-    rebarPerFooting = rebarBars * (depth / 12) * 1.05; /* add 5% for ties */
-    totalRebar = rebarPerFooting * count;
-  }
-
-  var concreteCostTotal = totalBags * concreteCost;
-  var rebarCostTotal = totalRebar * rebarCost;
-  var grandTotal = concreteCostTotal + rebarCostTotal;
-
-  var h = '<div class="df-result">';
-  h += '<div class="df-result-label">Total concrete volume</div>';
-  h += '<div class="df-result-big">' + totalVolume.toFixed(2) + ' ft³</div>';
-  h += '<div class="df-result-sub">' + (totalVolume / 27).toFixed(2) + ' cubic yards · ' + count + ' footings · ' + wastePct + '% waste allowance included</div>';
-  h += '</div>';
-
-  h += '<div class="df-stats">';
-  h += '<div class="df-stat"><div class="lbl">Volume per footing</div><div class="val">' + volumePerFooting.toFixed(2) + ' ft³</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Bags per footing</div><div class="val">' + bagsPerFooting + '</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Total ' + bagSize + ' lb bags</div><div class="val">' + totalBags + '</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Rebar per footing</div><div class="val">' + (rebarPerFooting > 0 ? rebarPerFooting.toFixed(1) + ' ft' : '—') + '</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Total rebar</div><div class="val">' + (totalRebar > 0 ? totalRebar.toFixed(1) + ' ft' : '—') + '</div></div>';
-  h += '<div class="df-stat"><div class="lbl">Estimated total cost</div><div class="val">$' + grandTotal.toFixed(2) + '</div></div>';
-  h += '</div>';
-
-  h += '<div class="df-tip"><b>Concrete:</b> ' + bagSize + ' lb bag yields ~' + bagYield + ' ft³. Add 10% waste for spillage and uneven excavation. Always buy an extra bag or two — returning unused concrete is easier than running short mid-pour.</div>';
-  if(rebarPerFooting > 0){
-    h += '<div class="df-tip"><b>Rebar:</b> ' + rebarBars + ' × #' + rebarSize + ' bars per footing, approximately ' + rebarPerFooting.toFixed(1) + ' ft per footing. Use a cage with horizontal ties for best performance.</div>';
-  }
-
-  h += '<div class="df-actions"><button type="button" id="copyMatBtn" class="primary">Copy materials list</button></div>';
-  $("materialsOutput").innerHTML = h;
-
-  $("copyMatBtn").addEventListener("click", function(){
-    var text = "Deck Footing Materials Estimate\n" +
-      "Footings: " + count + " × " + (shape === "round" ? "Ø " : "") + diameter + "\" × " + depth + "\"\n" +
-      "Volume per footing: " + volumePerFooting.toFixed(2) + " ft³\n" +
-      "Total volume: " + totalVolume.toFixed(2) + " ft³ (" + (totalVolume / 27).toFixed(2) + " yd³)\n" +
-      "Bags per footing: " + bagsPerFooting + " × " + bagSize + " lb\n" +
-      "Total bags: " + totalBags + "\n" +
-      (totalRebar > 0 ? "Rebar: " + totalRebar.toFixed(1) + " ft of #" + rebarSize + " bars\n" : "") +
-      "Estimated cost: $" + grandTotal.toFixed(2) + "\n" +
-      "- utiliby.com";
-    copyText(text, $("copyMatBtn"));
-  });
-}
-
-/* ---------- Render Frost Depth ---------- */
-function renderFrost(){
-  var state = $("f_state").value;
-  var manual = val("f_manual");
-  var out = $("frostOutput");
-
-  if(manual > 0){
-    var h = '<div class="df-result"><div class="df-result-label">Your frost depth</div><div class="df-result-big">' + manual + '″</div><div class="df-result-sub">Minimum footing depth = max(' + manual + '″ + margin, 12″). Add 6″ for a recommended safety margin.</div></div>';
-    out.innerHTML = h;
-    return;
-  }
-
-  if(!state || !frostData[state]){
-    out.innerHTML = '<div class="df-warn">Select a state from the dropdown or enter a manual frost depth.</div>';
-    return;
-  }
-
-  var d = frostData[state];
-  var h = '<div class="df-result"><div class="df-result-label">' + d.name + ' — typical frost depth</div><div class="df-result-big">' + d.range + '</div><div class="df-result-sub">' + d.note + '</div></div>';
-  h += '<div class="df-tip"><b>Important:</b> These are typical ranges for guidance only. Your local building department publishes the exact frost depth required for your jurisdiction, and that value governs. Always confirm before digging.</div>';
-  h += '<div class="df-tip"><b>IRC R403.1.4 reminder:</b> Footings must be at least 12″ below undisturbed grade AND below the local frost depth, whichever is deeper. Add a 6″ safety margin as good practice.</div>';
-  out.innerHTML = h;
-}
-
-/* ---------- UI wiring ---------- */
-window.addEventListener("DOMContentLoaded", function(){
-  var T = $("tool");
-  if(!T) return;
-
-  document.querySelectorAll(".df-tab").forEach(function(tab){
-    tab.addEventListener("click", function(){
-      var mode = this.dataset.mode;
-      document.querySelectorAll(".df-tab").forEach(function(x){ x.classList.toggle("on", x.dataset.mode === mode); });
-      $("sizingTab").hidden = (mode !== "sizing");
-      $("materialsTab").hidden = (mode !== "materials");
-      $("frostTab").hidden = (mode !== "frost");
-      if(mode === "sizing") renderSizing();
-      else if(mode === "materials") renderMaterials();
-      else if(mode === "frost") renderFrost();
-    });
-  });
-
-  function live(ids, fn){
-    ids.forEach(function(id){ var el = $(id); if(el){ el.addEventListener("input", fn); el.addEventListener("change", fn); } });
-  }
-
-  live(["s_beamSpan","s_postSpacing","s_overhang","s_liveLoad","s_deadLoad","s_soil","s_customSoil","s_frostDepth","s_margin","s_shape"], renderSizing);
-  live(["m_diameter","m_depth","m_count","m_shape","m_bag","m_waste","m_rebar","m_rebarBars","m_concreteCost","m_rebarCost"], renderMaterials);
-  live(["f_state","f_manual"], renderFrost);
-
-  $("s_soil").addEventListener("change", function(){
-    $("s_customSoilRow").hidden = this.value !== "custom";
-  });
-
-  $("calcSizingBtn").addEventListener("click", renderSizing);
-  $("calcMaterialsBtn").addEventListener("click", renderMaterials);
-
-  $("resetSizingBtn").addEventListener("click", function(){
-    $("s_beamSpan").value = 8;
-    $("s_postSpacing").value = 8;
-    $("s_overhang").value = 2;
-    $("s_liveLoad").value = 40;
-    $("s_deadLoad").value = 10;
-    $("s_soil").value = "1500";
-    $("s_frostDepth").value = 36;
-    $("s_margin").value = "6";
-    $("s_shape").value = "round";
-    renderSizing();
-  });
-
-  document.addEventListener("click", function(e){
-    var copyBtn = e.target.closest("[data-copy-target]");
-    if(copyBtn){
-      var target = document.getElementById(copyBtn.getAttribute("data-copy-target"));
-      if(target) copyText(target.value, copyBtn);
-    }
-  });
-
-  renderSizing();
-  renderMaterials();
-  renderFrost();
-});
-})();
 </script>
+<div id="deckPrintReport" aria-label="Deck footing calculation report"></div>
 </body>
 </html>
