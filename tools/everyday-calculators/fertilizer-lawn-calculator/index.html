@@ -82,11 +82,17 @@
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+.fl-check{display:inline-flex !important;align-items:center;gap:6px;text-transform:none !important;font-size:.85rem !important;font-weight:600 !important;letter-spacing:0 !important;margin:6px 16px 6px 0 !important;color:var(--fg) !important}
+.fl-check input{width:auto !important;margin:0}
+.fl-report{display:none}
+.fl-disclaimer-short{margin-top:12px;font-size:.8rem;line-height:1.55}
+.fl-btn.small{margin-right:0}
+@media print{#tool>*:not(.fl-report){display:none !important}.fl-report{display:block !important;color:#000}.fl-report h2,.fl-report h3{color:#000}.fl-report .fl-table th{background:#eee}}
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Fertilizer/Lawn Calculator","url":"https://utiliby.com/tools/everyday-calculators/fertilizer-lawn-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free fertilizer calculator for lawns online?","acceptedAnswer":{"@type":"Answer","text":"A free fertilizer calculator for lawns online is a tool that tells you exactly how much fertilizer to apply based on your lawn size, grass type and the NPK analysis on your fertilizer bag. This calculator also covers overseeding, lime and sulfur for pH adjustment, topdressing, spreader calibration and cost estimation, all in one browser-based tool."}},{"@type":"Question","name":"How much fertilizer should I apply per 1,000 square feet?","acceptedAnswer":{"@type":"Answer","text":"The standard target is 1 pound of actual nitrogen per 1,000 square feet per application. The formula is: pounds of product per 1,000 sq ft = desired nitrogen rate ÷ (nitrogen percentage ÷ 100). For example, with a 32-0-4 fertilizer, you would apply 1 ÷ 0.32 = 3.125 pounds of product per 1,000 sq ft."}},{"@type":"Question","name":"How do I calculate how many bags of fertilizer I need?","acceptedAnswer":{"@type":"Answer","text":"First calculate total pounds of product needed using the formula above, then divide by the weight of the bag you are buying. For example, if you need 50 pounds and the fertilizer comes in 40-pound bags, you would buy 2 bags. Always round up to ensure you do not run out mid-application."}},{"@type":"Question","name":"What is the difference between cool-season and warm-season grass fertilisation?","acceptedAnswer":{"@type":"Answer","text":"Cool-season grasses (Kentucky Bluegrass, Fescue, Ryegrass) grow most actively in spring and fall. They typically need 3 to 4 pounds of nitrogen per 1,000 sq ft per year, split across 3 to 4 applications. Warm-season grasses (Bermuda, Zoysia, St. Augustine) grow most actively in summer and need 2 to 3 pounds of nitrogen per 1,000 sq ft per year, with applications concentrated in late spring and summer."}},{"@type":"Question","name":"How much grass seed do I need for overseeding?","acceptedAnswer":{"@type":"Answer","text":"Overseeding an existing lawn typically requires 2 to 5 pounds of grass seed per 1,000 square feet, roughly half the rate of seeding a brand-new lawn. Tall fescue and perennial ryegrass need about 3 to 4 pounds per 1,000 sq ft for overseeding, Kentucky bluegrass needs 1 to 1.5 pounds, and warm-season grasses like Bermuda need under 1 pound."}},{"@type":"Question","name":"How much lime do I need to raise my soil pH?","acceptedAnswer":{"@type":"Answer","text":"Lime application rate depends on your current soil pH, target pH, soil type and grass type. As a general guide to raise pH by 1.0 unit: sandy soil needs about 50 lbs per 1,000 sq ft, loam needs 80 lbs, and clay needs 120 lbs. Rates over 50 lbs per 1,000 sq ft should be split into two applications 4 to 6 months apart."}},{"@type":"Question","name":"How do I calculate how much topdressing I need?","acceptedAnswer":{"@type":"Answer","text":"Topdressing volume = (Lawn area in sq ft × Depth in inches) ÷ 324. The constant 324 comes from converting square feet to cubic yards (27 cubic feet per cubic yard × 12 inches per foot). For example, 5,000 sq ft at 0.25 inches deep needs (5,000 × 0.25) ÷ 324 = 3.86 cubic yards."}},{"@type":"Question","name":"How do I calibrate my spreader?","acceptedAnswer":{"@type":"Answer","text":"To calibrate a spreader: (1) Mark out a test area of known size, such as 400 sq ft. (2) Fill the spreader with a known weight of product. (3) Spread over the test area at your intended setting. (4) Weigh how much product was used. (5) If you used X pounds over 400 sq ft, that is X ÷ 400 × 1,000 pounds per 1,000 sq ft. Adjust the spreader setting up or down and repeat until the rate matches your target."}},{"@type":"Question","name":"Is this fertilizer calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}},{"@type":"Question","name":"Does this calculator work in metric units?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can enter your lawn area in square metres or square feet, and the calculator converts everything automatically. The recommended rates are provided in both imperial and metric units."}}]}]}</script>
 </head>
 <body>
-<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></nav></div></header>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › Fertilizer/Lawn Calculator</nav>
 <h1>Fertilizer/Lawn Calculator</h1>
@@ -120,7 +126,7 @@
 </select>
 </div>
 <div>
-<label for="lawnSize">Lawn size</label>
+<label for="lawnSize" id="lblLawnSize">Lawn size (sq ft)</label>
 <input type="number" id="lawnSize" min="0" step="1" value="5000">
 </div>
 <div>
@@ -137,13 +143,15 @@
 <option value="fine-fescue">Fine Fescue</option>
 <option value="centipede">Centipede</option>
 </select>
+<p class="meta" id="grassHint" style="margin:4px 0 0"></p>
 </div>
 </div>
 <div class="fl-row">
 <div>
-<label for="targetN">Target nitrogen rate (lbs N / 1,000 sq ft)</label>
-<input type="number" id="targetN" min="0" max="2" step="0.1" value="1.0">
-<p class="meta" style="margin:4px 0 0">Standard: 1 lb per 1,000 sq ft for quick-release. Use 0.5–0.75 for slow-release or sensitive grasses.</p>
+<label for="targetN" id="lblTargetN">Target nitrogen rate (lbs N / 1,000 sq ft)</label>
+<input type="number" id="targetN" min="0" max="2" step="0.05" value="1">
+<p class="meta" id="targetNHint" style="margin:4px 0 0">Standard: up to 1 lb N per 1,000 sq ft for quick-release. Slow-release products can go up to about 1.5 lb if the label allows. Use lower rates for sensitive grasses or hot weather.</p>
+<button type="button" class="fl-btn ghost small" id="useRecNBtn" style="margin-top:6px">Use recommended rate</button>
 </div>
 <div>
 <label for="spreaderBuffer">Spreader buffer (%)</label>
@@ -161,7 +169,7 @@
 <div><label for="kPct">Potassium (K₂O) %</label><input type="number" id="kPct" min="0" max="50" step="0.1" value="10"></div>
 </div>
 <div class="fl-row3">
-<div><label for="bagWeight">Bag weight</label><input type="number" id="bagWeight" min="1" step="1" value="50"></div>
+<div><label for="bagWeight" id="lblBagWeight">Bag weight (lbs)</label><input type="number" id="bagWeight" min="1" step="1" value="50"></div>
 <div><label for="bagPrice">Price per bag</label><input type="number" id="bagPrice" min="0" step="0.01" value="25"></div>
 <div><label for="currency">Currency</label><select id="currency">
 <option value="USD" selected>$ USD</option>
@@ -177,7 +185,7 @@
 </div>
 
 <button type="button" class="fl-btn" id="calcFertBtn">Calculate fertilizer</button>
-<div id="fertResult"></div>
+<div id="fertResult" aria-live="polite"></div>
 </div>
 
 <!-- SEED TAB -->
@@ -192,7 +200,7 @@
 <option value="metric">Metric (m², kg)</option>
 </select>
 </div>
-<div><label for="seedArea">Lawn area</label><input type="number" id="seedArea" min="0" step="1" value="5000"></div>
+<div><label for="seedArea" id="lblSeedArea">Area to seed (sq ft)</label><input type="number" id="seedArea" min="0" step="1" value="5000"></div>
 <div>
 <label for="seedPurpose">Purpose</label>
 <select id="seedPurpose">
@@ -202,7 +210,7 @@
 </select>
 </div>
 </div>
-<div class="fl-row">
+<div class="fl-row3">
 <div>
 <label for="seedGrass">Grass type</label>
 <select id="seedGrass">
@@ -217,12 +225,16 @@
 </select>
 </div>
 <div>
-<label for="seedBagWeight">Seed bag weight</label>
-<input type="number" id="seedBagWeight" min="1" step="0.5" value="5">
+<label for="seedBagWeight" id="lblSeedBag">Seed bag weight (lbs)</label>
+<input type="number" id="seedBagWeight" min="0.1" step="0.5" value="5">
+</div>
+<div>
+<label for="seedBagPrice">Price per bag (optional)</label>
+<input type="number" id="seedBagPrice" min="0" step="0.01" value="">
 </div>
 </div>
 <button type="button" class="fl-btn" id="calcSeedBtn">Calculate seed</button>
-<div id="seedResult"></div>
+<div id="seedResult" aria-live="polite"></div>
 </div>
 </div>
 
@@ -238,7 +250,7 @@
 <option value="metric">Metric (m², kg)</option>
 </select>
 </div>
-<div><label for="limeArea">Lawn area</label><input type="number" id="limeArea" min="0" step="1" value="5000"></div>
+<div><label for="limeArea" id="lblLimeArea">Lawn area (sq ft)</label><input type="number" id="limeArea" min="0" step="1" value="5000"></div>
 <div>
 <label for="limeGrass">Grass type (sets target pH)</label>
 <select id="limeGrass">
@@ -265,8 +277,13 @@
 </select>
 </div>
 </div>
+<p class="meta" id="limeRangeHint" style="margin:8px 0 0"></p>
+<div class="fl-row">
+<div><label for="limeBagWeight" id="lblLimeBag">Lime / sulfur bag weight (lbs, optional)</label><input type="number" id="limeBagWeight" min="0.1" step="1" value="40"></div>
+<div><label for="limeBagPrice">Price per bag (optional)</label><input type="number" id="limeBagPrice" min="0" step="0.01" value=""></div>
+</div>
 <button type="button" class="fl-btn" id="calcLimeBtn">Calculate lime / sulfur</button>
-<div id="limeResult"></div>
+<div id="limeResult" aria-live="polite"></div>
 </div>
 </div>
 
@@ -282,11 +299,19 @@
 <option value="metric">Metric (m², cubic metres)</option>
 </select>
 </div>
-<div><label for="tdArea">Lawn area</label><input type="number" id="tdArea" min="0" step="1" value="5000"></div>
-<div><label for="tdDepth">Depth</label><input type="number" id="tdDepth" min="0.05" max="2" step="0.05" value="0.25"></div>
+<div><label for="tdArea" id="lblTdArea">Lawn area (sq ft)</label><input type="number" id="tdArea" min="0" step="1" value="5000"></div>
+<div><label for="tdDepth" id="lblTdDepth">Depth (inches)</label><input type="number" id="tdDepth" min="0.05" max="2" step="0.05" value="0.25"></div>
+</div>
+<div class="fl-row">
+<div><label for="tdMaterial">Material (for weight estimate)</label><select id="tdMaterial">
+<option value="compost">Compost (~0.5 ton / cu yd)</option>
+<option value="topsoil" selected>Topsoil (~1.15 ton / cu yd)</option>
+<option value="sand">Sand (~1.35 ton / cu yd)</option>
+<option value="mix">Sand–soil mix (~1.25 ton / cu yd)</option>
+</select></div>
 </div>
 <button type="button" class="fl-btn" id="calcTdBtn">Calculate topdressing</button>
-<div id="tdResult"></div>
+<div id="tdResult" aria-live="polite"></div>
 </div>
 </div>
 
@@ -303,17 +328,45 @@
 <option value="metric">Metric (m², kg)</option>
 </select>
 </div>
-<div><label for="spTestArea">Test area size</label><input type="number" id="spTestArea" min="1" step="1" value="400"></div>
-<div><label for="spProductUsed">Product used in test</label><input type="number" id="spProductUsed" min="0" step="0.01" value="1"></div>
+<div><label for="spTestArea" id="lblSpArea">Test area size (sq ft)</label><input type="number" id="spTestArea" min="1" step="1" value="400"></div>
+<div><label for="spProductUsed" id="lblSpUsed">Product used in test (lbs)</label><input type="number" id="spProductUsed" min="0" step="0.01" value="1"></div>
 </div>
 <div class="fl-row">
-<div><label for="spTargetRate">Target application rate (per 1,000 sq ft)</label><input type="number" id="spTargetRate" min="0" step="0.01" value="3.125"></div>
+<div><label for="spTargetRate" id="lblSpTarget">Target application rate (lbs / 1,000 sq ft)</label><input type="number" id="spTargetRate" min="0" step="0.01" value="3.125"></div>
 <div><label for="spCurrentSetting">Current spreader setting</label><input type="number" id="spCurrentSetting" min="0" step="0.5" value="5"></div>
 </div>
 <button type="button" class="fl-btn" id="calcSpBtn">Calculate calibration</button>
-<div id="spResult"></div>
+<button type="button" class="fl-btn ghost" id="useFertRateBtn">Use rate from Fertilizer tab</button>
+<div id="spResult" aria-live="polite"></div>
 </div>
 </div>
+
+<div class="fl-panel no-print" id="exportPanel">
+<h3>Save &amp; export</h3>
+<p class="meta" style="margin:0 0 8px">Your inputs are saved automatically in this browser (nothing is uploaded). Choose what to include, then copy, download or print your plan.</p>
+<div>
+<span style="font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)">Include in export:</span>
+<label class="fl-check"><input type="checkbox" id="incFert" checked> Fertilizer</label>
+<label class="fl-check"><input type="checkbox" id="incSeed"> Grass seed</label>
+<label class="fl-check"><input type="checkbox" id="incLime"> Lime / sulfur</label>
+<label class="fl-check"><input type="checkbox" id="incTd"> Topdressing</label>
+<label class="fl-check"><input type="checkbox" id="incSp"> Spreader</label>
+</div>
+<div>
+<button type="button" class="fl-btn" id="copySummaryBtn">Copy summary</button>
+<button type="button" class="fl-btn" id="downloadCsvBtn">Download CSV</button>
+<button type="button" class="fl-btn ghost" id="downloadJsonBtn">Save settings (JSON)</button>
+<button type="button" class="fl-btn ghost" id="importJsonBtn">Import settings</button>
+<input type="file" id="jsonInput" accept=".json,application/json" hidden>
+<button type="button" class="fl-btn ghost" id="printBtn">Print / Save as PDF</button>
+<button type="button" class="fl-btn ghost" id="resetBtn">Reset all</button>
+</div>
+<p class="meta" id="exportStatus" role="status" aria-live="polite" style="margin:8px 0 0"></p>
+</div>
+
+<div class="fl-report" id="printReport" aria-hidden="true"></div>
+
+<p class="meta fl-disclaimer-short"><b>Disclaimer:</b> Results are estimates based on typical guidance and the values you enter. They are not a guarantee or professional agronomic advice. Always follow your fertilizer, lime and seed labels, local regulations and a soil test. See the full <a href="#disclaimer">disclaimer</a> below.</p>
 
 </section>
 
@@ -327,11 +380,12 @@
 <ol>
 <li>Select your units — imperial (square feet, pounds) or metric (square metres, kilograms).</li>
 <li>Enter your lawn size. If your lawn is irregular, break it into rectangles and add the areas together.</li>
-<li>Choose your grass type. The calculator uses this to recommend the correct nitrogen rate.</li>
+<li>Choose your grass type. The calculator uses it to suggest a nitrogen rate per application and to show a season plan.</li>
 <li>Enter the N-P-K percentages from your fertilizer bag. These are the three numbers printed prominently on the label (e.g., 10-10-10).</li>
 <li>Enter the bag weight and price to get bag count and total cost.</li>
 <li>Click Calculate. You'll see total product needed, application rate per 1,000 sq ft, bags to buy and cost.</li>
 <li>Use the other tabs for grass seed, lime, topdressing and spreader calibration.</li>
+<li>Use Save &amp; export to copy, download (CSV or JSON settings) or print your plan. Your inputs are also saved automatically in this browser.</li>
 </ol>
 
 <h2>How to calculate fertilizer for your lawn</h2>
@@ -352,17 +406,18 @@
 <li><b>Phosphorus (P₂O₅)</b> — supports root development, flowering and seeding. Most established lawns need little to no phosphorus, which is why many lawn fertilizers are "0" in the middle number. Starter fertilizers for new lawns or overseeding typically contain higher phosphorus.</li>
 <li><b>Potassium (K₂O)</b> — builds stress tolerance, drought resistance and winter hardiness. Winterizer fertilizers for fall application are usually higher in potassium.</li>
 </ul>
-<p>The ratio tells you the relative proportions. A 3-1-2 ratio (like 15-5-10) is ideal for maintenance fertilisation. A 1-0-1 ratio is common for summer stress. The higher the first number, the less product you need to deliver the same amount of nitrogen.</p>
+<p>The ratio tells you the relative proportions. A 3-1-2 ratio (like 15-5-10) is commonly used for maintenance fertilisation. A 1-0-1 ratio is common for summer stress. The higher the first number, the less product you need to deliver the same amount of nitrogen.</p>
 
 <h2>How much fertilizer per 1,000 square feet?</h2>
-<p>The standard recommendation across university extension services is <b>1 pound of actual nitrogen per 1,000 square feet per application</b> for quick-release fertilizers. For slow-release or controlled-release products, the rate can be higher — often 1.5 pounds per 1,000 sq ft — because the nitrogen releases slowly and is less likely to burn the grass.</p>
+<p>The standard recommendation across university extension services is <b>1 pound of actual nitrogen per 1,000 square feet per application</b> for quick-release fertilizers. For slow-release or controlled-release products, the rate can be higher — often up to 1.5 pounds per 1,000 sq ft if the product label allows it — because the nitrogen releases slowly and is less likely to burn the grass.</p>
 <p>Here is how three common products compare for a 5,000 sq ft lawn targeting 1 lb N per 1,000 sq ft:</p>
 <table>
 <tr><th>Fertilizer</th><th>Formula</th><th>Product needed</th><th>Bags</th></tr>
 <tr><td>10-10-10 Balanced</td><td>(1 ÷ 0.10) × 5</td><td>50 lbs</td><td>1 × 50 lb</td></tr>
 <tr><td>32-0-4 High Nitrogen</td><td>(1 ÷ 0.32) × 5</td><td>16 lbs</td><td>1 × 50 lb</td></tr>
-<tr><td>18-24-12 Starter</td><td>(1 ÷ 0.18) × 5</td><td>28 lbs</td><td>1 × 42 lb</td></tr>
+<tr><td>18-24-12 Starter</td><td>(1 ÷ 0.18) × 5</td><td>28 lbs</td><td>1 × 50 lb</td></tr>
 </table>
+<p>These figures are before the optional spreader buffer. This calculator adds a buffer (10% by default) for overlap and waste, so the 10-10-10 example becomes 55 lbs, or 2 × 50 lb bags.</p>
 <p>Notice how a higher-nitrogen product requires far less material to deliver the same 1 lb N per 1,000 sq ft. This is why professional lawn care companies prefer high-nitrogen products — less product to buy, transport and spread.</p>
 
 <h2>Grass-type specific nitrogen rates</h2>
@@ -390,10 +445,11 @@
 <tr><td>Perennial Ryegrass</td><td>3–4 lbs</td><td>6–8 lbs</td></tr>
 <tr><td>Fine Fescue</td><td>2–3 lbs</td><td>4–5 lbs</td></tr>
 <tr><td>Bermuda</td><td>0.5–1 lb</td><td>1–2 lbs</td></tr>
-<tr><td>Zoysia</td><td>0.5–1 lb</td><td>1–2 lbs</td></tr>
+<tr><td>Zoysia</td><td>1–1.5 lbs</td><td>2–3 lbs</td></tr>
 <tr><td>St. Augustine</td><td>1–2 lbs</td><td>2–4 lbs</td></tr>
+<tr><td>Centipede</td><td>0.25–0.5 lb</td><td>0.25–0.5 lb</td></tr>
 </table>
-<p>For patch repair, use the full new-lawn rate on the damaged area only.</p>
+<p>For patch repair, use the full new-lawn rate on the damaged area only. These are typical figures: seed blends, coatings (hulled, unhulled or coated seed) and germination rates vary, so follow your seed label. St. Augustine is mostly established from sod or plugs.</p>
 
 <h2>How much lime or sulfur to adjust soil pH</h2>
 <p>Soil pH affects nutrient availability. Most lawn grasses prefer pH 6.0 to 7.0. When pH drops below 6.0 (acidic), nutrients like phosphorus and calcium become less available. When it rises above 7.5 (alkaline), iron and manganese become less available, causing yellowing.</p>
@@ -403,15 +459,15 @@
 <li><b>Loam soil:</b> 80 lbs</li>
 <li><b>Clay soil:</b> 120 lbs</li>
 </ul>
-<p>Rates over 50 lbs per 1,000 sq ft should be split into two applications 4 to 6 months apart. Pelletized lime is grass-safe and can be watered in immediately.</p>
-<p><b>Elemental sulfur</b> lowers pH. Apply no more than 10 lbs per 1,000 sq ft in a single pass, and re-test each season. Sulfur works more slowly than lime because soil bacteria must convert it first.</p>
+<p>Rates over 50 lbs per 1,000 sq ft should be split into applications of no more than 50 lbs each, several months apart (4 to 6 months is typical). These rates are rough guides for ground agricultural limestone, so a lab soil test recommendation always takes priority. Pelletized lime is grass-safe and can be watered in immediately.</p>
+<p><b>Elemental sulfur</b> lowers pH. On established turf, apply no more than 5 lbs per 1,000 sq ft in a single pass (and roughly 10 lbs per year at most, per university extension guidance), water it in, and re-test each season. Sulfur has little effect in soils that contain free lime (very high pH). Sulfur works more slowly than lime because soil bacteria must convert it first.</p>
 
 <h2>How much topdressing to apply</h2>
 <p>Topdressing is a thin layer of compost, sand or topsoil spread over the lawn to level low spots, improve soil structure and encourage thatch breakdown. The recommended depth is 0.25 to 0.5 inches per application.</p>
 <p>The formula for volume:</p>
 <p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Cubic yards = (Area in sq ft × Depth in inches) ÷ 324</b></p>
 <p>The constant 324 converts square feet to cubic yards (27 cubic feet per cubic yard × 12 inches per foot). For example, 5,000 sq ft at 0.25 inches deep requires (5,000 × 0.25) ÷ 324 = <b>3.86 cubic yards</b>.</p>
-<p>One cubic yard covers about 324 square feet at 1 inch deep, or 648 square feet at 0.5 inches deep.</p>
+<p>One cubic yard covers about 324 square feet at 1 inch deep, or 648 square feet at 0.5 inches deep. In metric, 1 mm over 1 m² is 1 litre. The calculator also estimates weight for compost, topsoil, sand or a sand–soil mix; actual weight varies a lot with moisture, so confirm with your supplier.</p>
 
 <h2>How to calibrate your fertilizer spreader</h2>
 <p>Spreader calibration is the difference between a professional result and a striped, patchy lawn. Even if you calculate the right amount of fertilizer, an incorrectly calibrated spreader will apply too much in some areas and too little in others.</p>
@@ -424,12 +480,12 @@
 <li>If the rate is too high, lower the spreader setting and repeat. If too low, raise it.</li>
 <li>Repeat until your actual rate matches your target rate within 10%.</li>
 </ol>
-<p>This calculator does the math for you — enter your test area, product used and current setting, and it tells you the actual application rate and whether to adjust up or down.</p>
+<p>This calculator does the math for you — enter your test area, product used and current setting, and it tells you the actual application rate and a suggested new setting (current setting × target rate ÷ actual rate). Dials are not perfectly proportional, so always re-test after adjusting.</p>
 
 <h2>Common lawn fertilizer mistakes</h2>
 <ul>
 <li><b>Guessing the application rate.</b> Too much fertilizer burns the grass; too little wastes money and underfeeds the lawn. Always calculate.</li>
-<li><b>Ignoring grass type.</b> Bermuda needs twice the nitrogen of Centipede. Using the same rate for every lawn leads to problems.</li>
+<li><b>Ignoring grass type.</b> Bermuda needs several times the nitrogen of Centipede. Using the same rate for every lawn leads to problems.</li>
 <li><b>Applying at the wrong time.</b> Cool-season grasses should be fertilised in spring and fall, warm-season grasses in summer. Fertilising at the wrong time encourages weeds and disease.</li>
 <li><b>Not calibrating the spreader.</b> A spreader set to 5 on one machine may apply a different rate than a spreader set to 5 on another. Calibration is essential.</li>
 <li><b>Forgetting the spreader buffer.</b> Overlap and waste mean you need 5 to 10% more product than the theoretical calculation suggests.</li>
@@ -451,6 +507,18 @@
 <details><summary>Does this calculator work in metric units?</summary><p>Yes. You can enter your lawn area in square metres or square feet, and the calculator converts everything automatically. The recommended rates are provided in both imperial and metric units.</p></details>
 </div>
 
+<h2 id="disclaimer">Disclaimer</h2>
+<ul>
+<li><b>Estimates only.</b> This calculator gives estimates for planning and information. Results depend on the numbers you enter and on typical, general turfgrass guidance. They are not a guarantee of results and are not a substitute for the product label, a soil test, or advice from a qualified professional.</li>
+<li><b>Follow the label and the law.</b> Always follow the directions, maximum rates and safety instructions printed on your fertilizer, lime, sulfur and seed products. Many regions restrict phosphorus fertilizer, set seasonal blackout periods or require buffer zones near water. Check your local and national rules before applying anything.</li>
+<li><b>Test your soil.</b> Lime and sulfur rates in particular depend on soil buffering, lime quality and soil chemistry that a simple texture choice cannot capture. A laboratory soil test and recommendation always take priority over the figures shown here.</li>
+<li><b>General guidance only.</b> Nitrogen programs, seed rates, lime and sulfur rates, and topdressing weights vary with grass variety, climate, soil, irrigation, mowing height and product. Seed rates can differ for hulled, unhulled and coated seed, and topdressing weight changes with moisture.</li>
+<li><b>Safety and environment.</b> Wear gloves and eye protection when handling fertilizer, lime and sulfur, and keep products away from children and pets as the label directs. Do not apply before heavy rain, on frozen or saturated ground, or onto hard surfaces, and sweep stray granules back onto the lawn so they do not wash into drains or waterways.</li>
+<li><b>Costs.</b> Cost figures are simple estimates from the prices you enter. They exclude tax, delivery, equipment, labour and any minimum order rules.</li>
+<li><b>No professional advice; no liability.</b> Nothing on this page is agronomic, environmental or legal advice. Utiliby does not guarantee that the calculator is complete, current or error-free and is not responsible for any loss, lawn damage or other consequences arising from its use. Verify important quantities before you buy or apply.</li>
+<li><b>Your data.</b> Inputs are saved only in your own browser (local storage) so the page can restore them. Clearing site data, private browsing or switching devices can erase them. CSV and settings files are created on your device and are not uploaded.</li>
+</ul>
+
 </article>
 
 </main>
@@ -462,278 +530,866 @@
 
 function $(id){ return document.getElementById(id); }
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
-function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+function val(id){ var el = $(id); if(!el) return NaN; var s = String(el.value).trim(); if(s === "") return NaN; var n = Number(s); return isFinite(n) ? n : NaN; }
+function valOr0(id){ return String($(id).value).trim() === "" ? 0 : val(id); }
+function isBlank(id){ return String($(id).value).trim() === ""; }
 
+/* ---------- CONSTANTS ---------- */
+var SQFT_PER_M2 = 10.7639104;
+var KG_PER_LB = 0.45359237;
+var M3_PER_YD3 = 0.764554858;
+var MM_PER_IN = 25.4;
+var G_M2_PER_LB_1000 = 453.59237 / 92.90304;   // 1 lb / 1,000 sq ft = 4.8824 g/m²
+var MAX_AREA_SQFT = 10000000;
+var STORAGE_KEY = "utiliby-fertilizer-lawn-v1";
+var SITE_URL = "https://utiliby.com/tools/everyday-calculators/fertilizer-lawn-calculator/";
 var CURRENCIES = { USD:"$", GBP:"£", EUR:"€", AUD:"A$", CAD:"C$", NZD:"NZ$", INR:"₹", PKR:"₨" };
 
-/* ---------- GRASS DATA ---------- */
+var SHORT_DISCLAIMER = "Estimates only. Always follow the product label, local regulations and a soil test. Not professional agronomic advice.";
+
+/* ---------- AGRONOMY DATA (typical guidance, not guarantees) ---------- */
 var GRASS_DATA = {
-  "cool": { name: "Cool-season", nAnnual: 3.5, apps: 4, targetPh: [6.0, 7.0] },
-  "warm": { name: "Warm-season", nAnnual: 3.0, apps: 4, targetPh: [5.5, 7.0] },
-  "bermuda": { name: "Bermuda", nAnnual: 5.0, apps: 5, targetPh: [6.0, 7.0] },
-  "zoysia": { name: "Zoysia", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
-  "st-augustine": { name: "St. Augustine", nAnnual: 2.5, apps: 3, targetPh: [5.5, 6.5] },
-  "kentucky-bluegrass": { name: "Kentucky Bluegrass", nAnnual: 3.5, apps: 4, targetPh: [6.0, 7.0] },
-  "tall-fescue": { name: "Tall Fescue", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
-  "perennial-ryegrass": { name: "Perennial Ryegrass", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
-  "fine-fescue": { name: "Fine Fescue", nAnnual: 1.5, apps: 2, targetPh: [5.5, 6.5] },
-  "centipede": { name: "Centipede", nAnnual: 1.5, apps: 2, targetPh: [5.0, 5.5] }
+  "cool": { name: "Cool-season", nAnnual: 3.5, nRange: [3, 4], apps: 4, appsRange: [3, 4], targetPh: [6.0, 7.0] },
+  "warm": { name: "Warm-season", nAnnual: 2.5, nRange: [2, 3], apps: 3, appsRange: [2, 4], targetPh: [5.5, 7.0] },
+  "bermuda": { name: "Bermuda", nAnnual: 5.0, nRange: [4, 6], apps: 5, appsRange: [4, 5], targetPh: [6.0, 7.0] },
+  "zoysia": { name: "Zoysia", nAnnual: 2.5, nRange: [2, 3], apps: 3, appsRange: [2, 3], targetPh: [6.0, 7.0] },
+  "st-augustine": { name: "St. Augustine", nAnnual: 2.5, nRange: [2, 3], apps: 3, appsRange: [2, 3], targetPh: [5.5, 6.5] },
+  "kentucky-bluegrass": { name: "Kentucky Bluegrass", nAnnual: 3.5, nRange: [3, 4], apps: 4, appsRange: [3, 4], targetPh: [6.0, 7.0] },
+  "tall-fescue": { name: "Tall Fescue", nAnnual: 2.5, nRange: [2, 3], apps: 3, appsRange: [2, 3], targetPh: [6.0, 7.0] },
+  "perennial-ryegrass": { name: "Perennial Ryegrass", nAnnual: 2.5, nRange: [2, 3], apps: 3, appsRange: [2, 3], targetPh: [6.0, 7.0] },
+  "fine-fescue": { name: "Fine Fescue", nAnnual: 1.5, nRange: [1, 2], apps: 2, appsRange: [1, 2], targetPh: [5.5, 6.5] },
+  "centipede": { name: "Centipede", nAnnual: 1.5, nRange: [1, 2], apps: 2, appsRange: [1, 2], targetPh: [5.0, 5.5] }
 };
 
+// lbs of seed per 1,000 sq ft [low, high]. Check your seed label: blends, coatings and germination vary.
 var SEED_RATES = {
   "tall-fescue": { over: [3, 4], new: [6, 8] },
   "kentucky-bluegrass": { over: [1, 1.5], new: [2, 3] },
   "perennial-ryegrass": { over: [3, 4], new: [6, 8] },
   "fine-fescue": { over: [2, 3], new: [4, 5] },
   "bermuda": { over: [0.5, 1], new: [1, 2] },
-  "zoysia": { over: [0.5, 1], new: [1, 2] },
+  "zoysia": { over: [1, 1.5], new: [2, 3] },
   "st-augustine": { over: [1, 2], new: [2, 4] },
-  "centipede": { over: [0.5, 1], new: [1, 2] }
+  "centipede": { over: [0.25, 0.5], new: [0.25, 0.5] }
+};
+var SEED_NAMES = { "tall-fescue": "Tall Fescue", "kentucky-bluegrass": "Kentucky Bluegrass", "perennial-ryegrass": "Perennial Ryegrass", "fine-fescue": "Fine Fescue", "bermuda": "Bermuda", "zoysia": "Zoysia", "st-augustine": "St. Augustine", "centipede": "Centipede" };
+var PURPOSE_NAMES = { overseed: "Overseeding", "new": "New lawn", patch: "Patch repair" };
+
+// Rough rules of thumb per 1.0 pH unit, lbs per 1,000 sq ft (ground agricultural limestone / elemental sulfur)
+var LIME_PER_UNIT = { sandy: 50, loam: 80, clay: 120 };
+var SULFUR_PER_UNIT = { sandy: 10, loam: 15, clay: 20 };
+var LIME_MAX_PER_PASS = 50;     // lbs / 1,000 sq ft per application
+var SULFUR_MAX_PER_PASS = 5;    // lbs / 1,000 sq ft per application on established turf
+var SULFUR_MAX_PER_YEAR = 10;   // lbs / 1,000 sq ft per year
+
+// Approximate weights in US short tons per cubic yard (moisture dependent)
+var MATERIALS = {
+  compost: { name: "Compost", tons: 0.5 },
+  topsoil: { name: "Topsoil", tons: 1.15 },
+  sand: { name: "Sand", tons: 1.35 },
+  mix: { name: "Sand–soil mix", tons: 1.25 }
 };
 
-var LIME_RATES = {
-  sandy: { "0.5": 25, "1.0": 50, "1.5": 75, "2.0": 100 },
-  loam: { "0.5": 40, "1.0": 80, "1.5": 120, "2.0": 160 },
-  clay: { "0.5": 60, "1.0": 120, "1.5": 180, "2.0": 240 }
-};
+/* ---------- UNITS ---------- */
+function isMetric(){ return $("units").value === "metric"; }
+function areaToSqFt(v){ return isMetric() ? v * SQFT_PER_M2 : v; }
+function massToLb(v){ return isMetric() ? v / KG_PER_LB : v; }
+function lbToMass(lb){ return isMetric() ? lb * KG_PER_LB : lb; }
+function rateToLb1000(v){ return isMetric() ? v / G_M2_PER_LB_1000 : v; }
+function lb1000ToRate(r){ return isMetric() ? r * G_M2_PER_LB_1000 : r; }
+function areaUnit(){ return isMetric() ? "m²" : "sq ft"; }
+function massUnit(){ return isMetric() ? "kg" : "lbs"; }
+function rateUnit(){ return isMetric() ? "g/m²" : "lbs / 1,000 sq ft"; }
+function depthToIn(v){ return isMetric() ? v / MM_PER_IN : v; }
 
-var SULFUR_RATES = {
-  sandy: { "0.5": 5, "1.0": 10 },
-  loam: { "0.5": 8, "1.0": 15 },
-  clay: { "0.5": 10, "1.0": 20 }
-};
-
-/* ---------- STATE ---------- */
-var state = { units: "imperial", currency: "USD" };
-
-/* ---------- UTILS ---------- */
-function fmtMoney(n){
-  var sym = CURRENCIES[state.currency] || "$";
-  return sym + n.toFixed(2);
-}
-function fmtNumber(n, dec){
+function fmt(n, dec){
   if(dec === undefined) dec = 2;
-  return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+  return Number(n).toLocaleString("en-US", { minimumFractionDigits: dec, maximumFractionDigits: dec });
 }
+function plain(n, dec){ return Number(n).toFixed(dec); }
+function currencySymbol(){ return CURRENCIES[$("currency").value] || "$"; }
+function fmtMoney(n){ return currencySymbol() + fmt(n, 2); }
+function ceilSafe(x){ return Math.ceil(x - 1e-9); }
+function rateText(lb1000, dec){
+  if(dec === undefined) dec = 2;
+  if(isMetric()){
+    var g = lb1000 * G_M2_PER_LB_1000;
+    return fmt(g, 1) + " g/m² (" + fmt(g / 10, 2) + " kg / 100 m²)";
+  }
+  return fmt(lb1000, dec) + " lbs / 1,000 sq ft";
+}
+function otherMass(lb){ return isMetric() ? fmt(lb, 1) + " lbs" : fmt(lb * KG_PER_LB, 1) + " kg"; }
+
+/* ---------- ROW HELPERS (shared by on-screen results and exports) ---------- */
+function R(label, value, unit){ return { label: label, value: String(value), unit: unit || "" }; }
 
 /* ---------- FERTILIZER ---------- */
-function calcFertilizer(){
-  var isMetric = state.units === "metric";
-  var area = num($("lawnSize").value, 0);
-  var areaSqFt = isMetric ? area * 10.7639 : area;
-  var targetN = num($("targetN").value, 1.0);
-  var buffer = num($("spreaderBuffer").value, 10);
-  var n = num($("nPct").value, 0);
-  var p = num($("pPct").value, 0);
-  var k = num($("kPct").value, 0);
-  var bagWeight = num($("bagWeight").value, 50);
-  var bagPrice = num($("bagPrice").value, 0);
+function computeFert(){
+  var errs = [], warns = [];
+  var area = val("lawnSize"), tN = val("targetN"), n = val("nPct"), p = valOr0("pPct"), k = valOr0("kPct");
+  var buf = valOr0("spreaderBuffer"), bagW = val("bagWeight"), price = val("bagPrice");
+  var priceGiven = !isBlank("bagPrice");
+  var areaSqFt = areaToSqFt(area);
+  var tNlb = rateToLb1000(tN);
 
-  if(n <= 0){
-    $("fertResult").innerHTML = '<div class="fl-warn">Nitrogen percentage must be greater than zero.</div>';
-    return;
-  }
-  if(areaSqFt <= 0){
-    $("fertResult").innerHTML = '<div class="fl-warn">Lawn size must be greater than zero.</div>';
-    return;
-  }
+  if(!(area > 0)) errs.push("Enter a lawn size greater than zero.");
+  else if(areaSqFt > MAX_AREA_SQFT) errs.push("Lawn size is too large for this calculator (maximum about 10 million sq ft / 929,000 m²).");
+  if(!(tN > 0)) errs.push("Enter a target nitrogen rate greater than zero.");
+  else if(tNlb > 2 + 1e-9) errs.push("Target nitrogen rate is too high. The maximum accepted is 2 lbs N per 1,000 sq ft (about 9.8 g N/m²) per application.");
+  if(!(n > 0) || n > 50) errs.push("Nitrogen (N) % must be greater than 0 and no more than 50.");
+  if(isNaN(p) || p < 0 || p > 62) errs.push("Phosphorus (P₂O₅) % must be between 0 and 62.");
+  if(isNaN(k) || k < 0 || k > 62) errs.push("Potassium (K₂O) % must be between 0 and 62.");
+  if(n + p + k > 100) errs.push("N + P₂O₅ + K₂O percentages cannot add up to more than 100.");
+  if(isNaN(buf) || buf < 0 || buf > 20) errs.push("Spreader buffer must be between 0 and 20 %.");
+  if(!(bagW > 0)) errs.push("Enter a bag weight greater than zero.");
+  if(priceGiven && (isNaN(price) || price < 0)) errs.push("Price per bag cannot be negative.");
+  if(errs.length) return { ok: false, errors: errs };
 
-  // Product per 1,000 sq ft
-  var productPer1000 = targetN / (n / 100);
+  if(tNlb > 1 + 1e-9) warns.push("A rate above 1 lb N per 1,000 sq ft (4.9 g N/m²) per application is only suitable for slow-release products, and only if the label allows it. Quick-release nitrogen at this rate can burn the lawn.");
+
+  var productPer1000 = tNlb / (n / 100);                 // lbs product / 1,000 sq ft
   var totalProduct = productPer1000 * (areaSqFt / 1000);
-  var buffered = totalProduct * (1 + buffer / 100);
-  var bags = Math.ceil(buffered / bagWeight);
-  var cost = bags * bagPrice;
+  var buffered = totalProduct * (1 + buf / 100);
+  var bagLb = massToLb(bagW);
+  var bags = ceilSafe(buffered / bagLb);
+  var cost = priceGiven ? bags * price : null;
+  var thousands = areaSqFt / 1000;
+  var nTot = totalProduct * n / 100, pTot = totalProduct * p / 100, kTot = totalProduct * k / 100;
 
-  // Actual N delivered
-  var nDelivered = totalProduct * (n / 100);
-  var pDelivered = totalProduct * (p / 100);
-  var kDelivered = totalProduct * (k / 100);
+  // Season plan from grass type
+  var g = GRASS_DATA[$("grassType").value] || GRASS_DATA.cool;
+  var recPer = Math.min(1, Math.round((g.nAnnual / g.apps) / 0.05) * 0.05);
+  var annualProduct = (g.nAnnual / (n / 100)) * thousands * (1 + buf / 100);
+  var annualBags = ceilSafe(annualProduct / bagLb);
+  var appsAtRate = ceilSafe(g.nAnnual / tNlb);
+  var plan = { grass: g, recPer: recPer, annualProduct: annualProduct, annualBags: annualBags, annualCost: priceGiven ? annualBags * price : null, appsAtRate: appsAtRate };
+  if(tNlb > g.nAnnual + 1e-9) warns.push("One application at this rate already exceeds the typical annual nitrogen target for " + g.name + " (" + g.nRange[0] + "–" + g.nRange[1] + " lbs N per 1,000 sq ft per year).");
 
-  var h = '<div class="fl-result">';
-  h += '<div class="fl-result-label">Total fertilizer needed</div>';
-  h += '<div class="fl-result-big">' + fmtNumber(buffered, 1) + (isMetric ? " kg" : " lbs") + '</div>';
-  h += '<div class="fl-result-sub">' + fmtNumber(buffered * 0.453592, 1) + ' kg · with ' + buffer + '% spreader buffer</div>';
+  var rows = [
+    R("Fertilizer to buy (incl. buffer)", plain(lbToMass(buffered), 2), massUnit()),
+    R("Fertilizer before buffer", plain(lbToMass(totalProduct), 2), massUnit()),
+    R("Spreading rate (product)", plain(lb1000ToRate(productPer1000), 2), rateUnit()),
+    R("Bag size", plain(bagW, 2), massUnit()),
+    R("Bags to buy", bags, "bags")
+  ];
+  if(cost !== null) rows.push(R("Total cost", plain(cost, 2), $("currency").value));
+  rows.push(R("Nitrogen (N) delivered", plain(lbToMass(nTot), 2), massUnit()));
+  rows.push(R("Phosphorus (P2O5) delivered", plain(lbToMass(pTot), 2), massUnit()));
+  rows.push(R("Potassium (K2O) delivered", plain(lbToMass(kTot), 2), massUnit()));
+  rows.push(R("Nitrogen rate applied", plain(lb1000ToRate(tNlb), 2), rateUnit()));
+  rows.push(R("Season plan grass type", g.name, ""));
+  rows.push(R("Typical annual N for this grass", g.nRange[0] + "-" + g.nRange[1], "lbs N / 1,000 sq ft / year"));
+  rows.push(R("Season plan product (all applications, incl. buffer)", plain(lbToMass(annualProduct), 2), massUnit()));
+  if(plan.annualCost !== null) rows.push(R("Season plan cost", plain(plan.annualCost, 2), $("currency").value));
+
+  return {
+    ok: true, errors: [], warnings: warns, rows: rows,
+    d: { n: n, p: p, k: k, buf: buf, productPer1000: productPer1000, totalProduct: totalProduct, buffered: buffered, bags: bags, cost: cost,
+         nTot: nTot, pTot: pTot, kTot: kTot, thousands: thousands, tNlb: tNlb, bagW: bagW, plan: plan }
+  };
+}
+
+function warnBlock(list){
+  if(!list || !list.length) return "";
+  return '<div class="fl-warn">' + list.map(esc).join("<br>") + '</div>';
+}
+function errBlock(list){
+  return '<div class="fl-warn"><b>Please check your inputs:</b><br>' + list.map(esc).join("<br>") + '</div>';
+}
+
+var lastFert = null;
+function renderFert(r){
+  if(!r.ok) return errBlock(r.errors);
+  var d = r.d, m = isMetric();
+  var h = warnBlock(r.warnings);
+  h += '<div class="fl-result">';
+  h += '<div class="fl-result-label">Total fertilizer to buy</div>';
+  h += '<div class="fl-result-big">' + fmt(lbToMass(d.buffered), 1) + ' ' + massUnit() + '</div>';
+  h += '<div class="fl-result-sub">' + otherMass(d.buffered) + ' · includes a ' + fmt(d.buf, 0) + '% spreader buffer (' + fmt(lbToMass(d.totalProduct), 1) + ' ' + massUnit() + ' before buffer)</div>';
   h += '</div>';
 
   h += '<div class="fl-stats">';
-  h += '<div class="fl-stat"><div class="lbl">Product per 1,000 sq ft</div><div class="val">' + fmtNumber(productPer1000, 2) + (isMetric ? " kg" : " lbs") + '</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + bags + '</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Total cost</div><div class="val ok">' + fmtMoney(cost) + '</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Actual N delivered</div><div class="val">' + fmtNumber(nDelivered, 1) + (isMetric ? " kg" : " lbs") + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Spreading rate (product)</div><div class="val">' + esc(rateText(d.productPer1000, 2)) + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + d.bags + ' × ' + fmt(d.bagW, 1) + ' ' + massUnit() + '</div></div>';
+  if(d.cost !== null) h += '<div class="fl-stat"><div class="lbl">Total cost</div><div class="val ok">' + fmtMoney(d.cost) + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Actual N delivered</div><div class="val">' + fmt(lbToMass(d.nTot), 2) + ' ' + massUnit() + '</div></div>';
   h += '</div>';
 
   h += '<div class="fl-panel"><h3>Nutrient delivery breakdown</h3>';
+  h += '<table class="fl-table"><tr><th>Nutrient</th><th>% in bag</th><th>Total delivered</th><th>Per ' + (m ? "m²" : "1,000 sq ft") + '</th></tr>';
+  var nut = [["Nitrogen (N)", d.n, d.nTot], ["Phosphorus (P₂O₅)", d.p, d.pTot], ["Potassium (K₂O)", d.k, d.kTot]];
+  for(var i = 0; i < nut.length; i++){
+    var per = d.thousands > 0 ? nut[i][2] / d.thousands : 0;
+    h += '<tr><td>' + nut[i][0] + '</td><td>' + fmt(nut[i][1], 1) + '%</td><td>' + fmt(lbToMass(nut[i][2]), 2) + ' ' + massUnit() + '</td><td>' + fmt(lb1000ToRate(per), 2) + ' ' + (m ? "g/m²" : "lbs") + '</td></tr>';
+  }
+  h += '</table><p class="meta" style="margin:6px 0 0">Nutrients delivered are calculated from the product spread at the rate shown, not from the extra buffer you buy.</p></div>';
+
+  var pl = d.plan, g = pl.grass;
+  h += '<div class="fl-panel"><h3>Season plan: ' + esc(g.name) + '</h3>';
   h += '<table class="fl-table">';
-  h += '<tr><th>Nutrient</th><th>% in bag</th><th>Total delivered</th><th>Per 1,000 sq ft</th></tr>';
-  h += '<tr><td>Nitrogen (N)</td><td>' + n + '%</td><td>' + fmtNumber(nDelivered, 2) + ' lbs</td><td>' + fmtNumber(targetN, 2) + ' lbs</td></tr>';
-  h += '<tr><td>Phosphorus (P₂O₅)</td><td>' + p + '%</td><td>' + fmtNumber(pDelivered, 2) + ' lbs</td><td>' + fmtNumber(pDelivered / (areaSqFt / 1000), 2) + ' lbs</td></tr>';
-  h += '<tr><td>Potassium (K₂O)</td><td>' + k + '%</td><td>' + fmtNumber(kDelivered, 2) + ' lbs</td><td>' + fmtNumber(kDelivered / (areaSqFt / 1000), 2) + ' lbs</td></tr>';
-  h += '</table></div>';
+  h += '<tr><td>Typical annual nitrogen</td><td>' + g.nRange[0] + '–' + g.nRange[1] + ' lbs N / 1,000 sq ft (' + fmt(g.nRange[0] * G_M2_PER_LB_1000, 0) + '–' + fmt(g.nRange[1] * G_M2_PER_LB_1000, 0) + ' g N/m²) per year</td></tr>';
+  h += '<tr><td>Typical applications per year</td><td>' + g.appsRange[0] + (g.appsRange[1] !== g.appsRange[0] ? '–' + g.appsRange[1] : '') + '</td></tr>';
+  h += '<tr><td>Suggested rate per application</td><td>about ' + fmt(lb1000ToRate(pl.recPer), 2) + ' ' + (m ? "g N/m²" : "lbs N / 1,000 sq ft") + '</td></tr>';
+  h += '<tr><td>Applications to reach ~' + fmt(g.nAnnual, 1) + ' lbs N / 1,000 sq ft at your rate</td><td>' + pl.appsAtRate + '</td></tr>';
+  h += '<tr><td>Product for the season (incl. buffer)</td><td>' + fmt(lbToMass(pl.annualProduct), 1) + ' ' + massUnit() + ' (' + pl.annualBags + ' bag' + (pl.annualBags === 1 ? "" : "s") + ')</td></tr>';
+  if(pl.annualCost !== null) h += '<tr><td>Estimated season cost</td><td>' + fmtMoney(pl.annualCost) + '</td></tr>';
+  h += '</table><p class="meta" style="margin:6px 0 0">Annual targets are general guidance. Local climate, soil test results and the product label take priority.</p></div>';
 
-  h += '<div class="fl-tip"><b>How to apply:</b> Set your spreader to the rate calculated above. For a 10-10-10 fertilizer, you will need ' + bags + ' bag' + (bags > 1 ? "s" : "") + ' of ' + bagWeight + ' lbs. Apply half the product in one direction and half perpendicular to avoid stripes.</div>';
-
-  $("fertResult").innerHTML = h;
+  h += '<div class="fl-tip"><b>How to apply:</b> You are using ' + esc(String(+d.n.toFixed(1))) + '-' + esc(String(+d.p.toFixed(1))) + '-' + esc(String(+d.k.toFixed(1))) + ' fertilizer. Spread at <b>' + esc(rateText(d.productPer1000, 2)) + '</b>. The buffer is only extra product to buy for overlap and waste, so do not increase the spreader rate to use it up. Split the dose in two passes at right angles to avoid stripes, and sweep granules off paths and drives.</div>';
+  return h;
+}
+function calcFertilizer(){
+  var r = computeFert();
+  lastFert = r.ok ? r : null;
+  $("fertResult").innerHTML = renderFert(r);
+  markCalculated("fert", r.ok);
 }
 
 /* ---------- SEED ---------- */
-function calcSeed(){
-  var isMetric = state.units === "metric";
-  var area = num($("seedArea").value, 0);
-  var areaSqFt = isMetric ? area * 10.7639 : area;
-  var grass = $("seedGrass").value;
-  var purpose = $("seedPurpose").value;
-  var bagWeight = num($("seedBagWeight").value, 5);
+function computeSeed(){
+  var errs = [];
+  var area = val("seedArea"), bagW = val("seedBagWeight"), price = val("seedBagPrice");
+  var priceGiven = !isBlank("seedBagPrice");
+  var areaSqFt = areaToSqFt(area);
+  if(!(area > 0)) errs.push("Enter an area greater than zero.");
+  else if(areaSqFt > MAX_AREA_SQFT) errs.push("Area is too large for this calculator.");
+  if(!(bagW > 0)) errs.push("Enter a seed bag weight greater than zero.");
+  if(priceGiven && (isNaN(price) || price < 0)) errs.push("Price per bag cannot be negative.");
+  if(errs.length) return { ok: false, errors: errs };
 
+  var grass = $("seedGrass").value, purpose = $("seedPurpose").value;
   var rates = SEED_RATES[grass] || SEED_RATES["tall-fescue"];
-  var rateRange = purpose === "new" ? rates.new : (purpose === "patch" ? rates.new : rates.over);
-  var rateAvg = (rateRange[0] + rateRange[1]) / 2;
-  var seedNeeded = rateAvg * (areaSqFt / 1000);
-  var bags = Math.ceil(seedNeeded / bagWeight);
+  var range = purpose === "overseed" ? rates.over : rates["new"];
+  var mid = (range[0] + range[1]) / 2;
+  var thousands = areaSqFt / 1000;
+  var needLb = mid * thousands, lowLb = range[0] * thousands, highLb = range[1] * thousands;
+  var bagLb = massToLb(bagW);
+  var bags = ceilSafe(needLb / bagLb);
+  var cost = priceGiven ? bags * price : null;
+  var notes = [];
+  if(purpose === "patch") notes.push("Patch repair uses the new-lawn rate. Enter only the area of the bare or damaged patches.");
+  if(grass === "st-augustine") notes.push("St. Augustine is mostly established from sod or plugs, and only a few cultivars are available as seed. The rate shown is a rough guide.");
+  if(grass === "bermuda" || grass === "zoysia" || grass === "centipede") notes.push("Hulled, unhulled and coated seed are sold at different rates by weight. If your label differs from the range above, follow the label.");
 
-  var h = '<div class="fl-result">';
-  h += '<div class="fl-result-label">Grass seed needed</div>';
-  h += '<div class="fl-result-big">' + fmtNumber(seedNeeded, 1) + (isMetric ? " kg" : " lbs") + '</div>';
-  h += '<div class="fl-result-sub">' + fmtNumber(seedNeeded * 0.453592, 1) + ' kg · ' + fmtNumber(rateAvg, 1) + ' lbs per 1,000 sq ft (' + purpose + ')</div>';
-  h += '</div>';
-
+  var rows = [
+    R("Seed needed (average rate)", plain(lbToMass(needLb), 2), massUnit()),
+    R("Seed needed (low–high)", plain(lbToMass(lowLb), 2) + " - " + plain(lbToMass(highLb), 2), massUnit()),
+    R("Grass type", SEED_NAMES[grass] || grass, ""),
+    R("Purpose", PURPOSE_NAMES[purpose] || purpose, ""),
+    R("Rate range", plain(lb1000ToRate(range[0]), 2) + " - " + plain(lb1000ToRate(range[1]), 2), rateUnit()),
+    R("Area", plain(area, 1), areaUnit()),
+    R("Bags to buy", bags, "bags")
+  ];
+  if(cost !== null) rows.push(R("Total cost", plain(cost, 2), $("currency").value));
+  return { ok: true, errors: [], warnings: [], notes: notes, rows: rows,
+           d: { grass: grass, purpose: purpose, range: range, mid: mid, needLb: needLb, lowLb: lowLb, highLb: highLb, bags: bags, bagW: bagW, cost: cost, area: area } };
+}
+function renderSeed(r){
+  if(!r.ok) return errBlock(r.errors);
+  var d = r.d, m = isMetric();
+  var h = '<div class="fl-result"><div class="fl-result-label">Grass seed needed</div>';
+  h += '<div class="fl-result-big">' + fmt(lbToMass(d.needLb), 1) + ' ' + massUnit() + '</div>';
+  h += '<div class="fl-result-sub">' + otherMass(d.needLb) + ' · ' + esc(PURPOSE_NAMES[d.purpose]) + ' at ' + esc(m ? fmt(lb1000ToRate(d.mid), 1) + " g/m²" : fmt(d.mid, 2) + " lbs / 1,000 sq ft") + ' (middle of range)</div></div>';
   h += '<div class="fl-stats">';
-  h += '<div class="fl-stat"><div class="lbl">Application rate</div><div class="val">' + rateRange[0] + '–' + rateRange[1] + ' lbs / 1,000 sq ft</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + bags + '</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Area covered</div><div class="val">' + fmtNumber(area, 0) + (isMetric ? " m²" : " sq ft") + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Rate range</div><div class="val">' + (m ? fmt(lb1000ToRate(d.range[0]), 1) + '–' + fmt(lb1000ToRate(d.range[1]), 1) + ' g/m²' : d.range[0] + '–' + d.range[1] + ' lbs / 1,000 sq ft') + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Total range</div><div class="val">' + fmt(lbToMass(d.lowLb), 1) + '–' + fmt(lbToMass(d.highLb), 1) + ' ' + massUnit() + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + d.bags + ' × ' + fmt(d.bagW, 1) + ' ' + massUnit() + '</div></div>';
+  if(d.cost !== null) h += '<div class="fl-stat"><div class="lbl">Total cost</div><div class="val ok">' + fmtMoney(d.cost) + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Area</div><div class="val">' + fmt(d.area, 0) + ' ' + areaUnit() + '</div></div>';
   h += '</div>';
-
-  h += '<div class="fl-tip"><b>Tip:</b> For overseeding, use the lower end of the range if your lawn is thick and the higher end if it is thin. Always water lightly and frequently for the first two weeks after seeding.</div>';
-
-  $("seedResult").innerHTML = h;
+  h += warnBlock(r.notes);
+  h += '<div class="fl-tip"><b>Tip:</b> For overseeding, use the lower end of the range if the lawn is thick and the higher end if it is thin. Keep the seedbed lightly and frequently moist until seedlings establish, and check the label for germination rate and any coating.</div>';
+  return h;
+}
+function calcSeed(){
+  var r = computeSeed();
+  $("seedResult").innerHTML = renderSeed(r);
+  markCalculated("seed", r.ok);
 }
 
 /* ---------- LIME / SULFUR ---------- */
-function calcLime(){
-  var isMetric = state.units === "metric";
-  var area = num($("limeArea").value, 0);
-  var areaSqFt = isMetric ? area * 10.7639 : area;
-  var currentPh = num($("currentPh").value, 6.0);
-  var targetPh = num($("targetPh").value, 6.5);
+function computeLime(){
+  var errs = [];
+  var area = val("limeArea"), cur = val("currentPh"), tgt = val("targetPh"), bagW = val("limeBagWeight"), price = val("limeBagPrice");
+  var priceGiven = !isBlank("limeBagPrice");
+  var areaSqFt = areaToSqFt(area);
+  if(!(area > 0)) errs.push("Enter an area greater than zero.");
+  else if(areaSqFt > MAX_AREA_SQFT) errs.push("Area is too large for this calculator.");
+  if(isNaN(cur) || cur < 3 || cur > 10) errs.push("Current soil pH must be between 3 and 10.");
+  if(isNaN(tgt) || tgt < 3 || tgt > 10) errs.push("Target soil pH must be between 3 and 10.");
+  var bagGiven = !isBlank("limeBagWeight");
+  if(bagGiven && !(bagW > 0)) errs.push("Bag weight must be greater than zero.");
+  if(priceGiven && (isNaN(price) || price < 0)) errs.push("Price per bag cannot be negative.");
+  if(priceGiven && !bagGiven) errs.push("Enter a bag weight to calculate cost.");
+  if(errs.length) return { ok: false, errors: errs };
+
   var soil = $("soilType").value;
-  var grass = $("limeGrass").value;
+  var grass = GRASS_DATA[$("limeGrass").value] || GRASS_DATA["tall-fescue"];
+  var lo = grass.targetPh[0], hi = grass.targetPh[1];
+  var inRange = cur >= lo - 1e-9 && cur <= hi + 1e-9;
+  var userTarget = phTouched;
+  var diff = tgt - cur;
+  var thousands = areaSqFt / 1000;
+  var warns = [], rows = [], d = { lo: lo, hi: hi, cur: cur, tgt: tgt, mode: "none" };
 
-  var h = "";
-  var diff = targetPh - currentPh;
+  rows.push(R("Current soil pH", plain(cur, 1), ""));
+  rows.push(R("Target soil pH", plain(tgt, 1), ""));
+  rows.push(R("Ideal pH range for grass", lo.toFixed(1) + " - " + hi.toFixed(1), ""));
+  rows.push(R("Soil texture", soil, ""));
 
-  if(diff > 0){
-    // Need lime
-    var diffKey = Math.min(2.0, Math.round(diff * 2) / 2).toFixed(1);
-    if(diffKey === "0.0") diffKey = "0.5";
-    var rate = (LIME_RATES[soil] || LIME_RATES.loam)[diffKey] || 0;
-    var total = rate * (areaSqFt / 1000);
-
-    var h2 = '<div class="fl-result">';
-    h2 += '<div class="fl-result-label">Lime needed to raise pH by ' + diff.toFixed(1) + '</div>';
-    h2 += '<div class="fl-result-big">' + fmtNumber(total, 0) + ' lbs</div>';
-    h2 += '<div class="fl-result-sub">' + fmtNumber(total * 0.453592, 0) + ' kg · ' + rate + ' lbs per 1,000 sq ft (' + soil + ' soil)</div>';
-    h2 += '</div>';
-    h2 += '<div class="fl-tip"><b>Application:</b> Apply in fall for best results. Pelletized lime is grass-safe and can be watered in immediately. If the total exceeds 50 lbs per 1,000 sq ft, split into two applications 4–6 months apart.</div>';
-    h = h2;
-
-  } else if(diff < 0){
-    // Need sulfur
-    var diffKey2 = Math.min(1.0, Math.round(Math.abs(diff) * 2) / 2).toFixed(1);
-    if(diffKey2 === "0.0") diffKey2 = "0.5";
-    var rate2 = (SULFUR_RATES[soil] || SULFUR_RATES.loam)[diffKey2] || 0;
-    var total2 = rate2 * (areaSqFt / 1000);
-
-    var h3 = '<div class="fl-result">';
-    h3 += '<div class="fl-result-label">Elemental sulfur to lower pH by ' + Math.abs(diff).toFixed(1) + '</div>';
-    h3 += '<div class="fl-result-big">' + fmtNumber(total2, 1) + ' lbs</div>';
-    h3 += '<div class="fl-result-sub">' + fmtNumber(total2 * 0.453592, 1) + ' kg · ' + rate2 + ' lbs per 1,000 sq ft</div>';
-    h3 += '</div>';
-    h3 += '<div class="fl-tip"><b>Application:</b> Never apply more than 10 lbs per 1,000 sq ft in a single pass. Sulfur lowers pH slowly — re-test each season. Water in well after application.</div>';
-    h = h3;
-
-  } else {
-    h = '<div class="fl-tip"><b>Your soil pH is already at target.</b> No lime or sulfur needed. Re-test every 2–3 years.</div>';
+  if((!userTarget && inRange) || Math.abs(diff) < 0.1){
+    d.mode = "none";
+    rows.push(R("Result", "No lime or sulfur needed", ""));
+    return { ok: true, errors: [], warnings: [], notes: [], rows: rows, d: d };
   }
 
-  $("limeResult").innerHTML = h;
+  var bagLb = bagGiven ? massToLb(bagW) : null;
+  if(diff > 0){
+    var perUnit = LIME_PER_UNIT[soil] || LIME_PER_UNIT.loam;
+    var rate = perUnit * diff;
+    var passes = ceilSafe(rate / LIME_MAX_PER_PASS);
+    var perPass = rate / passes;
+    var total = rate * thousands;
+    var bags = bagLb ? ceilSafe(total / bagLb) : null;
+    var cost = (bags !== null && priceGiven) ? bags * price : null;
+    if(diff > 2) warns.push("Raising pH by more than 2 units is a big correction. Rely on a lab soil test lime recommendation rather than this rule of thumb.");
+    d.mode = "lime"; d.rate = rate; d.passes = passes; d.perPass = perPass; d.total = total; d.bags = bags; d.cost = cost; d.diff = diff; d.bagW = bagW;
+    rows.push(R("Product", "Ground agricultural limestone", ""));
+    rows.push(R("pH change needed", "+" + plain(diff, 1), "pH units"));
+    rows.push(R("Lime needed (total)", plain(lbToMass(total), 1), massUnit()));
+    rows.push(R("Lime rate", plain(lb1000ToRate(rate), 1), rateUnit()));
+    rows.push(R("Applications (max 50 lbs / 1,000 sq ft each)", passes, ""));
+    rows.push(R("Rate per application", plain(lb1000ToRate(perPass), 1), rateUnit()));
+    if(bags !== null) rows.push(R("Bags to buy", bags, "bags"));
+    if(cost !== null) rows.push(R("Total cost", plain(cost, 2), $("currency").value));
+    return { ok: true, errors: [], warnings: warns, notes: [], rows: rows, d: d };
+  }
+
+  var perUnitS = SULFUR_PER_UNIT[soil] || SULFUR_PER_UNIT.loam;
+  var drop = -diff;
+  var rateS = perUnitS * drop;
+  var passesS = ceilSafe(rateS / SULFUR_MAX_PER_PASS);
+  var perPassS = rateS / passesS;
+  var totalS = rateS * thousands;
+  var bagsS = bagLb ? ceilSafe(totalS / bagLb) : null;
+  var costS = (bagsS !== null && priceGiven) ? bagsS * price : null;
+  if(cur > 7.8) warns.push("Soils above about pH 7.8 often contain free lime (calcareous). Elemental sulfur may have little effect, and a soil test is strongly recommended.");
+  if(rateS > SULFUR_MAX_PER_YEAR) warns.push("This correction exceeds about " + SULFUR_MAX_PER_YEAR + " lbs sulfur per 1,000 sq ft (49 g/m²), the usual yearly limit on established turf. Spread it over more than one season and re-test between applications.");
+  d.mode = "sulfur"; d.rate = rateS; d.passes = passesS; d.perPass = perPassS; d.total = totalS; d.bags = bagsS; d.cost = costS; d.diff = drop; d.bagW = bagW;
+  rows.push(R("Product", "Elemental sulfur", ""));
+  rows.push(R("pH change needed", "-" + plain(drop, 1), "pH units"));
+  rows.push(R("Sulfur needed (total)", plain(lbToMass(totalS), 2), massUnit()));
+  rows.push(R("Sulfur rate", plain(lb1000ToRate(rateS), 1), rateUnit()));
+  rows.push(R("Applications (max 5 lbs / 1,000 sq ft each)", passesS, ""));
+  rows.push(R("Rate per application", plain(lb1000ToRate(perPassS), 1), rateUnit()));
+  if(bagsS !== null) rows.push(R("Bags to buy", bagsS, "bags"));
+  if(costS !== null) rows.push(R("Total cost", plain(costS, 2), $("currency").value));
+  return { ok: true, errors: [], warnings: warns, notes: [], rows: rows, d: d };
+}
+function renderLime(r){
+  if(!r.ok) return errBlock(r.errors);
+  var d = r.d, m = isMetric();
+  var h = warnBlock(r.warnings);
+  if(d.mode === "none"){
+    return h + '<div class="fl-tip"><b>No lime or sulfur needed.</b> Your soil pH (' + fmt(d.cur, 1) + ') is ' + (Math.abs(d.tgt - d.cur) < 0.1 ? 'already at your target.' : 'within the ideal range of ' + fmt(d.lo, 1) + '–' + fmt(d.hi, 1) + ' for this grass.') + ' Re-test every 2–3 years.</div>';
+  }
+  var isLime = d.mode === "lime";
+  h += '<div class="fl-result"><div class="fl-result-label">' + (isLime ? "Ground limestone needed to raise pH by " : "Elemental sulfur needed to lower pH by ") + fmt(d.diff, 1) + '</div>';
+  h += '<div class="fl-result-big">' + fmt(lbToMass(d.total), isLime ? 0 : 1) + ' ' + massUnit() + '</div>';
+  h += '<div class="fl-result-sub">' + otherMass(d.total) + ' · ' + esc(rateText(d.rate, 1)) + '</div></div>';
+  h += '<div class="fl-stats">';
+  h += '<div class="fl-stat"><div class="lbl">Applications</div><div class="val">' + d.passes + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Per application</div><div class="val">' + esc(rateText(d.perPass, 1)) + '</div></div>';
+  if(d.bags !== null) h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + d.bags + ' × ' + fmt(d.bagW, 1) + ' ' + massUnit() + '</div></div>';
+  if(d.cost !== null) h += '<div class="fl-stat"><div class="lbl">Total cost</div><div class="val ok">' + fmtMoney(d.cost) + '</div></div>';
+  h += '</div>';
+  if(isLime){
+    h += '<div class="fl-tip"><b>Application:</b> Apply no more than 50 lbs per 1,000 sq ft (about 244 g/m²) at a time. Where more is needed, split it into ' + d.passes + ' applications several months apart and re-test the soil in between. Pelletized lime is easy to spread; finely ground lime works faster. These rates assume ground agricultural limestone and are a rough guide: a lab soil test lime recommendation is more accurate.</div>';
+  } else {
+    h += '<div class="fl-tip"><b>Application:</b> Use no more than 5 lbs per 1,000 sq ft (about 24 g/m²) per application on established turf, water it in well, and wait several weeks between applications. Sulfur works slowly because soil bacteria must convert it, so re-test each season. Check the product label and your local extension guidance first.</div>';
+  }
+  return h;
+}
+function calcLime(){
+  var r = computeLime();
+  $("limeResult").innerHTML = renderLime(r);
+  markCalculated("lime", r.ok);
 }
 
 /* ---------- TOPDRESSING ---------- */
-function calcTopdress(){
-  var isMetric = state.units === "metric";
-  var area = num($("tdArea").value, 0);
-  var areaSqFt = isMetric ? area * 10.7639 : area;
-  var depth = num($("tdDepth").value, 0.25);
-  var depthInches = depth;
+function computeTopdress(){
+  var errs = [];
+  var area = val("tdArea"), depth = val("tdDepth");
+  var areaSqFt = areaToSqFt(area);
+  var depthIn = depthToIn(depth);
+  if(!(area > 0)) errs.push("Enter an area greater than zero.");
+  else if(areaSqFt > MAX_AREA_SQFT) errs.push("Area is too large for this calculator.");
+  if(!(depth > 0)) errs.push("Enter a depth greater than zero.");
+  else if(depthIn < 0.05 - 1e-9 || depthIn > 2 + 1e-9) errs.push("Depth must be between 0.05 and 2 inches (about 1.3 to 50 mm).");
+  if(errs.length) return { ok: false, errors: errs };
 
-  var cubicYards = (areaSqFt * depthInches) / 324;
-  var cubicMeters = cubicYards * 0.764555;
-  var weightTons = cubicYards * 1.3; // approx 1.3 tons per cubic yard for topsoil
-
-  var h = '<div class="fl-result">';
-  h += '<div class="fl-result-label">Topdressing volume needed</div>';
-  h += '<div class="fl-result-big">' + fmtNumber(cubicYards, 2) + ' cubic yards</div>';
-  h += '<div class="fl-result-sub">' + fmtNumber(cubicMeters, 2) + ' m³ · approx ' + fmtNumber(weightTons, 1) + ' tons</div>';
-  h += '</div>';
-
+  var mat = MATERIALS[$("tdMaterial").value] || MATERIALS.topsoil;
+  var yd3 = (areaSqFt * depthIn) / 324;
+  var m3 = yd3 * M3_PER_YD3;
+  var tons = yd3 * mat.tons;
+  var kg = tons * 907.18474;
+  var bags = Math.ceil(yd3 * 36 - 1e-9);      // 0.75 cu ft bags
+  var barrows = Math.ceil(yd3 * 9 - 1e-9);    // 3 cu ft wheelbarrow loads
+  var warns = [];
+  if(depthIn > 0.5 + 1e-9) warns.push("Most guidance is to topdress no deeper than about 0.5 inch (12 mm) at a time so the grass is not smothered. Consider two lighter passes.");
+  var rows = [
+    R("Topdressing volume", plain(yd3, 2), "cubic yards"),
+    R("Topdressing volume", plain(m3, 2), "cubic metres"),
+    R("Material", mat.name, ""),
+    R("Estimated weight", plain(tons, 2), "US short tons"),
+    R("Estimated weight", plain(kg, 0), "kg"),
+    R("Depth", isMetric() ? plain(depth, 1) : plain(depth, 2), isMetric() ? "mm" : "inches"),
+    R("Area", plain(area, 1), areaUnit()),
+    R("Bags (0.75 cu ft each)", bags, "bags"),
+    R("Wheelbarrow loads (3 cu ft)", barrows, "loads")
+  ];
+  return { ok: true, errors: [], warnings: warns, notes: [], rows: rows, d: { yd3: yd3, m3: m3, tons: tons, kg: kg, bags: bags, barrows: barrows, mat: mat, depth: depth, area: area } };
+}
+function renderTopdress(r){
+  if(!r.ok) return errBlock(r.errors);
+  var d = r.d, m = isMetric();
+  var h = warnBlock(r.warnings);
+  h += '<div class="fl-result"><div class="fl-result-label">Topdressing volume needed</div>';
+  h += '<div class="fl-result-big">' + (m ? fmt(d.m3, 2) + ' m³' : fmt(d.yd3, 2) + ' cubic yards') + '</div>';
+  h += '<div class="fl-result-sub">' + (m ? fmt(d.yd3, 2) + ' cubic yards' : fmt(d.m3, 2) + ' m³') + ' · approx ' + fmt(d.tons, 1) + ' US short tons (' + fmt(d.kg, 0) + ' kg) of ' + esc(d.mat.name.toLowerCase()) + '</div></div>';
   h += '<div class="fl-stats">';
-  h += '<div class="fl-stat"><div class="lbl">Depth</div><div class="val">' + depth + ' inches</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Area</div><div class="val">' + fmtNumber(area, 0) + (isMetric ? " m²" : " sq ft") + '</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Bags (0.75 cu ft)</div><div class="val">' + Math.ceil(cubicYards * 36) + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Depth</div><div class="val">' + fmt(d.depth, m ? 1 : 2) + (m ? ' mm' : ' inches') + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Area</div><div class="val">' + fmt(d.area, 0) + ' ' + areaUnit() + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags (0.75 cu ft ≈ 21 L)</div><div class="val">' + d.bags + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Wheelbarrows (3 cu ft)</div><div class="val">' + d.barrows + '</div></div>';
   h += '</div>';
-
-  h += '<div class="fl-tip"><b>Tip:</b> Apply topdressing at 0.25 to 0.5 inches per application. Water lightly after spreading to settle the material into the turf canopy.</div>';
-
-  $("tdResult").innerHTML = h;
+  h += '<div class="fl-tip"><b>Tip:</b> Topdress 0.25 to 0.5 inch (6–12 mm) at a time and rake or brush it into the turf so grass tips show through. Weight depends heavily on moisture, so check your supplier\'s figures when ordering by the ton.</div>';
+  return h;
+}
+function calcTopdress(){
+  var r = computeTopdress();
+  $("tdResult").innerHTML = renderTopdress(r);
+  markCalculated("td", r.ok);
 }
 
 /* ---------- SPREADER CALIBRATION ---------- */
-function calcSpreader(){
-  var isMetric = state.units === "metric";
-  var testArea = num($("spTestArea").value, 400);
-  var testAreaSqFt = isMetric ? testArea * 10.7639 : testArea;
-  var productUsed = num($("spProductUsed").value, 1);
-  var targetRate = num($("spTargetRate").value, 3.125);
-  var currentSetting = num($("spCurrentSetting").value, 5);
+function computeSpreader(){
+  var errs = [];
+  var testArea = val("spTestArea"), used = val("spProductUsed"), target = val("spTargetRate"), setting = val("spCurrentSetting");
+  if(!(testArea > 0)) errs.push("Enter a test area greater than zero.");
+  if(!(used > 0)) errs.push("Enter the amount of product used (greater than zero).");
+  if(!(target > 0)) errs.push("Enter a target application rate greater than zero.");
+  if(!(setting > 0)) errs.push("Enter your current spreader setting (greater than zero).");
+  if(errs.length) return { ok: false, errors: errs };
 
-  var actualRate = (productUsed / testAreaSqFt) * 1000;
-  var ratio = actualRate / targetRate;
-
-  var direction = "OK";
-  var cls = "ok";
-  var adjustment = 0;
-
-  if(ratio > 1.1){
-    direction = "Reduce spreader setting";
-    cls = "warn";
-    adjustment = currentSetting * 0.9;
-  } else if(ratio < 0.9){
-    direction = "Increase spreader setting";
-    cls = "warn";
-    adjustment = currentSetting * 1.1;
-  }
-
-  var h = '<div class="fl-result">';
-  h += '<div class="fl-result-label">Actual application rate</div>';
-  h += '<div class="fl-result-big">' + fmtNumber(actualRate, 2) + ' lbs / 1,000 sq ft</div>';
-  h += '<div class="fl-result-sub">Target: ' + fmtNumber(targetRate, 2) + ' lbs / 1,000 sq ft · ' + (ratio > 1 ? (ratio * 100).toFixed(0) + '% of target' : (ratio * 100).toFixed(0) + '% of target') + '</div>';
-  h += '</div>';
-
+  var actual = massToLb(used) / (areaToSqFt(testArea) / 1000);   // lbs / 1,000 sq ft
+  var targetLb = rateToLb1000(target);
+  var ratio = actual / targetLb;
+  var suggested = setting * (targetLb / actual);
+  var status = ratio > 1.1 ? "high" : (ratio < 0.9 ? "low" : "ok");
+  var warns = [];
+  if(ratio > 2 || ratio < 0.5) warns.push("Your actual rate is far from the target. Double-check the test area and the weight of product used before changing the setting.");
+  var rows = [
+    R("Actual application rate", plain(lb1000ToRate(actual), 2), rateUnit()),
+    R("Target application rate", plain(target, 2), rateUnit()),
+    R("Actual as % of target", plain(ratio * 100, 0), "%"),
+    R("Test area", plain(testArea, 1), areaUnit()),
+    R("Product used", plain(used, 2), massUnit()),
+    R("Current setting", plain(setting, 2), ""),
+    R("Result", status === "ok" ? "Within 10% of target" : (status === "high" ? "Applying too much" : "Applying too little"), "")
+  ];
+  if(status !== "ok") rows.push(R("Suggested new setting (re-test)", plain(suggested, 1), ""));
+  return { ok: true, errors: [], warnings: warns, notes: [], rows: rows, d: { actual: actual, targetLb: targetLb, ratio: ratio, suggested: suggested, status: status, setting: setting, used: used, testArea: testArea } };
+}
+function renderSpreader(r){
+  if(!r.ok) return errBlock(r.errors);
+  var d = r.d;
+  var h = warnBlock(r.warnings);
+  h += '<div class="fl-result"><div class="fl-result-label">Actual application rate</div>';
+  h += '<div class="fl-result-big">' + esc(rateText(d.actual, 2)) + '</div>';
+  h += '<div class="fl-result-sub">Target: ' + esc(rateText(d.targetLb, 2)) + ' · ' + fmt(d.ratio * 100, 0) + '% of target</div></div>';
   h += '<div class="fl-stats">';
-  h += '<div class="fl-stat"><div class="lbl">Product used</div><div class="val">' + productUsed + ' lbs</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Test area</div><div class="val">' + testArea + ' sq ft</div></div>';
-  h += '<div class="fl-stat"><div class="lbl">Recommendation</div><div class="val ' + cls + '">' + direction + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Product used</div><div class="val">' + fmt(d.used, 2) + ' ' + massUnit() + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Test area</div><div class="val">' + fmt(d.testArea, 1) + ' ' + areaUnit() + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Recommendation</div><div class="val ' + (d.status === "ok" ? "ok" : "warn") + '">' + (d.status === "ok" ? "Keep setting" : (d.status === "high" ? "Reduce setting" : "Increase setting")) + '</div></div>';
   h += '</div>';
-
-  if(ratio > 1.1){
-    h += '<div class="fl-tip"><b>Your spreader is applying too much.</b> Reduce the setting from ' + currentSetting + ' to approximately ' + fmtNumber(adjustment, 1) + ' and re-test. Over-application risks burning the lawn.</div>';
-  } else if(ratio < 0.9){
-    h += '<div class="fl-tip"><b>Your spreader is applying too little.</b> Increase the setting from ' + currentSetting + ' to approximately ' + fmtNumber(adjustment, 1) + ' and re-test. Under-application wastes money and underfeeds the lawn.</div>';
+  if(d.status === "high"){
+    h += '<div class="fl-tip"><b>Your spreader is applying too much.</b> Try a setting of about <b>' + fmt(d.suggested, 1) + '</b> (current ' + fmt(d.setting, 1) + ' × target ÷ actual) and re-test. Over-application can burn the lawn.</div>';
+  } else if(d.status === "low"){
+    h += '<div class="fl-tip"><b>Your spreader is applying too little.</b> Try a setting of about <b>' + fmt(d.suggested, 1) + '</b> (current ' + fmt(d.setting, 1) + ' × target ÷ actual) and re-test. Under-application wastes time and underfeeds the lawn.</div>';
   } else {
     h += '<div class="fl-tip"><b>Your spreader is calibrated correctly.</b> The actual rate is within 10% of the target. Keep this setting.</div>';
   }
+  h += '<p class="meta">Spreader dials are not perfectly proportional to output, so treat the suggested setting as a starting point and repeat the test. Different products flow differently, so recalibrate when you change product.</p>';
+  return h;
+}
+function calcSpreader(){
+  var r = computeSpreader();
+  $("spResult").innerHTML = renderSpreader(r);
+  markCalculated("sp", r.ok);
+}
 
-  $("spResult").innerHTML = h;
+/* ---------- SECTIONS / STATE ---------- */
+var SECTIONS = {
+  fert: { name: "Fertilizer (NPK)", tab: "fertilizerTab", btn: "fertilizer", inc: "incFert", calc: calcFertilizer, compute: computeFert, result: "fertResult",
+          inputs: ["lawnSize", "grassType", "targetN", "spreaderBuffer", "nPct", "pPct", "kPct", "bagWeight", "bagPrice", "currency"] },
+  seed: { name: "Grass seed", tab: "seedTab", btn: "seed", inc: "incSeed", calc: calcSeed, compute: computeSeed, result: "seedResult",
+          inputs: ["seedArea", "seedPurpose", "seedGrass", "seedBagWeight", "seedBagPrice"] },
+  lime: { name: "Lime / sulfur", tab: "limeTab", btn: "lime", inc: "incLime", calc: calcLime, compute: computeLime, result: "limeResult",
+          inputs: ["limeArea", "limeGrass", "currentPh", "targetPh", "soilType", "limeBagWeight", "limeBagPrice"] },
+  td: { name: "Topdressing", tab: "topdressTab", btn: "topdress", inc: "incTd", calc: calcTopdress, compute: computeTopdress, result: "tdResult",
+        inputs: ["tdArea", "tdDepth", "tdMaterial"] },
+  sp: { name: "Spreader calibration", tab: "spreaderTab", btn: "spreader", inc: "incSp", calc: calcSpreader, compute: computeSpreader, result: "spResult",
+        inputs: ["spTestArea", "spProductUsed", "spTargetRate", "spCurrentSetting"] }
+};
+var SECTION_KEYS = ["fert", "seed", "lime", "td", "sp"];
+
+var INPUT_LABELS = {
+  lawnSize: "Lawn size", grassType: "Grass type", targetN: "Target nitrogen rate", spreaderBuffer: "Spreader buffer (%)",
+  nPct: "Nitrogen (N) %", pPct: "Phosphorus (P2O5) %", kPct: "Potassium (K2O) %", bagWeight: "Fertilizer bag weight", bagPrice: "Fertilizer price per bag", currency: "Currency",
+  seedArea: "Area to seed", seedPurpose: "Purpose", seedGrass: "Seed grass type", seedBagWeight: "Seed bag weight", seedBagPrice: "Seed price per bag",
+  limeArea: "Lawn area", limeGrass: "Grass type (pH range)", currentPh: "Current soil pH", targetPh: "Target soil pH", soilType: "Soil texture", limeBagWeight: "Lime/sulfur bag weight", limeBagPrice: "Lime/sulfur price per bag",
+  tdArea: "Lawn area", tdDepth: "Topdressing depth", tdMaterial: "Material",
+  spTestArea: "Test area", spProductUsed: "Product used in test", spTargetRate: "Target application rate", spCurrentSetting: "Current spreader setting"
+};
+var INPUT_UNITS = {
+  lawnSize: "area", seedArea: "area", limeArea: "area", tdArea: "area", spTestArea: "area",
+  bagWeight: "mass", seedBagWeight: "mass", limeBagWeight: "mass", spProductUsed: "mass",
+  targetN: "rate", spTargetRate: "rate", tdDepth: "depth"
+};
+
+var FIELDS = ["units", "lawnSize", "grassType", "targetN", "spreaderBuffer", "nPct", "pPct", "kPct", "bagWeight", "bagPrice", "currency",
+  "seedUnits", "seedArea", "seedPurpose", "seedGrass", "seedBagWeight", "seedBagPrice",
+  "limeUnits", "limeArea", "limeGrass", "currentPh", "targetPh", "soilType", "limeBagWeight", "limeBagPrice",
+  "tdUnits", "tdArea", "tdDepth", "tdMaterial",
+  "spUnits", "spTestArea", "spProductUsed", "spTargetRate", "spCurrentSetting"];
+var UNIT_SELECTS = ["units", "seedUnits", "limeUnits", "tdUnits", "spUnits"];
+
+var calculated = { fert: false, seed: false, lime: false, td: false, sp: false };
+var nTouched = false, phTouched = false;
+var lastUnits = "imperial";
+var DEFAULT_VALUES = {};
+
+function markCalculated(key, ok){
+  calculated[key] = true;
+  if(ok && !SECTIONS[key].includedOnce){
+    SECTIONS[key].includedOnce = true;
+    var cb = $(SECTIONS[key].inc);
+    if(cb) cb.checked = true;
+  }
+  saveState();
+}
+
+/* ---------- UNIT UI + CONVERSION ---------- */
+function roundTo(v, dp){ var f = Math.pow(10, dp); return Math.round(v * f) / f; }
+function convertField(id, factorFn, dp){
+  var el = $(id);
+  if(!el) return;
+  var s = String(el.value).trim();
+  if(s === "") return;
+  var n = Number(s);
+  if(!isFinite(n)) return;
+  el.value = String(roundTo(factorFn(n), dp));
+}
+function convertAllFields(toMetric){
+  ["lawnSize", "seedArea", "limeArea", "tdArea", "spTestArea"].forEach(function(id){
+    convertField(id, function(v){ return toMetric ? v / SQFT_PER_M2 : v * SQFT_PER_M2; }, toMetric ? 1 : 0);
+  });
+  ["bagWeight", "seedBagWeight", "limeBagWeight", "spProductUsed"].forEach(function(id){
+    convertField(id, function(v){ return toMetric ? v * KG_PER_LB : v / KG_PER_LB; }, 2);
+  });
+  ["targetN", "spTargetRate"].forEach(function(id){
+    convertField(id, function(v){ return toMetric ? v * G_M2_PER_LB_1000 : v / G_M2_PER_LB_1000; }, 2);
+  });
+  convertField("tdDepth", function(v){ return toMetric ? v * MM_PER_IN : v / MM_PER_IN; }, toMetric ? 1 : 2);
+}
+function setLabel(id, text){ var el = $(id); if(el) el.textContent = text; }
+function setAttrs(id, attrs){
+  var el = $(id);
+  if(!el) return;
+  Object.keys(attrs).forEach(function(k){ el.setAttribute(k, attrs[k]); });
+}
+function recommendedN(){
+  var g = GRASS_DATA[$("grassType").value] || GRASS_DATA.cool;
+  return Math.min(1, Math.round((g.nAnnual / g.apps) / 0.05) * 0.05);
+}
+function applyUnitsUI(){
+  var m = isMetric();
+  UNIT_SELECTS.forEach(function(id){ $(id).value = m ? "metric" : "imperial"; });
+  setLabel("lblLawnSize", "Lawn size (" + areaUnit() + ")");
+  setLabel("lblSeedArea", "Area to seed (" + areaUnit() + ")");
+  setLabel("lblLimeArea", "Lawn area (" + areaUnit() + ")");
+  setLabel("lblTdArea", "Lawn area (" + areaUnit() + ")");
+  setLabel("lblSpArea", "Test area size (" + areaUnit() + ")");
+  setLabel("lblBagWeight", "Bag weight (" + massUnit() + ")");
+  setLabel("lblSeedBag", "Seed bag weight (" + massUnit() + ")");
+  setLabel("lblLimeBag", "Lime / sulfur bag weight (" + massUnit() + ", optional)");
+  setLabel("lblSpUsed", "Product used in test (" + massUnit() + ")");
+  setLabel("lblTargetN", "Target nitrogen rate (" + (m ? "g N / m²" : "lbs N / 1,000 sq ft") + ")");
+  setLabel("lblSpTarget", "Target application rate (" + rateUnit() + ")");
+  setLabel("lblTdDepth", "Depth (" + (m ? "mm" : "inches") + ")");
+  setLabel("targetNHint", m
+    ? "Standard: up to about 4.9 g N/m² (1 lb per 1,000 sq ft) for quick-release. Slow-release products can go to about 7.3 g N/m² if the label allows. Use lower rates for sensitive grasses or hot weather."
+    : "Standard: up to 1 lb N per 1,000 sq ft for quick-release. Slow-release products can go up to about 1.5 lb if the label allows. Use lower rates for sensitive grasses or hot weather.");
+  setAttrs("targetN", m ? { min: "0", max: "9.8", step: "0.1" } : { min: "0", max: "2", step: "0.05" });
+  setAttrs("tdDepth", m ? { min: "1.3", max: "50", step: "0.5" } : { min: "0.05", max: "2", step: "0.05" });
+  setAttrs("lawnSize", { step: m ? "0.1" : "1" });
+  updateGrassHint();
+  updateLimeHint();
+  lastUnits = m ? "metric" : "imperial";
+}
+function updateGrassHint(){
+  var g = GRASS_DATA[$("grassType").value];
+  var el = $("grassHint");
+  if(!g || !el) return;
+  var m = isMetric();
+  var rec = recommendedN();
+  el.textContent = "Typical for " + g.name + ": " + g.nRange[0] + "–" + g.nRange[1] + " lbs N / 1,000 sq ft per year (" + fmt(g.nRange[0] * G_M2_PER_LB_1000, 0) + "–" + fmt(g.nRange[1] * G_M2_PER_LB_1000, 0) + " g N/m²) in " + g.appsRange[0] + (g.appsRange[1] !== g.appsRange[0] ? "–" + g.appsRange[1] : "") + " applications, so about " + fmt(m ? rec * G_M2_PER_LB_1000 : rec, 2) + (m ? " g N/m²" : " lb N / 1,000 sq ft") + " each time.";
+}
+function updateLimeHint(){
+  var g = GRASS_DATA[$("limeGrass").value];
+  var el = $("limeRangeHint");
+  if(!g || !el) return;
+  el.textContent = "Ideal pH range for this grass: " + g.targetPh[0].toFixed(1) + "–" + g.targetPh[1].toFixed(1) + ". If you leave the target at the auto-filled value and your soil is already inside this range, no treatment is recommended.";
+}
+
+/* ---------- PERSISTENCE ---------- */
+function collectFields(){
+  var out = {};
+  FIELDS.forEach(function(id){ var el = $(id); if(el) out[id] = String(el.value); });
+  return out;
+}
+function collectIncluded(){
+  var o = {};
+  SECTION_KEYS.forEach(function(k){ o[k] = !!$(SECTIONS[k].inc).checked; });
+  return o;
+}
+function saveState(){
+  try {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify({ v: 1, fields: collectFields(), included: collectIncluded(), nTouched: nTouched, phTouched: phTouched }));
+  } catch(e){}
+}
+function optionExists(el, value){
+  if(!el.options) return true;
+  for(var i = 0; i < el.options.length; i++){ if(el.options[i].value === value) return true; }
+  return false;
+}
+function applyFields(fields){
+  var applied = 0;
+  if(!fields || typeof fields !== "object") return 0;
+  FIELDS.forEach(function(id){
+    if(!Object.prototype.hasOwnProperty.call(fields, id)) return;
+    var el = $(id);
+    var v = fields[id];
+    if(!el || (typeof v !== "string" && typeof v !== "number")) return;
+    v = String(v);
+    if(el.tagName === "SELECT"){
+      if(!optionExists(el, v)) return;
+    } else {
+      if(v.length > 20) return;
+      if(v.trim() !== "" && !isFinite(Number(v))) return;
+    }
+    el.value = v;
+    applied++;
+  });
+  return applied;
+}
+function loadState(){
+  try {
+    var raw = localStorage.getItem(STORAGE_KEY);
+    if(!raw) return false;
+    var s = JSON.parse(raw);
+    if(!s || s.v !== 1) return false;
+    applyFields(s.fields);
+    if(s.included){ SECTION_KEYS.forEach(function(k){ if(typeof s.included[k] === "boolean") $(SECTIONS[k].inc).checked = s.included[k]; }); }
+    nTouched = !!s.nTouched;
+    phTouched = !!s.phTouched;
+    SECTION_KEYS.forEach(function(k){ SECTIONS[k].includedOnce = true; });
+    return true;
+  } catch(e){ return false; }
+}
+
+/* ---------- EXPORT MODEL ---------- */
+function setStatus(msg, kind){
+  var el = $("exportStatus");
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = kind === "err" ? "#dc2626" : "";
+}
+function fieldDisplay(id){
+  var el = $(id);
+  if(!el) return "";
+  if(el.tagName === "SELECT"){
+    for(var i = 0; i < el.options.length; i++){ if(el.options[i].value === el.value) return el.options[i].text; }
+  }
+  var unit = INPUT_UNITS[id];
+  var u = unit === "area" ? " " + areaUnit() : unit === "mass" ? " " + massUnit() : unit === "rate" ? " " + rateUnit() : unit === "depth" ? (isMetric() ? " mm" : " in") : "";
+  return String(el.value) + u;
+}
+function buildModel(){
+  var secs = [];
+  SECTION_KEYS.forEach(function(k){
+    var S = SECTIONS[k];
+    if(!$(S.inc).checked) return;
+    var r = S.compute();
+    secs.push({
+      key: k, name: S.name, ok: r.ok, errors: r.errors || [], warnings: (r.warnings || []).concat(r.notes || []),
+      rows: r.rows || [],
+      inputs: S.inputs.map(function(id){ return { label: INPUT_LABELS[id] || id, value: fieldDisplay(id) }; })
+    });
+  });
+  return { generated: new Date(), units: isMetric() ? "Metric" : "Imperial", sections: secs };
+}
+function needSections(){
+  var model = buildModel();
+  if(!model.sections.length){ setStatus("Tick at least one section under 'Include in export'.", "err"); return null; }
+  return model;
+}
+function summaryText(model){
+  var L = [];
+  L.push("Utiliby Fertilizer & Lawn Calculator: plan summary");
+  L.push("Generated: " + model.generated.toLocaleString() + " | Units: " + model.units);
+  L.push(SITE_URL);
+  L.push("");
+  model.sections.forEach(function(s){
+    L.push(s.name.toUpperCase());
+    if(!s.ok){
+      L.push("  Not calculated: " + s.errors.join(" "));
+    } else {
+      s.rows.forEach(function(r){ L.push("  " + r.label + ": " + r.value + (r.unit ? " " + r.unit : "")); });
+      s.warnings.forEach(function(w){ L.push("  Note: " + w); });
+    }
+    L.push("");
+  });
+  L.push("DISCLAIMER");
+  L.push(SHORT_DISCLAIMER + " Results are estimates, not guarantees. See the full disclaimer at " + SITE_URL);
+  return L.join("\n");
+}
+function csvCell(x){
+  var s = String(x == null ? "" : x);
+  if(/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  if(/[",\n\r]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+function csvText(model){
+  var rows = [["Section", "Item", "Value", "Unit"]];
+  model.sections.forEach(function(s){
+    if(!s.ok){ rows.push([s.name, "Not calculated", s.errors.join(" "), ""]); return; }
+    s.rows.forEach(function(r){ rows.push([s.name, r.label, r.value, r.unit]); });
+    s.warnings.forEach(function(w){ rows.push([s.name, "Note", w, ""]); });
+    s.inputs.forEach(function(i){ rows.push([s.name, "Input: " + i.label, i.value, ""]); });
+  });
+  rows.push(["Meta", "Generated", model.generated.toISOString(), ""]);
+  rows.push(["Meta", "Units", model.units, ""]);
+  rows.push(["Meta", "Source", SITE_URL, ""]);
+  rows.push(["Disclaimer", "Notice", SHORT_DISCLAIMER + " Results are estimates, not guarantees.", ""]);
+  return rows.map(function(r){ return r.map(csvCell).join(","); }).join("\r\n");
+}
+function stamp(){ return new Date().toISOString().slice(0, 10); }
+function download(filename, mime, content){
+  var blob = new Blob([content], { type: mime });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = filename;
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+
+function fallbackCopy(text){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text;
+    ta.setAttribute("readonly", "");
+    ta.style.position = "fixed";
+    ta.style.opacity = "0";
+    document.body.appendChild(ta);
+    ta.select();
+    var ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch(e){ return false; }
+}
+function copySummary(){
+  var model = needSections();
+  if(!model) return;
+  var text = summaryText(model);
+  function done(ok){ setStatus(ok ? "Summary copied to the clipboard." : "Copy failed. Use Download CSV or Print instead.", ok ? "" : "err"); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(fallbackCopy(text)); });
+  } else { done(fallbackCopy(text)); }
+}
+function downloadCsv(){
+  var model = needSections();
+  if(!model) return;
+  download("utiliby-lawn-plan-" + stamp() + ".csv", "text/csv;charset=utf-8", "\uFEFF" + csvText(model));
+  setStatus("CSV downloaded.", "");
+}
+function downloadJson(){
+  var obj = {
+    tool: "utiliby-fertilizer-lawn-calculator", version: 1, exportedAt: new Date().toISOString(), source: SITE_URL,
+    fields: collectFields(), included: collectIncluded(), nTouched: nTouched, phTouched: phTouched,
+    disclaimer: SHORT_DISCLAIMER
+  };
+  download("utiliby-lawn-settings-" + stamp() + ".json", "application/json", JSON.stringify(obj, null, 2));
+  setStatus("Settings file downloaded. Use 'Import settings' to restore it later.", "");
+}
+function importJson(file){
+  if(file.size > 200000){ setStatus("That file is too large to be a settings file.", "err"); return; }
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var obj;
+    try { obj = JSON.parse(String(e.target.result)); } catch(err){ setStatus("That file is not valid JSON.", "err"); return; }
+    if(!obj || obj.tool !== "utiliby-fertilizer-lawn-calculator" || !obj.fields || typeof obj.fields !== "object"){
+      setStatus("That file is not a settings file from this calculator.", "err");
+      return;
+    }
+    var n = applyFields(obj.fields);
+    if(!n){ setStatus("No usable settings were found in that file.", "err"); return; }
+    if(obj.included && typeof obj.included === "object"){
+      SECTION_KEYS.forEach(function(k){ if(typeof obj.included[k] === "boolean") $(SECTIONS[k].inc).checked = obj.included[k]; });
+    }
+    nTouched = !!obj.nTouched;
+    phTouched = !!obj.phTouched;
+    applyUnitsUI();
+    SECTION_KEYS.forEach(function(k){ if(calculated[k]) SECTIONS[k].calc(); });
+    calcFertilizer();
+    saveState();
+    setStatus("Imported " + n + " settings.", "");
+  };
+  reader.readAsText(file);
+}
+function buildReportHtml(model){
+  var h = '<h2>Fertilizer &amp; Lawn Calculator: plan summary</h2>';
+  h += '<p>Generated ' + esc(model.generated.toLocaleString()) + ' · Units: ' + esc(model.units) + ' · ' + esc(SITE_URL) + '</p>';
+  model.sections.forEach(function(s){
+    h += '<h3>' + esc(s.name) + '</h3>';
+    if(!s.ok){ h += '<p><b>Not calculated:</b> ' + esc(s.errors.join(" ")) + '</p>'; return; }
+    h += '<table class="fl-table"><tr><th>Item</th><th>Value</th></tr>';
+    s.rows.forEach(function(r){ h += '<tr><td>' + esc(r.label) + '</td><td>' + esc(r.value + (r.unit ? " " + r.unit : "")) + '</td></tr>'; });
+    h += '</table>';
+    s.warnings.forEach(function(w){ h += '<p><b>Note:</b> ' + esc(w) + '</p>'; });
+  });
+  h += '<h3>Disclaimer</h3><p>' + esc(SHORT_DISCLAIMER) + ' Results are estimates based on typical guidance and the values you entered. They are not a guarantee and are not a substitute for the product label, a soil test, local regulations or advice from a qualified professional.</p>';
+  return h;
+}
+function printReport(){
+  var model = needSections();
+  if(!model) return;
+  $("printReport").innerHTML = buildReportHtml(model);
+  window.print();
+}
+function resetAll(){
+  if(!confirm("Reset all inputs to their defaults and clear saved data in this browser?")) return;
+  try { localStorage.removeItem(STORAGE_KEY); } catch(e){}
+  FIELDS.forEach(function(id){ if(DEFAULT_VALUES[id] !== undefined) $(id).value = DEFAULT_VALUES[id]; });
+  SECTION_KEYS.forEach(function(k){ calculated[k] = false; SECTIONS[k].includedOnce = false; $(SECTIONS[k].result).innerHTML = ""; $(SECTIONS[k].inc).checked = (k === "fert"); });
+  nTouched = false; phTouched = false;
+  applyUnitsUI();
+  calcFertilizer();
+  setStatus("All inputs were reset.", "");
 }
 
 /* ---------- WIRING ---------- */
@@ -741,61 +1397,109 @@ window.addEventListener("DOMContentLoaded", function(){
   var T = $("tool");
   if(!T) return;
 
+  // Stop browsers restoring stale form values that would disagree with saved state
+  T.querySelectorAll("input, select").forEach(function(el){ el.setAttribute("autocomplete", "off"); });
+
+  FIELDS.forEach(function(id){ var el = $(id); if(el) DEFAULT_VALUES[id] = String(el.value); });
+  loadState();
+  lastUnits = isMetric() ? "metric" : "imperial";
+  applyUnitsUI();
+
   // Tabs
   document.querySelectorAll(".fl-tab").forEach(function(tab){
+    tab.setAttribute("aria-pressed", tab.classList.contains("on") ? "true" : "false");
     tab.addEventListener("click", function(){
       var name = this.dataset.tab;
       document.querySelectorAll(".fl-tab").forEach(function(x){
-        x.classList.toggle("on", x.dataset.tab === name);
+        var on = x.dataset.tab === name;
+        x.classList.toggle("on", on);
+        x.setAttribute("aria-pressed", on ? "true" : "false");
       });
-      $("fertilizerTab").hidden = (name !== "fertilizer");
-      $("seedTab").hidden = (name !== "seed");
-      $("limeTab").hidden = (name !== "lime");
-      $("topdressTab").hidden = (name !== "topdress");
-      $("spreaderTab").hidden = (name !== "spreader");
+      SECTION_KEYS.forEach(function(k){ $(SECTIONS[k].tab).hidden = (SECTIONS[k].btn !== name); });
     });
   });
 
-  // Unit switcher
-  $("units").addEventListener("change", function(){
-    state.units = this.value;
-    var isMetric = state.units === "metric";
-    // Sync units across tabs
-    $("seedUnits").value = this.value;
-    $("limeUnits").value = this.value;
-    $("tdUnits").value = this.value;
-    $("spUnits").value = this.value;
-    // Update default values
-    $("lawnSize").value = isMetric ? 465 : 5000;
-    $("seedArea").value = isMetric ? 465 : 5000;
-    $("limeArea").value = isMetric ? 465 : 5000;
-    $("tdArea").value = isMetric ? 465 : 5000;
-    $("spTestArea").value = isMetric ? 37 : 400;
-    $("bagWeight").value = isMetric ? 25 : 50;
-    $("seedBagWeight").value = isMetric ? 2.5 : 5;
+  // Units: any units selector changes every tab and converts the numbers already entered
+  UNIT_SELECTS.forEach(function(id){
+    $(id).addEventListener("change", function(){
+      var toMetric = this.value === "metric";
+      var was = lastUnits === "metric";
+      if(toMetric === was){ applyUnitsUI(); return; }
+      UNIT_SELECTS.forEach(function(x){ $(x).value = this.value; }, this);
+      convertAllFields(toMetric);
+      applyUnitsUI();
+      SECTION_KEYS.forEach(function(k){ if(calculated[k]) SECTIONS[k].calc(); });
+      saveState();
+    });
   });
 
-  // Currency
-  $("currency").addEventListener("change", function(){
-    state.currency = this.value;
-  });
-
-  // Auto-fill target pH when grass changes
-  $("limeGrass").addEventListener("change", function(){
-    var g = GRASS_DATA[this.value];
-    if(g){
-      $("targetPh").value = ((g.targetPh[0] + g.targetPh[1]) / 2).toFixed(1);
+  // Grass type suggests a per-application nitrogen rate until the user edits the rate
+  $("grassType").addEventListener("change", function(){
+    updateGrassHint();
+    if(!nTouched){
+      var rec = recommendedN();
+      $("targetN").value = String(roundTo(isMetric() ? rec * G_M2_PER_LB_1000 : rec, 2));
     }
   });
+  $("useRecNBtn").addEventListener("click", function(){
+    nTouched = false;
+    var rec = recommendedN();
+    $("targetN").value = String(roundTo(isMetric() ? rec * G_M2_PER_LB_1000 : rec, 2));
+    if(calculated.fert) calcFertilizer();
+    saveState();
+  });
+  $("targetN").addEventListener("input", function(){ nTouched = true; });
 
-  // Buttons
+  // Lime grass type sets the target pH until the user edits it
+  $("limeGrass").addEventListener("change", function(){
+    var g = GRASS_DATA[this.value];
+    updateLimeHint();
+    if(g && !phTouched) $("targetPh").value = ((g.targetPh[0] + g.targetPh[1]) / 2).toFixed(1);
+  });
+  $("targetPh").addEventListener("input", function(){ phTouched = true; });
+
+  // Calculate buttons
   $("calcFertBtn").addEventListener("click", calcFertilizer);
   $("calcSeedBtn").addEventListener("click", calcSeed);
   $("calcLimeBtn").addEventListener("click", calcLime);
   $("calcTdBtn").addEventListener("click", calcTopdress);
   $("calcSpBtn").addEventListener("click", calcSpreader);
 
-  // Auto-calc on load
+  // Use the fertilizer tab's spreading rate as the calibration target
+  $("useFertRateBtn").addEventListener("click", function(){
+    var r = computeFert();
+    if(!r.ok){ $("spResult").innerHTML = errBlock(["Fix the Fertilizer tab inputs first: " + r.errors[0]]); return; }
+    $("spTargetRate").value = String(roundTo(lb1000ToRate(r.d.productPer1000), 2));
+    if(calculated.sp) calcSpreader();
+    saveState();
+  });
+
+  // Live recalculation once a tab has been calculated, plus auto-save
+  var timers = {};
+  SECTION_KEYS.forEach(function(k){
+    var pane = $(SECTIONS[k].tab);
+    function handler(){
+      clearTimeout(timers[k]);
+      timers[k] = setTimeout(function(){ if(calculated[k]) SECTIONS[k].calc(); else saveState(); }, 150);
+    }
+    pane.addEventListener("input", handler);
+    pane.addEventListener("change", handler);
+  });
+  SECTION_KEYS.forEach(function(k){ $(SECTIONS[k].inc).addEventListener("change", saveState); });
+
+  // Save / export
+  $("copySummaryBtn").addEventListener("click", copySummary);
+  $("downloadCsvBtn").addEventListener("click", downloadCsv);
+  $("downloadJsonBtn").addEventListener("click", downloadJson);
+  $("importJsonBtn").addEventListener("click", function(){ $("jsonInput").click(); });
+  $("jsonInput").addEventListener("change", function(e){
+    if(e.target.files && e.target.files[0]) importJson(e.target.files[0]);
+    e.target.value = "";
+  });
+  $("printBtn").addEventListener("click", printReport);
+  $("resetBtn").addEventListener("click", resetAll);
+
+  // Initial calculation (fertilizer tab, as before)
   calcFertilizer();
 });
 })();
