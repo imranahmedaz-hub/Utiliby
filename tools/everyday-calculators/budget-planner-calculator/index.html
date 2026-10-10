@@ -91,7 +91,7 @@
 
 /* ---------- PRINT VIEW ---------- */
 .print-only{display:none}
-#printView{font-family:Georgia,"Times New Roman",serif;font-size:10.5pt;color:#000;line-height:1.4}
+#printView{font-family:Georgia,"Times New Roman",serif;font-size:10.5pt;color:#000;line-height:1.4;background:#fff}
 #printView h2{margin:0 0 4px;font-size:1.4em;font-family:system-ui,-apple-system,sans-serif;font-weight:800;letter-spacing:-.01em}
 #printView h3{margin:12px 0 4px;font-size:1em;font-family:system-ui,-apple-system,sans-serif;font-weight:700;border-bottom:1.5px solid #333;padding-bottom:3px}
 #printView .meta-line{font-size:.82em;color:#555;margin-bottom:12px;font-family:system-ui,sans-serif}
@@ -103,29 +103,33 @@
 #printView .remaining td{color:#555;font-style:italic}
 #printView .over{color:#b00020 !important;font-weight:700}
 #printView .grand{border-top:2px solid #000;padding-top:6px;font-weight:700}
-#printView .block{margin-bottom:14px;page-break-inside:avoid}
-#printView .summary-box{background:#f5f5f5;border:1px solid #ccc;padding:10px 12px;page-break-inside:avoid}
+#printView .block{margin-bottom:14px;page-break-inside:avoid;break-inside:avoid}
+#printView .summary-box{background:#f5f5f5;border:1px solid #ccc;padding:10px 12px;page-break-inside:avoid;break-inside:avoid}
 #printView .footer-note{margin-top:18px;padding-top:8px;border-top:1px solid #ccc;font-size:.78em;color:#777;font-family:system-ui,sans-serif}
 
 @media print{
-  /* Hide everything on the page */
-  body *{visibility:hidden !important}
-  /* Show only the print view and its contents */
-  #printView, #printView *{visibility:visible !important}
-  #printView{
-    display:block !important;
-    position:absolute;
-    left:0;
-    top:0;
-    width:100%;
-    padding:0;
-    margin:0;
-  }
+  /* Remove everything from layout except the print view */
+  body > *{display:none !important}
+  body > #printView{display:block !important}
+
+  /* Page setup */
   @page{size:A4 portrait;margin:14mm}
+
+  /* Base typography and reset */
   html,body{background:#fff !important;color:#000 !important;margin:0 !important;padding:0 !important}
-  .wrap{max-width:100% !important;padding:0 !important;margin:0 !important}
-  h2,h3{page-break-after:avoid}
-  table{page-break-inside:avoid}
+  #printView{
+    position:static !important;
+    width:100% !important;
+    padding:0 !important;
+    margin:0 !important;
+    box-shadow:none !important;
+    border:0 !important;
+  }
+
+  /* Avoid awkward breaks */
+  h2,h3{page-break-after:avoid;break-after:avoid}
+  table{page-break-inside:avoid;break-inside:avoid}
+  tr{page-break-inside:avoid;break-inside:avoid}
 }
 </style>
 <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Budget Planner Calculator","url":"https://utiliby.com/tools/everyday-calculators/budget-planner-calculator/","applicationCategory":"FinanceApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free budget planner calculator online?","acceptedAnswer":{"@type":"Answer","text":"A free budget planner calculator online is a tool that helps you allocate your monthly income across spending categories. This budget planner calculator online uses the 50/30/20 rule and four other presets, supports custom splits, tracks real line items under each bucket, and shows a live donut chart. Everything runs in your browser with no sign-up."}},{"@type":"Question","name":"What is the 50/30/20 budget rule?","acceptedAnswer":{"@type":"Answer","text":"The 50/30/20 rule is a simple budgeting framework popularised by US Senator Elizabeth Warren in her book All Your Worth. It divides your after-tax income into three buckets: 50 percent for needs (rent, groceries, utilities, insurance, minimum debt payments), 30 percent for wants (dining out, subscriptions, hobbies, travel), and 20 percent for savings and extra debt payments."}},{"@type":"Question","name":"Should I use net pay or gross salary for budgeting?","acceptedAnswer":{"@type":"Answer","text":"Always use net pay, also called take-home pay. Net pay is the money that actually lands in your bank account after tax, national insurance, pension contributions and any other deductions. Gross salary is the headline number before deductions and does not reflect what you can actually spend."}},{"@type":"Question","name":"What counts as a need versus a want?","acceptedAnswer":{"@type":"Answer","text":"Needs are essential for survival and to maintain your current obligations: rent or mortgage, utilities, groceries, basic transportation, insurance, healthcare, childcare and minimum debt payments. Wants are lifestyle choices that improve quality of life but are optional: dining out, streaming subscriptions, new gadgets, travel, entertainment, hobbies and upgrades. When in doubt, ask: would my life fall apart without this?"}},{"@type":"Question","name":"Can I use a different budget split?","acceptedAnswer":{"@type":"Answer","text":"Yes. This calculator offers five presets: 50/30/20 (the classic), 60/20/20 (for high cost-of-living areas), 70/20/10 (for aggressive debt payoff), 40/30/30 (for aggressive savings), and a fully custom split that you set with sliders. The custom split must total exactly 100 percent."}},{"@type":"Question","name":"How much should I save each month?","acceptedAnswer":{"@type":"Answer","text":"Financial planners typically recommend saving 20 percent of your take-home pay for long-term goals. However, the right savings rate depends on your circumstances. Someone paying off high-interest debt may temporarily reduce savings to 10 percent while aggressively paying down the balance. Someone approaching retirement or building an emergency fund may push savings to 30 or 40 percent."}},{"@type":"Question","name":"What is zero-based budgeting?","acceptedAnswer":{"@type":"Answer","text":"Zero-based budgeting assigns every dollar of income to a specific category so that income minus planned expenses equals zero. Unlike the 50/30/20 rule, which divides income into three broad buckets, zero-based budgeting requires you to allocate every pound or dollar to a named line item. This tool supports a zero-based mode that highlights unallocated funds."}},{"@type":"Question","name":"Is this budget planner free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere. There are no ads, no accounts and no rate limits."}},{"@type":"Question","name":"Does the calculator save my data?","acceptedAnswer":{"@type":"Answer","text":"Your budget is saved to your browser's local storage so you can return to it later. Nothing is ever uploaded, shared or tracked. Clearing your browser data will delete the saved budget."}},{"@type":"Question","name":"How do I export my budget?","acceptedAnswer":{"@type":"Answer","text":"Use the Copy summary button to copy a plain-text version of your budget to your clipboard, or click Download CSV to save a structured spreadsheet-compatible file. Both options work offline."}}]}]}</script>
@@ -383,10 +387,9 @@
 
 </article>
 
-<div id="printView" class="print-only"></div>
-
 </main>
 <footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<div id="printView" class="print-only"></div>
 <script src="/assets/site.js" defer></script>
 <script>
 (function(){
@@ -429,7 +432,6 @@ function fmtMoneyDec(n){
   return sym + (Math.round(n * 100) / 100).toFixed(2);
 }
 function fmtMoneyCSV(n){
-  /* no thousands separator, currency prefix for readability, 2 dp */
   var sym = CURRENCIES[state.currency] || "$";
   return sym + (Math.round(n * 100) / 100).toFixed(2);
 }
@@ -458,7 +460,6 @@ function render(){
   var wantsAlloc = income * p.wants / 100;
   var savingsAlloc = income * p.savings / 100;
 
-  // Pct labels
   $("needsPctLabel").textContent = p.needs + "% of income";
   $("wantsPctLabel").textContent = p.wants + "% of income";
   $("savingsPctLabel").textContent = p.savings + "% of income";
@@ -466,12 +467,10 @@ function render(){
   $("wantsPctVal").textContent = p.wants + "%";
   $("savingsPctVal").textContent = p.savings + "%";
 
-  // Allocated
   $("needsAllocated").textContent = fmtMoney(needsAlloc);
   $("wantsAllocated").textContent = fmtMoney(wantsAlloc);
   $("savingsAllocated").textContent = fmtMoney(savingsAlloc);
 
-  // Remaining
   var needsSpent = bucketTotal("needs");
   var wantsSpent = bucketTotal("wants");
   var savingsSpent = bucketTotal("savings");
@@ -480,12 +479,10 @@ function render(){
   renderRemaining("wants", wantsAlloc, wantsSpent);
   renderRemaining("savings", savingsAlloc, savingsSpent);
 
-  // Progress bars
   updateBar("needs", needsSpent, needsAlloc);
   updateBar("wants", wantsSpent, wantsAlloc);
   updateBar("savings", savingsSpent, savingsAlloc);
 
-  // Summary stats
   var planned = totalPlanned();
   var unallocated = income - planned;
   $("statIncome").textContent = fmtMoney(income);
@@ -494,7 +491,6 @@ function render(){
   $("statUnallocated").textContent = fmtMoney(unallocated);
   $("statAnnualSavings").textContent = fmtMoney(savingsSpent * 12);
 
-  // Zero-based banner
   if(unallocated > 0.01){
     $("zeroBasedBanner").hidden = false;
     $("unallocatedAmt").textContent = fmtMoney(unallocated);
@@ -502,13 +498,9 @@ function render(){
     $("zeroBasedBanner").hidden = true;
   }
 
-  // Donut
   drawDonut(needsSpent, wantsSpent, savingsSpent, Math.max(0, unallocated));
-
-  // Goal
   updateGoal(savingsSpent);
 
-  // Custom split warning
   if(state.rule === "custom"){
     var total = state.custom.needs + state.custom.wants + state.custom.savings;
     $("splitTotal").textContent = total;
@@ -517,9 +509,7 @@ function render(){
     $("splitWarning").hidden = true;
   }
 
-  // Rebuild print view
   buildPrintView();
-
   saveState();
 }
 
@@ -602,12 +592,10 @@ function buildPrintView(){
   h += '<h2>Budget Plan</h2>';
   h += '<div class="meta-line">Prepared ' + new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' }) + ' &nbsp;·&nbsp; Currency: ' + esc(state.currency) + ' &nbsp;·&nbsp; Rule: ' + esc(state.rule) + ' (' + p.needs + '/' + p.wants + '/' + p.savings + ')</div>';
 
-  /* Income line */
   h += '<div class="block"><table>';
   h += '<tr><td class="rule">Monthly take-home income</td><td class="num rule">' + fmtMoneyDec(income) + '</td></tr>';
   h += '</table></div>';
 
-  /* Buckets */
   keys.forEach(function(key){
     var alloc = income * p[key] / 100;
     var spent = bucketTotal(key);
@@ -634,7 +622,6 @@ function buildPrintView(){
     h += '</div>';
   });
 
-  /* Summary */
   var planned = totalPlanned();
   var unallocated = income - planned;
   var annualSavings = bucketTotal("savings") * 12;
@@ -648,7 +635,6 @@ function buildPrintView(){
   h += '</table>';
   h += '</div>';
 
-  /* Savings goal */
   var target = num(state.goal.amount, 0);
   var already = num(state.goal.already, 0);
   if(target > 0 && bucketTotal("savings") > 0){
@@ -703,12 +689,10 @@ function wire(){
   var T = $("tool");
   if(!T) return;
 
-  // Income
   $("currency").addEventListener("change", function(){ state.currency = this.value; render(); });
   $("incomeFreq").addEventListener("change", function(){ state.frequency = this.value; render(); });
   $("incomeAmount").addEventListener("input", function(){ state.income = num(this.value, 0); render(); });
 
-  // Rule
   document.querySelectorAll(".bp-rule").forEach(function(btn){
     btn.addEventListener("click", function(){
       state.rule = this.dataset.rule;
@@ -718,7 +702,6 @@ function wire(){
     });
   });
 
-  // Custom sliders
   ["needsPct","wantsPct","savingsPct"].forEach(function(id){
     $(id).addEventListener("input", function(){
       var key = id.replace("Pct","");
@@ -727,7 +710,6 @@ function wire(){
     });
   });
 
-  // Bucket items (event delegation)
   T.addEventListener("click", function(e){
     var add = e.target.closest("[data-add]");
     if(add){ addItem(add.dataset.add); return; }
@@ -753,11 +735,9 @@ function wire(){
     }
   });
 
-  // Goal
   $("goalAmount").addEventListener("input", function(){ state.goal.amount = num(this.value, 0); render(); });
   $("goalAlready").addEventListener("input", function(){ state.goal.already = num(this.value, 0); render(); });
 
-  // Actions
   $("copySummaryBtn").addEventListener("click", copySummary);
   $("downloadCsvBtn").addEventListener("click", downloadCSV);
   $("printBtn").addEventListener("click", function(){
@@ -834,7 +814,6 @@ function downloadCSV(){
   var income = monthlyIncome();
   var rows = [];
 
-  /* Header block */
   rows.push(csvRow(["Section","Item","Amount"]));
   rows.push(csvRow(["Report","Utiliby Budget Planner Export",""]));
   rows.push(csvRow(["Report","Generated", new Date().toLocaleDateString(undefined, { year:'numeric', month:'long', day:'numeric' })]));
@@ -842,14 +821,12 @@ function downloadCSV(){
   rows.push(csvRow(["Report","Budget rule", state.rule + " (" + p.needs + "/" + p.wants + "/" + p.savings + ")"]));
   rows.push(csvRow(["Report","Monthly take-home income", fmtMoneyCSV(income)]));
 
-  /* Summary block */
   rows.push(csvRow(["","",""]));
   rows.push(csvRow(["Summary","Monthly income", fmtMoneyCSV(income)]));
   rows.push(csvRow(["Summary","Total planned", fmtMoneyCSV(totalPlanned())]));
   rows.push(csvRow(["Summary","Unallocated", fmtMoneyCSV(income - totalPlanned())]));
   rows.push(csvRow(["Summary","Annual savings", fmtMoneyCSV(bucketTotal("savings") * 12)]));
 
-  /* Per-bucket blocks */
   ["needs","wants","savings"].forEach(function(key){
     var alloc = income * p[key] / 100;
     var spent = bucketTotal(key);
@@ -869,7 +846,6 @@ function downloadCSV(){
     rows.push(csvRow([bucketLabel(key), rem < -0.01 ? "Over by" : "Remaining", fmtMoneyCSV(Math.abs(rem))]));
   });
 
-  /* Goal block */
   var target = num(state.goal.amount, 0);
   var already = num(state.goal.already, 0);
   var savTotal = bucketTotal("savings");
