@@ -4,16 +4,19 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Free Zodiac Sign Calculator Online – Find Your Sun Sign by Date</title>
-<meta name="description" content="Free zodiac sign calculator online. Enter your date of birth to find your sun sign, element, modality, ruling planet and Chinese zodiac. Includes 12 zodiac thumbnails. No sign-up.">
+<meta name="description" content="Free zodiac sign calculator online: exact sun sign, cusp check, decan, Chinese zodiac, compatibility and sign dates by year. No sign-up, private.">
 <link rel="canonical" href="https://utiliby.com/tools/astrology/zodiac-sign-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
 <meta property="og:title" content="Free Zodiac Sign Calculator Online – Find Your Sun Sign by Date">
-<meta property="og:description" content="Free zodiac sign calculator online. Find your sun sign, element, modality, ruling planet and Chinese zodiac.">
+<meta property="og:description" content="Free online zodiac sign calculator: exact sun sign from the Sun's position, cusp check, element, decan, Chinese zodiac and compatibility. No sign-up.">
 <meta property="og:url" content="https://utiliby.com/tools/astrology/zodiac-sign-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Zodiac Sign Calculator Online – Find Your Sun Sign by Date">
+<meta name="twitter:description" content="Free online zodiac sign calculator: exact sun sign from the Sun's position, cusp check, element, decan, Chinese zodiac and compatibility. No sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
@@ -44,102 +47,429 @@
 .element-earth{background:linear-gradient(135deg,#16a34a,#84cc16)}
 .element-air{background:linear-gradient(135deg,#0ea5e9,#22d3ee)}
 .element-water{background:linear-gradient(135deg,#7c3aed,#a855f7)}
+#tool [hidden]{display:none!important}
+#tool label.zd-check{display:flex;align-items:center;gap:8px;margin:6px 0 10px;font-size:.85rem;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+#tool label.zd-check input{width:auto}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool summary:focus-visible{outline:2px solid var(--brand);outline-offset:2px}
+#tool input[type="text"],#tool input[type="number"],#tool select{width:100%;box-sizing:border-box}
+.zd-actions{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}
+.zd-actions button,.zd-mini,.zd-tab{padding:8px 14px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.zd-actions button:hover,.zd-mini:hover{border-color:var(--brand);color:var(--brand)}
+.zd-actions button:disabled{opacity:.45;cursor:not-allowed}
+.zd-mini{padding:4px 10px;font-size:.75rem;border-radius:6px}
+.zd-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.zd-tab{background:transparent;color:var(--brand)}
+.zd-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.zd-status{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:.85rem;margin:8px 0;min-height:18px}
+.zd-status.ok{border-color:#16a34a;color:#16a34a}.zd-status.err{border-color:#dc2626;color:#dc2626}
+.zd-err{color:#dc2626;font-weight:600}
+.zd-note{font-size:.8rem;color:var(--muted);margin:6px 0}
+.zd-warn{font-size:.72rem;font-weight:700;color:#b45309;background:rgba(245,158,11,.15);border-radius:999px;padding:1px 7px}
+.zd-scroll{overflow-x:auto}
+.zz-card{font:inherit;color:inherit;width:100%}
+.zz-card.on{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+.zodiac-badge.zd-small{width:56px;height:56px;font-size:28px;margin:0 8px 0 0;box-shadow:none;flex:none}
+.zd-twin{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:14px 0 0}
+@media(max-width:520px){.zd-twin{grid-template-columns:1fr}}
+.zd-twinbtn{display:grid;grid-template-columns:auto 1fr;align-items:center;text-align:left;gap:0 8px;padding:10px;border:1px solid var(--line);border-radius:12px;background:var(--card);color:var(--fg);cursor:pointer;font:inherit}
+.zd-twinbtn .zodiac-badge{grid-row:span 2}
+.zd-twinbtn small{color:var(--muted)}
+.zd-twinbtn.on{border-color:var(--brand);box-shadow:inset 0 0 0 1px var(--brand)}
+.zd-split{display:grid;grid-template-columns:minmax(0,340px) minmax(0,1fr);gap:16px;align-items:start;margin:16px 0}
+@media(max-width:760px){.zd-split{grid-template-columns:1fr}}
+.zd-wheel svg{display:block;width:100%;height:auto;max-width:360px;margin:0 auto}
+.zd-sun{animation:zd-pulse 2.4s ease-in-out infinite;transform-box:fill-box;transform-origin:center}
+.zd-dash{animation:zd-dash 1.4s linear infinite}
+.zd-orbit{transform-origin:180px 180px;animation:zd-orbit 24s linear infinite}
+@keyframes zd-pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.25)}}
+@keyframes zd-dash{to{stroke-dashoffset:-18}}
+@keyframes zd-orbit{to{transform:rotate(-360deg)}}
+@media(prefers-reduced-motion:reduce){.zd-sun,.zd-dash,.zd-orbit,.zd-glow{animation:none}}
+.zd-facts td:first-child{width:38%}
+.zd-strip{position:relative;display:flex;height:26px;border-radius:999px;overflow:hidden;background:var(--line);margin-top:10px}
+.zd-strip i{display:flex;align-items:center;justify-content:center;color:#fff;font-style:normal;font-size:.8rem;overflow:hidden}
+.zd-mark{position:absolute;top:-2px;bottom:-2px;width:4px;margin-left:-2px;background:#f59e0b;border-radius:2px;box-shadow:0 0 0 2px var(--bg)}
+.zd-strip-l{display:flex;justify-content:space-between;font-size:.7rem;color:var(--muted);margin-top:3px}
+.zd-three{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px;margin:12px 0}
+.zd-card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 14px}
+.zd-card h4{margin:0 0 6px;font-size:.78rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted)}
+.zd-card ul{margin:0;padding-left:18px;font-size:.88rem;line-height:1.55}
+.zd-cn{display:flex;gap:14px;align-items:center;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 16px}
+.zd-cnbig{font-size:1.5rem;font-weight:800;min-width:92px;text-align:center;color:var(--brand)}
+.zd-grid4{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:10px 0}
+.zd-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px;text-align:center}
+.zd-stat b{display:block;font-size:1.3rem;line-height:1.2}
+.zd-stat span{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em}
+.zd-pair{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:6px 0}
+.zd-plus{font-size:1.3rem;margin:0 6px;color:var(--muted)}
+.zd-lvl{display:inline-block;font-weight:700;border-radius:999px;padding:3px 12px;margin:6px 0;background:var(--card);border:1px solid var(--line)}
+.zd-Easy{color:#16a34a;border-color:#16a34a}.zd-Challenging{color:#dc2626;border-color:#dc2626}.zd-Intense{color:#7c3aed;border-color:#7c3aed}.zd-Needseffort{color:#b45309;border-color:#b45309}
+.sv-brow{display:grid;grid-template-columns:76px 1fr 28px;gap:8px;align-items:center;font-size:.8rem;margin:5px 0}
+.sv-brow .bb{display:block;height:10px;background:var(--line);border-radius:999px;overflow:hidden}
+.sv-brow .bb i{display:block;height:100%}
+.sv-brow .bn{text-align:right;color:var(--muted)}
+.zd-report{display:none}
+.zd-short{font-size:.8rem;color:var(--muted);margin:14px 0 0}
+.zd-rep-meta{font-size:10pt;color:#444}
+.zd-rep-table{width:100%;border-collapse:collapse;font-size:10pt;margin:6px 0 12px}
+.zd-rep-table th,.zd-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.zd-rep-disc{font-size:9.5pt;margin-top:12px}
+.zd-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.zd-toc ol{margin:6px 0 0;padding-left:20px;columns:2;column-gap:28px}
+@media(max-width:600px){.zd-toc ol{columns:1}}
+.zd-byline{font-size:.85rem;color:var(--muted);margin:6px 0 14px}
+.zd-table{width:100%;border-collapse:collapse;font-size:.88rem;margin:10px 0 16px;display:block;overflow-x:auto}
+.zd-table th,.zd-table td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.zd-table th{background:var(--card)}
+.zd-callout{border-left:4px solid var(--brand);background:var(--card);padding:10px 14px;border-radius:0 10px 10px 0;margin:14px 0;font-size:.92rem}
+.zd-fig{margin:16px 0;background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px}
+.zd-fig svg{display:block;width:100%;height:auto;max-width:420px;margin:0 auto}
+.zd-fig.wide svg{max-width:none}
+.zd-fig figcaption{font-size:.8rem;color:var(--muted);margin-top:6px;text-align:center}
+.zd-disc{border:1px solid var(--line);background:var(--card);border-radius:12px;padding:4px 16px 8px;margin:18px 0}
+.svg-t{fill:var(--fg);font:600 12px system-ui,sans-serif}.svg-m{fill:var(--muted);font:11px system-ui,sans-serif}
+.svg-box{fill:var(--bg);stroke:var(--line);stroke-width:1.2}.svg-a{stroke:var(--muted);stroke-width:1.6;fill:none}
+@keyframes zd-glow{0%,100%{opacity:.35}50%{opacity:1}}
+.zd-glow{animation:zd-glow 2.4s ease-in-out infinite}
+.zd-el-fire{background:rgba(239,68,68,.12)}.zd-el-earth{background:rgba(22,163,74,.12)}.zd-el-air{background:rgba(14,165,233,.12)}.zd-el-water{background:rgba(124,58,237,.12)}
+@media print{
+  header.site,footer.site,main>*:not(#tool){display:none!important}
+  #tool{border:0!important;box-shadow:none!important;padding:0!important;margin:0!important;background:#fff!important}
+  #tool>*:not(.zd-report){display:none!important}
+  .zd-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}
+  .zd-report h2,.zd-report h3{color:#000;margin:10px 0 4px}
+  body{background:#fff!important}
+}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Zodiac Sign Calculator","url":"https://utiliby.com/tools/astrology/zodiac-sign-calculator/","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find my zodiac sign?","acceptedAnswer":{"@type":"Answer","text":"Enter your date of birth into the zodiac sign calculator and it will match your birth date to the correct sun sign based on the Western tropical zodiac date ranges."}},{"@type":"Question","name":"What are the 12 zodiac sign dates?","acceptedAnswer":{"@type":"Answer","text":"Aries Mar 21 to Apr 19, Taurus Apr 20 to May 20, Gemini May 21 to Jun 20, Cancer Jun 21 to Jul 22, Leo Jul 23 to Aug 22, Virgo Aug 23 to Sep 22, Libra Sep 23 to Oct 22, Scorpio Oct 23 to Nov 21, Sagittarius Nov 22 to Dec 21, Capricorn Dec 22 to Jan 19, Aquarius Jan 20 to Feb 18, Pisces Feb 19 to Mar 20."}},{"@type":"Question","name":"What is a cusp zodiac sign?","acceptedAnswer":{"@type":"Answer","text":"A cusp birth is when your birthday falls on or within two days of a zodiac sign boundary, such as March 20 to 22. People born on a cusp are said to blend traits of both signs, though traditional astrology assigns a single sign based on the exact moment of birth."}},{"@type":"Question","name":"What are the four zodiac elements?","acceptedAnswer":{"@type":"Answer","text":"Fire signs are Aries, Leo and Sagittarius. Earth signs are Taurus, Virgo and Capricorn. Air signs are Gemini, Libra and Aquarius. Water signs are Cancer, Scorpio and Pisces. Elements describe how a sign expresses energy."}},{"@type":"Question","name":"What are the three modalities in astrology?","acceptedAnswer":{"@type":"Answer","text":"Cardinal signs (Aries, Cancer, Libra, Capricorn) start seasons and initiate. Fixed signs (Taurus, Leo, Scorpio, Aquarius) stabilize and sustain. Mutable signs (Gemini, Virgo, Sagittarius, Pisces) adapt and change."}},{"@type":"Question","name":"Does the zodiac sign calculator also show my Chinese zodiac?","acceptedAnswer":{"@type":"Answer","text":"Yes. This free zodiac sign calculator online shows both your Western sun sign and your Chinese zodiac animal based on your birth year."}},{"@type":"Question","name":"Is this zodiac sign calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your date of birth anywhere."}},{"@type":"Question","name":"Is zodiac sign astrology scientifically proven?","acceptedAnswer":{"@type":"Answer","text":"No. Astrology is a symbolic and cultural tradition, not a science. This tool is provided for entertainment and self-reflection. It is not a substitute for medical, financial or psychological advice."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Zodiac Sign Calculator","url":"https://utiliby.com/tools/astrology/zodiac-sign-calculator/","applicationCategory":"LifestyleApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"},"description":"Free zodiac sign calculator online: exact sun sign, cusp check, decan, Chinese zodiac, compatibility and sign dates by year. No sign-up, private.","isAccessibleForFree":true,"browserRequirements":"Requires JavaScript","featureList":["Sun sign from the Sun's calculated position, with changeover-day detection","Cusp check, decan and sub-ruler","Element, modality, polarity, modern and traditional ruling planets","Chinese zodiac animal, element and Yin or Yang using Chinese New Year dates","Zodiac wheel and year strip visuals","Sign compatibility by aspect, element and modality","Sun sign dates by year for any year from 1900 to 2099","Group list with element and modality balance","Copy, text download, PNG image, CSV and print report","Runs in the browser with no sign-up"]},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find my zodiac sign?","acceptedAnswer":{"@type":"Answer","text":"Enter your date of birth into the zodiac sign calculator. It works out where the Sun was in the zodiac on that day and shows your sun sign, with its element, modality, ruling planet and Chinese zodiac animal. Adding your birth time and UTC offset makes the answer exact on boundary days."}},{"@type":"Question","name":"What are the 12 zodiac sign dates?","acceptedAnswer":{"@type":"Answer","text":"Aries Mar 21 to Apr 19, Taurus Apr 20 to May 20, Gemini May 21 to Jun 20, Cancer Jun 21 to Jul 22, Leo Jul 23 to Aug 22, Virgo Aug 23 to Sep 22, Libra Sep 23 to Oct 22, Scorpio Oct 23 to Nov 21, Sagittarius Nov 22 to Dec 21, Capricorn Dec 22 to Jan 19, Aquarius Jan 20 to Feb 18, Pisces Feb 19 to Mar 20. These are the usual dates, and the exact change moment shifts by up to a day from year to year."}},{"@type":"Question","name":"What is a cusp zodiac sign?","acceptedAnswer":{"@type":"Answer","text":"A cusp birth is when your birthday falls on or very near the boundary between two signs. This calculator marks a cusp when the Sun entered or leaves your sign within about two days of your birth moment. People born on a cusp are said to blend traits of both signs, though the Sun position still assigns a single sign."}},{"@type":"Question","name":"Why does my zodiac sign differ from the date range I was told?","acceptedAnswer":{"@type":"Answer","text":"The usual date ranges are rounded to whole days. The Sun changes sign at a specific moment that moves by up to a day between years and depends on your time zone. If you were born on a boundary day, your sign can differ from the table. Enter your birth time and UTC offset to see which side of the change you were born."}},{"@type":"Question","name":"What are the four zodiac elements?","acceptedAnswer":{"@type":"Answer","text":"Fire signs are Aries, Leo and Sagittarius. Earth signs are Taurus, Virgo and Capricorn. Air signs are Gemini, Libra and Aquarius. Water signs are Cancer, Scorpio and Pisces. Elements describe how a sign expresses energy."}},{"@type":"Question","name":"What are the three modalities in astrology?","acceptedAnswer":{"@type":"Answer","text":"Cardinal signs (Aries, Cancer, Libra, Capricorn) start seasons and initiate. Fixed signs (Taurus, Leo, Scorpio, Aquarius) stabilise and sustain. Mutable signs (Gemini, Virgo, Sagittarius, Pisces) adapt and change."}},{"@type":"Question","name":"Does the zodiac sign calculator also show my Chinese zodiac?","acceptedAnswer":{"@type":"Answer","text":"Yes. It shows your Chinese zodiac animal, its Yin or Yang polarity and its element, using the Chinese New Year date for your birth year. If you were born in January or February before Chinese New Year, you belong to the previous lunar year, and the calculator tells you so."}},{"@type":"Question","name":"Is the Chinese zodiac the same as the calendar year?","acceptedAnswer":{"@type":"Answer","text":"No. The Chinese zodiac follows the lunisolar calendar. A new animal year starts on Chinese New Year, which falls between about January 21 and February 20. Anyone born before that date in their birth year has the previous year's animal."}},{"@type":"Question","name":"What is a decan?","acceptedAnswer":{"@type":"Answer","text":"A decan is a ten degree slice of a sign. Each sign has three decans of roughly ten days. In the common scheme used here, the first decan is the sign itself, the second is the next sign of the same element and the third is the one after that. The calculator shows your decan and its sub-ruler."}},{"@type":"Question","name":"What does ruling planet mean?","acceptedAnswer":{"@type":"Answer","text":"In astrology each sign is linked to a planet that is said to colour its style. Modern astrology gives Scorpio to Pluto, Aquarius to Uranus and Pisces to Neptune. Traditional astrology, from before those planets were discovered, uses Mars, Saturn and Jupiter. The tool shows both where they differ."}},{"@type":"Question","name":"What is the difference between sun, moon and rising signs?","acceptedAnswer":{"@type":"Answer","text":"Your sun sign is where the Sun was at birth. Your moon sign is where the Moon was, and your rising sign (ascendant) is the sign on the eastern horizon at your birth time and place. This calculator finds the sun sign only. Moon and rising signs need an ephemeris and your birth place."}},{"@type":"Question","name":"Is this the tropical or the sidereal zodiac?","acceptedAnswer":{"@type":"Answer","text":"It uses the tropical zodiac used in Western astrology, which starts Aries at the March equinox. Vedic (sidereal) astrology uses a zodiac fixed to the stars, which today is about 24 degrees behind, so many people have a different sign in Vedic astrology."}},{"@type":"Question","name":"Is there a 13th zodiac sign, Ophiuchus?","acceptedAnswer":{"@type":"Answer","text":"The Sun does pass through the constellation Ophiuchus for a couple of weeks in late November to mid December. But Western astrology divides the ecliptic into twelve equal 30 degree signs tied to the seasons, not to constellation outlines, so Ophiuchus is not one of the twelve signs."}},{"@type":"Question","name":"How accurate is the sun sign calculation?","acceptedAnswer":{"@type":"Answer","text":"The Sun's position is calculated with a standard low-precision astronomical formula that is good to about 0.01 degree, which is roughly 15 minutes of time. That is enough to find the right sign for everyone except births within about 15 minutes of a sign change. For those, check an ephemeris or your birth chart."}},{"@type":"Question","name":"Why does the tool ask for a UTC offset?","acceptedAnswer":{"@type":"Answer","text":"The Sun changes sign at one instant worldwide, but the calendar date depends on your time zone. A person born at 11 pm in New York and a person born at 4 am in London the next day can share the same moment. Choose the offset that applied at your birthplace on your birth date, including daylight saving time."}},{"@type":"Question","name":"What should I do if I do not know my birth time?","acceptedAnswer":{"@type":"Answer","text":"Leave the time empty. For most dates the sign is the same all day. On the one or two changeover days each month, the calculator shows both possible signs and the time the Sun changed sign, so you can compare it with what you know about your birth."}},{"@type":"Question","name":"How do the compatibility results work?","acceptedAnswer":{"@type":"Answer","text":"The Compatibility tab compares two Sun signs by their angle around the zodiac and by element, modality and polarity. Signs that are 120 degrees apart (trine) share an element and are called easy. Signs 90 degrees apart (square) share a modality and are called dynamic. Results are traditional interpretations, not predictions."}},{"@type":"Question","name":"Can I check the sign of several people at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Group list tab to add names and dates of birth. You get a table with sun sign, element, modality and Chinese animal for each person, a chart of how the elements and modalities are spread, and CSV, copy and print options."}},{"@type":"Question","name":"What are the exact dates the Sun enters each sign this year?","acceptedAnswer":{"@type":"Answer","text":"Open the Sign dates by year tab and enter any year from 1900 to 2099. You get the calculated moment the Sun enters and leaves each sign in the UTC offset you choose, including the equinox and solstice markers."}},{"@type":"Question","name":"Does this calculator store my date of birth?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is calculated in your browser and nothing is sent to Utiliby. The Group list is kept in memory only, unless you tick the Remember option, which saves that list in this browser's local storage on your device."}},{"@type":"Question","name":"Can I save or print my result?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can copy the result, download it as a text file, save a picture of your zodiac wheel as a PNG, or print a clean report. The printout contains only your result, not the website header, footer or the long article."}},{"@type":"Question","name":"Is astrology scientifically proven?","acceptedAnswer":{"@type":"Answer","text":"No. Astrology is a symbolic and cultural tradition, and studies have not found that sun signs predict personality or life events. This tool is provided for entertainment, curiosity and cultural interest. It is not advice of any kind."}},{"@type":"Question","name":"Why do astrology websites sometimes show different dates?","acceptedAnswer":{"@type":"Answer","text":"Sources round the sign changes to whole days and use different years or time zones. The Sun's actual change moment moves between years. This calculator uses the astronomical position for your exact date and offset, so it can differ from a fixed table on boundary days."}},{"@type":"Question","name":"Is this zodiac sign calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use, with no account, email or sign-up, and it has no usage limit. The site may show advertising to cover its costs, but the tool itself does not charge."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The layout adapts to narrow screens, and the date and time fields use your phone's native pickers."}},{"@type":"Question","name":"Which birth years are supported?","acceptedAnswer":{"@type":"Answer","text":"Birth dates from 1900 to 2099 are supported, because the Chinese New Year table and the Sun position formula are set up for that range."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Astrology","item":"https://utiliby.com/tools/astrology/"},{"@type":"ListItem","position":3,"name":"Zodiac Sign Calculator","item":"https://utiliby.com/tools/astrology/zodiac-sign-calculator/"}]}]}</script>
 </head>
 <body>
 <header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/astrology/">Astrology</a> › Zodiac Sign Calculator</nav>
-<h1>Zodiac Sign Calculator</h1>
-<p class="lead">Find your zodiac sign, element, modality and ruling planet from your date of birth. Free, private and no sign-up.</p>
+<h1>Free Online Zodiac Sign Calculator</h1>
+<p class="lead">Free online zodiac sign calculator: find your exact sun sign from the Sun's position, plus cusp check, element, modality, decan, ruling planet, Chinese zodiac and compatibility. Free, private and no sign-up.</p>
 
-<section class="tool" id="tool" aria-label="Zodiac sign calculator">
+<section class="tool" id="tool" aria-label="Free online zodiac sign calculator">
 <div class="row">
-<div><label for="birthdate">Your date of birth</label><input id="birthdate" type="date" value="1995-08-15"></div>
+<div><label for="birthdate">Your date of birth</label><input id="birthdate" type="date" value="1995-08-15" min="1900-01-01" max="2099-12-31"></div>
 <div><label for="birthtime">Birth time (optional)</label><input id="birthtime" type="time" value=""></div>
 </div>
-<p class="meta">Results update as you type. Astrology is a symbolic tradition, not a science. For entertainment only.</p>
+<div class="row">
+<div><label for="tzSelect">Birth time zone (UTC offset)</label><select id="tzSelect"></select></div>
+<div><label for="personName">Name (optional)</label><input id="personName" type="text" maxlength="40" autocomplete="off" placeholder="For the printout and image"></div>
+</div>
+<p class="meta">Results update as you type. Choose the UTC offset in force at your birthplace, including daylight saving time. It only matters if you were born on a day when the Sun changes sign. Astrology is a symbolic tradition, not a science. For entertainment only.</p>
 
-<div id="result"></div>
+<div class="zd-actions">
+<button type="button" id="btnToday">Today's sun sign</button>
+<button type="button" id="btnCopy">Copy result</button>
+<button type="button" id="btnTxt">Download TXT</button>
+<button type="button" id="btnPng">Save image</button>
+<button type="button" id="btnPrint">Print report</button>
+<button type="button" id="btnReset">Reset</button>
+</div>
+<div class="zd-status info" id="zdStatus" role="status" aria-live="polite">Enter a date of birth to see your sign.</div>
+
+<div class="zd-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="zd-tab on" data-tab="sun" aria-selected="true">Your sign</button>
+<button type="button" class="zd-tab" data-tab="match" aria-selected="false">Compatibility</button>
+<button type="button" class="zd-tab" data-tab="dates" aria-selected="false">Sign dates by year</button>
+<button type="button" class="zd-tab" data-tab="group" aria-selected="false">Group list</button>
+<button type="button" class="zd-tab" data-tab="signs" aria-selected="false">All 12 signs</button>
+</div>
+
+<div data-panel="sun"><div id="result"></div></div>
+
+<div data-panel="match" hidden>
+<h3>Zodiac compatibility</h3>
+<div class="row">
+<div><label for="matchSignA">Person A</label><select id="matchSignA"></select></div>
+<div><label for="matchSignB">Person B: pick a sign</label><select id="matchSignB"></select></div>
+</div>
+<div class="row">
+<div><label for="matchDate">Or Person B's date of birth</label><input id="matchDate" type="date" min="1900-01-01" max="2099-12-31"></div>
+<div></div>
+</div>
+<div id="matchResult"></div>
+<div class="zd-actions"><button type="button" id="matchPrint">Print report</button></div>
+</div>
+
+<div data-panel="dates" hidden>
+<h3>When does the Sun enter each sign?</h3>
+<div class="row"><div><label for="yearInput">Year (1900 to 2099)</label><input id="yearInput" type="number" min="1900" max="2099" step="1"></div><div></div></div>
+<div id="datesTable"></div>
+<div class="zd-actions"><button type="button" id="datesCsv">Download CSV</button><button type="button" id="datesPrint">Print report</button></div>
+</div>
+
+<div data-panel="group" hidden>
+<h3>Group list</h3>
+<div class="row"><div><label for="gName">Name</label><input id="gName" type="text" maxlength="40" autocomplete="off" placeholder="e.g., Sam"></div><div><label for="gDate">Date of birth</label><input id="gDate" type="date" min="1900-01-01" max="2099-12-31"></div></div>
+<div class="zd-actions"><button type="button" id="gAdd">Add to list</button><button type="button" id="gCopy" disabled>Copy</button><button type="button" id="gCsv" disabled>Download CSV</button><button type="button" id="gPrint" disabled>Print report</button><button type="button" id="gClear" disabled>Clear list</button></div>
+<label class="zd-check"><input type="checkbox" id="gRemember"> Remember this list in this browser (off by default)</label>
+<div id="groupSummary"></div>
+<div id="groupTable"></div>
+</div>
+
+<div data-panel="signs" hidden><div id="signsBox"></div></div>
+
+<div class="zd-report" id="zdReport" aria-hidden="true"></div>
+
+<p class="meta zd-short"><b>Disclaimer:</b> This free online zodiac sign calculator is for entertainment, curiosity and cultural interest only. Astrology is a symbolic tradition, not a science, and results cannot predict your future or replace medical, legal, financial or psychological advice. Sun positions are calculated and can differ from an ephemeris by a few minutes. See the full <a href="#disclaimer">disclaimer</a>.</p>
 </section>
 
-<h2>What is a free zodiac sign calculator online?</h2>
-<p>A free zodiac sign calculator online is a tool that maps your date of birth to one of the twelve signs of the Western zodiac. Each sign spans roughly one month and represents a slice of the sky along the ecliptic — the apparent path of the Sun across the year. Your sun sign (also called your star sign) is the most well-known part of your astrological profile, but it is only one piece of a much larger picture that includes the moon, rising sign and planetary placements.</p>
-<p>This zodiac sign calculator online uses the standard Western tropical date ranges to determine your sun sign, then adds context: the sign's element, modality, ruling planet, birth date range, key traits and your Chinese zodiac animal. Everything runs locally in your browser — your birth data never leaves your device.</p>
+<article class="zd-article">
+<p class="zd-byline">Written by the Utiliby editorial team · Last updated October 12, 2026 · About a 20 minute read</p>
 
-<h2>How to use this free zodiac sign calculator</h2>
+<nav class="zd-toc" aria-label="On this page"><b>On this page</b>
 <ol>
-<li>Enter your date of birth in the field above.</li>
-<li>The calculator instantly shows your sun sign with a colored thumbnail, name, element, modality and ruling planet.</li>
-<li>If your birthday is within two days of a sign boundary, a cusp note appears.</li>
-<li>Scroll down to see your Chinese zodiac animal and the full table of all 12 signs.</li>
-<li>Click any sign in the grid to jump to its details.</li>
+<li><a href="#what-is">What is a free zodiac sign calculator online?</a></li>
+<li><a href="#how-to-use">How to use this zodiac sign calculator</a></li>
+<li><a href="#features">What this calculator shows</a></li>
+<li><a href="#accuracy">How the sun sign is calculated</a></li>
+<li><a href="#dates">The 12 zodiac signs and their dates</a></li>
+<li><a href="#dates-2026">Sun sign dates for 2026 and 2027</a></li>
+<li><a href="#elements">The four zodiac elements</a></li>
+<li><a href="#modalities">The three modalities</a></li>
+<li><a href="#polarity-rulers">Polarity and ruling planets</a></li>
+<li><a href="#decans">Decans explained</a></li>
+<li><a href="#cusp">Cusp births explained</a></li>
+<li><a href="#tropical">Tropical, sidereal and the 13th sign</a></li>
+<li><a href="#sun-moon-rising">Sun, moon and rising signs</a></li>
+<li><a href="#chinese">Chinese zodiac by birth year</a></li>
+<li><a href="#compatibility">Zodiac compatibility</a></li>
+<li><a href="#profiles">The twelve sign profiles</a></li>
+<li><a href="#group">Using the group list</a></li>
+<li><a href="#privacy">Privacy and saving your results</a></li>
+<li><a href="#faq">Frequently asked questions</a></li>
+<li><a href="#sources">Sources and further reading</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+</ol></nav>
+
+<h2 id="what-is">What is a free zodiac sign calculator online?</h2>
+<p>A free zodiac sign calculator online is a tool that tells you which of the twelve Western zodiac signs the Sun was in on your date of birth. That sign is your sun sign, also called your star sign. The zodiac is a band of sky around the ecliptic, the Sun's apparent yearly path, divided into twelve equal slices of 30 degrees. As the Sun moves along the ecliptic it spends about a month in each slice, and the slice it was in when you were born is your sign.</p>
+<p>Most calculators simply look your birthday up in a table of fixed dates. This one goes further. It calculates the Sun's position for your date, so it can tell you when a birthday falls on a changeover day, how close you were to a boundary, which decan you were born in, and what the Sun's exact degree was. It then adds the sign's element, modality, polarity, ruling planet, symbol and house, your Chinese zodiac animal, a compatibility checker, a table of sign dates for any year and a group list for families and friends.</p>
+<p>It is built for anyone curious about their star sign, writers and game designers who need accurate details, and people comparing signs in a family or team. It runs in your browser, needs no sign-up, and the details you type are not sent to Utiliby. It is for entertainment and cultural interest. Astrology is not a science.</p>
+
+<figure class="zd-fig">
+<svg viewBox="0 0 360 360" role="img" aria-labelledby="zdWT2" xmlns="http://www.w3.org/2000/svg"><title id="zdWT2">The zodiac wheel</title><circle cx="180" cy="180" r="176" fill="var(--bg)" stroke="var(--line)"/><path d="M8.0 180.0 A172 172 0 0 1 31.0 94.0 L81.3 123.0 A114 114 0 0 0 66.0 180.0 Z" fill="#ef4444" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="41.9" y="151.0" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♈</text><text x="85.3" y="157.6" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Aries</text><path d="M31.0 94.0 A172 172 0 0 1 94.0 31.0 L123.0 81.3 A114 114 0 0 0 81.3 123.0 Z" fill="#16a34a" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="78.9" y="86.9" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♉</text><text x="110.7" y="113.7" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Taurus</text><path d="M94.0 31.0 A172 172 0 0 1 180.0 8.0 L180.0 66.0 A114 114 0 0 0 123.0 81.3 Z" fill="#0ea5e9" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="143.0" y="49.9" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♊</text><text x="154.6" y="88.3" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Gemini</text><path d="M180.0 8.0 A172 172 0 0 1 266.0 31.0 L237.0 81.3 A114 114 0 0 0 180.0 66.0 Z" fill="#7c3aed" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="217.0" y="49.9" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♋</text><text x="205.4" y="88.3" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Cancer</text><path d="M266.0 31.0 A172 172 0 0 1 329.0 94.0 L278.7 123.0 A114 114 0 0 0 237.0 81.3 Z" fill="#ef4444" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="281.1" y="86.9" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♌</text><text x="249.3" y="113.7" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Leo</text><path d="M329.0 94.0 A172 172 0 0 1 352.0 180.0 L294.0 180.0 A114 114 0 0 0 278.7 123.0 Z" fill="#16a34a" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="318.1" y="151.0" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♍</text><text x="274.7" y="157.6" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Virgo</text><path d="M352.0 180.0 A172 172 0 0 1 329.0 266.0 L278.7 237.0 A114 114 0 0 0 294.0 180.0 Z" fill="#0ea5e9" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="318.1" y="225.0" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♎</text><text x="274.7" y="208.4" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Libra</text><path d="M329.0 266.0 A172 172 0 0 1 266.0 329.0 L237.0 278.7 A114 114 0 0 0 278.7 237.0 Z" fill="#7c3aed" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="281.1" y="289.1" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♏</text><text x="249.3" y="252.3" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Scorpio</text><path d="M266.0 329.0 A172 172 0 0 1 180.0 352.0 L180.0 294.0 A114 114 0 0 0 237.0 278.7 Z" fill="#ef4444" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="217.0" y="326.1" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♐</text><text x="205.4" y="277.7" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Sagittarius</text><path d="M180.0 352.0 A172 172 0 0 1 94.0 329.0 L123.0 278.7 A114 114 0 0 0 180.0 294.0 Z" fill="#16a34a" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="143.0" y="326.1" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♑</text><text x="154.6" y="277.7" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Capricorn</text><path d="M94.0 329.0 A172 172 0 0 1 31.0 266.0 L81.3 237.0 A114 114 0 0 0 123.0 278.7 Z" fill="#0ea5e9" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="78.9" y="289.1" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♒</text><text x="110.7" y="252.3" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Aquarius</text><path d="M31.0 266.0 A172 172 0 0 1 8.0 180.0 L66.0 180.0 A114 114 0 0 0 81.3 237.0 Z" fill="#7c3aed" fill-opacity="0.5" stroke="var(--bg)" stroke-width="2"/><text x="41.9" y="225.0" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">♓</text><text x="85.3" y="208.4" text-anchor="middle" font-size="9" font-weight="400" fill="var(--muted)" font-family="system-ui,sans-serif">Pisces</text><text x="180" y="176" text-anchor="middle" font-size="15" font-weight="700" fill="var(--fg)" font-family="system-ui,sans-serif">Zodiac</text><text x="180" y="194" text-anchor="middle" font-size="11" fill="var(--muted)" font-family="system-ui,sans-serif">12 signs</text><g class="zd-orbit"><circle cx="8" cy="180" r="9" fill="#f59e0b" stroke="#fff" stroke-width="2"/></g></svg>
+<figcaption>The zodiac wheel. The amber dot shows the Sun travelling once around the twelve signs in a year. Aries starts on the left, and the signs run counterclockwise.</figcaption>
+</figure>
+
+<h2 id="how-to-use">How to use this zodiac sign calculator</h2>
+<ol>
+<li><b>Enter your date of birth.</b> The calculator supports dates from 1900 to 2099 and updates as you type.</li>
+<li><b>Add your birth time (optional).</b> This matters only if you were born on a changeover day. Pick the UTC offset in force at your birthplace, including daylight saving time.</li>
+<li><b>Read your sun sign.</b> You see your sign with its glyph, usual dates, element, modality, polarity, ruling planet and Chinese animal, plus a zodiac wheel marking the Sun's position.</li>
+<li><b>Check for a changeover day or cusp.</b> If the Sun changed sign on your birth date, both signs are shown with the time of the change. If you are within about two days of a boundary, a cusp note explains how close you were.</li>
+<li><b>Explore the tabs.</b> Use Compatibility to compare two signs, Sign dates by year to see when the Sun enters each sign, Group list for several people, and All 12 signs to browse every sign.</li>
+<li><b>Save or share.</b> Copy the result, download a text file, save a picture of your wheel or print a clean report.</li>
 </ol>
+<div class="zd-callout"><b>Not sure of your birth time?</b> Leave it empty. On most dates the sign is the same all day. If your birthday is one of the one or two changeover days each month, the calculator shows both signs and the moment the Sun changed sign, so you can compare it with what you know about your birth.</div>
 
-<h2>The 12 zodiac signs and their dates</h2>
-<p>The Western zodiac is made up of twelve signs, each covering roughly 30 degrees of the 360-degree ecliptic. The dates below are the standard tropical ranges used by most modern sun sign calculators.</p>
-<table class="zodiac-detail-table">
-<tr><th>Sign</th><th>Dates</th><th>Element</th><th>Modality</th><th>Ruling Planet</th></tr>
-<tr><td>♈ Aries</td><td>Mar 21 – Apr 19</td><td>Fire</td><td>Cardinal</td><td>Mars</td></tr>
-<tr><td>♉ Taurus</td><td>Apr 20 – May 20</td><td>Earth</td><td>Fixed</td><td>Venus</td></tr>
-<tr><td>♊ Gemini</td><td>May 21 – Jun 20</td><td>Air</td><td>Mutable</td><td>Mercury</td></tr>
-<tr><td>♋ Cancer</td><td>Jun 21 – Jul 22</td><td>Water</td><td>Cardinal</td><td>Moon</td></tr>
-<tr><td>♌ Leo</td><td>Jul 23 – Aug 22</td><td>Fire</td><td>Fixed</td><td>Sun</td></tr>
-<tr><td>♍ Virgo</td><td>Aug 23 – Sep 22</td><td>Earth</td><td>Mutable</td><td>Mercury</td></tr>
-<tr><td>♎ Libra</td><td>Sep 23 – Oct 22</td><td>Air</td><td>Cardinal</td><td>Venus</td></tr>
-<tr><td>♏ Scorpio</td><td>Oct 23 – Nov 21</td><td>Water</td><td>Fixed</td><td>Pluto</td></tr>
-<tr><td>♐ Sagittarius</td><td>Nov 22 – Dec 21</td><td>Fire</td><td>Mutable</td><td>Jupiter</td></tr>
-<tr><td>♑ Capricorn</td><td>Dec 22 – Jan 19</td><td>Earth</td><td>Cardinal</td><td>Saturn</td></tr>
-<tr><td>♒ Aquarius</td><td>Jan 20 – Feb 18</td><td>Air</td><td>Fixed</td><td>Uranus</td></tr>
-<tr><td>♓ Pisces</td><td>Feb 19 – Mar 20</td><td>Water</td><td>Mutable</td><td>Neptune</td></tr>
-</table>
+<h2 id="features">What this calculator shows</h2>
+<table class="zd-table">
+<thead><tr><th>Feature</th><th>What you get</th></tr></thead>
+<tbody>
+<tr><td>Sun sign</td><td>Your sign, its symbol, usual dates, and the Sun's degree within the sign</td></tr>
+<tr><td>Changeover day detection</td><td>Both possible signs and the time the Sun changed sign, when you were born on a boundary day without a birth time</td></tr>
+<tr><td>Cusp check</td><td>How many hours or days you were from the sign boundary</td></tr>
+<tr><td>Element, modality, polarity</td><td>Fire, earth, air or water; cardinal, fixed or mutable; Yang or Yin</td></tr>
+<tr><td>Rulers</td><td>Modern and traditional ruling planets</td></tr>
+<tr><td>Decan</td><td>Your ten-degree slice and its sub-ruler</td></tr>
+<tr><td>Chinese zodiac</td><td>Animal, Yin or Yang, element and lunar year, using Chinese New Year dates</td></tr>
+<tr><td>Compatibility</td><td>Aspect, element, modality and polarity comparison of any two signs</td></tr>
+<tr><td>Sign dates by year</td><td>When the Sun enters and leaves each sign in any year from 1900 to 2099</td></tr>
+<tr><td>Group list</td><td>Signs, elements and Chinese animals for many people, with a balance chart</td></tr>
+<tr><td>Exports</td><td>Copy, TXT, PNG image, CSV and a print report that excludes the rest of the page</td></tr>
+</tbody></table>
 
-<h2>What are the four zodiac elements?</h2>
-<p>Each zodiac sign belongs to one of four elements, and the element describes how the sign expresses energy.</p>
+<h2 id="accuracy">How the sun sign is calculated</h2>
+<p>The Western tropical zodiac is defined by the Sun's ecliptic longitude. Aries begins when the Sun reaches 0 degrees, at the March equinox, Taurus at 30 degrees, Gemini at 60 degrees, and so on around the circle. This calculator finds the Sun's apparent ecliptic longitude at your birth moment using a standard low-precision astronomical series with corrections for the Sun's orbit, nutation and aberration. It is accurate to about 0.01 degree. Because the Sun moves a little under one degree a day, that corresponds to roughly 15 minutes of time.</p>
+<p>The sign is the longitude divided by 30 and rounded down. If you give no birth time, the tool checks the Sun's position at the start and end of your calendar day, in the UTC offset you chose. If the sign is the same, you get one answer. If not, you were born on a changeover day, and you get both signs and the moment of the change.</p>
+<figure class="zd-fig wide">
+<svg viewBox="0 0 700 190" role="img" aria-labelledby="zdCuspT zdCuspD" xmlns="http://www.w3.org/2000/svg">
+<title id="zdCuspT">A changeover day</title>
+<desc id="zdCuspD">A 24 hour bar for one calendar day. The left part is coloured as Leo, the right part as Virgo, and a glowing line marks the time the Sun changes sign. Without a birth time you cannot know which part you were born in.</desc>
+<rect class="svg-box" x="20" y="50" width="660" height="56" rx="10"/>
+<rect x="20" y="50" width="400" height="56" rx="10" fill="#ef4444" fill-opacity=".55"/>
+<rect x="420" y="50" width="260" height="56" rx="10" fill="#16a34a" fill-opacity=".55"/>
+<text class="svg-t" x="220" y="84" text-anchor="middle">Leo ♌ (Sun before the change)</text>
+<text class="svg-t" x="550" y="84" text-anchor="middle">Virgo ♍ (after)</text>
+<line class="zd-glow" x1="420" y1="36" x2="420" y2="122" stroke="#f59e0b" stroke-width="3"/>
+<text class="svg-m" x="420" y="30" text-anchor="middle">Sun changes sign (example: 15:10)</text>
+<text class="svg-m" x="20" y="130">00:00</text><text class="svg-m" x="350" y="130" text-anchor="middle">12:00</text><text class="svg-m" x="680" y="130" text-anchor="end">24:00</text>
+<text class="svg-m" x="350" y="168" text-anchor="middle">Born before 15:10: Leo. Born at or after 15:10: Virgo. Add your birth time to know which.</text>
+</svg>
+<figcaption>On a changeover day the sign depends on the birth time and the time zone. The exact time shifts by up to a day between years.</figcaption>
+</figure>
+<h3>Why a fixed table can be wrong</h3>
+<p>The usual date ranges, such as Leo from July 23 to August 22, are rounded to whole days. The real boundary moves because a tropical year is not a whole number of days, and leap years pull it back. A person born on August 22 or 23 can therefore be Leo in one year and Virgo in another. Time zones add another layer: the Sun changes sign at one instant worldwide, but the calendar date differs between countries.</p>
+<h3>Limits of the calculation</h3>
 <ul>
-<li><b>Fire (Aries, Leo, Sagittarius)</b> — passionate, energetic, action-oriented, spontaneous.</li>
-<li><b>Earth (Taurus, Virgo, Capricorn)</b> — practical, grounded, reliable, focused on tangible results.</li>
-<li><b>Air (Gemini, Libra, Aquarius)</b> — intellectual, communicative, social, idea-driven.</li>
-<li><b>Water (Cancer, Scorpio, Pisces)</b> — emotional, intuitive, empathetic, deeply sensitive.</li>
+<li>The Sun position is accurate to roughly 15 minutes. For a birth within about a quarter of an hour of a sign change, verify the result in an ephemeris or an astrology chart program.</li>
+<li>Time zones for historical births, including daylight saving rules and local mean time before standard time, can be complicated. Use the offset that applied at the place and time of birth.</li>
+<li>Dates before 1900 or after 2099 are not supported.</li>
+<li>The calculator finds the sun sign only. Moon sign, rising sign and houses need your birth place and a full chart.</li>
 </ul>
 
-<h2>What are the three modalities in astrology?</h2>
-<p>Modality (also called quadruplicity) describes how each sign moves through time and change.</p>
+<h2 id="dates">The 12 zodiac signs and their dates</h2>
+<p>These are the usual date ranges, rounded to whole days, together with the main attributes of each sign. Use the calculator to see the exact change moments for your year.</p>
+<table class="zd-table">
+<thead><tr><th>Sign</th><th>Usual dates</th><th>Element</th><th>Modality</th><th>Polarity</th><th>Ruling planet (modern / traditional)</th></tr></thead>
+<tbody><tr><td>♈ Aries</td><td>Mar 21 – Apr 19</td><td>Fire</td><td>Cardinal</td><td>Yang</td><td>Mars</td></tr><tr><td>♉ Taurus</td><td>Apr 20 – May 20</td><td>Earth</td><td>Fixed</td><td>Yin</td><td>Venus</td></tr><tr><td>♊ Gemini</td><td>May 21 – Jun 20</td><td>Air</td><td>Mutable</td><td>Yang</td><td>Mercury</td></tr><tr><td>♋ Cancer</td><td>Jun 21 – Jul 22</td><td>Water</td><td>Cardinal</td><td>Yin</td><td>Moon</td></tr><tr><td>♌ Leo</td><td>Jul 23 – Aug 22</td><td>Fire</td><td>Fixed</td><td>Yang</td><td>Sun</td></tr><tr><td>♍ Virgo</td><td>Aug 23 – Sep 22</td><td>Earth</td><td>Mutable</td><td>Yin</td><td>Mercury</td></tr><tr><td>♎ Libra</td><td>Sep 23 – Oct 22</td><td>Air</td><td>Cardinal</td><td>Yang</td><td>Venus</td></tr><tr><td>♏ Scorpio</td><td>Oct 23 – Nov 21</td><td>Water</td><td>Fixed</td><td>Yin</td><td>Pluto / Mars</td></tr><tr><td>♐ Sagittarius</td><td>Nov 22 – Dec 21</td><td>Fire</td><td>Mutable</td><td>Yang</td><td>Jupiter</td></tr><tr><td>♑ Capricorn</td><td>Dec 22 – Jan 19</td><td>Earth</td><td>Cardinal</td><td>Yin</td><td>Saturn</td></tr><tr><td>♒ Aquarius</td><td>Jan 20 – Feb 18</td><td>Air</td><td>Fixed</td><td>Yang</td><td>Uranus / Saturn</td></tr><tr><td>♓ Pisces</td><td>Feb 19 – Mar 20</td><td>Water</td><td>Mutable</td><td>Yin</td><td>Neptune / Jupiter</td></tr></tbody></table>
+
+<h2 id="dates-2026">Sun sign dates for 2026 and 2027</h2>
+<p>The tables below list the calculated moment the Sun enters and leaves each sign, in UTC. Times are accurate to about 15 minutes. To convert to your time zone, add or subtract your UTC offset, or use the Sign dates by year tab, which does it for you. Capricorn's row shows the period that starts in December.</p>
+<h3>2026</h3>
+<table class="zd-table"><thead><tr><th>Sign</th><th>Sun enters (UTC)</th><th>Sun leaves (UTC)</th><th>Days</th></tr></thead><tbody><tr><td>♒ Aquarius</td><td>Jan 20 01:40</td><td>Feb 18 15:44</td><td>29.6</td></tr><tr><td>♓ Pisces</td><td>Feb 18 15:44</td><td>Mar 20 14:36</td><td>30.0</td></tr><tr><td>♈ Aries</td><td>Mar 20 14:36</td><td>Apr 20 01:28</td><td>30.5</td></tr><tr><td>♉ Taurus</td><td>Apr 20 01:28</td><td>May 21 00:27</td><td>31.0</td></tr><tr><td>♊ Gemini</td><td>May 21 00:27</td><td>Jun 21 08:19</td><td>31.3</td></tr><tr><td>♋ Cancer</td><td>Jun 21 08:19</td><td>Jul 22 19:12</td><td>31.5</td></tr><tr><td>♌ Leo</td><td>Jul 22 19:12</td><td>Aug 23 02:21</td><td>31.3</td></tr><tr><td>♍ Virgo</td><td>Aug 23 02:21</td><td>Sep 23 00:08</td><td>30.9</td></tr><tr><td>♎ Libra</td><td>Sep 23 00:08</td><td>Oct 23 09:39</td><td>30.4</td></tr><tr><td>♏ Scorpio</td><td>Oct 23 09:39</td><td>Nov 22 07:22</td><td>29.9</td></tr><tr><td>♐ Sagittarius</td><td>Nov 22 07:22</td><td>Dec 21 20:47</td><td>29.6</td></tr><tr><td>♑ Capricorn</td><td>Dec 21 20:47</td><td>Jan 20 07:27</td><td>29.4</td></tr></tbody></table>
+<h3>2027</h3>
+<table class="zd-table"><thead><tr><th>Sign</th><th>Sun enters (UTC)</th><th>Sun leaves (UTC)</th><th>Days</th></tr></thead><tbody><tr><td>♒ Aquarius</td><td>Jan 20 07:27</td><td>Feb 18 21:32</td><td>29.6</td></tr><tr><td>♓ Pisces</td><td>Feb 18 21:32</td><td>Mar 20 20:23</td><td>30.0</td></tr><tr><td>♈ Aries</td><td>Mar 20 20:23</td><td>Apr 20 07:15</td><td>30.5</td></tr><tr><td>♉ Taurus</td><td>Apr 20 07:15</td><td>May 21 06:14</td><td>31.0</td></tr><tr><td>♊ Gemini</td><td>May 21 06:14</td><td>Jun 21 14:05</td><td>31.3</td></tr><tr><td>♋ Cancer</td><td>Jun 21 14:05</td><td>Jul 23 00:58</td><td>31.5</td></tr><tr><td>♌ Leo</td><td>Jul 23 00:58</td><td>Aug 23 08:07</td><td>31.3</td></tr><tr><td>♍ Virgo</td><td>Aug 23 08:07</td><td>Sep 23 05:55</td><td>30.9</td></tr><tr><td>♎ Libra</td><td>Sep 23 05:55</td><td>Oct 23 15:26</td><td>30.4</td></tr><tr><td>♏ Scorpio</td><td>Oct 23 15:26</td><td>Nov 22 13:09</td><td>29.9</td></tr><tr><td>♐ Sagittarius</td><td>Nov 22 13:09</td><td>Dec 22 02:35</td><td>29.6</td></tr><tr><td>♑ Capricorn</td><td>Dec 22 02:35</td><td>Jan 20 13:15</td><td>29.4</td></tr></tbody></table>
+<p>Notice that the sign lengths differ. The Sun moves faster through the sky in early January and slower in early July, so the signs last between about 29.4 and 31.4 days.</p>
+
+<h2 id="elements">The four zodiac elements</h2>
+<p>Each sign belongs to one of four elements, which describe how it is said to express energy.</p>
 <ul>
-<li><b>Cardinal (Aries, Cancer, Libra, Capricorn)</b> — initiators. They start new seasons and new cycles.</li>
-<li><b>Fixed (Taurus, Leo, Scorpio, Aquarius)</b> — stabilizers. They sustain what has been started.</li>
-<li><b>Mutable (Gemini, Virgo, Sagittarius, Pisces)</b> — adaptors. They shift, adjust and prepare for change.</li>
+<li><b>Fire (Aries, Leo, Sagittarius)</b> — passionate, energetic, action-oriented and spontaneous.</li>
+<li><b>Earth (Taurus, Virgo, Capricorn)</b> — practical, grounded, reliable and focused on tangible results.</li>
+<li><b>Air (Gemini, Libra, Aquarius)</b> — intellectual, communicative, social and idea-driven.</li>
+<li><b>Water (Cancer, Scorpio, Pisces)</b> — emotional, intuitive, empathetic and deeply sensitive.</li>
+</ul>
+<p>In traditional compatibility, fire and air are considered friendly, as are earth and water. Signs of the same element are also said to understand each other easily.</p>
+
+<h2 id="modalities">The three modalities</h2>
+<p>Modality, also called quality or quadruplicity, describes how a sign moves through time and change. It divides the twelve signs into three groups of four.</p>
+<ul>
+<li><b>Cardinal (Aries, Cancer, Libra, Capricorn)</b> — initiators. These signs begin the four seasons.</li>
+<li><b>Fixed (Taurus, Leo, Scorpio, Aquarius)</b> — stabilisers. They sit in the middle of a season and sustain what has been started.</li>
+<li><b>Mutable (Gemini, Virgo, Sagittarius, Pisces)</b> — adapters. They close a season and prepare for change.</li>
+</ul>
+<table class="zd-table">
+<thead><tr><th>Element</th><th>Cardinal</th><th>Fixed</th><th>Mutable</th></tr></thead>
+<tbody><tr class="zd-el-fire"><th>Fire</th><td>Aries</td><td>Leo</td><td>Sagittarius</td></tr><tr class="zd-el-earth"><th>Earth</th><td>Capricorn</td><td>Taurus</td><td>Virgo</td></tr><tr class="zd-el-air"><th>Air</th><td>Libra</td><td>Aquarius</td><td>Gemini</td></tr><tr class="zd-el-water"><th>Water</th><td>Cancer</td><td>Scorpio</td><td>Pisces</td></tr></tbody></table>
+<p>Every sign has one element and one modality, and no two signs share both. That is why there are exactly twelve combinations.</p>
+
+<h2 id="polarity-rulers">Polarity and ruling planets</h2>
+<p>Polarity splits the signs into alternating Yang (active, outward: fire and air) and Yin (receptive, inward: earth and water) signs. Starting from Aries, the signs alternate Yang, Yin, Yang, Yin around the wheel.</p>
+<p>Each sign is also linked to a ruling planet. Traditional astrology used the seven visible bodies: the Sun, the Moon, Mercury, Venus, Mars, Jupiter and Saturn. After Uranus (1781), Neptune (1846) and Pluto (1930) were discovered, modern astrology gave them to Aquarius, Pisces and Scorpio. Pluto was reclassified as a dwarf planet in 2006, but astrologers still use it. This calculator shows both rulers where they differ: Scorpio (Pluto, traditionally Mars), Aquarius (Uranus, traditionally Saturn) and Pisces (Neptune, traditionally Jupiter).</p>
+
+<h2 id="decans">Decans explained</h2>
+<p>A decan is a ten-degree slice of a sign, so every sign has three. Because the Sun covers about one degree a day, decans are roughly ten-day periods. The scheme used here, common in modern astrology, assigns the first decan to the sign itself, the second to the next sign of the same element and the third to the one after. A Leo born in the second decan, for example, carries a Sagittarius sub-influence. Older Chaldean schemes assign decan rulers in a repeating sequence of the seven classical planets, so you may see different decan rulers on other sites.</p>
+<table class="zd-table">
+<thead><tr><th>Sign</th><th>1st decan (0–10°)</th><th>2nd decan (10–20°)</th><th>3rd decan (20–30°)</th></tr></thead>
+<tbody><tr><td>♈ Aries</td><td>Aries (Mars)</td><td>Leo (Sun)</td><td>Sagittarius (Jupiter)</td></tr><tr><td>♉ Taurus</td><td>Taurus (Venus)</td><td>Virgo (Mercury)</td><td>Capricorn (Saturn)</td></tr><tr><td>♊ Gemini</td><td>Gemini (Mercury)</td><td>Libra (Venus)</td><td>Aquarius (Uranus)</td></tr><tr><td>♋ Cancer</td><td>Cancer (Moon)</td><td>Scorpio (Pluto)</td><td>Pisces (Neptune)</td></tr><tr><td>♌ Leo</td><td>Leo (Sun)</td><td>Sagittarius (Jupiter)</td><td>Aries (Mars)</td></tr><tr><td>♍ Virgo</td><td>Virgo (Mercury)</td><td>Capricorn (Saturn)</td><td>Taurus (Venus)</td></tr><tr><td>♎ Libra</td><td>Libra (Venus)</td><td>Aquarius (Uranus)</td><td>Gemini (Mercury)</td></tr><tr><td>♏ Scorpio</td><td>Scorpio (Pluto)</td><td>Pisces (Neptune)</td><td>Cancer (Moon)</td></tr><tr><td>♐ Sagittarius</td><td>Sagittarius (Jupiter)</td><td>Aries (Mars)</td><td>Leo (Sun)</td></tr><tr><td>♑ Capricorn</td><td>Capricorn (Saturn)</td><td>Taurus (Venus)</td><td>Virgo (Mercury)</td></tr><tr><td>♒ Aquarius</td><td>Aquarius (Uranus)</td><td>Gemini (Mercury)</td><td>Libra (Venus)</td></tr><tr><td>♓ Pisces</td><td>Pisces (Neptune)</td><td>Cancer (Moon)</td><td>Scorpio (Pluto)</td></tr></tbody></table>
+
+<h2 id="cusp">Cusp births explained</h2>
+<p>A cusp birth is when your birthday falls on or near the boundary between two signs. There is no official definition. This calculator calls a birth a cusp when the Sun entered your sign, or leaves it, within about 48 hours of your birth moment, and tells you the exact gap. Astrologers say cusp people can show traits of both neighbouring signs. In technical terms, though, your sun sign is the one the Sun was in at birth, whichever side of the line you fall on.</p>
+<p>If you were born on the day of the sign change and do not know your birth time, you are not strictly a cusp case. You are an <i>undetermined</i> case, and the calculator shows both possibilities.</p>
+
+<h2 id="tropical">Tropical, sidereal and the 13th sign</h2>
+<p>Western astrology uses the tropical zodiac, which starts Aries at the March equinox and therefore stays tied to the seasons. Vedic (Jyotish) astrology uses the sidereal zodiac, which is measured against the stars. Because the equinox slowly drifts against the stars, a movement called precession of about one degree every 72 years, the two zodiacs are now roughly 24 degrees apart. As a result, many people have one sign in Western astrology and the previous sign in Vedic astrology. This calculator uses the tropical zodiac only.</p>
+<p>You may also hear that there are thirteen signs. The Sun does pass through the constellation Ophiuchus for a couple of weeks between late November and mid December, using modern constellation boundaries. But the zodiac signs are twelve equal 30 degree divisions of the ecliptic tied to the seasons, not constellation outlines, and the constellations themselves have unequal sizes. So Western astrology does not use Ophiuchus.</p>
+
+<h2 id="sun-moon-rising">Sun, moon and rising signs</h2>
+<ul>
+<li><b>Sun sign</b> — where the Sun was at birth. It is said to describe your core identity. This is what people usually mean by "zodiac sign".</li>
+<li><b>Moon sign</b> — where the Moon was. It is said to describe your emotional world.</li>
+<li><b>Rising sign (ascendant)</b> — the sign rising on the eastern horizon at your exact birth time and place. It is said to describe how you appear to others.</li>
+</ul>
+<p>The Moon changes sign about every two and a half days and the rising sign roughly every two hours, so both need an exact birth time and place. This tool calculates the sun sign. It is the natural first step, and it is the one that needs only a date.</p>
+
+<h2 id="chinese">Chinese zodiac by birth year</h2>
+<p>The Chinese zodiac runs on a twelve-year cycle, with each year tied to an animal. It follows the lunisolar calendar, so the animal year begins on Chinese New Year, which falls between about January 21 and February 20, and not on January 1. If you were born in January or early February, check the date: you may belong to the previous year's animal. The calculator uses a table of Chinese New Year dates from 1900 to 2099 and tells you when your birthday falls before the new year.</p>
+<p>The twelve animals in order are Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog and Pig. By tradition the order comes from a folk story about a race. Each animal year is also assigned a Yin or Yang polarity (even-numbered years in the ten-year stem cycle are Yang) and one of five elements: Wood, Fire, Earth, Metal or Water, each lasting two years in a row. Together the twelve animals and five elements make a sixty-year cycle, which is why a Metal Rat comes back only every sixty years. Some Chinese astrology traditions, such as BaZi, start the year at Lichun around February 4 instead of Chinese New Year, so you may see a different animal in those systems.</p>
+<table class="zd-table">
+<thead><tr><th>Animal</th><th>Recent years (Chinese New Year date)</th></tr></thead>
+<tbody><tr><td>Rat</td><td>1960 (Jan 28), 1972 (Feb 15), 1984 (Feb 2), 1996 (Feb 19), 2008 (Feb 7), 2020 (Jan 25), 2032 (Feb 11)</td></tr><tr><td>Ox</td><td>1961 (Feb 15), 1973 (Feb 3), 1985 (Feb 20), 1997 (Feb 7), 2009 (Jan 26), 2021 (Feb 12), 2033 (Jan 31)</td></tr><tr><td>Tiger</td><td>1962 (Feb 5), 1974 (Jan 23), 1986 (Feb 9), 1998 (Jan 28), 2010 (Feb 14), 2022 (Feb 1), 2034 (Feb 19)</td></tr><tr><td>Rabbit</td><td>1963 (Jan 25), 1975 (Feb 11), 1987 (Jan 29), 1999 (Feb 16), 2011 (Feb 3), 2023 (Jan 22), 2035 (Feb 8)</td></tr><tr><td>Dragon</td><td>1964 (Feb 13), 1976 (Jan 31), 1988 (Feb 17), 2000 (Feb 5), 2012 (Jan 23), 2024 (Feb 10), 2036 (Jan 28)</td></tr><tr><td>Snake</td><td>1965 (Feb 2), 1977 (Feb 18), 1989 (Feb 6), 2001 (Jan 24), 2013 (Feb 10), 2025 (Jan 29), 2037 (Feb 15)</td></tr><tr><td>Horse</td><td>1966 (Jan 21), 1978 (Feb 7), 1990 (Jan 27), 2002 (Feb 12), 2014 (Jan 31), 2026 (Feb 17), 2038 (Feb 4)</td></tr><tr><td>Goat</td><td>1967 (Feb 9), 1979 (Jan 28), 1991 (Feb 15), 2003 (Feb 1), 2015 (Feb 19), 2027 (Feb 6), 2039 (Jan 24)</td></tr><tr><td>Monkey</td><td>1968 (Jan 30), 1980 (Feb 16), 1992 (Feb 4), 2004 (Jan 22), 2016 (Feb 8), 2028 (Jan 26), 2040 (Feb 12)</td></tr><tr><td>Rooster</td><td>1969 (Feb 17), 1981 (Feb 5), 1993 (Jan 23), 2005 (Feb 9), 2017 (Jan 28), 2029 (Feb 13), 2041 (Feb 1)</td></tr><tr><td>Dog</td><td>1970 (Feb 6), 1982 (Jan 25), 1994 (Feb 10), 2006 (Jan 29), 2018 (Feb 16), 2030 (Feb 3), 2042 (Jan 22)</td></tr><tr><td>Pig</td><td>1971 (Jan 27), 1983 (Feb 13), 1995 (Jan 31), 2007 (Feb 18), 2019 (Feb 5), 2031 (Jan 23), 2043 (Feb 10)</td></tr></tbody></table>
+
+<h2 id="compatibility">Zodiac compatibility</h2>
+<p>Traditional sun sign compatibility looks at the angle between two signs around the wheel. Each angle has a name and a meaning.</p>
+<table class="zd-table">
+<thead><tr><th>Signs apart</th><th>Angle</th><th>Name</th><th>Traditional meaning</th></tr></thead>
+<tbody>
+<tr><td>0</td><td>0°</td><td>Same sign</td><td>Mirror: instant understanding and shared blind spots</td></tr>
+<tr><td>1</td><td>30°</td><td>Semi-sextile</td><td>Little in common, needs curiosity and effort</td></tr>
+<tr><td>2</td><td>60°</td><td>Sextile</td><td>Supportive: fire with air or earth with water</td></tr>
+<tr><td>3</td><td>90°</td><td>Square</td><td>Friction and growth: same modality, clashing elements</td></tr>
+<tr><td>4</td><td>120°</td><td>Trine</td><td>Flowing: same element, easiest link</td></tr>
+<tr><td>5</td><td>150°</td><td>Quincunx</td><td>Adjustment: little in common</td></tr>
+<tr><td>6</td><td>180°</td><td>Opposition</td><td>Magnetic opposites: attraction and contrast</td></tr>
+</tbody></table>
+<p>The Compatibility tab applies these rules to any two signs, or to two birth dates, and adds a short note on the element pairing. Sun-sign matching is a simplified tradition. Relationships depend on many things that no star sign captures, so treat the result as a conversation starter.</p>
+
+<h2 id="profiles">The twelve sign profiles</h2>
+<p>These short descriptions summarise the traditional associations of each sign. They are generalisations, and no sign describes everyone born under it.</p>
+<h3 id="sign-aries">♈ Aries: Mar 21 to Apr 19</h3><p>Aries opens the zodiac and the spring season, so it is associated with beginnings, drive and directness. Aries people are described as quick to act, quick to forgive and happiest when there is a challenge in front of them.</p><p><b>Strengths:</b> takes the initiative; brave under pressure; energetic and optimistic. <b>Challenges:</b> impatience; impulsiveness; can be competitive to a fault. <b>Symbol:</b> The Ram. <b>Natural house:</b> 1. <b>Ruling day (traditional):</b> Tuesday.</p>
+<h3 id="sign-taurus">♉ Taurus: Apr 20 to May 20</h3><p>Taurus is the fixed earth sign of mid-spring. Tradition links it to patience, the senses and a love of stability, from good food to a secure home. Taurus is often described as slow to start but very hard to stop.</p><p><b>Strengths:</b> steady and dependable; appreciates quality and comfort; persistent. <b>Challenges:</b> resistance to change; stubbornness; possessiveness. <b>Symbol:</b> The Bull. <b>Natural house:</b> 2. <b>Ruling day (traditional):</b> Friday.</p>
+<h3 id="sign-gemini">♊ Gemini: May 21 to Jun 20</h3><p>Gemini is the mutable air sign that closes spring. It is tied to communication, curiosity and variety. Geminis are described as talkative, sociable and always interested in the next question or idea.</p><p><b>Strengths:</b> quick learner; excellent communicator; flexible. <b>Challenges:</b> restlessness; scattered focus; indecision. <b>Symbol:</b> The Twins. <b>Natural house:</b> 3. <b>Ruling day (traditional):</b> Wednesday.</p>
+<h3 id="sign-cancer">♋ Cancer: Jun 21 to Jul 22</h3><p>Cancer begins the northern summer and is the cardinal water sign. It is the only sign ruled by the Moon, which is why it is linked with home, memory and emotional care. Cancers are often described as protective and deeply loyal.</p><p><b>Strengths:</b> caring and protective; emotionally perceptive; loyal to family and friends. <b>Challenges:</b> moodiness; holding on to the past; over-sensitivity. <b>Symbol:</b> The Crab. <b>Natural house:</b> 4. <b>Ruling day (traditional):</b> Monday.</p>
+<h3 id="sign-leo">♌ Leo: Jul 23 to Aug 22</h3><p>Leo is the fixed fire sign of high summer and the only sign ruled by the Sun itself. It stands for self-expression, creativity and heart. Leos are described as warm, proud and happiest when they can lead or perform.</p><p><b>Strengths:</b> warm and generous; natural leader; creative and expressive. <b>Challenges:</b> pride; need for attention; stubborn streak. <b>Symbol:</b> The Lion. <b>Natural house:</b> 5. <b>Ruling day (traditional):</b> Sunday.</p>
+<h3 id="sign-virgo">♍ Virgo: Aug 23 to Sep 22</h3><p>Virgo is the mutable earth sign at the end of summer, associated with service, craft and analysis. Virgos are described as careful, modest and quietly effective, with a habit of noticing what needs improving.</p><p><b>Strengths:</b> detail-oriented; helpful and reliable; practical problem solver. <b>Challenges:</b> over-criticism; worry; perfectionism. <b>Symbol:</b> The Maiden. <b>Natural house:</b> 6. <b>Ruling day (traditional):</b> Wednesday.</p>
+<h3 id="sign-libra">♎ Libra: Sep 23 to Oct 22</h3><p>Libra starts autumn at the equinox and is the cardinal air sign. It is linked with balance, relationships and aesthetics. Libras are described as diplomatic and charming, and as people who dislike conflict and unfairness.</p><p><b>Strengths:</b> fair-minded; gracious and sociable; good at seeing both sides. <b>Challenges:</b> indecision; avoiding conflict; people-pleasing. <b>Symbol:</b> The Scales. <b>Natural house:</b> 7. <b>Ruling day (traditional):</b> Friday.</p>
+<h3 id="sign-scorpio">♏ Scorpio: Oct 23 to Nov 21</h3><p>Scorpio is the fixed water sign of deep autumn. It is associated with intensity, transformation and privacy. Scorpios are described as determined and perceptive, with strong feelings that they do not always show.</p><p><b>Strengths:</b> determined and focused; perceptive; fiercely loyal. <b>Challenges:</b> secrecy; jealousy; all-or-nothing intensity. <b>Symbol:</b> The Scorpion. <b>Natural house:</b> 8. <b>Ruling day (traditional):</b> Tuesday.</p>
+<h3 id="sign-sagittarius">♐ Sagittarius: Nov 22 to Dec 21</h3><p>Sagittarius is the mutable fire sign that closes autumn. It stands for exploration, philosophy and freedom. Sagittarians are described as optimistic, frank and always looking toward the next horizon.</p><p><b>Strengths:</b> optimistic and enthusiastic; honest and open; loves learning and travel. <b>Challenges:</b> bluntness; restlessness; over-promising. <b>Symbol:</b> The Archer. <b>Natural house:</b> 9. <b>Ruling day (traditional):</b> Thursday.</p>
+<h3 id="sign-capricorn">♑ Capricorn: Dec 22 to Jan 19</h3><p>Capricorn begins at the winter solstice and is the cardinal earth sign. It is linked with structure, ambition and responsibility. Capricorns are described as patient planners who build things step by step.</p><p><b>Strengths:</b> disciplined and persistent; responsible; long-term planner. <b>Challenges:</b> workaholism; pessimism; reserve. <b>Symbol:</b> The Sea-Goat. <b>Natural house:</b> 10. <b>Ruling day (traditional):</b> Saturday.</p>
+<h3 id="sign-aquarius">♒ Aquarius: Jan 20 to Feb 18</h3><p>Aquarius is the fixed air sign of mid-winter. It is associated with ideas, community and reform. Aquarians are described as independent and inventive, and as people who like to think differently from the crowd.</p><p><b>Strengths:</b> original thinker; community-minded; independent. <b>Challenges:</b> emotional distance; contrariness; stubborn views. <b>Symbol:</b> The Water-Bearer. <b>Natural house:</b> 11. <b>Ruling day (traditional):</b> Saturday.</p>
+<h3 id="sign-pisces">♓ Pisces: Feb 19 to Mar 20</h3><p>Pisces is the mutable water sign that closes the zodiac and the winter season. It is linked with imagination, empathy and endings that flow into new beginnings. Pisceans are described as gentle, intuitive and creative.</p><p><b>Strengths:</b> compassionate; imaginative and artistic; adaptable. <b>Challenges:</b> escapism; over-giving; vagueness. <b>Symbol:</b> The Fishes. <b>Natural house:</b> 12. <b>Ruling day (traditional):</b> Thursday.</p>
+
+
+<h2 id="group">Using the group list</h2>
+<p>The Group list tab lets you add the names and birthdays of family, friends, colleagues or characters from a story. It shows each person's sun sign, element, modality and Chinese animal, then charts how the group is balanced across the four elements and three modalities. That makes it handy for party games, team-building icebreakers, writing a cast of characters or planning gifts. Export the list as CSV, copy it as text or print it. If a person's birthday is a changeover day, the table marks it and shows both possible signs.</p>
+
+<h2 id="privacy">Privacy and saving your results</h2>
+<p>Everything you enter is processed in your browser, and no date of birth is sent to Utiliby. Results are kept in memory and disappear when you close the tab. The Group list is saved on your device only if you tick the Remember option. You can copy your result, download it as text, save the wheel as a PNG image or print a report. The print view contains only your report and disclaimer, not the site header, footer or this article.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>How do I find my zodiac sign?</summary><p>Enter your date of birth into the zodiac sign calculator. It works out where the Sun was in the zodiac on that day and shows your sun sign, with its element, modality, ruling planet and Chinese zodiac animal. Adding your birth time and UTC offset makes the answer exact on boundary days.</p></details>
+<details><summary>What are the 12 zodiac sign dates?</summary><p>Aries Mar 21 to Apr 19, Taurus Apr 20 to May 20, Gemini May 21 to Jun 20, Cancer Jun 21 to Jul 22, Leo Jul 23 to Aug 22, Virgo Aug 23 to Sep 22, Libra Sep 23 to Oct 22, Scorpio Oct 23 to Nov 21, Sagittarius Nov 22 to Dec 21, Capricorn Dec 22 to Jan 19, Aquarius Jan 20 to Feb 18, Pisces Feb 19 to Mar 20. These are the usual dates, and the exact change moment shifts by up to a day from year to year.</p></details>
+<details><summary>What is a cusp zodiac sign?</summary><p>A cusp birth is when your birthday falls on or very near the boundary between two signs. This calculator marks a cusp when the Sun entered or leaves your sign within about two days of your birth moment. People born on a cusp are said to blend traits of both signs, though the Sun position still assigns a single sign.</p></details>
+<details><summary>Why does my zodiac sign differ from the date range I was told?</summary><p>The usual date ranges are rounded to whole days. The Sun changes sign at a specific moment that moves by up to a day between years and depends on your time zone. If you were born on a boundary day, your sign can differ from the table. Enter your birth time and UTC offset to see which side of the change you were born.</p></details>
+<details><summary>What are the four zodiac elements?</summary><p>Fire signs are Aries, Leo and Sagittarius. Earth signs are Taurus, Virgo and Capricorn. Air signs are Gemini, Libra and Aquarius. Water signs are Cancer, Scorpio and Pisces. Elements describe how a sign expresses energy.</p></details>
+<details><summary>What are the three modalities in astrology?</summary><p>Cardinal signs (Aries, Cancer, Libra, Capricorn) start seasons and initiate. Fixed signs (Taurus, Leo, Scorpio, Aquarius) stabilise and sustain. Mutable signs (Gemini, Virgo, Sagittarius, Pisces) adapt and change.</p></details>
+<details><summary>Does the zodiac sign calculator also show my Chinese zodiac?</summary><p>Yes. It shows your Chinese zodiac animal, its Yin or Yang polarity and its element, using the Chinese New Year date for your birth year. If you were born in January or February before Chinese New Year, you belong to the previous lunar year, and the calculator tells you so.</p></details>
+<details><summary>Is the Chinese zodiac the same as the calendar year?</summary><p>No. The Chinese zodiac follows the lunisolar calendar. A new animal year starts on Chinese New Year, which falls between about January 21 and February 20. Anyone born before that date in their birth year has the previous year's animal.</p></details>
+<details><summary>What is a decan?</summary><p>A decan is a ten degree slice of a sign. Each sign has three decans of roughly ten days. In the common scheme used here, the first decan is the sign itself, the second is the next sign of the same element and the third is the one after that. The calculator shows your decan and its sub-ruler.</p></details>
+<details><summary>What does ruling planet mean?</summary><p>In astrology each sign is linked to a planet that is said to colour its style. Modern astrology gives Scorpio to Pluto, Aquarius to Uranus and Pisces to Neptune. Traditional astrology, from before those planets were discovered, uses Mars, Saturn and Jupiter. The tool shows both where they differ.</p></details>
+<details><summary>What is the difference between sun, moon and rising signs?</summary><p>Your sun sign is where the Sun was at birth. Your moon sign is where the Moon was, and your rising sign (ascendant) is the sign on the eastern horizon at your birth time and place. This calculator finds the sun sign only. Moon and rising signs need an ephemeris and your birth place.</p></details>
+<details><summary>Is this the tropical or the sidereal zodiac?</summary><p>It uses the tropical zodiac used in Western astrology, which starts Aries at the March equinox. Vedic (sidereal) astrology uses a zodiac fixed to the stars, which today is about 24 degrees behind, so many people have a different sign in Vedic astrology.</p></details>
+<details><summary>Is there a 13th zodiac sign, Ophiuchus?</summary><p>The Sun does pass through the constellation Ophiuchus for a couple of weeks in late November to mid December. But Western astrology divides the ecliptic into twelve equal 30 degree signs tied to the seasons, not to constellation outlines, so Ophiuchus is not one of the twelve signs.</p></details>
+<details><summary>How accurate is the sun sign calculation?</summary><p>The Sun's position is calculated with a standard low-precision astronomical formula that is good to about 0.01 degree, which is roughly 15 minutes of time. That is enough to find the right sign for everyone except births within about 15 minutes of a sign change. For those, check an ephemeris or your birth chart.</p></details>
+<details><summary>Why does the tool ask for a UTC offset?</summary><p>The Sun changes sign at one instant worldwide, but the calendar date depends on your time zone. A person born at 11 pm in New York and a person born at 4 am in London the next day can share the same moment. Choose the offset that applied at your birthplace on your birth date, including daylight saving time.</p></details>
+<details><summary>What should I do if I do not know my birth time?</summary><p>Leave the time empty. For most dates the sign is the same all day. On the one or two changeover days each month, the calculator shows both possible signs and the time the Sun changed sign, so you can compare it with what you know about your birth.</p></details>
+<details><summary>How do the compatibility results work?</summary><p>The Compatibility tab compares two Sun signs by their angle around the zodiac and by element, modality and polarity. Signs that are 120 degrees apart (trine) share an element and are called easy. Signs 90 degrees apart (square) share a modality and are called dynamic. Results are traditional interpretations, not predictions.</p></details>
+<details><summary>Can I check the sign of several people at once?</summary><p>Yes. Use the Group list tab to add names and dates of birth. You get a table with sun sign, element, modality and Chinese animal for each person, a chart of how the elements and modalities are spread, and CSV, copy and print options.</p></details>
+<details><summary>What are the exact dates the Sun enters each sign this year?</summary><p>Open the Sign dates by year tab and enter any year from 1900 to 2099. You get the calculated moment the Sun enters and leaves each sign in the UTC offset you choose, including the equinox and solstice markers.</p></details>
+<details><summary>Does this calculator store my date of birth?</summary><p>No. Everything is calculated in your browser and nothing is sent to Utiliby. The Group list is kept in memory only, unless you tick the Remember option, which saves that list in this browser's local storage on your device.</p></details>
+<details><summary>Can I save or print my result?</summary><p>Yes. You can copy the result, download it as a text file, save a picture of your zodiac wheel as a PNG, or print a clean report. The printout contains only your result, not the website header, footer or the long article.</p></details>
+<details><summary>Is astrology scientifically proven?</summary><p>No. Astrology is a symbolic and cultural tradition, and studies have not found that sun signs predict personality or life events. This tool is provided for entertainment, curiosity and cultural interest. It is not advice of any kind.</p></details>
+<details><summary>Why do astrology websites sometimes show different dates?</summary><p>Sources round the sign changes to whole days and use different years or time zones. The Sun's actual change moment moves between years. This calculator uses the astronomical position for your exact date and offset, so it can differ from a fixed table on boundary days.</p></details>
+<details><summary>Is this zodiac sign calculator free?</summary><p>Yes. It is free to use, with no account, email or sign-up, and it has no usage limit. The site may show advertising to cover its costs, but the tool itself does not charge.</p></details>
+<details><summary>Does it work on a phone?</summary><p>Yes. The layout adapts to narrow screens, and the date and time fields use your phone's native pickers.</p></details>
+<details><summary>Which birth years are supported?</summary><p>Birth dates from 1900 to 2099 are supported, because the Chinese New Year table and the Sun position formula are set up for that range.</p></details>
+</div>
+
+<h2 id="sources">Sources and further reading</h2>
+<ul>
+<li>Jean Meeus, Astronomical Algorithms — formulas for the Sun's position and for the equinoxes and solstices.</li>
+<li>US Naval Observatory and IAU Standards of Fundamental Astronomy — seasons, equinox and solstice data.</li>
+<li>Espenak and Meeus — polynomial expressions for ΔT (the difference between Terrestrial Time and Universal Time).</li>
+<li>Hong Kong Observatory — Gregorian-Lunar calendar conversion tables for Chinese New Year dates.</li>
+<li>International Astronomical Union — constellation boundaries (Ophiuchus and the ecliptic).</li>
+<li>Reference works on Western astrology: elements, modalities, polarity, rulerships and decans.</li>
 </ul>
 
-<h2>Cusp births explained</h2>
-<p>A cusp birth is when your birthday falls on or near the boundary between two zodiac signs — usually within one or two days. People born on a cusp are often said to blend traits of both signs. This calculator flags those cases so you know your birthday sits on a boundary.</p>
-<p>In traditional astrology, your sun sign is determined by the exact moment the Sun entered a sign, so a person born at 11:50 PM on the last day of a sign has a different sign from someone born at 12:10 AM the next day. This calculator uses the standard daily ranges, which are accurate to about 99% of dates — the remaining 1% fall on the specific dates when the Sun actually crosses the boundary.</p>
+<h2 id="disclaimer">Disclaimer</h2>
+<div class="zd-disc">
+<p><b>Entertainment only.</b> This free online zodiac sign calculator and its accompanying article are provided for entertainment, curiosity and cultural interest. Astrology is a symbolic and cultural tradition. It is not a science, and studies have not shown that sun signs predict personality, relationships or events. Nothing here predicts your future.</p>
+<p><b>Not advice.</b> The tool and article are not medical, legal, financial, relationship or psychological advice. Do not use a zodiac sign to make important decisions. If you are struggling, speak to a qualified professional.</p>
+<p><b>Accuracy.</b> The Sun's position and the Chinese New Year dates are calculated, and results are intended to be accurate, but they may differ by a few minutes from an ephemeris and may contain errors. Time zone and daylight saving rules for historical births can be complicated, so verify an important boundary birth with an astronomical source. The tool is provided "as is" and "as available", without warranties of any kind.</p>
+<p><b>Interpretations vary.</b> Descriptions of signs, decans, rulerships and compatibility vary between traditions, writers and cultures. The text here is one general summary, not an authority.</p>
+<p><b>Not affiliated.</b> Utiliby is not affiliated with or endorsed by any astrology publisher, astronomy organisation or calendar authority. Names are used for identification only.</p>
+<p><b>Limitation of liability.</b> To the fullest extent permitted by law, Utiliby is not liable for any loss or damage arising from the use of this tool or from reliance on its results.</p>
+</div>
 
-<h2>Sun sign, moon sign and rising sign — what's the difference?</h2>
-<ul>
-<li><b>Sun sign</b> — where the Sun was when you were born. Represents your core identity and ego. This is what most people mean by "zodiac sign."</li>
-<li><b>Moon sign</b> — where the Moon was. Represents your emotional world and inner life.</li>
-<li><b>Rising sign (Ascendant)</b> — the sign rising on the eastern horizon at your exact birth time and place. Represents how you appear to others.</li>
-</ul>
-<p>Calculating moon and rising signs requires your exact birth time and birth location. This sun sign calculator does not compute them, but knowing your sun sign is the natural first step.</p>
-
-<h2>Chinese zodiac — your animal by birth year</h2>
-<p>The Chinese zodiac runs on a 12-year cycle, with each year tied to an animal. Unlike the Western zodiac, which is month-based, the Chinese zodiac is year-based and follows the lunar calendar (Chinese New Year in late January or February). If your birthday falls in January or early February, you may belong to the previous year's animal.</p>
-<p>The 12 animals in order are: Rat, Ox, Tiger, Rabbit, Dragon, Snake, Horse, Goat, Monkey, Rooster, Dog and Pig.</p>
-
-<h2>Zodiac compatibility at a glance</h2>
-<p>Traditional astrology groups signs into compatible elements. Fire signs often pair well with Air and other Fire signs. Earth signs pair well with Water and other Earth signs. But compatibility depends on the whole birth chart, not just sun signs — treat these as inspiration, not destiny.</p>
-
-<h2>Frequently asked questions</h2>
-<details><summary>How do I find my zodiac sign?</summary><p>Enter your date of birth into the zodiac sign calculator and it will match your birth date to the correct sun sign based on the Western tropical zodiac date ranges.</p></details>
-<details><summary>What are the 12 zodiac sign dates?</summary><p>Aries Mar 21 to Apr 19, Taurus Apr 20 to May 20, Gemini May 21 to Jun 20, Cancer Jun 21 to Jul 22, Leo Jul 23 to Aug 22, Virgo Aug 23 to Sep 22, Libra Sep 23 to Oct 22, Scorpio Oct 23 to Nov 21, Sagittarius Nov 22 to Dec 21, Capricorn Dec 22 to Jan 19, Aquarius Jan 20 to Feb 18, Pisces Feb 19 to Mar 20.</p></details>
-<details><summary>What is a cusp zodiac sign?</summary><p>A cusp birth is when your birthday falls on or within two days of a zodiac sign boundary. People born on a cusp are said to blend traits of both signs, though traditional astrology assigns a single sign based on the exact moment of birth.</p></details>
-<details><summary>What are the four zodiac elements?</summary><p>Fire signs are Aries, Leo and Sagittarius. Earth signs are Taurus, Virgo and Capricorn. Air signs are Gemini, Libra and Aquarius. Water signs are Cancer, Scorpio and Pisces.</p></details>
-<details><summary>What are the three modalities in astrology?</summary><p>Cardinal signs (Aries, Cancer, Libra, Capricorn) start seasons. Fixed signs (Taurus, Leo, Scorpio, Aquarius) stabilize. Mutable signs (Gemini, Virgo, Sagittarius, Pisces) adapt.</p></details>
-<details><summary>Does the zodiac sign calculator also show my Chinese zodiac?</summary><p>Yes. This free zodiac sign calculator online shows both your Western sun sign and your Chinese zodiac animal based on your birth year.</p></details>
-<details><summary>Is this zodiac sign calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your date of birth anywhere.</p></details>
-<details><summary>Is zodiac sign astrology scientifically proven?</summary><p>No. Astrology is a symbolic and cultural tradition, not a science. This tool is provided for entertainment and self-reflection. It is not a substitute for medical, financial or psychological advice.</p></details>
+</article>
 
 </main>
 <footer class="site"><div class="wrap" id="site-footer"></div></footer>
@@ -148,144 +478,525 @@
 (function(){
 "use strict";
 
-function $(id){ return document.getElementById(id); }
-
+/* ================= Zodiac Sign Calculator - data ================= */
 var SIGNS = [
-  {name:"Capricorn", glyph:"\u2651", element:"Earth", modality:"Cardinal", planet:"Saturn", start:[12,22], end:[1,19], color:"element-earth",
-   traits:["Disciplined","Responsible","Ambitious","Patient","Strategic"]},
-  {name:"Aquarius", glyph:"\u2652", element:"Air", modality:"Fixed", planet:"Uranus", start:[1,20], end:[2,18], color:"element-air",
-   traits:["Independent","Innovative","Humanitarian","Detached","Original"]},
-  {name:"Pisces", glyph:"\u2653", element:"Water", modality:"Mutable", planet:"Neptune", start:[2,19], end:[3,20], color:"element-water",
-   traits:["Compassionate","Intuitive","Artistic","Dreamy","Empathetic"]},
-  {name:"Aries", glyph:"\u2648", element:"Fire", modality:"Cardinal", planet:"Mars", start:[3,21], end:[4,19], color:"element-fire",
-   traits:["Bold","Ambitious","Direct","Courageous","Passionate"]},
-  {name:"Taurus", glyph:"\u2649", element:"Earth", modality:"Fixed", planet:"Venus", start:[4,20], end:[5,20], color:"element-earth",
-   traits:["Reliable","Patient","Practical","Devoted","Stubborn"]},
-  {name:"Gemini", glyph:"\u264A", element:"Air", modality:"Mutable", planet:"Mercury", start:[5,21], end:[6,20], color:"element-air",
-   traits:["Curious","Adaptable","Witty","Communicative","Versatile"]},
-  {name:"Cancer", glyph:"\u264B", element:"Water", modality:"Cardinal", planet:"Moon", start:[6,21], end:[7,22], color:"element-water",
-   traits:["Nurturing","Loyal","Intuitive","Protective","Sentimental"]},
-  {name:"Leo", glyph:"\u264C", element:"Fire", modality:"Fixed", planet:"Sun", start:[7,23], end:[8,22], color:"element-fire",
-   traits:["Confident","Generous","Loyal","Charismatic","Dramatic"]},
-  {name:"Virgo", glyph:"\u264D", element:"Earth", modality:"Mutable", planet:"Mercury", start:[8,23], end:[9,22], color:"element-earth",
-   traits:["Analytical","Kind","Hardworking","Practical","Perfectionist"]},
-  {name:"Libra", glyph:"\u264E", element:"Air", modality:"Cardinal", planet:"Venus", start:[9,23], end:[10,22], color:"element-air",
-   traits:["Diplomatic","Fair","Social","Charming","Idealistic"]},
-  {name:"Scorpio", glyph:"\u264F", element:"Water", modality:"Fixed", planet:"Pluto", start:[10,23], end:[11,21], color:"element-water",
-   traits:["Passionate","Resourceful","Brave","Determined","Intense"]},
-  {name:"Sagittarius", glyph:"\u2650", element:"Fire", modality:"Mutable", planet:"Jupiter", start:[11,22], end:[12,21], color:"element-fire",
-   traits:["Adventurous","Optimistic","Curious","Honest","Free-spirited"]}
+ {name:"Aries", glyph:"♈", symbol:"The Ram", element:"Fire", modality:"Cardinal", polarity:"Yang", planet:"Mars", trad:"Mars", house:1, season:"Spring", color:"element-fire", start:[3,21], end:[4,19], day:"Tuesday",
+  traits:["Bold","Ambitious","Direct","Courageous","Passionate"], strengths:["Takes the initiative","Brave under pressure","Energetic and optimistic"], challenges:["Impatience","Impulsiveness","Can be competitive to a fault"],
+  blurb:"Aries opens the zodiac and the spring season, so it is associated with beginnings, drive and directness. Aries people are described as quick to act, quick to forgive and happiest when there is a challenge in front of them."},
+ {name:"Taurus", glyph:"♉", symbol:"The Bull", element:"Earth", modality:"Fixed", polarity:"Yin", planet:"Venus", trad:"Venus", house:2, season:"Spring", color:"element-earth", start:[4,20], end:[5,20], day:"Friday",
+  traits:["Reliable","Patient","Practical","Devoted","Stubborn"], strengths:["Steady and dependable","Appreciates quality and comfort","Persistent"], challenges:["Resistance to change","Stubbornness","Possessiveness"],
+  blurb:"Taurus is the fixed earth sign of mid-spring. Tradition links it to patience, the senses and a love of stability, from good food to a secure home. Taurus is often described as slow to start but very hard to stop."},
+ {name:"Gemini", glyph:"♊", symbol:"The Twins", element:"Air", modality:"Mutable", polarity:"Yang", planet:"Mercury", trad:"Mercury", house:3, season:"Spring", color:"element-air", start:[5,21], end:[6,20], day:"Wednesday",
+  traits:["Curious","Adaptable","Witty","Communicative","Versatile"], strengths:["Quick learner","Excellent communicator","Flexible"], challenges:["Restlessness","Scattered focus","Indecision"],
+  blurb:"Gemini is the mutable air sign that closes spring. It is tied to communication, curiosity and variety. Geminis are described as talkative, sociable and always interested in the next question or idea."},
+ {name:"Cancer", glyph:"♋", symbol:"The Crab", element:"Water", modality:"Cardinal", polarity:"Yin", planet:"Moon", trad:"Moon", house:4, season:"Summer", color:"element-water", start:[6,21], end:[7,22], day:"Monday",
+  traits:["Nurturing","Loyal","Intuitive","Protective","Sentimental"], strengths:["Caring and protective","Emotionally perceptive","Loyal to family and friends"], challenges:["Moodiness","Holding on to the past","Over-sensitivity"],
+  blurb:"Cancer begins the northern summer and is the cardinal water sign. It is the only sign ruled by the Moon, which is why it is linked with home, memory and emotional care. Cancers are often described as protective and deeply loyal."},
+ {name:"Leo", glyph:"♌", symbol:"The Lion", element:"Fire", modality:"Fixed", polarity:"Yang", planet:"Sun", trad:"Sun", house:5, season:"Summer", color:"element-fire", start:[7,23], end:[8,22], day:"Sunday",
+  traits:["Confident","Generous","Loyal","Charismatic","Dramatic"], strengths:["Warm and generous","Natural leader","Creative and expressive"], challenges:["Pride","Need for attention","Stubborn streak"],
+  blurb:"Leo is the fixed fire sign of high summer and the only sign ruled by the Sun itself. It stands for self-expression, creativity and heart. Leos are described as warm, proud and happiest when they can lead or perform."},
+ {name:"Virgo", glyph:"♍", symbol:"The Maiden", element:"Earth", modality:"Mutable", polarity:"Yin", planet:"Mercury", trad:"Mercury", house:6, season:"Summer", color:"element-earth", start:[8,23], end:[9,22], day:"Wednesday",
+  traits:["Analytical","Kind","Hardworking","Practical","Perfectionist"], strengths:["Detail-oriented","Helpful and reliable","Practical problem solver"], challenges:["Over-criticism","Worry","Perfectionism"],
+  blurb:"Virgo is the mutable earth sign at the end of summer, associated with service, craft and analysis. Virgos are described as careful, modest and quietly effective, with a habit of noticing what needs improving."},
+ {name:"Libra", glyph:"♎", symbol:"The Scales", element:"Air", modality:"Cardinal", polarity:"Yang", planet:"Venus", trad:"Venus", house:7, season:"Autumn", color:"element-air", start:[9,23], end:[10,22], day:"Friday",
+  traits:["Diplomatic","Fair","Social","Charming","Idealistic"], strengths:["Fair-minded","Gracious and sociable","Good at seeing both sides"], challenges:["Indecision","Avoiding conflict","People-pleasing"],
+  blurb:"Libra starts autumn at the equinox and is the cardinal air sign. It is linked with balance, relationships and aesthetics. Libras are described as diplomatic and charming, and as people who dislike conflict and unfairness."},
+ {name:"Scorpio", glyph:"♏", symbol:"The Scorpion", element:"Water", modality:"Fixed", polarity:"Yin", planet:"Pluto", trad:"Mars", house:8, season:"Autumn", color:"element-water", start:[10,23], end:[11,21], day:"Tuesday",
+  traits:["Passionate","Resourceful","Brave","Determined","Intense"], strengths:["Determined and focused","Perceptive","Fiercely loyal"], challenges:["Secrecy","Jealousy","All-or-nothing intensity"],
+  blurb:"Scorpio is the fixed water sign of deep autumn. It is associated with intensity, transformation and privacy. Scorpios are described as determined and perceptive, with strong feelings that they do not always show."},
+ {name:"Sagittarius", glyph:"♐", symbol:"The Archer", element:"Fire", modality:"Mutable", polarity:"Yang", planet:"Jupiter", trad:"Jupiter", house:9, season:"Autumn", color:"element-fire", start:[11,22], end:[12,21], day:"Thursday",
+  traits:["Adventurous","Optimistic","Curious","Honest","Free-spirited"], strengths:["Optimistic and enthusiastic","Honest and open","Loves learning and travel"], challenges:["Bluntness","Restlessness","Over-promising"],
+  blurb:"Sagittarius is the mutable fire sign that closes autumn. It stands for exploration, philosophy and freedom. Sagittarians are described as optimistic, frank and always looking toward the next horizon."},
+ {name:"Capricorn", glyph:"♑", symbol:"The Sea-Goat", element:"Earth", modality:"Cardinal", polarity:"Yin", planet:"Saturn", trad:"Saturn", house:10, season:"Winter", color:"element-earth", start:[12,22], end:[1,19], day:"Saturday",
+  traits:["Disciplined","Responsible","Ambitious","Patient","Strategic"], strengths:["Disciplined and persistent","Responsible","Long-term planner"], challenges:["Workaholism","Pessimism","Reserve"],
+  blurb:"Capricorn begins at the winter solstice and is the cardinal earth sign. It is linked with structure, ambition and responsibility. Capricorns are described as patient planners who build things step by step."},
+ {name:"Aquarius", glyph:"♒", symbol:"The Water-Bearer", element:"Air", modality:"Fixed", polarity:"Yang", planet:"Uranus", trad:"Saturn", house:11, season:"Winter", color:"element-air", start:[1,20], end:[2,18], day:"Saturday",
+  traits:["Independent","Innovative","Humanitarian","Detached","Original"], strengths:["Original thinker","Community-minded","Independent"], challenges:["Emotional distance","Contrariness","Stubborn views"],
+  blurb:"Aquarius is the fixed air sign of mid-winter. It is associated with ideas, community and reform. Aquarians are described as independent and inventive, and as people who like to think differently from the crowd."},
+ {name:"Pisces", glyph:"♓", symbol:"The Fishes", element:"Water", modality:"Mutable", polarity:"Yin", planet:"Neptune", trad:"Jupiter", house:12, season:"Winter", color:"element-water", start:[2,19], end:[3,20], day:"Thursday",
+  traits:["Compassionate","Intuitive","Artistic","Dreamy","Empathetic"], strengths:["Compassionate","Imaginative and artistic","Adaptable"], challenges:["Escapism","Over-giving","Vagueness"],
+  blurb:"Pisces is the mutable water sign that closes the zodiac and the winter season. It is linked with imagination, empathy and endings that flow into new beginnings. Pisceans are described as gentle, intuitive and creative."}
+];
+var ANIMALS = ["Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat","Monkey","Rooster","Dog","Pig"];
+var ANIMAL_TRAIT = {Rat:"Quick-witted, resourceful",Ox:"Dependable, hardworking",Tiger:"Brave, competitive",Rabbit:"Gentle, tactful",Dragon:"Confident, energetic",Snake:"Wise, reserved",Horse:"Free-spirited, active",Goat:"Creative, kind",Monkey:"Clever, playful",Rooster:"Observant, hardworking",Dog:"Loyal, honest",Pig:"Generous, easygoing"};
+var CN_ELEMENTS = ["Wood","Fire","Earth","Metal","Water"];
+var CNY_OFF = "ati8qe4nc1k9sg5oe2lbui7qf3nc2k9rg5oe3lati6pf4nc1k8rg6od3masi7pf4nc0j9rg6pd2lash7qf4ncuj8rg6pe2kath7qf3mb1j8sh5od2kati7qf4mb1k8rg5nd2lati7pe3mb1k9rg5oc2lbti7pe3mc0j8rf5od2lath6pf3mc1j8rg5od3k9sh6pf4mb0"; /* Chinese New Year 1900-2099: days after Jan 21 (base 32 digit) */
+var ASPECTS = [
+ {n:"Same sign", tone:"Mirror", text:"You share the same sign, so you also share the same element, modality and ruling planet. Tradition says this can bring instant understanding, and also the risk of amplifying the same weak spots."},
+ {n:"Semi-sextile (30°)", tone:"Different worlds", text:"Neighbouring signs differ in element and modality, so they have little in common by default. Astrologers describe this as a pairing that needs curiosity and effort, but one that can teach each person something new."},
+ {n:"Sextile (60°)", tone:"Supportive", text:"Signs two apart share a compatible element (fire with air, or earth with water). Tradition treats this as a friendly, cooperative link with natural give and take."},
+ {n:"Square (90°)", tone:"Dynamic friction", text:"Signs three apart share a modality but clash in element. Astrology describes friction, a lot of energy and a push to grow, which can be exciting or tiring."},
+ {n:"Trine (120°)", tone:"Flowing", text:"Signs four apart share the same element. Tradition calls this the easiest link: similar instincts, shared humour and a feeling of being on the same wavelength."},
+ {n:"Quincunx (150°)", tone:"Adjustment", text:"Signs five apart have neither element nor modality in common. Astrologers describe a pairing that needs conscious adjustment and flexibility on both sides."},
+ {n:"Opposition (180°)", tone:"Magnetic opposites", text:"Opposite signs share a modality and sit on the same polarity axis, so they balance each other. Tradition describes strong attraction and strong contrast, with each person holding what the other lacks."}
 ];
 
-var CHINESE = ["Monkey","Rooster","Dog","Pig","Rat","Ox","Tiger","Rabbit","Dragon","Snake","Horse","Goat"];
+/* ================= Zodiac Sign Calculator - engine and interface ================= */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+var DAY = 86400000, RATE = 0.9856473;
+var MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var WEEKDAYS = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var EL_COLOR = { Fire: "#ef4444", Earth: "#16a34a", Air: "#0ea5e9", Water: "#7c3aed" };
+var KEY = "utiliby_zd_group_v1";
+var ST = { tab: "sun", pick: 0, res: null, signSel: 0, group: [], matchHtml: "", matchText: "" };
 
-function getSign(month, day){
-  for(var i = 0; i < SIGNS.length; i++){
-    var s = SIGNS[i];
-    var sm = s.start[0], sd = s.start[1];
-    var em = s.end[0], ed = s.end[1];
-    // Handle wrap-around (Capricorn Dec–Jan)
-    if(sm > em){
-      if((month === sm && day >= sd) || (month === em && day <= ed)) return s;
-    } else {
-      if((month === sm && day >= sd) || (month === em && day <= ed)) return s;
-      if(month > sm && month < em) return s;
-      // Middle-of-month case for single-month signs
-      if(sm === em && month === sm && day >= sd && day <= ed) return s;
-    }
+/* ---------- astronomy: Sun apparent longitude (Meeus, low-precision, about 0.01 degree) ---------- */
+function deltaT(y) {
+  var t;
+  if (y < 1920) { t = y - 1900; return -2.79 + 1.494119 * t - 0.0598939 * t * t + 0.0061966 * t * t * t - 0.000197 * t * t * t * t; }
+  if (y < 1941) { t = y - 1920; return 21.20 + 0.84493 * t - 0.076100 * t * t + 0.0020936 * t * t * t; }
+  if (y < 1961) { t = y - 1950; return 29.07 + 0.407 * t - t * t / 233 + t * t * t / 2547; }
+  if (y < 1986) { t = y - 1975; return 45.45 + 1.067 * t - t * t / 260 - t * t * t / 718; }
+  if (y < 2005) { t = y - 2000; return 63.86 + 0.3345 * t - 0.060374 * t * t + 0.0017275 * Math.pow(t, 3) + 0.000651814 * Math.pow(t, 4) + 0.00002373599 * Math.pow(t, 5); }
+  if (y < 2050) { t = y - 2000; return 62.92 + 0.32217 * t + 0.005589 * t * t; }
+  return -20 + 32 * Math.pow((y - 1820) / 100, 2) - 0.5628 * (2150 - y);
+}
+function rad(x) { return x * Math.PI / 180; }
+function sunLon(ms) {
+  var jd = ms / DAY + 2440587.5, y = 2000 + (jd - 2451545) / 365.25;
+  var T = (jd + deltaT(y) / 86400 - 2451545) / 36525;
+  var L0 = 280.46646 + 36000.76983 * T + 0.0003032 * T * T;
+  var M = 357.52911 + 35999.05029 * T - 0.0001537 * T * T;
+  var C = (1.914602 - 0.004817 * T - 0.000014 * T * T) * Math.sin(rad(M)) + (0.019993 - 0.000101 * T) * Math.sin(rad(2 * M)) + 0.000289 * Math.sin(rad(3 * M));
+  var om = 125.04 - 1934.136 * T;
+  var l = (L0 + C - 0.00569 - 0.00478 * Math.sin(rad(om))) % 360;
+  return l < 0 ? l + 360 : l;
+}
+function norm180(d) { d = ((d + 180) % 360 + 360) % 360 - 180; return d; }
+function ingress(approx, target) {
+  var t = approx;
+  for (var i = 0; i < 12; i++) { var d = norm180(target - sunLon(t)); t += d / RATE * DAY; if (Math.abs(d) < 1e-7) break; }
+  return t;
+}
+function signStart(ms, k) { var off = norm180(sunLon(ms) - k * 30); return ingress(ms - off / RATE * DAY, k * 30); }
+function yearIngress(Y, k) { var a = Date.UTC(Y, 2, 20, 12) + k * 30.4369 * DAY; if (k >= 10) a -= 365.2422 * DAY; return ingress(a, k * 30); }
+
+/* ---------- formatting ---------- */
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+function tzLabel(m) { var s = m < 0 ? "-" : "+", a = Math.abs(m); return "UTC" + s + p2(Math.floor(a / 60)) + ":" + p2(a % 60); }
+function fmtIn(ms, tz, withYear) { var d = new Date(ms + tz * 60000); return MONTHS[d.getUTCMonth()] + " " + d.getUTCDate() + (withYear ? ", " + d.getUTCFullYear() : "") + " " + p2(d.getUTCHours()) + ":" + p2(d.getUTCMinutes()); }
+function fmtMD(m, d) { return MONTHS[m - 1] + " " + d; }
+function fmtDMY(y, m, d) { return d + " " + MONTHS[m - 1] + " " + y; }
+function degStr(x) { var d = Math.floor(x), m = Math.floor((x - d) * 60); return d + "°" + p2(m) + "′"; }
+function hoursStr(h) { h = Math.abs(h); if (h < 1) return Math.max(1, Math.round(h * 60)) + " minutes"; if (h < 48) return Math.round(h) + " hours"; return (h / 24).toFixed(1) + " days"; }
+function pickTz() {
+  var v = $("tzSelect").value;
+  if (v === "device") return -new Date().getTimezoneOffset();
+  return parseInt(v, 10) || 0;
+}
+function signRange(s) { return fmtMD(s.start[0], s.start[1]) + " – " + fmtMD(s.end[0], s.end[1]); }
+
+/* ---------- Chinese zodiac ---------- */
+function cnyOf(Y) { var o = parseInt(CNY_OFF.charAt(Y - 1900), 32), d = new Date(Date.UTC(Y, 0, 21 + o)); return { m: d.getUTCMonth() + 1, d: d.getUTCDate() }; }
+function chinese(y, m, d) {
+  var c = cnyOf(y), before = m < c.m || (m === c.m && d < c.d), Ly = before ? y - 1 : y, stem = ((Ly - 4) % 10 + 10) % 10;
+  var cn = { animal: ANIMALS[((Ly - 4) % 12 + 12) % 12], element: CN_ELEMENTS[Math.floor(stem / 2)], yang: stem % 2 === 0, lunarYear: Ly, cny: c, before: before, cnyYear: y };
+  return cn;
+}
+
+/* ---------- main calculation ---------- */
+function parseDate(v) {
+  var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(v || "");
+  if (!m) return null;
+  var y = +m[1], mo = +m[2], d = +m[3], t = new Date(Date.UTC(y, mo - 1, d));
+  if (t.getUTCFullYear() !== y || t.getUTCMonth() !== mo - 1 || t.getUTCDate() !== d) return null;
+  return { y: y, m: mo, d: d };
+}
+function sunSign(dt, hh, mm, tz) {
+  var start = Date.UTC(dt.y, dt.m - 1, dt.d, 0, 0) - tz * 60000, o = { dt: dt, tz: tz, hasTime: hh != null };
+  if (hh != null) {
+    o.inst = Date.UTC(dt.y, dt.m - 1, dt.d, hh, mm) - tz * 60000; o.lon = sunLon(o.inst); o.k = Math.floor(o.lon / 30); o.amb = null;
+  } else {
+    var k0 = Math.floor(sunLon(start) / 30), k1 = Math.floor(sunLon(start + DAY - 60000) / 30);
+    o.inst = start + 12 * 3600000; o.lon = sunLon(o.inst); o.k = Math.floor(o.lon / 30);
+    o.amb = k0 !== k1 ? { a: k0, b: k1, ms: signStart(start + DAY - 60000, k1) } : null;
+    if (o.amb) o.k = o.amb.a;
   }
-  return null;
+  return o;
+}
+function calc() {
+  var v = $("birthdate").value, dt = parseDate(v);
+  if (!dt) return { err: "Enter a valid date of birth." };
+  if (dt.y < 1900 || dt.y > 2099) return { err: "This calculator supports birth dates from 1900 to 2099." };
+  var t = $("birthtime").value, tm = /^(\d{2}):(\d{2})/.exec(t), tz = pickTz();
+  var r = sunSign(dt, tm ? +tm[1] : null, tm ? +tm[2] : null, tz);
+  r.name = $("personName").value.trim();
+  return r;
+}
+function detail(r) {
+  var amb = r.amb, k = amb ? (ST.pick ? amb.b : amb.a) : r.k, s = SIGNS[k], o = { k: k, s: s };
+  var ref = amb ? (ST.pick ? amb.ms + 60000 : amb.ms - 60000) : r.inst;
+  o.lonUse = amb ? (ST.pick ? 0.5 : 29.5) + k * 30 : r.lon;
+  o.inSign = o.lonUse - k * 30;
+  o.st = signStart(ref, k); o.en = ingress(o.st + 30.4369 * DAY, ((k + 1) % 12) * 30);
+  o.decan = o.inSign < 10 ? 1 : o.inSign < 20 ? 2 : 3;
+  o.sub = SIGNS[(k + 4 * (o.decan - 1)) % 12];
+  o.cusp = null;
+  if (!amb) {
+    var since = (r.inst - o.st) / 3600000, to = (o.en - r.inst) / 3600000;
+    if (since < 48 || to < 48) o.cusp = since < to ? { other: SIGNS[(k + 11) % 12], hours: since, dir: "entered" } : { other: SIGNS[(k + 1) % 12], hours: to, dir: "leaves" };
+  }
+  o.cn = chinese(r.dt.y, r.dt.m, r.dt.d);
+  return o;
+}
+function today() { var n = new Date(); return { y: n.getFullYear(), m: n.getMonth() + 1, d: n.getDate() }; }
+function facts(dt) {
+  var t = today(), bd = Date.UTC(dt.y, dt.m - 1, dt.d), td = Date.UTC(t.y, t.m - 1, t.d);
+  var age = t.y - dt.y - ((t.m < dt.m || (t.m === dt.m && t.d < dt.d)) ? 1 : 0), future = bd > td;
+  var ny = t.y, nm = dt.m, nd = dt.d;
+  var leapOk = function (y) { return (y % 4 === 0 && y % 100 !== 0) || y % 400 === 0; };
+  var mk = function (y) { return (nm === 2 && nd === 29 && !leapOk(y)) ? Date.UTC(y, 2, 1) : Date.UTC(y, nm - 1, nd); };
+  var nb = mk(ny); if (nb < td) { ny++; nb = mk(ny); }
+  var nbd = new Date(nb);
+  return { age: age, future: future, days: Math.floor((td - bd) / DAY), weekday: WEEKDAYS[new Date(bd).getUTCDay()], next: nbd, daysTo: Math.round((nb - td) / DAY), leap: nm === 2 && nd === 29 && !leapOk(ny), turns: ny - dt.y };
 }
 
-function isCusp(month, day, sign){
-  var margin = 1;
-  var dStart = sign.start[1];
-  var dEnd = sign.end[1];
-  if(month === sign.start[0] && Math.abs(day - dStart) <= margin) return true;
-  if(month === sign.end[0] && Math.abs(day - dEnd) <= margin) return true;
-  return false;
+/* ---------- visuals ---------- */
+function pt(cx, cy, r, L) { var th = rad(180 - L); return [cx + r * Math.cos(th), cy - r * Math.sin(th)]; }
+function wheelSvg(o) {
+  var cx = 180, cy = 180, R1 = 172, R2 = 114, hl = o.k, hl2 = o.k2, ex = o.ex, ink = ex ? "#0f172a" : "var(--fg)", mut = ex ? "#475569" : "var(--muted)", bg = ex ? "#ffffff" : "var(--bg)";
+  var g = '<svg viewBox="0 0 360 360" role="img" aria-labelledby="zdWT" xmlns="http://www.w3.org/2000/svg"' + (ex ? ' width="360" height="360"' : "") + '><title id="zdWT">' + esc(o.title || "Zodiac wheel") + '</title>';
+  g += '<circle cx="180" cy="180" r="176" fill="' + bg + '" stroke="' + (ex ? "#e2e8f0" : "var(--line)") + '"/>';
+  for (var i = 0; i < 12; i++) {
+    var s = SIGNS[i], col = EL_COLOR[s.element], on = i === hl || i === hl2;
+    var p0 = pt(cx, cy, R1, i * 30), p1 = pt(cx, cy, R1, i * 30 + 30), q1 = pt(cx, cy, R2, i * 30 + 30), q0 = pt(cx, cy, R2, i * 30);
+    g += '<path d="M' + p0[0].toFixed(1) + ' ' + p0[1].toFixed(1) + ' A' + R1 + ' ' + R1 + ' 0 0 1 ' + p1[0].toFixed(1) + ' ' + p1[1].toFixed(1) + ' L' + q1[0].toFixed(1) + ' ' + q1[1].toFixed(1) + ' A' + R2 + ' ' + R2 + ' 0 0 0 ' + q0[0].toFixed(1) + ' ' + q0[1].toFixed(1) + ' Z" fill="' + col + '" fill-opacity="' + (on ? 1 : 0.5) + '" stroke="' + bg + '" stroke-width="2"/>';
+    var gp = pt(cx, cy, 143, i * 30 + 15);
+    g += '<text x="' + gp[0].toFixed(1) + '" y="' + (gp[1] + 8).toFixed(1) + '" text-anchor="middle" font-size="22" fill="#fff" font-family="system-ui,Segoe UI Symbol,sans-serif">' + s.glyph + '</text>';
+    var np = pt(cx, cy, 98, i * 30 + 15);
+    g += '<text x="' + np[0].toFixed(1) + '" y="' + (np[1] + 3).toFixed(1) + '" text-anchor="middle" font-size="9" font-weight="' + (on ? 700 : 400) + '" fill="' + (on ? ink : mut) + '" font-family="system-ui,sans-serif">' + s.name + '</text>';
+  }
+  if (hl2 != null && hl != null) {
+    var a = pt(cx, cy, 70, hl * 30 + 15), b = pt(cx, cy, 70, hl2 * 30 + 15);
+    g += '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '" stroke="' + ink + '" stroke-width="2" stroke-dasharray="5 4"' + (ex ? "" : ' class="zd-dash"') + '/>';
+    g += '<circle cx="' + a[0].toFixed(1) + '" cy="' + a[1].toFixed(1) + '" r="5" fill="' + EL_COLOR[SIGNS[hl].element] + '"/><circle cx="' + b[0].toFixed(1) + '" cy="' + b[1].toFixed(1) + '" r="5" fill="' + EL_COLOR[SIGNS[hl2].element] + '"/>';
+  } else if (o.lon != null) {
+    var m1 = pt(cx, cy, R2 - 4, o.lon), m2 = pt(cx, cy, R1 + 0, o.lon), m3 = pt(cx, cy, 40, o.lon);
+    g += '<line x1="' + m3[0].toFixed(1) + '" y1="' + m3[1].toFixed(1) + '" x2="' + m1[0].toFixed(1) + '" y2="' + m1[1].toFixed(1) + '" stroke="#f59e0b" stroke-width="2.5"/>';
+    g += '<circle cx="' + ((m1[0] + m2[0]) / 2).toFixed(1) + '" cy="' + ((m1[1] + m2[1]) / 2).toFixed(1) + '" r="9" fill="#f59e0b" stroke="#fff" stroke-width="2"' + (ex ? "" : ' class="zd-sun"') + '/>';
+  }
+  g += '<text x="180" y="' + (o.sub ? 176 : 184) + '" text-anchor="middle" font-size="15" font-weight="700" fill="' + ink + '" font-family="system-ui,sans-serif">' + esc(o.center || "") + '</text>';
+  if (o.sub) g += '<text x="180" y="194" text-anchor="middle" font-size="11" fill="' + mut + '" font-family="system-ui,sans-serif">' + esc(o.sub) + '</text>';
+  return g + '</svg>';
+}
+function stripHtml(r, d, tz) {
+  var Y = r.dt.y, jan = Date.UTC(Y, 0, 1) - tz * 60000, dec = Date.UTC(Y + 1, 0, 1) - tz * 60000, span = dec - jan;
+  var list = [], order = [10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  order.forEach(function (k) { list.push({ k: k, ms: yearIngress(Y, k) }); });
+  var h = '<div class="zd-strip" role="img" aria-label="Where your birthday falls among the twelve Sun sign periods of ' + Y + '">';
+  var prev = jan, pk = 9;
+  var segs = [];
+  list.forEach(function (x) { segs.push({ k: pk, a: prev, b: x.ms }); prev = x.ms; pk = x.k; });
+  segs.push({ k: pk, a: prev, b: dec });
+  segs.forEach(function (sg) {
+    var w = Math.max(0, (sg.b - sg.a) / span * 100);
+    h += '<i style="width:' + w.toFixed(3) + '%;background:' + EL_COLOR[SIGNS[sg.k].element] + (sg.k === d.k ? "" : ";opacity:.5") + '" title="' + SIGNS[sg.k].name + '">' + (w > 5 ? SIGNS[sg.k].glyph : "") + '</i>';
+  });
+  var pos = Math.min(99.5, Math.max(0.3, (r.inst - jan) / span * 100));
+  h += '<b class="zd-mark" style="left:' + pos.toFixed(2) + '%" title="Your birthday"></b></div>';
+  h += '<div class="zd-strip-l"><span>Jan</span><span>Apr</span><span>Jul</span><span>Oct</span><span>Dec</span></div>';
+  return h;
 }
 
-function getPrevSign(sign){
-  var idx = SIGNS.indexOf(sign);
-  return SIGNS[(idx - 1 + 12) % 12];
+/* ---------- compatibility ---------- */
+var ELPAIR = {
+  "Fire|Fire": "Two fire signs bring shared energy, enthusiasm and courage. The risk is that two strong wills compete.",
+  "Earth|Earth": "Two earth signs value reliability, practical goals and comfort. The risk is routine and resistance to change.",
+  "Air|Air": "Two air signs enjoy ideas, conversation and variety. The risk is staying in the head and avoiding deeper feelings.",
+  "Water|Water": "Two water signs share emotional depth and intuition. The risk is moods that feed each other.",
+  "Air|Fire": "Air feeds fire: ideas spark action and action gives ideas a stage. A classic energising pairing in traditional astrology.",
+  "Earth|Water": "Water nourishes earth: feelings find a stable container and stability gets warmth. A classic nurturing pairing.",
+  "Earth|Fire": "Fire and earth differ in pace. Fire wants to move now, earth wants to build carefully. They can balance each other if both are patient.",
+  "Air|Earth": "Air and earth differ in focus. Air explores possibilities, earth wants proof and results. They can learn from each other.",
+  "Fire|Water": "Fire and water are the classic contrast: passion against depth. It can steam or it can extinguish, depending on how each handles the difference.",
+  "Air|Water": "Air thinks things through while water feels them through. They can complement each other if both translate between head and heart."
+};
+function elKey(a, b) { return [a, b].sort().join("|"); }
+function toneClass(step) { return step === 4 || step === 2 ? "Easy" : step === 3 ? "Challenging" : step === 0 || step === 6 ? "Intense" : "Needs effort"; }
+function compat(a, b) {
+  var sa = SIGNS[a], sb = SIGNS[b], step = Math.min((a - b + 12) % 12, (b - a + 12) % 12), asp = ASPECTS[step];
+  var rows = [];
+  rows.push(["Aspect", asp.n + " – " + asp.tone]);
+  rows.push(["Elements", sa.element + " + " + sb.element]);
+  rows.push(["Modalities", sa.modality + (sa.modality === sb.modality ? " (same)" : " + " + sb.modality)]);
+  rows.push(["Polarity", sa.polarity === sb.polarity ? "Both " + sa.polarity : sa.polarity + " + " + sb.polarity]);
+  rows.push(["Ruling planets", sa.planet + " and " + sb.planet]);
+  return { step: step, asp: asp, rows: rows, el: ELPAIR[elKey(sa.element, sb.element)], level: toneClass(step), sa: sa, sb: sb };
 }
-function getNextSign(sign){
-  var idx = SIGNS.indexOf(sign);
-  return SIGNS[(idx + 1) % 12];
+function matchesFor(k) {
+  var out = { easy: [], support: [], opp: SIGNS[(k + 6) % 12], challenge: [] };
+  out.easy = [SIGNS[(k + 4) % 12], SIGNS[(k + 8) % 12]];
+  out.support = [SIGNS[(k + 2) % 12], SIGNS[(k + 10) % 12]];
+  out.challenge = [SIGNS[(k + 3) % 12], SIGNS[(k + 9) % 12]];
+  return out;
 }
+function nm(s) { return s.glyph + " " + s.name; }
 
-function getChinese(year){
-  var base = 1900; // 1900 = Rat year (approximate)
-  return CHINESE[(year - base) % 12];
-}
-
-function fmtDate(m, d){
-  var months = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
-  return months[m-1] + " " + d;
-}
-
-function render(){
-  var val = $("birthdate").value;
-  if(!val) return;
-  var parts = val.split("-");
-  var year = parseInt(parts[0], 10);
-  var month = parseInt(parts[1], 10);
-  var day = parseInt(parts[2], 10);
-
-  var sign = getSign(month, day);
-  if(!sign){ $("result").innerHTML = "<p>Enter a valid date.</p>"; return; }
-
-  var chinese = getChinese(year);
-
-  var h = '<div class="zodiac-hero">';
-  h += '<div class="zodiac-badge ' + sign.color + '">' + sign.glyph + '</div>';
-  h += '<div class="zodiac-name">' + sign.name + '</div>';
-  h += '<div class="zodiac-dates">' + fmtDate(sign.start[0], sign.start[1]) + ' – ' + fmtDate(sign.end[0], sign.end[1]) + '</div>';
-  h += '<div class="zodiac-meta">';
-  h += '<span class="zodiac-chip">' + sign.element + ' Sign</span>';
-  h += '<span class="zodiac-chip">' + sign.modality + '</span>';
-  h += '<span class="zodiac-chip">Ruled by ' + sign.planet + '</span>';
-  h += '<span class="zodiac-chip">Chinese: ' + chinese + '</span>';
+/* ---------- render: sun sign tab ---------- */
+function render() {
+  var r = calc(), box = $("result");
+  ST.res = r;
+  ["btnCopy", "btnTxt", "btnPng", "btnPrint"].forEach(function (id) { $(id).disabled = !!r.err; });
+  if (r.err) { box.innerHTML = '<p class="zd-err" role="alert">' + esc(r.err) + "</p>"; renderOthers(); return; }
+  if (r.amb && ST.pickFor !== r.dt.y + "-" + r.dt.m + "-" + r.dt.d) { ST.pick = 0; ST.pickFor = r.dt.y + "-" + r.dt.m + "-" + r.dt.d; }
+  if (!r.amb) ST.pick = 0;
+  var d = detail(r), s = d.s, tz = r.tz, f = facts(r.dt), cn = d.cn, mt = matchesFor(d.k);
+  r.d = d; r.f = f;
+  var h = "";
+  if (r.amb) {
+    h += '<div class="zd-twin" role="group" aria-label="Two possible sun signs">';
+    [r.amb.a, r.amb.b].forEach(function (k, i) {
+      var sg = SIGNS[k];
+      h += '<button type="button" class="zd-twinbtn' + (ST.pick === i ? " on" : "") + '" data-pick="' + i + '" aria-pressed="' + (ST.pick === i ? "true" : "false") + '"><span class="zodiac-badge zd-small ' + sg.color + '">' + sg.glyph + '</span><b>' + sg.name + '</b><small>' + (i === 0 ? "Born before " : "Born at or after ") + fmtIn(r.amb.ms, tz) + '</small></button>';
+    });
+    h += '</div>';
+    h += '<div class="cusp-warning"><b>Changeover day.</b> On ' + fmtDMY(r.dt.y, r.dt.m, r.dt.d) + ' the Sun moved from ' + SIGNS[r.amb.a].name + ' into ' + SIGNS[r.amb.b].name + ' at ' + fmtIn(r.amb.ms, tz) + ' (' + tzLabel(tz) + '). Enter your birth time and the correct UTC offset above to see which sign is yours. The details below show the sign you selected.</div>';
+  }
+  h += '<div class="zodiac-hero">';
+  h += '<div class="zodiac-badge ' + s.color + '">' + s.glyph + '</div>';
+  h += '<div class="zodiac-name">' + (r.name ? esc(r.name) + ": " : "") + s.name + '</div>';
+  h += '<div class="zodiac-dates">' + signRange(s) + ' (usual dates) · ' + s.symbol + '</div>';
+  h += '<div class="zodiac-meta"><span class="zodiac-chip">' + s.element + ' Sign</span><span class="zodiac-chip">' + s.modality + '</span><span class="zodiac-chip">' + s.polarity + ' polarity</span><span class="zodiac-chip">Ruled by ' + s.planet + (s.trad !== s.planet ? " (traditionally " + s.trad + ")" : "") + '</span><span class="zodiac-chip">Chinese: ' + cn.animal + '</span></div>';
+  h += '<div class="zodiac-traits">' + s.traits.map(function (t) { return "<span>" + t + "</span>"; }).join("") + '</div>';
+  if (d.cusp) h += '<div class="cusp-warning"><b>Cusp birth.</b> The Sun ' + (d.cusp.dir === "entered" ? "entered " + s.name + " only " + hoursStr(d.cusp.hours) + " before" : "leaves " + s.name + " " + hoursStr(d.cusp.hours) + " after") + ' your ' + (r.hasTime ? "birth time" : "birthday (taken at noon)") + ', so you sit on the boundary with ' + d.cusp.other.name + '. Astrologers say cusp people can show traits of both signs, but the Sun position decides one sign.</div>';
   h += '</div>';
-  h += '<div class="zodiac-traits">';
-  for(var t = 0; t < sign.traits.length; t++){
-    h += '<span>' + sign.traits[t] + '</span>';
-  }
+
+  h += '<div class="zd-split"><div class="zd-wheel">' + wheelSvg({ k: d.k, lon: r.amb ? null : r.lon, center: s.name, sub: r.amb ? "changeover day" : (r.hasTime ? "" : "") + degStr(d.inSign) + (r.hasTime ? "" : " (at noon)"), title: "Zodiac wheel with the Sun in " + s.name }) + '<p class="zd-note">The amber dot shows where the Sun was in the zodiac on your birthday. Aries starts on the left.</p></div>';
+  h += '<table class="zodiac-detail-table zd-facts"><tbody>';
+  var row = function (a, b) { h += "<tr><td>" + a + "</td><td>" + b + "</td></tr>"; };
+  row("Sun sign", s.glyph + " " + s.name + " (" + s.symbol + ")");
+  row("Sun position", r.amb ? "On the " + SIGNS[r.amb.a].name + "/" + SIGNS[r.amb.b].name + " boundary" : degStr(d.inSign) + " " + s.name + (r.hasTime ? "" : " (noon estimate)"));
+  row("Sign period in " + r.dt.y, fmtIn(d.st, tz, false) + " to " + fmtIn(d.en, tz, false) + " (" + tzLabel(tz) + ")");
+  row("Element and modality", s.element + ", " + s.modality);
+  row("Polarity", s.polarity + (s.polarity === "Yang" ? " (active, outward)" : " (receptive, inward)"));
+  row("Ruling planet", s.planet + (s.trad !== s.planet ? " (modern), " + s.trad + " (traditional)" : ""));
+  row("Decan", d.decan + (d.decan === 1 ? "st" : d.decan === 2 ? "nd" : "rd") + " decan, sub-ruled by " + d.sub.name + " (" + d.sub.planet + ")");
+  row("Natural house", s.house + (s.house === 1 ? "st" : s.house === 2 ? "nd" : s.house === 3 ? "rd" : "th") + " house · " + s.season + " (Northern Hemisphere)");
+  row("Opposite sign", nm(mt.opp));
+  h += '</tbody></table></div>';
+
+  h += '<h3>Where your birthday falls in ' + r.dt.y + '</h3>' + stripHtml(r, d, tz);
+
+  h += '<h3>' + s.name + ' profile</h3><p>' + esc(s.blurb) + '</p>';
+  h += '<div class="zd-three"><div class="zd-card"><h4>Strengths</h4><ul>' + s.strengths.map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></div><div class="zd-card"><h4>Challenges</h4><ul>' + s.challenges.map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></div><div class="zd-card"><h4>Best-known matches</h4><ul><li><b>Easiest:</b> ' + mt.easy.map(nm).join(", ") + '</li><li><b>Supportive:</b> ' + mt.support.map(nm).join(", ") + '</li><li><b>Magnetic opposite:</b> ' + nm(mt.opp) + '</li></ul></div></div>';
+
+  h += '<h3>Chinese zodiac</h3><div class="zd-cn"><div class="zd-cnbig">' + cn.animal + '</div><div><b>' + (cn.yang ? "Yang" : "Yin") + ' ' + cn.element + ' ' + cn.animal + '</b> · lunar year ' + cn.lunarYear + '<br><span class="zd-note">' + ANIMAL_TRAIT[cn.animal] + '. Chinese New Year ' + cn.cnyYear + ' fell on ' + fmtMD(cn.cny.m, cn.cny.d) + ' (Beijing date).' + (cn.before ? ' Your birthday is <b>before</b> it, so you belong to the previous lunar year, the year of the ' + cn.animal + '.' : '') + '</span></div></div>';
+
+  h += '<h3>Birthday facts</h3><div class="zodiac-summary-grid zd-grid4"><div class="zd-stat"><b>' + (f.future ? "—" : f.age) + '</b><span>Age (years)</span></div><div class="zd-stat"><b>' + (f.future ? "—" : f.days.toLocaleString("en-US")) + '</b><span>Days since birth</span></div><div class="zd-stat"><b>' + f.weekday + '</b><span>Weekday of birth</span></div><div class="zd-stat"><b>' + f.daysTo + '</b><span>Days to next birthday' + (f.leap ? " (leap day, observed Mar 1)" : "") + '</span></div></div>';
+
+  h += '<h3>All 12 zodiac signs</h3><div class="zodiac-grid" id="zodiacGrid">';
+  SIGNS.forEach(function (g, i) {
+    h += '<button type="button" class="zz-card' + (i === d.k ? " on" : "") + '" data-sign="' + i + '" aria-label="' + g.name + ' details"><div class="zz-badge ' + g.color + '">' + g.glyph + '</div><div class="zz-name">' + g.name + '</div><div class="zz-dates">' + signRange(g) + '</div></button>';
+  });
   h += '</div>';
-  if(isCusp(month, day, sign)){
-    var prev = getPrevSign(sign);
-    var next = getNextSign(sign);
-    h += '<div class="cusp-warning"><b>Cusp birth.</b> Your birthday falls on the boundary between ' + prev.name + ' and ' + sign.name + '. People born on a cusp are often said to blend traits of both signs. Traditional astrology assigns your sign based on the exact moment the Sun entered the sign on your birth year.</div>';
-  }
-  h += '</div>';
-
-  h += '<h3>All 12 zodiac signs</h3>';
-  h += '<div class="zodiac-grid" id="zodiacGrid"></div>';
-
-  $("result").innerHTML = h;
-
-  // Render the grid
-  var gridHtml = "";
-  for(var i = 0; i < SIGNS.length; i++){
-    var s = SIGNS[i];
-    var active = s === sign ? "on" : "";
-    gridHtml += '<div class="zz-card" data-sign="' + s.name + '">';
-    gridHtml += '<div class="zz-badge ' + s.color + '">' + s.glyph + '</div>';
-    gridHtml += '<div class="zz-name">' + s.name + '</div>';
-    gridHtml += '<div class="zz-dates">' + fmtDate(s.start[0], s.start[1]) + ' – ' + fmtDate(s.end[0], s.end[1]) + '</div>';
-    gridHtml += '</div>';
-  }
-  $("zodiacGrid").innerHTML = gridHtml;
+  box.innerHTML = h;
+  renderOthers();
 }
 
-window.addEventListener("DOMContentLoaded", function(){
-  var T = $("tool");
-  if(!T) return;
-  $("birthdate").addEventListener("input", render);
-  $("birthdate").addEventListener("change", render);
+/* ---------- other tabs ---------- */
+function signOptions(sel, first) {
+  var h = first ? '<option value="">' + first + '</option>' : "";
+  SIGNS.forEach(function (s, i) { h += '<option value="' + i + '"' + (sel === i ? " selected" : "") + '>' + s.glyph + " " + s.name + '</option>'; });
+  return h;
+}
+function renderMatch() {
+  var r = ST.res, A = $("matchSignA").value, B = $("matchSignB").value, out = $("matchResult");
+  var ka = A !== "" ? +A : (r && !r.err ? r.d.k : null), kb = null, nameB = "";
+  if (B !== "") kb = +B; else {
+    var dt = parseDate($("matchDate").value);
+    if (dt && dt.y >= 1900 && dt.y <= 2099) { var rb = sunSign(dt, null, null, pickTz()); kb = rb.k; if (rb.amb) nameB = "boundary"; }
+  }
+  if (ka == null || kb == null) { out.innerHTML = '<p class="zd-note">Pick a sign or enter a date for the second person. The first person is taken from the Your sign tab unless you choose a sign.</p>'; ST.matchText = ""; ST.matchHtml = ""; return; }
+  var c = compat(ka, kb), h = '<div class="zd-split"><div class="zd-wheel">' + wheelSvg({ k: ka, k2: kb, center: c.asp.tone, sub: SIGNS[ka].name + " + " + SIGNS[kb].name, title: "Compatibility wheel: " + SIGNS[ka].name + " and " + SIGNS[kb].name }) + '</div><div>';
+  h += '<div class="zd-pair"><span class="zodiac-badge zd-small ' + c.sa.color + '">' + c.sa.glyph + '</span><b>' + c.sa.name + '</b><span class="zd-plus">+</span><span class="zodiac-badge zd-small ' + c.sb.color + '">' + c.sb.glyph + '</span><b>' + c.sb.name + '</b></div>';
+  h += '<div class="zd-lvl zd-' + c.level.replace(/\s/g, "") + '">' + c.level + ' pairing in traditional astrology</div>';
+  h += '<table class="zodiac-detail-table"><tbody>' + c.rows.map(function (x) { return "<tr><td>" + x[0] + "</td><td>" + esc(x[1]) + "</td></tr>"; }).join("") + '</tbody></table></div></div>';
+  h += '<p>' + esc(c.asp.text) + '</p><p>' + esc(c.el) + '</p>';
+  if (nameB) h += '<p class="zd-note">Person B’s date is a changeover day, so the second sign is a best guess. Pick the sign directly if you know it.</p>';
+  h += '<p class="zd-note">Sun signs describe only one part of a chart. Real relationships depend on far more than astrology. For entertainment only.</p>';
+  out.innerHTML = h;
+  ST.matchHtml = true;
+  ST.matchText = "Compatibility: " + c.sa.name + " + " + c.sb.name + " – " + c.asp.n + " (" + c.level + "). " + c.asp.text + " " + c.el;
+}
+function renderDates() {
+  var Y = parseInt($("yearInput").value, 10), tz = pickTz(), box = $("datesTable");
+  if (!(Y >= 1900 && Y <= 2099)) { box.innerHTML = '<p class="zd-err">Enter a year from 1900 to 2099.</p>'; ST.datesRows = null; return; }
+  var rows = [], h = '<table class="zodiac-detail-table zd-dates"><thead><tr><th>Sign</th><th>Sun enters</th><th>Sun leaves</th><th>Days</th><th>Note</th></tr></thead><tbody>';
+  var notes = { 0: "March equinox", 3: "June solstice", 6: "September equinox", 9: "December solstice" };
+  var ord = [10, 11, 0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  ord.forEach(function (k) {
+    var a = yearIngress(Y, k), b = yearIngress(Y + (k === 9 ? 1 : 0), (k + 1) % 12), s = SIGNS[k];
+    var days = ((b - a) / DAY);
+    rows.push([s.name, fmtIn(a, tz, true), fmtIn(b, tz, true), days.toFixed(1), notes[k] || ""]);
+    h += '<tr><td>' + s.glyph + ' ' + s.name + '</td><td>' + fmtIn(a, tz, true) + '</td><td>' + fmtIn(b, tz, true) + '</td><td>' + days.toFixed(1) + '</td><td>' + (notes[k] || "") + '</td></tr>';
+  });
+  h += '</tbody></table><p class="zd-note">Times are in ' + tzLabel(tz) + ' (the offset chosen above). Sun positions are calculated, and are accurate to roughly 15 minutes. Capricorn is shown for its period starting in December ' + Y + '. For a birth within a few hours of a change, check an ephemeris.</p>';
+  box.innerHTML = h; ST.datesRows = rows; ST.datesYear = Y; ST.datesTz = tz;
+}
+function loadGroup() { try { var j = JSON.parse(localStorage.getItem(KEY) || "null"); if (Array.isArray(j)) { ST.group = j.filter(function (x) { return x && typeof x.date === "string" && parseDate(x.date); }).slice(0, 200).map(function (x) { return { name: String(x.name || "").slice(0, 40), date: x.date }; }); $("gRemember").checked = true; } } catch (e) { /* ignore */ } }
+function saveGroup() { try { if ($("gRemember").checked) localStorage.setItem(KEY, JSON.stringify(ST.group)); else localStorage.removeItem(KEY); } catch (e) { /* ignore */ } }
+function groupRows() {
+  var tz = pickTz();
+  return ST.group.map(function (g, i) {
+    var dt = parseDate(g.date), ok = dt && dt.y >= 1900 && dt.y <= 2099;
+    if (!ok) return null;
+    var r = sunSign(dt, null, null, tz), cn = chinese(dt.y, dt.m, dt.d), s = SIGNS[r.k];
+    return { i: i, name: g.name || "Person " + (i + 1), date: g.date, dt: dt, k: r.k, s: s, amb: r.amb, other: r.amb ? SIGNS[r.amb.b] : null, cn: cn };
+  }).filter(Boolean);
+}
+function renderGroup() {
+  var rows = groupRows(), box = $("groupTable"), sum = $("groupSummary");
+  ["gCopy", "gCsv", "gPrint", "gClear"].forEach(function (id) { $(id).disabled = !rows.length; });
+  if (!rows.length) { box.innerHTML = '<p class="zd-note">No one added yet. Add names and birth dates to compare signs, elements and Chinese animals.</p>'; sum.innerHTML = ""; return; }
+  var h = '<div class="zd-scroll"><table class="zodiac-detail-table"><thead><tr><th>Name</th><th>Born</th><th>Sun sign</th><th>Element</th><th>Modality</th><th>Chinese</th><th></th></tr></thead><tbody>';
+  rows.forEach(function (x) {
+    h += '<tr><td>' + esc(x.name) + '</td><td>' + fmtDMY(x.dt.y, x.dt.m, x.dt.d) + '</td><td>' + x.s.glyph + ' ' + x.s.name + (x.amb ? ' <span class="zd-warn" title="Changeover day: the Sun changed sign on this date. Could be ' + x.other.name + '.">or ' + x.other.name + '</span>' : '') + '</td><td>' + x.s.element + '</td><td>' + x.s.modality + '</td><td>' + x.cn.animal + '</td><td><button type="button" class="zd-mini" data-rm="' + x.i + '" aria-label="Remove ' + esc(x.name) + '">Remove</button></td></tr>';
+  });
+  h += '</tbody></table></div>';
+  box.innerHTML = h;
+  var el = { Fire: 0, Earth: 0, Air: 0, Water: 0 }, mo = { Cardinal: 0, Fixed: 0, Mutable: 0 };
+  rows.forEach(function (x) { el[x.s.element]++; mo[x.s.modality]++; });
+  var bars = function (obj, colors) { var mx = Math.max(1, Math.max.apply(null, Object.keys(obj).map(function (k) { return obj[k]; }))); return Object.keys(obj).map(function (k) { return '<div class="sv-brow"><span class="bl">' + k + '</span><span class="bb"><i style="width:' + (100 * obj[k] / mx) + '%;background:' + (colors ? colors[k] : "var(--brand)") + '"></i></span><span class="bn">' + obj[k] + '</span></div>'; }).join(""); };
+  var missing = Object.keys(el).filter(function (k) { return !el[k]; });
+  sum.innerHTML = '<div class="zd-three"><div class="zd-card"><h4>Elements</h4>' + bars(el, EL_COLOR) + '</div><div class="zd-card"><h4>Modalities</h4>' + bars(mo) + '</div><div class="zd-card"><h4>Group snapshot</h4><p class="zd-note">' + rows.length + ' people. ' + (missing.length ? "No " + missing.join(" or ") + " signs in this group." : "All four elements are present.") + '</p></div></div>';
+}
+function renderSigns() {
+  var s = SIGNS[ST.signSel], mt = matchesFor(ST.signSel), h = '';
+  h += '<div class="zodiac-grid">' + SIGNS.map(function (g, i) { return '<button type="button" class="zz-card' + (i === ST.signSel ? " on" : "") + '" data-explore="' + i + '"><div class="zz-badge ' + g.color + '">' + g.glyph + '</div><div class="zz-name">' + g.name + '</div><div class="zz-dates">' + signRange(g) + '</div></button>'; }).join("") + '</div>';
+  h += '<div class="zodiac-hero"><div class="zodiac-badge ' + s.color + '">' + s.glyph + '</div><div class="zodiac-name">' + s.name + '</div><div class="zodiac-dates">' + signRange(s) + ' · ' + s.symbol + '</div><div class="zodiac-meta"><span class="zodiac-chip">' + s.element + '</span><span class="zodiac-chip">' + s.modality + '</span><span class="zodiac-chip">' + s.polarity + '</span><span class="zodiac-chip">Ruled by ' + s.planet + (s.trad !== s.planet ? " / " + s.trad : "") + '</span></div><div class="zodiac-traits">' + s.traits.map(function (t) { return "<span>" + t + "</span>"; }).join("") + '</div></div>';
+  h += '<p>' + esc(s.blurb) + '</p>';
+  h += '<div class="zd-three"><div class="zd-card"><h4>Strengths</h4><ul>' + s.strengths.map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></div><div class="zd-card"><h4>Challenges</h4><ul>' + s.challenges.map(function (x) { return "<li>" + x + "</li>"; }).join("") + '</ul></div><div class="zd-card"><h4>Decans</h4><ul><li>1st (0–10°): ' + s.name + ' / ' + s.planet + '</li><li>2nd (10–20°): ' + SIGNS[(ST.signSel + 4) % 12].name + ' / ' + SIGNS[(ST.signSel + 4) % 12].planet + '</li><li>3rd (20–30°): ' + SIGNS[(ST.signSel + 8) % 12].name + ' / ' + SIGNS[(ST.signSel + 8) % 12].planet + '</li></ul></div></div>';
+  h += '<p><b>Easiest matches:</b> ' + mt.easy.map(nm).join(", ") + '. <b>Supportive:</b> ' + mt.support.map(nm).join(", ") + '. <b>Opposite:</b> ' + nm(mt.opp) + '.</p>';
+  h += '<div class="zd-scroll"><table class="zodiac-detail-table"><thead><tr><th>Sign</th><th>Dates</th><th>Element</th><th>Modality</th><th>Polarity</th><th>Ruler</th></tr></thead><tbody>' + SIGNS.map(function (g) { return '<tr><td>' + g.glyph + ' ' + g.name + '</td><td>' + signRange(g) + '</td><td>' + g.element + '</td><td>' + g.modality + '</td><td>' + g.polarity + '</td><td>' + g.planet + (g.trad !== g.planet ? " / " + g.trad : "") + '</td></tr>'; }).join("") + '</tbody></table></div>';
+  $("signsBox").innerHTML = h;
+}
+function renderOthers() { renderMatch(); renderDates(); renderGroup(); renderSigns(); }
+
+/* ---------- text / exports ---------- */
+function resultText() {
+  var r = ST.res; if (!r || r.err) return "";
+  var d = r.d, s = d.s, f = r.f, tz = r.tz, L = [];
+  L.push("ZODIAC SIGN RESULT", "Free online Zodiac Sign Calculator – https://utiliby.com/tools/astrology/zodiac-sign-calculator/", "");
+  if (r.name) L.push("Name: " + r.name);
+  L.push("Date of birth: " + fmtDMY(r.dt.y, r.dt.m, r.dt.d) + (r.hasTime ? " at " + p2(Math.floor(((r.inst + tz * 60000) % DAY) / 3600000)) + ":" + p2(Math.floor(((r.inst + tz * 60000) % 3600000) / 60000)) : " (time not given)") + " (" + tzLabel(tz) + ")");
+  if (r.amb) L.push("Changeover day: Sun moved from " + SIGNS[r.amb.a].name + " to " + SIGNS[r.amb.b].name + " at " + fmtIn(r.amb.ms, tz) + ". Showing: " + s.name + ".");
+  L.push("Sun sign: " + s.name + " (" + s.symbol + ")" + (r.amb ? "" : ", " + degStr(d.inSign) + (r.hasTime ? "" : " at noon")));
+  L.push("Usual dates: " + signRange(s), "Element / modality: " + s.element + " / " + s.modality, "Polarity: " + s.polarity, "Ruling planet: " + s.planet + (s.trad !== s.planet ? " (traditional: " + s.trad + ")" : ""));
+  L.push("Decan: " + d.decan + ", sub-ruled by " + d.sub.name + " (" + d.sub.planet + ")");
+  if (d.cusp) L.push("Cusp: " + (d.cusp.dir === "entered" ? "Sun entered " + s.name + " " + hoursStr(d.cusp.hours) + " before" : "Sun leaves " + s.name + " " + hoursStr(d.cusp.hours) + " after") + " the reference time; boundary with " + d.cusp.other.name + ".");
+  L.push("Chinese zodiac: " + (d.cn.yang ? "Yang " : "Yin ") + d.cn.element + " " + d.cn.animal + " (lunar year " + d.cn.lunarYear + "; Chinese New Year " + d.cn.cnyYear + " was " + fmtMD(d.cn.cny.m, d.cn.cny.d) + ")");
+  L.push("Weekday of birth: " + f.weekday, "");
+  L.push("Strengths: " + s.strengths.join("; "), "Challenges: " + s.challenges.join("; "), "");
+  L.push("For entertainment only. Astrology is a symbolic tradition, not science, and this tool cannot predict your future or replace professional advice.");
+  return L.join("\n");
+}
+function stamp() { var d = new Date(); return d.getFullYear() + p2(d.getMonth() + 1) + p2(d.getDate()); }
+function dl(name, mime, content) {
+  var b = new Blob([content], { type: mime }), a = document.createElement("a");
+  a.href = URL.createObjectURL(b); a.download = name; a.rel = "noopener"; document.body.appendChild(a); a.click();
+  setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500);
+}
+function csvCell(v) { var s = String(v == null ? "" : v); if (/^[=+\-@\t\r]/.test(s)) s = "'" + s; return '"' + s.replace(/"/g, '""') + '"'; }
+function csv(rows) { return "﻿" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n"); }
+function msg(t, kind) { var m = $("zdStatus"); m.className = "zd-status " + (kind || "info"); m.textContent = t; }
+function copyText(t, okMsg) {
+  var done = function () { msg(okMsg || "Copied to the clipboard.", "ok"); };
+  var fb = function () { var a = document.createElement("textarea"); a.value = t; a.style.position = "fixed"; a.style.opacity = "0"; document.body.appendChild(a); a.select(); var ok = false; try { ok = document.execCommand("copy"); } catch (e) { /* ignore */ } a.remove(); if (ok) done(); else msg("Copy was blocked by the browser. Use a download button instead.", "err"); };
+  if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, fb); else fb();
+}
+function savePng() {
+  var r = ST.res; if (!r || r.err) return;
+  var d = r.d, s = d.s, W = 640, Hh = 760;
+  var wheel = wheelSvg({ k: d.k, lon: r.amb ? null : r.lon, center: s.name, sub: r.amb ? "changeover day" : degStr(d.inSign), ex: true, title: "Zodiac wheel" }).replace(/^<svg([^>]*?)\swidth="[^"]*"([^>]*?)\sheight="[^"]*"/, '<svg$1$2').replace('<svg ', '<svg x="60" y="130" width="520" height="520" ');
+  var tx = function (x, y, t, sz, w, c) { return '<text x="' + x + '" y="' + y + '" text-anchor="middle" font-family="system-ui,Segoe UI,sans-serif" font-size="' + sz + '" font-weight="' + w + '" fill="' + c + '">' + esc(t) + '</text>'; };
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + Hh + '" viewBox="0 0 ' + W + ' ' + Hh + '"><rect width="' + W + '" height="' + Hh + '" fill="#ffffff"/>' + tx(320, 56, (r.name ? r.name + " – " : "") + s.name + " " + s.glyph, 34, 800, "#0f172a") + tx(320, 90, fmtDMY(r.dt.y, r.dt.m, r.dt.d) + " · " + s.element + " · " + s.modality + " · Ruled by " + s.planet, 17, 500, "#475569") + wheel + tx(320, 690, "Chinese zodiac: " + (d.cn.yang ? "Yang " : "Yin ") + d.cn.element + " " + d.cn.animal, 18, 600, "#0f172a") + tx(320, 722, "utiliby.com · Free online zodiac sign calculator · for entertainment only", 13, 400, "#64748b") + '</svg>';
+  var img = new Image();
+  img.onload = function () {
+    try {
+      var c = document.createElement("canvas"); c.width = W * 2; c.height = Hh * 2; var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height);
+      c.toBlob(function (b) { if (!b) { msg("Could not create the image in this browser.", "err"); return; } var a = document.createElement("a"); a.href = URL.createObjectURL(b); a.download = "zodiac-" + s.name.toLowerCase() + "-" + stamp() + ".png"; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 1500); msg("Image saved.", "ok"); }, "image/png");
+    } catch (e) { msg("Could not create the image in this browser.", "err"); }
+  };
+  img.onerror = function () { msg("Could not create the image in this browser.", "err"); };
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* ---------- print report ---------- */
+function fillReport() {
+  var box = $("zdReport"), r = ST.res; box.textContent = "";
+  var add = function (tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; };
+  var tbl = function (head, rows) { var t = document.createElement("table"); t.className = "zd-rep-table"; var tr = document.createElement("tr"); head.forEach(function (h) { var th = document.createElement("th"); th.textContent = h; tr.appendChild(th); }); t.appendChild(tr); rows.forEach(function (rw) { var tr2 = document.createElement("tr"); rw.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; tr2.appendChild(td); }); t.appendChild(tr2); }); box.appendChild(t); };
+  add("h2", "Zodiac sign report");
+  add("p", "Generated " + new Date().toLocaleString() + " · Free online Zodiac Sign Calculator, utiliby.com", "zd-rep-meta");
+  var any = false;
+  if (r && !r.err) {
+    any = true; var d = r.d, s = d.s, tz = r.tz;
+    add("h3", (r.name ? r.name + ": " : "") + s.name + " " + s.glyph);
+    tbl(["Item", "Result"], [["Date of birth", fmtDMY(r.dt.y, r.dt.m, r.dt.d) + (r.hasTime ? " (time given)" : " (time not given)") + ", " + tzLabel(tz)], ["Sun sign", s.name + " (" + s.symbol + ")" + (r.amb ? " – changeover day, also " + SIGNS[r.amb.a === d.k ? r.amb.b : r.amb.a].name : "")], ["Sun position", r.amb ? "boundary" : degStr(d.inSign) + (r.hasTime ? "" : " (noon)")], ["Usual dates", signRange(s)], ["Element / modality / polarity", s.element + " / " + s.modality + " / " + s.polarity], ["Ruling planet", s.planet + (s.trad !== s.planet ? " (traditional " + s.trad + ")" : "")], ["Decan", d.decan + ", sub-ruled by " + d.sub.name], ["Chinese zodiac", (d.cn.yang ? "Yang " : "Yin ") + d.cn.element + " " + d.cn.animal + " (lunar year " + d.cn.lunarYear + ")"], ["Weekday of birth", r.f.weekday]]);
+    add("p", s.blurb);
+    add("p", "Strengths: " + s.strengths.join("; ") + ". Challenges: " + s.challenges.join("; ") + ".");
+  }
+  if (ST.matchText) { any = true; add("h3", "Compatibility"); add("p", ST.matchText); }
+  var rows = groupRows();
+  if (rows.length) { any = true; add("h3", "Group list"); tbl(["Name", "Born", "Sun sign", "Element", "Modality", "Chinese"], rows.map(function (x) { return [x.name, fmtDMY(x.dt.y, x.dt.m, x.dt.d), x.s.name + (x.amb ? " or " + x.other.name : ""), x.s.element, x.s.modality, x.cn.animal]; })); }
+  if (ST.tab === "dates" && ST.datesRows) { any = true; add("h3", "Sun sign dates for " + ST.datesYear + " (" + tzLabel(ST.datesTz) + ")"); tbl(["Sign", "Sun enters", "Sun leaves", "Days", "Note"], ST.datesRows); }
+  if (!any) add("p", "Nothing to print yet. Enter a valid date of birth first.");
+  add("p", "Disclaimer: for entertainment and general information only. Astrology is a symbolic and cultural tradition, not a science. Results cannot predict the future and are not advice of any kind. Sun positions are calculated and may differ by a few minutes from an ephemeris. Not affiliated with any astrology publisher.", "zd-rep-disc");
+}
+
+/* ---------- wiring ---------- */
+function setTab(t) {
+  ST.tab = t;
+  document.querySelectorAll(".zd-tab").forEach(function (b) { var on = b.dataset.tab === t; b.classList.toggle("on", on); b.setAttribute("aria-selected", on ? "true" : "false"); });
+  document.querySelectorAll("[data-panel]").forEach(function (p) { p.hidden = p.dataset.panel !== t; });
+}
+function buildTz() {
+  var s = $("tzSelect"), h = '<option value="device">My device time zone (' + tzLabel(-new Date().getTimezoneOffset()) + ')</option>';
+  var list = [-720, -660, -600, -570, -540, -480, -420, -360, -300, -240, -210, -180, -120, -60, 0, 60, 120, 180, 210, 240, 270, 300, 330, 345, 360, 390, 420, 480, 525, 540, 570, 600, 630, 660, 720, 765, 780, 840];
+  list.forEach(function (m) { h += '<option value="' + m + '">' + tzLabel(m) + '</option>'; });
+  s.innerHTML = h;
+}
+function init() {
+  buildTz();
+  $("matchSignA").innerHTML = signOptions(-1, "From the Your sign tab");
+  $("matchSignB").innerHTML = signOptions(-1, "Use the date instead");
+  $("yearInput").value = String(new Date().getFullYear() > 2099 ? 2099 : Math.max(1900, new Date().getFullYear()));
+  loadGroup();
+  ["birthdate", "birthtime", "tzSelect", "personName"].forEach(function (id) { $(id).addEventListener("input", render); $(id).addEventListener("change", render); });
+  ["matchSignA", "matchSignB", "matchDate"].forEach(function (id) { $(id).addEventListener("input", renderMatch); $(id).addEventListener("change", renderMatch); });
+  $("yearInput").addEventListener("input", renderDates);
+  document.querySelectorAll(".zd-tab").forEach(function (b) { b.addEventListener("click", function () { setTab(this.dataset.tab); }); });
+  $("result").addEventListener("click", function (e) {
+    var p = e.target.closest("[data-pick]"); if (p) { ST.pick = +p.dataset.pick; render(); return; }
+    var z = e.target.closest("[data-sign]"); if (z) { ST.signSel = +z.dataset.sign; renderSigns(); setTab("signs"); $("signsBox").scrollIntoView({ behavior: "smooth", block: "start" }); }
+  });
+  $("signsBox").addEventListener("click", function (e) { var z = e.target.closest("[data-explore]"); if (z) { ST.signSel = +z.dataset.explore; renderSigns(); } });
+  $("btnToday").addEventListener("click", function () { var t = today(); $("birthdate").value = t.y + "-" + p2(t.m) + "-" + p2(t.d); $("birthtime").value = ""; render(); });
+  $("btnReset").addEventListener("click", function () { $("birthdate").value = "1995-08-15"; $("birthtime").value = ""; $("personName").value = ""; $("tzSelect").value = "device"; ST.pick = 0; render(); msg("Settings reset.", "info"); });
+  $("btnCopy").addEventListener("click", function () { copyText(resultText(), "Result copied."); });
+  $("btnTxt").addEventListener("click", function () { var t = resultText(); if (t) dl("zodiac-result-" + stamp() + ".txt", "text/plain;charset=utf-8", t); });
+  $("btnPng").addEventListener("click", savePng);
+  $("btnPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  window.addEventListener("beforeprint", fillReport);
+  $("datesCsv").addEventListener("click", function () { if (!ST.datesRows) return; dl("zodiac-dates-" + ST.datesYear + ".csv", "text/csv;charset=utf-8", csv([["Sign", "Sun enters", "Sun leaves", "Days", "Note"]].concat(ST.datesRows))); });
+  $("datesPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("gAdd").addEventListener("click", function () {
+    var dt = parseDate($("gDate").value);
+    if (!dt || dt.y < 1900 || dt.y > 2099) { msg("Enter a valid birth date between 1900 and 2099.", "err"); return; }
+    if (ST.group.length >= 200) { msg("The list is limited to 200 people.", "err"); return; }
+    ST.group.push({ name: $("gName").value.trim().slice(0, 40), date: $("gDate").value }); $("gName").value = ""; $("gDate").value = ""; saveGroup(); renderGroup(); msg("Added.", "ok");
+  });
+  $("groupTable").addEventListener("click", function (e) { var b = e.target.closest("[data-rm]"); if (b) { ST.group.splice(+b.dataset.rm, 1); saveGroup(); renderGroup(); } });
+  $("gClear").addEventListener("click", function () { ST.group = []; saveGroup(); renderGroup(); });
+  $("gRemember").addEventListener("change", saveGroup);
+  $("gCopy").addEventListener("click", function () { var rows = groupRows(); copyText(rows.map(function (x) { return x.name + " | " + fmtDMY(x.dt.y, x.dt.m, x.dt.d) + " | " + x.s.name + (x.amb ? " or " + x.other.name : "") + " | " + x.s.element + " | " + x.s.modality + " | " + x.cn.animal; }).join("\n"), "Group list copied."); });
+  $("gCsv").addEventListener("click", function () { var rows = groupRows(); dl("zodiac-group-" + stamp() + ".csv", "text/csv;charset=utf-8", csv([["Name", "Date of birth", "Sun sign", "Possible second sign", "Element", "Modality", "Ruling planet", "Chinese animal"]].concat(rows.map(function (x) { return [x.name, x.date, x.s.name, x.amb ? x.other.name : "", x.s.element, x.s.modality, x.s.planet, x.cn.animal]; })))); });
+  $("gPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("matchPrint").addEventListener("click", function () { fillReport(); window.print(); });
   render();
-});
+}
+if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
 })();
 </script>
 </body>
