@@ -5,16 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
 <title>Free Passport Validity Checker Online – 6 Month Rule &amp; Country Requirements</title>
-<meta name="description" content="Free online passport validity checker. Enter your passport dates and destination to see whether you meet the 6-month, 3-month or 10-year rules. Global coverage of passport validity requirements, visual timeline, clear pass/fail. 100% browser-based, no sign-up.">
+<meta name="description" content="Free online passport validity checker: test the 6-month, 3-month and Schengen 10-year rules for 130+ destinations, multi-stop trips and families. No sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/travel-tools/passport-validity-checker/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
 <meta property="og:title" content="Free Passport Validity Checker Online – 6 Month Rule &amp; Country Requirements">
-<meta property="og:description" content="Check whether your passport meets the entry rules for your destination. 6-month rule, 3-month rule, 10-year rule.">
+<meta property="og:description" content="Free online passport validity checker for the 6-month, 3-month and Schengen 10-year rules. Multi-stop trips, families, key dates and printable results.">
 <meta property="og:url" content="https://utiliby.com/tools/travel-tools/passport-validity-checker/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Passport Validity Checker Online – 6 Month Rule &amp; Country Requirements">
+<meta name="twitter:description" content="Free online passport validity checker for the 6-month, 3-month and Schengen 10-year rules. Multi-stop trips, families, key dates and printable results.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
@@ -58,7 +61,6 @@
 .pv-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
 .pv-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
 .pv-disclaimer b{color:var(--fg)}
-@media print{header.site,footer.site,.pv-btn,.pv-hero,.cn-article,.no-print,.pv-panel form,.pv-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
 .cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
 .cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
@@ -66,21 +68,100 @@
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input{max-width:100%}
+.pv-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.pv-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1}
+.pv-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+@media(prefers-color-scheme:dark){.pv-tab{color:#7dd3fc}.pv-tab.on{color:#fff}}
+.pv-opts summary{cursor:pointer;font-weight:700;font-size:.9rem}
+.pv-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.pv-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.pv-xt{grid-template-columns:1fr 1fr 1fr auto}
+.pv-xl{grid-template-columns:1.5fr 1fr 1fr .7fr auto}
+@media(max-width:700px){.pv-xt,.pv-xl{grid-template-columns:1fr 1fr}.pv-xrow .pv-x{grid-column:1/-1}}
+.pv-x{padding:9px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem}
+.pv-addrow{display:flex;align-items:flex-end;gap:10px;margin-top:6px}
+.pv-btn.small{padding:8px 14px;font-size:.82rem;margin-top:10px}
+.pv-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.pv-faillist{margin:8px 0 0 18px;font-size:.85rem;line-height:1.6}
+.pv-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;letter-spacing:.02em;white-space:nowrap}
+.pv-c-pass{background:#16a34a}.pv-c-tight{background:#d97706}.pv-c-check{background:#64748b}.pv-c-fail{background:#dc2626}
+.pv-cell{background:transparent;border:1px solid var(--line);border-radius:8px;padding:6px 8px;cursor:pointer;color:var(--fg);text-align:center;font:inherit;font-size:.8rem}
+.pv-cell:hover{border-color:#0369a1}
+.pv-checks{list-style:none;margin:10px 0;padding:0;font-size:.86rem;line-height:1.6}
+.pv-checks li{padding:6px 0 6px 24px;position:relative;border-bottom:1px solid var(--line)}
+.pv-checks li span{position:absolute;left:2px;font-weight:800}
+.pv-checks .ok span{color:#16a34a}.pv-checks .bad span{color:#dc2626}.pv-checks .q span{color:#64748b}
+.pv-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.pv-stat .val.info{color:#64748b}
+.pv-pick{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+#pvPick{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.pv-h3{font-size:1rem;margin:16px 0 6px}
+.pv-scroll{overflow-x:auto}
+.pv-scroll .pv-table{min-width:480px}
+.pv-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.pv-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.pv-status.err{color:#dc2626}
+.pv-tl{width:100%;min-width:560px;height:auto;display:block;margin:0 auto;color:var(--fg)}
+.pv-tlbox{padding:10px 8px}
+.pv-tip ul{margin:6px 0 6px 18px}
+@media(prefers-reduced-motion:no-preference){.pv-bar{animation:pvGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}}
+@keyframes pvGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+.pv-dir td.pv-d{font-weight:700;white-space:nowrap}
+.pv-dir td.ok{color:#16a34a}.pv-dir td.warn{color:#d97706}.pv-dir td.err{color:#dc2626}
+.pv-dir{min-width:560px}
+.pv-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.pv-report{display:none}
+.pv-rep-meta{font-size:10pt;color:#444}
+.pv-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.pv-rep-table th,.pv-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.pv-rep-fail{color:#b91c1c;font-weight:600;font-size:10pt}
+.pv-rep-fig{margin:8px 0;break-inside:avoid}
+.pv-rep-disc{font-size:9.5pt;margin-top:12px}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.pv-report){display:none!important}.pv-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.pv-report h2,.pv-report h3{color:#000;margin:10px 0 4px}.pv-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.pv-bar{animation:none!important}}
+.pv-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.pv-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.pv-toc b{display:block;margin-bottom:4px}
+.pv-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.pv-toc ol{columns:1}}
+.pv-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.pv-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.pv-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.cn-article .pv-table{display:table}
+.cn-article .pv-wrap{overflow-x:auto}
+.cn-article .pv-wrap table{min-width:520px}
+.pv-callout{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:12px 0;font-size:.9rem;line-height:1.65}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Passport Validity Checker","url":"https://utiliby.com/tools/travel-tools/passport-validity-checker/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free passport validity checker online?","acceptedAnswer":{"@type":"Answer","text":"A free passport validity checker online tells you whether your passport meets the entry rules for your destination country. You enter your passport issue date, expiry date, destination and travel dates, and the tool checks the applicable rule — usually 3 months, 6 months, or validity at time of entry — and gives a clear pass or fail."}},{"@type":"Question","name":"What is the 6-month passport rule?","acceptedAnswer":{"@type":"Answer","text":"Many countries require your passport to be valid for at least 6 months beyond your planned date of entry or departure. This ensures you have a valid travel document for the duration of your trip and a buffer for unexpected delays. Around 70 countries apply the 6-month rule, including China, India, Thailand, Turkey, Saudi Arabia and most of the Middle East and Southeast Asia."}},{"@type":"Question","name":"What is the 3-month passport rule?","acceptedAnswer":{"@type":"Answer","text":"The Schengen Area and many other countries require your passport to be valid for at least 3 months beyond your intended date of departure from the area. In addition, your passport must have been issued within the last 10 years. This is the rule that catches many UK travellers post-Brexit, whose older passports had extra months added from a previous renewal."}},{"@type":"Question","name":"Which countries require only a valid passport?","acceptedAnswer":{"@type":"Answer","text":"A handful of countries — including Australia, Canada, the United States and the Bahamas — generally require only that your passport be valid at the time of entry. However, airlines and immigration officers may still require a validity period beyond your stay, so check with the airline before you fly."}},{"@type":"Question","name":"Is this passport validity checker free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your passport details anywhere."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Passport Validity Checker","url":"https://utiliby.com/tools/travel-tools/passport-validity-checker/","description":"Free online passport validity checker for the 6-month, 3-month, stay-only and Schengen 10-year rules, with multi-stop trips, families, key dates and printable results.","applicationCategory":"TravelApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["6-month, 3-month, 1-month, 30/90-day, stay-only and Schengen 10-year rules","130+ destinations with a custom-rule option","Multi-stop trips and up to eight travellers","Animated validity timeline","Latest travel date and apply-by date","Key passport dates and searchable country rules","Copy, TXT, CSV, PNG and print/PDF export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free passport validity checker online?","acceptedAnswer":{"@type":"Answer","text":"A free passport validity checker online tests your passport dates against the entry rules of the country you are visiting. You enter the issue and expiry dates, the destination and your travel dates, and it reports whether the passport meets the 6-month, 3-month, stay-only or Schengen 10-year rule, with the exact date it must remain valid until."}},{"@type":"Question","name":"How do I check if my passport is valid for travel?","acceptedAnswer":{"@type":"Answer","text":"Enter your passport issue and expiry dates, choose the destination, then add your arrival and departure dates and press Check passport validity. The checker shows PASS, PASS – TIGHT, CHECK or FAIL, the date your passport must be valid until, how many days you have to spare and a timeline. Then confirm the result with the embassy and your airline."}},{"@type":"Question","name":"What is the 6-month passport rule?","acceptedAnswer":{"@type":"Answer","text":"Many countries expect your passport to be valid for at least six months beyond your trip. Some measure from arrival and some from departure, so this checker uses departure by default because it is the stricter reading. Examples include China, Thailand, Indonesia, India, the United Arab Emirates and Egypt."}},{"@type":"Question","name":"Which countries require 6 months of passport validity?","acceptedAnswer":{"@type":"Answer","text":"Dozens of countries, mainly in Asia, the Middle East, Africa and Latin America, ask for six months. The Country rules tab lists every one in this checker, including China, Thailand, Vietnam, Indonesia, India, Singapore, Malaysia, the UAE, Saudi Arabia, Egypt, Kenya and Peru. Published sources sometimes disagree, so confirm your destination."}},{"@type":"Question","name":"What is the 3-month passport rule?","acceptedAnswer":{"@type":"Answer","text":"A 3-month rule asks for a passport that is still valid three months after you plan to leave. The Schengen area and New Zealand use it, and so do several other destinations. The checker counts three calendar months from your departure date."}},{"@type":"Question","name":"What is the Schengen 10-year passport rule?","acceptedAnswer":{"@type":"Answer","text":"To enter the Schengen area your passport must have been issued within the previous 10 years on the day you arrive, as well as being valid for at least three months after you leave. A passport that has not expired can still be refused if it is more than ten years old, which affects passports that carried extra validity over from an earlier one."}},{"@type":"Question","name":"How many months of validity does a passport need for Schengen?","acceptedAnswer":{"@type":"Answer","text":"Three months beyond the date you intend to leave the Schengen area, plus an issue date no more than ten years before you arrive. Two blank pages are also commonly requested. Enter the issue date in the checker so it can test both parts."}},{"@type":"Question","name":"Is the 6 months counted from arrival or departure?","acceptedAnswer":{"@type":"Answer","text":"It depends on the country and the source. Some embassies say six months from entry, others six months beyond the end of your stay. Counting from departure is stricter and never gives a false pass, so it is the default. Use the Options box to count from arrival instead; the passport must still cover the whole stay."}},{"@type":"Question","name":"Can I travel with a passport that expires in 5 months?","acceptedAnswer":{"@type":"Answer","text":"It depends on the destination. A stay-only country such as Japan, Canada or Australia would accept it for a short trip, but a six-month destination would not, and Schengen needs three months after you leave. Airlines and cruise lines are often stricter than border officers, so a passport with under six months left is a risk."}},{"@type":"Question","name":"What is the US six-month club?","acceptedAnswer":{"@type":"Answer","text":"The United States asks for a passport valid for six months beyond your stay, but citizens of the countries on the six-month club list only need a passport valid for the stay. US Customs and Border Protection published a revised list on 18 December 2025. Choose the exempt or non-exempt United States option to match your nationality."}},{"@type":"Question","name":"Which countries only need a passport valid for the stay?","acceptedAnswer":{"@type":"Answer","text":"In this checker they include the United Kingdom, Ireland, Canada, Australia, Japan, South Korea, Mexico, Brazil, Argentina, Chile, Costa Rica and many Caribbean destinations. The passport must cover your whole stay, and your airline may still ask for more."}},{"@type":"Question","name":"Do I need blank pages in my passport?","acceptedAnswer":{"@type":"Answer","text":"Some destinations ask for one to three blank pages, for example China, Thailand, Indonesia, Egypt, Namibia, South Africa and the Schengen area. The checker lists the usual number as a reminder, but it cannot count the pages in your passport."}},{"@type":"Question","name":"Do airlines enforce passport validity rules?","acceptedAnswer":{"@type":"Answer","text":"Yes. Airlines can be fined for carrying passengers who are refused entry, so check-in staff often apply the strictest reading and may refuse boarding even if the border officer would admit you. They rely on the IATA Timatic database, so check with your airline before you fly."}},{"@type":"Question","name":"Does passport validity apply to transit and layovers?","acceptedAnswer":{"@type":"Answer","text":"Sometimes. Some countries apply their validity rule to passengers who only change planes, and a layover can involve a short entry into a country. Check the rules for each transit point as well as your destination, and add them as extra stops in the checker."}},{"@type":"Question","name":"Can I check several countries on one trip?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Add another stop to build a multi-stop trip. Each stop is tested against its own rule and the checker shows the latest expiry date that would cover the whole itinerary."}},{"@type":"Question","name":"Can I check passports for the whole family?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Add another traveller to enter up to eight passports. The results grid shows every traveller against every stop, so one expiring passport is easy to spot."}},{"@type":"Question","name":"What does PASS – TIGHT mean?","acceptedAnswer":{"@type":"Answer","text":"The passport meets the rule but only with fewer than 30 days to spare. A delay, a change of dates or a stricter airline could turn it into a refusal, so renewing is wise."}},{"@type":"Question","name":"What does CHECK mean in the results?","acceptedAnswer":{"@type":"Answer","text":"CHECK means the expiry date is fine but the rule also depends on the issue date (the Schengen 10-year rule) and you did not enter it. Add the issue date to finish the test."}},{"@type":"Question","name":"How long does passport renewal take?","acceptedAnswer":{"@type":"Answer","text":"Processing times vary by country and season, and can range from days with expedited service to many weeks or longer. The checker assumes eight weeks by default and works out an apply-by date from your first affected arrival. Change the figure in Options to match your passport office."}},{"@type":"Question","name":"Does ETIAS change passport validity rules?","acceptedAnswer":{"@type":"Answer","text":"ETIAS is a travel authorisation for visa-exempt visitors to the Schengen area, expected to begin from late 2026 according to recent reports. It does not replace the passport rules, it is linked to the passport you use, and a renewed passport needs a new authorisation. Check the official EU site for the confirmed start date."}},{"@type":"Question","name":"What should I do if my passport is not valid for long enough?","acceptedAnswer":{"@type":"Answer","text":"Renew it before you travel, or change your dates or destination. The checker shows the minimum expiry date a replacement needs, the date to apply by and, for each failing stop, the latest departure your current passport allows."}},{"@type":"Question","name":"Does the checker work for children's passports?","acceptedAnswer":{"@type":"Answer","text":"Yes, the same rules apply to every passport. Child passports are often issued for a shorter period than adult ones, so they expire sooner and are easy to overlook when you plan a family trip."}},{"@type":"Question","name":"Is my passport information stored or shared?","acceptedAnswer":{"@type":"Answer","text":"No. The checker runs in your browser and does not send, save or log the dates you enter. Closing the tab clears them."}},{"@type":"Question","name":"How accurate are the country rules?","acceptedAnswer":{"@type":"Answer","text":"They are general guidance for most travellers and were compiled from official and secondary sources. Rules change, can depend on your nationality or visa type, and sources sometimes disagree. Where they do, the stricter reading is used and the destination is flagged. Always confirm with the embassy and your airline."}},{"@type":"Question","name":"Can I print or save the result as a PDF?","acceptedAnswer":{"@type":"Answer","text":"Yes. Press Print / save as PDF to print a clean report with your passports, results and timelines only. The site header, footer and article are left out."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Travel Tools","item":"https://utiliby.com/tools/travel-tools/"},{"@type":"ListItem","position":3,"name":"Passport Validity Checker","item":"https://utiliby.com/tools/travel-tools/passport-validity-checker/"}]}]}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/travel-tools/">Travel Tools</a> › Passport Validity Checker</nav>
-<h1 class="noembed">Passport Validity Checker</h1>
-<p class="lead noembed">Enter your passport dates, destination and travel dates to see whether you meet the 6-month, 3-month or 10-year rule. Global coverage, visual timeline, clear pass/fail. Free, private and no sign-up.</p>
+<h1 class="noembed">Free Online Passport Validity Checker</h1>
+<p class="lead noembed">Free online passport validity checker: enter your passport dates, destination and travel dates to see whether you meet the 6-month, 3-month or Schengen 10-year rule. Check several stops and the whole family, see a timeline, get the apply-by date and print a clean report. Private, with no sign-up.</p>
 <p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/passport-validity-checker/" target="_blank" rel="noopener">Passport Validity Checker by Utiliby</a></p>
 <section class="tool" id="tool" aria-label="Passport validity checker">
 <div class="pv-hero noembed">
-<h2>Free Passport Validity Checker</h2>
-<p>Will your passport be accepted at your destination? Check the 6-month, 3-month and 10-year rules before you book.</p>
+<h2>Free Passport Validity Checker Online</h2>
+<p>Will your passport be accepted? Test the 6-month, 3-month and Schengen 10-year rules for 136 destinations, several stops and the whole family before you book.</p>
 </div>
+<div class="pv-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="pv-tab on" id="pvTabBtn1" aria-pressed="true">Check my trip</button>
+<button type="button" class="pv-tab" id="pvTabBtn2" aria-pressed="false">Key dates &amp; country rules</button>
+</div>
+<details class="pv-panel pv-opts" id="pvOpts">
+<summary>Options: safety margin, rule basis, as-of date</summary>
+<div class="pv-row3">
+<div><label for="pvBasis">Count the buffer from</label><select id="pvBasis"><option value="dep">Departure date (cautious)</option><option value="arr">Arrival date (and still cover the stay)</option></select></div>
+<div><label for="pvMargin">Extra safety margin (days)</label><input type="number" id="pvMargin" min="0" max="365" step="1" value="0"></div>
+<div><label for="pvWeeks">Passport renewal time (weeks)</label><input type="number" id="pvWeeks" min="0" max="52" step="1" value="8"></div>
+</div>
+<div class="pv-row"><div><label for="pvToday">Check as of (today)</label><input type="date" id="pvToday"></div></div>
+<p class="pv-hint">Change the as-of date to plan ahead. Everything is calculated in your browser; nothing you enter is sent or stored.</p>
+</details>
+<div id="pvTab1">
 <div class="pv-panel">
 <h3>Your passport</h3>
 <div class="pv-row3">
@@ -91,6 +172,8 @@
 <option value="">— Select destination —</option>
 </select></div>
 </div>
+<div class="pv-row"><div><label for="pvName0">Traveller name (optional)</label><input type="text" id="pvName0" maxlength="40" autocomplete="off" placeholder="e.g. Sam"></div><div class="pv-addrow"><button type="button" class="pv-btn ghost small" id="pvAddTrav">+ Add another traveller</button></div></div>
+<div id="pvTravs"></div>
 </div>
 <div class="pv-panel">
 <h3>Travel dates</h3>
@@ -99,10 +182,49 @@
 <div><label for="departureDate">Date of departure</label><input type="date" id="departureDate"></div>
 <div><label for="stayDays">Length of stay (days, optional)</label><input type="number" id="stayDays" min="1" step="1" placeholder="Auto from dates"></div>
 </div>
+<button type="button" class="pv-btn ghost small" id="pvAddLeg">+ Add another stop</button>
+<p class="pv-hint">Leave the departure date empty and enter a number of days to calculate it from your arrival. Extra stops use their own rule.</p>
+<div id="pvLegs"></div>
+</div>
+<div class="pv-panel" id="pvCustom" hidden>
+<h3>Your custom rule</h3>
+<div class="pv-row3">
+<div><label for="cuMonths">Months of validity required</label><input type="number" id="cuMonths" min="0" max="36" step="1" value="0"></div>
+<div><label for="cuDays">Extra days required</label><input type="number" id="cuDays" min="0" max="400" step="1" value="0"></div>
+<div><label for="cuBasis">Counted from</label><select id="cuBasis"><option value="dep">Departure date</option><option value="arr">Arrival date (and cover the stay)</option><option value="entry">Arrival date only</option></select></div>
+</div>
+<div class="pv-row"><div><label for="cuAge">Max passport age at arrival (years, 0 = none)</label><input type="number" id="cuAge" min="0" max="30" step="1" value="0"></div><div><label for="cuPages">Blank pages required (info only)</label><input type="number" id="cuPages" min="0" max="10" step="1" value="0"></div></div>
 </div>
 <button type="button" class="pv-btn" id="calcBtn">Check passport validity</button>
 <button type="button" class="pv-btn ghost" id="resetBtn">Reset</button>
+<button type="button" class="pv-btn ghost" id="pvExample">Load an example</button>
 <div id="output"></div>
+</div>
+<div id="pvTab2" hidden>
+<div class="pv-panel">
+<h3>Your passport dates</h3>
+<div class="pv-row3">
+<div><label for="rlIssue">Passport issue date (optional)</label><input type="date" id="rlIssue"></div>
+<div><label for="rlExpiry">Passport expiry date</label><input type="date" id="rlExpiry"></div>
+</div>
+</div>
+<div id="rlKey"></div>
+<div class="pv-panel">
+<h3>Passport rules by destination</h3>
+<div class="pv-row3">
+<div><label for="rlSearch">Search destination</label><input type="text" id="rlSearch" autocomplete="off" placeholder="e.g. Thai"></div>
+<div><label for="rlRegion">Region</label><select id="rlRegion"><option value="">All regions</option></select></div>
+<div><label for="rlRule">Rule type</label><select id="rlRule"><option value="">All rules</option><option value="6">6 months</option><option value="3">3 months</option><option value="S">Schengen (3 months + 10-year)</option><option value="short">1 month / 30 / 90 days</option><option value="stay">Valid for the stay</option></select></div>
+</div>
+<div class="pv-row"><div><label for="rlSort">Sort by</label><select id="rlSort"><option value="name">Destination A–Z</option><option value="latest">Earliest deadline first (needs expiry date)</option><option value="strict">Strictest rule first</option></select></div><div class="pv-addrow"><span class="pv-hint" id="rlCount" role="status"></span></div></div>
+<div class="pv-scroll" id="rlTable"></div>
+<div class="pv-actions"><button type="button" class="pv-btn ghost" id="rlCsv" style="margin:0">Download CSV</button><button type="button" class="pv-btn ghost" id="rlPrint" style="margin:0">Print / save as PDF</button></div>
+<p class="pv-hint">The table counts buffers from your departure date (the cautious reading). Use the Check my trip tab for your exact dates.</p>
+</div>
+</div>
+<p class="pv-status" id="pvStatus" role="status" aria-live="polite"></p>
+<div class="pv-report" id="pvReport" aria-hidden="true"></div>
+<p class="pv-fine"><b>Disclaimer:</b> This free online passport validity checker gives general guidance only. Entry rules change, differ by nationality and are enforced by border officers and airlines, and the stricter reading is used where sources disagree. Confirm requirements with the destination embassy or consulate and your airline before you book or travel.</p>
 </section>
 <div class="pv-share noembed">
 <h3>Share, cite or embed this tool</h3>
@@ -118,50 +240,117 @@
 <button type="button" data-copy-target="pv-embed">Copy embed code</button>
 </div>
 <article class="cn-article noembed">
-<h2>What is a free passport validity checker online?</h2>
-<p>A free passport validity checker online is a tool that tells you whether your passport meets the entry requirements of your destination country. Passport validity rules are not universal. Some countries require six months of validity beyond your arrival or departure date; some require three months; a few require only that the passport be valid on the day you enter. In the Schengen Area, there is an additional requirement that the passport must have been issued within the last ten years — a rule that has caught out many travellers since Brexit, whose older passports had extra months added by a previous renewal.</p>
-<p>This passport validity checker covers the main rule types and gives you a clear pass or fail before you book flights. You enter your passport issue date, expiry date, destination and travel dates, and the tool checks the applicable rule, shows the exact dates, and draws a visual timeline so you can see at a glance whether your validity window covers your trip. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-<h2>How to use this free passport checker</h2>
-<ol>
-<li>Enter your passport issue date and expiry date. The issue date matters for the Schengen ten-year rule.</li>
-<li>Select your destination country from the dropdown.</li>
-<li>Enter your planned arrival and departure dates.</li>
-<li>Click Check passport validity. The tool shows the applicable rule, the number of days of validity beyond your travel dates, and a pass or fail verdict.</li>
-</ol>
-<h2>The three main passport validity rules</h2>
-<table class="pv-table">
-<tr><th>Rule</th><th>What it requires</th><th>Where it applies</th></tr>
-<tr><td>6-month rule</td><td>Passport valid for at least 6 months beyond arrival or departure</td><td>~70 countries including China, India, Thailand, Turkey, Saudi Arabia, UAE, Indonesia, Mexico, Brazil</td></tr>
-<tr><td>3-month rule</td><td>Passport valid for at least 3 months beyond intended departure</td><td>Schengen Area, and many other countries</td></tr>
-<tr><td>10-year rule (Schengen)</td><td>Passport must have been issued within the last 10 years</td><td>Schengen Area — applies in addition to the 3-month rule</td></tr>
-<tr><td>Validity at entry only</td><td>Passport valid on the day of entry</td><td>Australia, Canada, United States, Bahamas</td></tr>
-<tr><td>Other periods</td><td>45 days (Bermuda), 1 month beyond stay (Hong Kong), 90 days beyond stay (Macau), 120 days (Micronesia)</td><td>Specific destinations</td></tr>
-</table>
-<h2>The Schengen ten-year rule explained</h2>
-<p>Before Brexit, UK passports could have up to nine months of extra validity transferred from a previous passport when renewed early. That meant a passport could be valid for up to ten years and nine months in total. Since Brexit, the Schengen Area requires that the passport must have been issued within the last ten years on the date of entry. A passport issued more than ten years ago is not accepted for entry to the Schengen Area, even if it has not yet expired. This rule has caught many travellers who renewed early and now hold a passport with a later expiry date than issue-plus-ten-years.</p>
-<h2>Why the six-month rule exists</h2>
-<p>The six-month rule gives immigration authorities a buffer. It ensures that a traveller has a valid travel document for the full duration of their stay, plus enough margin to handle unexpected delays, medical emergencies, or overstays. It also protects against the possibility that a traveller might not be able to renew their passport in the destination country before it expires. Countries with the six-month rule include most of Asia, the Middle East, Africa and Latin America.</p>
-<h2>Check with the airline before you fly</h2>
-<p>Airlines are legally responsible for carrying passengers who do not have the correct documents, and they are fined if they do. As a result, airlines often enforce passport validity rules more strictly than immigration officers do. Even if a destination technically permits entry with a passport valid only for the duration of the stay, the airline may refuse boarding if it believes the rule is six months. Always check with your airline as well as the destination embassy before travelling with a passport that is close to expiry.</p>
-<h2>Common mistakes</h2>
-<ul>
-<li><b>Assuming all countries use the six-month rule.</b> They do not. The Schengen Area uses three months plus the ten-year issue rule.</li>
-<li><b>Confusing validity at entry with validity for the trip.</b> Some countries require validity at entry only; others require validity for the duration plus a buffer.</li>
-<li><b>Forgetting the ten-year rule.</b> In the Schengen Area, a passport issued more than ten years ago is not accepted even if it has not expired.</li>
-<li><b>Not checking with the airline.</b> Airlines enforce passport rules and may refuse boarding even if the destination would accept you.</li>
-<li><b>Leaving it too late to renew.</b> Passport renewals can take weeks or months depending on the country. Check validity well before you book.</li>
-</ul>
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a free passport validity checker online?</summary><p>It tells you whether your passport meets the entry rules for your destination. You enter your passport dates, destination and travel dates, and the tool checks the applicable rule and gives a pass or fail.</p></details>
-<details><summary>What is the 6-month passport rule?</summary><p>Many countries require your passport to be valid for at least 6 months beyond your planned date of entry or departure. Around 70 countries apply the 6-month rule, including China, India, Thailand, Turkey and Saudi Arabia.</p></details>
-<details><summary>What is the 3-month passport rule?</summary><p>The Schengen Area and many other countries require your passport to be valid for at least 3 months beyond your intended departure date. In the Schengen Area, your passport must also have been issued within the last 10 years.</p></details>
-<details><summary>Which countries require only a valid passport?</summary><p>A handful, including Australia, Canada, the United States and the Bahamas, generally require only that your passport be valid at the time of entry. Check with the airline before you fly.</p></details>
-<details><summary>Is this passport validity checker free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-</div>
-<div class="pv-disclaimer">
-<b>Disclaimer:</b> This tool provides guidance only. Passport validity rules change and are enforced by the destination country and the airline. The tool covers the main rule types (6-month, 3-month, 10-year issue date, entry-only) but does not cover every country-specific requirement or bilateral agreement. Always confirm the current rules with the destination embassy or consulate and with your airline before booking or travelling. Utiliby accepts no liability for denied boarding, refused entry, or consequences arising from the use of this tool.
-</div>
+<p class="pv-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules reviewed October 2026</p>
+<nav class="pv-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what-is">What is a free passport validity checker?</a></li><li><a href="#how-to">How to use this free online checker</a></li><li><a href="#results">Understanding your result</a></li><li><a href="#rules">The passport validity rules at a glance</a></li><li><a href="#six-month">The 6-month passport rule</a></li><li><a href="#schengen">Schengen: 3 months plus the 10-year rule</a></li><li><a href="#us-club">United States and the six-month club</a></li><li><a href="#stay-only">Countries that only need a passport valid for the stay</a></li><li><a href="#other-rules">1-month, 30-day, 90-day and 3-month rules</a></li><li><a href="#by-country">Country-by-country lists</a></li><li><a href="#method">How the dates are calculated</a></li><li><a href="#airlines">Airlines, cruise lines and Timatic</a></li><li><a href="#checklist">Pre-flight passport checklist</a></li><li><a href="#renewal">Renewal timing and apply-by dates</a></li><li><a href="#special">Families, multi-stop trips, transit and cruises</a></li><li><a href="#mistakes">Common passport validity mistakes</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what-is">What is a free passport validity checker online?</h2>
+<p>A free passport validity checker online is a calculator that compares your passport dates with the entry rules of the country you plan to visit. Passport validity rules are not universal. Some countries want six months of validity, some want three, some only require the passport to be valid on the days you are there, and the Schengen area adds a limit on how old the passport can be. Working out which rule applies, and then counting the months correctly, is exactly the kind of small calculation that goes wrong the night before a flight.</p>
+<p>This tool does that work for you. You enter the passport issue and expiry dates, choose a destination and add your arrival and departure dates. It applies the rule for that destination, shows the exact date the passport must remain valid until, tells you how many days you have to spare and draws a timeline. It goes further than a basic 6-month calculator: it handles several stops on one trip, up to eight travellers at once, a custom rule for destinations that are not listed, and a second tab that turns your expiry date into a list of key dates and the last day you can travel to every country.</p>
+<p>It is built for people searching for an answer such as <em>is my passport valid for Thailand</em>, <em>does my passport need six months for Schengen</em>, <em>passport expiry date calculator for travel</em> or <em>can I travel with a passport that expires in five months</em>. Everything runs in your browser, nothing is uploaded, and there is no account to create.</p>
+<h2 id="how-to">How to use this free online passport validity checker</h2>
+<ol><li><b>Enter your passport dates.</b> The expiry date is required. The issue date is optional, but the Schengen 10-year rule needs it, so add it when you can.</li><li><b>Choose the destination.</b> Destinations are grouped by region. Pick <em>Other / not listed</em> to assume the cautious 6-month rule, or <em>Custom rule</em> to type the requirement an embassy gave you.</li><li><b>Add your travel dates.</b> Enter arrival and departure. If you only know how long you will stay, leave departure empty and type the number of days.</li><li><b>Add more stops or travellers.</b> Use <em>Add another stop</em> for a multi-country trip and <em>Add another traveller</em> for a family or group.</li><li><b>Press Check passport validity.</b> Read the verdict, open the checks and look at the timeline. Choose a different traveller or stop from the drop-down to see its detail.</li><li><b>Save what you need.</b> Copy the result, download TXT or CSV, save the timeline as a PNG, or print a clean report.</li></ol>
+<p>The <b>Options</b> box lets you count the buffer from arrival instead of departure, add your own safety margin in days, set how many weeks your passport office needs to renew, and change the as-of date to plan ahead. The <b>Key dates &amp; country rules</b> tab works from the expiry date alone and is the quickest way to see where your passport can still take you.</p>
+<h2 id="results">Understanding your result</h2>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Result</th><th>Meaning</th><th>What to do</th></tr><tr><td><b>PASS</b></td><td>The passport meets the rule with 30 days or more to spare.</td><td>Good to go. Still confirm with your airline.</td></tr><tr><td><b>PASS – TIGHT</b></td><td>It meets the rule but with fewer than 30 days of spare validity.</td><td>A delay or a stricter airline could cause trouble. Consider renewing.</td></tr><tr><td><b>CHECK</b></td><td>The expiry is fine, but the rule needs the issue date and it was left empty.</td><td>Add the issue date to finish the test.</td></tr><tr><td><b>FAIL</b></td><td>The passport expires too soon, or it is too old for a 10-year issue rule.</td><td>Renew, change the dates or choose another destination. The fix box shows the date to apply by.</td></tr></table></div>
+<p>For each stop the checker also reports <em>days beyond departure</em> (how long the passport lasts after you leave), the <em>margin against the rule</em>, and the <em>latest trip your passport allows</em>, meaning the last day you could leave and still pass. If you fail, it states the minimum expiry date a replacement needs so that one new passport covers the whole itinerary.</p>
+<h2 id="rules">The passport validity rules at a glance</h2>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Rule</th><th>What it requires</th><th>Typical examples</th></tr><tr><td>Valid for the stay</td><td>The passport must not expire before you leave.</td><td>United Kingdom, Canada, Australia, Japan, Mexico, Brazil</td></tr><tr><td>1 month, 30 or 90 days after departure</td><td>A short buffer beyond your stay.</td><td>Hong Kong (1 month), South Africa (30 days), Macau (90 days)</td></tr><tr><td>3 months after departure</td><td>The passport must outlast your trip by three months.</td><td>Schengen area, New Zealand, Albania, Panama</td></tr><tr><td>6 months of validity</td><td>The passport must outlast your trip by six months.</td><td>China, Thailand, Indonesia, India, UAE, Egypt, Singapore</td></tr><tr><td>10-year issue rule</td><td>The passport must have been issued within the previous ten years.</td><td>Schengen area (in addition to the 3-month rule)</td></tr><tr><td>Blank pages</td><td>One to three empty pages for stamps or visas.</td><td>China, Thailand, Indonesia, Egypt, South Africa, Namibia</td></tr></table></div>
+<figure class="pv-fig"><svg viewBox="0 0 640 250" role="img" aria-label="Three timelines showing how long a passport must stay valid: until departure for stay-only countries, three months after departure for Schengen and New Zealand, six months after departure for Thailand, China and similar" font-family="system-ui,Segoe UI,sans-serif">
+<g font-size="12.5" fill="currentColor">
+<text x="8" y="50" font-weight="700">Valid for the stay</text><text x="8" y="66" font-size="11" opacity=".7">UK, Canada, Japan, Australia</text>
+<text x="8" y="120" font-weight="700">3 months after departure</text><text x="8" y="136" font-size="11" opacity=".7">Schengen, New Zealand</text>
+<text x="8" y="190" font-weight="700">6 months after departure</text><text x="8" y="206" font-size="11" opacity=".7">Thailand, China, UAE, India</text>
+</g>
+<g stroke="currentColor" stroke-opacity=".18"><line x1="240" x2="240" y1="28" y2="222"/><line x1="280" x2="280" y1="28" y2="222"/><line x1="400" x2="400" y1="28" y2="222"/><line x1="520" x2="520" y1="28" y2="222"/></g>
+<rect class="pv-bar" x="240" y="42" width="40" height="16" rx="4" fill="#0369a1"/>
+<path d="M280 38 l6 12 l-6 12 l-6 -12 z" fill="currentColor"/>
+<text x="296" y="54" font-size="11.5" fill="currentColor">minimum expiry = departure day</text>
+<rect class="pv-bar" x="240" y="112" width="40" height="16" rx="4" fill="#0369a1"/>
+<rect class="pv-bar" style="animation-delay:.25s" x="280" y="112" width="120" height="16" rx="4" fill="#0369a1" fill-opacity=".2" stroke="#0369a1" stroke-dasharray="4 3"/>
+<path d="M400 108 l6 12 l-6 12 l-6 -12 z" fill="currentColor"/>
+<text x="416" y="124" font-size="11.5" fill="currentColor">minimum expiry = departure + 3 months</text>
+<rect class="pv-bar" x="240" y="182" width="40" height="16" rx="4" fill="#0369a1"/>
+<rect class="pv-bar" style="animation-delay:.25s" x="280" y="182" width="240" height="16" rx="4" fill="#0369a1" fill-opacity=".2" stroke="#0369a1" stroke-dasharray="4 3"/>
+<path d="M520 178 l6 12 l-6 12 l-6 -12 z" fill="currentColor"/>
+<text x="536" y="194" font-size="11.5" fill="currentColor">departure + 6 months</text>
+<g font-size="11" fill="currentColor" text-anchor="middle" opacity=".8"><text x="240" y="240">Arrive</text><text x="280" y="240">Depart</text><text x="400" y="240">+3 months</text><text x="520" y="240">+6 months</text></g>
+</svg><figcaption>Figure 1. The solid bar is your trip. The dashed bar is the extra validity a rule demands after you leave. The diamond marks the earliest passport expiry date that passes.</figcaption></figure>
+<h2 id="six-month">The 6-month passport rule</h2>
+<p>The six-month rule asks that your passport remains valid for at least six months after your trip. It exists partly so that a traveller who is delayed, falls ill or overstays still holds a valid document, and partly because it is simple for border staff and airlines to enforce. It is common across Asia, the Middle East, Africa and Latin America, and it is the most frequently misunderstood rule because countries describe it differently. Some say six months from the date of entry, others six months beyond the end of your stay, and travel guides often disagree about the same country.</p>
+<p>When sources disagree, this checker takes the stricter reading, counts from your departure date, and marks the destination with a note so you know to verify it. That choice never produces a false pass. If you have official wording that counts from arrival, switch the Options box to <em>Arrival date</em>. The passport must then still cover your whole stay, so the requirement is the later of arrival plus six months and your departure date.</p>
+<p>Practical examples: a passport that expires on 10 March 2027 fails for a trip to Thailand that ends on 15 November 2026, because six months after departure is 15 May 2027. It would pass for the same dates in Japan, which only requires the passport to cover the stay. The same document would clear the Schengen three-month test, which needs it to last until 15 February 2027.</p>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Region</th><th>Destinations with a 6-month rule in this checker</th></tr><tr><th>Europe – other</th><td>Russia*, Turkey*</td></tr><tr><th>Asia</th><td>Bangladesh, Bhutan, Brunei, Cambodia, China, India, Indonesia, Kyrgyzstan, Laos, Malaysia, Maldives*, Mongolia, Myanmar, Nepal, Pakistan, Philippines*, Singapore, Sri Lanka, Taiwan, Thailand, Vietnam</td></tr><tr><th>Middle East</th><td>Bahrain, Iran, Iraq, Israel*, Jordan*, Kuwait, Oman, Qatar*, Saudi Arabia, United Arab Emirates</td></tr><tr><th>Africa</th><td>Algeria, Botswana, Egypt, Ethiopia, Ghana, Kenya, Madagascar, Malawi, Mauritius*, Morocco*, Mozambique, Namibia, Nigeria, Rwanda, Senegal, Tanzania, Uganda, Zambia, Zimbabwe</td></tr><tr><th>North America &amp; Caribbean</th><td>Antigua and Barbuda, Cuba, Grenada, Haiti, Trinidad and Tobago*, United States (non-exempt nationality)</td></tr><tr><th>Central &amp; South America</th><td>Bolivia, Colombia*, Ecuador, Guyana, Peru, Suriname, Venezuela</td></tr><tr><th>Oceania</th><td>Fiji, French Polynesia*, Papua New Guinea, Tonga, Vanuatu</td></tr></table></div>
+<p><small>An asterisk marks destinations where published sources differ and the stricter reading is applied. The list reflects the rules compiled for this checker and is not a complete list of the world.</small></p>
+<h2 id="schengen">Schengen: 3 months plus the 10-year rule</h2>
+<p>The Schengen area has no internal border checks between its member states, and one set of passport rules applies to visitors who need no visa. Under the Schengen Borders Code your passport must be valid for at least three months after the date you intend to leave the Schengen area, and it must have been issued within the previous ten years. The second condition is the one that catches people out. Many passports used to carry unused months over from the previous one when renewed early, so a passport could be issued more than ten years ago and still not have expired. Such a passport can be refused at the border.</p>
+<figure class="pv-fig"><svg viewBox="0 0 640 210" role="img" aria-label="Timeline of a passport issued 1 July 2016 that expires 30 March 2027: accepted for Schengen entry for ten years, then valid but too old for entry from 1 July 2026, so a trip arriving 20 August 2026 fails" font-family="system-ui,Segoe UI,sans-serif">
+<rect class="pv-bar" x="40" y="96" width="509" height="18" rx="4" fill="#16a34a"/>
+<rect class="pv-bar" style="animation-delay:.4s" x="549" y="96" width="38" height="18" rx="4" fill="#f59e0b"/>
+<g font-size="12" fill="currentColor">
+<text x="40" y="82" font-weight="700">Issued 1 Jul 2016</text>
+<text x="40" y="136" font-size="11" opacity=".75">Years 1 to 10: passport is young enough for Schengen entry</text>
+<text x="600" y="166" text-anchor="end" font-weight="700">Expires 30 Mar 2027</text>
+</g>
+<line x1="549" x2="549" y1="58" y2="122" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3"/>
+<text x="549" y="52" text-anchor="middle" font-size="12" font-weight="700" fill="#dc2626">10 years: 1 Jul 2026</text>
+<path d="M562 118 l-6 10 h12 z" fill="#dc2626"/>
+<text x="540" y="146" font-size="12" font-weight="700" fill="#dc2626" text-anchor="end">Arrive 20 Aug 2026</text>
+<text x="320" y="186" font-size="12" fill="currentColor" text-anchor="middle">Amber zone: still valid on paper, but too old for Schengen entry. The trip fails even with 7 months left.</text>
+</svg><figcaption>Figure 2. The Schengen 10-year rule. Passports that carried extra months over from an earlier one can expire after their tenth birthday, and entry is refused once ten years have passed since issue.</figcaption></figure>
+<p>The figure shows a real-looking case: a passport issued on 1 July 2016 and expiring on 30 March 2027. A traveller arriving in Spain on 20 August 2026 appears to have seven months left, yet the passport is already past its tenth birthday, so entry fails. The checker flags this with the issue-date test, states the date the ten-year limit was reached, and tells you that a passport issued on or after 20 Aug 2016 would satisfy the rule for that arrival. A newly issued passport always does.</p>
+<p>Leave the issue date empty and the Schengen result becomes <b>CHECK</b> rather than a pass, because the second half of the rule has not been tested. Two blank pages are also commonly asked for. If your trip crosses several Schengen countries, the three months are counted from your last exit from the area, so use the <em>Schengen Area (any member)</em> option or the country you leave from.</p>
+<p>Schengen members in this checker: Austria, Belgium, Bulgaria, Croatia, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland.</p>
+<p>Visa-exempt visitors to the Schengen area are also due to need an ETIAS travel authorisation, expected to begin from late 2026 according to recent reports. ETIAS is linked to the passport used in the application, so a renewed passport needs a new authorisation. It sits alongside the passport rules above rather than replacing them. Check the official EU website for the confirmed start date and the current list of covered nationalities.</p>
+<h2 id="us-club">United States and the six-month club</h2>
+<p>For the United States the general rule is a passport valid for six months beyond the period of intended stay. Citizens of countries on the so-called six-month club list are exempt, and only need a passport valid for the stay. US Customs and Border Protection published a revised exempt list in a Carrier Liaison Program bulletin on 18 December 2025, which covers more than 100 countries and replaces earlier versions. Because the answer depends on nationality, the checker offers two United States options: <em>exempt nationality</em> (valid for the stay) and <em>non-exempt nationality</em> (six months beyond the stay). Pick the one that matches your passport, and check the current list on the CBP or State Department website.</p>
+<h2 id="stay-only">Countries that only need a passport valid for the stay</h2>
+<p>A number of countries only require that your passport covers the time you spend there. This is the easiest rule to meet, but it is not a licence to travel on a nearly expired document. Airlines and cruise lines often ask for more, and a delayed return flight can leave you abroad with an expired passport. The checker shows an airline caution whenever a stay-only country is chosen and your passport has under six months left after departure.</p>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Region</th><th>Destinations where the passport only has to cover the stay</th></tr><tr><th>Europe – other</th><td>Ireland, United Kingdom</td></tr><tr><th>Asia</th><td>Japan, South Korea</td></tr><tr><th>Africa</th><td>Seychelles</td></tr><tr><th>North America &amp; Caribbean</th><td>Aruba, Bahamas, Barbados, Canada, Curaçao, Dominican Republic, Jamaica, Mexico, Saint Lucia, United States (exempt nationality)</td></tr><tr><th>Central &amp; South America</th><td>Argentina, Belize, Brazil, Chile, Costa Rica, El Salvador, Guatemala, Nicaragua</td></tr><tr><th>Oceania</th><td>Australia, Samoa</td></tr></table></div>
+<h2 id="other-rules">1-month, 30-day, 90-day and 3-month rules</h2>
+<p>Between the stay-only and six-month rules sit several shorter buffers. In this checker: Hong Kong (1 month after departure); Macau (90 days after departure); South Africa (30 days after departure); New Zealand (3 months after departure). The 3-month group also includes destinations such as Albania, Bosnia and Herzegovina, Belarus, Kazakhstan, Uzbekistan, Panama and Honduras, where the buffer is counted from your travel dates.</p>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Region</th><th>Destinations with a 3-month rule in this checker</th></tr><tr><th>Europe – other</th><td>Albania, Belarus*, Bosnia and Herzegovina</td></tr><tr><th>Asia</th><td>Kazakhstan*, Uzbekistan*</td></tr><tr><th>Central &amp; South America</th><td>Honduras, Panama</td></tr></table></div>
+<h2 id="by-country">Country-by-country lists</h2>
+<p>The <b>Key dates &amp; country rules</b> tab holds the full searchable list of 136 destinations. You can filter by region or rule type, sort by the strictest rule or the earliest deadline, download the list as CSV and print it. When you enter your expiry date, every row shows the last day you can leave and still meet that destination's rule, which makes it easy to see which trips are still open to you and which have already closed.</p>
+<p>Where your destination is missing, choose <em>Other / not listed</em> to apply the cautious six-month rule, or <em>Custom rule</em> to enter the months, days, counting basis, maximum passport age and blank pages from the embassy's own wording.</p>
+<h2 id="method">How the dates are calculated</h2>
+<p>All dates are handled as whole calendar days, so time zones and daylight saving never move a result by a day. Months are added on the calendar, not as 30-day blocks: six months after 15 August is 15 February. When the target month is shorter, the date is clamped to the last day of that month, so six months after 31 August is 28 February (29 in a leap year). A passport that expires on the required date passes with zero days to spare, which the checker shows as <em>PASS – TIGHT</em>; an expiry one day earlier fails.</p>
+<p>For a rule counted from departure the required date is departure plus the buffer. For a rule counted from arrival it is the later of arrival plus the buffer and the departure date. A stay-only rule requires validity through departure, and a valid-on-arrival rule requires it on the arrival date. Your optional safety margin is added on top. Schengen adds the issue test: arrival must fall on or before the date ten years after issue.</p>
+<div class="pv-wrap"><table class="pv-table"><tr><th>Trip</th><th>Rule applied</th><th>Must be valid until</th><th>Margin</th><th>Result</th></tr><tr><td>Passport expires 10 Mar 2027. Thailand, 1 to 15 Nov 2026</td><td>6 months after departure</td><td>15 May 2027</td><td>short by 66 days</td><td><b>FAIL</b></td></tr><tr><td>Same passport, issued 1 Jan 2020. France, 1 to 15 Nov 2026</td><td>3 months after departure + 10-year issue</td><td>15 Feb 2027</td><td>23 days to spare</td><td><b>PASS – TIGHT</b></td></tr><tr><td>Same passport. Japan, 1 to 15 Nov 2026</td><td>valid for the stay</td><td>15 Nov 2026</td><td>115 days to spare</td><td><b>PASS</b></td></tr><tr><td>Expires 27 Feb 2027. Thailand, 20 to 31 Aug 2026</td><td>6 months after departure (31 Aug + 6 months = 28 Feb)</td><td>28 Feb 2027</td><td>short by 1 days</td><td><b>FAIL</b></td></tr><tr><td>Expires 28 Feb 2027. Same trip</td><td>6 months after departure</td><td>28 Feb 2027</td><td>0 days to spare</td><td><b>PASS – TIGHT</b></td></tr><tr><td>Expires 10 May 2027. Thailand, 1 to 15 Nov 2026, counted from arrival</td><td>6 months after arrival (1 May 2027)</td><td>1 May 2027</td><td>9 days to spare</td><td><b>PASS – TIGHT</b></td></tr></table></div>
+<p>Each result is a snapshot for the dates you entered, so run the check again if your plans change. The <em>latest trip this passport allows</em> figure is found by working the same calculation backwards, so you can see how far a passport can stretch before you renew.</p>
+<h2 id="airlines">Airlines, cruise lines and Timatic</h2>
+<p>Airlines are responsible for the documents of the passengers they carry and can be fined if a passenger is refused entry, so they check passports at the desk. Most use the IATA Timatic database, which can be stricter than the rule a border officer would apply. This is why a destination that technically accepts a passport valid only for your stay can still see you refused at check-in if you have under six months left. Cruise lines commonly apply a six-month policy to every passenger. The sensible approach is to treat this checker as a first filter, then ask your airline or cruise line what it will accept, and keep their reply.</p>
+<figure class="pv-fig"><svg viewBox="0 0 640 370" role="img" aria-label="Flow chart of five checks before you fly: passport condition and expiry, the destination rule, the Schengen issue date, blank pages and authorisations, then the airline's stricter rule" font-family="system-ui,Segoe UI,sans-serif">
+<g font-size="13" fill="currentColor">
+<g><rect x="20" y="14" width="420" height="50" rx="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><text x="36" y="36" font-weight="700">1  Is the passport in date and undamaged?</text><text x="36" y="54" font-size="11.5" opacity=".75">Expired, torn or water-damaged passports can be refused.</text></g>
+<g><rect x="20" y="82" width="420" height="50" rx="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><text x="36" y="104" font-weight="700">2  Which rule does the destination use?</text><text x="36" y="122" font-size="11.5" opacity=".75">Stay only, 3 months or 6 months, from arrival or departure.</text></g>
+<g><rect x="20" y="150" width="420" height="50" rx="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><text x="36" y="172" font-weight="700">3  Going to Schengen? Check the issue date</text><text x="36" y="190" font-size="11.5" opacity=".75">Issued within the previous 10 years on the day you arrive.</text></g>
+<g><rect x="20" y="218" width="420" height="50" rx="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><text x="36" y="240" font-weight="700">4  Blank pages, visa, eTA or ETIAS</text><text x="36" y="258" font-size="11.5" opacity=".75">Many destinations also want one to three blank pages.</text></g>
+<g><rect x="20" y="286" width="420" height="50" rx="10" fill="none" stroke="#0369a1" stroke-width="1.6"/><text x="36" y="308" font-weight="700">5  Does the airline or cruise line ask for more?</text><text x="36" y="326" font-size="11.5" opacity=".75">They often apply six months even where the border does not.</text></g>
+</g>
+<g stroke="#0369a1" stroke-width="1.6" fill="#0369a1"><path d="M230 64 v18 m-5 -6 l5 6 l5 -6" fill="none"/><path d="M230 132 v18 m-5 -6 l5 6 l5 -6" fill="none"/><path d="M230 200 v18 m-5 -6 l5 6 l5 -6" fill="none"/><path d="M230 268 v18 m-5 -6 l5 6 l5 -6" fill="none"/></g>
+<g><rect x="470" y="60" width="150" height="86" rx="10" fill="rgba(220,38,38,.1)" stroke="#dc2626"/><text x="545" y="86" text-anchor="middle" font-size="12.5" font-weight="700" fill="#dc2626">Any step fails</text><text x="545" y="106" text-anchor="middle" font-size="11.5" fill="currentColor">Renew the passport,</text><text x="545" y="122" text-anchor="middle" font-size="11.5" fill="currentColor">change dates or</text><text x="545" y="138" text-anchor="middle" font-size="11.5" fill="currentColor">pick another route</text></g>
+<g><rect x="470" y="226" width="150" height="86" rx="10" fill="rgba(22,163,74,.1)" stroke="#16a34a"/><text x="545" y="256" text-anchor="middle" font-size="12.5" font-weight="700" fill="#16a34a">All five clear</text><text x="545" y="278" text-anchor="middle" font-size="11.5" fill="currentColor">You are ready to book</text><text x="545" y="294" text-anchor="middle" font-size="11.5" fill="currentColor">and fly</text></g>
+<path d="M440 100 H470" stroke="#dc2626" stroke-width="1.6" fill="none"/><path d="M440 311 H470" stroke="#16a34a" stroke-width="1.6" fill="none"/>
+</svg><figcaption>Figure 3. A five-step pre-flight check. This tool covers steps 1 to 4 for the dates you enter; step 5 needs a call or message to your carrier.</figcaption></figure>
+<h2 id="checklist">Pre-flight passport checklist</h2>
+<ul><li>Check the expiry date against the rule for every country on your route, including transit points.</li><li>For Schengen, confirm the passport was issued within the last ten years on arrival day.</li><li>Count the blank pages and make sure the passport is not torn, water-damaged or altered.</li><li>Confirm the visa, eTA or ETIAS you need, and that it is linked to the passport you will carry.</li><li>Make sure the name on your tickets matches the passport exactly.</li><li>Ask your airline or cruise line whether it applies a stricter validity rule.</li><li>Keep a photo of the passport photo page and your visa documents in a safe place.</li></ul>
+<h2 id="renewal">Renewal timing and apply-by dates</h2>
+<p>Passport processing times differ by country, by season and by whether you pay for a faster service. Standard handling often takes several weeks, and peak travel seasons can add to the wait. The checker lets you set your renewal time in weeks, defaulting to eight, and calculates the date to apply by from the first arrival that would fail. If that date has already passed, it says so and suggests asking about expedited service or changing the dates. Remember that a new passport is a different document: visas, ETIAS authorisations and some airline bookings may need updating to the new number.</p>
+<p>Also note that a passport issued for a child is often valid for a shorter period than an adult passport, for example five years in several countries. Family trips are where the unexpected expiry usually appears, which is why the checker accepts several travellers at once.</p>
+<h2 id="special">Families, multi-stop trips, transit and cruises</h2>
+<p><b>Families and groups.</b> Add each traveller with their own issue and expiry dates. The grid shows every traveller against every stop, with the weakest passport highlighted, and each person gets their own apply-by date and timeline.</p>
+<p><b>Multi-stop trips.</b> Enter each country as a stop with its own dates. The passport has to satisfy every stop, so the required-until date is driven by the strictest one. The fix box gives a single minimum expiry date that covers the whole itinerary.</p>
+<p><b>Transit and layovers.</b> Some countries apply their validity rule to passengers in transit, and a layover that needs you to leave the airport is an entry. Add the transit country as a stop with the layover dates if you are unsure.</p>
+<p><b>Cruises.</b> The cruise line decides what it accepts, and many ask for six months after the cruise ends regardless of the ports visited. Use the Custom rule with six months counted from departure, or add a safety margin.</p>
+<h2 id="mistakes">Common passport validity mistakes</h2>
+<ul><li><b>Assuming one rule fits every country.</b> Stay-only, three-month and six-month rules all exist, sometimes on the same trip.</li><li><b>Counting from the wrong day.</b> Counting from arrival when the embassy means departure can turn a pass into a fail on a long trip.</li><li><b>Forgetting the Schengen issue date.</b> A passport that has not expired can still be too old.</li><li><b>Ignoring the airline.</b> The carrier may apply a stricter policy than the border.</li><li><b>Leaving renewal too late.</b> Processing time, not the expiry date, is the real deadline.</li><li><b>Not checking transit points.</b> A connecting country may have its own rule.</li><li><b>Mixing up the ETIAS or eTA with the passport.</b> Authorisations are tied to the passport number, so a renewal means a new application.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>This checker works in your browser. The passport dates, names and destinations you type are not sent to a server, not saved to your device and not shared, and they disappear when you close or reload the page. Names are optional and only appear in your own results and exports. Do not enter passport numbers: the tool never needs them.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a free passport validity checker online?</summary><p>A free passport validity checker online tests your passport dates against the entry rules of the country you are visiting. You enter the issue and expiry dates, the destination and your travel dates, and it reports whether the passport meets the 6-month, 3-month, stay-only or Schengen 10-year rule, with the exact date it must remain valid until.</p></details><details><summary>How do I check if my passport is valid for travel?</summary><p>Enter your passport issue and expiry dates, choose the destination, then add your arrival and departure dates and press Check passport validity. The checker shows PASS, PASS – TIGHT, CHECK or FAIL, the date your passport must be valid until, how many days you have to spare and a timeline. Then confirm the result with the embassy and your airline.</p></details><details><summary>What is the 6-month passport rule?</summary><p>Many countries expect your passport to be valid for at least six months beyond your trip. Some measure from arrival and some from departure, so this checker uses departure by default because it is the stricter reading. Examples include China, Thailand, Indonesia, India, the United Arab Emirates and Egypt.</p></details><details><summary>Which countries require 6 months of passport validity?</summary><p>Dozens of countries, mainly in Asia, the Middle East, Africa and Latin America, ask for six months. The Country rules tab lists every one in this checker, including China, Thailand, Vietnam, Indonesia, India, Singapore, Malaysia, the UAE, Saudi Arabia, Egypt, Kenya and Peru. Published sources sometimes disagree, so confirm your destination.</p></details><details><summary>What is the 3-month passport rule?</summary><p>A 3-month rule asks for a passport that is still valid three months after you plan to leave. The Schengen area and New Zealand use it, and so do several other destinations. The checker counts three calendar months from your departure date.</p></details><details><summary>What is the Schengen 10-year passport rule?</summary><p>To enter the Schengen area your passport must have been issued within the previous 10 years on the day you arrive, as well as being valid for at least three months after you leave. A passport that has not expired can still be refused if it is more than ten years old, which affects passports that carried extra validity over from an earlier one.</p></details><details><summary>How many months of validity does a passport need for Schengen?</summary><p>Three months beyond the date you intend to leave the Schengen area, plus an issue date no more than ten years before you arrive. Two blank pages are also commonly requested. Enter the issue date in the checker so it can test both parts.</p></details><details><summary>Is the 6 months counted from arrival or departure?</summary><p>It depends on the country and the source. Some embassies say six months from entry, others six months beyond the end of your stay. Counting from departure is stricter and never gives a false pass, so it is the default. Use the Options box to count from arrival instead; the passport must still cover the whole stay.</p></details><details><summary>Can I travel with a passport that expires in 5 months?</summary><p>It depends on the destination. A stay-only country such as Japan, Canada or Australia would accept it for a short trip, but a six-month destination would not, and Schengen needs three months after you leave. Airlines and cruise lines are often stricter than border officers, so a passport with under six months left is a risk.</p></details><details><summary>What is the US six-month club?</summary><p>The United States asks for a passport valid for six months beyond your stay, but citizens of the countries on the six-month club list only need a passport valid for the stay. US Customs and Border Protection published a revised list on 18 December 2025. Choose the exempt or non-exempt United States option to match your nationality.</p></details><details><summary>Which countries only need a passport valid for the stay?</summary><p>In this checker they include the United Kingdom, Ireland, Canada, Australia, Japan, South Korea, Mexico, Brazil, Argentina, Chile, Costa Rica and many Caribbean destinations. The passport must cover your whole stay, and your airline may still ask for more.</p></details><details><summary>Do I need blank pages in my passport?</summary><p>Some destinations ask for one to three blank pages, for example China, Thailand, Indonesia, Egypt, Namibia, South Africa and the Schengen area. The checker lists the usual number as a reminder, but it cannot count the pages in your passport.</p></details><details><summary>Do airlines enforce passport validity rules?</summary><p>Yes. Airlines can be fined for carrying passengers who are refused entry, so check-in staff often apply the strictest reading and may refuse boarding even if the border officer would admit you. They rely on the IATA Timatic database, so check with your airline before you fly.</p></details><details><summary>Does passport validity apply to transit and layovers?</summary><p>Sometimes. Some countries apply their validity rule to passengers who only change planes, and a layover can involve a short entry into a country. Check the rules for each transit point as well as your destination, and add them as extra stops in the checker.</p></details><details><summary>Can I check several countries on one trip?</summary><p>Yes. Use Add another stop to build a multi-stop trip. Each stop is tested against its own rule and the checker shows the latest expiry date that would cover the whole itinerary.</p></details><details><summary>Can I check passports for the whole family?</summary><p>Yes. Use Add another traveller to enter up to eight passports. The results grid shows every traveller against every stop, so one expiring passport is easy to spot.</p></details><details><summary>What does PASS – TIGHT mean?</summary><p>The passport meets the rule but only with fewer than 30 days to spare. A delay, a change of dates or a stricter airline could turn it into a refusal, so renewing is wise.</p></details><details><summary>What does CHECK mean in the results?</summary><p>CHECK means the expiry date is fine but the rule also depends on the issue date (the Schengen 10-year rule) and you did not enter it. Add the issue date to finish the test.</p></details><details><summary>How long does passport renewal take?</summary><p>Processing times vary by country and season, and can range from days with expedited service to many weeks or longer. The checker assumes eight weeks by default and works out an apply-by date from your first affected arrival. Change the figure in Options to match your passport office.</p></details><details><summary>Does ETIAS change passport validity rules?</summary><p>ETIAS is a travel authorisation for visa-exempt visitors to the Schengen area, expected to begin from late 2026 according to recent reports. It does not replace the passport rules, it is linked to the passport you use, and a renewed passport needs a new authorisation. Check the official EU site for the confirmed start date.</p></details><details><summary>What should I do if my passport is not valid for long enough?</summary><p>Renew it before you travel, or change your dates or destination. The checker shows the minimum expiry date a replacement needs, the date to apply by and, for each failing stop, the latest departure your current passport allows.</p></details><details><summary>Does the checker work for children's passports?</summary><p>Yes, the same rules apply to every passport. Child passports are often issued for a shorter period than adult ones, so they expire sooner and are easy to overlook when you plan a family trip.</p></details><details><summary>Is my passport information stored or shared?</summary><p>No. The checker runs in your browser and does not send, save or log the dates you enter. Closing the tab clears them.</p></details><details><summary>How accurate are the country rules?</summary><p>They are general guidance for most travellers and were compiled from official and secondary sources. Rules change, can depend on your nationality or visa type, and sources sometimes disagree. Where they do, the stricter reading is used and the destination is flagged. Always confirm with the embassy and your airline.</p></details><details><summary>Can I print or save the result as a PDF?</summary><p>Yes. Press Print / save as PDF to print a clean report with your passports, results and timelines only. The site header, footer and article are left out.</p></details></div>
+<h2 id="sources">Sources</h2>
+<ul><li>European Union, Schengen Borders Code (Regulation (EU) 2016/399) and the European Commission travel-documents guidance on passport validity and issue date.</li><li>U.S. Customs and Border Protection, Carrier Liaison Program bulletin of 18 December 2025 on countries exempt from the six-month passport validity rule, as reported by Berry Appleman &amp; Leiden (January 2026).</li><li>U.S. Department of State, Foreign Affairs Manual, 9 FAM 403.9-3 (passport validity).</li><li>Immigration New Zealand, passport validity requirements for visitors.</li><li>South Africa, Department of Home Affairs, passport validity and blank page requirements.</li><li>Hong Kong Immigration Department and Macao Public Security Police Force entry requirements.</li><li>IATA Travel Centre (Timatic), the database airlines use to check documents.</li><li>The Points Guy, <em>Complete guide to the six-month passport validity rule</em>, used as a secondary summary of country lists.</li><li>Majorca Daily Bulletin, 10 June 2026, report on ETIAS and Schengen passport requirements.</li></ul>
+<p><small>Sources were consulted in October 2026. Where secondary summaries and official pages differ, this checker applies the stricter reading. Always verify against the official page for your destination.</small></p>
+<div class="pv-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online passport validity checker provides general guidance only and is not legal, immigration or travel advice. Passport validity rules change, can depend on your nationality, visa type and mode of travel, and are enforced by border officers and airlines who may apply stricter policies. The tool covers common rule types (stay-only, 1-month, 3-month, 6-month, 30/90-day and the Schengen 10-year issue rule) but not every country-specific condition, bilateral agreement or exemption, and where sources disagree it applies the stricter reading. Always confirm current requirements with the destination embassy or consulate and with your airline before booking or travelling. Utiliby accepts no liability for denied boarding, refused entry, lost bookings or any other consequence of using this tool.</div>
 </article>
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
@@ -169,136 +358,864 @@
 <script>
 (function(){
 "use strict";
-function $(id){return document.getElementById(id);}
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
-
-var DEST={
-  "Schengen Area":{"rule":"3m+10y","note":"Valid 3 months beyond departure AND issued within last 10 years."},
-  "United States":{"rule":"entry","note":"Valid at time of entry. Some visas may require additional validity."},
-  "United Kingdom":{"rule":"entry","note":"Valid for duration of stay."},
-  "China":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "India":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Thailand":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Turkey":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Saudi Arabia":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "UAE":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Indonesia":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Mexico":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Brazil":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Australia":{"rule":"entry","note":"Valid at time of entry."},
-  "Canada":{"rule":"entry","note":"Valid at time of entry."},
-  "Japan":{"rule":"entry","note":"Valid at time of entry. Some visa categories require longer."},
-  "South Korea":{"rule":"entry","note":"Valid at time of entry."},
-  "Singapore":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Malaysia":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Philippines":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Vietnam":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Egypt":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "South Africa":{"rule":"6m","note":"Valid 6 months beyond arrival and at least 2 blank pages."},
-  "Kenya":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Nigeria":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Morocco":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Russia":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Qatar":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Kuwait":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Oman":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Bahrain":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Jordan":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Israel":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "New Zealand":{"rule":"entry","note":"Valid at time of entry. Some visa categories require 3 months beyond departure."},
-  "Argentina":{"rule":"entry","note":"Valid at time of entry."},
-  "Chile":{"rule":"entry","note":"Valid at time of entry."},
-  "Peru":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Colombia":{"rule":"entry","note":"Valid at time of entry."},
-  "Costa Rica":{"rule":"entry","note":"Valid at time of entry. Some nationalities require 3 months."},
-  "Cuba":{"rule":"6m","note":"Valid 6 months beyond arrival."},
-  "Other / not listed":{"rule":"6m","note":"Assume 6-month rule unless you confirm otherwise with the destination embassy."}
+/* ---------- rule definitions ---------- */
+var RULES = {
+  S:   { label: "3 months after departure + passport issued within 10 years", short: "3 months + 10-year rule", months: 3, fixed: 1, age: 10 },
+  "6": { label: "6 months of validity", short: "6-month rule", months: 6 },
+  "3": { label: "3 months of validity", short: "3-month rule", months: 3 },
+  "3f":{ label: "3 months after departure", short: "3 months after departure", months: 3, fixed: 1 },
+  "1": { label: "1 month after departure", short: "1 month after departure", months: 1, fixed: 1 },
+  "30":{ label: "30 days after departure", short: "30 days after departure", days: 30, fixed: 1 },
+  "90":{ label: "90 days after departure", short: "90 days after departure", days: 90, fixed: 1 },
+  U6:  { label: "6 months beyond the period of stay", short: "6 months beyond stay", months: 6, fixed: 1 },
+  st:  { label: "Valid for the whole stay", short: "Valid for the stay", kind: "stay" },
+  en:  { label: "Valid on the day of arrival", short: "Valid on arrival", kind: "entry" }
 };
-function buildDest(){
-  var sel=$("destination");
-  var keys=Object.keys(DEST).sort();
-  for(var i=0;i<keys.length;i++){
-    var o=document.createElement("option");
-    o.value=keys[i];o.textContent=keys[i];sel.appendChild(o);
+
+/* name | region | rule | varies(1 = sources differ, stricter reading applied) | blank pages usually asked | note */
+var RAW = [
+"Austria|Europe – Schengen|S|0|2|",
+"Belgium|Europe – Schengen|S|0|2|",
+"Bulgaria|Europe – Schengen|S|0|2|Full Schengen member since 2025.",
+"Croatia|Europe – Schengen|S|0|2|",
+"Czechia|Europe – Schengen|S|0|2|",
+"Denmark|Europe – Schengen|S|0|2|",
+"Estonia|Europe – Schengen|S|0|2|",
+"Finland|Europe – Schengen|S|0|2|",
+"France|Europe – Schengen|S|0|2|",
+"Germany|Europe – Schengen|S|0|2|",
+"Greece|Europe – Schengen|S|0|2|",
+"Hungary|Europe – Schengen|S|0|2|",
+"Iceland|Europe – Schengen|S|0|2|",
+"Italy|Europe – Schengen|S|0|2|",
+"Latvia|Europe – Schengen|S|0|2|",
+"Liechtenstein|Europe – Schengen|S|0|2|",
+"Lithuania|Europe – Schengen|S|0|2|",
+"Luxembourg|Europe – Schengen|S|0|2|",
+"Malta|Europe – Schengen|S|0|2|",
+"Netherlands|Europe – Schengen|S|0|2|",
+"Norway|Europe – Schengen|S|0|2|",
+"Poland|Europe – Schengen|S|0|2|",
+"Portugal|Europe – Schengen|S|0|2|",
+"Romania|Europe – Schengen|S|0|2|Full Schengen member since 2025.",
+"Schengen Area (any member)|Europe – Schengen|S|0|2|Use this if you are visiting several Schengen countries. The rule is measured from your last exit from the Schengen area.",
+"Slovakia|Europe – Schengen|S|0|2|",
+"Slovenia|Europe – Schengen|S|0|2|",
+"Spain|Europe – Schengen|S|0|2|",
+"Sweden|Europe – Schengen|S|0|2|",
+"Switzerland|Europe – Schengen|S|0|2|",
+"United Kingdom|Europe – other|st|0|0|Passport must cover your stay. Border Force can refuse a badly damaged passport. Most visitors also need an ETA or visa.",
+"Ireland|Europe – other|st|0|0|Valid for your stay. Common Travel Area rules differ for British and Irish citizens.",
+"Albania|Europe – other|3|0|0|",
+"Bosnia and Herzegovina|Europe – other|3|0|0|",
+"Belarus|Europe – other|3|1|0|",
+"Russia|Europe – other|6|1|2|Consulate guidance usually asks for 6 months beyond entry or visa expiry.",
+"Turkey|Europe – other|6|1|1|Some official guidance says 150 days from arrival; 6 months is the cautious reading.",
+"China|Asia|6|0|2|Mainland China. Usually asks for 6 months and blank visa pages.",
+"Hong Kong|Asia|1|0|0|Passport valid for at least 1 month beyond your intended stay.",
+"Macau|Asia|90|0|0|Passport valid for at least 90 days beyond your stay.",
+"Taiwan|Asia|6|0|0|Typically 6 months from arrival.",
+"Japan|Asia|st|0|0|Valid for the length of stay. Some airlines still ask for more.",
+"South Korea|Asia|st|0|0|Valid for the length of stay.",
+"Singapore|Asia|6|0|1|6 months from arrival; at least one blank page.",
+"Malaysia|Asia|6|0|1|",
+"Thailand|Asia|6|0|2|6 months from arrival; usually 2 blank pages.",
+"Vietnam|Asia|6|0|2|",
+"Cambodia|Asia|6|0|1|",
+"Laos|Asia|6|0|1|",
+"Myanmar|Asia|6|0|1|",
+"Indonesia|Asia|6|0|2|6 months from arrival; usually 2 blank pages.",
+"Philippines|Asia|6|1|0|Official guidance has varied for some nationalities; the 6-month reading is used.",
+"Brunei|Asia|6|0|0|",
+"India|Asia|6|0|2|6 months from arrival; usually 2 blank pages for visa holders.",
+"Sri Lanka|Asia|6|0|0|",
+"Nepal|Asia|6|0|0|",
+"Bhutan|Asia|6|0|0|",
+"Bangladesh|Asia|6|0|0|",
+"Pakistan|Asia|6|0|0|",
+"Maldives|Asia|6|1|0|Some sources say 30 days; the stricter 6-month reading is used.",
+"Mongolia|Asia|6|0|0|",
+"Kazakhstan|Asia|3|1|0|",
+"Uzbekistan|Asia|3|1|0|",
+"Kyrgyzstan|Asia|6|0|0|",
+"United Arab Emirates|Middle East|6|0|0|Dubai, Abu Dhabi and the other emirates. Often listed as \"UAE\".",
+"Saudi Arabia|Middle East|6|0|0|",
+"Qatar|Middle East|6|1|0|Sources differ between 3 and 6 months; the stricter figure is used.",
+"Kuwait|Middle East|6|0|0|",
+"Bahrain|Middle East|6|0|0|",
+"Oman|Middle East|6|0|0|",
+"Jordan|Middle East|6|1|0|Sources differ between 3 and 6 months; the stricter figure is used.",
+"Israel|Middle East|6|1|0|Sources differ between 3 and 6 months; the stricter figure is used.",
+"Iraq|Middle East|6|0|0|",
+"Iran|Middle East|6|0|0|",
+"Egypt|Africa|6|0|2|6 months from arrival; usually 2 blank pages.",
+"Morocco|Africa|6|1|0|Border practice is often 3 months; many airlines apply 6.",
+"Algeria|Africa|6|0|0|",
+"Kenya|Africa|6|0|2|",
+"Tanzania|Africa|6|0|2|Includes Zanzibar.",
+"Uganda|Africa|6|0|0|",
+"Ethiopia|Africa|6|0|0|",
+"Rwanda|Africa|6|0|0|",
+"Zambia|Africa|6|0|0|",
+"Zimbabwe|Africa|6|0|1|",
+"Botswana|Africa|6|0|0|",
+"Namibia|Africa|6|0|3|Usually 3 blank pages.",
+"Mozambique|Africa|6|0|0|",
+"Madagascar|Africa|6|0|0|",
+"Malawi|Africa|6|0|0|",
+"Nigeria|Africa|6|0|0|",
+"Ghana|Africa|6|0|0|",
+"Senegal|Africa|6|0|0|",
+"Mauritius|Africa|6|1|0|Guidance varies; the stricter reading is used.",
+"Seychelles|Africa|st|0|0|Valid for the stay.",
+"South Africa|Africa|30|1|2|Official rule is 30 days after departure plus 2 blank pages; some sources still quote 6 months.",
+"Canada|North America & Caribbean|st|0|0|Valid for the length of stay (airlines may ask for more). Most visa-exempt visitors need an eTA.",
+"Mexico|North America & Caribbean|st|0|0|Valid for the length of stay.",
+"United States (exempt nationality)|North America & Caribbean|st|0|0|Citizens of countries on the US six-month-club list only need a passport valid for the stay.",
+"United States (non-exempt nationality)|North America & Caribbean|U6|0|0|Citizens of countries not on the six-month-club list need 6 months beyond the stay.",
+"Cuba|North America & Caribbean|6|0|0|",
+"Jamaica|North America & Caribbean|st|0|0|",
+"Bahamas|North America & Caribbean|st|0|0|",
+"Barbados|North America & Caribbean|st|0|0|",
+"Dominican Republic|North America & Caribbean|st|0|0|",
+"Aruba|North America & Caribbean|st|0|0|",
+"Curaçao|North America & Caribbean|st|0|0|",
+"Saint Lucia|North America & Caribbean|st|0|0|",
+"Trinidad and Tobago|North America & Caribbean|6|1|0|Some sources say valid for the stay; the stricter reading is used.",
+"Antigua and Barbuda|North America & Caribbean|6|0|0|",
+"Grenada|North America & Caribbean|6|0|0|",
+"Haiti|North America & Caribbean|6|0|0|",
+"Costa Rica|Central & South America|st|0|0|Valid for the length of stay.",
+"Panama|Central & South America|3|0|0|",
+"Honduras|Central & South America|3|0|0|",
+"Guatemala|Central & South America|st|0|0|",
+"Belize|Central & South America|st|0|0|",
+"El Salvador|Central & South America|st|0|0|",
+"Nicaragua|Central & South America|st|0|0|",
+"Brazil|Central & South America|st|0|0|Valid for the stay.",
+"Argentina|Central & South America|st|0|0|",
+"Chile|Central & South America|st|0|0|",
+"Peru|Central & South America|6|0|0|",
+"Colombia|Central & South America|6|1|0|Sources differ; the stricter 6-month reading is used.",
+"Ecuador|Central & South America|6|0|0|",
+"Bolivia|Central & South America|6|0|0|",
+"Venezuela|Central & South America|6|0|0|",
+"Guyana|Central & South America|6|0|0|",
+"Suriname|Central & South America|6|0|0|",
+"Australia|Oceania|st|0|0|Valid for the length of stay. A visa or ETA is still needed for most visitors.",
+"New Zealand|Oceania|3f|0|0|Valid for at least 3 months after you plan to leave (Australian citizens are exempt).",
+"Fiji|Oceania|6|0|0|",
+"Samoa|Oceania|st|0|0|",
+"Tonga|Oceania|6|0|0|",
+"Vanuatu|Oceania|6|0|0|",
+"Papua New Guinea|Oceania|6|0|0|",
+"French Polynesia|Oceania|6|1|0|Sources differ; the stricter reading is used."
+];
+
+/* The two special catch-all choices */
+var OTHER = "Other / not listed";
+var CUSTOM = "Custom rule (enter your own)";
+
+var DEST = {};
+(function () {
+  for (var i = 0; i < RAW.length; i++) {
+    var p = RAW[i].split("|");
+    DEST[p[0]] = { name: p[0], region: p[1], rule: p[2], varies: p[3] === "1", pages: +p[4] || 0, note: p[5] || "" };
   }
+  DEST[OTHER] = { name: OTHER, region: "Other", rule: "6", varies: false, pages: 0, note: "Rule unknown: the cautious 6-month rule is assumed. Confirm with the destination embassy." };
+  DEST[CUSTOM] = { name: CUSTOM, region: "Other", rule: "custom", varies: false, pages: 0, note: "Your own rule from the embassy or airline." };
+})();
+var REGIONS = ["Europe – Schengen", "Europe – other", "Asia", "Middle East", "Africa", "North America & Caribbean", "Central & South America", "Oceania", "Other"];
+
+/* ---------- date helpers (integer day numbers, no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1950 || y > 2100 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
 }
-function daysBetween(a,b){
-  var d1=new Date(a+"T00:00:00"),d2=new Date(b+"T00:00:00");
-  if(isNaN(d1)||isNaN(d2))return NaN;
-  return Math.round((d2-d1)/86400000);
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
 }
-function addMonths(dateStr,months){
-  var d=new Date(dateStr+"T00:00:00");
-  d.setMonth(d.getMonth()+months);
+function monthsBetween(a, b) { /* whole months from a to b (b >= a) plus leftover days */
+  var o1 = ymd(a), o2 = ymd(b), k = (o2.y - o1.y) * 12 + (o2.m - o1.m);
+  while (k > 0 && addMonths(a, k) > b) k--;
+  while (addMonths(a, k + 1) <= b) k++;
+  return { m: k, d: b - addMonths(a, k) };
+}
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function spanText(a, b) {
+  if (b < a) return plural(a - b, "day") + " ago";
+  if (b === a) return "today";
+  var s = monthsBetween(a, b), out = [];
+  if (s.m >= 12) { out.push(plural(Math.floor(s.m / 12), "year")); if (s.m % 12) out.push(plural(s.m % 12, "month")); }
+  else if (s.m) out.push(plural(s.m, "month"));
+  if (s.d && s.m < 24) out.push(plural(s.d, "day"));
+  return out.join(", ");
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+
+/* ---------- rules ---------- */
+function ruleFor(destName, o, custom) {
+  var dd = DEST[destName] || DEST[OTHER], r;
+  if (dd.rule === "custom") {
+    var c = custom || {};
+    r = { code: "custom", months: +c.months || 0, days: +c.days || 0, age: +c.age || 0, fixed: 1, basis: c.basis || "dep" };
+    if (r.basis === "entry") r.kind = "entry";
+    else if (!r.months && !r.days) r.kind = "stay";
+    dd = { name: dd.name, region: dd.region, varies: false, pages: +c.pages || 0, note: "Your own rule, entered from the embassy or airline." };
+  } else {
+    var b = RULES[dd.rule]; r = { code: dd.rule, months: b.months || 0, days: b.days || 0, age: b.age || 0, kind: b.kind, fixed: b.fixed };
+    r.basis = b.fixed ? "dep" : (o && o.basis === "arr" ? "arr" : "dep");
+  }
+  r.label = ruleText(r);
+  r.dest = dd;
+  return r;
+}
+function ruleText(r) {
+  var s;
+  if (r.kind === "stay") s = "Valid for the whole stay";
+  else if (r.kind === "entry") s = "Valid on the day of arrival";
+  else {
+    var p = [];
+    if (r.months) p.push(plural(r.months, "month"));
+    if (r.days) p.push(plural(r.days, "day"));
+    s = p.join(" and ") + " of validity after " + (r.basis === "arr" ? "arrival" : "departure");
+  }
+  if (r.age) s += " + issued within the last " + r.age + " years";
+  return s;
+}
+function bufAdd(r, n) { return addMonths(n, r.months || 0) + (r.days || 0); }
+function requiredDate(r, arr, dep, margin) {
+  var R;
+  if (r.kind === "entry") R = arr;
+  else if (r.kind === "stay") R = dep;
+  else R = Math.max(bufAdd(r, r.basis === "arr" ? arr : dep), dep);
+  return R + (margin || 0);
+}
+/* latest dates a given expiry can support */
+function latestFor(r, E, issue, margin) {
+  var E2 = E - (margin || 0), out = { arr: null, dep: null, ageLimit: null };
+  if (r.kind === "entry") { out.arr = E2; }
+  else if (r.kind === "stay") { out.arr = E2; out.dep = E2; }
+  else {
+    var D = addMonths(E2, -(r.months || 0)) - (r.days || 0);
+    while (bufAdd(r, D + 1) <= E2) D++;
+    while (bufAdd(r, D) > E2) D--;
+    if (r.basis === "arr") { out.arr = D; out.dep = E2; } else { out.arr = D; out.dep = D; }
+  }
+  if (r.age && issue != null) { out.ageLimit = addMonths(issue, r.age * 12); if (out.arr == null || out.ageLimit < out.arr) out.arr = out.ageLimit; }
+  return out;
+}
+function earliestIssueFor(r, arr) { /* oldest issue date that still satisfies the age rule on arrival */
+  var I = addMonths(arr, -r.age * 12);
+  while (addMonths(I - 1, r.age * 12) >= arr) I--;
+  while (addMonths(I, r.age * 12) < arr) I++;
+  return I;
+}
+
+/* ---------- evaluation of one traveller x one stop ---------- */
+var STATUS = { pass: "PASS", tight: "PASS – TIGHT", check: "CHECK", fail: "FAIL" };
+function evalPair(t, leg, o, custom) {
+  var r = ruleFor(leg.dest, o, custom), margin = o.margin || 0;
+  var R = requiredDate(r, leg.arr, leg.dep, margin);
+  var spare = t.expiry - R, checks = [], fail = false, unknown = false, notes = [];
+  var vOk = spare >= 0;
+  if (!vOk) fail = true;
+  var need = r.kind === "entry" ? "valid on arrival (" + fmtD(leg.arr) + ")" :
+    r.kind === "stay" ? "valid through your departure (" + fmtD(leg.dep) + ")" :
+    "valid through " + fmtD(R - margin) + " (" + r.label + ")";
+  checks.push({ ok: vOk, t: "Expiry vs rule: needs " + need + (margin ? ", plus your " + plural(margin, "day") + " safety margin" : "") + ". Your passport expires " + fmtD(t.expiry) + ": " + (vOk ? plural(spare, "day") + " to spare." : "short by " + plural(-spare, "day") + ".") });
+  var ageLimit = null;
+  if (r.age) {
+    if (t.issue == null) { unknown = true; checks.push({ ok: null, t: "Issue-date rule: enter the passport issue date to test the " + r.age + "-year limit. Without it this part cannot be checked." }); }
+    else {
+      ageLimit = addMonths(t.issue, r.age * 12);
+      var aOk = leg.arr <= ageLimit; if (!aOk) fail = true;
+      checks.push({ ok: aOk, t: "Issue-date rule: issued " + fmtD(t.issue) + ", so the " + r.age + "-year limit is reached on " + fmtD(ageLimit) + ". Arrival " + fmtD(leg.arr) + (aOk ? " is inside the limit." : " is after it, so this passport is too old for entry.") });
+    }
+  }
+  if ((r.kind === "stay" || r.kind === "entry") && t.expiry < addMonths(leg.dep, 6)) {
+    notes.push("Airlines and cruise lines often ask for 6 months even where the country does not. Your passport has " + spanText(leg.dep, t.expiry) + " after departure.");
+  }
+  if (r.dest.pages) notes.push("This destination usually asks for " + plural(r.dest.pages, "blank page") + " (check your passport has them).");
+  if (r.dest.varies) notes.push("Published sources differ for this destination, so the stricter reading is used. Confirm with the embassy.");
+  if (leg.noteDep) notes.push(leg.noteDep);
+  var status = fail ? "fail" : unknown ? "check" : (spare < 30 ? "tight" : "pass");
+  return { t: t, leg: leg, rule: r, R: R, spare: spare, beyond: t.expiry - leg.dep, checks: checks, notes: notes, status: status,
+    latest: latestFor(r, t.expiry, t.issue, margin), ageLimit: ageLimit };
+}
+function worst(list) { var rank = { pass: 0, tight: 1, check: 2, fail: 3 }, w = "pass"; list.forEach(function (s) { if (rank[s] > rank[w]) w = s; }); return w; }
+
+/* run every traveller against every stop */
+function runAll(S) {
+  var errors = [], infos = [], today = S.today, o = S.opts;
+  var travs = [], legs = [];
+  S.travs.forEach(function (t, i) {
+    var nm = t.name || "Traveller " + (i + 1), e = parseD(t.expiry), is = t.issue ? parseD(t.issue) : null;
+    if (!t.expiry) errors.push(nm + ": enter the passport expiry date.");
+    else if (e == null) errors.push(nm + ": the expiry date is not a valid date (use a year between 1950 and 2100).");
+    if (t.issue && is == null) errors.push(nm + ": the issue date is not a valid date.");
+    if (e != null && is != null && e <= is) errors.push(nm + ": the expiry date must be after the issue date.");
+    travs.push({ name: nm, issue: is, expiry: e, idx: i });
+  });
+  S.legs.forEach(function (l, i) {
+    var nm = "Stop " + (i + 1), a = parseD(l.arr), d = l.dep ? parseD(l.dep) : null, note = "";
+    if (!l.dest) { errors.push(nm + ": choose a destination."); }
+    if (!l.arr) errors.push(nm + ": enter the arrival date.");
+    else if (a == null) errors.push(nm + ": the arrival date is not a valid date.");
+    if (l.dep && d == null) errors.push(nm + ": the departure date is not a valid date.");
+    var st = l.stay ? Math.floor(+l.stay) : 0;
+    if (a != null && d == null) {
+      if (st > 0) { d = a + st; }
+      else { d = a; note = "No departure date or stay length was entered, so a same-day departure is assumed."; }
+    }
+    if (a != null && d != null && d < a) errors.push(nm + ": the departure date is before the arrival date.");
+    legs.push({ dest: l.dest, arr: a, dep: d, noteDep: note, idx: i, stayDays: (a != null && d != null) ? d - a : null });
+  });
+  if (errors.length) return { errors: errors };
+  var pairs = [];
+  travs.forEach(function (t) { legs.forEach(function (l) { pairs.push(evalPair(t, l, o, S.custom)); }); });
+  var res = { errors: [], travs: travs, legs: legs, pairs: pairs, today: today, opts: o, custom: S.custom, infos: infos };
+  res.overall = worst(pairs.map(function (p) { return p.status; }));
+  res.perTrav = travs.map(function (t) {
+    var mine = pairs.filter(function (p) { return p.t === t; }), st = worst(mine.map(function (p) { return p.status; }));
+    var failing = mine.filter(function (p) { return p.status === "fail"; });
+    var info = { t: t, status: st, pairs: mine, needExpiry: null, applyBy: null, needNewIssue: false, earliestIssue: null };
+    if (failing.length) {
+      var shortExp = failing.filter(function (p) { return p.spare < 0; });
+      if (shortExp.length) info.needExpiry = Math.max.apply(null, mine.map(function (p) { return p.R; }));
+      var ageFail = failing.filter(function (p) { return p.ageLimit != null && p.leg.arr > p.ageLimit; });
+      if (ageFail.length) { info.needNewIssue = true; info.earliestIssue = Math.max.apply(null, ageFail.map(function (p) { return earliestIssueFor(p.rule, p.leg.arr); })); }
+      var firstArr = Math.min.apply(null, failing.map(function (p) { return p.leg.arr; }));
+      info.firstFailArr = firstArr;
+      info.applyBy = firstArr - (o.weeks || 0) * 7;
+    }
+    return info;
+  });
+  return res;
+}
+function pairLine(p) { /* one-line result text */
+  var l = p.leg, s = p.t.name + " → " + l.dest + " (" + fmtD(l.arr) + (l.dep !== l.arr ? " to " + fmtD(l.dep) : "") + "): " + STATUS[p.status];
+  if (p.status === "fail") s += p.spare < 0 ? ", short by " + plural(-p.spare, "day") : ", issue-date rule not met";
+  else s += ", " + plural(p.spare, "day") + " to spare";
+  return s;
+}
+
+/* ---------- key dates for one passport ---------- */
+function lastDayWithMonths(E, k) { /* last day on which the passport still has k full months left */
+  var d = addMonths(E, -k);
+  while (addMonths(d + 1, k) <= E) d++;
+  while (addMonths(d, k) > E) d--;
   return d;
 }
-function calc(){
-  var issue=$("issueDate").value;
-  var expiry=$("expiryDate").value;
-  var dest=$("destination").value;
-  var arr=$("arrivalDate").value;
-  var dep=$("departureDate").value;
-  var out=$("output");
-  if(!issue||!expiry||!dest||!arr){out.innerHTML='<div class="pv-warn">Enter passport issue date, expiry date, destination and arrival date.</div>';return;}
-  if(!dep)dep=arr;
-  var rule=DEST[dest]?DEST[dest].rule:"6m";
-  var note=DEST[dest]?DEST[dest].note:"Assume 6-month rule unless confirmed otherwise.";
-  var requiredDate,ruleLabel,status,cls,color;
-  var expiryDate=new Date(expiry+"T00:00:00");
-  var depDate=new Date(dep+"T00:00:00");
-  var arrDate=new Date(arr+"T00:00:00");
-  var issueDate=new Date(issue+"T00:00:00");
-  var issuePlus10=addMonths(issue,120);
-  var pass=true,failReason="";
-  if(rule==="6m"){
-    requiredDate=addMonths(dep,6);
-    ruleLabel="6-month rule (valid 6 months beyond departure)";
-    if(expiryDate<requiredDate){pass=false;failReason="Your passport expires before the required 6-month buffer after your departure date.";}
-  } else if(rule==="3m+10y"){
-    requiredDate=addMonths(dep,3);
-    ruleLabel="3-month rule + 10-year issue rule (Schengen)";
-    if(expiryDate<requiredDate){pass=false;failReason="Your passport expires before the required 3-month buffer after your departure date.";}
-    if(issuePlus10<arrDate){pass=false;failReason=(failReason?failReason+" ":"")+"Your passport was issued more than 10 years before your arrival date, which is not accepted in the Schengen Area.";}
-  } else if(rule==="3m"){
-    requiredDate=addMonths(dep,3);
-    ruleLabel="3-month rule (valid 3 months beyond departure)";
-    if(expiryDate<requiredDate){pass=false;failReason="Your passport expires before the required 3-month buffer after your departure date.";}
-  } else {
-    requiredDate=arrDate;
-    ruleLabel="Validity at entry only";
-    if(expiryDate<arrDate){pass=false;failReason="Your passport expires before your arrival date.";}
-  }
-  status=pass?"PASS":"FAIL";
-  cls=pass?"ok":"err";
-  color=pass?"#16a34a":"#dc2626";
-  var daysBeyond=daysBetween(dep,expiry);
-  var h='<div class="pv-result"><div class="pv-label">Passport validity verdict for '+esc(dest)+'</div>'+
-    '<div class="pv-big" style="color:'+color+'">'+status+'</div>'+
-    '<div class="pv-label" style="margin-top:6px">'+esc(ruleLabel)+'</div></div>';
-  h+='<div class="pv-stats">';
-  h+='<div class="pv-stat"><div class="lbl">Passport expires</div><div class="val" style="font-size:.9rem">'+esc(expiry)+'</div></div>';
-  h+='<div class="pv-stat"><div class="lbl">Required valid until</div><div class="val" style="font-size:.9rem">'+requiredDate.toISOString().slice(0,10)+'</div></div>';
-  h+='<div class="pv-stat"><div class="lbl">Days beyond departure</div><div class="val '+cls+'">'+daysBeyond+'</div></div>';
-  h+='<div class="pv-stat"><div class="lbl">Rule</div><div class="val" style="font-size:.82rem">'+esc(ruleLabel)+'</div></div>';
-  h+='</div>';
-  if(!pass){h+='<div class="pv-warn"><b>This passport does not meet the requirement.</b> '+esc(failReason)+' Renew your passport before booking, or choose a destination with a shorter validity requirement.</div>';}
-  else{h+='<div class="pv-tip"><b>Your passport meets the requirement</b> for the dates entered. Remember that airlines may enforce the rule more strictly than immigration — check with your airline as well.</div>';}
-  h+='<div class="pv-tip"><b>Destination note:</b> '+esc(note)+' Always confirm current requirements with the destination embassy or consulate before travelling.</div>';
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyPvBtn" class="pv-btn" style="margin:0">Copy result</button></div>';
-  out.innerHTML=h;
-  document.getElementById("copyPvBtn").addEventListener("click",function(){
-    var t="Passport Validity Checker Result\nDestination: "+dest+"\nRule: "+ruleLabel+"\nVerdict: "+status+"\nPassport expiry: "+expiry+"\nRequired valid until: "+requiredDate.toISOString().slice(0,10)+"\n- utiliby.com";
-    copyText(t,document.getElementById("copyPvBtn"));
-  });
+function keyDates(E, issue) {
+  var a = [
+    { k: "12", label: "Last day with 12 months left", d: lastDayWithMonths(E, 12), why: "Some visas, residence permits and long-stay applications ask for a year." },
+    { k: "6", label: "Last day with 6 months left", d: lastDayWithMonths(E, 6), why: "After this date the 6-month rule (China, Thailand, UAE, India and many more) can no longer be met on a departure." },
+    { k: "3", label: "Last day with 3 months left", d: lastDayWithMonths(E, 3), why: "Last possible departure date from the Schengen area, New Zealand and other 3-month destinations." },
+    { k: "1", label: "Last day with 1 month left", d: lastDayWithMonths(E, 1), why: "Last departure date for Hong Kong style 1-month rules." },
+    { k: "0", label: "Expiry date", d: E, why: "The passport is no longer valid after this day." }
+  ];
+  return { list: a, ageLimit: issue != null ? addMonths(issue, 120) : null };
 }
-window.addEventListener("DOMContentLoaded",function(){
-  if(!$("tool"))return;
-  buildDest();
-  $("calcBtn").addEventListener("click",calc);
-  $("resetBtn").addEventListener("click",function(){$("issueDate").value="";$("expiryDate").value="";$("destination").value="";$("arrivalDate").value="";$("departureDate").value="";$("output").innerHTML="";});
-  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
-});
+
+/* ---------- directory rows ---------- */
+function dirRows(E, issue, margin, o) {
+  var rows = [];
+  Object.keys(DEST).forEach(function (k) {
+    if (k === CUSTOM) return;
+    var r = ruleFor(k, o || { basis: "dep" }), L = E != null ? latestFor(r, E, issue, margin) : null;
+    rows.push({ name: k, region: DEST[k].region, rule: r, d: DEST[k], latest: L });
+  });
+  return rows;
+}
+
+/* ---------- UI helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function trunc(s, n) { s = String(s); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("pvStatus"); if (!e) return; e.textContent = t; e.className = "pv-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "﻿" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+
+var ST = { res: null, pick: 0, tab: 1, dirRows: [] };
+var COL = { pass: "#16a34a", tight: "#f59e0b", check: "#64748b", fail: "#dc2626" };
+var CLS = { pass: "ok", tight: "warn", check: "info", fail: "err" };
+
+/* ---------- destination selects ---------- */
+function destOptions() {
+  var h = '<option value="">— Select destination —</option>';
+  REGIONS.forEach(function (rg) {
+    var names = Object.keys(DEST).filter(function (k) { return DEST[k].region === rg; });
+    if (rg !== "Other") names.sort(function (a, b) { return a.localeCompare(b); });
+    if (!names.length) return;
+    h += '<optgroup label="' + esc(rg) + '">' + names.map(function (n) { return '<option value="' + esc(n) + '">' + esc(n) + "</option>"; }).join("") + "</optgroup>";
+  });
+  return h;
+}
+
+/* ---------- extra traveller / stop rows ---------- */
+var MAXT = 7, MAXL = 5, rowSeq = 0;
+function addTrav(v) {
+  var box = $("pvTravs"); if (box.children.length >= MAXT) { msg("You can add up to " + (MAXT + 1) + " travellers.", "err"); return; }
+  v = v || {}; var n = ++rowSeq, d = document.createElement("div"); d.className = "pv-xrow pv-xt";
+  d.innerHTML = '<div><label for="pvtn' + n + '">Name (optional)</label><input type="text" id="pvtn' + n + '" class="t-name" maxlength="40" autocomplete="off"></div>' +
+    '<div><label for="pvti' + n + '">Issue date</label><input type="date" id="pvti' + n + '" class="t-issue"></div>' +
+    '<div><label for="pvte' + n + '">Expiry date</label><input type="date" id="pvte' + n + '" class="t-exp"></div>' +
+    '<button type="button" class="pv-x" aria-label="Remove this traveller">Remove</button>';
+  box.appendChild(d);
+  d.querySelector(".t-name").value = v.name || ""; d.querySelector(".t-issue").value = v.issue || ""; d.querySelector(".t-exp").value = v.expiry || "";
+  d.querySelector(".pv-x").addEventListener("click", function () { d.remove(); recalc(); });
+}
+function addLeg(v) {
+  var box = $("pvLegs"); if (box.children.length >= MAXL) { msg("You can add up to " + (MAXL + 1) + " stops.", "err"); return; }
+  v = v || {}; var n = ++rowSeq, d = document.createElement("div"); d.className = "pv-xrow pv-xl";
+  d.innerHTML = '<div><label for="pvld' + n + '">Destination</label><select id="pvld' + n + '" class="l-dest">' + destOptions() + '</select></div>' +
+    '<div><label for="pvla' + n + '">Arrival</label><input type="date" id="pvla' + n + '" class="l-arr"></div>' +
+    '<div><label for="pvlp' + n + '">Departure</label><input type="date" id="pvlp' + n + '" class="l-dep"></div>' +
+    '<div><label for="pvls' + n + '">Stay (days)</label><input type="number" id="pvls' + n + '" class="l-stay" min="1" step="1"></div>' +
+    '<button type="button" class="pv-x" aria-label="Remove this stop">Remove</button>';
+  box.appendChild(d);
+  d.querySelector(".l-dest").value = v.dest || ""; d.querySelector(".l-arr").value = v.arr || ""; d.querySelector(".l-dep").value = v.dep || ""; d.querySelector(".l-stay").value = v.stay || "";
+  d.querySelector(".pv-x").addEventListener("click", function () { d.remove(); syncCustom(); recalc(); });
+}
+function syncCustom() {
+  var any = $("destination").value === CUSTOM;
+  document.querySelectorAll("#pvLegs .l-dest").forEach(function (s) { if (s.value === CUSTOM) any = true; });
+  $("pvCustom").hidden = !any;
+}
+function syncStayHint() {
+  var a = parseD($("arrivalDate").value), d = parseD($("departureDate").value);
+  $("stayDays").placeholder = (a != null && d != null && d >= a) ? (d - a) + " (from dates)" : "Auto from dates";
+}
+
+/* ---------- collect + calculate ---------- */
+function collect() {
+  var travs = [{ name: $("pvName0").value.trim(), issue: $("issueDate").value, expiry: $("expiryDate").value }];
+  document.querySelectorAll("#pvTravs .pv-xrow").forEach(function (r) {
+    var t = { name: r.querySelector(".t-name").value.trim(), issue: r.querySelector(".t-issue").value, expiry: r.querySelector(".t-exp").value };
+    if (t.name || t.issue || t.expiry) travs.push(t);
+  });
+  var legs = [{ dest: $("destination").value, arr: $("arrivalDate").value, dep: $("departureDate").value, stay: $("stayDays").value }];
+  document.querySelectorAll("#pvLegs .pv-xrow").forEach(function (r) {
+    var l = { dest: r.querySelector(".l-dest").value, arr: r.querySelector(".l-arr").value, dep: r.querySelector(".l-dep").value, stay: r.querySelector(".l-stay").value };
+    if (l.dest || l.arr || l.dep) legs.push(l);
+  });
+  return {
+    travs: travs, legs: legs, today: parseD($("pvToday").value) || todayDN(),
+    opts: { basis: $("pvBasis").value, margin: intIn("pvMargin", 0, 365, 0), weeks: intIn("pvWeeks", 0, 52, 8) },
+    custom: { months: intIn("cuMonths", 0, 36, 0), days: intIn("cuDays", 0, 400, 0), basis: $("cuBasis").value, age: intIn("cuAge", 0, 30, 0), pages: intIn("cuPages", 0, 10, 0) }
+  };
+}
+function calc() {
+  ST.live = true;
+  var res = runAll(collect());
+  render(res);
+}
+function recalc() { if (ST.live) calc(); }
+
+/* ---------- timeline SVG ---------- */
+function tlBody(t, rows, today, ex) {
+  var W = 680, L = 150, RR = 26, top = 54, rh = 48, los = [today], his = [t.expiry];
+  rows.forEach(function (r) { los.push(r.arr); his.push(r.R, r.dep); });
+  var lo = Math.min.apply(null, los), hi = Math.max.apply(null, his), pad = Math.max(12, Math.round((hi - lo) * 0.05));
+  lo -= pad; hi += pad;
+  var pw = W - L - RR, X = function (d) { return L + (d - lo) / (hi - lo) * pw; };
+  var H = top + rows.length * rh + 54, bot = H - 42;
+  var tc = ex ? "#0f172a" : "currentColor", mc = ex ? "#64748b" : "var(--muted)", gc = ex ? "#cbd5e1" : "var(--line)";
+  var s = "", xe = X(t.expiry), i;
+  s += '<rect x="' + L + '" y="' + (top - 22) + '" width="' + (xe - L).toFixed(1) + '" height="' + (bot - top + 22) + '" fill="rgba(22,163,74,.09)"/>';
+  s += '<rect x="' + xe.toFixed(1) + '" y="' + (top - 22) + '" width="' + Math.max(0, W - RR - xe).toFixed(1) + '" height="' + (bot - top + 22) + '" fill="rgba(220,38,38,.08)"/>';
+  var steps = [1, 3, 6, 12, 24, 60], st = 60;
+  for (i = 0; i < steps.length; i++) { if (Math.ceil((hi - lo) / (30.44 * steps[i])) <= 9) { st = steps[i]; break; } }
+  var o0 = ymd(lo);
+  for (var mi = o0.y * 12 + o0.m; mi < o0.y * 12 + o0.m + 1200; mi++) {
+    var y = Math.floor(mi / 12), m = mi % 12 + 1, dd = dnum(y, m, 1);
+    if (dd > hi) break;
+    if (st >= 12) { if (m !== 1 || y % (st / 12) !== 0) continue; } else if ((m - 1) % st !== 0) continue;
+    var gx = X(dd).toFixed(1);
+    s += '<line x1="' + gx + '" x2="' + gx + '" y1="' + (top - 22) + '" y2="' + bot + '" stroke="' + gc + '" stroke-width=".7"/>';
+    s += '<text x="' + gx + '" y="' + (H - 12) + '" text-anchor="middle" font-size="11" fill="' + mc + '">' + (st >= 12 ? y : MON[m - 1] + " " + String(y).slice(2)) + "</text>";
+  }
+  rows.forEach(function (r, k) {
+    var y0 = top + k * rh, c = COL[r.status], x1 = X(r.arr), x2 = X(r.dep), xr = X(r.R);
+    s += '<text x="8" y="' + (y0 + 14) + '" font-size="12.5" font-weight="700" fill="' + tc + '">' + esc(trunc(r.label, 19)) + "</text>";
+    s += '<text x="8" y="' + (y0 + 29) + '" font-size="10.5" fill="' + mc + '">' + esc(trunc(r.sub, 27)) + "</text>";
+    if (xr > x2 + 1) s += '<rect class="pv-bar" style="animation-delay:' + (k * 90 + 250) + 'ms" x="' + x2.toFixed(1) + '" y="' + (y0 + 5) + '" width="' + (xr - x2).toFixed(1) + '" height="16" rx="4" fill="' + c + '" fill-opacity=".22" stroke="' + c + '" stroke-dasharray="4 3"/>';
+    s += '<rect class="pv-bar" style="animation-delay:' + (k * 90) + 'ms" x="' + x1.toFixed(1) + '" y="' + (y0 + 5) + '" width="' + Math.max(5, x2 - x1).toFixed(1) + '" height="16" rx="4" fill="' + c + '"/>';
+    s += '<path d="M' + xr.toFixed(1) + ' ' + (y0 + 1) + ' l5 8 l-5 8 l-5 -8 z" fill="' + tc + '" opacity=".85"/>';
+    var tx = Math.min(Math.max(xr, L + 60), W - RR - 60);
+    s += '<text x="' + tx.toFixed(1) + '" y="' + (y0 + 40) + '" text-anchor="middle" font-size="10.5" fill="' + mc + '">' + "must be valid to " + fmtD(r.R) + "</text>";
+  });
+  s += '<line x1="' + xe.toFixed(1) + '" x2="' + xe.toFixed(1) + '" y1="' + (top - 22) + '" y2="' + bot + '" stroke="#dc2626" stroke-width="2" stroke-dasharray="5 3"/>';
+  var ex1 = Math.min(Math.max(xe, L + 80), W - RR - 80);
+  s += '<text x="' + ex1.toFixed(1) + '" y="' + (top - 28) + '" text-anchor="middle" font-size="11.5" font-weight="700" fill="#dc2626">Passport expires ' + fmtD(t.expiry) + "</text>";
+  var xt = X(today).toFixed(1);
+  s += '<line x1="' + xt + '" x2="' + xt + '" y1="' + (top - 22) + '" y2="' + bot + '" stroke="#0369a1" stroke-width="1.5"/>';
+  s += '<text x="' + xt + '" y="' + (bot + 12) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="#0369a1">Today</text>';
+  s += '<g font-size="10.5" fill="' + mc + '"><rect x="8" y="6" width="14" height="8" rx="2" fill="' + COL.pass + '"/><text x="26" y="14">trip</text><rect x="62" y="6" width="14" height="8" rx="2" fill="' + COL.pass + '" fill-opacity=".22" stroke="' + COL.pass + '" stroke-dasharray="3 2"/><text x="80" y="14">validity still required</text></g>';
+  return { w: W, h: H, body: s };
+}
+function tlSvg(t, rows, today, ex, title) {
+  var b = tlBody(t, rows, today, ex);
+  return '<svg class="pv-tl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + b.w + " " + b.h + '" role="img" aria-label="' + esc(title) + '" font-family="system-ui,Segoe UI,sans-serif"' + (ex ? ' width="' + b.w + '" height="' + b.h + '"' : "") + "><title>" + esc(title) + "</title>" + b.body + "</svg>";
+}
+function rowsFor(info) {
+  return info.pairs.map(function (p) { return { label: p.leg.dest, sub: p.rule.dest.region === "Other" ? p.rule.label : ruleShort(p.rule), arr: p.leg.arr, dep: p.leg.dep, R: p.R, status: p.status }; });
+}
+function ruleShort(r) {
+  if (r.kind === "stay") return "valid for the stay";
+  if (r.kind === "entry") return "valid on arrival";
+  var p = []; if (r.months) p.push(r.months + " mo"); if (r.days) p.push(r.days + " days");
+  return p.join(" ") + " after " + (r.basis === "arr" ? "arrival" : "departure") + (r.age ? " + " + r.age + "y issue" : "");
+}
+function tlTitle(info) { return "Timeline for " + info.t.name + ": " + info.pairs.map(function (p) { return p.leg.dest + " " + STATUS[p.status]; }).join(", ") + ". Passport expires " + fmtD(info.t.expiry) + "."; }
+
+/* ---------- rendering the check result ---------- */
+function chip(s) { return '<span class="pv-chip pv-c-' + s + '">' + STATUS[s] + "</span>"; }
+function leftText(today, e) { return e < today ? "expired " + spanText(e, today) + " ago" : e === today ? "expires today" : spanText(today, e) + " left"; }
+function pickIndex(res) {
+  var order = ["fail", "check", "tight", "pass"];
+  for (var i = 0; i < order.length; i++) for (var k = 0; k < res.pairs.length; k++) if (res.pairs[k].status === order[i]) return k;
+  return 0;
+}
+function verdictHtml(res) {
+  var P = res.pairs, n = P.length, c = { pass: 0, tight: 0, check: 0, fail: 0 }, w = res.overall;
+  P.forEach(function (p) { c[p.status]++; });
+  var line;
+  if (n === 1) {
+    var p = P[0];
+    line = w === "fail" ? "This passport does not meet the rule for " + p.leg.dest + " on these dates."
+      : w === "check" ? "The expiry date is fine, but the passport issue date is needed to finish the check."
+      : w === "tight" ? "It meets the rule, but with only " + plural(p.spare, "day") + " to spare. Consider renewing."
+      : "It meets the rule with " + plural(p.spare, "day") + " to spare.";
+  } else {
+    line = (c.pass + c.tight) + " of " + n + " checks pass" + (c.fail ? ", " + c.fail + " fail" : "") + (c.check ? ", " + c.check + " need the issue date" : "") + (c.tight ? ", " + c.tight + " are tight" : "") + ".";
+  }
+  var h = '<div class="pv-result"><div class="pv-label">Passport validity verdict' + (n === 1 ? " for " + esc(P[0].leg.dest) : " for your trip") + '</div><div class="pv-big" style="color:' + COL[w] + '">' + STATUS[w] + '</div><div class="pv-label" style="margin-top:6px">' + esc(n === 1 ? P[0].rule.label : "Each stop is checked against its own rule") + '</div><p class="pv-sum">' + esc(line) + "</p>";
+  if (n > 1) {
+    var bad = P.filter(function (p) { return p.status === "fail"; });
+    if (bad.length) h += '<ul class="pv-faillist">' + bad.slice(0, 8).map(function (p) { return "<li>" + esc(pairLine(p)) + "</li>"; }).join("") + "</ul>";
+  }
+  return h + "</div>";
+}
+function detailHtml(res, p) {
+  var info = res.perTrav[p.t.idx], h = "", t = p.t, l = p.leg, cls = CLS[p.status];
+  var spareTxt = p.spare >= 0 ? plural(p.spare, "day") + " spare" : plural(-p.spare, "day") + " short";
+  h += '<div class="pv-stats">';
+  h += '<div class="pv-stat"><div class="lbl">Passport expires</div><div class="val" style="font-size:.9rem">' + esc(isoD(t.expiry)) + '</div><div class="sub">' + esc(leftText(res.today, t.expiry)) + "</div></div>";
+  h += '<div class="pv-stat"><div class="lbl">Required valid until</div><div class="val" style="font-size:.9rem">' + esc(isoD(p.R)) + "</div></div>";
+  h += '<div class="pv-stat"><div class="lbl">Days beyond departure</div><div class="val ' + cls + '">' + p.beyond + "</div></div>";
+  h += '<div class="pv-stat"><div class="lbl">Margin vs rule</div><div class="val ' + cls + '" style="font-size:.9rem">' + esc(spareTxt) + "</div></div>";
+  h += '<div class="pv-stat"><div class="lbl">Rule</div><div class="val" style="font-size:.82rem">' + esc(p.rule.label) + "</div></div>";
+  var lastDep = p.latest.dep != null ? "Leave by " + fmtD(p.latest.dep) : "Arrive by " + fmtD(p.latest.arr);
+  if (p.latest.dep != null && p.latest.ageLimit != null && p.latest.arr < p.latest.dep) lastDep += " (arrive by " + fmtD(p.latest.arr) + ")";
+  h += '<div class="pv-stat"><div class="lbl">Latest trip this passport allows</div><div class="val" style="font-size:.88rem">' + esc(lastDep) + "</div></div>";
+  h += "</div>";
+  h += '<ul class="pv-checks">' + p.checks.map(function (c) { return '<li class="' + (c.ok === true ? "ok" : c.ok === false ? "bad" : "q") + '"><span aria-hidden="true">' + (c.ok === true ? "✓" : c.ok === false ? "✗" : "?") + "</span> " + esc(c.t) + "</li>"; }).join("") + "</ul>";
+  p.notes.forEach(function (n) { h += '<div class="pv-tip">' + esc(n) + "</div>"; });
+  var fig = res.perTrav[p.t.idx];
+  h += '<div class="pv-diagram pv-tlbox">' + tlSvg(fig.t, rowsFor(fig), res.today, false, tlTitle(fig)) + "</div>";
+  return h;
+}
+function matrixHtml(res) {
+  if (res.pairs.length < 2) return "";
+  var h = '<h3 class="pv-h3">All travellers and stops</h3><div class="pv-scroll"><table class="pv-table"><tr><th>Traveller</th>';
+  res.legs.forEach(function (l) { h += "<th>" + esc(l.dest) + "<br><small>" + esc(fmtD(l.arr)) + (l.dep !== l.arr ? " – " + esc(fmtD(l.dep)) : "") + "</small></th>"; });
+  h += "</tr>";
+  res.travs.forEach(function (t) {
+    h += "<tr><th>" + esc(t.name) + "<br><small>expires " + esc(fmtD(t.expiry)) + "</small></th>";
+    res.legs.forEach(function (l) {
+      var p = res.pairs.filter(function (q) { return q.t === t && q.leg === l; })[0], k = res.pairs.indexOf(p);
+      h += '<td><button type="button" class="pv-cell" data-pick="' + k + '">' + chip(p.status) + "<br><small>" + (p.spare >= 0 ? "+" : "−") + Math.abs(p.spare) + " days</small></button></td>";
+    });
+    h += "</tr>";
+  });
+  return h + "</table></div>";
+}
+function fixHtml(res) {
+  var h = "";
+  res.perTrav.forEach(function (info) {
+    if (info.status !== "fail") return;
+    h += '<div class="pv-warn"><b>' + esc(info.t.name) + ": renew or replace this passport.</b> ";
+    if (info.needExpiry != null) h += "To cover every stop, a replacement must be valid until at least <b>" + esc(fmtD(info.needExpiry)) + "</b>. ";
+    if (info.needNewIssue) h += "The issue-date rule needs a passport issued on or after <b>" + esc(fmtD(info.earliestIssue)) + "</b>; any newly issued passport meets it. ";
+    var late = info.applyBy < res.today;
+    h += late ? "Allowing " + plural(res.opts.weeks, "week") + " for processing, the ideal apply-by date (" + esc(fmtD(info.applyBy)) + ") has already passed: ask your passport office about expedited service, or change the dates. "
+      : "Allowing " + plural(res.opts.weeks, "week") + " for processing, apply by <b>" + esc(fmtD(info.applyBy)) + "</b> to be ready before your first affected arrival on " + esc(fmtD(info.firstFailArr)) + ". ";
+    var alts = info.pairs.filter(function (p) { return p.status === "fail" && p.spare < 0; }).map(function (p) {
+      var d = p.latest.dep != null ? p.latest.dep : p.latest.arr;
+      return esc(p.leg.dest) + ": " + (d >= p.leg.arr ? "leave by " + esc(fmtD(d)) : "not possible on these dates");
+    });
+    if (alts.length) h += "<br>With the current passport the latest workable departure is: " + alts.join("; ") + ".";
+    h += "</div>";
+  });
+  return h;
+}
+function notesHtml(res) {
+  var seen = {}, h = "";
+  res.legs.forEach(function (l) {
+    if (seen[l.dest]) return; seen[l.dest] = 1;
+    var d = DEST[l.dest]; if (!d || !d.note) return;
+    h += "<li><b>" + esc(l.dest) + ":</b> " + esc(d.note) + "</li>";
+  });
+  return h ? '<div class="pv-tip"><b>Destination notes</b><ul>' + h + "</ul>Always confirm current requirements with the destination embassy or consulate and with your airline before travelling.</div>" : '<div class="pv-tip">Always confirm current requirements with the destination embassy or consulate and with your airline before travelling.</div>';
+}
+function render(res) {
+  var out = $("output");
+  if (res.errors && res.errors.length) {
+    out.innerHTML = '<div class="pv-warn" role="alert"><b>Please check your entries:</b><ul>' + res.errors.map(function (e) { return "<li>" + esc(e) + "</li>"; }).join("") + "</ul></div>";
+    ST.res = null; return;
+  }
+  ST.res = res; ST.pick = pickIndex(res);
+  var h = verdictHtml(res);
+  if (res.pairs.length > 1) {
+    h += '<label class="pv-pick" for="pvPick">Show details for</label><select id="pvPick">' + res.pairs.map(function (p, i) { return '<option value="' + i + '">' + esc(p.t.name + " → " + p.leg.dest + " (" + STATUS[p.status] + ")") + "</option>"; }).join("") + "</select>";
+  }
+  h += '<div id="pvDetail"></div>' + matrixHtml(res) + fixHtml(res) + notesHtml(res);
+  h += '<div class="pv-actions"><button type="button" id="copyPvBtn" class="pv-btn" style="margin:0">Copy result</button><button type="button" class="pv-btn ghost" id="pvTxt" style="margin:0">Download TXT</button><button type="button" class="pv-btn ghost" id="pvCsv" style="margin:0">Download CSV</button><button type="button" class="pv-btn ghost" id="pvPng" style="margin:0">Save timeline PNG</button><button type="button" class="pv-btn ghost" id="pvPrint" style="margin:0">Print / save as PDF</button></div>';
+  out.innerHTML = h;
+  showDetail();
+}
+function showDetail() {
+  var res = ST.res; if (!res) return;
+  if ($("pvPick")) $("pvPick").value = String(ST.pick);
+  $("pvDetail").innerHTML = detailHtml(res, res.pairs[ST.pick]);
+}
+
+/* ---------- exports ---------- */
+function resultText(res) {
+  var L = ["Passport Validity Checker result", "Checked as of: " + fmtD(res.today), "Overall: " + STATUS[res.overall], ""];
+  res.travs.forEach(function (t) { L.push(t.name + ": issued " + (t.issue != null ? fmtD(t.issue) : "not entered") + ", expires " + fmtD(t.expiry)); });
+  L.push("");
+  res.pairs.forEach(function (p) { L.push(pairLine(p)); L.push("   Rule: " + p.rule.label + "; must be valid until " + fmtD(p.R)); });
+  res.perTrav.forEach(function (i) {
+    if (i.status !== "fail") return;
+    L.push(""); L.push(i.t.name + ": " + (i.needExpiry != null ? "a replacement must be valid until at least " + fmtD(i.needExpiry) + "; " : "") + "apply by " + fmtD(i.applyBy) + " (" + res.opts.weeks + " weeks processing).");
+  });
+  L.push(""); L.push("Guidance only. Confirm with the embassy and your airline. - utiliby.com");
+  return L.join("\n");
+}
+function resultCsv(res) {
+  var rows = [["Traveller", "Issue date", "Expiry date", "Destination", "Arrival", "Departure", "Rule applied", "Must be valid until", "Days spare (negative = short)", "Status", "Latest departure with this passport"]];
+  res.pairs.forEach(function (p) {
+    rows.push([p.t.name, p.t.issue != null ? isoD(p.t.issue) : "", isoD(p.t.expiry), p.leg.dest, isoD(p.leg.arr), isoD(p.leg.dep), p.rule.label, isoD(p.R), p.spare, STATUS[p.status], p.latest.dep != null ? isoD(p.latest.dep) : (p.latest.arr != null ? "arrive by " + isoD(p.latest.arr) : "")]);
+  });
+  return csvText(rows);
+}
+function savePng() {
+  var res = ST.res; if (!res) return;
+  var info = res.perTrav[res.pairs[ST.pick].t.idx], b = tlBody(info.t, rowsFor(info), res.today, true);
+  var W = b.w, H = b.h + 130;
+  var tx = function (x, y, t, sz, w, c, a) { return '<text x="' + x + '" y="' + y + '" text-anchor="' + (a || "start") + '" font-size="' + sz + '" font-weight="' + w + '" fill="' + c + '">' + esc(t) + "</text>"; };
+  var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '" font-family="system-ui,Segoe UI,sans-serif"><rect width="' + W + '" height="' + H + '" fill="#ffffff"/>' +
+    tx(20, 34, "Passport validity: " + info.t.name, 22, 800, "#0f172a") + tx(20, 58, "Overall " + STATUS[info.status] + " · expires " + fmtD(info.t.expiry) + " · checked as of " + fmtD(res.today), 14, 500, "#475569") +
+    '<g transform="translate(0,84)">' + b.body + "</g>" + tx(20, H - 14, "utiliby.com · Free online passport validity checker · guidance only, confirm with the embassy and airline", 11.5, 400, "#64748b") + "</svg>";
+  var img = new Image();
+  img.onload = function () {
+    try { var c = document.createElement("canvas"); c.width = W * 2; c.height = H * 2; var x = c.getContext("2d"); x.fillStyle = "#fff"; x.fillRect(0, 0, c.width, c.height); x.drawImage(img, 0, 0, c.width, c.height); c.toBlob(function (bl) { if (!bl) { msg("Could not create the image in this browser.", "err"); return; } saveBlob(bl, "passport-validity-" + isoD(res.today).replace(/-/g, "") + ".png"); msg("PNG saved."); }, "image/png"); } catch (e) { msg("Could not create the image in this browser.", "err"); }
+  };
+  img.onerror = function () { msg("Could not create the image in this browser.", "err"); };
+  img.src = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+}
+
+/* ---------- tab 2: key dates and country rules ---------- */
+function msSvg(E, today, kd, ex) {
+  var W = 680, L = 30, R = 30, y0 = 92, tc = ex ? "#0f172a" : "currentColor", mc = ex ? "#64748b" : "var(--muted)";
+  var ds = kd.list.map(function (k) { return k.d; }).concat([today]), lo = Math.min.apply(null, ds), hi = E, pad = Math.max(10, Math.round((hi - lo) * .04));
+  lo -= pad; hi += pad;
+  var X = function (d) { return L + (d - lo) / (hi - lo) * (W - L - R); }, s = "";
+  s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y0 + '" y2="' + y0 + '" stroke="' + (ex ? "#cbd5e1" : "var(--line)") + '" stroke-width="6" stroke-linecap="round"/>';
+  s += '<line class="pv-bar" x1="' + X(Math.max(lo, today)).toFixed(1) + '" x2="' + X(E).toFixed(1) + '" y1="' + y0 + '" y2="' + y0 + '" stroke="#16a34a" stroke-width="6" stroke-linecap="round"/>';
+  kd.list.forEach(function (k, i) {
+    var x = X(k.d), up = i % 2 === 0, past = k.d < today, c = k.k === "0" ? "#dc2626" : (past ? "#94a3b8" : "#0369a1");
+    s += '<circle cx="' + x.toFixed(1) + '" cy="' + y0 + '" r="7" fill="' + c + '"/>';
+    var ty = up ? y0 - 24 : y0 + 30, ly = up ? y0 - 8 : y0 + 8;
+    s += '<line x1="' + x.toFixed(1) + '" x2="' + x.toFixed(1) + '" y1="' + (up ? y0 - 8 : y0 + 8) + '" y2="' + (up ? y0 - 20 : y0 + 20) + '" stroke="' + c + '"/>';
+    var nm = k.k === "0" ? "Expires" : k.k === "1" ? "1 month left" : k.k + " months left";
+    s += '<text x="' + x.toFixed(1) + '" y="' + (up ? ty - 14 : ty) + '" text-anchor="middle" font-size="12" font-weight="700" fill="' + c + '">' + esc(nm) + "</text>";
+    s += '<text x="' + x.toFixed(1) + '" y="' + (up ? ty : ty + 14) + '" text-anchor="middle" font-size="11" fill="' + mc + '">' + esc(fmtD(k.d)) + (past && k.k !== "0" ? " (passed)" : "") + "</text>";
+  });
+  var xt = X(today);
+  s += '<path d="M' + xt.toFixed(1) + ' ' + (y0 + 10) + ' l-6 10 h12 z" fill="#0369a1"/><text x="' + xt.toFixed(1) + '" y="' + (y0 + 44) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#0369a1">Today</text>';
+  var H = 150;
+  return '<svg class="pv-tl" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ' + W + " " + H + '" role="img" aria-label="Milestones before your passport expires" font-family="system-ui,Segoe UI,sans-serif"' + (ex ? ' width="' + W + '" height="' + H + '"' : "") + "><title>Milestones before your passport expires</title>" + s + "</svg>";
+}
+function dirState() {
+  var E = parseD($("rlExpiry").value), I = $("rlIssue").value ? parseD($("rlIssue").value) : null, today = parseD($("pvToday").value) || todayDN();
+  return { E: E, I: I, today: today, margin: intIn("pvMargin", 0, 365, 0) };
+}
+function dirFiltered(S) {
+  var q = $("rlSearch").value.trim().toLowerCase(), rg = $("rlRegion").value, rf = $("rlRule").value, sort = $("rlSort").value;
+  var rows = dirRows(S.E, S.I, S.margin, { basis: "dep" }).filter(function (r) {
+    if (q && r.name.toLowerCase().indexOf(q) < 0) return false;
+    if (rg && r.region !== rg) return false;
+    if (rf) { var c = r.rule.code; var g = c === "S" ? "S" : (c === "6" || c === "U6") ? "6" : (c === "3" || c === "3f") ? "3" : (c === "1" || c === "30" || c === "90") ? "short" : "stay"; if (g !== rf) return false; }
+    return true;
+  });
+  var strict = function (r) { return r.rule.kind ? 0 : (r.rule.months || 0) * 30 + (r.rule.days || 0); };
+  rows.sort(function (a, b) {
+    if (sort === "strict") return strict(b) - strict(a) || a.name.localeCompare(b.name);
+    if (sort === "latest" && S.E != null) { var da = a.latest.dep != null ? a.latest.dep : a.latest.arr, db = b.latest.dep != null ? b.latest.dep : b.latest.arr; return da - db || a.name.localeCompare(b.name); }
+    return a.name.localeCompare(b.name);
+  });
+  return rows;
+}
+function rowDates(r, S) {
+  if (!r.latest) return { main: "—", days: "", cls: "" };
+  var L = r.latest, d = L.dep != null ? L.dep : L.arr, lab = L.dep != null ? fmtD(L.dep) : "arrive by " + fmtD(L.arr);
+  var diff = d - S.today, cls = diff < 0 ? "err" : diff < 90 ? "warn" : "ok";
+  return { main: lab, days: diff < 0 ? "passed " + plural(-diff, "day") + " ago" : diff === 0 ? "today" : "in " + plural(diff, "day"), cls: cls };
+}
+function renderDir() {
+  var S = dirState(), key = "";
+  if (S.E == null) key = '<p class="pv-hint">Enter your passport expiry date to see key dates and the latest day you can travel to each country.</p>';
+  else {
+    var kd = keyDates(S.E, S.I);
+    key = '<div class="pv-stats"><div class="pv-stat"><div class="lbl">Valid for another</div><div class="val ' + (S.E < S.today ? "err" : "ok") + '" style="font-size:.95rem">' + esc(leftText(S.today, S.E)) + "</div></div>" +
+      kd.list.slice(1, 4).map(function (k) { return '<div class="pv-stat"><div class="lbl">' + esc(k.label) + '</div><div class="val ' + (k.d < S.today ? "err" : "") + '" style="font-size:.9rem">' + esc(fmtD(k.d)) + "</div></div>"; }).join("") +
+      (kd.ageLimit != null ? '<div class="pv-stat"><div class="lbl">Schengen 10-year limit</div><div class="val" style="font-size:.9rem">arrive by ' + esc(fmtD(kd.ageLimit)) + "</div></div>" : "") + "</div>" +
+      '<div class="pv-diagram pv-tlbox">' + msSvg(S.E, S.today, kd, false) + "</div>";
+  }
+  $("rlKey").innerHTML = key;
+  var rows = dirFiltered(S); ST.dirRows = rows;
+  $("rlCount").textContent = rows.length + " destination" + (rows.length === 1 ? "" : "s") + " shown";
+  var h = '<table class="pv-table pv-dir"><tr><th>Destination</th><th>Rule</th><th>' + (S.E != null ? "Last day to depart" : "Last day to depart") + "</th><th>Notes</th></tr>";
+  rows.forEach(function (r) {
+    var dt = rowDates(r, S), notes = [];
+    if (r.d.pages) notes.push(r.d.pages + " blank page" + (r.d.pages > 1 ? "s" : ""));
+    if (r.d.varies) notes.push("sources differ");
+    if (r.rule.age && S.I != null && r.latest) notes.push("arrive by " + fmtD(r.latest.ageLimit));
+    h += "<tr><td><b>" + esc(r.name) + '</b><br><small>' + esc(r.region) + "</small></td><td>" + esc(r.rule.label) + '</td><td class="pv-d ' + dt.cls + '">' + esc(dt.main) + (dt.days ? "<br><small>" + esc(dt.days) + "</small>" : "") + "</td><td><small>" + esc(notes.join(" · ")) + "</small></td></tr>";
+  });
+  if (!rows.length) h += '<tr><td colspan="4">No destination matches these filters.</td></tr>';
+  $("rlTable").innerHTML = h + "</table>";
+}
+function dirCsv() {
+  var S = dirState(), rows = [["Destination", "Region", "Rule", "Last day to depart", "Last day to arrive", "Blank pages usually asked", "Sources differ"]];
+  ST.dirRows.forEach(function (r) { rows.push([r.name, r.region, r.rule.label, r.latest && r.latest.dep != null ? isoD(r.latest.dep) : "", r.latest && r.latest.arr != null ? isoD(r.latest.arr) : "", r.d.pages || "", r.d.varies ? "yes" : ""]); });
+  return csvText(rows);
+}
+
+/* ---------- print report ---------- */
+function fillReport() {
+  var box = $("pvReport"); box.textContent = "";
+  var add = function (tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; };
+  var tbl = function (head, rows) {
+    var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "pv-rep-table";
+    head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+    rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+    box.appendChild(t);
+  };
+  var gen = "Generated " + new Date().toLocaleString() + " · Free online Passport Validity Checker, utiliby.com";
+  if (ST.tab === 2) {
+    var S = dirState(); add("h2", "Passport key dates and country rules"); add("p", gen, "pv-rep-meta");
+    if (S.E != null) {
+      var kd = keyDates(S.E, S.I);
+      add("h3", "Key dates for the passport expiring " + fmtD(S.E));
+      tbl(["Milestone", "Date", "Why it matters"], kd.list.map(function (k) { return [k.label, fmtD(k.d), k.why]; }));
+      var w = document.createElement("div"); w.className = "pv-rep-fig"; w.innerHTML = msSvg(S.E, S.today, kd, true); box.appendChild(w);
+    }
+    add("h3", "Rules by destination (" + ST.dirRows.length + ")");
+    tbl(["Destination", "Rule", S.E != null ? "Last day to depart" : "Last day to depart (enter expiry)", "Notes"], ST.dirRows.map(function (r) { var d = rowDates(r, S); return [r.name, r.rule.label, d.main, (r.d.pages ? r.d.pages + " blank pages. " : "") + (r.d.varies ? "Sources differ. " : "")]; }));
+  } else {
+    var res = ST.res; add("h2", "Passport validity report"); add("p", gen, "pv-rep-meta");
+    if (!res) { add("p", "Run a check in the Passport Validity Checker first, then print again to get your report here."); }
+    else {
+      add("p", "Checked as of " + fmtD(res.today) + " · overall result: " + STATUS[res.overall] + " · safety margin " + res.opts.margin + " days", "pv-rep-meta");
+      add("h3", "Passports");
+      tbl(["Traveller", "Issue date", "Expiry date", "Time left"], res.travs.map(function (t) { return [t.name, t.issue != null ? fmtD(t.issue) : "not entered", fmtD(t.expiry), leftText(res.today, t.expiry)]; }));
+      add("h3", "Results");
+      tbl(["Traveller", "Destination", "Dates", "Rule applied", "Valid until needed", "Spare days", "Result"], res.pairs.map(function (p) { return [p.t.name, p.leg.dest, fmtD(p.leg.arr) + (p.leg.dep !== p.leg.arr ? " – " + fmtD(p.leg.dep) : ""), p.rule.label, fmtD(p.R), p.spare, STATUS[p.status]]; }));
+      res.perTrav.forEach(function (i) { if (i.status === "fail") add("p", i.t.name + ": " + (i.needExpiry != null ? "a replacement passport must be valid until at least " + fmtD(i.needExpiry) + ". " : "") + (i.needNewIssue ? "Issue date must be on or after " + fmtD(i.earliestIssue) + ". " : "") + "Apply by " + fmtD(i.applyBy) + " (" + res.opts.weeks + " weeks processing).", "pv-rep-fail"); });
+      res.perTrav.forEach(function (i) { var w = document.createElement("div"); w.className = "pv-rep-fig"; w.innerHTML = tlSvg(i.t, rowsFor(i), res.today, true, tlTitle(i)); box.appendChild(w); });
+      var seen = {}; res.legs.forEach(function (l) { if (!seen[l.dest] && DEST[l.dest] && DEST[l.dest].note) { seen[l.dest] = 1; add("p", l.dest + ": " + DEST[l.dest].note); } });
+    }
+  }
+  add("p", "Disclaimer: guidance only. Passport rules change, differ by nationality and are enforced by border officers and airlines. Confirm current requirements with the destination embassy or consulate and your airline. Utiliby accepts no liability for denied boarding or refused entry.", "pv-rep-disc");
+}
+function doPrint() { fillReport(); window.print(); }
+
+/* ---------- tabs, example, reset, init ---------- */
+function setTab(n) {
+  ST.tab = n;
+  [1, 2].forEach(function (i) { $("pvTab" + i).hidden = i !== n; var b = $("pvTabBtn" + i); b.classList.toggle("on", i === n); b.setAttribute("aria-pressed", i === n ? "true" : "false"); });
+  if (n === 2) { if (!$("rlExpiry").value && $("expiryDate").value) { $("rlExpiry").value = $("expiryDate").value; $("rlIssue").value = $("issueDate").value; } renderDir(); }
+}
+function setVals(travIssue, travExp, legs) {
+  $("issueDate").value = travIssue; $("expiryDate").value = travExp;
+  $("destination").value = legs[0].dest; $("arrivalDate").value = legs[0].arr; $("departureDate").value = legs[0].dep; $("stayDays").value = "";
+  $("pvLegs").innerHTML = ""; for (var i = 1; i < legs.length; i++) addLeg(legs[i]);
+  syncStayHint(); syncCustom();
+}
+function example() {
+  var t = parseD($("pvToday").value) || todayDN();
+  $("pvTravs").innerHTML = ""; $("pvName0").value = "";
+  setVals(isoD(addMonths(t, -52)), isoD(addMonths(t, 7)), [
+    { dest: "Thailand", arr: isoD(t + 30), dep: isoD(t + 44) },
+    { dest: "France", arr: isoD(t + 70), dep: isoD(t + 80) }
+  ]);
+  calc();
+}
+function resetAll() {
+  ["issueDate", "expiryDate", "arrivalDate", "departureDate", "stayDays", "pvName0"].forEach(function (id) { $(id).value = ""; });
+  $("destination").value = ""; $("pvTravs").innerHTML = ""; $("pvLegs").innerHTML = ""; $("output").innerHTML = ""; ST.res = null; ST.live = false; syncCustom(); syncStayHint();
+  $("pvBasis").value = "dep"; $("pvMargin").value = "0"; $("pvWeeks").value = "8";
+  ["cuMonths", "cuDays", "cuAge", "cuPages"].forEach(function (id) { $(id).value = "0"; }); $("cuBasis").value = "dep";
+}
+function init() {
+  if (!$("tool")) return;
+  var t = ymd(todayDN()); $("pvToday").value = t.y + "-" + p2(t.m) + "-" + p2(t.d);
+  $("destination").innerHTML = destOptions();
+  REGIONS.forEach(function (rg) { var o = document.createElement("option"); o.value = rg; o.textContent = rg; if (rg !== "Other") $("rlRegion").appendChild(o); });
+  $("calcBtn").addEventListener("click", calc);
+  $("resetBtn").addEventListener("click", resetAll);
+  $("pvExample").addEventListener("click", example);
+  $("pvAddTrav").addEventListener("click", function () { addTrav(); });
+  $("pvAddLeg").addEventListener("click", function () { addLeg(); });
+  $("pvTabBtn1").addEventListener("click", function () { setTab(1); });
+  $("pvTabBtn2").addEventListener("click", function () { setTab(2); });
+  ["arrivalDate", "departureDate"].forEach(function (id) { $(id).addEventListener("change", syncStayHint); });
+  $("tool").addEventListener("change", function (e) {
+    var el = e.target;
+    if (el.id === "pvPick") { ST.pick = +el.value; showDetail(); return; }
+    if (el.tagName === "SELECT" && (el.id === "destination" || el.classList.contains("l-dest"))) syncCustom();
+    if (el.closest("#pvTab1") || el.closest("#pvOpts")) recalc();
+    if (ST.tab === 2 && (el.closest("#pvTab2") || el.closest("#pvOpts"))) renderDir();
+  });
+  $("tool").addEventListener("input", function (e) { if (e.target.closest("#pvTab2") && e.target.type !== "date") renderDir(); });
+  $("tool").addEventListener("keydown", function (e) { if (e.key === "Enter" && ST.tab === 1 && e.target.closest("#pvTab1") && e.target.tagName === "INPUT") { e.preventDefault(); calc(); } });
+  $("tool").addEventListener("click", function (e) {
+    var b = e.target.closest("button"); if (!b) return;
+    if (b.dataset.pick != null) { ST.pick = +b.dataset.pick; showDetail(); $("pvDetail").scrollIntoView({ behavior: "smooth", block: "nearest" }); return; }
+    var res = ST.res;
+    if (b.id === "copyPvBtn" && res) copyText(resultText(res), b);
+    else if (b.id === "pvTxt" && res) { saveBlob(new Blob([resultText(res)], { type: "text/plain;charset=utf-8" }), "passport-validity-" + isoD(res.today).replace(/-/g, "") + ".txt"); msg("TXT downloaded."); }
+    else if (b.id === "pvCsv" && res) { saveBlob(new Blob([resultCsv(res)], { type: "text/csv;charset=utf-8" }), "passport-validity-" + isoD(res.today).replace(/-/g, "") + ".csv"); msg("CSV downloaded."); }
+    else if (b.id === "pvPng") savePng();
+    else if (b.id === "pvPrint") { ST.tab = 1; doPrint(); }
+    else if (b.id === "rlCsv") { saveBlob(new Blob([dirCsv()], { type: "text/csv;charset=utf-8" }), "passport-rules-by-country.csv"); msg("CSV downloaded."); }
+    else if (b.id === "rlPrint") { ST.tab = 2; doPrint(); }
+  });
+  window.addEventListener("beforeprint", fillReport);
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  syncCustom(); syncStayHint();
+}
+window.addEventListener("DOMContentLoaded", init);
+
 })();
 </script>
 </body>
