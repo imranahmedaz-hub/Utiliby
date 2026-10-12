@@ -583,9 +583,10 @@ document.addEventListener("DOMContentLoaded", function () {
    TOOL PAGE  ->  "Guides"            guides that list this tool (or share its category)
                   "More <Category>"   other tools of the same category
                   "You may also like" one tool from each of several other categories
-   GUIDE PAGE ->  "Tools in this guide"  tools from the guide's  tools: [...]  field that the page
-                                         does not already link to by hand
-                  "More guides"          guides on the same topic first, then the rest
+   GUIDE PAGE ->  "More <Category> guides"    up to 4 guides on the same topic
+                  "Guides on other topics"    up to 3 guides, one per other topic
+                  Each guide is listed with its own tool(s) (from its  tools: [...]  field).
+                  Nothing is shown for a guide without a  tools  field except its title.
 
    Guide entries in toolIndex (category "Guide") take two optional fields:
      tools: ["/tools/health-fitness/keto-macro-calculator/"]   tools the guide is about
@@ -597,8 +598,8 @@ document.addEventListener("DOMContentLoaded", function () {
   var SAME_MAX   = 6;   // tools from the same category
   var OTHER_MAX  = 6;   // tools from other categories
   var GUIDE_MAX  = 3;   // guides shown on a tool page
-  var GTOOLS_MAX = 4;   // tools shown on a guide page
-  var MOREG_MAX  = 4;   // other guides shown on a guide page
+  var GUIDE_SAME_MAX  = 4;  // guides from the same topic, shown on a guide page
+  var GUIDE_OTHER_MAX = 3;  // guides from other topics (one per topic), shown on a guide page
 
   function norm(p) { p = (p || "").split("?")[0].split("#")[0]; return p.replace(/index\.html$/, "").replace(/\/?$/, "/"); }
   function catSlug(u) { var m = norm(u).match(/^\/tools\/([^\/]+)\//); return m ? m[1] : ""; }
@@ -607,6 +608,32 @@ document.addEventListener("DOMContentLoaded", function () {
   function cleanName(t) { return isGuide(t) ? t.name.replace(/\s*\(Guide\)\s*$/i, "") : t.name; }
   function card(t) {
     return '<a class="card" href="' + ulEsc(t.url) + '"><b>' + ulEsc(cleanName(t)) + '</b><span>' + ulEsc(isGuide(t) ? "Guide" : t.category) + '</span></a>';
+  }
+
+  // compact "guide + its tool" rows used at the bottom of guide pages
+  function guideRow(g) {
+    var tools = [];
+    if (g.tools) for (var k = 0; k < g.tools.length && tools.length < 2; k++) {
+      var t = null, u = norm(g.tools[k]);
+      for (var m = 0; m < toolIndex.length; m++) if (norm(toolIndex[m].url) === u) { t = toolIndex[m]; break; }
+      if (t) tools.push('<a href="' + ulEsc(t.url) + '">' + ulEsc(t.name) + '</a>');
+    }
+    return '<li><a class="rg-title" href="' + ulEsc(g.url) + '">' + ulEsc(cleanName(g)) + '</a>' +
+           (tools.length ? '<span class="rg-tool">Tool: ' + tools.join(" · ") + '</span>' : '') + '</li>';
+  }
+  function guideList(title, list, first) {
+    if (!list.length) return "";
+    return '<h2' + (first ? '' : ' style="margin-top:24px"') + '>' + ulEsc(title) + '</h2><ul class="rel-guides">' + list.map(guideRow).join("") + '</ul>';
+  }
+  function addCss() {
+    if (document.getElementById("rel-guides-css")) return;
+    var st = document.createElement("style"); st.id = "rel-guides-css";
+    st.textContent = ".rel-guides{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:4px 28px}" +
+      ".rel-guides li{padding:9px 0;border-bottom:1px solid var(--line)}" +
+      ".rel-guides .rg-title{font-weight:600;font-size:.95rem;display:block}" +
+      ".rel-guides .rg-tool{display:block;font-size:.83rem;color:var(--muted);margin-top:2px}" +
+      ".rel-guides .rg-tool a{color:var(--brand)}";
+    document.head.appendChild(st);
   }
   function block(title, list, first) {
     if (!list.length) return "";
@@ -628,17 +655,22 @@ document.addEventListener("DOMContentLoaded", function () {
     var html = "";
 
     if (isGuide(me)) {
-      /* ----- guide page ----- */
-      var gt = [], mg = [], topic = topicOf(me);
-      // tools the page already links to by hand (e.g. its own "Related tools" section) are not repeated
-      function linked(t) { return !!main.querySelector('a[href="' + t.url + '"]'); }
-      function takeTool(t) { if (t && !linked(t)) take(gt, t, GTOOLS_MAX); }
-      if (me.tools && me.tools.length) { for (i = 0; i < me.tools.length; i++) takeTool(byUrl(me.tools[i])); }
-      else if (topic) for (i = 1; i < n; i++) { var c = toolIndex[(cur + i) % n]; if (!isGuide(c) && catSlug(c.url) === topic) takeTool(c); }
-      // same-topic guides first, then the other guides (rotating start so all guides get links)
-      for (i = 1; i < n; i++) { var g = toolIndex[(cur + i) % n]; if (isGuide(g) && topicOf(g) === topic && topic) take(mg, g, MOREG_MAX); }
-      for (i = 1; i < n; i++) { var g2 = toolIndex[(cur + i) % n]; if (isGuide(g2)) take(mg, g2, MOREG_MAX); }
-      html = block("Tools in this guide", gt, true) + block("More guides", mg, !gt.length);
+      /* ----- guide page: compact list of guides, each with its own tool(s) ----- */
+      var topic = topicOf(me), sameG = [], otherG = [], usedT = {}, i2;
+      usedT[topic] = 1;
+      for (i = 1; i < n; i++) { var g = toolIndex[(cur + i) % n]; if (isGuide(g) && topic && topicOf(g) === topic) take(sameG, g, GUIDE_SAME_MAX); }
+      // other topics: one guide per topic, starting at a different place for every guide
+      var gl = [];
+      for (i = 0; i < n; i++) { if (isGuide(toolIndex[i])) gl.push(toolIndex[i]); }
+      for (i = 0; i < gl.length && otherG.length < GUIDE_OTHER_MAX; i++) {
+        var g3 = gl[(cur + i) % gl.length], tp = topicOf(g3);
+        if (seen[norm(g3.url)] || usedT[tp || g3.url]) continue;
+        usedT[tp || g3.url] = 1; seen[norm(g3.url)] = 1; otherG.push(g3);
+      }
+      var tl = me.tools && me.tools.length ? byUrl(me.tools[0]) : null;
+      var label = tl ? tl.category : "";
+      html = guideList(label ? "More " + label + " guides" : "More guides", sameG, true) +
+             guideList(sameG.length ? "Guides on other topics" : "More guides", otherG, !sameG.length);
     } else {
       /* ----- tool page ----- */
       var mySlug = catSlug(me.url), guides = [], same = [], other = [];
@@ -668,6 +700,7 @@ document.addEventListener("DOMContentLoaded", function () {
              block("You may also like", other, !guides.length && !same.length);
     }
     if (!html) return;
+    addCss();
     main.insertAdjacentHTML("beforeend", '<section class="related-tools noembed" style="margin-top:36px"><nav aria-label="Related links">' + html + '</nav></section>');
   }
 
