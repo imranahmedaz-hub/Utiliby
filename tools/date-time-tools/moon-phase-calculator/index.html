@@ -1,0 +1,597 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Moon Phase Calculator Online – Lunar Phases &amp; Calendar</title>
+<meta name="description" content="Free moon phase calculator online. Find the moon phase, illumination percentage, moon age and moon distance for any date. Includes orbit diagram, lunar calendar, seasonal moon names, supermoon detection and next full moon countdown. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/date-time-tools/moon-phase-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Moon Phase Calculator Online – Lunar Phases &amp; Calendar">
+<meta property="og:description" content="Free moon phase calculator online. Find the phase, illumination, moon age and distance for any date.">
+<meta property="og:url" content="https://utiliby.com/tools/date-time-tools/moon-phase-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.mp-hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:24px;margin:22px 0;text-align:center}
+.mp-dial{display:inline-block;width:180px;height:180px;position:relative;margin-bottom:12px}
+.mp-dial svg{width:100%;height:100%;display:block;filter:drop-shadow(0 4px 12px rgba(0,0,0,.12))}
+.mp-phase-name{font-size:1.8rem;font-weight:800;color:var(--fg);margin:6px 0 2px}
+.mp-phase-sub{color:var(--muted);font-size:.95rem;margin-bottom:14px}
+.mp-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:16px 0}
+.mp-stat{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;text-align:center}
+.mp-stat-label{font-size:.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;font-weight:600;margin-bottom:4px}
+.mp-stat-value{font-size:1.1rem;font-weight:700;color:var(--fg)}
+.mp-badge{display:inline-block;background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-radius:20px;padding:4px 12px;font-size:.8rem;font-weight:600;margin:4px 4px 0}
+
+/* Orbit diagram */
+.orbit-wrap{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:20px 0;text-align:center}
+.orbit-wrap h3{margin-top:0}
+.orbit-diagram{display:block;width:100%;max-width:480px;height:auto;margin:0 auto}
+.orbit-caption{font-size:.85rem;color:var(--muted);margin-top:8px;text-align:center;line-height:1.5}
+
+/* Phase strip */
+.phase-strip{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin:16px 0;padding:12px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.phase-item{text-align:center;padding:8px 4px;border-radius:8px;border:1px solid transparent;transition:all .15s}
+.phase-item.on{background:var(--bg);border-color:var(--brand);box-shadow:0 0 0 2px rgba(79,70,229,.15)}
+.phase-icon{font-size:1.5rem;line-height:1;margin-bottom:4px}
+.phase-label{font-size:.7rem;color:var(--muted);font-weight:600;line-height:1.2}
+.phase-item.on .phase-label{color:var(--brand)}
+
+.mp-cal{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;margin:12px 0}
+.mp-cal-head{font-size:.75rem;font-weight:700;color:var(--muted);text-align:center;padding:6px 0;text-transform:uppercase}
+.mp-day{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:6px 4px;text-align:center;font-size:.8rem;min-height:52px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px}
+.mp-day.today{border-color:var(--brand);border-width:2px}
+.mp-day .day-num{font-weight:700;font-size:.85rem;color:var(--fg)}
+.mp-day .day-icon{font-size:1.15rem;line-height:1}
+.mp-day.full{border-color:#f59e0b}
+.mp-day.new{border-color:#475569}
+.mp-day.quarter{border-color:#3b82f6}
+
+.mp-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.9rem}
+.mp-table th,.mp-table td{padding:10px 8px;text-align:left;border-bottom:1px solid var(--line)}
+.mp-table th{background:var(--card);font-weight:700}
+.mp-table td:first-child{font-weight:700;color:var(--fg)}
+
+@media(max-width:560px){
+  .mp-dial{width:140px;height:140px}
+  .mp-phase-name{font-size:1.4rem}
+  .phase-strip{grid-template-columns:repeat(4,1fr);gap:4px;padding:8px}
+  .phase-icon{font-size:1.15rem}
+  .phase-label{font-size:.62rem}
+  .mp-cal{gap:2px}
+  .mp-day{min-height:44px;font-size:.72rem;padding:4px 2px}
+  .mp-day .day-num{font-size:.75rem}
+  .mp-day .day-icon{font-size:.95rem}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Moon Phase Calculator","url":"https://utiliby.com/tools/date-time-tools/moon-phase-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a moon phase calculator?","acceptedAnswer":{"@type":"Answer","text":"A moon phase calculator is a tool that tells you the phase of the Moon, its illuminated fraction and its age in days for any given date. This free moon phase calculator online uses standard astronomical formulas to compute the phase angle, moon age and Moon-Earth distance for any past or future date."}},{"@type":"Question","name":"How many moon phases are there?","acceptedAnswer":{"@type":"Answer","text":"There are four primary moon phases: new moon, first quarter, full moon and last quarter. There are also four intermediate phases: waxing crescent, waxing gibbous, waning gibbous and waning crescent. Together they form the eight named phases of the lunar cycle."}},{"@type":"Question","name":"What is moon age?","acceptedAnswer":{"@type":"Answer","text":"Moon age is the number of days since the last new moon. It ranges from 0 days at the new moon to about 29.5 days just before the next new moon."}},{"@type":"Question","name":"What is a supermoon?","acceptedAnswer":{"@type":"Answer","text":"A supermoon occurs when a full moon coincides with the Moon's closest approach to Earth (perigee), making the Moon appear about 14 percent larger and 30 percent brighter than when at its furthest point."}},{"@type":"Question","name":"Why does the moon have different phases?","acceptedAnswer":{"@type":"Answer","text":"The Moon does not produce its own light; it reflects sunlight. As the Moon orbits Earth, the Sun illuminates different fractions of the side facing us, producing the phases we see from Earth."}},{"@type":"Question","name":"Is this moon phase calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your date selections anywhere."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/date-time-tools/">Date, Time &amp; Scheduling Tools</a> › Moon Phase Calculator</nav>
+<h1>Moon Phase Calculator</h1>
+<p class="lead">Find the moon phase, illumination, moon age and distance for any date. Includes an orbit diagram, lunar calendar, seasonal moon names and supermoon detection. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Moon phase calculator">
+<div class="row">
+<div><label for="targetDate">Pick any date</label><input id="targetDate" type="date"></div>
+<div>
+  <label for="hemisphere">Hemisphere</label>
+  <select id="hemisphere">
+    <option value="north">Northern hemisphere</option>
+    <option value="south">Southern hemisphere</option>
+  </select>
+</div>
+</div>
+<p class="meta">Results update as you type. Uses the mean synodic month (29.530588853 days) with reference new moon 6 Jan 2000.</p>
+
+<div id="result"></div>
+</section>
+
+<h2>What is a free moon phase calculator online?</h2>
+<p>A free moon phase calculator online is a tool that tells you the current phase of the Moon, how much of it is illuminated, its age in days since the last new moon, and the dates of the next new moon, first quarter, full moon and last quarter. Astronomers, photographers, gardeners, fishermen and hobbyists have tracked lunar phases for thousands of years — this modern version computes them instantly for any past or future date.</p>
+<p>This moon phase calculator runs entirely in your browser. No API calls, no external services, no tracking. Your date selections never leave your device.</p>
+
+<h2>How to use this free moon phase calculator online</h2>
+<ol>
+<li>Pick any date — today, your birthday, a future trip or a historical date.</li>
+<li>Read the phase name, moon age and illumination percentage.</li>
+<li>Study the orbit diagram to understand why the Moon looks the way it does.</li>
+<li>See where you are in the 8-phase cycle on the phase strip.</li>
+<li>Scroll down for the lunar calendar and the next phase countdown.</li>
+<li>Read the seasonal moon name, moon zodiac sign and activity guidance.</li>
+</ol>
+
+<h2>The eight moon phases explained</h2>
+<p>The lunar cycle passes through eight named phases. The four primary phases are the anchor points:</p>
+<ul>
+<li><b>New Moon</b> — the Moon is between Earth and the Sun, so the side facing Earth is dark.</li>
+<li><b>First Quarter</b> — the right half of the Moon (in the Northern Hemisphere) is illuminated.</li>
+<li><b>Full Moon</b> — the entire face of the Moon is illuminated.</li>
+<li><b>Last Quarter</b> — the left half is illuminated.</li>
+</ul>
+<p>The four intermediate phases are the Waxing Crescent, Waxing Gibbous, Waning Gibbous and Waning Crescent. "Waxing" means growing; "waning" means shrinking.</p>
+
+<h2>Understanding the orbit diagram</h2>
+<p>The orbit diagram above shows a top-down view of the Earth–Moon–Sun system, as seen from above the North Pole. The Sun is far to the left. Earth is in the center. The Moon travels counterclockwise around Earth over about 29.5 days.</p>
+<p>Half of the Moon is always lit by the Sun — the half facing the Sun. What we see from Earth depends on where the Moon is in its orbit:</p>
+<ul>
+<li><b>New Moon:</b> the Moon sits between Earth and Sun, so the lit side faces away from us. We see nothing.</li>
+<li><b>First Quarter:</b> the Moon is a quarter of the way around. We see half of the lit side.</li>
+<li><b>Full Moon:</b> the Moon is on the opposite side of Earth from the Sun, so the lit side faces us completely.</li>
+<li><b>Last Quarter:</b> the Moon is three quarters around, and we see the other half of the lit side.</li>
+</ul>
+<p>This is why the phase changes gradually over a month rather than all at once.</p>
+
+<h2>Moon age, illumination and distance</h2>
+<ul>
+<li><b>Moon age</b> — days since the most recent new moon (0 to about 29.5).</li>
+<li><b>Illumination</b> — percentage of the visible disc that is lit (0% at new moon, 100% at full moon).</li>
+<li><b>Moon–Earth distance</b> — varies from about 356,500 km at perigee to 406,700 km at apogee, averaging 384,400 km.</li>
+</ul>
+
+<h2>Supermoon, micromoon and blue moon</h2>
+<p><b>Supermoon:</b> a full moon occurring near perigee — the Moon looks up to 14% larger and 30% brighter.</p>
+<p><b>Micromoon:</b> a full moon occurring near apogee — the Moon appears smaller and dimmer than usual.</p>
+<p><b>Blue moon:</b> traditionally the second full moon within a single calendar month, roughly every 2–3 years.</p>
+
+<h2>Full moon names by month</h2>
+<table class="mp-table">
+<tr><th>Month</th><th>Common name</th><th>Alternate names</th></tr>
+<tr><td>January</td><td>Wolf Moon</td><td>Old Moon, Ice Moon</td></tr>
+<tr><td>February</td><td>Snow Moon</td><td>Hunger Moon, Storm Moon</td></tr>
+<tr><td>March</td><td>Worm Moon</td><td>Crow Moon, Lenten Moon</td></tr>
+<tr><td>April</td><td>Pink Moon</td><td>Sprouting Grass Moon, Egg Moon</td></tr>
+<tr><td>May</td><td>Flower Moon</td><td>Milk Moon, Corn Planting Moon</td></tr>
+<tr><td>June</td><td>Strawberry Moon</td><td>Rose Moon, Hot Moon</td></tr>
+<tr><td>July</td><td>Buck Moon</td><td>Thunder Moon, Hay Moon</td></tr>
+<tr><td>August</td><td>Sturgeon Moon</td><td>Red Moon, Green Corn Moon</td></tr>
+<tr><td>September</td><td>Harvest Moon</td><td>Corn Moon, Barley Moon</td></tr>
+<tr><td>October</td><td>Hunter's Moon</td><td>Blood Moon, Travel Moon</td></tr>
+<tr><td>November</td><td>Beaver Moon</td><td>Frost Moon, Mourning Moon</td></tr>
+<tr><td>December</td><td>Cold Moon</td><td>Long Night Moon, Oak Moon</td></tr>
+</table>
+
+<h2>Practical uses for moon phase tracking</h2>
+<h3>Astrophotography and stargazing</h3>
+<p>New moon nights are best for deep-sky astrophotography because the Moon is invisible and does not wash out faint stars. Full moon nights are best for observing the Moon's own surface features.</p>
+<h3>Fishing and hunting</h3>
+<p>Traditional wisdom ties fishing and hunting success to lunar phase. The two days around new and full moons are often described as peak feeding times.</p>
+<h3>Gardening and biodynamic planting</h3>
+<p>Traditional gardeners plant above-ground crops during the waxing moon and root crops during the waning moon.</p>
+<h3>Photography and events</h3>
+<p>Planning a wedding, photoshoot or night hike? Check the phase to know whether to expect moonlight or darkness.</p>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a moon phase calculator?</summary><p>A moon phase calculator is a tool that tells you the phase of the Moon, its illuminated fraction and its age in days for any given date.</p></details>
+<details><summary>How many moon phases are there?</summary><p>There are four primary phases (new, first quarter, full, last quarter) and four intermediate phases (waxing crescent, waxing gibbous, waning gibbous, waning crescent).</p></details>
+<details><summary>What is moon age?</summary><p>Moon age is the number of days since the last new moon, ranging from 0 to about 29.5 days.</p></details>
+<details><summary>What is a supermoon?</summary><p>A supermoon is a full moon near perigee, making the Moon appear up to 14% larger and 30% brighter.</p></details>
+<details><summary>Why does the moon have different phases?</summary><p>The Moon reflects sunlight. As it orbits Earth, different fractions of the lit side face us, producing the phases.</p></details>
+<details><summary>Is this moon phase calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser and never sends your data anywhere.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+
+var SYNODIC_MONTH = 29.530588853;
+var REF_NEW_MOON_JD = 2451550.1;
+
+function toJulianDay(date){
+  var y = date.getUTCFullYear();
+  var m = date.getUTCMonth() + 1;
+  var d = date.getUTCDate() + (date.getUTCHours() + date.getUTCMinutes()/60) / 24;
+  if(m <= 2){ y -= 1; m += 12; }
+  var A = Math.floor(y / 100);
+  var B = 2 - A + Math.floor(A / 4);
+  return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5;
+}
+
+function fromJulianDay(jd){
+  jd += 0.5;
+  var Z = Math.floor(jd);
+  var F = jd - Z;
+  var A;
+  if(Z < 2299161){ A = Z; }
+  else {
+    var alpha = Math.floor((Z - 1867216.25) / 36524.25);
+    A = Z + 1 + alpha - Math.floor(alpha / 4);
+  }
+  var B = A + 1524;
+  var C = Math.floor((B - 122.1) / 365.25);
+  var D = Math.floor(365.25 * C);
+  var E = Math.floor((B - D) / 30.6001);
+  var day = B - D - Math.floor(30.6001 * E) + F;
+  var month = (E < 14) ? E - 1 : E - 13;
+  var year = (month > 2) ? C - 4716 : C - 4715;
+  var dInt = Math.floor(day);
+  var f = day - dInt;
+  var hours = f * 24;
+  var hInt = Math.floor(hours);
+  var mins = (hours - hInt) * 60;
+  return new Date(Date.UTC(year, month - 1, dInt, hInt, Math.floor(mins)));
+}
+
+function moonAge(jd){
+  return ((jd - REF_NEW_MOON_JD) % SYNODIC_MONTH + SYNODIC_MONTH) % SYNODIC_MONTH;
+}
+function phaseFraction(age){ return age / SYNODIC_MONTH; }
+function illumination(frac){ return (1 - Math.cos(frac * 2 * Math.PI)) / 2; }
+function phaseAngle(frac){ return frac * 360; }
+
+function phaseName(frac){
+  if(frac < 0.02 || frac >= 0.98) return "New Moon";
+  if(frac < 0.23) return "Waxing Crescent";
+  if(frac < 0.27) return "First Quarter";
+  if(frac < 0.48) return "Waxing Gibbous";
+  if(frac < 0.52) return "Full Moon";
+  if(frac < 0.73) return "Waning Gibbous";
+  if(frac < 0.77) return "Last Quarter";
+  return "Waning Crescent";
+}
+
+function phaseIcon(frac){
+  if(frac < 0.02 || frac >= 0.98) return "\u{1F311}";
+  if(frac < 0.23) return "\u{1F312}";
+  if(frac < 0.27) return "\u{1F313}";
+  if(frac < 0.48) return "\u{1F314}";
+  if(frac < 0.52) return "\u{1F315}";
+  if(frac < 0.73) return "\u{1F316}";
+  if(frac < 0.77) return "\u{1F317}";
+  return "\u{1F318}";
+}
+
+function moonDistance(frac){
+  return 384400 + 21000 * Math.cos(frac * 2 * Math.PI);
+}
+
+function lunarEvent(frac, dist){
+  var isFull = frac >= 0.48 && frac <= 0.52;
+  var isNew = frac < 0.02 || frac >= 0.98;
+  if(isFull && dist < 365000) return "Supermoon";
+  if(isFull && dist > 404000) return "Micromoon";
+  if(isNew && dist < 365000) return "Supermoon (New)";
+  if(isNew && dist > 404000) return "Micromoon (New)";
+  return "";
+}
+
+function findNextPhases(startJD, count){
+  var events = [];
+  var targets = [
+    {frac: 0, name: "New Moon"},
+    {frac: 0.25, name: "First Quarter"},
+    {frac: 0.5, name: "Full Moon"},
+    {frac: 0.75, name: "Last Quarter"}
+  ];
+  for(var t = 0; t < targets.length; t++){
+    var targetFrac = targets[t].frac;
+    var currentAge = moonAge(startJD);
+    var currentFrac = phaseFraction(currentAge);
+    var deltaFrac = targetFrac - currentFrac;
+    if(deltaFrac <= 0) deltaFrac += 1;
+    var nextJD = startJD + deltaFrac * SYNODIC_MONTH;
+    events.push({name: targets[t].name, jd: nextJD, date: fromJulianDay(nextJD)});
+  }
+  events.sort(function(a, b){ return a.jd - b.jd; });
+  return events.slice(0, count);
+}
+
+function seasonalMoonName(month){
+  var names = ["Wolf Moon","Snow Moon","Worm Moon","Pink Moon","Flower Moon","Strawberry Moon","Buck Moon","Sturgeon Moon","Harvest Moon","Hunter's Moon","Beaver Moon","Cold Moon"];
+  return names[month - 1];
+}
+
+function moonZodiac(frac){
+  var signs = ["Aries","Taurus","Gemini","Cancer","Leo","Virgo","Libra","Scorpio","Sagittarius","Capricorn","Aquarius","Pisces"];
+  var siderealFrac = (frac * SYNODIC_MONTH) / 27.321661;
+  return signs[Math.floor(siderealFrac % 12)];
+}
+
+/* ---------- MOON DIAL (what you see from Earth) ---------- */
+function renderDial(frac){
+  var size = 180, r = 80, cx = size / 2, cy = size / 2;
+  var svg = '<svg viewBox="0 0 ' + size + ' ' + size + '" role="img" aria-label="Moon phase diagram">';
+  svg += '<defs>';
+  svg += '<radialGradient id="moonGrad" cx="40%" cy="40%">';
+  svg += '<stop offset="0%" stop-color="#f8fafc"/>';
+  svg += '<stop offset="100%" stop-color="#cbd5e1"/>';
+  svg += '</radialGradient>';
+  svg += '</defs>';
+  svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="#1e293b"/>';
+  var ill = illumination(frac);
+  var angle = frac * 2 * Math.PI;
+  var waxing = frac < 0.5;
+
+  if(ill > 0.001){
+    if(frac >= 0.48 && frac <= 0.52){
+      svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="url(#moonGrad)"/>';
+    } else {
+      var halfW = r * Math.abs(Math.cos(angle));
+      var isGibbous = ill > 0.5;
+      var sweepRight = waxing;
+      var upper = 'M ' + cx + ' ' + (cy - r) + ' A ' + r + ' ' + r + ' 0 0 ' + (sweepRight ? 1 : 0) + ' ' + cx + ' ' + (cy + r);
+      var lower = ' A ' + halfW + ' ' + r + ' 0 0 ' + (isGibbous ? (sweepRight ? 0 : 1) : (sweepRight ? 1 : 0)) + ' ' + cx + ' ' + (cy - r);
+      svg += '<path d="' + upper + lower + ' Z" fill="url(#moonGrad)"/>';
+    }
+  }
+  svg += '<circle cx="' + (cx - 15) + '" cy="' + (cy - 20) + '" r="6" fill="rgba(148,163,184,.35)"/>';
+  svg += '<circle cx="' + (cx + 18) + '" cy="' + (cy + 10) + '" r="8" fill="rgba(148,163,184,.25)"/>';
+  svg += '<circle cx="' + (cx - 5) + '" cy="' + (cy + 25) + '" r="5" fill="rgba(148,163,184,.3)"/>';
+  svg += '</svg>';
+  return svg;
+}
+
+/* ---------- ORBIT DIAGRAM (top-down view) ---------- */
+function renderOrbit(frac){
+  var W = 480, H = 320;
+  var cx = W / 2 + 20, cy = H / 2;
+  var orbitR = 100;
+  var earthR = 20;
+  var moonR = 14;
+
+  /* Moon position: theta = 180 + frac*360 degrees
+     - frac=0   (new)   → theta=180° → left of Earth (between Earth and Sun)
+     - frac=0.25 (1Q)   → theta=270° → below Earth
+     - frac=0.5 (full)  → theta=0°   → right of Earth (opposite Sun)
+     - frac=0.75 (3Q)   → theta=90°  → above Earth */
+  var theta = (180 + frac * 360) * Math.PI / 180;
+  var mx = cx + orbitR * Math.cos(theta);
+  var my = cy + orbitR * Math.sin(theta);
+
+  var svg = '<svg viewBox="0 0 ' + W + ' ' + H + '" class="orbit-diagram" role="img" aria-label="Top-down orbit diagram showing Sun, Earth and Moon positions">';
+
+  svg += '<defs>';
+  svg += '<radialGradient id="sunGrad" cx="50%" cy="50%">';
+  svg += '<stop offset="0%" stop-color="#fde68a"/>';
+  svg += '<stop offset="100%" stop-color="#f59e0b"/>';
+  svg += '</radialGradient>';
+  svg += '<radialGradient id="earthGrad" cx="40%" cy="40%">';
+  svg += '<stop offset="0%" stop-color="#93c5fd"/>';
+  svg += '<stop offset="100%" stop-color="#1d4ed8"/>';
+  svg += '</radialGradient>';
+  svg += '<radialGradient id="moonLit" cx="50%" cy="50%">';
+  svg += '<stop offset="0%" stop-color="#f8fafc"/>';
+  svg += '<stop offset="100%" stop-color="#cbd5e1"/>';
+  svg += '</radialGradient>';
+  svg += '</defs>';
+
+  // Sun on the left
+  svg += '<circle cx="35" cy="' + cy + '" r="26" fill="url(#sunGrad)"/>';
+  svg += '<text x="35" y="' + (cy + 46) + '" text-anchor="middle" font-size="12" fill="#9ca3af" font-weight="700">SUN</text>';
+
+  // Sun rays (parallel horizontal lines from Sun toward Earth)
+  for(var i = -2; i <= 2; i++){
+    var yy = cy + i * 14;
+    svg += '<line x1="68" y1="' + yy + '" x2="' + (cx - orbitR - 8) + '" y2="' + yy + '" stroke="#fbbf24" stroke-width="1" opacity="0.4" stroke-dasharray="4 5"/>';
+  }
+  // Arrow heads on the rays
+  var arrowX = cx - orbitR - 8;
+  for(var k = -2; k <= 2; k++){
+    var ay = cy + k * 14;
+    svg += '<polygon points="' + arrowX + ',' + ay + ' ' + (arrowX - 6) + ',' + (ay - 3) + ' ' + (arrowX - 6) + ',' + (ay + 3) + '" fill="#fbbf24" opacity="0.6"/>';
+  }
+
+  // Orbit ring
+  svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + orbitR + '" fill="none" stroke="var(--line)" stroke-width="1.5" stroke-dasharray="5 6" opacity="0.6"/>';
+
+  // Earth at center
+  svg += '<circle cx="' + cx + '" cy="' + cy + '" r="' + earthR + '" fill="url(#earthGrad)"/>';
+  svg += '<text x="' + cx + '" y="' + (cy + earthR + 16) + '" text-anchor="middle" font-size="12" fill="#9ca3af" font-weight="700">EARTH</text>';
+
+  // Line from Earth to Moon
+  svg += '<line x1="' + cx + '" y1="' + cy + '" x2="' + mx + '" y2="' + my + '" stroke="#94a3b8" stroke-width="1" stroke-dasharray="2 3" opacity="0.7"/>';
+
+  // Moon: dark base circle
+  svg += '<circle cx="' + mx + '" cy="' + my + '" r="' + moonR + '" fill="#1e293b"/>';
+  // Lit half always faces the Sun (which is on the left)
+  svg += '<path d="M ' + mx + ' ' + (my - moonR) + ' A ' + moonR + ' ' + moonR + ' 0 0 0 ' + mx + ' ' + (my + moonR) + ' Z" fill="url(#moonLit)"/>';
+  svg += '<circle cx="' + mx + '" cy="' + my + '" r="' + moonR + '" fill="none" stroke="#64748b" stroke-width="1"/>';
+  svg += '<text x="' + mx + '" y="' + (my - moonR - 8) + '" text-anchor="middle" font-size="12" fill="#9ca3af" font-weight="700">MOON</text>';
+
+  // Which side we see from Earth (small arrow from Earth toward Moon, showing view direction)
+  var labelAngle = Math.atan2(my - cy, mx - cx);
+  var labelX = cx + (orbitR + 32) * Math.cos(labelAngle);
+  var labelY = cy + (orbitR + 32) * Math.sin(labelAngle);
+
+  // View direction indicator
+  svg += '<text x="' + labelX + '" y="' + labelY + '" text-anchor="middle" font-size="10" fill="var(--muted)" font-weight="600">we look this way</text>';
+
+  // Title
+  svg += '<text x="' + (W - 20) + '" y="22" text-anchor="end" font-size="11" fill="var(--muted)" font-weight="600">View from above the North Pole</text>';
+
+  svg += '</svg>';
+  return svg;
+}
+
+/* ---------- PHASE STRIP ---------- */
+function renderPhaseStrip(frac){
+  var phases = [
+    {f: 0.00, name: "New", icon: "\u{1F311}"},
+    {f: 0.125, name: "Waxing Cres.", icon: "\u{1F312}"},
+    {f: 0.25, name: "First Qtr.", icon: "\u{1F313}"},
+    {f: 0.375, name: "Waxing Gib.", icon: "\u{1F314}"},
+    {f: 0.50, name: "Full", icon: "\u{1F315}"},
+    {f: 0.625, name: "Waning Gib.", icon: "\u{1F316}"},
+    {f: 0.75, name: "Last Qtr.", icon: "\u{1F317}"},
+    {f: 0.875, name: "Waning Cres.", icon: "\u{1F318}"}
+  ];
+  var h = '<div class="phase-strip">';
+  for(var i = 0; i < phases.length; i++){
+    var p = phases[i];
+    var diff = Math.abs(frac - p.f);
+    if(diff > 0.5) diff = 1 - diff;
+    var isCurrent = diff < 0.0625;
+    h += '<div class="phase-item' + (isCurrent ? ' on' : '') + '">';
+    h += '<div class="phase-icon">' + p.icon + '</div>';
+    h += '<div class="phase-label">' + p.name + '</div>';
+    h += '</div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+/* ---------- MONTHLY CALENDAR ---------- */
+function monthName(m){
+  return ["January","February","March","April","May","June","July","August","September","October","November","December"][m - 1];
+}
+
+function renderCalendar(year, month, currentDay){
+  var first = new Date(Date.UTC(year, month - 1, 1));
+  var daysInMonth = new Date(Date.UTC(year, month, 0)).getUTCDate();
+  var startDow = first.getUTCDay();
+
+  var h = '<h3>Lunar calendar — ' + monthName(month) + ' ' + year + '</h3>';
+  h += '<div class="mp-cal">';
+  var dows = ["S","M","T","W","T","F","S"];
+  for(var d = 0; d < 7; d++) h += '<div class="mp-cal-head">' + dows[d] + '</div>';
+  for(var b = 0; b < startDow; b++) h += '<div></div>';
+
+  for(var day = 1; day <= daysInMonth; day++){
+    var date = new Date(Date.UTC(year, month - 1, day, 12));
+    var jd = toJulianDay(date);
+    var age = moonAge(jd);
+    var frac = phaseFraction(age);
+    var icon = phaseIcon(frac);
+    var cls = "mp-day";
+    if(frac < 0.02 || frac >= 0.98) cls += " new";
+    else if(frac >= 0.48 && frac <= 0.52) cls += " full";
+    else if((frac >= 0.23 && frac < 0.27) || (frac >= 0.73 && frac < 0.77)) cls += " quarter";
+    if(day === currentDay) cls += " today";
+    h += '<div class="' + cls + '"><div class="day-num">' + day + '</div><div class="day-icon">' + icon + '</div></div>';
+  }
+  h += '</div>';
+  return h;
+}
+
+/* ---------- RENDER MAIN RESULT ---------- */
+var LAST = "";
+
+function render(){
+  var val = $("targetDate").value;
+  if(!val) return;
+  var parts = val.split("-");
+  var year = parseInt(parts[0], 10);
+  var month = parseInt(parts[1], 10);
+  var day = parseInt(parts[2], 10);
+
+  var date = new Date(Date.UTC(year, month - 1, day, 12));
+  var jd = toJulianDay(date);
+  var age = moonAge(jd);
+  var frac = phaseFraction(age);
+  var ill = illumination(frac) * 100;
+  var angle = phaseAngle(frac);
+  var dist = moonDistance(frac);
+  var name = phaseName(frac);
+  var icon = phaseIcon(frac);
+  var event = lunarEvent(frac, dist);
+  var zodiac = moonZodiac(frac);
+  var seasonal = seasonalMoonName(month);
+
+  // HERO
+  var h = '<div class="mp-hero">';
+  h += '<div class="mp-dial">' + renderDial(frac) + '</div>';
+  h += '<div class="mp-phase-name">' + icon + ' ' + name + '</div>';
+  h += '<div class="mp-phase-sub">' + date.toLocaleDateString("en-US", {weekday:"long", year:"numeric", month:"long", day:"numeric", timeZone:"UTC"}) + '</div>';
+  if(event) h += '<span class="mp-badge">' + event + '</span>';
+  h += '<span class="mp-badge">Moon in ' + zodiac + '</span>';
+  h += '</div>';
+
+  // STATS
+  h += '<div class="mp-stats">';
+  h += '<div class="mp-stat"><div class="mp-stat-label">Illumination</div><div class="mp-stat-value">' + ill.toFixed(1) + '%</div></div>';
+  h += '<div class="mp-stat"><div class="mp-stat-label">Moon Age</div><div class="mp-stat-value">' + age.toFixed(2) + ' days</div></div>';
+  h += '<div class="mp-stat"><div class="mp-stat-label">Phase Angle</div><div class="mp-stat-value">' + angle.toFixed(1) + '°</div></div>';
+  h += '<div class="mp-stat"><div class="mp-stat-label">Distance</div><div class="mp-stat-value">' + Math.round(dist).toLocaleString() + ' km</div></div>';
+  h += '</div>';
+
+  // PHASE STRIP
+  h += '<h3>Where you are in the lunar cycle</h3>';
+  h += renderPhaseStrip(frac);
+
+  // ORBIT DIAGRAM
+  h += '<div class="orbit-wrap">';
+  h += '<h3>Orbit diagram — why the Moon looks like this</h3>';
+  h += renderOrbit(frac);
+  h += '<p class="orbit-caption">The Sun always lights one half of the Moon. What we see from Earth depends on where the Moon sits in its orbit around us. The diagram above is a top-down view from above the North Pole.</p>';
+  h += '</div>';
+
+  // NEXT PHASES
+  var next = findNextPhases(jd, 4);
+  h += '<h3>Upcoming phases</h3>';
+  h += '<table class="mp-table"><tr><th>Phase</th><th>Date &amp; time (UTC)</th><th>Days from now</th></tr>';
+  for(var i = 0; i < next.length; i++){
+    var n = next[i];
+    var diffDays = (n.jd - jd).toFixed(1);
+    var dStr = n.date.toLocaleDateString("en-US", {day:"numeric", month:"short", year:"numeric", timeZone:"UTC"});
+    var tStr = pad(n.date.getUTCHours()) + ":" + pad(n.date.getUTCMinutes()) + " UTC";
+    h += '<tr><td>' + n.name + '</td><td>' + dStr + ' · ' + tStr + '</td><td>+' + diffDays + ' days</td></tr>';
+  }
+  h += '</table>';
+
+  // SEASONAL NAME
+  h += '<h3>Seasonal full moon name</h3>';
+  h += '<p>The full moon nearest to ' + monthName(month) + ' is traditionally called the <b>' + seasonal + '</b>. This name comes from Native American and colonial traditions and is now widely used in almanacs.</p>';
+
+  // ACTIVITIES
+  h += '<h3>Best activities for this phase</h3>';
+  h += '<ul>';
+  if(frac < 0.05 || frac > 0.95){
+    h += '<li><b>Stargazing:</b> Excellent — dark skies, no moonlight.</li>';
+    h += '<li><b>Astrophotography:</b> Ideal for deep-sky objects.</li>';
+    h += '<li><b>Fishing:</b> Peak feeding activity (new moon).</li>';
+  } else if(frac >= 0.45 && frac <= 0.55){
+    h += '<li><b>Stargazing:</b> Poor — moonlight washes out faint objects.</li>';
+    h += '<li><b>Moon watching:</b> Excellent — full lunar surface visible.</li>';
+    h += '<li><b>Fishing:</b> Peak feeding activity (full moon).</li>';
+  } else {
+    h += '<li><b>Stargazing:</b> Moderate — brighter nights but usable.</li>';
+    h += '<li><b>Photography:</b> Good for landscape night shots with moonlight.</li>';
+  }
+  h += '</ul>';
+
+  // CALENDAR
+  h += renderCalendar(year, month, day);
+
+  h += '<p class="meta">Estimates only. Accurate to within a few hours. Best for everyday planning, not for precision astronomy.</p>';
+
+  $("result").innerHTML = h;
+
+  LAST = "Moon Phase Calculator (Utiliby)\n"
+       + "Date: " + date.toISOString().slice(0, 10) + "\n"
+       + "Phase: " + name + "\n"
+       + "Moon age: " + age.toFixed(2) + " days\n"
+       + "Illumination: " + ill.toFixed(1) + "%\n"
+       + "Phase angle: " + angle.toFixed(1) + "\u00B0\n"
+       + "Distance: " + Math.round(dist).toLocaleString() + " km\n"
+       + "Moon in: " + zodiac + "\n"
+       + (event ? "Event: " + event + "\n" : "");
+}
+
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  var today = new Date();
+  $("targetDate").value = today.getUTCFullYear() + "-" + pad(today.getUTCMonth() + 1) + "-" + pad(today.getUTCDate());
+
+  T.addEventListener("input", render);
+  T.addEventListener("change", render);
+
+  render();
+});
+})();
+</script>
+</body>
+</html>
