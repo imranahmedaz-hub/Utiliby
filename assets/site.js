@@ -574,3 +574,80 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 });
+
+/* ---------- 11. RELATED TOOLS (auto internal links) ----------
+   Reads toolIndex. On any page whose path is listed in toolIndex it adds, at the
+   bottom of <main>, (a) more tools from the SAME category and (b) a few tools from
+   OTHER categories. Nothing to configure per page - add a tool to toolIndex and
+   every page picks it up.
+   Optional per-tool override: add  related: ["/tools/x/y/", "/tools/x/z/"]  to a
+   toolIndex entry to hand-pick its links (used instead of the automatic ones).
+   Settings: */
+(function () {
+  var SAME_MAX  = 6;   // max links from the same category
+  var OTHER_MAX = 6;   // max links from other categories
+
+  function norm(p) { p = (p || "").split("?")[0].split("#")[0]; return p.replace(/index\.html$/, "").replace(/\/?$/, "/"); }
+  function catSlug(u) { var m = norm(u).match(/^\/tools\/([^\/]+)\//); return m ? m[1] : ""; }
+  function isGuide(t) { return t.category === "Guide" || norm(t.url).indexOf("/guides/") === 0; }
+
+  function card(t) {
+    return '<a class="card" href="' + ulEsc(t.url) + '"><b>' + ulEsc(t.name) + '</b><span>' + ulEsc(t.category) + '</span></a>';
+  }
+
+  function init() {
+    var root = document.documentElement;
+    if (root.classList.contains("embed")) return;
+    if (document.querySelector(".related-tools")) return;
+    var main = document.querySelector("main");
+    if (!main) return;
+
+    var here = norm(location.pathname), cur = -1, i;
+    for (i = 0; i < toolIndex.length; i++) { if (norm(toolIndex[i].url) === here) { cur = i; break; } }
+    if (cur < 0) return;                       // not an indexed page (home, category, about...)
+    var me = toolIndex[cur], mySlug = catSlug(me.url), guide = isGuide(me);
+    var n = toolIndex.length, same = [], other = [], seen = {};
+    seen[here] = 1;
+
+    function byUrl(u) { u = norm(u); for (var k = 0; k < n; k++) if (norm(toolIndex[k].url) === u) return toolIndex[k]; return null; }
+
+    if (me.related && me.related.length) {      // manual override
+      for (i = 0; i < me.related.length; i++) {
+        var r = byUrl(me.related[i]);
+        if (r && !seen[norm(r.url)]) { seen[norm(r.url)] = 1; (catSlug(r.url) === mySlug && !guide ? same : other).push(r); }
+      }
+    } else {
+      // Same category: walk the list starting just after this tool (wraps around),
+      // so each tool's neighbours differ and everything gets linked to.
+      if (!guide && mySlug) {
+        for (i = 1; i < n && same.length < SAME_MAX; i++) {
+          var t = toolIndex[(cur + i) % n];
+          if (catSlug(t.url) === mySlug && !isGuide(t) && !seen[norm(t.url)]) { seen[norm(t.url)] = 1; same.push(t); }
+        }
+      }
+      // Other categories: one tool per category, starting at a position that is
+      // different for every page (deterministic, not random).
+      var used = {}; used[mySlug] = 1;
+      var start = (cur * 7 + 3) % n;
+      for (i = 0; i < n && other.length < OTHER_MAX; i++) {
+        var o = toolIndex[(start + i) % n], s = catSlug(o.url);
+        if (isGuide(o) || !s || used[s] || seen[norm(o.url)]) continue;
+        used[s] = 1; seen[norm(o.url)] = 1; other.push(o);
+      }
+    }
+    if (!same.length && !other.length) return;
+
+    var h = '<section class="related-tools noembed" style="margin-top:36px"><nav aria-label="Related tools">';
+    if (same.length) {
+      h += '<h2>More ' + ulEsc(me.category) + (/tools$/i.test(me.category) ? '' : ' tools') + '</h2><div class="grid">' + same.map(card).join("") + '</div>';
+    }
+    if (other.length) {
+      h += '<h2' + (same.length ? ' style="margin-top:28px"' : '') + '>' + (guide ? 'Free tools to try' : 'You may also like') +
+           '</h2><div class="grid">' + other.map(card).join("") + '</div>';
+    }
+    h += '</nav></section>';
+    main.insertAdjacentHTML("beforeend", h);
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
