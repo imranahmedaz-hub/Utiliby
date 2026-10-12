@@ -1,0 +1,695 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Shift Schedule Generator Online – 2-2-3, 4 on 4 off &amp; DuPont Rosters</title>
+<meta name="description" content="Free online shift schedule generator: 2-2-3 Pitman, 2-3-2, 4 on 4 off, DuPont and custom rotating rosters with printable calendars, CSV and .ics. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Shift Schedule Generator Online – 2-2-3, 4 on 4 off &amp; DuPont Rosters">
+<meta property="og:description" content="Free online shift schedule generator for 2-2-3, 2-3-2, 4 on 4 off, 3 on 3 off, DuPont and custom rosters. Printable, CSV and calendar export.">
+<meta property="og:url" content="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Shift Schedule Generator Online – 2-2-3, 4 on 4 off &amp; DuPont Rosters">
+<meta name="twitter:description" content="Free online shift schedule generator for 2-2-3, 2-3-2, 4 on 4 off, 3 on 3 off, DuPont and custom rosters. Printable, CSV and calendar export.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.sh-grid{border-collapse:collapse;font-size:.74rem;min-width:100%}
+.sh-grid th,.sh-grid td{border:1px solid var(--line);padding:3px 2px;text-align:center;min-width:24px;font-weight:700}
+.sh-grid th{background:var(--card);font-weight:600;color:var(--muted)}
+.sh-grid th.sh-t{text-align:left;padding:3px 8px;position:sticky;left:0;z-index:1;min-width:56px;color:var(--fg)}
+.sh-grid .sh-we{background:rgba(148,163,184,.18)}
+.sh-grid .sh-off{color:var(--muted);font-weight:400}
+.sh-today{outline:2px solid #0369a1;outline-offset:-2px}
+.sh-lg{display:inline-flex;align-items:center;gap:6px;margin:4px 14px 4px 0;font-size:.8rem}
+.sh-lg i{display:inline-block;width:14px;height:14px;border-radius:4px}
+.sh-cal{border-collapse:collapse;width:100%;table-layout:fixed;font-size:.8rem}
+.sh-cal th{background:var(--card);border:1px solid var(--line);padding:5px;font-size:.72rem;text-transform:uppercase;color:var(--muted)}
+.sh-cal td{border:1px solid var(--line);height:74px;vertical-align:top;padding:4px 6px}
+.sh-cal td b{display:block;font-size:.8rem}
+.sh-cal td.sh-void{background:transparent;border-color:transparent}
+.sh-cal td.sh-we{background:rgba(148,163,184,.12)}
+.sh-cal .sh-pill{display:inline-block;color:#fff;border-radius:6px;padding:1px 7px;font-weight:800;font-size:.75rem}
+.sh-cal small{display:block;color:var(--muted);font-size:.66rem;margin-top:2px}
+.sh-cal .sh-off{color:var(--muted);font-size:.74rem}
+@media(max-width:560px){.sh-cal td{height:60px;padding:2px 3px}.sh-cal small{display:none}.sh-cal th{padding:3px 1px;font-size:.62rem}}
+.sh-minis{display:flex;flex-wrap:wrap;gap:4px;margin-top:4px}
+.sh-mini{display:inline-flex;width:28px;height:28px;border-radius:6px;align-items:center;justify-content:center;font-weight:800;font-size:.8rem}
+.sh-nav{display:flex;gap:8px;align-items:flex-end;margin:6px 0 10px}
+.sh-nav select{flex:1}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Shift Schedule Generator","url":"https://utiliby.com/tools/date-time-tools/shift-schedule-generator/","description":"Free online shift schedule generator for rotating rosters such as 2-2-3 (Pitman), 2-3-2, 4 on 4 off, 3 on 3 off and DuPont, with calendars, statistics, CSV, .ics and print export.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["2-2-3 Pitman, 2-3-2, 4 on 4 off, 3 on 3 off, DuPont and weekly rotation presets","Custom X on Y off and custom cycle builder","Roster grid for all teams, team calendar and year at a glance","24/7 coverage check and hours, weekend and night statistics","Sync the start date to your current cycle day","CSV, .ics calendar file, copy and print export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free shift schedule generator online?","acceptedAnswer":{"@type":"Answer","text":"A free shift schedule generator online builds a repeating work roster for one or more teams from a pattern such as 2-2-3, 4 on 4 off or DuPont. You choose the pattern and a start date, and it shows who works which shift on every day, with statistics, a printable calendar and exports."}},{"@type":"Question","name":"How do I make a rotating shift schedule?","acceptedAnswer":{"@type":"Answer","text":"Pick a pattern, set the cycle start date, choose how many months to generate and press Generate shift schedule. The roster grid shows every team for each day. Use the My team calendar tab to see one team's month and Add my team to calendar to download an .ics file."}},{"@type":"Question","name":"What is the 2-2-3 (Pitman) shift schedule?","acceptedAnswer":{"@type":"Answer","text":"The 2-2-3 schedule is a 14-day cycle in which a team works 2 days, is off 2, works 3, is off 2, works 2 and is off 3. Four teams on 12-hour shifts (two on days, two on nights) cover 24 hours a day, 7 days a week, and each team averages 42 hours a week. It is also called the Pitman schedule and is often called the Panama schedule."}},{"@type":"Question","name":"What is a 4 on 4 off schedule?","acceptedAnswer":{"@type":"Answer","text":"A 4 on 4 off schedule has a team work four consecutive 12-hour shifts and then take four days off, repeating every eight days. With two day teams and two night teams it covers every hour of the week, and each team averages 42 hours a week."}},{"@type":"Question","name":"What is the DuPont shift schedule?","acceptedAnswer":{"@type":"Answer","text":"The DuPont schedule is a 28-day, four-team rotation of 12-hour shifts: 4 nights on, 3 off, 3 days on, 1 off, 3 nights on, 3 off, 4 days on, then 7 days off. Each team starts seven days after the previous one, which gives every team one long seven-day break every four weeks."}},{"@type":"Question","name":"What is the 2-3-2 shift schedule?","acceptedAnswer":{"@type":"Answer","text":"The 2-3-2 schedule works 2 days, is off 3, works 2, is off 2, works 3 and is off 2 over 14 days. It gives every second weekend completely off and also averages 42 hours a week on 12-hour shifts."}},{"@type":"Question","name":"How many teams do I need for 24/7 shift coverage?","acceptedAnswer":{"@type":"Answer","text":"Divide the 168 hours in a week by the average weekly hours each team works. On 12-hour shifts at 42 hours a week that is exactly four teams. At 40 hours it is 4.2, so most sites run four crews with relief or overtime cover."}},{"@type":"Question","name":"How many hours a week does a 12-hour shift pattern work?","acceptedAnswer":{"@type":"Answer","text":"Patterns such as 2-2-3, 2-3-2, 4 on 4 off, 3 on 3 off and DuPont all average 42 hours a week (3.5 twelve-hour shifts). The Pattern and statistics tab calculates the average for your own settings."}},{"@type":"Question","name":"Can I create my own shift pattern?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Custom X days on, Y days off to build a pattern from numbers, or Custom type your own cycle to enter letters such as DDNN---- for two days, two nights and four off. You can set the number of teams and the offset between them."}},{"@type":"Question","name":"How do I find out which team I am on?","acceptedAnswer":{"@type":"Answer","text":"Set the pattern and enter your team's current position in the cycle in the My team is on cycle day box, choose your team in the calendar tab and press Sync start date to my team. The start date is adjusted so your team lines up with the cycle today."}},{"@type":"Question","name":"Can I print the shift schedule?","acceptedAnswer":{"@type":"Answer","text":"Yes. Press Print / save as PDF. Only a clean report prints: the settings, the roster for the month you are viewing, the statistics and a cycle diagram. The site header, footer and article are left out."}},{"@type":"Question","name":"Can I export the schedule to Excel or Google Sheets?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download the roster as a CSV file, which opens in Excel and Google Sheets. It lists the date, weekday and each team's shift code or OFF for every day in the generated period."}},{"@type":"Question","name":"Can I add the schedule to Google Calendar or Outlook?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose your team and download the .ics file, then import it into Google Calendar, Apple Calendar or Outlook. Each shift becomes an event with the start and end times you set, in your local time."}},{"@type":"Question","name":"Does the generator work for 8-hour shifts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Change the shift length and start times in More options. The weekly rotation pattern is built from 8-hour morning, afternoon and night shifts, and custom patterns can use any length from 1 to 24 hours."}},{"@type":"Question","name":"Does it check overtime or working-time laws?","acceptedAnswer":{"@type":"Answer","text":"No. It reports average weekly hours and warns about very long runs of consecutive days, but it does not apply legal limits, breaks or overtime rules. Check local rules and agreements before using a roster."}},{"@type":"Question","name":"What do the letters D, N, M and A mean?","acceptedAnswer":{"@type":"Answer","text":"D is a day shift, N a night shift, M a morning shift and A an afternoon shift. A dot or the word off marks a day off. The legend under each roster shows the letters in use and their start and end times."}},{"@type":"Question","name":"Can I generate a year-long roster?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose 12 months. The year at a glance chart in the My team calendar tab shows every working day for your team in a single colour-coded view."}},{"@type":"Question","name":"Is my schedule information stored or shared?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser, nothing is uploaded and nothing is saved. Reloading the page resets the settings."}},{"@type":"Question","name":"Why does the weekly rotation pattern show gaps at weekends?","acceptedAnswer":{"@type":"Answer","text":"That pattern is built for Monday to Friday operation, so shifts are only covered on weekdays. Start the cycle on a Monday for the intended alignment."}},{"@type":"Question","name":"How accurate are the average hours and statistics?","acceptedAnswer":{"@type":"Answer","text":"They are exact counts over the generated period, multiplied by your shift length. They do not include breaks, handovers, overtime, public holidays or leave."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Date, Time & Scheduling Tools","item":"https://utiliby.com/tools/date-time-tools/"},{"@type":"ListItem","position":3,"name":"Shift Schedule Generator","item":"https://utiliby.com/tools/date-time-tools/shift-schedule-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/date-time-tools/">Date, Time &amp; Scheduling Tools</a> › Shift Schedule Generator</nav>
+<h1 class="noembed">Free Online Shift Schedule Generator</h1>
+<p class="lead noembed">Free online shift schedule generator: build a 2-2-3 (Pitman), 2-3-2, 4 on 4 off, 3 on 3 off, DuPont or custom rotating roster, see who works every day, check 24/7 coverage and hours, and print it or add it to your calendar. Private, with no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/" target="_blank" rel="noopener">Shift Schedule Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Shift schedule generator">
+<div class="dt-hero noembed">
+<h2>Free Shift Schedule Generator Online</h2>
+<p>Build a rotating shift roster in seconds: 2-2-3 (Pitman), 2-3-2, 4 on 4 off, 3 on 3 off, DuPont or your own pattern. Print it, export CSV or add it to your calendar.</p>
+</div>
+<div class="dt-panel">
+<h3>1. Choose a shift pattern</h3>
+<div class="dt-row3">
+<div><label for="shPattern">Shift pattern</label><select id="shPattern"></select></div>
+<div><label for="shStart">Cycle start date (day 1)</label><input type="date" id="shStart"></div>
+<div><label for="shMonths">Months to generate</label><select id="shMonths"><option value="1">1 month</option><option value="2">2 months</option><option value="3" selected>3 months</option><option value="6">6 months</option><option value="12">12 months</option></select></div>
+</div>
+<p class="dt-hint" id="shNote"></p>
+<div id="shCustomX" hidden>
+<div class="dt-row4">
+<div><label for="shW">Days on</label><input type="number" id="shW" min="1" max="30" value="4"></div>
+<div><label for="shY">Days off</label><input type="number" id="shY" min="0" max="30" value="4"></div>
+<div><label for="shT">Number of teams</label><input type="number" id="shT" min="1" max="8" value="4"></div>
+<div><label for="shMode">Shifts</label><select id="shMode"><option value="dn">Day and night teams</option><option value="d">Day shift only</option></select></div>
+</div>
+</div>
+<div id="shCustomC" hidden>
+<div class="dt-row3">
+<div><label for="shCycle">Your cycle (D day, N night, M morning, A afternoon, E evening, - off)</label><input type="text" id="shCycle" value="DDNN----" maxlength="120" autocomplete="off"></div>
+<div><label for="shStep">Offset between teams (days, 0 = even)</label><input type="number" id="shStep" min="0" max="83" value="0"></div>
+<div><label for="shT2">Number of teams</label><input type="number" id="shT2" min="1" max="8" value="4"></div>
+</div>
+</div>
+<details>
+<summary class="dt-lbl" style="cursor:pointer">More options: shift hours, start times, team names, week start</summary>
+<div class="dt-row4">
+<div><label for="shHours">Shift length (hours)</label><input type="number" id="shHours" min="1" max="24" step="0.5" value="12"></div>
+<div><label for="shTD">Day shift starts</label><input type="time" id="shTD" value="07:00"></div>
+<div><label for="shTN">Night shift starts</label><input type="time" id="shTN" value="19:00"></div>
+<div><label for="shTA">Afternoon starts</label><input type="time" id="shTA" value="14:00"></div>
+</div>
+<div class="dt-row3">
+<div><label for="shTM">Morning starts</label><input type="time" id="shTM" value="06:00"></div>
+<div><label for="shWeek">Calendar week starts on</label><select id="shWeek"><option value="1">Monday</option><option value="0">Sunday</option></select></div>
+<div><label for="shNames">Team names (comma separated)</label><input type="text" id="shNames" placeholder="A, B, C, D" maxlength="80" autocomplete="off"></div>
+</div>
+<div class="dt-row3">
+<div><label for="shAlignDay">My team is on cycle day (today)</label><input type="number" id="shAlignDay" min="1" max="84" value="1"></div>
+<div><button type="button" class="dt-btn ghost small" id="shAlignBtn" style="margin-top:28px">Sync start date to my team</button></div>
+<div></div>
+</div>
+</details>
+<button type="button" class="dt-btn" id="shGo">Generate shift schedule</button>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button>
+</div>
+<div class="dt-warn" id="shErr" role="alert" hidden></div>
+<div id="shOut">
+<div class="dt-tabs" role="group" aria-label="Schedule views">
+<button type="button" class="dt-tab on" id="dtTabBtn-roster" aria-pressed="true">Roster grid (all teams)</button>
+<button type="button" class="dt-tab" id="dtTabBtn-cal" aria-pressed="false">My team calendar</button>
+<button type="button" class="dt-tab" id="dtTabBtn-stats" aria-pressed="false">Pattern &amp; statistics</button>
+</div>
+<div id="dtTab-roster">
+<div class="sh-nav"><button type="button" class="dt-btn ghost small" id="shPrev" aria-label="Previous month">&larr;</button><select id="shMonthSel" aria-label="Month"></select><button type="button" class="dt-btn ghost small" id="shNextM" aria-label="Next month">&rarr;</button></div>
+<div class="dt-scroll" id="shGrid"></div>
+<div id="shLegend"></div>
+<p class="dt-hint" id="shCov"></p>
+</div>
+<div id="dtTab-cal" hidden>
+<div class="dt-row"><div><label for="shMy" class="dt-lbl">Show calendar for</label><select id="shMy" class="dt-in"></select></div><div></div></div>
+<div id="shNext"></div>
+<div class="dt-scroll" id="shCalGrid"></div>
+<h3 class="dt-lbl" style="margin-top:16px">Year at a glance</h3>
+<div class="dt-diagram" id="shYear"></div>
+</div>
+<div id="dtTab-stats" hidden>
+<h3 class="dt-lbl">One full cycle, every team</h3>
+<div class="dt-diagram" id="shStrip"></div>
+<div id="shStatsTbl"></div>
+</div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="shCopy">Copy next 14 days</button>
+<button type="button" class="dt-btn ghost" id="shCsv">Download roster CSV</button>
+<button type="button" class="dt-btn ghost" id="shIcs">Add my team to calendar (.ics)</button>
+<button type="button" class="dt-btn ghost" id="shPrint">Print / save as PDF</button>
+</div>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online shift schedule generator is a planning aid. It does not check local working-time, rest-break, overtime or union rules, so verify any roster against the law and your agreements before you publish it.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Shift Schedule Generator. https://utiliby.com/tools/date-time-tools/shift-schedule-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Shift Schedule Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/date-time-tools/shift-schedule-generator/"&gt;Shift Schedule Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what-is">What is a free shift schedule generator online?</a></li><li><a href="#how-to">How to use this free online shift schedule generator</a></li><li><a href="#patterns">Common shift patterns compared</a></li><li><a href="#pitman">The 2-2-3 (Pitman or Panama) schedule explained</a></li><li><a href="#four-on">4 on 4 off and 3 on 3 off schedules</a></li><li><a href="#dupont">The DuPont 12-hour shift schedule</a></li><li><a href="#p232">The 2-3-2 schedule and custom patterns</a></li><li><a href="#coverage">How many teams do you need for 24/7 coverage?</a></li><li><a href="#hours">Working time, rest and fairness</a></li><li><a href="#sync">How to sync a roster to your team and your calendar</a></li><li><a href="#mistakes">Common shift scheduling mistakes</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what-is">What is a free shift schedule generator online?</h2>
+<p>A free shift schedule generator online turns a repeating work pattern into a dated roster. Instead of drawing a grid by hand and counting days, you choose a pattern, enter the day your first team starts, and the tool fills in every shift for every team. A rota or roster built this way is a <em>rotating shift schedule</em>: the same cycle repeats, and each team starts at a different point of the cycle so that the workplace is covered when other teams are resting.</p><p>Rotating rosters are used in hospitals, factories, mines, oil and gas, power stations, security, call centres, airports, emergency services and many other places that run more than one shift or never close. The main design goal is <b>coverage</b>: every hour that needs staff has at least one team on duty. The second goal is <b>fairness</b>: nights, weekends and long runs of work are shared evenly. The third is <b>health and legality</b>: enough rest between shifts and enough days off.</p><p>This generator covers the patterns people search for most, such as the 2-2-3 (Pitman or Panama) schedule, the 2-3-2 schedule, 4 on 4 off, 3 on 3 off, the DuPont 12-hour schedule and a weekly morning-afternoon-night rotation. It also lets you build a custom <em>X days on, Y days off</em> pattern or type your own cycle. The result is a roster grid for all teams, a calendar for your team, a year-at-a-glance chart, statistics, a CSV export, an .ics file for your phone calendar, and a clean printable report.</p>
+<h2 id="how-to">How to use this free online shift schedule generator</h2>
+<ol><li><b>Choose a shift pattern.</b> Start with a preset. The note under the selector explains how the pattern works.</li><li><b>Set the cycle start date.</b> This is day 1 of the cycle for the first team. Other teams start at their own offset in the cycle.</li><li><b>Pick how many months to generate.</b> From one month to a full year.</li><li><b>Adjust the options if needed.</b> Set the shift length, the start time of day, night, morning and afternoon shifts, the first day of the calendar week and your own team names.</li><li><b>Sync to your real position.</b> If your team is already part-way through the cycle, enter the cycle day your team is on today and press <em>Sync start date to my team</em>.</li><li><b>Read the three views.</b> The roster grid shows all teams by day. <em>My team calendar</em> shows one team with a next-shift summary and a year chart. <em>Pattern &amp; statistics</em> shows the cycle, hours, weekends, nights and coverage.</li><li><b>Export.</b> Copy the next 14 days as text, download the roster as CSV, add your team to your calendar with an .ics file, or print a clean report.</li></ol>
+<h2 id="patterns">Common shift patterns compared</h2>
+<div class="dt-wrap"><table><tr><th>Pattern</th><th>Cycle</th><th>Teams</th><th>Average hours a week</th><th>Best known for</th></tr><tr><td>2-2-3 (Pitman / Panama)</td><td>14 days</td><td>4</td><td>42</td><td>A long weekend off every second week; never more than three days in a row</td></tr><tr><td>2-3-2</td><td>14 days</td><td>4</td><td>42</td><td>Every second weekend fully off; simple to explain</td></tr><tr><td>4 on 4 off</td><td>8 days</td><td>4</td><td>42</td><td>Long blocks of rest; short, easy cycle</td></tr><tr><td>3 on 3 off</td><td>6 days</td><td>4</td><td>42</td><td>Shorter blocks than 4 on 4 off; weekends rotate quickly</td></tr><tr><td>DuPont</td><td>28 days</td><td>4</td><td>42</td><td>Rotates nights and days; a seven-day break every four weeks</td></tr><tr><td>Weekly rotation (M/A/N)</td><td>21 days</td><td>3</td><td>40</td><td>Monday to Friday 8-hour operations; weekends off</td></tr></table></div><p>All of the 12-hour patterns above average 42 hours a week, because a team works 3.5 twelve-hour shifts a week on average. The practical differences are how long a team works in a row, how many weekends it works, how often it changes between days and nights, and how long its longest break is. Open the <em>Pattern &amp; statistics</em> tab to compare those figures for the pattern you chose.</p>
+<h2 id="pitman">The 2-2-3 (Pitman or Panama) schedule explained</h2>
+<p>The 2-2-3 schedule is the most searched fixed-shift pattern. A team works two days, is off two days, works three days, is off two days, works two days and is off three days. That is a 14-day cycle with seven working days, so the team averages 3.5 shifts a week. A second team works exactly the days the first team is off, so together they cover every day on the same shift. Add two more teams for nights and the site is covered 24/7.</p><figure class="dt-fig"><svg viewBox="0 0 556 168" role="img" aria-label="The 14-day 2-2-3 Pitman cycle for four teams: teams A and B cover days, teams C and D cover nights, and exactly one team is on each shift every day" font-family="system-ui,Segoe UI,sans-serif"><text x="86" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">1</text><text x="120" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">2</text><text x="154" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">3</text><text x="188" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">4</text><text x="222" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">5</text><text x="256" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">6</text><text x="290" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">7</text><text x="324" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">8</text><text x="358" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">9</text><text x="392" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">10</text><text x="426" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">11</text><text x="460" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">12</text><text x="494" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">13</text><text x="528" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">14</text><text x="62" y="41" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team A</text><rect class="dt-pop" style="animation-delay:0ms" x="70" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="85" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:18ms" x="104" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="119" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="138" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="172" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:72ms" x="206" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="221" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:90ms" x="240" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="255" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:108ms" x="274" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="289" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="308" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="342" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:162ms" x="376" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="391" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:180ms" x="410" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="425" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="444" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="478" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="512" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><text x="62" y="73" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team B</text><rect x="70" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="104" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:116ms" x="138" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="153" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:134ms" x="172" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="187" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="206" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="240" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="274" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:206ms" x="308" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="323" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:224ms" x="342" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="357" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="376" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="410" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:278ms" x="444" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="459" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:296ms" x="478" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="493" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:314ms" x="512" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="527" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><text x="62" y="105" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team C</text><rect class="dt-pop" style="animation-delay:160ms" x="70" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="85" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:178ms" x="104" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="119" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="138" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="172" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:232ms" x="206" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="221" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:250ms" x="240" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="255" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:268ms" x="274" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="289" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="308" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="342" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:322ms" x="376" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="391" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:340ms" x="410" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="425" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="444" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="478" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="512" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><text x="62" y="137" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team D</text><rect x="70" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="104" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:276ms" x="138" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="153" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:294ms" x="172" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="187" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="206" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="240" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="274" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:366ms" x="308" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="323" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:384ms" x="342" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="357" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="376" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="410" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:438ms" x="444" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="459" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:456ms" x="478" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="493" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:474ms" x="512" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="527" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text></svg><figcaption>Figure 1. The 2-2-3 (Pitman) pattern over one 14-day cycle. D marks a day shift and N a night shift. Teams A and B alternate on days, C and D alternate on nights, so one team is always on each shift.</figcaption></figure><p>Why do people like it? A team never works more than three days in a row, and every second week has a three-day block off that includes a full weekend. Why do some dislike it? The work pattern is not tied to the calendar week, so a team works some weekends and not others, and the weeks look different from one another. If you need to answer <em>what does my 2-2-3 rota look like for March</em>, choose the pattern, set the start date, and read the roster grid for that month.</p>
+<h2 id="four-on">4 on 4 off and 3 on 3 off schedules</h2>
+<p>These are the simplest rotating patterns. In a <b>4 on 4 off</b> schedule a team works four consecutive 12-hour shifts and then has four days off. The cycle is 8 days long and the second team starts four days later. With separate day and night teams, four teams give full 24/7 cover. In a <b>3 on 3 off</b> schedule the cycle is six days and the blocks are shorter. Both average 42 hours a week.</p><p>The trade-off is the length of the working block. Four 12-hour shifts in a row is demanding, while three is easier on the body; on the other hand, the longer break after four shifts is valued by people who commute a long way. Because the cycle length is not a multiple of seven, the pattern drifts across the week, so weekends are shared fairly over time. Use the <em>Weekend shifts</em> column in the statistics tab to see exactly how many weekends each team works.</p>
+<h2 id="dupont">The DuPont 12-hour shift schedule</h2>
+<p>The DuPont schedule is a 28-day rotation for four teams. A team works four nights, has three days off, works three days, has one day off, works three nights, has three days off, works four days and then has seven days off. Each team starts its cycle seven days after the previous one.</p><figure class="dt-fig"><svg viewBox="0 0 1032 168" role="img" aria-label="The 28-day DuPont cycle for four teams, each starting seven days after the previous team" font-family="system-ui,Segoe UI,sans-serif"><text x="86" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">1</text><text x="120" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">2</text><text x="154" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">3</text><text x="188" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">4</text><text x="222" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">5</text><text x="256" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">6</text><text x="290" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">7</text><text x="324" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">8</text><text x="358" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">9</text><text x="392" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">10</text><text x="426" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">11</text><text x="460" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">12</text><text x="494" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">13</text><text x="528" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">14</text><text x="562" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">15</text><text x="596" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">16</text><text x="630" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">17</text><text x="664" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">18</text><text x="698" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">19</text><text x="732" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">20</text><text x="766" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">21</text><text x="800" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">22</text><text x="834" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">23</text><text x="868" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">24</text><text x="902" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">25</text><text x="936" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">26</text><text x="970" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">27</text><text x="1004" y="14" text-anchor="middle" font-size="10" fill="currentColor" opacity=".6">28</text><text x="62" y="41" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team A</text><rect class="dt-pop" style="animation-delay:0ms" x="70" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="85" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:18ms" x="104" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="119" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:36ms" x="138" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="153" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:54ms" x="172" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="187" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="206" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="240" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="274" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:126ms" x="308" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="323" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:144ms" x="342" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="357" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:162ms" x="376" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="391" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="410" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:198ms" x="444" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="459" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:216ms" x="478" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="493" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:234ms" x="512" y="22" width="31" height="26" rx="5" fill="#4f46e5"/><text x="527" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="546" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="580" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="614" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:306ms" x="648" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="663" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:324ms" x="682" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="697" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:342ms" x="716" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="731" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:360ms" x="750" y="22" width="31" height="26" rx="5" fill="#d97706"/><text x="765" y="40" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="784" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="818" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="852" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="886" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="920" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="954" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="988" y="22" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><text x="62" y="73" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team B</text><rect class="dt-pop" style="animation-delay:80ms" x="70" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="85" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:98ms" x="104" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="119" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:116ms" x="138" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="153" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="172" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:152ms" x="206" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="221" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:170ms" x="240" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="255" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:188ms" x="274" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="289" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="308" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="342" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="376" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:260ms" x="410" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="425" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:278ms" x="444" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="459" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:296ms" x="478" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="493" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:314ms" x="512" y="54" width="31" height="26" rx="5" fill="#d97706"/><text x="527" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="546" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="580" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="614" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="648" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="682" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="716" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="750" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:458ms" x="784" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="799" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:476ms" x="818" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="833" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:494ms" x="852" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="867" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:512ms" x="886" y="54" width="31" height="26" rx="5" fill="#4f46e5"/><text x="901" y="72" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="920" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="954" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="988" y="54" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><text x="62" y="105" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team C</text><rect x="70" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="104" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="138" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:214ms" x="172" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="187" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:232ms" x="206" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="221" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:250ms" x="240" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="255" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:268ms" x="274" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="289" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="308" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="342" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="376" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="410" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="444" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="478" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="512" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:412ms" x="546" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="561" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:430ms" x="580" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="595" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:448ms" x="614" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="629" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:466ms" x="648" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="663" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="682" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="716" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="750" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:538ms" x="784" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="799" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:556ms" x="818" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="833" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:574ms" x="852" y="86" width="31" height="26" rx="5" fill="#d97706"/><text x="867" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="886" y="86" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:610ms" x="920" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="935" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:628ms" x="954" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="969" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:646ms" x="988" y="86" width="31" height="26" rx="5" fill="#4f46e5"/><text x="1003" y="104" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><text x="62" y="137" text-anchor="end" font-size="13" font-weight="700" fill="currentColor">Team D</text><rect x="70" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="104" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="138" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="172" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="206" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="240" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="274" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:366ms" x="308" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="323" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:384ms" x="342" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="357" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:402ms" x="376" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="391" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:420ms" x="410" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="425" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="444" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="478" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="512" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:492ms" x="546" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="561" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:510ms" x="580" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="595" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:528ms" x="614" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="629" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect x="648" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:564ms" x="682" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="697" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:582ms" x="716" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="731" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect class="dt-pop" style="animation-delay:600ms" x="750" y="118" width="31" height="26" rx="5" fill="#4f46e5"/><text x="765" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">N</text><rect x="784" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="818" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect x="852" y="118" width="31" height="26" rx="5" fill="currentColor" fill-opacity=".12"/><rect class="dt-pop" style="animation-delay:672ms" x="886" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="901" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:690ms" x="920" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="935" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:708ms" x="954" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="969" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text><rect class="dt-pop" style="animation-delay:726ms" x="988" y="118" width="31" height="26" rx="5" fill="#d97706"/><text x="1003" y="136" text-anchor="middle" font-size="12" font-weight="700" fill="#fff">D</text></svg><figcaption>Figure 2. The DuPont 12-hour pattern over its 28-day cycle. Each team is offset by seven days and gets one block of seven days off every four weeks.</figcaption></figure><p>It is popular in process industries because it combines day and night work in one rotation and gives each team a full week off every four weeks. It also means every worker alternates between nights and days, so nobody is stuck on nights permanently. The cost is more transitions between night and day work, so plan rest carefully around the one-day break that follows the first three days.</p>
+<h2 id="p232">The 2-3-2 schedule and custom patterns</h2>
+<p>The 2-3-2 schedule is a 14-day cycle: two days on, three off, two on, two off, three on, two off. It looks like the 2-2-3 pattern but changes where the blocks fall, so that a team works one weekend in two and has the other fully off. If you need something else entirely, choose <b>Custom: X days on, Y days off</b> for patterns such as 5 on 5 off, 6 on 3 off, 7 on 7 off or 4 on 3 off, or <b>Custom: type your own cycle</b> to enter a cycle letter by letter. Use <b>D</b> for a day shift, <b>N</b> for a night shift, <b>M</b>, <b>A</b> and <b>E</b> for morning, afternoon and evening, and <b>-</b> for a day off. The number of teams and the gap between them are up to you.</p>
+<h2 id="coverage">How many teams do you need for 24/7 coverage?</h2>
+<p>The arithmetic is simple. A week has 168 hours. If each team works 42 hours a week on average, then 168 ÷ 42 = 4 teams. If your contracts are 40 hours, you need 168 ÷ 40 = 4.2 teams, which is why many sites run four crews plus relief cover or overtime. For 8-hour shifts, three teams cover the clock on a given day but you still need another to cover days off, which is why 8-hour continuous patterns use four or five crews.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" role="img" aria-label="Diagram showing 168 weekly hours divided by 42 hours per team equals four teams needed to cover a 24 hour, 7 day operation" font-family="system-ui,Segoe UI,sans-serif">
+<rect class="dt-bar" x="40" y="30" width="560" height="34" rx="8" fill="#0369a1"/>
+<text x="320" y="52" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">24/7 coverage = 168 hours every week</text>
+<g class="dt-pop"><rect x="40" y="96" width="132" height="34" rx="8" fill="#d97706"/><text x="106" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Team A 42 h</text></g>
+<g class="dt-pop" style="animation-delay:.15s"><rect x="180" y="96" width="132" height="34" rx="8" fill="#d97706" fill-opacity=".8"/><text x="246" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Team B 42 h</text></g>
+<g class="dt-pop" style="animation-delay:.3s"><rect x="320" y="96" width="132" height="34" rx="8" fill="#4f46e5"/><text x="386" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Team C 42 h</text></g>
+<g class="dt-pop" style="animation-delay:.45s"><rect x="460" y="96" width="140" height="34" rx="8" fill="#4f46e5" fill-opacity=".8"/><text x="530" y="118" text-anchor="middle" font-size="13" font-weight="700" fill="#fff">Team D 42 h</text></g>
+<text x="320" y="170" text-anchor="middle" font-size="15" font-weight="700" fill="currentColor">168 h ÷ 42 h per team = 4 teams</text>
+<text x="320" y="196" text-anchor="middle" font-size="12" fill="currentColor" opacity=".75">A 40-hour contract would need 4.2 teams, so most 24/7 sites use 4 crews plus relief cover.</text>
+</svg><figcaption>Figure 3. Why four crews are the classic answer for round-the-clock cover on 12-hour shifts.</figcaption></figure><p>The <em>Coverage</em> lines in the tool do this check for you. They count, for every shift type, how many days are covered and how many teams are on duty at once. If a shift is uncovered on some days, the tool names the first uncovered date, which usually means you need another team or a different offset.</p>
+<h2 id="hours">Working time, rest and fairness</h2>
+<p>A good roster is legal, safe and fair. Many countries limit weekly hours, daily and weekly rest and night work. For example, the European Working Time Directive sets a limit of an average of 48 hours a week over a reference period, a minimum of 11 consecutive hours of daily rest, a weekly rest period of at least 24 hours and limits on night work. In the United States federal law does not limit weekly hours for most adults but requires overtime pay after 40 hours for non-exempt employees, and some states add daily rules. Rules differ widely, so treat the statistics here as a starting point and check the rules that apply to you.</p><p>Fairness is mostly about three numbers: weekend shifts, night shifts and the longest run of working days. The statistics table lists all three per team over the period you generated. A pattern that looks balanced on paper can still give one team more weekends if the start dates differ, so compare teams before you publish.</p>
+<h2 id="sync">How to sync a roster to your team and your calendar</h2>
+<p>Most people are not starting a pattern from scratch. They are already on a team and want to know the future. Choose the pattern, select your team in the calendar tab, enter the cycle day you are on today and press <em>Sync start date to my team</em>. The generator moves the start date so that your team is on that day of the cycle today, and every date in the roster lines up with your real shifts. Then download the .ics file for your team and import it into Google Calendar, Apple Calendar or Outlook so your shifts appear on your phone. Times are written as local clock times, so they follow you if you change time zone.</p>
+<h2 id="mistakes">Common shift scheduling mistakes</h2>
+<ul><li><b>Starting the cycle on the wrong day.</b> Always check one known shift against the roster before sharing it.</li><li><b>Forgetting handover time.</b> If shifts run back to back, plan a short overlap.</li><li><b>Counting average hours wrongly.</b> A 12-hour pattern is 42 hours a week on average, not 36 or 48.</li><li><b>Ignoring night-to-day transitions.</b> Give people enough rest when they change from nights to days.</li><li><b>Not covering public holidays and leave.</b> The pattern is regular; holidays are not.</li><li><b>Overlooking time changes.</b> A night shift on a clock-change weekend is an hour shorter or longer in real time.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>The generator runs entirely in your browser. The dates, team names and options you enter are not sent to a server, not saved on your device and not shared. Reloading the page returns everything to the defaults. The files you download, such as the CSV and the calendar file, are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a free shift schedule generator online?</summary><p>A free shift schedule generator online builds a repeating work roster for one or more teams from a pattern such as 2-2-3, 4 on 4 off or DuPont. You choose the pattern and a start date, and it shows who works which shift on every day, with statistics, a printable calendar and exports.</p></details><details><summary>How do I make a rotating shift schedule?</summary><p>Pick a pattern, set the cycle start date, choose how many months to generate and press Generate shift schedule. The roster grid shows every team for each day. Use the My team calendar tab to see one team's month and Add my team to calendar to download an .ics file.</p></details><details><summary>What is the 2-2-3 (Pitman) shift schedule?</summary><p>The 2-2-3 schedule is a 14-day cycle in which a team works 2 days, is off 2, works 3, is off 2, works 2 and is off 3. Four teams on 12-hour shifts (two on days, two on nights) cover 24 hours a day, 7 days a week, and each team averages 42 hours a week. It is also called the Pitman schedule and is often called the Panama schedule.</p></details><details><summary>What is a 4 on 4 off schedule?</summary><p>A 4 on 4 off schedule has a team work four consecutive 12-hour shifts and then take four days off, repeating every eight days. With two day teams and two night teams it covers every hour of the week, and each team averages 42 hours a week.</p></details><details><summary>What is the DuPont shift schedule?</summary><p>The DuPont schedule is a 28-day, four-team rotation of 12-hour shifts: 4 nights on, 3 off, 3 days on, 1 off, 3 nights on, 3 off, 4 days on, then 7 days off. Each team starts seven days after the previous one, which gives every team one long seven-day break every four weeks.</p></details><details><summary>What is the 2-3-2 shift schedule?</summary><p>The 2-3-2 schedule works 2 days, is off 3, works 2, is off 2, works 3 and is off 2 over 14 days. It gives every second weekend completely off and also averages 42 hours a week on 12-hour shifts.</p></details><details><summary>How many teams do I need for 24/7 shift coverage?</summary><p>Divide the 168 hours in a week by the average weekly hours each team works. On 12-hour shifts at 42 hours a week that is exactly four teams. At 40 hours it is 4.2, so most sites run four crews with relief or overtime cover.</p></details><details><summary>How many hours a week does a 12-hour shift pattern work?</summary><p>Patterns such as 2-2-3, 2-3-2, 4 on 4 off, 3 on 3 off and DuPont all average 42 hours a week (3.5 twelve-hour shifts). The Pattern and statistics tab calculates the average for your own settings.</p></details><details><summary>Can I create my own shift pattern?</summary><p>Yes. Choose Custom X days on, Y days off to build a pattern from numbers, or Custom type your own cycle to enter letters such as DDNN---- for two days, two nights and four off. You can set the number of teams and the offset between them.</p></details><details><summary>How do I find out which team I am on?</summary><p>Set the pattern and enter your team's current position in the cycle in the My team is on cycle day box, choose your team in the calendar tab and press Sync start date to my team. The start date is adjusted so your team lines up with the cycle today.</p></details><details><summary>Can I print the shift schedule?</summary><p>Yes. Press Print / save as PDF. Only a clean report prints: the settings, the roster for the month you are viewing, the statistics and a cycle diagram. The site header, footer and article are left out.</p></details><details><summary>Can I export the schedule to Excel or Google Sheets?</summary><p>Yes. Download the roster as a CSV file, which opens in Excel and Google Sheets. It lists the date, weekday and each team's shift code or OFF for every day in the generated period.</p></details><details><summary>Can I add the schedule to Google Calendar or Outlook?</summary><p>Yes. Choose your team and download the .ics file, then import it into Google Calendar, Apple Calendar or Outlook. Each shift becomes an event with the start and end times you set, in your local time.</p></details><details><summary>Does the generator work for 8-hour shifts?</summary><p>Yes. Change the shift length and start times in More options. The weekly rotation pattern is built from 8-hour morning, afternoon and night shifts, and custom patterns can use any length from 1 to 24 hours.</p></details><details><summary>Does it check overtime or working-time laws?</summary><p>No. It reports average weekly hours and warns about very long runs of consecutive days, but it does not apply legal limits, breaks or overtime rules. Check local rules and agreements before using a roster.</p></details><details><summary>What do the letters D, N, M and A mean?</summary><p>D is a day shift, N a night shift, M a morning shift and A an afternoon shift. A dot or the word off marks a day off. The legend under each roster shows the letters in use and their start and end times.</p></details><details><summary>Can I generate a year-long roster?</summary><p>Yes. Choose 12 months. The year at a glance chart in the My team calendar tab shows every working day for your team in a single colour-coded view.</p></details><details><summary>Is my schedule information stored or shared?</summary><p>No. Everything runs in your browser, nothing is uploaded and nothing is saved. Reloading the page resets the settings.</p></details><details><summary>Why does the weekly rotation pattern show gaps at weekends?</summary><p>That pattern is built for Monday to Friday operation, so shifts are only covered on weekdays. Start the cycle on a Monday for the intended alignment.</p></details><details><summary>How accurate are the average hours and statistics?</summary><p>They are exact counts over the generated period, multiplied by your shift length. They do not include breaks, handovers, overtime, public holidays or leave.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>European Union, Working Time Directive 2003/88/EC: daily and weekly rest, maximum weekly working time and night work (summary of the main limits).</li><li>U.S. Department of Labor, Fair Labor Standards Act overtime requirements for non-exempt employees.</li><li>Internet Engineering Task Force, RFC 5545: Internet Calendaring and Scheduling Core Object Specification (iCalendar), used for the .ics export.</li><li>Industry descriptions of the 2-2-3 (Pitman), 2-3-2, 4 on 4 off, 3 on 3 off and DuPont 12-hour schedules in workforce-management and occupational-health guidance.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online shift schedule generator is a planning aid and is provided for general information only. It creates rotation patterns from the dates and options you enter, but it does not know your local working-time laws, collective agreements, union rules, break entitlements, overtime thresholds, public holidays or staffing levels, and it is not legal, HR or occupational-health advice. Statistics such as average weekly hours are simple calculations over the generated period. Before you publish or rely on a roster, check it against the rules that apply to your workplace and country, consult your employees or their representatives where required, and have the final schedule approved by a qualified manager. Utiliby accepts no liability for scheduling errors, understaffing, missed shifts, pay disputes or any other consequence of using this tool.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- shift pattern engine ---------- */
+var COLS = { D: "#d97706", N: "#4f46e5", M: "#0284c7", A: "#ea580c", E: "#be185d", X: "#16a34a", L: "#7c3aed" };
+var LABELS = { D: "Day", N: "Night", M: "Morning", A: "Afternoon", E: "Evening", X: "Work", L: "Long day" };
+var PATS = {
+  pitman: { n: "2-2-3 (Pitman / Panama) 12-hour, 4 teams", len: 14, cycle: "XX--XXX--XX---", teams: [["A", 0, "D"], ["B", 7, "D"], ["C", 0, "N"], ["D", 7, "N"]], hours: 12,
+    note: "Each team works 2 days, is off 2, works 3, is off 2, works 2, is off 3. Every team gets a long weekend every second week." },
+  p232: { n: "2-3-2 12-hour, 4 teams", len: 14, cycle: "XX---XX--XXX--", teams: [["A", 0, "D"], ["B", 7, "D"], ["C", 0, "N"], ["D", 7, "N"]], hours: 12,
+    note: "Work 2, off 3, work 2, off 2, work 3, off 2. Every second weekend is fully off." },
+  four4: { n: "4 on 4 off 12-hour, 4 teams", len: 8, cycle: "XXXX----", teams: [["A", 0, "D"], ["B", 4, "D"], ["C", 0, "N"], ["D", 4, "N"]], hours: 12,
+    note: "Four 12-hour shifts then four days off. Two day teams and two night teams cover 24/7." },
+  three3: { n: "3 on 3 off 12-hour, 4 teams", len: 6, cycle: "XXX---", teams: [["A", 0, "D"], ["B", 3, "D"], ["C", 0, "N"], ["D", 3, "N"]], hours: 12,
+    note: "Three 12-hour shifts then three days off, averaging 42 hours a week." },
+  dupont: { n: "DuPont 12-hour, 4 teams, 28-day cycle", len: 28, cycle: "NNNN---DDD-NNN---DDDD-------", teams: [["A", 0, ""], ["B", 7, ""], ["C", 14, ""], ["D", 21, ""]], hours: 12,
+    note: "4 nights, 3 off, 3 days, 1 off, 3 nights, 3 off, 4 days, then 7 days off. Average 42 hours a week." },
+  rot3: { n: "Weekly rotation: morning, afternoon, night (3 teams, 8-hour)", len: 21, cycle: "MMMMM--AAAAA--NNNNN--", teams: [["A", 0, ""], ["B", 7, ""], ["C", 14, ""]], hours: 8,
+    note: "Each team works Monday to Friday and rotates morning, afternoon, night each week. Start the cycle on a Monday." },
+  custom: { n: "Custom: X days on, Y days off", len: 0, cycle: "", teams: [], hours: 12, note: "" },
+  cycle: { n: "Custom: type your own cycle", len: 0, cycle: "", teams: [], hours: 12, note: "" }
+};
+function cleanCycle(s) {
+  var out = "", i, c;
+  s = String(s || "").toUpperCase();
+  for (i = 0; i < s.length; i++) {
+    c = s[i];
+    if (c === "-" || c === "_" || c === "." || c === "O") out += "-";
+    else if (/[A-Z]/.test(c)) out += c;
+  }
+  return out;
+}
+function buildPlan(o) {
+  var p = PATS[o.pattern], plan, names = o.names, i;
+  if (o.pattern === "custom") {
+    var W = Math.max(1, o.w | 0), Y = Math.max(0, o.y | 0), T = Math.max(1, Math.min(8, o.t | 0)), len = W + Y, cyc = "", tm = [];
+    for (i = 0; i < W; i++) cyc += "X"; for (i = 0; i < Y; i++) cyc += "-";
+    if (o.mode === "dn" && T > 1) {
+      var nD = Math.ceil(T / 2), nN = T - nD;
+      for (i = 0; i < nD; i++) tm.push(["", Math.round(i * len / nD) % len, "D"]);
+      for (i = 0; i < nN; i++) tm.push(["", Math.round(i * len / nN) % len, "N"]);
+    } else { for (i = 0; i < T; i++) tm.push(["", Math.round(i * len / T) % len, "D"]); }
+    plan = { n: "Custom " + W + " on " + Y + " off", len: len, cycle: cyc, teams: tm, hours: o.hours, note: "" };
+  } else if (o.pattern === "cycle") {
+    var cc = cleanCycle(o.cyc); if (!cc || cc.replace(/-/g, "") === "") return { err: "Type a cycle that contains at least one shift letter, for example DDNN----." };
+    if (cc.length > 84) return { err: "The cycle can be at most 84 days long." };
+    var T2 = Math.max(1, Math.min(8, o.t | 0)), L2 = cc.length, step = o.step > 0 ? o.step | 0 : Math.round(L2 / T2), tm2 = [];
+    for (i = 0; i < T2; i++) tm2.push(["", (i * step) % L2, ""]);
+    plan = { n: "Custom cycle " + cc, len: L2, cycle: cc, teams: tm2, hours: o.hours, note: "" };
+  } else {
+    plan = { n: p.n, len: p.len, cycle: p.cycle, teams: p.teams.map(function (t) { return t.slice(); }), hours: o.hours, note: p.note };
+  }
+  plan.teams = plan.teams.map(function (t, k) { return { n: (names[k] || String.fromCharCode(65 + k)), o: t[1], c: t[2] }; });
+  return plan;
+}
+function cellAt(plan, team, k) { /* k = days since cycle start */
+  var ch = plan.cycle[(((k + team.o) % plan.len) + plan.len) % plan.len];
+  if (ch === "-") return "-";
+  if (ch === "X") return team.c || "D";
+  return ch;
+}
+function teamStats(plan, team, start, days) {
+  var s = { on: 0, off: 0, hours: 0, weekend: 0, nights: 0, longestOn: 0, longestOff: 0, byCode: {} }, runOn = 0, runOff = 0, k, ch;
+  for (k = 0; k < days; k++) {
+    ch = cellAt(plan, team, k + start.k0);
+    var d = start.dn + k + start.k0 - start.k0;
+    if (ch === "-") { s.off++; runOff++; runOn = 0; if (runOff > s.longestOff) s.longestOff = runOff; }
+    else {
+      s.on++; s.byCode[ch] = (s.byCode[ch] || 0) + 1; runOn++; runOff = 0; if (runOn > s.longestOn) s.longestOn = runOn;
+      var w = dow(start.dn + k); if (w === 0 || w === 6) s.weekend++;
+      if (ch === "N") s.nights++;
+    }
+  }
+  s.hours = s.on * plan.hours;
+  s.avgWeek = days ? s.hours / (days / 7) : 0;
+  return s;
+}
+function coverage(plan, k0, days, startDn) {
+  var codes = {}, i, t, k, ch;
+  plan.teams.forEach(function (tm) { for (i = 0; i < plan.len; i++) { ch = plan.cycle[i]; if (ch !== "-") codes[ch === "X" ? (tm.c || "D") : ch] = 1; } });
+  var list = Object.keys(codes).sort(), res = {};
+  list.forEach(function (c) { res[c] = { covered: 0, min: 99, max: 0, gaps: [] }; });
+  for (k = 0; k < days; k++) {
+    var cnt = {};
+    list.forEach(function (c) { cnt[c] = 0; });
+    plan.teams.forEach(function (tm) { ch = cellAt(plan, tm, k0 + k); if (ch !== "-") cnt[ch]++; });
+    list.forEach(function (c) { var r = res[c]; if (cnt[c] > 0) r.covered++; else if (r.gaps.length < 6) r.gaps.push(startDn + k); if (cnt[c] < r.min) r.min = cnt[c]; if (cnt[c] > r.max) r.max = cnt[c]; });
+  }
+  return { list: list, res: res, days: days };
+}
+
+/* ---------- shift generator UI ---------- */
+var ST = { plan: null, start: 0, months: 3, mi: 0, my: 0, days: 0, opts: null };
+var OFFC = "#94a3b8";
+function collect() {
+  var names = $("shNames").value.split(",").map(function (x) { return x.trim().slice(0, 12); }).filter(Boolean);
+  return {
+    pattern: $("shPattern").value, names: names, hours: numIn("shHours", 1, 24, 12), w: intIn("shW", 1, 30, 4), y: intIn("shY", 0, 30, 4), t: intIn($("shPattern").value === "cycle" ? "shT2" : "shT", 1, 8, 4), mode: $("shMode").value,
+    cyc: $("shCycle").value, step: intIn("shStep", 0, 83, 0), months: intIn("shMonths", 1, 12, 3), weekStart: +$("shWeek").value,
+    tD: $("shTD").value || "07:00", tN: $("shTN").value || "19:00", tA: $("shTA").value || "14:00", tM: $("shTM").value || "06:00"
+  };
+}
+function codeColor(c) { return COLS[c] || "#0f766e"; }
+function codeLabel(c) { return LABELS[c] || ("Shift " + c); }
+function startTime(c, o) { return c === "N" ? o.tN : c === "A" ? o.tA : c === "M" ? o.tM : o.tD; }
+function addHM(t, hours) { var p = t.split(":"), m = (+p[0]) * 60 + (+p[1]) + Math.round(hours * 60); m = ((m % 1440) + 1440) % 1440; return p2(Math.floor(m / 60)) + ":" + p2(m % 60); }
+function timeRange(c, o) { var s = startTime(c, o); return s + "–" + addHM(s, o.hours); }
+function valOf(team, dn) { return cellAt(ST.plan, ST.plan.teams[team], dn - ST.start); }
+function monthList() {
+  var o = ymd(ST.start), list = [], i;
+  for (i = 0; i < ST.months; i++) { var t = o.y * 12 + (o.m - 1) + i; list.push({ y: Math.floor(t / 12), m: t % 12 + 1 }); }
+  return list;
+}
+function generate() {
+  var o = collect(), err = "";
+  var start = parseD($("shStart").value);
+  if (start == null) err = "Enter a valid cycle start date.";
+  var plan = err ? null : buildPlan(o);
+  if (plan && plan.err) { err = plan.err; plan = null; }
+  if (err) { $("shOut").hidden = true; $("shErr").hidden = false; $("shErr").innerHTML = "<b>Please check your entries:</b> " + esc(err); return; }
+  $("shErr").hidden = true; $("shOut").hidden = false;
+  ST.plan = plan; ST.start = start; ST.opts = o; ST.months = o.months;
+  ST.days = addMonths(start, o.months) - start;
+  var cur = ST.my; if (cur >= plan.teams.length) cur = 0; ST.my = cur;
+  $("shMy").innerHTML = plan.teams.map(function (t, i) { return '<option value="' + i + '">Team ' + esc(t.n) + "</option>"; }).join(""); $("shMy").value = String(ST.my);
+  var ml = monthList(); $("shMonthSel").innerHTML = ml.map(function (m, i) { return '<option value="' + i + '">' + MONFULL[m.m - 1] + " " + m.y + "</option>"; }).join("");
+  var todayI = -1, t = ymd(todayDN()); ml.forEach(function (m, i) { if (m.y === t.y && m.m === t.m) todayI = i; });
+  if (ST.mi >= ml.length) ST.mi = 0; if (todayI >= 0 && !generate.moved) { ST.mi = todayI; } generate.moved = true;
+  $("shMonthSel").value = String(ST.mi);
+  $("shNote").textContent = plan.note || "";
+  renderAll();
+}
+function renderAll() { renderRoster(); renderCal(); renderStats(); }
+function monthRange() { var m = monthList()[ST.mi], first = dnum(m.y, m.m, 1); return { first: first, n: dim(m.y, m.m), y: m.y, m: m.m }; }
+
+/* ----- roster grid ----- */
+function renderRoster() {
+  var r = monthRange(), plan = ST.plan, today = todayDN(), h = '<table class="sh-grid"><tr><th class="sh-t">Team</th>', d, i;
+  for (d = 0; d < r.n; d++) { var dn = r.first + d, w = dow(dn); h += '<th class="' + (w === 0 || w === 6 ? "sh-we" : "") + (dn === today ? " sh-today" : "") + '">' + (d + 1) + "<br><small>" + DAYS[w][0] + "</small></th>"; }
+  h += "</tr>";
+  plan.teams.forEach(function (t, ti) {
+    h += '<tr><th class="sh-t">' + esc(t.n) + "</th>";
+    for (d = 0; d < r.n; d++) {
+      var dn2 = r.first + d, c = valOf(ti, dn2), w2 = dow(dn2);
+      h += c === "-" ? '<td class="sh-off' + (w2 === 0 || w2 === 6 ? " sh-we" : "") + '">·</td>' : '<td style="background:' + codeColor(c) + ';color:#fff" title="' + esc(t.n + ": " + codeLabel(c) + " " + timeRange(c, ST.opts)) + '">' + c + "</td>";
+    }
+    h += "</tr>";
+  });
+  $("shGrid").innerHTML = h + "</table>";
+  var used = {}; plan.teams.forEach(function (t, ti) { for (var k = 0; k < r.n; k++) { var c = valOf(ti, r.first + k); if (c !== "-") used[c] = 1; } });
+  $("shLegend").innerHTML = Object.keys(used).sort().map(function (c) { return '<span class="sh-lg"><i style="background:' + codeColor(c) + '"></i>' + c + " = " + esc(codeLabel(c)) + " " + esc(timeRange(c, ST.opts)) + "</span>"; }).join("") + '<span class="sh-lg"><i style="background:#e2e8f0"></i>· = off</span>';
+  var cov = coverage(plan, r.first - ST.start, r.n, r.first), txt = [];
+  cov.list.forEach(function (c) { var x = cov.res[c]; txt.push(codeLabel(c) + ": " + (x.covered === cov.days ? "covered every day" : "covered " + x.covered + " of " + cov.days + " days")); });
+  $("shCov").textContent = "Coverage this month: " + txt.join(" · ") + ".";
+}
+
+/* ----- team calendar ----- */
+function nextShift(ti) {
+  var t = todayDN(), k;
+  for (k = 0; k < 400; k++) { var c = valOf(ti, t + k); if (c !== "-") return { dn: t + k, c: c, in: k }; }
+  return null;
+}
+function renderCal() {
+  var ti = ST.my, plan = ST.plan, r = monthRange(), today = todayDN(), ws = ST.opts.weekStart, h = '<table class="sh-cal"><tr>', i;
+  for (i = 0; i < 7; i++) h += "<th>" + DAYS[(ws + i) % 7] + "</th>"; h += "</tr>";
+  var lead = (dow(r.first) - ws + 7) % 7, cells = lead + r.n, rows = Math.ceil(cells / 7);
+  for (var row = 0; row < rows; row++) {
+    h += "<tr>";
+    for (i = 0; i < 7; i++) {
+      var idx = row * 7 + i - lead;
+      if (idx < 0 || idx >= r.n) { h += '<td class="sh-void"></td>'; continue; }
+      var dn = r.first + idx, c = valOf(ti, dn), w = dow(dn);
+      h += '<td class="' + (dn === today ? "sh-today " : "") + (w === 0 || w === 6 ? "sh-we" : "") + '"><b>' + (idx + 1) + "</b>" + (c === "-" ? '<span class="sh-off">off</span>' : '<span class="sh-pill" style="background:' + codeColor(c) + '">' + c + "</span><small>" + esc(timeRange(c, ST.opts)) + "</small>") + "</td>";
+    }
+    h += "</tr>";
+  }
+  $("shCalGrid").innerHTML = h + "</table>";
+  var ns = nextShift(ti), nm = plan.teams[ti].n, line;
+  if (ns) line = "Team " + nm + " next works on <b>" + esc(fmtDW(ns.dn)) + "</b> (" + esc(codeLabel(ns.c)) + " shift " + esc(timeRange(ns.c, ST.opts)) + ")" + (ns.in === 0 ? ", which is today." : ns.in === 1 ? ", tomorrow." : ", in " + ns.in + " days.");
+  else line = "No upcoming shifts found.";
+  var seq = [], k; for (k = 0; k < 14; k++) { var c2 = valOf(ti, today + k); seq.push('<span class="sh-mini" style="background:' + (c2 === "-" ? "#e2e8f0;color:#64748b" : codeColor(c2) + ";color:#fff") + '" title="' + esc(fmtDW(today + k)) + '">' + (c2 === "-" ? "·" : c2) + "</span>"); }
+  $("shNext").innerHTML = '<p class="dt-sum">' + line + '</p><div class="dt-label">Next 14 days from today</div><div class="sh-minis">' + seq.join("") + "</div>";
+  $("shYear").innerHTML = yearSvg(ti, false);
+}
+function yearSvg(ti, ex) {
+  var ml = monthList(), cw = 15, W = 70 + 31 * cw + 10, H = 34 + ml.length * 17, s = "", tc = ex ? "#0f172a" : "currentColor", i, d;
+  for (d = 1; d <= 31; d++) s += '<text x="' + (70 + (d - 1) * cw + cw / 2) + '" y="14" text-anchor="middle" font-size="9" fill="' + tc + '" opacity=".6">' + d + "</text>";
+  ml.forEach(function (m, r) {
+    var y0 = 22 + r * 17, n = dim(m.y, m.m);
+    s += '<text x="64" y="' + (y0 + 11) + '" text-anchor="end" font-size="11" font-weight="700" fill="' + tc + '">' + MON[m.m - 1] + " " + String(m.y).slice(2) + "</text>";
+    for (d = 1; d <= 31; d++) {
+      var x = 70 + (d - 1) * cw;
+      if (d > n) { s += '<rect x="' + x + '" y="' + y0 + '" width="' + (cw - 1.5) + '" height="14" rx="3" fill="none"/>'; continue; }
+      var dn = dnum(m.y, m.m, d), c = valOf(ti, dn), w = dow(dn);
+      s += '<rect' + (ex ? "" : ' class="dt-pop" style="animation-delay:' + (r * 40 + d * 6) + 'ms"') + ' x="' + x + '" y="' + y0 + '" width="' + (cw - 1.5) + '" height="14" rx="3" fill="' + (c === "-" ? (ex ? "#e2e8f0" : "var(--line)") : codeColor(c)) + '"' + (c === "-" && (w === 0 || w === 6) ? ' fill-opacity=".55"' : "") + "><title>" + esc(fmtDW(dn) + ": " + (c === "-" ? "off" : codeLabel(c))) + "</title></rect>";
+    }
+  });
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" role="img" aria-label="Year at a glance for team ' + esc(ST.plan.teams[ti].n) + ': coloured days are working shifts" font-family="system-ui,Segoe UI,sans-serif"' + (ex ? ' height="' + H + '"' : ' style="min-width:560px;width:100%"') + ">" + s + "</svg>";
+}
+
+/* ----- stats ----- */
+function stripSvg(ex) {
+  var plan = ST.plan, L = plan.len, cw = Math.max(14, Math.min(30, Math.floor(600 / L))), W = 70 + L * cw + 10, H = 40 + plan.teams.length * 30, s = "", tc = ex ? "#0f172a" : "currentColor", i;
+  for (i = 0; i < L; i++) s += '<text x="' + (70 + i * cw + cw / 2) + '" y="14" text-anchor="middle" font-size="9" fill="' + tc + '" opacity=".6">' + (i + 1) + "</text>";
+  plan.teams.forEach(function (t, r) {
+    var y0 = 22 + r * 30;
+    s += '<text x="64" y="' + (y0 + 17) + '" text-anchor="end" font-size="12" font-weight="700" fill="' + tc + '">' + esc(trunc(t.n, 8)) + "</text>";
+    for (i = 0; i < L; i++) {
+      var c = cellAt(plan, t, i);
+      s += '<rect' + (ex ? "" : ' class="dt-pop" style="animation-delay:' + (r * 90 + i * 14) + 'ms"') + ' x="' + (70 + i * cw) + '" y="' + y0 + '" width="' + (cw - 2) + '" height="24" rx="4" fill="' + (c === "-" ? (ex ? "#e2e8f0" : "var(--line)") : codeColor(c)) + '"/>';
+      if (c !== "-") s += '<text x="' + (70 + i * cw + (cw - 2) / 2) + '" y="' + (y0 + 16) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">' + c + "</text>";
+    }
+  });
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="' + W + '" role="img" aria-label="One full cycle of ' + L + ' days for each team" font-family="system-ui,Segoe UI,sans-serif"' + (ex ? ' height="' + H + '"' : ' style="min-width:' + Math.min(W, 520) + 'px;width:100%;max-width:' + W + 'px"') + ">" + s + "</svg>";
+}
+function trunc(s, n) { s = String(s); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+function allStats() { return ST.plan.teams.map(function (t) { return teamStats(ST.plan, t, { dn: ST.start, k0: 0 }, ST.days); }); }
+function renderStats() {
+  var plan = ST.plan, st = allStats(), h = "";
+  $("shStrip").innerHTML = stripSvg(false);
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Team</th><th>Shifts</th><th>Days off</th><th>Hours</th><th>Avg hours / week</th><th>Weekend shifts</th><th>Night shifts</th><th>Longest run on</th><th>Longest run off</th></tr>';
+  plan.teams.forEach(function (t, i) { var s = st[i]; h += "<tr><th>" + esc(t.n) + "</th><td>" + s.on + "</td><td>" + s.off + "</td><td>" + s.hours + "</td><td>" + s.avgWeek.toFixed(1) + "</td><td>" + s.weekend + "</td><td>" + s.nights + "</td><td>" + s.longestOn + " days</td><td>" + s.longestOff + " days</td></tr>"; });
+  h += "</table></div>";
+  var cov = coverage(plan, 0, ST.days, ST.start), cl = [];
+  cov.list.forEach(function (c) { var x = cov.res[c]; cl.push("<li><b>" + esc(codeLabel(c)) + " shift:</b> " + (x.covered === cov.days ? "covered on all " + cov.days + " days" : "covered on " + x.covered + " of " + cov.days + " days") + "; between " + x.min + " and " + x.max + " team" + (x.max === 1 ? "" : "s") + " on duty at once." + (x.gaps.length ? " First uncovered date: " + esc(fmtDW(x.gaps[0])) + "." : "") + "</li>"); });
+  h += '<div class="dt-tip"><b>Coverage over ' + ST.days + " days</b><ul>" + cl.join("") + "</ul></div>";
+  var avg = st.length ? st[0].avgWeek : 0, hint = [];
+  if (avg > 48) hint.push("The average of " + avg.toFixed(1) + " hours a week is above the 48-hour weekly average cap used in many working-time rules. Check your local limits.");
+  if (st.some(function (s) { return s.longestOn >= 7; })) hint.push("A run of 7 or more consecutive working days appears; many jurisdictions require a weekly rest day.");
+  if (hint.length) h += '<div class="dt-warn"><ul><li>' + hint.map(esc).join("</li><li>") + "</li></ul></div>";
+  $("shStatsTbl").innerHTML = h;
+}
+
+/* ----- exports ----- */
+function rosterCsv() {
+  var plan = ST.plan, rows = [["Date", "Weekday"].concat(plan.teams.map(function (t) { return "Team " + t.n; }))], k;
+  for (k = 0; k < ST.days; k++) { var dn = ST.start + k; rows.push([isoD(dn), DAYSFULL[dow(dn)]].concat(plan.teams.map(function (t, i) { var c = valOf(i, dn); return c === "-" ? "OFF" : c; }))); }
+  return csvText(rows);
+}
+function teamIcs() {
+  var ti = ST.my, plan = ST.plan, o = ST.opts, lines = [], k, stamp = icsUtcStamp(Date.now());
+  for (k = 0; k < ST.days; k++) {
+    var dn = ST.start + k, c = valOf(ti, dn); if (c === "-") continue;
+    var s = startTime(c, o), e = addHM(s, o.hours), sp = s.split(":"), ep = e.split(":"), endDn = dn + ((+ep[0]) * 60 + (+ep[1]) <= (+sp[0]) * 60 + (+sp[1]) ? 1 : 0);
+    lines.push("BEGIN:VEVENT", "UID:" + icsUid("shift" + plan.n + ti + dn + s), "DTSTAMP:" + stamp, "DTSTART:" + icsDateStamp(dn) + "T" + sp[0] + sp[1] + "00", "DTEND:" + icsDateStamp(endDn) + "T" + ep[0] + ep[1] + "00",
+      "SUMMARY:" + icsEsc("Team " + plan.teams[ti].n + " " + codeLabel(c) + " shift"), "DESCRIPTION:" + icsEsc(plan.n + ". Generated by utiliby.com"), "TRANSP:OPAQUE", "END:VEVENT");
+  }
+  return icsWrap(lines, "Team " + plan.teams[ti].n + " shifts");
+}
+function nextText() {
+  var ti = ST.my, t = todayDN(), k, out = ["Team " + ST.plan.teams[ti].n + " – next 14 days (" + ST.plan.n + ")"];
+  for (k = 0; k < 14; k++) { var c = valOf(ti, t + k); out.push(fmtDW(t + k) + ": " + (c === "-" ? "off" : codeLabel(c) + " " + timeRange(c, ST.opts))); }
+  out.push("Made with the free online shift schedule generator, utiliby.com");
+  return out.join("\n");
+}
+function fillReport() {
+  var box = repBox(); repHead(box, "Shift schedule", "Free online Shift Schedule Generator");
+  if (!ST.plan) { repAdd(box, "p", "Generate a schedule first, then print again."); repDisc(box, "scheduling aid only."); return; }
+  var plan = ST.plan, o = ST.opts, r = monthRange();
+  repTbl(box, ["Setting", "Value"], [["Pattern", plan.n], ["Cycle start date", fmtDW(ST.start)], ["Cycle length", plan.len + " days"], ["Shift length", o.hours + " hours"], ["Months generated", String(ST.months)]]);
+  repAdd(box, "h3", "Roster for " + MONFULL[r.m - 1] + " " + r.y);
+  var head = ["Team"], d; for (d = 1; d <= r.n; d++) head.push(String(d));
+  repTbl(box, head, plan.teams.map(function (t, ti) { var row = [t.n]; for (var k = 0; k < r.n; k++) { var c = valOf(ti, r.first + k); row.push(c === "-" ? "·" : c); } return row; }));
+  var used = {}; plan.teams.forEach(function (t, ti) { for (var k = 0; k < r.n; k++) { var c = valOf(ti, r.first + k); if (c !== "-") used[c] = 1; } });
+  repAdd(box, "p", "Key: " + Object.keys(used).sort().map(function (c) { return c + " = " + codeLabel(c) + " " + timeRange(c, o); }).join("; ") + "; · = off", "dt-rep-meta");
+  var st = allStats(); repAdd(box, "h3", "Statistics over " + ST.days + " days");
+  repTbl(box, ["Team", "Shifts", "Days off", "Hours", "Avg h/week", "Weekend shifts", "Night shifts"], plan.teams.map(function (t, i) { var s = st[i]; return [t.n, s.on, s.off, s.hours, s.avgWeek.toFixed(1), s.weekend, s.nights]; }));
+  repFig(box, stripSvg(true));
+  repDisc(box, "this schedule is a planning aid. Check it against local working-time, rest-break and union rules before use.");
+}
+
+/* ----- wiring ----- */
+function syncCustom() { var p = $("shPattern").value; $("shCustomX").hidden = p !== "custom"; $("shCustomC").hidden = p !== "cycle"; if (PATS[p] && PATS[p].hours && p !== "custom" && p !== "cycle") { $("shHours").value = String(PATS[p].hours); } }
+function align() {
+  var n = intIn("shAlignDay", 1, 84, 1), plan = ST.plan; if (!plan) { generate(); plan = ST.plan; if (!plan) return; }
+  if (n > plan.len) { msg("Your cycle only has " + plan.len + " days.", "err"); return; }
+  var t = plan.teams[ST.my], k = ((n - 1 - t.o) % plan.len + plan.len) % plan.len;
+  setDateInput("shStart", todayDN() - k); generate(); msg("Start date set so Team " + t.n + " is on cycle day " + n + " today.");
+}
+function init() {
+  if (!$("tool")) return;
+  initCommon(); window.fillReport = fillReport;
+  Object.keys(PATS).forEach(function (k) { var o = document.createElement("option"); o.value = k; o.textContent = PATS[k].n; $("shPattern").appendChild(o); });
+  setDateInput("shStart", todayDN());
+  syncCustom();
+  initTabs(["roster", "cal", "stats"]);
+  $("shGo").addEventListener("click", function () { generate(); });
+  $("shPattern").addEventListener("change", function () { syncCustom(); generate(); });
+  ["shStart", "shMonths", "shHours", "shTD", "shTN", "shTA", "shTM", "shWeek", "shNames", "shW", "shY", "shT", "shT2", "shMode", "shCycle", "shStep"].forEach(function (id) { $(id).addEventListener("change", generate); });
+  $("shMy").addEventListener("change", function () { ST.my = +this.value; renderCal(); });
+  $("shMonthSel").addEventListener("change", function () { ST.mi = +this.value; renderRoster(); renderCal(); });
+  $("shPrev").addEventListener("click", function () { if (ST.mi > 0) { ST.mi--; $("shMonthSel").value = String(ST.mi); renderRoster(); renderCal(); } });
+  $("shNextM").addEventListener("click", function () { if (ST.mi < ST.months - 1) { ST.mi++; $("shMonthSel").value = String(ST.mi); renderRoster(); renderCal(); } });
+  $("shAlignBtn").addEventListener("click", align);
+  $("shCsv").addEventListener("click", function () { if (!ST.plan) return; saveBlob(new Blob([rosterCsv()], { type: "text/csv;charset=utf-8" }), "shift-roster-" + isoD(ST.start) + ".csv"); msg("CSV downloaded."); });
+  $("shIcs").addEventListener("click", function () { if (!ST.plan) return; saveBlob(new Blob([teamIcs()], { type: "text/calendar;charset=utf-8" }), "team-" + ST.plan.teams[ST.my].n.replace(/\W+/g, "") + "-shifts.ics"); msg("Calendar file downloaded."); });
+  $("shCopy").addEventListener("click", function () { if (ST.plan) copyText(nextText(), this); });
+  $("shPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("resetBtn").addEventListener("click", function () { $("shPattern").value = "pitman"; syncCustom(); setDateInput("shStart", todayDN()); $("shMonths").value = "3"; $("shNames").value = ""; ST.my = 0; ST.mi = 0; generate.moved = false; generate(); });
+  generate();
+}
+window.addEventListener("DOMContentLoaded", init);
+
+})();
+</script>
+</body>
+</html>

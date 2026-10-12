@@ -1,0 +1,640 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Time Card Calculator Online – Hours, Overtime &amp; Rounding Timesheet</title>
+<meta name="description" content="Free online time card calculator: add work hours with breaks, overnight shifts, rounding and overtime, convert minutes to decimal hours, and print a timesheet.">
+<link rel="canonical" href="https://utiliby.com/tools/date-time-tools/timecard-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Time Card Calculator Online – Hours, Overtime &amp; Rounding Timesheet">
+<meta property="og:description" content="Free online time card and hours calculator with overtime, rounding, breaks, overnight shifts, decimal conversion, pay and a printable timesheet.">
+<meta property="og:url" content="https://utiliby.com/tools/date-time-tools/timecard-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Time Card Calculator Online – Hours, Overtime &amp; Rounding Timesheet">
+<meta name="twitter:description" content="Free online time card and hours calculator with overtime, rounding, breaks, overnight shifts, decimal conversion, pay and a printable timesheet.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tc-table{border-collapse:collapse;width:100%;font-size:.84rem;min-width:640px}
+.tc-table th,.tc-table td{border:1px solid var(--line);padding:4px 5px;text-align:left;vertical-align:middle}
+.tc-table thead th{background:var(--card);font-size:.72rem;text-transform:uppercase;letter-spacing:.03em;color:var(--muted)}
+.tc-table tbody th{white-space:nowrap;font-weight:700;background:var(--card);position:sticky;left:0}
+.tc-table input{width:100%;min-width:84px;padding:6px 7px;font-size:.85rem;border:1px solid var(--line);border-radius:6px;background:var(--bg);color:var(--fg);box-sizing:border-box}
+.tc-table td.tc-bk input,.tc-table td.tc-lv input{min-width:58px}
+.tc-table .tc-we th,.tc-table .tc-we td{background:rgba(148,163,184,.12)}
+.tc-table.nosplit .tc-s2,.tc-table.nolv .tc-lv{display:none}
+.tc-tot{white-space:nowrap;font-weight:700}
+.tc-tot small{font-weight:400;color:var(--muted)}
+.tc-period{font-weight:700;text-align:center;margin:6px 0}
+.tc-nav{display:flex;align-items:center;gap:8px;justify-content:center;flex-wrap:wrap;margin:8px 0}
+.tc-nav .dt-btn{margin:0}
+.tc-lg{display:inline-block;width:12px;height:12px;border-radius:3px;margin:0 4px 0 12px;vertical-align:-1px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Time Card Calculator","url":"https://utiliby.com/tools/date-time-tools/timecard-calculator/","description":"Free online time card calculator and timesheet maker: total weekly, biweekly or monthly hours with unpaid breaks, overnight and split shifts, rounding, overtime rules, decimal hour conversion, gross pay, CSV and print export.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Weekly, biweekly, semi-monthly, monthly and custom pay periods","Overnight and split shifts with unpaid breaks","Rounding to 5, 6, 10, 15 or 30 minutes","US federal, daily, California-style and custom overtime rules","Paid leave and gross pay estimate","Weekly summary and daily hours chart","Add hours and minutes, decimal and hh:mm converter","Printable timesheet, CSV and copy","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate hours worked on a time card?","acceptedAnswer":{"@type":"Answer","text":"For each day, subtract the start time from the end time, then subtract any unpaid break. Add the days together. For example, 9:00 a.m. to 5:30 p.m. is 8 hours 30 minutes, and with a 30-minute unpaid break it is 8 hours. The calculator does this for every day and totals the period."}},{"@type":"Question","name":"How do I calculate overnight shifts?","acceptedAnswer":{"@type":"Answer","text":"Enter the end time as the clock time you finish, even if it is after midnight. If the end time is earlier than the start time, the calculator treats the shift as running into the next day. A shift from 10:00 p.m. to 6:00 a.m. is 8 hours."}},{"@type":"Question","name":"How do I convert minutes to decimal hours?","acceptedAnswer":{"@type":"Answer","text":"Divide the minutes by 60. Thirty minutes is 0.5 hours, 15 minutes is 0.25, 45 minutes is 0.75 and 20 minutes is 0.333. For hours and minutes, add the whole hours: 7 hours 45 minutes is 7.75 hours."}},{"@type":"Question","name":"How do I convert decimal hours to hours and minutes?","acceptedAnswer":{"@type":"Answer","text":"Keep the whole number as hours and multiply the decimal part by 60. For 7.75 hours, 0.75 times 60 is 45 minutes, so the answer is 7 hours 45 minutes. The converter in the third tab does it for you."}},{"@type":"Question","name":"How is weekly overtime calculated?","acceptedAnswer":{"@type":"Answer","text":"Under a weekly rule, add up all hours in the workweek. Hours beyond the threshold, commonly 40 in the United States, are overtime and are usually paid at 1.5 times the regular rate. The calculator groups days into workweeks and shows regular and overtime hours separately."}},{"@type":"Question","name":"Does overtime depend on the day or the week?","acceptedAnswer":{"@type":"Answer","text":"It can be either or both. Federal law in the United States uses a weekly rule, while some states, such as California, also apply daily rules and a seventh-day rule. Many countries use different limits. Pick the rule that matches your situation or build a custom rule."}},{"@type":"Question","name":"What is the California overtime option?","acceptedAnswer":{"@type":"Answer","text":"It applies the commonly described California pattern: more than 8 hours in a day at 1.5 times, more than 12 hours in a day at 2 times, more than 40 hours in a week at 1.5 times for hours not already counted as daily overtime, and on the seventh consecutive day of work the first 8 hours at 1.5 times and further hours at 2 times. Exemptions and special rules exist, so confirm with official guidance."}},{"@type":"Question","name":"What does rounding to the nearest quarter hour mean?","acceptedAnswer":{"@type":"Answer","text":"Times are adjusted to the closest 15-minute mark. With the 7-minute rule, 1 to 7 minutes past a quarter hour round down and 8 to 14 minutes round up. You can apply rounding to the daily total or to each clock-in and clock-out."}},{"@type":"Question","name":"Should rounding apply to each punch or the daily total?","acceptedAnswer":{"@type":"Answer","text":"Both are used. Rounding each punch is how many time clocks work. Rounding the daily total is simpler and often closer to the real time worked. Your employer's policy decides, and in some places the policy must not favour the employer over time."}},{"@type":"Question","name":"What is the difference between hours worked and hours paid?","acceptedAnswer":{"@type":"Answer","text":"Hours worked is the time on the job. Hours paid can include paid breaks, paid leave and holiday pay. This calculator counts leave hours separately, pays them at the regular rate and does not count them toward overtime thresholds."}},{"@type":"Question","name":"How do I deduct an unpaid lunch break?","acceptedAnswer":{"@type":"Answer","text":"Type the break length in minutes in the Break column for each day, or set an automatic deduction in the options, for example 30 minutes for shifts of six hours or more. The break is subtracted from the shift length."}},{"@type":"Question","name":"Can I enter split shifts?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tick Show second shift columns and enter the second start and end time. The two shifts are added together and the calculator warns you if they overlap."}},{"@type":"Question","name":"Can I calculate a biweekly or semi-monthly timesheet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Biweekly for 14 days, Semi-monthly for the 1st to 15th or 16th to the end of the month, Monthly for a calendar month, or Custom for any number of days up to 62."}},{"@type":"Question","name":"How do I work out gross pay from hours?","acceptedAnswer":{"@type":"Answer","text":"Multiply regular hours by the hourly rate, add overtime hours multiplied by the rate and the overtime multiplier, and add any double time. Enter your hourly rate and the calculator shows gross pay for the period before tax and deductions."}},{"@type":"Question","name":"What is an hours calculator for adding times?","acceptedAnswer":{"@type":"Answer","text":"It adds and subtracts durations such as 8:30, 7:45 and 1h 20m to give a total in hours and minutes, decimal hours and days. The Add hours and convert tab does this, so you can total hours from any source."}},{"@type":"Question","name":"How do I print or save my timesheet?","acceptedAnswer":{"@type":"Answer","text":"Press Print / save timesheet as PDF. Only the timesheet is printed, with the employee, period, daily times, totals and signature lines. The rest of the page is left out."}},{"@type":"Question","name":"Can I download my time card as a spreadsheet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download CSV creates a file you can open in Excel, Google Sheets or Numbers with every day's times, hours and overtime."}},{"@type":"Question","name":"Does the calculator work for hourly employees and freelancers?","acceptedAnswer":{"@type":"Answer","text":"Yes. It works for anyone who tracks time by clock times: employees, contractors, freelancers and volunteers. It is also useful for checking a payslip or an invoice."}},{"@type":"Question","name":"Does the calculator handle daylight saving time changes?","acceptedAnswer":{"@type":"Answer","text":"It works with clock times and does not adjust for the clock change. On a night when clocks move, a shift that crosses the change is an hour longer or shorter in real time, so adjust the end time or break if your employer pays the real elapsed time."}},{"@type":"Question","name":"Is my time card data stored?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is calculated in your browser. The times and pay rate you enter are not sent to a server or saved, and reloading the page clears them."}},{"@type":"Question","name":"Is this time card calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no account or limit on the number of timesheets."}},{"@type":"Question","name":"Is the result accurate enough for payroll?","acceptedAnswer":{"@type":"Answer","text":"It is accurate for the rules it applies, but payroll rules vary and have exceptions. Use it for estimates and checking, and rely on your payroll system or professional for official figures."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Date, Time & Scheduling Tools","item":"https://utiliby.com/tools/date-time-tools/"},{"@type":"ListItem","position":3,"name":"Time Card Calculator","item":"https://utiliby.com/tools/date-time-tools/timecard-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/date-time-tools/">Date, Time &amp; Scheduling Tools</a> › Time Card Calculator</nav>
+<h1 class="noembed">Free Online Time Card Calculator</h1>
+<p class="lead noembed">Free online time card calculator: enter clock-in and clock-out times to total weekly, biweekly or monthly hours with unpaid breaks, overnight shifts, rounding and overtime. Convert minutes to decimal hours, estimate pay and print a timesheet. Private, with no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/date-time-tools/timecard-calculator/" target="_blank" rel="noopener">Time Card Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Time card and hours calculator">
+<div class="dt-hero noembed">
+<h2>Free Time Card Calculator Online</h2>
+<p>Add up work hours for a week, two weeks or a month. Handles overnight shifts, unpaid breaks, rounding, overtime and pay, and prints a clean timesheet.</p>
+</div>
+<div class="dt-panel">
+<div class="dt-row3">
+<div><label for="tcName">Employee name (optional)</label><input type="text" id="tcName" maxlength="80" autocomplete="off"></div>
+<div><label for="tcKind">Pay period</label><select id="tcKind"><option value="w7">Weekly (7 days)</option><option value="w14">Biweekly (14 days)</option><option value="s">Semi-monthly (1st-15th or 16th-end)</option><option value="m">Monthly</option><option value="c">Custom number of days</option></select></div>
+<div><label for="tcStart">Start date (any date in the period for monthly types)</label><input type="date" id="tcStart"></div>
+</div>
+<div class="dt-row3">
+<div id="tcDaysBox" hidden><label for="tcDays">Number of days</label><input type="number" id="tcDays" min="1" max="62" value="7"></div>
+<div><label for="tcRate">Hourly pay rate (optional)</label><input type="number" id="tcRate" min="0" step="0.01" placeholder="0.00"></div>
+<div><label for="tcCur">Currency symbol</label><select id="tcCur"><option value="$">$ Dollar</option><option value="£">£ Pound</option><option value="€">€ Euro</option><option value="₹">₹ Rupee</option><option value="¥">¥ Yen / Yuan</option><option value="R$">R$ Real</option><option value="A$">A$ Australian dollar</option><option value="C$">C$ Canadian dollar</option></select></div>
+</div>
+<div class="tc-nav"><button type="button" class="dt-btn ghost small" id="tcPrev">&larr; Previous period</button><span class="tc-period" id="tcPeriodLbl"></span><button type="button" class="dt-btn ghost small" id="tcNext">Next period &rarr;</button></div>
+<details>
+<summary class="dt-lbl" style="cursor:pointer">Rounding, breaks and overtime rules</summary>
+<div class="dt-row4">
+<div><label for="tcRound">Round time to</label><select id="tcRound"><option value="0">No rounding</option><option value="5">5 minutes</option><option value="6">6 minutes (tenth of an hour)</option><option value="10">10 minutes</option><option value="15">15 minutes (quarter hour)</option><option value="30">30 minutes</option></select></div>
+<div><label for="tcDir">Rounding direction</label><select id="tcDir"><option value="nearest">Nearest</option><option value="up">Up</option><option value="down">Down</option></select></div>
+<div><label for="tcMode">Apply rounding to</label><select id="tcMode"><option value="total">Daily total</option><option value="punch">Each clock-in and clock-out</option></select></div>
+<div><label for="tcWkStart">Workweek starts on</label><select id="tcWkStart"><option value="auto">Same as period start</option><option value="0">Sunday</option><option value="1">Monday</option><option value="2">Tuesday</option><option value="3">Wednesday</option><option value="4">Thursday</option><option value="5">Friday</option><option value="6">Saturday</option></select></div>
+</div>
+<div class="dt-row">
+<div><label for="tcAutoB">Auto-deduct unpaid break when the break box is empty (minutes)</label><input type="number" id="tcAutoB" min="0" max="240" value="0"></div>
+<div><label for="tcAutoAfter">Only if the shift is at least (hours)</label><input type="number" id="tcAutoAfter" min="0" max="24" step="0.5" value="6"></div>
+</div>
+<label for="tcOt">Overtime rule</label>
+<select id="tcOt"><option value="fed" selected>US federal: over 40 hours a week at 1.5x</option><option value="none">No overtime</option><option value="ca">California: daily over 8 at 1.5x, over 12 at 2x, weekly over 40, 7th day rule</option><option value="d8">Daily overtime: over 8 hours a day at 1.5x</option><option value="both">Daily over 8 and weekly over 40 at 1.5x</option><option value="custom">Custom rule</option></select>
+<div id="tcCustom" hidden>
+<div class="dt-row4">
+<div><label for="tcWk">Weekly overtime after (hours, 0 = off)</label><input type="number" id="tcWk" min="0" max="168" value="40"></div>
+<div><label for="tcDy">Daily overtime after (hours, 0 = off)</label><input type="number" id="tcDy" min="0" max="24" value="0"></div>
+<div><label for="tcDt">Daily double time after (hours, 0 = off)</label><input type="number" id="tcDt" min="0" max="24" value="0"></div>
+<div><label for="tcOtM">Overtime multiplier</label><input type="number" id="tcOtM" min="1" max="5" step="0.05" value="1.5"></div>
+</div>
+<div class="dt-row"><div><label for="tcDtM">Double-time multiplier</label><input type="number" id="tcDtM" min="1" max="5" step="0.05" value="2"></div><div><label class="dt-check"><input type="checkbox" id="tcSev"> 7th consecutive day rule (first 8 hours at overtime, then double time)</label></div></div>
+</div>
+<label class="dt-check"><input type="checkbox" id="tcSplit"> Show second shift columns (split shifts)</label>
+<label class="dt-check"><input type="checkbox" id="tcLeaveOn"> Show paid leave column (holiday, vacation, sick)</label>
+</details>
+<span class="dt-lbl">Quick fill</span>
+<div class="dt-row4">
+<div><label for="tcQS">Start</label><input type="time" id="tcQS" value="09:00"></div>
+<div><label for="tcQE">End</label><input type="time" id="tcQE" value="17:30"></div>
+<div><label for="tcQB">Break (min)</label><input type="number" id="tcQB" min="0" max="600" value="30"></div>
+<div><button type="button" class="dt-btn ghost small" id="tcFill" style="margin-top:28px">Fill selected days</button></div>
+</div>
+<div class="ic-chk" style="display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:6px">
+<label class="dt-check"><input type="checkbox" id="tcQD1"> Mon</label><label class="dt-check"><input type="checkbox" id="tcQD2"> Tue</label><label class="dt-check"><input type="checkbox" id="tcQD3"> Wed</label><label class="dt-check"><input type="checkbox" id="tcQD4"> Thu</label><label class="dt-check"><input type="checkbox" id="tcQD5"> Fri</label><label class="dt-check"><input type="checkbox" id="tcQD6"> Sat</label><label class="dt-check"><input type="checkbox" id="tcQD0"> Sun</label>
+</div>
+<button type="button" class="dt-btn ghost" id="tcClear">Clear all times</button>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-card" aria-pressed="true">Time card</button>
+<button type="button" class="dt-tab" id="dtTabBtn-summary" aria-pressed="false">Weekly summary and chart</button>
+<button type="button" class="dt-tab" id="dtTabBtn-tools" aria-pressed="false">Add hours and convert</button>
+</div>
+<div class="dt-warn" id="tcWarn" role="alert" hidden></div>
+<div id="dtTab-card">
+<div class="dt-stats" id="tcTiles"></div>
+<div class="dt-scroll"><table class="tc-table" id="tcTable"><thead><tr><th scope="col">Day</th><th scope="col">Start</th><th scope="col">End</th><th scope="col" class="tc-bk">Break (min)</th><th scope="col" class="tc-s2">Start 2</th><th scope="col" class="tc-s2">End 2</th><th scope="col" class="tc-lv">Paid leave (h)</th><th scope="col">Total</th></tr></thead><tbody id="tcRows"></tbody></table></div>
+<p class="dt-hint">Leave the end time earlier than the start time for an overnight shift. Hours are counted on the day the shift starts.</p>
+</div>
+<div id="dtTab-summary" hidden><div id="tcSummary"></div></div>
+<div id="dtTab-tools" hidden>
+<div class="dt-panel">
+<h3>Add or subtract hours and minutes</h3>
+<p class="dt-hint">One value per line or separated by commas. Use 8:30, 1h 20m, 45m or 2.5 (decimal hours). Start a line with - to subtract.</p>
+<textarea id="tlAdd" class="dt-in" style="min-height:120px" spellcheck="false"></textarea>
+<div id="tlAddOut"></div>
+</div>
+<div class="dt-panel">
+<h3>Convert time</h3>
+<div class="dt-row3">
+<div><label for="tlDec">Decimal hours to hours:minutes</label><input type="number" id="tlDec" step="0.01" placeholder="7.75"><p class="dt-sum" id="tlDecOut"></p></div>
+<div><label for="tlHm">Hours:minutes to decimal hours</label><input type="text" id="tlHm" placeholder="7:45" autocomplete="off"><p class="dt-sum" id="tlHmOut"></p></div>
+<div><label for="tlMin">Minutes to hours</label><input type="number" id="tlMin" placeholder="465"><p class="dt-sum" id="tlMinOut"></p></div>
+</div>
+</div>
+<div class="dt-panel">
+<h3>Time between two clock times</h3>
+<div class="dt-row3"><div><label for="tlA">From</label><input type="time" id="tlA"></div><div><label for="tlB">To</label><input type="time" id="tlB"></div><div><label for="tlBr">Unpaid break (min)</label><input type="number" id="tlBr" min="0" value="0"></div></div>
+<p class="dt-sum" id="tlDiffOut"></p>
+</div>
+<h3 class="dt-lbl">Minutes to decimal hours chart</h3>
+<div class="dt-scroll" id="tcConv"></div>
+</div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="tcPrint">Print / save timesheet as PDF</button>
+<button type="button" class="dt-btn ghost" id="tcCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="tcCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online time card calculator gives estimates for information only. It is not payroll, legal or tax advice. Overtime, rounding, break and pay rules differ by country, state, contract and job type, so check the result against your employer's records and the rules that apply to you.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/date-time-tools/timecard-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Time Card Calculator. https://utiliby.com/tools/date-time-tools/timecard-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/date-time-tools/timecard-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Time Card Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/date-time-tools/timecard-calculator/"&gt;Time Card Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What is a time card calculator?</a></li><li><a href="#how">How to calculate hours on a time card</a></li><li><a href="#overtime">Overtime rules: weekly, daily and seventh day</a></li><li><a href="#rounding">Rounding time: 5, 6, 10, 15 and 30 minutes</a></li><li><a href="#decimal">Minutes to decimal hours: the conversion most people need</a></li><li><a href="#breaks">Breaks, overnight shifts and split shifts</a></li><li><a href="#periods">Weekly, biweekly, semi-monthly and monthly pay periods</a></li><li><a href="#pay">Turning hours into pay</a></li><li><a href="#tools">Adding hours and minutes</a></li><li><a href="#uses">Who uses a time card calculator</a></li><li><a href="#mistakes">Common time card mistakes</a></li><li><a href="#tips">Tips for accurate timesheets</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What is a time card calculator?</h2>
+<p>A time card calculator, also called a timesheet calculator or hours calculator, adds up the time a person worked across a pay period. You enter the start and end time for each day, subtract unpaid breaks and the tool gives total hours as hours and minutes and as decimal hours. A good one also applies rounding and overtime rules and turns hours into pay.</p><p>This free online time card calculator covers weekly, biweekly, semi-monthly, monthly and custom periods. It handles overnight shifts and split shifts, rounds time to 5, 6, 10, 15 or 30 minutes, applies common overtime rules, includes a paid leave column and prints a clean timesheet with signature lines. A second tab adds and subtracts durations and converts between decimal hours and hours:minutes. It runs in your browser, so the times and pay rate you enter stay on your device.</p>
+<h2 id="how">How to calculate hours on a time card</h2>
+<ol><li><b>Choose the pay period</b> and its start date. The grid lists every day.</li><li><b>Enter start and end times</b> for each day you worked, or use Quick fill to copy the same times to chosen weekdays.</li><li><b>Enter the unpaid break</b> in minutes, or set an automatic deduction.</li><li><b>Pick rounding and the overtime rule</b> in the options if your employer uses them.</li><li><b>Read the totals.</b> The tiles show total, regular and overtime hours, days worked and gross pay if you entered a rate.</li><li><b>Print, copy or download</b> the timesheet.</li></ol><p>The formula behind each day is simple: <em>hours worked = end time minus start time minus unpaid break</em>. If the end is earlier than the start, 24 hours are added first. Overtime is worked out afterwards from the daily and weekly totals.</p>
+<h2 id="overtime">Overtime rules: weekly, daily and seventh day</h2>
+<p>Overtime is pay at a higher rate for hours beyond a limit. The limit and the rate depend on where you work. The calculator supports the patterns most people ask about, and a custom rule for the rest.</p><table><tr><th>Rule</th><th>How it works</th></tr><tr><td>US federal (FLSA)</td><td>Non-exempt employees receive at least 1.5 times their regular rate for hours over 40 in a workweek.</td></tr><tr><td>Daily overtime</td><td>Hours over a daily limit, often 8, are overtime even if the week is under 40.</td></tr><tr><td>California pattern</td><td>Daily over 8 at 1.5x, daily over 12 at 2x, weekly over 40 at 1.5x for hours not already overtime, and special seventh-consecutive-day premiums.</td></tr><tr><td>Custom</td><td>Choose weekly and daily limits, the multipliers and the seventh-day option.</td></tr></table><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="A work week of five nine-hour days. The first four days are regular. On the fifth day four hours are regular and five are overtime."><title>Weekly overtime example</title>
+<g font-size="11" fill="currentColor"><text x="30" y="190" opacity=".7">Mon</text><text x="130" y="190" opacity=".7">Tue</text><text x="230" y="190" opacity=".7">Wed</text><text x="330" y="190" opacity=".7">Thu</text><text x="430" y="190" opacity=".7">Fri</text></g>
+<g><rect class="dt-pop" x="20" y="60" width="56" height="112" rx="4" fill="#0369a1"/><rect class="dt-pop" x="120" y="60" width="56" height="112" rx="4" fill="#0369a1"/><rect class="dt-pop" x="220" y="60" width="56" height="112" rx="4" fill="#0369a1"/><rect class="dt-pop" x="320" y="60" width="56" height="112" rx="4" fill="#0369a1"/>
+<rect class="dt-pop" x="420" y="122" width="56" height="50" rx="4" fill="#0369a1"/><rect class="dt-pop" x="420" y="60" width="56" height="62" rx="4" fill="#d97706"/></g>
+<g font-size="12" fill="#fff" font-weight="700" text-anchor="middle"><text x="48" y="120">9h</text><text x="148" y="120">9h</text><text x="248" y="120">9h</text><text x="348" y="120">9h</text><text x="448" y="150">4h</text><text x="448" y="96">5h</text></g>
+<line x1="12" x2="500" y1="172" y2="172" stroke="currentColor" opacity=".4"/>
+<g font-size="13" fill="currentColor"><text x="520" y="80" font-weight="700">45 hours</text><text x="520" y="102">40 regular</text><text x="520" y="122" fill="#d97706" font-weight="700">5 overtime at 1.5x</text><text x="520" y="150" opacity=".7">Overtime starts once</text><text x="520" y="166" opacity=".7">the 40th hour is passed.</text></g>
+</svg><figcaption>Under a weekly 40-hour rule, the overtime hours are the ones worked after the 40th hour of the workweek.</figcaption></figure><p>A <em>workweek</em> is a fixed, recurring period of seven days, such as Monday to Sunday, that can start on any day and hour. Overtime is counted inside each workweek, not across the pay period, so a biweekly period is split into two separate weeks. Choose the day your workweek starts in the options. Paid leave hours are paid at the regular rate and are not counted toward overtime thresholds in this calculator, which matches common practice but not every employer or country.</p>
+<h2 id="rounding">Rounding time: 5, 6, 10, 15 and 30 minutes</h2>
+<p>Many employers round clock times. A time clock might round each punch to the nearest quarter hour, or payroll might round the daily total. The common option is the nearest 15 minutes, often called the 7-minute rule: up to 7 minutes round down and 8 or more round up. Rounding to 6 minutes works with a tenth-of-an-hour system, where 6 minutes equals 0.1 hours.</p><figure class="dt-fig"><svg viewBox="0 0 640 150" width="100%" role="img" aria-label="Rounding to the nearest quarter hour: minutes 1 to 7 round down, 8 to 14 round up"><title>Quarter-hour rounding (the 7-minute rule)</title>
+<line x1="30" x2="610" y1="70" y2="70" stroke="currentColor" stroke-width="2"/>
+<g fill="currentColor" font-size="11" text-anchor="middle"><circle cx="30" cy="70" r="6"/><text x="30" y="100">9:00</text><circle cx="320" cy="70" r="6"/><text x="320" y="100">9:15</text><circle cx="610" cy="70" r="6"/><text x="610" y="100">9:30</text></g>
+<rect class="dt-bar" x="30" y="40" width="145" height="20" rx="4" fill="#0ea5e9"/><rect class="dt-bar" x="175" y="40" width="145" height="20" rx="4" fill="#d97706"/><rect class="dt-bar" x="320" y="40" width="145" height="20" rx="4" fill="#0ea5e9"/><rect class="dt-bar" x="465" y="40" width="145" height="20" rx="4" fill="#d97706"/>
+<g font-size="11" fill="currentColor" text-anchor="middle"><text x="102" y="30">rounds down to 9:00</text><text x="248" y="30">rounds up to 9:15</text><text x="392" y="30">down to 9:15</text><text x="538" y="30">up to 9:30</text><text x="102" y="126" opacity=".7">9:01 to 9:07</text><text x="248" y="126" opacity=".7">9:08 to 9:14</text></g>
+</svg><figcaption>With quarter-hour rounding to the nearest, 7 minutes or fewer round down and 8 minutes or more round up.</figcaption></figure><p>Rounding is lawful in many places only if it is neutral over time, meaning it does not consistently cheat the worker of paid time. Policies that always round down, or rounding that is applied only when it benefits the employer, can create wage claims. Use the direction option to compare the effect of nearest, up and down on the same week, and compare the daily and per-punch methods. The difference is usually a few minutes a day.</p>
+<h2 id="decimal">Minutes to decimal hours: the conversion most people need</h2>
+<p>Payroll systems often store time as decimal hours, so 7 hours 45 minutes becomes 7.75. To convert, divide minutes by 60. The table below lists common values, and the tool in the third tab converts any number both ways.</p><table><tr><th>Minutes</th><th>Decimal hours</th><th>Minutes</th><th>Decimal hours</th></tr><tr><td>5</td><td>0.083</td><td>35</td><td>0.583</td></tr><tr><td>10</td><td>0.167</td><td>40</td><td>0.667</td></tr><tr><td>15</td><td>0.25</td><td>45</td><td>0.75</td></tr><tr><td>20</td><td>0.333</td><td>50</td><td>0.833</td></tr><tr><td>25</td><td>0.417</td><td>55</td><td>0.917</td></tr><tr><td>30</td><td>0.5</td><td>60</td><td>1.0</td></tr></table><p>A common mistake is to type 7.45 for 7 hours 45 minutes. That is 7 hours 27 minutes. Always convert minutes to a fraction of an hour before you multiply by a pay rate.</p>
+<h2 id="breaks">Breaks, overnight shifts and split shifts</h2>
+<p><b>Unpaid breaks.</b> A meal break is usually unpaid when the worker is fully relieved of duty. Enter it in minutes per day or let the tool deduct a standard break from shifts above a length. Short rest breaks are often paid, so do not deduct them unless your employer does.</p><p><b>Overnight shifts.</b> Enter the real start and end times. A night shift from 10:00 p.m. to 6:00 a.m. is 8 hours, and the hours are counted on the day the shift starts, which is how most employers assign them for weekly overtime. Some jurisdictions assign hours differently, so check local rules.</p><p><b>Split shifts.</b> Some days have two work periods with a long gap. Turn on the second shift columns and enter both. The unpaid gap between them is not counted unless you enter it as part of a shift. Some places require extra pay for split shifts, which this tool does not add.</p>
+<h2 id="periods">Weekly, biweekly, semi-monthly and monthly pay periods</h2>
+<p>A weekly period has 7 days, and a biweekly period has 14 and gives 26 pay days a year. A semi-monthly period runs from the 1st to the 15th and the 16th to the end of the month, giving 24 pay days. A monthly period is a calendar month. The calculator builds the right number of rows for each type, and the Previous and Next buttons move through periods while keeping your entries.</p><p>Because semi-monthly and monthly periods do not match seven-day weeks, the weekly summary tab groups days into workweeks that may straddle two periods. Where a workweek starts before the period begins, the calculator counts only the hours you entered, and it tells you so.</p>
+<h2 id="pay">Turning hours into pay</h2>
+<p>Enter an hourly rate and a currency symbol to see gross pay. Regular and leave hours are paid at the rate. Overtime hours are paid at the rate times the overtime multiplier, usually 1.5. Double-time hours are paid at the double-time multiplier, usually 2. The weekly summary shows the pay for each workweek and the period total.</p><p>Gross pay is before tax, social insurance, pension and other deductions, and it does not include tips, commission, shift differentials, bonuses or other premiums that may count toward the regular rate for overtime. For official pay, use payroll software or a payroll professional.</p>
+<h2 id="tools">Adding hours and minutes</h2>
+<p>Sometimes you only need to add a list of durations: the hours from several jobs, a week of project time or the length of several recordings. The adder reads values like 8:30, 1h 20m, 45m and 2.5, handles minus signs for subtraction and returns the total as hours:minutes, decimal hours and days. The time-between tool finds the duration between two clock times, including past midnight, with an optional break.</p>
+<h2 id="uses">Who uses a time card calculator</h2>
+<ul><li><b>Employees</b> checking that their payslip matches the hours they worked.</li><li><b>Small business owners and managers</b> preparing timesheets for a team without software.</li><li><b>Freelancers and contractors</b> turning hours into an invoice.</li><li><b>Shift workers</b> tracking nights, weekends and overtime.</li><li><b>Students and part-time workers</b> keeping a record for a stipend or a work-hours limit.</li><li><b>Bookkeepers and payroll clerks</b> for quick checks and conversions.</li></ul>
+<h2 id="mistakes">Common time card mistakes</h2>
+<ul><li><b>Using decimal minutes.</b> 7.45 is not 7 hours 45 minutes.</li><li><b>Forgetting the break.</b> A 30-minute lunch adds half an hour of pay by mistake.</li><li><b>Mixing AM and PM.</b> Use 24-hour times if in doubt.</li><li><b>Counting overtime over the pay period.</b> Overtime is counted per workweek.</li><li><b>Rounding in one direction.</b> Always rounding down can be unlawful.</li><li><b>Treating overnight hours as the next day by habit.</b> Check how your employer assigns them.</li><li><b>Forgetting unpaid leave.</b> Only paid leave belongs in the paid leave column.</li></ul>
+<h2 id="tips">Tips for accurate timesheets</h2>
+<ul><li>Record start and end times at the time, not at the end of the week.</li><li>Keep a copy of the signed timesheet until the pay is confirmed.</li><li>Compare the printed timesheet with the payslip each pay period.</li><li>Ask for the written overtime and rounding policy.</li><li>Keep the same workweek definition from period to period.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs entirely in your browser. The times, name and pay rate you enter are not sent to a server and are not stored on your device. Reloading the page clears everything. Files you download are created locally on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate hours worked on a time card?</summary><p>For each day, subtract the start time from the end time, then subtract any unpaid break. Add the days together. For example, 9:00 a.m. to 5:30 p.m. is 8 hours 30 minutes, and with a 30-minute unpaid break it is 8 hours. The calculator does this for every day and totals the period.</p></details><details><summary>How do I calculate overnight shifts?</summary><p>Enter the end time as the clock time you finish, even if it is after midnight. If the end time is earlier than the start time, the calculator treats the shift as running into the next day. A shift from 10:00 p.m. to 6:00 a.m. is 8 hours.</p></details><details><summary>How do I convert minutes to decimal hours?</summary><p>Divide the minutes by 60. Thirty minutes is 0.5 hours, 15 minutes is 0.25, 45 minutes is 0.75 and 20 minutes is 0.333. For hours and minutes, add the whole hours: 7 hours 45 minutes is 7.75 hours.</p></details><details><summary>How do I convert decimal hours to hours and minutes?</summary><p>Keep the whole number as hours and multiply the decimal part by 60. For 7.75 hours, 0.75 times 60 is 45 minutes, so the answer is 7 hours 45 minutes. The converter in the third tab does it for you.</p></details><details><summary>How is weekly overtime calculated?</summary><p>Under a weekly rule, add up all hours in the workweek. Hours beyond the threshold, commonly 40 in the United States, are overtime and are usually paid at 1.5 times the regular rate. The calculator groups days into workweeks and shows regular and overtime hours separately.</p></details><details><summary>Does overtime depend on the day or the week?</summary><p>It can be either or both. Federal law in the United States uses a weekly rule, while some states, such as California, also apply daily rules and a seventh-day rule. Many countries use different limits. Pick the rule that matches your situation or build a custom rule.</p></details><details><summary>What is the California overtime option?</summary><p>It applies the commonly described California pattern: more than 8 hours in a day at 1.5 times, more than 12 hours in a day at 2 times, more than 40 hours in a week at 1.5 times for hours not already counted as daily overtime, and on the seventh consecutive day of work the first 8 hours at 1.5 times and further hours at 2 times. Exemptions and special rules exist, so confirm with official guidance.</p></details><details><summary>What does rounding to the nearest quarter hour mean?</summary><p>Times are adjusted to the closest 15-minute mark. With the 7-minute rule, 1 to 7 minutes past a quarter hour round down and 8 to 14 minutes round up. You can apply rounding to the daily total or to each clock-in and clock-out.</p></details><details><summary>Should rounding apply to each punch or the daily total?</summary><p>Both are used. Rounding each punch is how many time clocks work. Rounding the daily total is simpler and often closer to the real time worked. Your employer's policy decides, and in some places the policy must not favour the employer over time.</p></details><details><summary>What is the difference between hours worked and hours paid?</summary><p>Hours worked is the time on the job. Hours paid can include paid breaks, paid leave and holiday pay. This calculator counts leave hours separately, pays them at the regular rate and does not count them toward overtime thresholds.</p></details><details><summary>How do I deduct an unpaid lunch break?</summary><p>Type the break length in minutes in the Break column for each day, or set an automatic deduction in the options, for example 30 minutes for shifts of six hours or more. The break is subtracted from the shift length.</p></details><details><summary>Can I enter split shifts?</summary><p>Yes. Tick Show second shift columns and enter the second start and end time. The two shifts are added together and the calculator warns you if they overlap.</p></details><details><summary>Can I calculate a biweekly or semi-monthly timesheet?</summary><p>Yes. Choose Biweekly for 14 days, Semi-monthly for the 1st to 15th or 16th to the end of the month, Monthly for a calendar month, or Custom for any number of days up to 62.</p></details><details><summary>How do I work out gross pay from hours?</summary><p>Multiply regular hours by the hourly rate, add overtime hours multiplied by the rate and the overtime multiplier, and add any double time. Enter your hourly rate and the calculator shows gross pay for the period before tax and deductions.</p></details><details><summary>What is an hours calculator for adding times?</summary><p>It adds and subtracts durations such as 8:30, 7:45 and 1h 20m to give a total in hours and minutes, decimal hours and days. The Add hours and convert tab does this, so you can total hours from any source.</p></details><details><summary>How do I print or save my timesheet?</summary><p>Press Print / save timesheet as PDF. Only the timesheet is printed, with the employee, period, daily times, totals and signature lines. The rest of the page is left out.</p></details><details><summary>Can I download my time card as a spreadsheet?</summary><p>Yes. Download CSV creates a file you can open in Excel, Google Sheets or Numbers with every day's times, hours and overtime.</p></details><details><summary>Does the calculator work for hourly employees and freelancers?</summary><p>Yes. It works for anyone who tracks time by clock times: employees, contractors, freelancers and volunteers. It is also useful for checking a payslip or an invoice.</p></details><details><summary>Does the calculator handle daylight saving time changes?</summary><p>It works with clock times and does not adjust for the clock change. On a night when clocks move, a shift that crosses the change is an hour longer or shorter in real time, so adjust the end time or break if your employer pays the real elapsed time.</p></details><details><summary>Is my time card data stored?</summary><p>No. Everything is calculated in your browser. The times and pay rate you enter are not sent to a server or saved, and reloading the page clears them.</p></details><details><summary>Is this time card calculator free?</summary><p>Yes. It is free to use online with no account or limit on the number of timesheets.</p></details><details><summary>Is the result accurate enough for payroll?</summary><p>It is accurate for the rules it applies, but payroll rules vary and have exceptions. Use it for estimates and checking, and rely on your payroll system or professional for official figures.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>U.S. Department of Labor, Wage and Hour Division: Fair Labor Standards Act overtime pay requirements and the definition of a workweek.</li><li>U.S. Department of Labor, Fact Sheet 53: The Fair Labor Standards Act and rounding of employee work hours (29 CFR 785.48).</li><li>California Department of Industrial Relations, Division of Labor Standards Enforcement: overtime and double time rules and the seventh consecutive day of work.</li><li>UK Government (GOV.UK): working time rules, rest breaks and the Working Time Regulations 1998.</li><li>European Union, Working Time Directive 2003/88/EC.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online time card and hours calculator is a general-purpose estimating tool. It does not provide payroll, legal, tax or accounting advice, and it is not a substitute for your employer's timekeeping system or your payroll provider. Overtime thresholds, rounding practices, meal and rest break rules, rest-day premiums, pay periods and what counts as working time are set by law and by contracts that differ between countries, states, industries and job types, and they change. Rounding rules can be unlawful where they consistently favour the employer. Results depend on the times and settings you enter, and gross pay shown is before tax and deductions. Always check the figures against official pay records and the rules that apply to you, and consult a qualified professional or the labour authority in your area for decisions about pay.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- time card engine ---------- */
+var OT_PRE = {
+  none: { n: "No overtime", wk: 0, dy: 0, dt: 0, seventh: false },
+  fed: { n: "US federal: over 40 hours a week at 1.5x", wk: 40, dy: 0, dt: 0, seventh: false },
+  ca: { n: "California: daily over 8 at 1.5x, over 12 at 2x, weekly over 40, 7th day rule", wk: 40, dy: 8, dt: 12, seventh: true },
+  d8: { n: "Daily overtime: over 8 hours a day at 1.5x", wk: 0, dy: 8, dt: 0, seventh: false },
+  both: { n: "Daily over 8 and weekly over 40 at 1.5x", wk: 40, dy: 8, dt: 0, seventh: false },
+  custom: { n: "Custom rule", wk: 40, dy: 0, dt: 0, seventh: false }
+};
+function parseHM(s) { var m = /^(\d{1,2}):(\d{2})/.exec(s || ""); if (!m) return null; var h = +m[1], n = +m[2]; if (h > 23 || n > 59) return null; return h * 60 + n; }
+function roundMin(m, step, dir) {
+  if (!step || step <= 1) return m;
+  var q = m / step; return Math.round((dir === "up" ? Math.ceil(q - 1e-9) : dir === "down" ? Math.floor(q + 1e-9) : Math.floor(q + 0.5 + 1e-9)) * step);
+}
+function hm(m) { var neg = m < 0; m = Math.abs(Math.round(m)); return (neg ? "-" : "") + Math.floor(m / 60) + ":" + p2(m % 60); }
+function dec(m, d) { return (Math.round(m / 60 * Math.pow(10, d == null ? 2 : d)) / Math.pow(10, d == null ? 2 : d)).toFixed(d == null ? 2 : d); }
+function dayCalc(r, o) {
+  /* r: {s,e,b,s2,e2,l}; o: {step,dir,mode('total'|'punch'),autoB,autoAfter} -> {work,gross,brk,flags[],blank} */
+  var flags = [], gross = 0, any = false, shifts = [];
+  [[r.s, r.e], [r.s2, r.e2]].forEach(function (p, i) {
+    var a = parseHM(p[0]), b = parseHM(p[1]);
+    if (a == null && b == null) return; any = true;
+    if (a == null || b == null) { flags.push("Shift " + (i + 1) + " needs both a start and an end time."); return; }
+    if (o.mode === "punch") { a = roundMin(a, o.step, o.dir); b = roundMin(b, o.step, o.dir); }
+    var d = b - a; if (d <= 0) d += 1440; if (d > 960) flags.push("Shift " + (i + 1) + " is longer than 16 hours. Check the times.");
+    shifts.push([a, a + d]); gross += d;
+  });
+  if (shifts.length === 2) { var A = shifts[0], B = shifts[1]; if (A[0] < B[1] && B[0] < A[1]) flags.push("The two shifts overlap."); }
+  var brk = r.b === "" || r.b == null || isNaN(+r.b) ? null : Math.max(0, +r.b);
+  if (brk == null) brk = (o.autoB > 0 && gross >= o.autoAfter * 60) ? o.autoB : 0;
+  var net = Math.max(0, gross - brk);
+  if (brk > gross && gross > 0) flags.push("The break is longer than the time worked.");
+  if (o.mode === "total") net = roundMin(net, o.step, o.dir);
+  if (net > 1440) flags.push("More than 24 hours in a day. Check the times.");
+  return { work: net, gross: gross, brk: brk, flags: flags, blank: !any };
+}
+function allocate(days, rule) {
+  /* days: [{dn, work, leave}] in date order. Workweek groups handled by caller via wkStart. returns array of {reg,ot,dt}. */
+  var cumReg = 0, out = [], wkAnchor = rule.wkStart;
+  var curWeek = null, daysWorked = 0, idxInWeek = 0, k;
+  days.forEach(function (d, i) {
+    var wk = Math.floor((d.dn - wkAnchor) / 7);
+    if (wk !== curWeek) { curWeek = wk; cumReg = 0; daysWorked = 0; }
+    idxInWeek = ((d.dn - wkAnchor) % 7 + 7) % 7;
+    var h = d.work, reg = h, ot = 0, dt = 0;
+    var seventh = rule.seventh && idxInWeek === 6 && daysWorked === 6 && h > 0;
+    if (h > 0) daysWorked++;
+    if (seventh) { reg = 0; ot = Math.min(h, 480); dt = Math.max(0, h - 480); }
+    else {
+      if (rule.dt > 0 && h > rule.dt * 60) { dt = h - rule.dt * 60; reg = h - dt; }
+      if (rule.dy > 0 && reg > rule.dy * 60) { ot = reg - rule.dy * 60; reg = rule.dy * 60; }
+      if (rule.wk > 0) { var allowed = Math.max(0, rule.wk * 60 - cumReg), toOt = Math.max(0, reg - allowed); reg -= toOt; ot += toOt; cumReg += reg; }
+    }
+    out.push({ reg: reg, ot: ot, dt: dt });
+  });
+  return out;
+}
+function periodOf(kind, dn, custom) {
+  var o = ymd(dn);
+  if (kind === "w7") return [dn, dn + 6];
+  if (kind === "w14") return [dn, dn + 13];
+  if (kind === "s") return o.d <= 15 ? [dnum(o.y, o.m, 1), dnum(o.y, o.m, 15)] : [dnum(o.y, o.m, 16), dnum(o.y, o.m, dim(o.y, o.m))];
+  if (kind === "m") return [dnum(o.y, o.m, 1), dnum(o.y, o.m, dim(o.y, o.m))];
+  return [dn, dn + Math.max(1, Math.min(62, custom || 7)) - 1];
+}
+function nextPeriod(kind, a, b, dir) {
+  if (kind === "s") { var o = ymd(a); if (dir > 0) return o.d === 1 ? dnum(o.y, o.m, 16) : addMonths(dnum(o.y, o.m, 1), 1); if (o.d === 16) return dnum(o.y, o.m, 1); return o.m === 1 ? dnum(o.y - 1, 12, 16) : dnum(o.y, o.m - 1, 16); }
+  if (kind === "m") return addMonths(a, dir);
+  return a + dir * (b - a + 1);
+}
+/* duration parsing for the adder */
+function parseDur(tok) {
+  tok = tok.trim().toLowerCase(); if (!tok) return null;
+  var sign = 1; if (tok[0] === "-") { sign = -1; tok = tok.slice(1).trim(); } else if (tok[0] === "+") tok = tok.slice(1).trim();
+  var m;
+  if ((m = /^(\d+):(\d{1,2})(?::(\d{1,2}))?$/.exec(tok))) return sign * (+m[1] * 60 + +m[2] + (m[3] ? +m[3] / 60 : 0));
+  if ((m = /^(?:(\d+(?:\.\d+)?)\s*(?:h|hr|hrs|hours?))?\s*(?:(\d+(?:\.\d+)?)\s*(?:m|min|mins|minutes?))?$/.exec(tok)) && (m[1] || m[2])) return sign * ((m[1] ? +m[1] * 60 : 0) + (m[2] ? +m[2] : 0));
+  if ((m = /^(\d+(?:\.\d+)?)$/.exec(tok))) return sign * +m[1] * 60;
+  return NaN;
+}
+
+/* ---------- time card UI ---------- */
+var ST = { a: 0, b: 0, days: [], store: {}, res: null };
+var Q = ["tcS", "tcE", "tcB", "tcS2", "tcE2", "tcL"];
+function cur() { return $("tcCur").value.slice(0, 3); }
+function money(v) { return cur() + v.toLocaleString(undefined, { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function opts() { return { step: +$("tcRound").value, dir: $("tcDir").value, mode: $("tcMode").value, autoB: numIn("tcAutoB", 0, 240, 0), autoAfter: numIn("tcAutoAfter", 0, 24, 6) }; }
+function rule() {
+  var k = $("tcOt").value, p = OT_PRE[k], r;
+  if (k === "custom") r = { wk: numIn("tcWk", 0, 168, 40), dy: numIn("tcDy", 0, 24, 0), dt: numIn("tcDt", 0, 24, 0), seventh: $("tcSev").checked };
+  else r = { wk: p.wk, dy: p.dy, dt: p.dt, seventh: p.seventh };
+  r.otM = k === "custom" ? numIn("tcOtM", 1, 5, 1.5) : 1.5; r.dtM = k === "custom" ? numIn("tcDtM", 1, 5, 2) : 2;
+  var ws = $("tcWkStart").value; var wsd = ws === "auto" ? (ST.kindAuto ? dow(ST.a) : 1) : +ws;
+  r.wkStart = ST.a - ((dow(ST.a) - wsd + 7) % 7) - 0; r.wsd = wsd; return r;
+}
+function period() {
+  var kind = $("tcKind").value, dn = parseD($("tcStart").value); if (dn == null) dn = todayDN();
+  var p = periodOf(kind, dn, intIn("tcDays", 1, 62, 7)); ST.a = p[0]; ST.b = p[1]; ST.kind = kind; ST.kindAuto = kind === "w7" || kind === "w14" || kind === "c"; ST.days = []; for (var d = p[0]; d <= p[1]; d++) ST.days.push(d);
+  $("tcDaysBox").hidden = kind !== "c";
+}
+function keep() { ST.days.forEach(function (dn, i) { if (!$("tcS" + i)) return; var o = {}; Q.forEach(function (q) { o[q] = $(q + i).value; }); ST.store[dn] = o; }); }
+function buildRows() {
+  var h = "";
+  ST.days.forEach(function (dn, i) {
+    var v = ST.store[dn] || {}, we = dow(dn) === 0 || dow(dn) === 6;
+    function inp(q, type, extra) { return '<input type="' + type + '" id="' + q + i + '" value="' + esc(v[q] || "") + '" aria-label="' + ({ tcS: "Start", tcE: "End", tcB: "Unpaid break minutes", tcS2: "Second start", tcE2: "Second end", tcL: "Paid leave hours" }[q]) + " " + fmtDW(dn) + '"' + (extra || "") + ">"; }
+    h += '<tr' + (we ? ' class="tc-we"' : "") + '><th scope="row">' + DAYS[dow(dn)] + " " + ymd(dn).d + " " + MON[ymd(dn).m - 1] + "</th><td>" + inp("tcS", "time") + "</td><td>" + inp("tcE", "time") + '</td><td class="tc-bk">' + inp("tcB", "number", ' min="0" max="600" step="5" placeholder="0"') + '</td><td class="tc-s2">' + inp("tcS2", "time") + '</td><td class="tc-s2">' + inp("tcE2", "time") + '</td><td class="tc-lv">' + inp("tcL", "number", ' min="0" max="24" step="0.5" placeholder="0"') + '</td><td class="tc-tot" id="tcT' + i + '"></td></tr>';
+  });
+  $("tcRows").innerHTML = h;
+  $("tcRows").querySelectorAll("input").forEach(function (x) { x.addEventListener("input", recompute); });
+  $("tcTable").className = "tc-table" + ($("tcSplit").checked ? "" : " nosplit") + ($("tcLeaveOn").checked ? "" : " nolv");
+}
+function periodLabel() { return fmtDW(ST.a) + " to " + fmtDW(ST.b); }
+function recompute() {
+  keep(); var o = opts(), r = rule(), rate = numIn("tcRate", 0, 100000, 0), cal = [], warn = [];
+  ST.days.forEach(function (dn, i) {
+    var v = ST.store[dn] || {}, c = dayCalc({ s: v.tcS, e: v.tcE, b: v.tcB, s2: v.tcS2, e2: v.tcE2 }, o), lv = Math.round(Math.max(0, parseFloat(v.tcL) || 0) * 60);
+    c.leave = lv; c.dn = dn; cal.push(c); c.flags.forEach(function (f) { warn.push(fmtDW(dn) + ": " + f); });
+  });
+  var al = allocate(cal.map(function (c) { return { dn: c.dn, work: c.work }; }), r), T = { reg: 0, ot: 0, dt: 0, lv: 0, days: 0 };
+  ST.rows = [];
+  cal.forEach(function (c, i) {
+    var a = al[i]; T.reg += a.reg; T.ot += a.ot; T.dt += a.dt; T.lv += c.leave; if (c.work > 0) T.days++;
+    var tot = $("tcT" + i), txt = c.work > 0 || c.leave > 0 ? hm(c.work + c.leave) + " <small>(" + dec(c.work + c.leave, 2) + ")</small>" : "";
+    if (a.ot > 0) txt += ' <span class="dt-chip" style="background:#d97706">OT ' + hm(a.ot) + "</span>"; if (a.dt > 0) txt += ' <span class="dt-chip" style="background:#dc2626">DT ' + hm(a.dt) + "</span>";
+    tot.innerHTML = txt; ST.rows.push({ dn: c.dn, work: c.work, reg: a.reg, ot: a.ot, dt: a.dt, leave: c.leave, brk: c.brk });
+  });
+  var worked = T.reg + T.ot + T.dt, pay = (T.reg + T.lv) / 60 * rate + T.ot / 60 * rate * r.otM + T.dt / 60 * rate * r.dtM;
+  ST.T = T; ST.pay = pay; ST.rate = rate; ST.r = r; ST.worked = worked;
+  var tiles = [["Total hours worked", hm(worked), dec(worked) + " decimal hours"], ["Regular hours", hm(T.reg), dec(T.reg) + " h"], ["Overtime (" + r.otM + "x)", hm(T.ot), dec(T.ot) + " h"]];
+  if (T.dt > 0 || r.dt > 0 || r.seventh) tiles.push(["Double time (" + r.dtM + "x)", hm(T.dt), dec(T.dt) + " h"]);
+  if (T.lv > 0) tiles.push(["Paid leave", hm(T.lv), dec(T.lv) + " h"]);
+  tiles.push(["Days worked", String(T.days), T.days ? "avg " + hm(worked / T.days) + " per day" : "none"]);
+  if (rate > 0) tiles.push(["Gross pay", money(pay), "before tax and deductions"]);
+  $("tcTiles").innerHTML = tiles.map(function (t) { return '<div class="dt-stat"><div class="lbl">' + t[0] + '</div><div class="val">' + t[1] + '</div><div class="sub">' + t[2] + "</div></div>"; }).join("");
+  var tip = []; if (worked > 0 && r.wk > 0 && worked < r.wk * 60 && $("tcOt").value === "fed") tip.push("Below " + r.wk + " hours, so no weekly overtime applies."); 
+  if ((ST.kind === "w7" || ST.kind === "w14" || ST.kind === "c") && dow(ST.a) !== r.wsd) tip.push("Your pay period does not start on the workweek start day, so overtime for the first partial week counts only the hours entered here.");
+  $("tcWarn").hidden = !warn.length && !tip.length; $("tcWarn").innerHTML = "<ul>" + warn.concat(tip).slice(0, 8).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>";
+  $("tcPeriodLbl").textContent = periodLabel() + " (" + plural(ST.days.length, "day") + ")";
+  renderSummary();
+}
+function weekGroups() {
+  var g = [], r = ST.r, last = null;
+  ST.rows.forEach(function (x) { var wk = Math.floor((x.dn - r.wkStart) / 7); if (!last || last.wk !== wk) { last = { wk: wk, a: x.dn, b: x.dn, reg: 0, ot: 0, dt: 0, lv: 0 }; g.push(last); } last.b = x.dn; last.reg += x.reg; last.ot += x.ot; last.dt += x.dt; last.lv += x.leave; });
+  return g;
+}
+function chartSvg() {
+  var rows = ST.rows, n = rows.length, W = Math.max(560, 40 + n * 34), H = 230, bw = Math.min(26, Math.floor((W - 60) / n) - 6), mx = 600;
+  rows.forEach(function (x) { mx = Math.max(mx, x.reg + x.ot + x.dt + x.leave); }); mx = Math.ceil(mx / 120) * 120;
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:' + Math.min(W, 560) + 'px" role="img" aria-label="Daily hours chart"><title>Hours per day: regular, overtime, double time and leave</title>';
+  for (var g = 0; g <= mx; g += 120) { var y = 180 - g / mx * 150; s += '<line x1="34" x2="' + (W - 6) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="28" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + g / 60 + "h</text>"; }
+  rows.forEach(function (x, i) {
+    var cx = 40 + i * ((W - 50) / n) + ((W - 50) / n - bw) / 2, y0 = 180;
+    [[x.reg, "#0369a1"], [x.ot, "#d97706"], [x.dt, "#dc2626"], [x.leave, "#94a3b8"]].forEach(function (p) { if (p[0] > 0) { var h = p[0] / mx * 150; y0 -= h; s += '<rect class="dt-pop" x="' + cx.toFixed(1) + '" y="' + y0.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="3" fill="' + p[1] + '"/>'; } });
+    s += '<text x="' + (cx + bw / 2).toFixed(1) + '" y="196" text-anchor="middle" font-size="10" fill="currentColor" opacity=".75">' + DAYS[dow(x.dn)].slice(0, 2) + '</text><text x="' + (cx + bw / 2).toFixed(1) + '" y="208" text-anchor="middle" font-size="9" fill="currentColor" opacity=".55">' + ymd(x.dn).d + "</text>";
+  });
+  return s + "</svg>";
+}
+function renderSummary() {
+  var wg = weekGroups(), rate = ST.rate, r = ST.r;
+  var h = '<div class="dt-scroll"><table class="dt-table"><tr><th>Workweek</th><th>Regular</th><th>Overtime</th><th>Double time</th><th>Leave</th><th>Total</th>' + (rate > 0 ? "<th>Gross pay</th>" : "") + "</tr>";
+  wg.forEach(function (w) { var tot = w.reg + w.ot + w.dt + w.lv; h += "<tr><td>" + fmtD(w.a) + " to " + fmtD(w.b) + "</td><td>" + hm(w.reg) + "</td><td>" + hm(w.ot) + "</td><td>" + hm(w.dt) + "</td><td>" + hm(w.lv) + "</td><td>" + hm(tot) + " (" + dec(tot) + ")</td>" + (rate > 0 ? "<td>" + money((w.reg + w.lv) / 60 * rate + w.ot / 60 * rate * r.otM + w.dt / 60 * rate * r.dtM) + "</td>" : "") + "</tr>"; });
+  var T = ST.T; h += '<tr style="font-weight:700"><td>Period total</td><td>' + hm(T.reg) + "</td><td>" + hm(T.ot) + "</td><td>" + hm(T.dt) + "</td><td>" + hm(T.lv) + "</td><td>" + hm(ST.worked + T.lv) + " (" + dec(ST.worked + T.lv) + ")</td>" + (rate > 0 ? "<td>" + money(ST.pay) + "</td>" : "") + "</tr></table></div>";
+  h += '<div class="dt-diagram">' + chartSvg() + '</div><p class="dt-hint"><span class="tc-lg" style="background:#0369a1"></span> Regular <span class="tc-lg" style="background:#d97706"></span> Overtime <span class="tc-lg" style="background:#dc2626"></span> Double time <span class="tc-lg" style="background:#94a3b8"></span> Paid leave</p>';
+  if (rate > 0) h += '<p class="dt-sum">Pay = regular and leave hours at ' + money(rate) + " + overtime at " + r.otM + "x + double time at " + r.dtM + "x. This is gross pay before tax, benefits and other deductions.</p>";
+  $("tcSummary").innerHTML = h;
+}
+function csvRows() {
+  var rows = [["Date", "Weekday", "Start", "End", "Break (min)", "Start 2", "End 2", "Paid leave (h)", "Worked (h:mm)", "Worked (decimal)", "Regular (h)", "Overtime (h)", "Double time (h)"]];
+  ST.days.forEach(function (dn, i) { var v = ST.store[dn] || {}, x = ST.rows[i]; rows.push([isoD(dn), DAYSFULL[dow(dn)], v.tcS || "", v.tcE || "", v.tcB || "", v.tcS2 || "", v.tcE2 || "", v.tcL || "", hm(x.work), dec(x.work), dec(x.reg), dec(x.ot), dec(x.dt)]); });
+  rows.push(["Total", "", "", "", "", "", "", dec(ST.T.lv), hm(ST.worked), dec(ST.worked), dec(ST.T.reg), dec(ST.T.ot), dec(ST.T.dt)]);
+  if (ST.rate > 0) rows.push(["Gross pay", ST.pay.toFixed(2)]);
+  return rows;
+}
+function summaryText() {
+  var nm = $("tcName").value.trim(), T = ST.T, s = "Time card" + (nm ? " for " + nm : "") + "\n" + periodLabel() + "\n\n";
+  ST.days.forEach(function (dn, i) { var x = ST.rows[i]; if (x.work > 0 || x.leave > 0) s += fmtDW(dn) + ": " + hm(x.work + x.leave) + " (" + dec(x.work + x.leave) + " h)" + (x.ot ? ", overtime " + hm(x.ot) : "") + (x.dt ? ", double time " + hm(x.dt) : "") + "\n"; });
+  s += "\nTotal worked: " + hm(ST.worked) + " (" + dec(ST.worked) + " h)\nRegular: " + hm(T.reg) + "  Overtime: " + hm(T.ot) + "  Double time: " + hm(T.dt) + (T.lv ? "  Leave: " + hm(T.lv) : "") + "\n";
+  if (ST.rate > 0) s += "Gross pay at " + money(ST.rate) + " per hour: " + money(ST.pay) + "\n";
+  return s + "\nCalculated with the free online Time Card Calculator at utiliby.com";
+}
+function fillReport() {
+  var b = repBox(); repHead(b, "Time card", "Free online Time Card Calculator"); var nm = $("tcName").value.trim();
+  repTbl(b, ["Field", "Value"], [["Employee", nm || "-"], ["Pay period", periodLabel()], ["Rounding", +$("tcRound").value ? "Nearest/up/down to " + $("tcRound").value + " min (" + $("tcDir").value + ", " + ($("tcMode").value === "total" ? "daily total" : "each punch") + ")" : "None"], ["Overtime rule", OT_PRE[$("tcOt").value].n]]);
+  var rows = ST.days.map(function (dn, i) { var v = ST.store[dn] || {}, x = ST.rows[i]; return [fmtDW(dn), (v.tcS || "") + (v.tcE ? " - " + v.tcE : ""), (v.tcS2 ? v.tcS2 + " - " + (v.tcE2 || "") : ""), v.tcB || "", x.work || x.leave ? hm(x.work + x.leave) + " (" + dec(x.work + x.leave) + ")" : "", x.reg ? hm(x.reg) : "", x.ot ? hm(x.ot) : "", x.dt ? hm(x.dt) : ""]; });
+  rows.push(["Total", "", "", "", hm(ST.worked + ST.T.lv) + " (" + dec(ST.worked + ST.T.lv) + ")", hm(ST.T.reg), hm(ST.T.ot), hm(ST.T.dt)]);
+  repTbl(b, ["Date", "Shift 1", "Shift 2", "Break (min)", "Total h:mm (decimal)", "Regular", "Overtime", "Double"], rows);
+  if (ST.rate > 0) repAdd(b, "p", "Gross pay at " + money(ST.rate) + " per hour: " + money(ST.pay) + " (before tax and deductions)");
+  repAdd(b, "p", "Employee signature: ______________________________   Date: ______________"); repAdd(b, "p", "Supervisor signature: ____________________________   Date: ______________");
+  repDisc(b, "Estimates only. Check overtime, rounding and pay rules against your local law, contract and payroll system.");
+}
+/* ---------- tools tab ---------- */
+function tools() {
+  var lines = $("tlAdd").value.split(/\r?\n/), tot = 0, bad = [], n = 0;
+  lines.forEach(function (l, i) { if (!l.trim()) return; var parts = l.split(/[,;]+/); parts.forEach(function (q) { if (!q.trim()) return; var v = parseDur(q); if (isNaN(v) || v == null) bad.push("Line " + (i + 1) + ": could not read \"" + q.trim() + "\""); else { tot += v; n++; } }); });
+  var h = ""; if (n) h = '<div class="dt-stats"><div class="dt-stat"><div class="lbl">Total</div><div class="val">' + hm(tot) + '</div><div class="sub">hours:minutes</div></div><div class="dt-stat"><div class="lbl">Decimal</div><div class="val">' + dec(tot) + '</div><div class="sub">hours</div></div><div class="dt-stat"><div class="lbl">In days</div><div class="val">' + Math.floor(Math.abs(tot) / 1440) + "d " + hm(Math.abs(tot) % 1440) + '</div><div class="sub">24-hour days</div></div><div class="dt-stat"><div class="lbl">Entries</div><div class="val">' + n + "</div></div></div>";
+  if (bad.length) h += '<div class="dt-warn"><ul>' + bad.slice(0, 5).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
+  $("tlAddOut").innerHTML = h;
+  var dv = parseFloat($("tlDec").value); $("tlDecOut").textContent = isNaN(dv) ? "" : dv + " decimal hours = " + hm(Math.round(dv * 60)) + " (" + plural(Math.round(dv * 60), "minute") + ")";
+  var hv = parseDur($("tlHm").value || ""); $("tlHmOut").textContent = hv == null || isNaN(hv) ? "" : $("tlHm").value.trim() + " = " + dec(hv, 4).replace(/0+$/, "").replace(/\.$/, "") + " decimal hours";
+  var mv = parseFloat($("tlMin").value); $("tlMinOut").textContent = isNaN(mv) ? "" : mv + " minutes = " + dec(mv, 4).replace(/0+$/, "").replace(/\.$/, "") + " hours (" + hm(mv) + ")";
+  var a = parseHM($("tlA").value), b = parseHM($("tlB").value);
+  if (a != null && b != null) { var d = b - a, on = d <= 0; if (on) d += 1440; var br = numIn("tlBr", 0, 600, 0); $("tlDiffOut").textContent = "From " + $("tlA").value + " to " + $("tlB").value + (on ? " (next day)" : "") + ": " + hm(d) + " (" + dec(d) + " h)" + (br ? "; after a " + br + "-minute break: " + hm(Math.max(0, d - br)) + " (" + dec(Math.max(0, d - br)) + " h)" : ""); } else $("tlDiffOut").textContent = "";
+}
+function convTable() { var h = '<table class="dt-table"><tr><th>Minutes</th><th>Decimal hours</th><th>Minutes</th><th>Decimal hours</th></tr>'; for (var i = 1; i <= 30; i += 1) { var j = i + 30; h += "<tr><td>" + i + "</td><td>" + (i / 60).toFixed(3) + "</td><td>" + j + "</td><td>" + (j / 60).toFixed(3) + "</td></tr>"; } return h + "</table>"; }
+/* ---------- setup ---------- */
+function applyFill() {
+  keep(); var s = $("tcQS").value, e = $("tcQE").value, b = $("tcQB").value;
+  ST.days.forEach(function (dn) { if ($("tcQD" + dow(dn)).checked) { var o = ST.store[dn] || {}; o.tcS = s; o.tcE = e; o.tcB = b; ST.store[dn] = o; } });
+  buildRows(); recompute(); msg("Times filled in for the selected days.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["card", "summary", "tools"]);
+  var t = todayDN(); $("tcStart").value = isoD(t - ((dow(t) + 6) % 7));
+  for (var i = 0; i < 7; i++) $("tcQD" + i).checked = i >= 1 && i <= 5;
+  $("tcConv").innerHTML = convTable(); $("tlAdd").value = "8:30\n7:45\n+1h 20m\n-0:30\n2.5";
+  period(); ST.days.forEach(function (dn) { if (dow(dn) >= 1 && dow(dn) <= 5) ST.store[dn] = { tcS: "09:00", tcE: "17:30", tcB: "30", tcS2: "", tcE2: "", tcL: "" }; });
+  buildRows(); recompute(); tools();
+  function repl() { keep(); period(); buildRows(); recompute(); }
+  ["tcKind", "tcStart", "tcDays"].forEach(function (id) { $(id).addEventListener("change", repl); });
+  ["tcRound", "tcDir", "tcMode", "tcAutoB", "tcAutoAfter", "tcRate", "tcCur", "tcWk", "tcDy", "tcDt", "tcOtM", "tcDtM", "tcSev", "tcWkStart", "tcName"].forEach(function (id) { $(id).addEventListener("input", recompute); $(id).addEventListener("change", recompute); });
+  $("tcOt").addEventListener("change", function () { $("tcCustom").hidden = this.value !== "custom"; var p = OT_PRE[this.value]; if (this.value !== "custom") { $("tcWk").value = p.wk; $("tcDy").value = p.dy; $("tcDt").value = p.dt; $("tcSev").checked = p.seventh; } recompute(); });
+  ["tcSplit", "tcLeaveOn"].forEach(function (id) { $(id).addEventListener("change", function () { $("tcTable").className = "tc-table" + ($("tcSplit").checked ? "" : " nosplit") + ($("tcLeaveOn").checked ? "" : " nolv"); }); });
+  $("tcPrev").addEventListener("click", function () { shiftP(-1); }); $("tcNext").addEventListener("click", function () { shiftP(1); });
+  function shiftP(dir) { keep(); var k = ST.kind, a = nextPeriod(k, ST.a, ST.b, dir); $("tcStart").value = isoD(a); period(); buildRows(); recompute(); }
+  $("tcFill").addEventListener("click", applyFill);
+  $("tcClear").addEventListener("click", function () { ST.store = {}; buildRows(); recompute(); msg("All times cleared."); });
+  $("resetBtn").addEventListener("click", function () { location.reload(); });
+  $("tcCsv").addEventListener("click", function () { saveBlob(new Blob([csvText(csvRows())], { type: "text/csv;charset=utf-8" }), "time-card-" + isoD(ST.a) + ".csv"); msg("Time card CSV downloaded."); });
+  $("tcCopy").addEventListener("click", function () { copyText(summaryText(), $("tcCopy")); });
+  $("tcPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  ["tlAdd", "tlDec", "tlHm", "tlMin", "tlA", "tlB", "tlBr"].forEach(function (id) { $(id).addEventListener("input", tools); });
+}
+init();
+
+})();
+</script>
+</body>
+</html>
