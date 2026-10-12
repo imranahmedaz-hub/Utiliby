@@ -1,0 +1,818 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free ICS File Generator Online – Create .ics Files &amp; Add to Calendar Links</title>
+<meta name="description" content="Free online ICS file generator: create .ics calendar files and Add to Google Calendar, Outlook and Yahoo links with time zones, repeats and reminders. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/date-time-tools/ics-file-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free ICS File Generator Online – Create .ics Files &amp; Add to Calendar Links">
+<meta property="og:description" content="Free online ICS file and Add to Calendar link generator with time zones, repeating events, reminders, bulk events and an .ics checker.">
+<meta property="og:url" content="https://utiliby.com/tools/date-time-tools/ics-file-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free ICS File Generator Online – Create .ics Files &amp; Add to Calendar Links">
+<meta name="twitter:description" content="Free online ICS file and Add to Calendar link generator with time zones, repeating events, reminders, bulk events and an .ics checker.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ic-card{display:flex;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow:hidden;margin:12px 0}
+.ic-bar{width:8px;background:linear-gradient(180deg,#0369a1,#0ea5e9);flex:none}
+.ic-body{padding:12px 16px;display:flex;flex-direction:column;gap:3px;font-size:.9rem;min-width:0;overflow-wrap:anywhere}
+.ic-body b{font-size:1.1rem}
+.ic-muted{color:var(--muted);font-size:.82rem}
+.ic-out{font-family:ui-monospace,SFMono-Regular,Menlo,monospace!important;font-size:.74rem!important;line-height:1.45;min-height:240px!important;white-space:pre;overflow:auto}
+.ic-alarms{display:flex;flex-wrap:wrap;gap:6px 14px}
+.ic-alarms label{display:inline-flex;align-items:center;gap:6px;margin:0!important;text-transform:none!important;letter-spacing:0!important;font-size:.82rem!important;font-weight:600!important;color:var(--fg)!important}
+.ic-nav{display:flex;align-items:center;justify-content:center;gap:14px;margin:10px 0}
+.ic-nav .dt-btn{margin:0}
+.ic-cal{border-collapse:collapse;width:100%;max-width:420px;margin:0 auto 14px;table-layout:fixed;text-align:center;font-size:.82rem}
+.ic-cal th{font-size:.68rem;text-transform:uppercase;color:var(--muted);padding:4px}
+.ic-cal td{height:34px;border:1px solid var(--line)}
+.ic-cal td.on{background:#0369a1;color:#fff;font-weight:800;border-radius:6px}
+.ic-cal td.skip{background:rgba(220,38,38,.15);text-decoration:line-through;color:#dc2626}
+.ic-chk{display:flex;flex-wrap:wrap;gap:6px 14px}
+.ic-chk label{display:inline-flex;align-items:center;gap:5px;margin:0!important;text-transform:none!important;letter-spacing:0!important;font-weight:600!important;color:var(--fg)!important;font-size:.84rem!important}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Calendar Event ICS File Generator","url":"https://utiliby.com/tools/date-time-tools/ics-file-generator/","description":"Free online ICS file generator and Add to Calendar link maker for Google Calendar, Outlook, Apple Calendar and Yahoo, with time zones, repeat rules, reminders, bulk events and an .ics validator.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Create .ics files for Apple, Google, Outlook and other calendars","Add to Google Calendar, Outlook, Microsoft 365 and Yahoo link builder","Named time zones with daylight-saving rules","Daily, weekly, monthly and yearly repeats with skipped dates","Reminders, guests, status and privacy settings","Dates preview with mini calendar","Bulk events from a pasted list","ICS file checker","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an ICS file?","acceptedAnswer":{"@type":"Answer","text":"An ICS file is a plain-text calendar file that follows the iCalendar standard (RFC 5545). It describes one or more events with a title, start and end time, time zone, location, repeat rule and reminders. Apple Calendar, Google Calendar, Outlook and most other calendar apps can import it."}},{"@type":"Question","name":"How do I create an ICS file for free?","acceptedAnswer":{"@type":"Answer","text":"Type the event title, choose the date and time, pick a time zone and press Download .ics file. The generator builds the file in your browser. Open the downloaded file and your calendar app adds the event. There is no sign-up and nothing is uploaded."}},{"@type":"Question","name":"How do I make an Add to Google Calendar link?","acceptedAnswer":{"@type":"Answer","text":"Fill in the event and open the Add-to-calendar links tab. The Google Calendar link opens Google Calendar with the title, time, location and description already filled in, so the person only has to press Save. Copy the link or the ready-made HTML and paste it into your website or email."}},{"@type":"Question","name":"Can I create an Add to Outlook or Add to Yahoo link?","acceptedAnswer":{"@type":"Answer","text":"Yes. The links tab also gives links for Outlook.com, Microsoft 365 and Yahoo Calendar. These open the event form in that service with your details filled in."}},{"@type":"Question","name":"Do add-to-calendar links support repeating events?","acceptedAnswer":{"@type":"Answer","text":"Google Calendar links accept a repeat rule and the generator adds it. The Outlook, Microsoft 365 and Yahoo links open a single event, so for a repeating event use the .ics file, which carries the full repeat rule."}},{"@type":"Question","name":"How do I import an ICS file into Google Calendar?","acceptedAnswer":{"@type":"Answer","text":"Open Google Calendar on a computer, choose Settings, then Import and export, select the .ics file and pick the calendar to add it to. You can also double-click the file on a computer where Google Calendar is your default app, or open it from email on a phone."}},{"@type":"Question","name":"How do I open an ICS file in Outlook or Apple Calendar?","acceptedAnswer":{"@type":"Answer","text":"In Outlook, double-click the file or use File, Open and Export, Import. In Apple Calendar on a Mac, double-click the file and choose the calendar. On an iPhone, tap the file in Mail or Files and choose Add to Calendar."}},{"@type":"Question","name":"What time zone should I choose?","acceptedAnswer":{"@type":"Answer","text":"Choose the time zone where the event actually happens or where the organizer is. A named zone such as Europe/Paris makes the event show at the correct local time for everyone, and the generator includes the daylight-saving rules. Floating time shows the same clock time in whatever zone the viewer's calendar uses, which suits things like a daily reminder to take a break. UTC is useful for events that are defined in UTC."}},{"@type":"Question","name":"Does the generator handle daylight saving time?","acceptedAnswer":{"@type":"Answer","text":"Yes. For a named time zone the file includes a VTIMEZONE block with the zone's daylight-saving rules, so repeating events keep the same local time across clock changes."}},{"@type":"Question","name":"How do I make a repeating event?","acceptedAnswer":{"@type":"Answer","text":"Choose Daily, Weekly, Monthly or Yearly under Repeat, set the interval, pick weekdays for weekly events and choose how it ends: never, after a number of times or on a date. You can also skip specific dates. The Dates preview tab shows every occurrence so you can check the pattern."}},{"@type":"Question","name":"What is an RRULE?","acceptedAnswer":{"@type":"Answer","text":"RRULE is the repeat rule in an iCalendar file, for example FREQ=WEEKLY;BYDAY=MO,WE;COUNT=10. It tells the calendar app how to generate future occurrences from the first one. The generator writes a valid RRULE for you."}},{"@type":"Question","name":"Can I add reminders to the event?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tick one or more reminders, from the time of the event up to one week before. They are written as alarms in the file. Some apps ignore alarms in imported events or replace them with the calendar's default reminder."}},{"@type":"Question","name":"Can I invite guests with this tool?","acceptedAnswer":{"@type":"Answer","text":"You can add guest emails and an organizer email, and the file then includes organizer and attendee lines. The generator does not send email. You still need to send the file yourself, and some calendar apps show the event as a plain event rather than an invitation they can reply to."}},{"@type":"Question","name":"How do I create many events at once?","acceptedAnswer":{"@type":"Answer","text":"Use the Many events at once tab. Paste one event per line as date, optional start-end time, title, location and description separated by vertical bars. The generator builds a single .ics file that contains every event."}},{"@type":"Question","name":"How do I make an all-day event?","acceptedAnswer":{"@type":"Answer","text":"Tick All-day event. The generator writes date-only start and end values. In the file the end date is the day after the last day, as the standard requires, but you enter the last day in the form."}},{"@type":"Question","name":"Can I check an ICS file that does not import?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste the text into Check an .ics file. The checker looks for missing required properties, unbalanced BEGIN and END lines, unfolded long lines, a time zone that is used but not defined and rules that break the standard, and lists the events it finds."}},{"@type":"Question","name":"Why does my event show at the wrong time?","acceptedAnswer":{"@type":"Answer","text":"The usual cause is a time zone mismatch, such as a floating time or a zone name the calendar app does not know. Choose a named time zone, check that the preview shows the right time and make sure the device's own time zone is correct."}},{"@type":"Question","name":"Is my event data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. The file and links are created in your browser. The details you type are not sent to a server and are not stored. A link you create contains the details in its address, so anyone you give the link to can see them."}},{"@type":"Question","name":"Is the ICS file generator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no account, watermark or limit on the number of files."}},{"@type":"Question","name":"Can I put the generated links on my website?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the ready-made HTML from the links tab and paste it into your page or email. For a button that works in all calendar apps, also host the .ics file and link to it."}},{"@type":"Question","name":"What is the difference between an ICS link and an ICS file?","acceptedAnswer":{"@type":"Answer","text":"An ICS file is the event data itself. A link, such as an Add to Google Calendar link, is a web address that opens a calendar service with the event details pre-filled. Files work in every app and carry repeat rules and reminders. Links are convenient on a web page but work with one service at a time."}},{"@type":"Question","name":"Can I update or cancel an event I already sent?","acceptedAnswer":{"@type":"Answer","text":"Calendar apps match events by their unique ID. Importing a file with the same ID and a higher sequence number can update an event in some apps, and setting the status to Cancelled can mark it cancelled. Behaviour varies, so for important events send a short message as well."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Date, Time & Scheduling Tools","item":"https://utiliby.com/tools/date-time-tools/"},{"@type":"ListItem","position":3,"name":"Calendar Event ICS File Generator","item":"https://utiliby.com/tools/date-time-tools/ics-file-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/date-time-tools/">Date, Time &amp; Scheduling Tools</a> › Calendar Event ICS File Generator</nav>
+<h1 class="noembed">Free Online ICS File and Add-to-Calendar Link Generator</h1>
+<p class="lead noembed">Free online ICS file generator: create a calendar event file or an Add to Google Calendar, Outlook or Yahoo link with time zone, repeat, reminders and guests. Preview every date, build many events at once and check any .ics file. Private, with no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/date-time-tools/ics-file-generator/" target="_blank" rel="noopener">Calendar Event ICS File Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Calendar event ICS file generator">
+<div class="dt-hero noembed">
+<h2>Free Calendar Event ICS File and Add-to-Calendar Link Generator</h2>
+<p>Create an .ics file or an Add to Google Calendar, Outlook and Yahoo link for any event, with time zone, repeat, reminders and guests. Online and private.</p>
+</div>
+<div class="dt-panel">
+<div class="dt-row">
+<div><label for="icTitle">Event title</label><input type="text" id="icTitle" maxlength="200" autocomplete="off"></div>
+<div><label for="icLoc">Location or meeting link</label><input type="text" id="icLoc" maxlength="300" autocomplete="off"></div>
+</div>
+<label for="icDesc">Description</label><textarea id="icDesc" maxlength="3000"></textarea>
+<label class="dt-check"><input type="checkbox" id="icAllDay"> All-day event</label>
+<div class="dt-row4">
+<div><label for="icSD">Start date</label><input type="date" id="icSD"></div>
+<div id="icSTBox"><label for="icST">Start time</label><input type="time" id="icST" value="10:00"></div>
+<div><label for="icED">End date</label><input type="date" id="icED"></div>
+<div id="icETBox"><label for="icET">End time</label><input type="time" id="icET" value="11:00"></div>
+</div>
+<div class="dt-row">
+<div><label for="icDur">Quick duration (sets the end time)</label><select id="icDur"><option value="x">Keep my end time</option><option value="15">15 minutes</option><option value="30">30 minutes</option><option value="45">45 minutes</option><option value="60" selected>1 hour</option><option value="90">1 hour 30 minutes</option><option value="120">2 hours</option><option value="180">3 hours</option><option value="480">8 hours</option></select></div>
+<div><label for="icTz">Time zone</label><select id="icTz"></select></div>
+</div>
+<div id="icTzOtherBox" hidden><label for="icTzOther">IANA time zone name</label><input type="text" id="icTzOther" placeholder="for example Africa/Accra" autocomplete="off"></div>
+<div class="dt-row3">
+<div><label for="icRep">Repeat</label><select id="icRep"><option value="">Does not repeat</option><option value="DAILY">Daily</option><option value="WEEKLY">Weekly</option><option value="MONTHLY">Monthly</option><option value="YEARLY">Yearly</option></select></div>
+<div id="icRepBox" hidden><label for="icInt">Repeat every <span id="icIntUnit"></span></label><input type="number" id="icInt" min="1" max="99" value="1"></div>
+<div id="icMonBox" hidden><label for="icMonMode">Monthly on</label><select id="icMonMode"><option value="dom">On the same day</option><option value="nth">On the same weekday</option><option value="last">On the last weekday</option></select></div>
+</div>
+<div id="icWeekBox" hidden><span class="dt-lbl">On these days</span><div class="ic-chk"><label><input type="checkbox" id="icDay1"> Mon</label><label><input type="checkbox" id="icDay2"> Tue</label><label><input type="checkbox" id="icDay3"> Wed</label><label><input type="checkbox" id="icDay4"> Thu</label><label><input type="checkbox" id="icDay5"> Fri</label><label><input type="checkbox" id="icDay6"> Sat</label><label><input type="checkbox" id="icDay0"> Sun</label></div></div>
+<div class="dt-row3" id="icEndRow">
+<div><label for="icEnd">Repeat ends</label><select id="icEnd"><option value="never">Never</option><option value="count" selected>After a number of times</option><option value="until">On a date</option></select></div>
+<div id="icCountBox"><label for="icCount">Number of occurrences</label><input type="number" id="icCount" min="1" max="999" value="10"></div>
+<div id="icUntilBox" hidden><label for="icUntil">Last date</label><input type="date" id="icUntil"></div>
+</div>
+<label for="icEx">Skip these dates (optional, YYYY-MM-DD, separated by commas or spaces)</label><input type="text" id="icEx" placeholder="2026-12-25, 2027-01-01" autocomplete="off">
+<span class="dt-lbl">Reminders</span><div class="ic-alarms" id="icAlarms"></div>
+<details>
+<summary class="dt-lbl" style="cursor:pointer">More options: guests, status, availability, privacy, link, category</summary>
+<div class="dt-row">
+<div><label for="icOrgName">Organizer name</label><input type="text" id="icOrgName" maxlength="100" autocomplete="off"></div>
+<div><label for="icOrgEmail">Organizer email (needed to add guests)</label><input type="email" id="icOrgEmail" maxlength="150" autocomplete="off"></div>
+</div>
+<label for="icAtt">Guest emails (separated by commas, spaces or new lines)</label><textarea id="icAtt" maxlength="2000" style="min-height:60px"></textarea>
+<div class="dt-row4">
+<div><label for="icStatus">Status</label><select id="icStatus"><option value="CONFIRMED">Confirmed</option><option value="TENTATIVE">Tentative</option><option value="CANCELLED">Cancelled</option></select></div>
+<div><label for="icBusy">Show as</label><select id="icBusy"><option value="OPAQUE">Busy</option><option value="TRANSPARENT">Free</option></select></div>
+<div><label for="icClass">Privacy</label><select id="icClass"><option value="PUBLIC">Public</option><option value="PRIVATE">Private</option><option value="CONFIDENTIAL">Confidential</option></select></div>
+<div><label for="icCat">Categories (comma separated)</label><input type="text" id="icCat" maxlength="150" autocomplete="off"></div>
+</div>
+<label for="icUrl">Event web page (https://...)</label><input type="url" id="icUrl" maxlength="300" autocomplete="off">
+</details>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+<button type="button" class="dt-btn ghost" id="icClear">Start blank</button>
+</div>
+<div class="dt-warn" id="icWarn" role="alert" hidden></div>
+<div class="dt-tabs" role="group" aria-label="Output views">
+<button type="button" class="dt-tab on" id="dtTabBtn-event" aria-pressed="true">Calendar file (.ics)</button>
+<button type="button" class="dt-tab" id="dtTabBtn-links" aria-pressed="false">Add-to-calendar links</button>
+<button type="button" class="dt-tab" id="dtTabBtn-dates" aria-pressed="false">Dates preview</button>
+<button type="button" class="dt-tab" id="dtTabBtn-bulk" aria-pressed="false">Many events at once</button>
+<button type="button" class="dt-tab" id="dtTabBtn-check" aria-pressed="false">Check an .ics file</button>
+</div>
+<div id="dtTab-event">
+<div id="icCard"></div>
+<label for="icOut" class="dt-lbl">Your calendar file</label>
+<textarea id="icOut" class="dt-in ic-out" readonly spellcheck="false"></textarea>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="icDl">Download .ics file</button>
+<button type="button" class="dt-btn ghost" id="icCopy">Copy file text</button>
+<button type="button" class="dt-btn ghost" id="icPrint">Print / save summary as PDF</button>
+</div>
+<p class="dt-hint">Open the downloaded file on your computer or phone and your calendar app offers to add the event. The same file works with Apple Calendar, Google Calendar, Outlook and most other apps.</p>
+</div>
+<div id="dtTab-links" hidden>
+<div id="icLinks"></div>
+<p class="dt-hint" id="icLinkNote"></p>
+<label for="icBtnHtml" class="dt-lbl">HTML for Add to Calendar links on your website</label>
+<textarea id="icBtnHtml" class="dt-in" readonly style="min-height:90px"></textarea>
+<button type="button" class="dt-btn ghost small" data-copy-target="icBtnHtml">Copy HTML</button>
+<label for="icInvite" class="dt-lbl">Plain-text invitation to paste into an email or chat</label>
+<textarea id="icInvite" class="dt-in" readonly style="min-height:150px"></textarea>
+<button type="button" class="dt-btn ghost small" data-copy-target="icInvite">Copy invitation</button>
+</div>
+<div id="dtTab-dates" hidden>
+<div id="icDates"></div>
+<button type="button" class="dt-btn ghost" id="icDatesCsv">Download dates as CSV</button>
+</div>
+<div id="dtTab-bulk" hidden>
+<p class="dt-hint">Paste one event per line as <b>date [start-end time] | title | location | description</b>. Leave out the time for an all-day event. The time zone and reminders from the form above are used.</p>
+<label for="icBulkIn" class="dt-lbl">Events</label>
+<textarea id="icBulkIn" class="dt-in" style="min-height:140px" spellcheck="false"></textarea>
+<div class="dt-warn" id="icBulkErr" hidden></div>
+<p class="dt-sum" id="icBulkCount"></p>
+<label for="icBulkOut" class="dt-lbl">Calendar file text</label>
+<textarea id="icBulkOut" class="dt-in ic-out" readonly spellcheck="false" style="min-height:160px"></textarea>
+<div class="dt-actions"><button type="button" class="dt-btn" id="icBulkGo">Build calendar file</button><button type="button" class="dt-btn ghost" id="icBulkDl">Download .ics</button><button type="button" class="dt-btn ghost" data-copy-target="icBulkOut">Copy text</button><button type="button" class="dt-btn ghost" id="icBulkEx">Load example</button></div>
+</div>
+<div id="dtTab-check" hidden>
+<p class="dt-hint">Paste the text of any .ics file to check its structure: required properties, matching BEGIN and END lines, line folding, time zone definitions and repeat rules.</p>
+<label for="icChkIn" class="dt-lbl">ICS text</label>
+<textarea id="icChkIn" class="dt-in ic-out" style="min-height:180px" spellcheck="false" placeholder="BEGIN:VCALENDAR&#10;VERSION:2.0&#10;..."></textarea>
+<div class="dt-actions"><button type="button" class="dt-btn" id="icChkGo">Check file</button><button type="button" class="dt-btn ghost" id="icChkUse">Paste the file I just made</button></div>
+<div id="icChkOut"></div>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online generator creates standard calendar files and links but does not send invitations or sync with any calendar. Check the event in your own calendar after you add it, especially for repeating events and time zones.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/date-time-tools/ics-file-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Calendar Event ICS File Generator. https://utiliby.com/tools/date-time-tools/ics-file-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/date-time-tools/ics-file-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Calendar Event ICS File Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/date-time-tools/ics-file-generator/"&gt;Calendar Event ICS File Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What is an ICS file and what does this generator do?</a></li><li><a href="#how">How to create a calendar event file step by step</a></li><li><a href="#anatomy">What is inside an ICS file</a></li><li><a href="#tz">Time zones and daylight saving time, explained</a></li><li><a href="#repeat">Repeating events, RRULE and skipped dates</a></li><li><a href="#links">Add to Google Calendar, Outlook and Yahoo links</a></li><li><a href="#bulk">Create many calendar events from a list</a></li><li><a href="#check">Check an ICS file that will not import</a></li><li><a href="#uses">Practical uses: events, courses, bookings and reminders</a></li><li><a href="#tips">Tips for events people will actually attend</a></li><li><a href="#mistakes">Common mistakes with calendar files and links</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What is an ICS file and what does this generator do?</h2>
+<p>An ICS file, also called an iCalendar file or .ics file, is the universal way to move a calendar event from one place to another. It is a small text file that describes an event: what it is called, when it starts and ends, which time zone it uses, where it takes place, whether it repeats and when to remind you. Because the format is an open internet standard (RFC 5545), Apple Calendar, Google Calendar, Microsoft Outlook, Thunderbird, Yahoo Calendar and almost every other calendar app can read it.</p><p>This free online ICS file generator builds that file for you. You type the details in a normal form, and the tool writes a correct, standards-based file in your browser. It also builds <em>Add to Calendar</em> links for Google Calendar, Outlook.com, Microsoft 365 and Yahoo, previews every date of a repeating event, creates many events at once from a pasted list and checks existing .ics files for mistakes. Nothing is uploaded, nothing is stored and no account is required.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Flow from event details to an ics file or an add-to-calendar link and then into Google, Apple and Outlook calendars"><title>How event details become calendar entries</title>
+<rect x="10" y="60" width="150" height="70" rx="12" fill="none" stroke="currentColor" stroke-width="2"/><text x="85" y="90" text-anchor="middle" font-size="14" font-weight="700" fill="currentColor">Event details</text><text x="85" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">title, time, zone, repeat</text>
+<path d="M165 80 L255 40" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" from="22" to="0" dur="1.2s" repeatCount="indefinite"/></path>
+<path d="M165 110 L255 150" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" from="22" to="0" dur="1.2s" repeatCount="indefinite"/></path>
+<rect x="260" y="14" width="150" height="56" rx="12" fill="#0369a1"/><text x="335" y="40" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">.ics file</text><text x="335" y="58" text-anchor="middle" font-size="11" fill="#fff" opacity=".9">download or email</text>
+<rect x="260" y="122" width="150" height="56" rx="12" fill="#0ea5e9"/><text x="335" y="148" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">Add-to-calendar link</text><text x="335" y="166" text-anchor="middle" font-size="11" fill="#fff" opacity=".9">button on a web page</text>
+<path d="M415 42 L505 70" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" from="22" to="0" dur="1.2s" repeatCount="indefinite"/></path>
+<path d="M415 150 L505 120" stroke="#0369a1" stroke-width="2.5" fill="none" stroke-dasharray="6 5"><animate attributeName="stroke-dashoffset" from="22" to="0" dur="1.2s" repeatCount="indefinite"/></path>
+<rect x="510" y="40" width="120" height="110" rx="12" fill="none" stroke="currentColor" stroke-width="2"/><text x="570" y="72" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Google</text><text x="570" y="96" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Apple</text><text x="570" y="120" text-anchor="middle" font-size="13" font-weight="700" fill="currentColor">Outlook</text><text x="570" y="140" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">Yahoo and more</text>
+</svg><figcaption>The same details can become a file, which works everywhere, or a link, which opens the event form in one calendar service.</figcaption></figure>
+<h2 id="how">How to create a calendar event file step by step</h2>
+<ol><li><b>Enter the basics.</b> Add a title, a location or meeting link and a short description. The preview card updates as you type.</li><li><b>Set the date and time.</b> Pick the start and end, or choose a quick duration. Tick <em>All-day event</em> if there is no time.</li><li><b>Choose the time zone.</b> Use your device's zone, a named zone such as America/New_York, UTC, or floating time.</li><li><b>Add a repeat if needed.</b> Choose daily, weekly, monthly or yearly, set the interval and the end, and skip any dates that should not happen.</li><li><b>Pick reminders.</b> Tick the alerts you want, for example 15 minutes and one day before.</li><li><b>Download or copy.</b> Press <em>Download .ics file</em> to get the file, or open the links tab to copy an Add to Google Calendar or Outlook link.</li></ol><p>Open the Dates preview tab before you share the event. It shows a mini calendar and a list of every occurrence, so you can see at once if a monthly rule lands on the right day.</p>
+<h2 id="anatomy">What is inside an ICS file</h2>
+<p>Reading a calendar file is easier than it looks. Every line is a property name, an optional list of parameters and a value. Blocks start with <code>BEGIN:</code> and end with <code>END:</code>. The whole file sits inside <code>VCALENDAR</code>, each event inside <code>VEVENT</code>, each reminder inside <code>VALARM</code> and each time zone definition inside <code>VTIMEZONE</code>.</p><figure class="dt-fig"><svg viewBox="0 0 640 330" width="100%" role="img" aria-label="Annotated example of an ics file"><title>Anatomy of an ICS file</title>
+<rect x="8" y="8" width="360" height="314" rx="10" fill="none" stroke="currentColor" opacity=".35"/>
+<g font-family="ui-monospace,Menlo,monospace" font-size="12.5" fill="currentColor">
+<text x="20" y="32">BEGIN:VCALENDAR</text><text x="20" y="52">VERSION:2.0</text><text x="20" y="72">PRODID:-//Utiliby//Free Online Tools//EN</text>
+<text x="20" y="92">BEGIN:VEVENT</text><text x="36" y="112">UID:3f2a9c-14@utiliby.com</text><text x="36" y="132">DTSTAMP:20261012T070000Z</text>
+<text x="36" y="152">DTSTART;TZID=Europe/Paris:20261103T090000</text><text x="36" y="172">DTEND;TZID=Europe/Paris:20261103T100000</text>
+<text x="36" y="192">SUMMARY:Quarterly review</text><text x="36" y="212">RRULE:FREQ=WEEKLY;COUNT=4</text>
+<text x="36" y="232">BEGIN:VALARM</text><text x="52" y="252">TRIGGER:-PT15M</text><text x="36" y="272">END:VALARM</text>
+<text x="20" y="292">END:VEVENT</text><text x="20" y="312">END:VCALENDAR</text></g>
+<g font-size="12" fill="#0369a1" font-weight="700"><text x="385" y="52">Calendar wrapper and format version</text><text x="385" y="112">Unique ID keeps updates linked</text><text x="385" y="152">Start, with its time zone</text><text x="385" y="192">Title shown in the calendar</text><text x="385" y="212">Repeat rule, 4 weekly times</text><text x="385" y="252">Reminder 15 minutes before</text></g>
+<g stroke="#0369a1" stroke-width="1.5" opacity=".7"><line x1="372" y1="48" x2="382" y2="48"/><line x1="372" y1="108" x2="382" y2="108"/><line x1="372" y1="148" x2="382" y2="148"/><line x1="372" y1="188" x2="382" y2="188"/><line x1="372" y1="208" x2="382" y2="208"/><line x1="372" y1="248" x2="382" y2="248"/></g>
+</svg><figcaption>An .ics file is plain text. Every line is a NAME:value pair, and blocks open with BEGIN and close with END.</figcaption></figure><table><tr><th>Property</th><th>Meaning</th></tr><tr><td>UID</td><td>A unique ID. Calendar apps use it to recognise the same event if you import it again.</td></tr><tr><td>DTSTAMP</td><td>When the file or event was created, always in UTC.</td></tr><tr><td>DTSTART and DTEND</td><td>Start and end. For all-day events the end date is the day after the last day.</td></tr><tr><td>SUMMARY</td><td>The title of the event.</td></tr><tr><td>DESCRIPTION and LOCATION</td><td>Notes and place. Commas, semicolons and line breaks are escaped.</td></tr><tr><td>RRULE and EXDATE</td><td>The repeat rule and the dates to skip.</td></tr><tr><td>VALARM</td><td>A reminder, with a trigger such as -PT15M for 15 minutes before.</td></tr><tr><td>STATUS, TRANSP, CLASS</td><td>Confirmed or tentative, busy or free, public or private.</td></tr></table><p>Lines longer than 75 bytes are folded onto the next line, which begins with a space. The generator does this for you, including for accented and non-Latin characters, so a long description or an address in any language stays valid.</p>
+<h2 id="tz">Time zones and daylight saving time, explained</h2>
+<p>Time zones cause most calendar mistakes. An event at 9:00 a.m. in New York is 2:00 p.m. in London for part of the year and 1:00 p.m. for another part, because the two places change their clocks on different dates. A calendar file can describe time in three ways.</p><ul><li><b>Named time zone.</b> The start is written with a <code>TZID</code> such as Europe/Paris and the file includes a <code>VTIMEZONE</code> block that tells the app the zone's offsets and daylight-saving rules. This is the best choice for a real meeting at a real place, because everyone sees their own correct local time.</li><li><b>UTC.</b> The time ends in <code>Z</code>. It is the same instant everywhere, which is useful for global events defined in UTC, but a weekly UTC meeting drifts by an hour in local time when clocks change.</li><li><b>Floating time.</b> No zone at all. 9:00 means 9:00 wherever you are. It suits habits and reminders, and it is wrong for a meeting between people in different zones.</li></ul><p>The generator finds the zone's real offset changes in your browser and writes them into the file. If a zone has a regular yearly rule, such as the last Sunday of March, the file contains a repeating rule so events years ahead are still right.</p>
+<h2 id="repeat">Repeating events, RRULE and skipped dates</h2>
+<p>A repeating event is stored once, with an <code>RRULE</code> that says how to create the other occurrences. The rule has a frequency (daily, weekly, monthly or yearly), an optional interval, optional details such as <code>BYDAY=MO,WE</code> and an end given by <code>COUNT</code> or <code>UNTIL</code>. Only one of those two ends is allowed.</p><p>Two points deserve care. First, a monthly event on the 31st is skipped in months that have no 31st, and a yearly event on 29 February happens only in leap years. That is how the standard works, so choose <em>last weekday</em> or a different day if you need every month. Second, the count includes skipped dates. If you ask for ten weekly meetings and skip one date, the series still ends on the same day as the tenth occurrence.</p><p>Use the Dates preview tab to see the effect of any setting. Skipped dates appear struck through and the mini calendar marks them in red.</p>
+<h2 id="links">Add to Google Calendar, Outlook and Yahoo links</h2>
+<p>An add-to-calendar link is an ordinary web address that opens a calendar service's new-event form with your details already filled in. It is the easiest way to let visitors save a webinar, a launch or a class to their calendar without downloading a file. The generator builds links for four services.</p><ul><li><b>Google Calendar</b> accepts title, dates, time zone, location, description, guests and a repeat rule.</li><li><b>Outlook.com</b> and <b>Microsoft 365</b> accept title, start, end, location and description.</li><li><b>Yahoo Calendar</b> accepts title, start, end or duration, location and description.</li><li><b>Apple Calendar</b> and most other apps use the .ics file.</li></ul><p>For a button that works for everyone, offer both: the service links for convenience and a download link to the .ics file as a universal option. The ready-made HTML in the links tab includes the service links. Remember that the details are part of the link's address, so avoid putting private information in an event you publish.</p>
+<h2 id="bulk">Create many calendar events from a list</h2>
+<p>If you have a course timetable, a webinar series, a list of match days or a set of deadlines, entering events one by one is slow. The <em>Many events at once</em> tab turns a pasted list into one file. Write one event per line: the date, an optional time range, the title and optionally a location and a description, separated by vertical bars. Lines without a time become all-day events, and lines with only a start time last one hour. The tool reports any line it cannot read and tells you what to fix.</p><p>Import the resulting file once and every event appears together. Most calendar apps let you choose a separate calendar for the import, which makes it easy to remove the whole set later.</p>
+<h2 id="check">Check an ICS file that will not import</h2>
+<p>When an .ics file fails to import, the cause is nearly always small: a missing required line, a missing <code>END:VEVENT</code>, a time zone name the file never defines, both <code>COUNT</code> and <code>UNTIL</code> in a repeat rule, or an all-day end date that equals the start date. The checker reads the pasted text, unfolds long lines and reports each problem in plain language, then lists the events it found with their start, end and repeat rule.</p><p>It checks structure, not every rule of the standard, so a clean result is a good sign rather than a guarantee. If a file still misbehaves in one app, try importing it into a second app to see whether the problem lies with the file or the app.</p>
+<h2 id="uses">Practical uses: events, courses, bookings and reminders</h2>
+<ul><li><b>Webinars and online events.</b> Put an Add to Calendar link on the thank-you page and in the confirmation email to reduce no-shows.</li><li><b>Schools and courses.</b> Give students one file with every lecture and exam date.</li><li><b>Clubs and sports.</b> Share fixtures and training sessions as a file members can subscribe to or import.</li><li><b>Businesses.</b> Add appointment confirmations, delivery windows or opening-day events to a booking email.</li><li><b>Personal planning.</b> Create birthdays, anniversaries, bill dates, renewals and yearly reminders with alerts.</li><li><b>Travel.</b> Add flights, check-ins and tours with the correct local time zone.</li></ul>
+<h2 id="tips">Tips for events people will actually attend</h2>
+<ul><li>Put the most important information in the title, such as the topic and the format.</li><li>Include the meeting link or address in the location field, where phones show it in one tap.</li><li>Use a named time zone for anything involving more than one place.</li><li>Add a reminder that matches the effort needed to get ready, such as one day before for a trip and 10 minutes before for a call.</li><li>State the time zone in the description as well, so the event is clear even if the file is printed.</li><li>For a series, preview the dates, and skip public holidays you know about.</li></ul>
+<h2 id="mistakes">Common mistakes with calendar files and links</h2>
+<ul><li><b>Using floating time for a shared meeting.</b> Each person sees the same clock time in their own zone, which is almost never what you want.</li><li><b>Forgetting that the all-day end date is exclusive.</b> A one-day event must end on the following date in the file. The form handles this for you.</li><li><b>Putting both COUNT and UNTIL in a rule.</b> The standard forbids it.</li><li><b>Expecting a link to repeat.</b> Only Google Calendar links carry a repeat rule.</li><li><b>Sending an update without a stable ID.</b> A new ID creates a second event rather than changing the first.</li><li><b>Assuming reminders always import.</b> Some apps replace imported alerts with their own defaults.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>The generator runs in your browser. The title, description, location, guests and every other detail stay on your device, and the file is created locally. Nothing is stored, and reloading the page clears the form. A link you generate contains your event details in its address, so share it only with the people who should see them.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is an ICS file?</summary><p>An ICS file is a plain-text calendar file that follows the iCalendar standard (RFC 5545). It describes one or more events with a title, start and end time, time zone, location, repeat rule and reminders. Apple Calendar, Google Calendar, Outlook and most other calendar apps can import it.</p></details><details><summary>How do I create an ICS file for free?</summary><p>Type the event title, choose the date and time, pick a time zone and press Download .ics file. The generator builds the file in your browser. Open the downloaded file and your calendar app adds the event. There is no sign-up and nothing is uploaded.</p></details><details><summary>How do I make an Add to Google Calendar link?</summary><p>Fill in the event and open the Add-to-calendar links tab. The Google Calendar link opens Google Calendar with the title, time, location and description already filled in, so the person only has to press Save. Copy the link or the ready-made HTML and paste it into your website or email.</p></details><details><summary>Can I create an Add to Outlook or Add to Yahoo link?</summary><p>Yes. The links tab also gives links for Outlook.com, Microsoft 365 and Yahoo Calendar. These open the event form in that service with your details filled in.</p></details><details><summary>Do add-to-calendar links support repeating events?</summary><p>Google Calendar links accept a repeat rule and the generator adds it. The Outlook, Microsoft 365 and Yahoo links open a single event, so for a repeating event use the .ics file, which carries the full repeat rule.</p></details><details><summary>How do I import an ICS file into Google Calendar?</summary><p>Open Google Calendar on a computer, choose Settings, then Import and export, select the .ics file and pick the calendar to add it to. You can also double-click the file on a computer where Google Calendar is your default app, or open it from email on a phone.</p></details><details><summary>How do I open an ICS file in Outlook or Apple Calendar?</summary><p>In Outlook, double-click the file or use File, Open and Export, Import. In Apple Calendar on a Mac, double-click the file and choose the calendar. On an iPhone, tap the file in Mail or Files and choose Add to Calendar.</p></details><details><summary>What time zone should I choose?</summary><p>Choose the time zone where the event actually happens or where the organizer is. A named zone such as Europe/Paris makes the event show at the correct local time for everyone, and the generator includes the daylight-saving rules. Floating time shows the same clock time in whatever zone the viewer's calendar uses, which suits things like a daily reminder to take a break. UTC is useful for events that are defined in UTC.</p></details><details><summary>Does the generator handle daylight saving time?</summary><p>Yes. For a named time zone the file includes a VTIMEZONE block with the zone's daylight-saving rules, so repeating events keep the same local time across clock changes.</p></details><details><summary>How do I make a repeating event?</summary><p>Choose Daily, Weekly, Monthly or Yearly under Repeat, set the interval, pick weekdays for weekly events and choose how it ends: never, after a number of times or on a date. You can also skip specific dates. The Dates preview tab shows every occurrence so you can check the pattern.</p></details><details><summary>What is an RRULE?</summary><p>RRULE is the repeat rule in an iCalendar file, for example FREQ=WEEKLY;BYDAY=MO,WE;COUNT=10. It tells the calendar app how to generate future occurrences from the first one. The generator writes a valid RRULE for you.</p></details><details><summary>Can I add reminders to the event?</summary><p>Yes. Tick one or more reminders, from the time of the event up to one week before. They are written as alarms in the file. Some apps ignore alarms in imported events or replace them with the calendar's default reminder.</p></details><details><summary>Can I invite guests with this tool?</summary><p>You can add guest emails and an organizer email, and the file then includes organizer and attendee lines. The generator does not send email. You still need to send the file yourself, and some calendar apps show the event as a plain event rather than an invitation they can reply to.</p></details><details><summary>How do I create many events at once?</summary><p>Use the Many events at once tab. Paste one event per line as date, optional start-end time, title, location and description separated by vertical bars. The generator builds a single .ics file that contains every event.</p></details><details><summary>How do I make an all-day event?</summary><p>Tick All-day event. The generator writes date-only start and end values. In the file the end date is the day after the last day, as the standard requires, but you enter the last day in the form.</p></details><details><summary>Can I check an ICS file that does not import?</summary><p>Yes. Paste the text into Check an .ics file. The checker looks for missing required properties, unbalanced BEGIN and END lines, unfolded long lines, a time zone that is used but not defined and rules that break the standard, and lists the events it finds.</p></details><details><summary>Why does my event show at the wrong time?</summary><p>The usual cause is a time zone mismatch, such as a floating time or a zone name the calendar app does not know. Choose a named time zone, check that the preview shows the right time and make sure the device's own time zone is correct.</p></details><details><summary>Is my event data private?</summary><p>Yes. The file and links are created in your browser. The details you type are not sent to a server and are not stored. A link you create contains the details in its address, so anyone you give the link to can see them.</p></details><details><summary>Is the ICS file generator really free?</summary><p>Yes. It is free to use online with no account, watermark or limit on the number of files.</p></details><details><summary>Can I put the generated links on my website?</summary><p>Yes. Copy the ready-made HTML from the links tab and paste it into your page or email. For a button that works in all calendar apps, also host the .ics file and link to it.</p></details><details><summary>What is the difference between an ICS link and an ICS file?</summary><p>An ICS file is the event data itself. A link, such as an Add to Google Calendar link, is a web address that opens a calendar service with the event details pre-filled. Files work in every app and carry repeat rules and reminders. Links are convenient on a web page but work with one service at a time.</p></details><details><summary>Can I update or cancel an event I already sent?</summary><p>Calendar apps match events by their unique ID. Importing a file with the same ID and a higher sequence number can update an event in some apps, and setting the status to Cancelled can mark it cancelled. Behaviour varies, so for important events send a short message as well.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Internet Engineering Task Force, RFC 5545: Internet Calendaring and Scheduling Core Object Specification (iCalendar), including the VEVENT, VALARM, VTIMEZONE and RRULE definitions.</li><li>Internet Engineering Task Force, RFC 5546: iCalendar Transport-Independent Interoperability Protocol (iTIP), for organizer and attendee methods.</li><li>IANA Time Zone Database documentation, the source of the named time zones used in the time zone list.</li><li>Google Calendar Help, adding events to Google Calendar and importing events from a file.</li><li>Microsoft Support, importing an iCalendar (.ics) file into Outlook.</li><li>Apple Support, adding events and importing calendar files in Calendar.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online ICS file and add-to-calendar link generator is provided for convenience and general information. It builds files and links from the details you enter and does not send invitations, sync with a calendar or guarantee how a particular calendar app will display or update an event. Repeating events, time zones and daylight-saving changes are handled in the way the iCalendar standard describes, but apps differ, so always open the event in your own calendar and check the date, time, time zone and reminders before you share it or rely on it. Links to third-party calendar services are provided only to open their public event forms; Utiliby is not affiliated with those services. Do not enter confidential information in a file you plan to share, because anyone who receives it can read it.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- ICS engine ---------- */
+var TZ_LIST = ["UTC", "America/New_York", "America/Chicago", "America/Denver", "America/Phoenix", "America/Los_Angeles", "America/Anchorage", "Pacific/Honolulu", "America/Toronto", "America/Vancouver", "America/Mexico_City", "America/Bogota", "America/Sao_Paulo", "America/Argentina/Buenos_Aires", "Europe/London", "Europe/Dublin", "Europe/Lisbon", "Europe/Paris", "Europe/Berlin", "Europe/Madrid", "Europe/Rome", "Europe/Amsterdam", "Europe/Zurich", "Europe/Stockholm", "Europe/Athens", "Europe/Helsinki", "Europe/Istanbul", "Europe/Moscow", "Africa/Cairo", "Africa/Lagos", "Africa/Nairobi", "Africa/Johannesburg", "Asia/Dubai", "Asia/Karachi", "Asia/Kolkata", "Asia/Dhaka", "Asia/Bangkok", "Asia/Jakarta", "Asia/Singapore", "Asia/Hong_Kong", "Asia/Shanghai", "Asia/Manila", "Asia/Seoul", "Asia/Tokyo", "Australia/Perth", "Australia/Adelaide", "Australia/Sydney", "Australia/Brisbane", "Pacific/Auckland"];
+var ALARMS = [["0", "At time of event", "PT0S"], ["5", "5 minutes before", "-PT5M"], ["10", "10 minutes before", "-PT10M"], ["15", "15 minutes before", "-PT15M"], ["30", "30 minutes before", "-PT30M"], ["60", "1 hour before", "-PT1H"], ["120", "2 hours before", "-PT2H"], ["1440", "1 day before", "-P1D"], ["2880", "2 days before", "-P2D"], ["10080", "1 week before", "-P1W"]];
+var WD2 = ["SU", "MO", "TU", "WE", "TH", "FR", "SA"];
+var ORD = ["", "first", "second", "third", "fourth", "fifth"];
+var _fmt = {};
+function tzFmt(tz) { if (!_fmt[tz]) _fmt[tz] = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }); return _fmt[tz]; }
+function tzValid(tz) { try { tzFmt(tz); return true; } catch (e) { return false; } }
+function tzOffset(ms, tz) { /* minutes east of UTC */
+  var o = {}; tzFmt(tz).formatToParts(new Date(ms)).forEach(function (p) { o[p.type] = p.value; });
+  var h = +o.hour; if (h === 24) h = 0;
+  return Math.round((Date.UTC(+o.year, +o.month - 1, +o.day, h, +o.minute, +o.second) - Math.floor(ms / 1000) * 1000) / 60000);
+}
+function localToUtc(dn, mins, tz) { var g = dn * 86400000 + mins * 60000, t = g - tzOffset(g, tz) * 60000; return g - tzOffset(t, tz) * 60000; }
+function fmtOff(m) { var s = m < 0 ? "-" : "+"; m = Math.abs(m); return s + p2(Math.floor(m / 60)) + p2(m % 60); }
+function icsLocal(dn, mins) { return icsDateStamp(dn) + "T" + p2(Math.floor(mins / 60)) + p2(mins % 60) + "00"; }
+function tzAbbr(ms, tz) { try { var p = new Intl.DateTimeFormat("en-US", { timeZone: tz, timeZoneName: "short" }).formatToParts(new Date(ms)); for (var i = 0; i < p.length; i++) if (p[i].type === "timeZoneName") return p[i].value; } catch (e) {} return ""; }
+var _vtz = {};
+function transitionsFor(tz, y) {
+  var out = [], t0 = Date.UTC(y, 0, 1), prev = tzOffset(t0, tz), i, a, b, m, cur;
+  for (i = 1; i <= 366; i++) {
+    a = t0 + (i - 1) * 86400000; b = a + 86400000; if (b > Date.UTC(y + 1, 0, 1) + 86400000) break;
+    cur = tzOffset(b, tz);
+    if (cur !== prev) {
+      var lo = a, hi = b; while (hi - lo > 60000) { m = Math.floor((lo + hi) / 2 / 60000) * 60000; if (tzOffset(m, tz) === prev) lo = m; else hi = m; }
+      var t = hi; if (t >= Date.UTC(y, 0, 1) && t < Date.UTC(y + 1, 0, 1)) out.push({ t: t, from: prev, to: cur });
+      prev = cur;
+    }
+  }
+  return out;
+}
+function wallOf(tr) { var w = tr.t + tr.from * 60000, d = Math.floor(w / 86400000), mins = Math.round((w - d * 86400000) / 60000); return { dn: d, mins: mins }; }
+function trSig(tr) { var w = wallOf(tr), o = ymd(w.dn), n = Math.ceil(o.d / 7), last = o.d + 7 > dim(o.y, o.m - 1 + 1); return o.m + "|" + dow(w.dn) + "|" + (last ? -1 : n) + "|" + w.mins + "|" + tr.from + "|" + tr.to; }
+function vtimezone(tz, y) {
+  var key = tz + "|" + y; if (_vtz[key]) return _vtz[key];
+  var yrs = [y - 1, y, y + 1, y + 2], all = yrs.map(function (Y) { return transitionsFor(tz, Y); }), L = [], note = "";
+  L.push("BEGIN:VTIMEZONE", "TZID:" + tz);
+  var cnt = all[0].length, same = true;
+  all.forEach(function (a) { if (a.length !== cnt) same = false; });
+  if (same && cnt > 0) {
+    var s0 = all[0].map(trSig).join(";"); all.forEach(function (a) { if (a.map(trSig).join(";") !== s0) same = false; });
+  }
+  function comp(tr, rule) {
+    var w = wallOf(tr), o = ymd(w.dn), dst = tr.to > tr.from;
+    L.push("BEGIN:" + (dst ? "DAYLIGHT" : "STANDARD"), "DTSTART:" + icsLocal(w.dn, w.mins), "TZOFFSETFROM:" + fmtOff(tr.from), "TZOFFSETTO:" + fmtOff(tr.to));
+    var nm = tzAbbr(tr.t + 3600000, tz); if (nm) L.push("TZNAME:" + nm);
+    if (rule) { var n = Math.ceil(o.d / 7), last = o.d + 7 > dim(o.y, o.m); L.push("RRULE:FREQ=YEARLY;BYMONTH=" + o.m + ";BYDAY=" + (last ? -1 : n) + WD2[dow(w.dn)]); }
+    L.push("END:" + (dst ? "DAYLIGHT" : "STANDARD"));
+  }
+  if (cnt === 0 && all.every(function (a) { return a.length === 0; })) {
+    var off = tzOffset(Date.UTC(y, 5, 1), tz);
+    L.push("BEGIN:STANDARD", "DTSTART:19700101T000000", "TZOFFSETFROM:" + fmtOff(off), "TZOFFSETTO:" + fmtOff(off)); var nm0 = tzAbbr(Date.UTC(y, 5, 1), tz); if (nm0) L.push("TZNAME:" + nm0); L.push("END:STANDARD");
+  } else if (same) {
+    all[0].forEach(function (tr) { comp(tr, true); });
+  } else {
+    note = "explicit";
+    for (var Y = y - 1; Y <= y + 6; Y++) transitionsFor(tz, Y).forEach(function (tr) { comp(tr, false); });
+  }
+  L.push("END:VTIMEZONE");
+  return (_vtz[key] = { lines: L, note: note });
+}
+/* ---------- recurrence ---------- */
+function mondayOf(dn) { return dn - ((dow(dn) + 6) % 7); }
+function nthWeekdayDn(y, m, wd, n) { /* n=-1 last */
+  if (n === -1) { var l = dnum(y, m, dim(y, m)); return l - ((dow(l) - wd + 7) % 7); }
+  var f = dnum(y, m, 1), d = f + ((wd - dow(f) + 7) % 7) + (n - 1) * 7; return ymd(d).m === m ? d : null;
+}
+function expand(startDn, r, limit) {
+  var out = [], i, k, guard = 0;
+  if (!r || !r.freq) return [startDn];
+  var iv = Math.max(1, r.interval || 1), maxN = r.count ? Math.min(r.count, limit) : limit;
+  function add(d) { if (d < startDn) return true; if (r.untilDn != null && d > r.untilDn) return false; out.push(d); return out.length < maxN; }
+  var so = ymd(startDn);
+  if (r.freq === "DAILY") { for (i = 0; i < 5000; i++) if (!add(startDn + i * iv)) break; }
+  else if (r.freq === "WEEKLY") {
+    var days = (r.byday && r.byday.length ? r.byday.slice() : [dow(startDn)]).sort(function (a, b) { return ((a + 6) % 7) - ((b + 6) % 7); });
+    var w0 = mondayOf(startDn), stop = false;
+    for (i = 0; i < 3000 && !stop; i++) { for (k = 0; k < days.length; k++) { var d = w0 + i * 7 * iv + ((days[k] + 6) % 7); if (d < startDn) continue; if (!add(d)) { stop = true; break; } } }
+  } else if (r.freq === "MONTHLY") {
+    var ym = so.y * 12 + so.m - 1;
+    for (i = 0; i < 2400; i++) {
+      var t = ym + i * iv, Y = Math.floor(t / 12), M = t % 12 + 1, d2 = null;
+      if (r.monthMode === "nth") d2 = nthWeekdayDn(Y, M, dow(startDn), r.nth);
+      else if (so.d <= dim(Y, M)) d2 = dnum(Y, M, so.d);
+      if (d2 != null && !add(d2)) break;
+    }
+  } else if (r.freq === "YEARLY") {
+    for (i = 0; i < 400; i++) { var Y2 = so.y + i * iv; if (so.d <= dim(Y2, so.m)) { if (!add(dnum(Y2, so.m, so.d))) break; } }
+  }
+  return out;
+}
+function rruleStr(r, tzmode, startDn) {
+  if (!r || !r.freq) return "";
+  var p = ["FREQ=" + r.freq]; if (r.interval > 1) p.push("INTERVAL=" + r.interval);
+  if (r.freq === "WEEKLY" && r.byday && r.byday.length) p.push("BYDAY=" + r.byday.slice().sort(function (a, b) { return ((a + 6) % 7) - ((b + 6) % 7); }).map(function (d) { return WD2[d]; }).join(","));
+  if (r.freq === "MONTHLY") { if (r.monthMode === "nth") p.push("BYDAY=" + r.nth + WD2[dow(startDn)]); else p.push("BYMONTHDAY=" + ymd(startDn).d); }
+  if (r.count) p.push("COUNT=" + r.count); else if (r.untilStr) p.push("UNTIL=" + r.untilStr);
+  return p.join(";");
+}
+function ruleWords(r, startDn) {
+  if (!r || !r.freq) return "Does not repeat";
+  var iv = r.interval > 1, u = { DAILY: "day", WEEKLY: "week", MONTHLY: "month", YEARLY: "year" }[r.freq];
+  var s = "Repeats every " + (iv ? r.interval + " " + u + "s" : u);
+  if (r.freq === "WEEKLY") { var dd = (r.byday && r.byday.length ? r.byday : [dow(startDn)]).slice().sort(function (a, b) { return ((a + 6) % 7) - ((b + 6) % 7); }); s += " on " + dd.map(function (d) { return DAYSFULL[d]; }).join(", "); }
+  if (r.freq === "MONTHLY") s += r.monthMode === "nth" ? " on the " + (r.nth === -1 ? "last" : ORD[r.nth]) + " " + DAYSFULL[dow(startDn)] : " on day " + ymd(startDn).d;
+  if (r.count) s += ", " + r.count + " times"; else if (r.untilDn != null) s += ", until " + fmtD(r.untilDn);
+  return s;
+}
+/* ---------- link builders ---------- */
+function enc(s) { return encodeURIComponent(s); }
+function buildLinks(ev) {
+  /* ev: title, loc, desc, allday, sdn, smin, edn, emin (edn inclusive for allday), tz, rrule, emails */
+  var L = {}, t = ev.title, dtz = ev.tz === "float" ? Intl.DateTimeFormat().resolvedOptions().timeZone : ev.tz, s, e;
+  function z(ms) { return icsUtcStamp(ms); }
+  function iso(ms) { return new Date(ms).toISOString().replace(/\.\d{3}Z$/, "Z"); }
+  var g = "https://calendar.google.com/calendar/render?action=TEMPLATE&text=" + enc(t) + (ev.desc ? "&details=" + enc(ev.desc) : "") + (ev.loc ? "&location=" + enc(ev.loc) : "");
+  var o = "subject=" + enc(t) + "&body=" + enc(ev.desc || "") + "&location=" + enc(ev.loc || "");
+  var y = "https://calendar.yahoo.com/?v=60&title=" + enc(t) + "&desc=" + enc(ev.desc || "") + "&in_loc=" + enc(ev.loc || "");
+  if (ev.allday) {
+    var ed = ev.edn + 1;
+    g += "&dates=" + icsDateStamp(ev.sdn) + "/" + icsDateStamp(ed);
+    o += "&allday=true&startdt=" + isoD(ev.sdn) + "&enddt=" + isoD(ed);
+    y += "&st=" + icsDateStamp(ev.sdn) + "&dur=allday";
+  } else {
+    if (ev.tz === "utc") { s = localToUtc(ev.sdn, ev.smin, "UTC"); e = localToUtc(ev.edn, ev.emin, "UTC"); }
+    else { s = localToUtc(ev.sdn, ev.smin, dtz); e = localToUtc(ev.edn, ev.emin, dtz); }
+    g += "&dates=" + z(s) + "/" + z(e); o += "&startdt=" + enc(iso(s)) + "&enddt=" + enc(iso(e)); y += "&st=" + z(s) + "&et=" + z(e);
+  }
+  if (!ev.allday && ev.tz !== "utc" && dtz) g += "&ctz=" + enc(dtz);
+  if (ev.rrule) g += "&recur=" + enc("RRULE:" + ev.rrule);
+  if (ev.emails && ev.emails.length) g += "&add=" + enc(ev.emails.join(","));
+  g += "&sf=true&output=xml";
+  L.google = g; L.outlook = "https://outlook.live.com/calendar/0/action/compose?rru=addevent&path=%2Fcalendar%2Faction%2Fcompose&" + o;
+  L.office = "https://outlook.office.com/calendar/0/action/compose?rru=addevent&path=%2Fcalendar%2Faction%2Fcompose&" + o; L.yahoo = y;
+  return L;
+}
+/* ---------- ICS builder ---------- */
+function buildEvent(ev, stamp) {
+  var L = ["BEGIN:VEVENT", "UID:" + ev.uid, "DTSTAMP:" + icsUtcStamp(stamp)], tzid = null;
+  if (ev.allday) { L.push("DTSTART;VALUE=DATE:" + icsDateStamp(ev.sdn), "DTEND;VALUE=DATE:" + icsDateStamp(ev.edn + 1)); }
+  else if (ev.tz === "utc") { L.push("DTSTART:" + icsLocal(ev.sdn, ev.smin) + "Z", "DTEND:" + icsLocal(ev.edn, ev.emin) + "Z"); }
+  else if (ev.tz === "float") { L.push("DTSTART:" + icsLocal(ev.sdn, ev.smin), "DTEND:" + icsLocal(ev.edn, ev.emin)); }
+  else { tzid = ev.tz; L.push("DTSTART;TZID=" + tzid + ":" + icsLocal(ev.sdn, ev.smin), "DTEND;TZID=" + tzid + ":" + icsLocal(ev.edn, ev.emin)); }
+  L.push("SUMMARY:" + icsEsc(ev.title));
+  if (ev.desc) L.push("DESCRIPTION:" + icsEsc(ev.desc));
+  if (ev.loc) L.push("LOCATION:" + icsEsc(ev.loc));
+  if (ev.url) L.push("URL:" + ev.url);
+  if (ev.cats) L.push("CATEGORIES:" + ev.cats.map(icsEsc).join(","));
+  if (ev.rrule) L.push("RRULE:" + ev.rrule);
+  if (ev.exdates && ev.exdates.length) {
+    if (ev.allday) L.push("EXDATE;VALUE=DATE:" + ev.exdates.map(icsDateStamp).join(","));
+    else if (ev.tz === "utc") L.push("EXDATE:" + ev.exdates.map(function (d) { return icsLocal(d, ev.smin) + "Z"; }).join(","));
+    else if (ev.tz === "float") L.push("EXDATE:" + ev.exdates.map(function (d) { return icsLocal(d, ev.smin); }).join(","));
+    else L.push("EXDATE;TZID=" + tzid + ":" + ev.exdates.map(function (d) { return icsLocal(d, ev.smin); }).join(","));
+  }
+  L.push("STATUS:" + ev.status, "TRANSP:" + ev.transp, "CLASS:" + ev.klass, "SEQUENCE:0");
+  if (ev.org) L.push("ORGANIZER;CN=" + icsEsc(ev.org.name || ev.org.email).replace(/[";:]/g, "") + ":mailto:" + ev.org.email);
+  (ev.emails || []).forEach(function (m) { L.push("ATTENDEE;CUTYPE=INDIVIDUAL;ROLE=REQ-PARTICIPANT;PARTSTAT=NEEDS-ACTION;RSVP=TRUE:mailto:" + m); });
+  (ev.alarms || []).forEach(function (a) { L.push("BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEsc(ev.title), "TRIGGER:" + a, "END:VALARM"); });
+  L.push("END:VEVENT");
+  return { lines: L, tzid: tzid };
+}
+function buildCalendar(events, calName, stamp) {
+  var lines = [], tzs = {}, hasAtt = false, firstY = {};
+  var body = [];
+  events.forEach(function (ev) { var b = buildEvent(ev, stamp); if (b.tzid) { var y = ymd(ev.sdn).y; if (!(b.tzid in firstY) || y < firstY[b.tzid]) firstY[b.tzid] = y; } if (ev.emails && ev.emails.length && ev.org) hasAtt = true; body = body.concat(b.lines); });
+  var notes = [];
+  Object.keys(firstY).forEach(function (tz) { var v = vtimezone(tz, firstY[tz]); lines = lines.concat(v.lines); if (v.note) notes.push(tz); });
+  var txt = icsWrap(lines.concat(body), calName);
+  if (hasAtt) txt = txt.replace("METHOD:PUBLISH", "METHOD:REQUEST");
+  return { text: txt, explicitTz: notes };
+}
+/* ---------- validator ---------- */
+function validateIcs(raw) {
+  var res = { errs: [], warns: [], events: [], info: [] };
+  if (!raw.trim()) { res.errs.push("Paste the contents of an .ics file first."); return res; }
+  var rawLines = raw.split(/\r?\n/), longN = 0, enc = new TextEncoder();
+  rawLines.forEach(function (l) { if (enc.encode(l).length > 75) longN++; });
+  if (longN) res.warns.push(longN + " line(s) are longer than 75 octets and are not folded. Fold long lines by starting the continuation with a space.");
+  var lines = raw.replace(/\r?\n[ \t]/g, "").split(/\r?\n/).filter(function (l) { return l.trim() !== ""; });
+  if (!lines.length || lines[0].trim().toUpperCase() !== "BEGIN:VCALENDAR") res.errs.push("The file must start with BEGIN:VCALENDAR.");
+  if (lines.length && lines[lines.length - 1].trim().toUpperCase() !== "END:VCALENDAR") res.errs.push("The file must end with END:VCALENDAR.");
+  var stack = [], cur = null, tzids = {}, used = {}, vers = false, prod = false;
+  lines.forEach(function (l, i) {
+    var c = l.indexOf(":"); if (c < 1) { res.errs.push("Line " + (i + 1) + " has no colon, so it is not a valid content line: " + l.slice(0, 40)); return; }
+    var left = l.slice(0, c), val = l.slice(c + 1), parts = left.split(";"), name = parts[0].toUpperCase();
+    if (name === "BEGIN") { stack.push(val.toUpperCase()); if (val.toUpperCase() === "VEVENT") cur = { props: {}, line: i + 1 }; }
+    else if (name === "END") { var t = stack.pop(); if (t !== val.toUpperCase()) res.errs.push("Line " + (i + 1) + ": END:" + val + " does not match BEGIN:" + (t || "nothing") + "."); if (val.toUpperCase() === "VEVENT" && cur) { res.events.push(cur); cur = null; } }
+    else {
+      if (name === "VERSION" && stack.length === 1) vers = true; if (name === "PRODID" && stack.length === 1) prod = true;
+      if (name === "TZID" && stack[stack.length - 1] === "VTIMEZONE") tzids[val] = 1;
+      parts.slice(1).forEach(function (p) { if (/^TZID=/i.test(p)) used[p.slice(5)] = 1; });
+      if (cur && stack[stack.length - 1] === "VEVENT") { if (!(name in cur.props)) cur.props[name] = val; cur.props[name + "_P"] = parts.slice(1).join(";"); }
+    }
+  });
+  if (stack.length) res.errs.push("Unbalanced BEGIN/END blocks: " + stack.join(", ") + " is not closed.");
+  if (!vers) res.errs.push("VERSION:2.0 is missing."); if (!prod) res.warns.push("PRODID is missing; RFC 5545 requires it.");
+  Object.keys(used).forEach(function (t) { if (!tzids[t]) res.warns.push("TZID \"" + t + "\" is used but no VTIMEZONE defines it. Some apps treat this as floating time."); });
+  if (!res.events.length) res.errs.push("No VEVENT found.");
+  res.events.forEach(function (ev, i) {
+    var P = ev.props, n = "Event " + (i + 1) + (P.SUMMARY ? " (" + P.SUMMARY + ")" : "");
+    ["UID", "DTSTAMP", "DTSTART"].forEach(function (k) { if (!(k in P)) res.errs.push(n + ": " + k + " is missing."); });
+    if ("DTEND" in P && "DURATION" in P) res.errs.push(n + ": DTEND and DURATION must not both be present.");
+    if (!("SUMMARY" in P)) res.warns.push(n + ": SUMMARY (title) is missing.");
+    if (/COUNT=/.test(P.RRULE || "") && /UNTIL=/.test(P.RRULE || "")) res.errs.push(n + ": RRULE has both COUNT and UNTIL, which is not allowed.");
+    if (P.DTSTART && P.DTEND && P.DTSTART === P.DTEND && /VALUE=DATE/i.test(P.DTSTART_P || "")) res.warns.push(n + ": all-day DTEND equals DTSTART. DTEND is exclusive for dates, so use the next day.");
+    if (P.DTSTART && P.DTEND && /^\d{8}(T\d{6}Z?)?$/.test(P.DTSTART) && /^\d{8}(T\d{6}Z?)?$/.test(P.DTEND) && P.DTEND < P.DTSTART && P.DTSTART.length === P.DTEND.length) res.errs.push(n + ": DTEND is earlier than DTSTART.");
+  });
+  return res;
+}
+
+/* ---------- ICS UI ---------- */
+var ST = { txt: "", btxt: "", mi: 0, ev: null, rule: null, links: null, dates: [], res: null };
+function fmtT(m) { var h = Math.floor(m / 60) % 24, ap = h >= 12 ? "PM" : "AM"; return ((h % 12) || 12) + ":" + p2(m % 60) + " " + ap; }
+function tmin(v, def) { var m = /^(\d{1,2}):(\d{2})/.exec(v || ""); return m ? (+m[1]) * 60 + (+m[2]) : def; }
+function browserTz() { try { return Intl.DateTimeFormat().resolvedOptions().timeZone || "UTC"; } catch (e) { return "UTC"; } }
+function tzValue() { var v = $("icTz").value; if (v === "other") { var o = $("icTzOther").value.trim(); return o; } if (v === "browser") return browserTz(); return v; }
+function tzLabel(tz) { return tz === "float" ? "floating local time" : tz === "utc" ? "UTC" : tz; }
+function checkedAlarms() { return ALARMS.filter(function (a) { return $("icAl" + a[0]).checked; }).map(function (a) { return a[2]; }); }
+function parseDates(txt) { var out = [], m, re = /(\d{4}-\d{2}-\d{2})/g; while ((m = re.exec(txt))) { var d = parseD(m[1]); if (d != null && out.indexOf(d) < 0) out.push(d); } return out.sort(function (a, b) { return a - b; }); }
+function collect() {
+  var r = { err: null, warns: [] }, title = $("icTitle").value.trim();
+  if (!title) { r.err = "Enter an event title to generate the calendar file."; return r; }
+  var allday = $("icAllDay").checked, sdn = parseD($("icSD").value), edn = parseD($("icED").value);
+  if (sdn == null) { r.err = "Choose a valid start date."; return r; }
+  if (edn == null) edn = sdn;
+  var smin = allday ? 0 : tmin($("icST").value, 540), emin = allday ? 0 : tmin($("icET").value, smin + 60);
+  var tz = $("icTz").value === "float" ? "float" : $("icTz").value === "utc" ? "utc" : tzValue();
+  if (tz === "UTC" || tz === "Etc/UTC" || tz === "GMT") tz = "utc";
+  if (tz !== "float" && tz !== "utc" && !tzValid(tz)) { r.err = "That time zone name is not recognised. Use an IANA name such as Europe/Paris."; return r; }
+  if (edn < sdn || (!allday && edn === sdn && emin <= smin)) { r.err = allday ? "The end date must not be before the start date." : "The event must end after it starts. Check the end date and time."; return r; }
+  var rule = null, f = $("icRep").value;
+  if (f) {
+    rule = { freq: f, interval: intIn("icInt", 1, 99, 1) };
+    if (f === "WEEKLY") { rule.byday = []; for (var i = 0; i < 7; i++) if ($("icDay" + i).checked) rule.byday.push(i); if (!rule.byday.length) rule.byday = [dow(sdn)]; }
+    if (f === "MONTHLY") { var mm = $("icMonMode").value; if (mm === "dom") rule.monthMode = "dom"; else { rule.monthMode = "nth"; var o = ymd(sdn); rule.nth = mm === "last" ? -1 : Math.ceil(o.d / 7); if (rule.nth > 4 && mm !== "last") rule.nth = -1; } }
+    var en = $("icEnd").value;
+    if (en === "count") rule.count = intIn("icCount", 1, 999, 10);
+    else if (en === "until") {
+      var ud = parseD($("icUntil").value); if (ud == null) { r.err = "Choose an end date for the repeat, or pick Never / After a number of times."; return r; }
+      if (ud < sdn) { r.err = "The repeat end date is before the event start."; return r; }
+      rule.untilDn = ud;
+      rule.untilStr = allday ? icsDateStamp(ud) : tz === "float" ? icsDateStamp(ud) + "T235959" : icsUtcStamp(localToUtc(ud, 1439, tz === "utc" ? "UTC" : tz) + 59000);
+    }
+  }
+  var dur = edn - sdn; if (rule && !allday && dur > 0 && rule.freq === "DAILY" && rule.interval <= dur) r.warns.push("Each occurrence is longer than the repeat interval, so occurrences will overlap.");
+  var url = $("icUrl").value.trim(); if (url && !/^https?:\/\//i.test(url)) { r.warns.push("The URL should start with http:// or https://, so it was left out of the file."); url = ""; }
+  var emails = $("icAtt").value.split(/[\s,;]+/).filter(function (x) { return /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(x); });
+  var oe = $("icOrgEmail").value.trim(), org = /^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(oe) ? { email: oe, name: $("icOrgName").value.trim() } : null;
+  if (emails.length && !org) { r.warns.push("Attendees are only written to the file when you also enter an organizer email."); emails = []; }
+  var cats = $("icCat").value.split(",").map(function (x) { return x.trim(); }).filter(Boolean);
+  var ev = { title: title, desc: $("icDesc").value.trim(), loc: $("icLoc").value.trim(), url: url, allday: allday, sdn: sdn, smin: smin, edn: edn, emin: emin, tz: tz, status: $("icStatus").value, transp: $("icBusy").value, klass: $("icClass").value, alarms: checkedAlarms(), emails: emails, org: org, cats: cats.length ? cats : null };
+  var allD = expand(sdn, rule, 3000), ex = parseDates($("icEx").value).filter(function (d) { return rule && allD.indexOf(d) >= 0; });
+  ev.exdates = ex; ev.rrule = rruleStr(rule, tz, sdn);
+  ev.uid = icsUid([title, sdn, smin, edn, emin, ev.rrule, tz].join("|"));
+  r.ev = ev; r.rule = rule; return r;
+}
+function dateRange(ev) {
+  if (ev.allday) return ev.edn === ev.sdn ? fmtDW(ev.sdn) + ", all day" : fmtDW(ev.sdn) + " to " + fmtDW(ev.edn) + ", all day";
+  return ev.edn === ev.sdn ? fmtDW(ev.sdn) + ", " + fmtT(ev.smin) + " to " + fmtT(ev.emin) : fmtDW(ev.sdn) + " " + fmtT(ev.smin) + " to " + fmtDW(ev.edn) + " " + fmtT(ev.emin);
+}
+function generate() {
+  var r = collect(), box = $("icWarn"); ST.res = r;
+  if (r.err) { box.hidden = false; box.textContent = r.err; $("icOut").value = ""; $("icCard").innerHTML = ""; $("icLinks").innerHTML = ""; $("icDates").innerHTML = ""; $("icDl").disabled = $("icCopy").disabled = true; ST.ev = null; return; }
+  $("icDl").disabled = $("icCopy").disabled = false;
+  var ev = r.ev, cal = buildCalendar([ev], ev.title, Date.now());
+  var w = r.warns.slice(); if (cal.explicitTz.length) w.push("This time zone's daylight-saving rule is irregular, so explicit transitions were written for the next several years instead of a repeating rule.");
+  if (ev.rrule && !ev.allday && ev.tz === "float") w.push("Floating times follow whatever time zone the viewer's calendar is set to.");
+  box.hidden = !w.length; box.innerHTML = w.length ? "<ul>" + w.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : "";
+  $("icOut").value = cal.text; ST.txt = cal.text; ST.ev = ev; ST.rule = r.rule;
+  var als = ALARMS.filter(function (a) { return ev.alarms.indexOf(a[2]) >= 0; }).map(function (a) { return a[1].toLowerCase(); });
+  $("icCard").innerHTML = '<div class="ic-card"><div class="ic-bar"></div><div class="ic-body"><b>' + esc(ev.title) + '</b><span>' + esc(dateRange(ev)) + '</span>' + (ev.allday ? "" : '<span class="ic-muted">' + esc(tzLabel(ev.tz)) + "</span>") + (ev.loc ? '<span>&#128205; ' + esc(ev.loc) + "</span>" : "") + '<span class="ic-muted">' + esc(ruleWords(r.rule, ev.sdn)) + (ev.exdates.length ? ", skipping " + ev.exdates.length : "") + "</span>" + (als.length ? '<span class="ic-muted">&#128276; ' + esc(als.join(", ")) + "</span>" : "") + "</div></div>";
+  renderLinks(ev); renderDates(ev, r.rule); if ($("icBulkIn").value) bulk();
+}
+function renderLinks(ev) {
+  var L = buildLinks(ev), ST2 = ST; ST.links = L;
+  var rows = [["Google Calendar", L.google], ["Outlook.com (personal)", L.outlook], ["Microsoft 365 / Office (work or school)", L.office], ["Yahoo Calendar", L.yahoo]];
+  var h = '<div class="dt-scroll"><table class="dt-table"><tr><th>Calendar</th><th>Link</th><th></th></tr>';
+  rows.forEach(function (x, i) { h += "<tr><td>" + x[0] + '</td><td><a href="' + esc(x[1]) + '" target="_blank" rel="noopener noreferrer">Open and add</a></td><td><button type="button" class="dt-btn ghost small" data-lk="' + i + '">Copy link</button></td></tr>'; });
+  h += "</table></div>"; $("icLinks").innerHTML = h;
+  var note = ev.rrule ? " Only Google Calendar accepts the repeat rule in a link. For Outlook, Microsoft 365 and Yahoo, use the .ics file to keep the repeat." : "";
+  $("icLinkNote").textContent = "Apple Calendar and most other apps use the .ics file. Links open the event form in the calendar so the person can review it and press Save." + note;
+  var btn = '<a href="' + L.google + '" target="_blank" rel="noopener noreferrer">Add to Google Calendar</a> | <a href="' + L.outlook + '" target="_blank" rel="noopener noreferrer">Add to Outlook</a> | <a href="' + L.office + '" target="_blank" rel="noopener noreferrer">Add to Microsoft 365</a> | <a href="' + L.yahoo + '" target="_blank" rel="noopener noreferrer">Add to Yahoo</a>';
+  $("icBtnHtml").value = btn;
+  var inv = ev.title + "\n" + dateRange(ev) + (ev.allday ? "" : " (" + tzLabel(ev.tz) + ")") + (ev.loc ? "\nWhere: " + ev.loc : "") + (ev.rrule ? "\n" + ruleWords(ST.rule, ev.sdn) : "") + (ev.desc ? "\n\n" + ev.desc : "") + "\n\nAdd to Google Calendar: " + L.google + "\nAdd to Outlook: " + L.outlook;
+  $("icInvite").value = inv;
+}
+function renderDates(ev, rule) {
+  var all = expand(ev.sdn, rule, rule && !rule.count && rule.untilDn == null ? 60 : 600), skip = {}; ev.exdates.forEach(function (d) { skip[d] = 1; });
+  ST.dates = all; var n = all.length - ev.exdates.length;
+  var more = rule && !rule.count && rule.untilDn == null;
+  var h = '<p class="dt-sum"><b>' + (more ? "First " + n + " occurrences shown (repeats forever)" : plural(n, "occurrence")) + "</b>" + (ev.exdates.length ? " (" + ev.exdates.length + " skipped)" : "") + ". " + esc(ruleWords(rule, ev.sdn)) + ".</p>";
+  /* mini month calendar */
+  var so = ymd(ev.sdn), base = so.y * 12 + so.m - 1 + ST.mi, Y = Math.floor(base / 12), M = base % 12 + 1, set = {}; all.forEach(function (d) { set[d] = skip[d] ? 2 : 1; });
+  var f = dnum(Y, M, 1), lead = (dow(f) + 6) % 7, days = dim(Y, M);
+  h += '<div class="ic-nav"><button type="button" class="dt-btn ghost small" id="icPrevM" aria-label="Previous month">&larr;</button><b>' + MONFULL[M - 1] + " " + Y + '</b><button type="button" class="dt-btn ghost small" id="icNextM" aria-label="Next month">&rarr;</button></div>';
+  h += '<table class="ic-cal"><tr>' + ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"].map(function (x) { return "<th>" + x + "</th>"; }).join("") + "</tr><tr>";
+  for (var i = 0; i < lead; i++) h += "<td></td>";
+  for (var d = 1; d <= days; d++) {
+    var dn = f + d - 1, cl = set[dn] === 1 ? ' class="on"' : set[dn] === 2 ? ' class="skip"' : "";
+    if ((lead + d - 1) % 7 === 0 && d > 1) h += "</tr><tr>"; h += "<td" + cl + ">" + d + "</td>";
+  }
+  h += "</tr></table>";
+  h += '<div class="dt-scroll" style="max-height:340px;overflow-y:auto"><table class="dt-table"><tr><th>#</th><th>Date</th><th>Time</th></tr>';
+  all.slice(0, 200).forEach(function (d, i) { h += "<tr" + (skip[d] ? ' style="opacity:.5;text-decoration:line-through"' : "") + "><td>" + (i + 1) + "</td><td>" + fmtDW(d) + "</td><td>" + (ev.allday ? "All day" : fmtT(ev.smin) + " to " + fmtT(ev.emin)) + "</td></tr>"; });
+  h += "</table></div>";
+  $("icDates").innerHTML = h;
+  $("icPrevM").addEventListener("click", function () { ST.mi--; renderDates(ev, rule); });
+  $("icNextM").addEventListener("click", function () { ST.mi++; renderDates(ev, rule); });
+}
+function downloadIcs() { if (!ST.ev) return; saveBlob(new Blob([ST.txt], { type: "text/calendar;charset=utf-8" }), (ST.ev.title.replace(/[^\w\-]+/g, "-").replace(/^-+|-+$/g, "").toLowerCase() || "event") + ".ics"); msg("Calendar file downloaded. Open it to add the event."); }
+function datesCsv() { if (!ST.ev) return; var ev = ST.ev, sk = {}; ev.exdates.forEach(function (d) { sk[d] = 1; }); var rows = [["Date", "Weekday", "Start", "End", "Title", "Skipped"]]; ST.dates.forEach(function (d) { rows.push([isoD(d), DAYSFULL[dow(d)], ev.allday ? "" : fmtT(ev.smin), ev.allday ? "" : fmtT(ev.emin), ev.title, sk[d] ? "yes" : ""]); }); saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), "event-dates.csv"); msg("Dates CSV downloaded."); }
+/* ---------- bulk ---------- */
+var BULK_EX = "2026-11-03 09:00-10:30 | Quarterly review | Boardroom | Bring the Q3 numbers\n2026-11-10 14:00 | Client call | Zoom\n2026-11-20 | Product launch day\n2026-12-01 18:30-21:00 | Team dinner | Riverside Grill";
+function bulk() {
+  var base = ST.res && ST.res.ev ? ST.res.ev : null, tz = base ? base.tz : "float", errs = [], evs = [], lines = $("icBulkIn").value.split(/\r?\n/);
+  lines.forEach(function (ln, i) {
+    if (!ln.trim()) return;
+    var p = ln.split(/\s*\|\s*|\t/), m = /^(\d{4}-\d{2}-\d{2})(?:[ T]+(\d{1,2}):(\d{2})(?:\s*[-–]\s*(\d{1,2}):(\d{2}))?)?$/.exec(p[0].trim());
+    if (!m || parseD(m[1]) == null) { errs.push("Line " + (i + 1) + ": start with a date like 2026-11-03 or 2026-11-03 09:00-10:30."); return; }
+    if (!p[1] || !p[1].trim()) { errs.push("Line " + (i + 1) + ": add a title after the date, separated by |."); return; }
+    var sdn = parseD(m[1]), allday = m[2] == null, smin = allday ? 0 : (+m[2]) * 60 + (+m[3]), emin = smin + 60, edn = sdn;
+    if (m[4] != null) { emin = (+m[4]) * 60 + (+m[5]); if (emin <= smin) edn = sdn + 1; }
+    if (!allday && (smin >= 1440 || emin >= 1440 + 1440)) { errs.push("Line " + (i + 1) + ": the time is out of range."); return; }
+    if (!allday && emin >= 1440 && m[4] == null) { edn = sdn + 1; emin -= 1440; }
+    var ev = { title: p[1].trim(), loc: (p[2] || "").trim(), desc: (p.slice(3).join(" | ") || "").trim(), allday: allday, sdn: sdn, smin: smin, edn: edn, emin: emin, tz: tz, status: base ? base.status : "CONFIRMED", transp: base ? base.transp : "OPAQUE", klass: "PUBLIC", alarms: base ? base.alarms : [], exdates: [], rrule: "", emails: [], org: null };
+    ev.uid = icsUid([ev.title, sdn, smin, i].join("|")); evs.push(ev);
+  });
+  $("icBulkErr").hidden = !errs.length; $("icBulkErr").innerHTML = errs.length ? "<ul>" + errs.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul>" : "";
+  if (!evs.length) { $("icBulkOut").value = ""; $("icBulkCount").textContent = "Paste one event per line."; $("icBulkDl").disabled = true; return; }
+  ST.btxt = buildCalendar(evs, "Utiliby events", Date.now()).text; $("icBulkOut").value = ST.btxt; $("icBulkCount").textContent = plural(evs.length, "event") + " ready, using the time zone and reminders chosen above (" + tzLabel(tz) + ")."; $("icBulkDl").disabled = false;
+}
+/* ---------- check ---------- */
+function runCheck() {
+  var r = validateIcs($("icChkIn").value), h = "";
+  function ul(a, c, t) { return a.length ? '<div class="' + c + '"><b>' + t + "</b><ul>" + a.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>" : ""; }
+  if (!r.errs.length && !r.warns.length) h += '<div class="dt-tip"><b>Looks good.</b> No structural problems found in ' + plural(r.events.length, "event") + ".</div>";
+  h += ul(r.errs, "dt-warn", "Problems that will stop apps importing this file"); h += ul(r.warns, "dt-tip", "Things to check");
+  if (r.events.length) {
+    h += '<div class="dt-scroll"><table class="dt-table"><tr><th>#</th><th>Title</th><th>Start</th><th>End</th><th>Repeat</th></tr>';
+    r.events.slice(0, 100).forEach(function (e, i) { var P = e.props; h += "<tr><td>" + (i + 1) + "</td><td>" + esc(P.SUMMARY || "") + "</td><td>" + esc(P.DTSTART || "") + "</td><td>" + esc(P.DTEND || P.DURATION || "") + "</td><td>" + esc(P.RRULE || "") + "</td></tr>"; });
+    h += "</table></div>";
+  }
+  $("icChkOut").innerHTML = h;
+}
+/* ---------- report ---------- */
+function fillReport() {
+  var b = repBox(); repHead(b, "Calendar event", "Free online Calendar Event ICS Generator");
+  if (!ST.ev) { repAdd(b, "p", "No event has been created yet."); return; }
+  var ev = ST.ev, rows = [["Title", ev.title], ["When", dateRange(ev)], ["Time zone", ev.allday ? "All day" : tzLabel(ev.tz)], ["Where", ev.loc || "-"], ["Repeat", ruleWords(ST.rule, ev.sdn) + (ev.exdates.length ? ", skipping " + ev.exdates.map(fmtD).join(", ") : "")], ["Reminders", ev.alarms.length ? ALARMS.filter(function (a) { return ev.alarms.indexOf(a[2]) >= 0; }).map(function (a) { return a[1]; }).join(", ") : "None"], ["Description", ev.desc || "-"]];
+  repTbl(b, ["Field", "Value"], rows);
+  repAdd(b, "h3", "Dates"); var sk = {}; ev.exdates.forEach(function (d) { sk[d] = 1; });
+  repTbl(b, ["#", "Date", "Time"], ST.dates.filter(function (d) { return !sk[d]; }).slice(0, 40).map(function (d, i) { return [i + 1, fmtDW(d), ev.allday ? "All day" : fmtT(ev.smin) + " to " + fmtT(ev.emin)]; }));
+  if (ST.links) { repAdd(b, "h3", "Add to calendar"); repAdd(b, "p", "Google Calendar: " + ST.links.google); repAdd(b, "p", "Outlook.com: " + ST.links.outlook); }
+  repDisc(b, "Calendar apps may display imported events differently. Check the event after you add it.");
+}
+function setDefaults() {
+  var t = todayDN() + 1;
+  $("icTitle").value = "Project kickoff meeting"; $("icLoc").value = "Conference room A or video call"; $("icDesc").value = "Agenda: goals, timeline, owners and next steps."; $("icUrl").value = "";
+  $("icAllDay").checked = false; $("icSD").value = isoD(t); $("icST").value = "10:00"; $("icED").value = isoD(t); $("icET").value = "11:00"; $("icDur").value = "60";
+  $("icTz").value = "browser"; $("icTzOther").value = ""; $("icRep").value = ""; $("icInt").value = "1"; for (var i = 0; i < 7; i++) $("icDay" + i).checked = false; $("icDay" + dow(t)).checked = true;
+  $("icMonMode").value = "dom"; $("icEnd").value = "count"; $("icCount").value = "10"; $("icUntil").value = ""; $("icEx").value = "";
+  ALARMS.forEach(function (a) { $("icAl" + a[0]).checked = a[0] === "15"; });
+  $("icAtt").value = ""; $("icOrgName").value = ""; $("icOrgEmail").value = ""; $("icStatus").value = "CONFIRMED"; $("icBusy").value = "OPAQUE"; $("icClass").value = "PUBLIC"; $("icCat").value = "";
+  ST.mi = 0; syncUi();
+}
+function syncUi() {
+  var f = $("icRep").value, ad = $("icAllDay").checked;
+  $("icRepBox").hidden = !f; $("icWeekBox").hidden = f !== "WEEKLY"; $("icMonBox").hidden = f !== "MONTHLY"; $("icCountBox").hidden = $("icEnd").value !== "count"; $("icUntilBox").hidden = $("icEnd").value !== "until";
+  $("icSTBox").hidden = ad; $("icETBox").hidden = ad; $("icTzOtherBox").hidden = $("icTz").value !== "other"; $("icIntUnit").textContent = { DAILY: "day(s)", WEEKLY: "week(s)", MONTHLY: "month(s)", YEARLY: "year(s)" }[f] || "";
+  var sdn = parseD($("icSD").value);
+  if (sdn != null) { var o = ymd(sdn), n = Math.ceil(o.d / 7), last = o.d + 7 > dim(o.y, o.m); $("icMonMode").options[0].textContent = "On day " + o.d + " of each month"; $("icMonMode").options[1].textContent = "On the " + (n > 4 ? "last" : ORD[n]) + " " + DAYSFULL[dow(sdn)]; $("icMonMode").options[2].hidden = !last || n > 4; }
+}
+function applyDur() { var v = $("icDur").value; if (v === "x") return; var sdn = parseD($("icSD").value); if (sdn == null || $("icAllDay").checked) return; var t = tmin($("icST").value, 600) + (+v), d = sdn; while (t >= 1440) { t -= 1440; d++; } $("icED").value = isoD(d); $("icET").value = p2(Math.floor(t / 60)) + ":" + p2(t % 60); }
+function init() {
+  initCommon(); window.fillReport = fillReport;
+  var tzs = '<option value="browser">My device time zone (' + esc(browserTz()) + ")</option><option value=\"float\">Floating (follows the viewer's time zone)</option><option value=\"utc\">UTC</option>" + TZ_LIST.filter(function (x) { return x !== "UTC"; }).map(function (z) { return '<option value="' + z + '">' + z.replace(/_/g, " ") + "</option>"; }).join("") + '<option value="other">Other IANA time zone...</option>';
+  $("icTz").innerHTML = tzs;
+  $("icAlarms").innerHTML = ALARMS.map(function (a) { return '<label><input type="checkbox" id="icAl' + a[0] + '"> ' + a[1] + "</label>"; }).join("");
+  initTabs(["event", "links", "dates", "bulk", "check"]);
+  setDefaults(); $("icBulkIn").value = BULK_EX;
+  var live = ["icTitle", "icLoc", "icDesc", "icUrl", "icAllDay", "icSD", "icST", "icED", "icET", "icTz", "icTzOther", "icRep", "icInt", "icMonMode", "icEnd", "icCount", "icUntil", "icEx", "icAtt", "icOrgName", "icOrgEmail", "icStatus", "icBusy", "icClass", "icCat"].concat([0, 1, 2, 3, 4, 5, 6].map(function (i) { return "icDay" + i; })).concat(ALARMS.map(function (a) { return "icAl" + a[0]; }));
+  live.forEach(function (id) { var ev = /text|textarea|number|date|time/.test($(id).type) ? "input" : "change"; $(id).addEventListener(ev, function () { ST.mi = 0; syncUi(); generate(); }); $(id).addEventListener("change", function () { syncUi(); generate(); }); });
+  $("icDur").addEventListener("change", function () { applyDur(); generate(); }); $("icST").addEventListener("change", function () { applyDur(); generate(); });
+  $("icDl").addEventListener("click", downloadIcs); $("icCopy").addEventListener("click", function () { copyText(ST.txt, $("icCopy")); });
+  $("icPrint").addEventListener("click", function () { fillReport(); window.print(); }); $("icDatesCsv").addEventListener("click", datesCsv);
+  $("resetBtn").addEventListener("click", function () { setDefaults(); generate(); msg("Reset to the example event."); });
+  $("icClear").addEventListener("click", function () { setDefaults(); $("icTitle").value = ""; $("icLoc").value = ""; $("icDesc").value = ""; generate(); });
+  $("icLinks").addEventListener("click", function (e) { var b = e.target.closest("[data-lk]"); if (b && ST.links) copyText([ST.links.google, ST.links.outlook, ST.links.office, ST.links.yahoo][+b.getAttribute("data-lk")], b); });
+  $("icBulkGo").addEventListener("click", bulk); $("icBulkIn").addEventListener("input", bulk); $("icBulkDl").addEventListener("click", function () { saveBlob(new Blob([ST.btxt], { type: "text/calendar;charset=utf-8" }), "events.ics"); msg("Calendar file downloaded."); });
+  $("icBulkEx").addEventListener("click", function () { $("icBulkIn").value = BULK_EX; bulk(); });
+  $("icChkGo").addEventListener("click", runCheck); $("icChkUse").addEventListener("click", function () { $("icChkIn").value = $("icOut").value; runCheck(); });
+  generate(); bulk();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
