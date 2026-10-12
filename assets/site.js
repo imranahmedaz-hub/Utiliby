@@ -319,7 +319,7 @@ function ulContains(haystack, needle){
       for (var y = 0; y < categoryCards.length; y++) {
         if (categoryCards[y].style.display !== "none") { anyCategoryVisible = true; break; }
       }
-      toggleSectionHeading(categoryCards[0] ? categoryCards[0].closest(".grid") : popularGrid, anyCategoryVisible);
+      if (categoryCards[0]) toggleSectionHeading(categoryCards[0].closest(".grid"), anyCategoryVisible);
     }
 
     q.addEventListener("input", update);
