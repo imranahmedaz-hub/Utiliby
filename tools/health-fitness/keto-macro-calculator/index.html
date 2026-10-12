@@ -3,39 +3,99 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Keto Macro Calculator – Free Keto &amp; Low-Carb Macro Calculator</title>
-<meta name="description" content="Free keto macro calculator. Get your daily calories, protein, fat and carbs for keto, low-carb, carnivore or standard diets. No sign-up.">
+<title>Keto Macro Calculator – Free Online Keto &amp; Low-Carb Macro Calculator</title>
+<meta name="description" content="Free online keto macro calculator: calories, fat, protein and net carbs for keto, low-carb or carnivore, with electrolytes and weight projection. No sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/health-fitness/keto-macro-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
-<meta property="og:title" content="Keto Macro Calculator – Free Keto &amp; Low-Carb Macro Calculator">
-<meta property="og:description" content="Free keto macro calculator. Get your daily calories, protein, fat and carbs for keto, low-carb, carnivore or standard diets.">
+<meta property="og:title" content="Keto Macro Calculator – Free Online Keto &amp; Low-Carb Macro Calculator">
+<meta property="og:description" content="Free online keto macro calculator: daily calories, fat, protein and net carbs for keto, low-carb, carnivore or balanced diets, with electrolytes, meal split and a weight projection.">
 <meta property="og:url" content="https://utiliby.com/tools/health-fitness/keto-macro-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Keto Macro Calculator – Free Online Keto &amp; Low-Carb Macro Calculator">
+<meta name="twitter:description" content="Free online keto macro calculator: calories, fat, protein, net carbs, electrolytes and weight projection. No sign-up.">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Keto Macro Calculator","url":"https://utiliby.com/tools/health-fitness/keto-macro-calculator/","applicationCategory":"HealthApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}}</script>
+<style>
+.km-adv{margin:12px 0;border:1px solid var(--line);border-radius:10px;padding:8px 12px;background:var(--card)}
+.km-adv summary{cursor:pointer;font-weight:600}
+.km-adv .row3{margin-top:10px}
+.km-check{display:inline-flex;align-items:center;gap:6px;font-size:.85rem;margin:8px 0}
+#tool .km-check input{width:auto;margin:0}
+.km-grid{display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:16px;align-items:center;margin:12px 0}
+@media(max-width:560px){.km-grid{grid-template-columns:1fr}}
+.km-donutwrap{max-width:200px;margin:0 auto;color:var(--fg)}
+.km-donut,.km-chart{width:100%;height:auto;display:block;color:var(--fg)}
+.km-chart{max-width:520px;margin:0 auto}
+.km-badges{margin:6px 0}
+.km-badge{display:inline-block;font-size:.75rem;font-weight:700;padding:3px 10px;border-radius:999px;border:1px solid var(--line);margin:0 6px 6px 0;background:var(--card)}
+.km-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}
+.km-h{margin:18px 0 8px;font-size:1.05rem}
+.km-barrow{display:grid;grid-template-columns:96px 1fr 56px;gap:8px;align-items:center;font-size:.85rem;margin:4px 0}
+.km-track{height:10px;border-radius:6px;background:rgba(156,163,175,.25);overflow:hidden}
+.km-track i{display:block;height:100%;border-radius:6px}
+.km-warn,.km-tip{border-radius:8px;padding:6px 12px;margin:10px 0;font-size:.88rem;line-height:1.5}
+.km-warn{border:1px solid #f59e0b;background:rgba(245,158,11,.1)}
+.km-tip{border:1px solid var(--line);background:var(--card)}
+.km-warn p,.km-tip p{margin:4px 0}
+.km-scroll{overflow-x:auto}
+.km-steps{margin:12px 0}
+.km-panel{margin-top:16px;padding-top:6px;border-top:1px solid var(--line)}
+.km-list{list-style:none;padding:0;margin:8px 0}
+.km-list li{display:flex;gap:8px;align-items:center;justify-content:space-between;padding:4px 0;border-bottom:1px dashed var(--line);font-size:.88rem}
+.km-list li span{flex:1}
+.km-x{padding:0 8px}
+.km-empty{color:var(--muted)}
+.km-short{font-size:.8rem;line-height:1.55;margin-top:12px}
+.km-report{display:none}
+.km-reportgrid{display:grid;grid-template-columns:180px 1fr;gap:12px;align-items:center}
+.km-table{width:100%;border-collapse:collapse;margin:10px 0 16px;font-size:.92rem}
+.km-table th,.km-table td{border:1px solid var(--line);padding:6px 10px;text-align:left;vertical-align:top}
+.km-table th{background:var(--card)}
+.km-wrap{overflow-x:auto}
+.km-fig{margin:14px auto;max-width:640px;color:var(--fg)}
+.km-fig svg{width:100%;height:auto;display:block}
+.km-fig figcaption{font-size:.82rem;color:var(--muted);text-align:center;margin-top:4px}
+.km-meta{font-size:.85rem;color:var(--muted)}
+.km-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.km-toc ol{margin:6px 0 0;padding-left:20px;columns:2;column-gap:28px}
+@media(max-width:640px){.km-toc ol{columns:1}}
+@media print{
+header.site,footer.site{display:none !important}
+main>*:not(#tool){display:none !important}
+#tool>*:not(.km-report){display:none !important}
+.km-report{display:block !important;color:#000}
+body{background:#fff !important}
+.km-report table{width:100%;border-collapse:collapse;margin:6px 0 12px}
+.km-report th,.km-report td{border:1px solid #999;padding:4px 8px;text-align:left}
+.km-report svg{max-width:100%}
+.km-report .km-reportgrid svg{max-width:170px}
+}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a keto macro calculator?","acceptedAnswer":{"@type":"Answer","text":"A keto macro calculator is a tool that turns your age, sex, height, weight, activity level and goal into a daily calorie target and a split of protein, fat and carbohydrate in grams. This free online keto macro calculator also shows net carbs, fiber, electrolytes, macros per meal and a weight projection."}},{"@type":"Question","name":"How do I calculate my keto macros?","acceptedAnswer":{"@type":"Answer","text":"First estimate your basal metabolic rate (BMR), multiply it by an activity factor to get maintenance calories, then add or subtract calories for your goal. Set protein from your body weight or lean mass, fix net carbs at a low number such as 20 to 50 grams, and let fat make up the remaining calories (divide by 9 to get grams)."}},{"@type":"Question","name":"How many carbs should I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"Most people aim for 20 to 50 grams of net carbs per day. Strict keto is often 15 to 20 grams, standard keto about 20 to 30 grams, and a more relaxed low-carb plan up to 50 grams. Your own tolerance varies with activity, body size and metabolism."}},{"@type":"Question","name":"Should I count net carbs or total carbs?","acceptedAnswer":{"@type":"Answer","text":"Keto plans usually count net carbs, which are total carbohydrates minus fiber (and, for some sugar alcohols, minus part or all of those). Some people prefer total carbs because it is simpler and avoids label errors. This calculator shows both so you can pick the method you will follow consistently."}},{"@type":"Question","name":"How much protein should I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"A common range is 1.2 to 2.0 grams of protein per kilogram of body weight (about 0.55 to 0.9 g per pound), or roughly 1.3 to 2.2 g per kg of lean body mass if you lift weights. Protein should be high enough to protect muscle but not so high that it crowds out fat and calories."}},{"@type":"Question","name":"How much fat should I eat on keto?","acceptedAnswer":{"@type":"Answer","text":"Fat is the remaining calories after protein and carbs, usually 60 to 80 percent of total calories. For weight loss, fat is also supplied by your body stores, so you do not need to eat fat to the point of being overfull. Eat enough to feel satisfied within your calorie target."}},{"@type":"Question","name":"What is the best keto macro ratio for weight loss?","acceptedAnswer":{"@type":"Answer","text":"A typical keto split is about 70 to 75 percent fat, 20 to 25 percent protein and 5 to 10 percent carbs. Weight loss still depends mainly on a sustained calorie deficit, so the exact ratio matters less than hitting your calories, protein and carb limit consistently."}},{"@type":"Question","name":"Is this free online keto macro calculator accurate?","acceptedAnswer":{"@type":"Answer","text":"It is an estimate. Equations such as Mifflin-St Jeor predict calorie needs reasonably well for most adults, but individual metabolism can differ by several hundred calories. Track your weight and measurements for 2 to 3 weeks, then adjust calories up or down by 5 to 10 percent."}},{"@type":"Question","name":"What calorie deficit should I use on keto?","acceptedAnswer":{"@type":"Answer","text":"A moderate deficit of about 10 to 20 percent below maintenance suits most people. The calculator offers 15 percent (moderate) and 25 percent (aggressive) presets, plus a custom option. It also enforces a minimum of 1,200 kcal for women and 1,500 kcal for men for unsupervised dieting."}},{"@type":"Question","name":"Do I need to know my body fat percentage?","acceptedAnswer":{"@type":"Answer","text":"No, it is optional. Without it the calculator uses Mifflin-St Jeor and protein per kilogram of body weight. If you do know your body fat percentage (for example from a DEXA scan, calipers or a smart scale), you can switch to the Katch-McArdle formula and base protein on lean body mass."}},{"@type":"Question","name":"Which BMR formula does the calculator use?","acceptedAnswer":{"@type":"Answer","text":"By default it uses Mifflin-St Jeor. In the advanced options you can choose the revised Harris-Benedict equation, or Katch-McArdle if you enter your body fat percentage, or type in your own maintenance calories if you have measured or tracked them."}},{"@type":"Question","name":"How many calories should I eat on keto per day?","acceptedAnswer":{"@type":"Answer","text":"It depends on your size, activity and goal. Many adult women land between about 1,400 and 2,000 kcal and many men between about 1,800 and 2,600 kcal when losing weight, but your result may be higher or lower. Use the calculator rather than a generic number."}},{"@type":"Question","name":"What are good keto macros for women?","acceptedAnswer":{"@type":"Answer","text":"Women usually need fewer calories than men, so the same 20 to 25 gram net carb limit makes up a slightly larger share of calories. A typical result is 1,400 to 1,900 kcal with 20 to 25 g net carbs, 70 to 100 g protein and 100 to 150 g fat, adjusted for height, weight and activity. Pregnant or breastfeeding women should not use this plan without medical advice."}},{"@type":"Question","name":"Can I build muscle on keto?","acceptedAnswer":{"@type":"Answer","text":"Yes, many people maintain or gain muscle on a ketogenic diet when calories and protein are adequate and they lift weights. Choose a small calorie surplus (+10 percent), set protein at 1.6 to 2.2 g per kg, and expect gains to be slower than with a higher-carb diet for some people."}},{"@type":"Question","name":"What is lazy keto?","acceptedAnswer":{"@type":"Answer","text":"Lazy keto means limiting carbs (often to 20 to 50 grams a day) without tracking calories, protein or fat. It is simpler to follow but gives you less control over weight loss. You can use the calorie and protein numbers here as a rough guide even if you only track carbs."}},{"@type":"Question","name":"What is the difference between keto and carnivore macros?","acceptedAnswer":{"@type":"Answer","text":"Carnivore is an animal-foods-only way of eating with close to zero carbs, so nearly all calories come from protein and fat. Choose the carnivore preset to set carbs to 0 g, and consider raising calories or lowering protein so fat is not squeezed out."}},{"@type":"Question","name":"Do I need electrolytes on keto?","acceptedAnswer":{"@type":"Answer","text":"Many people feel better when they pay attention to sodium, potassium and magnesium during the first weeks, because lower insulin makes the kidneys excrete more sodium and water. The calculator shows typical ranges, but people with kidney, heart or blood pressure conditions or on certain medicines must get individual advice first."}},{"@type":"Question","name":"How long does it take to get into ketosis?","acceptedAnswer":{"@type":"Answer","text":"It often takes two to four days of eating very few carbs, but for some people it takes a week or longer. Exercise, fasting and keeping carbs near 20 grams can speed it up. Blood, urine or breath tests can show whether you are in ketosis."}},{"@type":"Question","name":"Why is my fat target so high or so low?","acceptedAnswer":{"@type":"Answer","text":"Fat is the leftover after protein and carbs are set. A larger calorie target or a lower protein setting raises fat grams, while a tight calorie target or high protein lowers them. If fat falls below about 55 percent of calories on a keto preset, consider lowering protein per kg or loosening the deficit."}},{"@type":"Question","name":"What if my protein and carbs exceed my calories?","acceptedAnswer":{"@type":"Answer","text":"The calculator warns you and sets fat to 0 g. That usually means your calorie target is very low for your protein setting. Reduce protein per kg, choose a lower-carb preset, or choose a gentler goal so there is room for fat."}},{"@type":"Question","name":"Can I use this calculator if I am pregnant, have diabetes or take medication?","acceptedAnswer":{"@type":"Answer","text":"Do not rely on it. A ketogenic diet is not suitable for everyone, including people who are pregnant or breastfeeding, have type 1 diabetes, pancreatic, liver or kidney disease, or a history of eating disorders, and it can change the dose you need for diabetes or blood pressure medicines. Speak to your doctor first."}},{"@type":"Question","name":"Is anything I enter stored?","acceptedAnswer":{"@type":"Answer","text":"No data is sent to any server; all calculations run in your browser. By default nothing is saved. If you tick the option to remember your entries, they are stored only in this browser on this device and you can clear them with Reset. The Copy link button puts your entries in the link itself."}},{"@type":"Question","name":"Can I save or print my results?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can copy a text summary, copy a shareable link, download a CSV file, save and re-import your settings as a JSON file, or print and save as PDF. The print view includes only your results, charts and disclaimer, not the whole web page."}},{"@type":"Question","name":"Why does the calculator set a minimum calorie level?","acceptedAnswer":{"@type":"Answer","text":"Very low calorie intakes can lead to muscle loss, nutrient shortfalls and gallstones, and should be supervised by a clinician. The tool therefore raises your target to 1,200 kcal (women) or 1,500 kcal (men) if your goal would take you lower, and warns you when you go below your estimated BMR."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Health & Fitness","item":"https://utiliby.com/tools/health-fitness/"},{"@type":"ListItem","position":3,"name":"Keto Macro Calculator","item":"https://utiliby.com/tools/health-fitness/keto-macro-calculator/"}]}</script>
 </head>
 <body>
 <header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
 <nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/health-fitness/">Health &amp; Fitness</a> › Keto Macro Calculator</nav>
-<h1>Keto Macro Calculator</h1>
-<p class="lead">Work out your daily calories, protein, fat and carbs for keto, low-carb, carnivore or a standard diet. Free, private and no sign-up.</p>
+<h1>Free Online Keto Macro Calculator</h1>
+<p class="lead">Use this free online keto macro calculator to work out your daily calories, protein, fat and net carbs for keto, low-carb, carnivore or a standard diet. Get electrolyte targets, macros per meal, a weight projection and printable results. Free, private and no sign-up.</p>
 
 <section class="tool" id="tool" aria-label="Keto macro calculator">
 <div class="tabs" role="group" aria-label="Unit system">
-<button type="button" class="tab on" data-unit="metric">Metric</button>
-<button type="button" class="tab" data-unit="imperial">Imperial</button>
+<button type="button" class="tab on" data-unit="metric" aria-pressed="true">Metric</button>
+<button type="button" class="tab" data-unit="imperial" aria-pressed="false">Imperial</button>
 </div>
 
 <div class="row3">
 <div><label for="sex">Sex</label>
 <select id="sex"><option value="m">Male</option><option value="f">Female</option></select></div>
 <div><label for="age">Age (years)</label>
-<input id="age" type="number" min="14" max="100" step="1" value="30"></div>
+<input id="age" type="number" min="18" max="100" step="1" value="30"></div>
 <div><label for="act">Activity level</label>
 <select id="act">
 <option value="1.2">Sedentary – little exercise</option>
@@ -53,10 +113,10 @@
 
 <div class="row" id="imperialBox" hidden>
 <div><label for="ft">Height (ft)</label><input id="ft" type="number" min="3" max="8" step="1" value="5"></div>
-<div><label for="in">Height (in)</label><input id="in" type="number" min="0" max="11" step="0.1" value="8.9"></div>
+<div><label for="in">Height (in)</label><input id="in" type="number" min="0" max="11.9" step="0.1" value="8.9"></div>
 </div>
 <div class="row" id="imperialBox2" hidden>
-<div><label for="lb">Weight (lb)</label><input id="lb" type="number" min="60" max="660" step="0.1" value="165.3"></div>
+<div><label for="lb">Weight (lb)</label><input id="lb" type="number" min="66" max="660" step="0.1" value="165.3"></div>
 <div></div>
 </div>
 
@@ -68,7 +128,8 @@
 <option value="lowcarb">Low-carb (50g net carbs)</option>
 <option value="carnivore">Carnivore (near-zero carbs)</option>
 <option value="moderate">Moderate carb (100g net carbs)</option>
-<option value="standard">Standard / balanced</option>
+<option value="standard">Standard / balanced (50% carbs)</option>
+<option value="pct">Custom carb % of calories</option>
 <option value="custom">Custom carbs</option>
 </select></div>
 <div><label for="goal">Goal</label>
@@ -78,220 +139,1197 @@
 <option value="maintain">Maintain weight</option>
 <option value="gain1">Gain – moderate (+10%)</option>
 <option value="gain2">Gain – aggressive (+20%)</option>
+<option value="kcal">Custom calorie change (± kcal/day)</option>
+<option value="target">Reach a target weight by a date</option>
 </select></div>
-<div><label for="prot">Protein target (g per kg body weight)</label>
+<div><label for="prot">Protein target (g per kg)</label>
 <input id="prot" type="number" min="0.8" max="3" step="0.1" value="1.6"></div>
 </div>
+<p class="meta" id="protHint"></p>
 
 <div id="customCarbsBox" hidden>
 <label for="customCarbs">Custom net carbs (g per day)</label>
 <input id="customCarbs" type="number" min="0" max="400" step="1" value="25">
 </div>
+<div id="customPctBox" hidden>
+<label for="customPct">Net carbs as % of daily calories</label>
+<input id="customPct" type="number" min="0" max="80" step="0.5" value="5">
+</div>
+<div id="goalKcalBox" hidden>
+<label for="goalKcal">Daily calorie change vs maintenance (kcal; negative = deficit)</label>
+<input id="goalKcal" type="number" min="-1500" max="1500" step="50" value="-400">
+</div>
+<div id="targetBox" class="row" hidden>
+<div><label for="targetWeight" id="targetWeightLbl">Target weight (kg)</label><input id="targetWeight" type="number" min="30" max="300" step="0.1" value="70"></div>
+<div><label for="targetWeeks">Weeks to get there</label><input id="targetWeeks" type="number" min="1" max="104" step="1" value="12"></div>
+</div>
+
+<details class="km-adv">
+<summary>Advanced options: body fat %, BMR formula, fiber, meals, your own maintenance calories</summary>
+<div class="row3">
+<div><label for="bf">Body fat % (optional)</label><input id="bf" type="number" min="3" max="60" step="0.1" placeholder="e.g. 25"></div>
+<div><label for="formula">BMR formula</label>
+<select id="formula">
+<option value="mifflin" selected>Mifflin-St Jeor (default)</option>
+<option value="harris">Revised Harris-Benedict</option>
+<option value="katch">Katch-McArdle (needs body fat %)</option>
+</select></div>
+<div><label for="tdeeOverride">Your own maintenance kcal (optional)</label><input id="tdeeOverride" type="number" min="1000" max="6000" step="10" placeholder="e.g. 2400"></div>
+</div>
+<div class="row3">
+<div><label for="protBasis">Protein based on</label>
+<select id="protBasis">
+<option value="bw" selected>Body weight</option>
+<option value="lbm">Lean body mass (needs body fat %)</option>
+</select></div>
+<div><label for="fiber">Fiber you plan to eat (g/day)</label><input id="fiber" type="number" min="0" max="100" step="1" value="20"></div>
+<div><label for="meals">Meals per day</label><input id="meals" type="number" min="1" max="8" step="1" value="3"></div>
+</div>
+</details>
 
 <p class="meta">Results update as you type. Estimates only — not medical advice.</p>
 
 <div class="result" id="out" aria-live="polite"></div>
 
+<div class="km-panel" id="trackerBox">
+<h3 class="km-h">Net carb budget tracker</h3>
+<p class="meta">Add foods to see how much of your daily carb budget they use. Values are approximate and brands vary.</p>
+<div class="row">
+<div><label for="foodSelect">Food</label><select id="foodSelect"></select></div>
+<div><label for="foodServings">Servings</label><input id="foodServings" type="number" min="0.25" max="50" step="0.25" value="1"></div>
+</div>
+<div class="actions">
+<button type="button" class="ghost" id="addFoodBtn">Add food</button>
+<button type="button" class="ghost" id="clearFoodsBtn">Clear list</button>
+</div>
+<ul class="km-list" id="trackerList"></ul>
+<div id="trackerBar"></div>
+</div>
+
 <div class="actions">
 <button type="button" class="ghost" id="cpres">Copy results</button>
 <button type="button" class="ghost" id="cplink">Copy link</button>
+<button type="button" class="ghost" id="csvBtn">Download CSV</button>
+<button type="button" class="ghost" id="printBtn">Print / Save as PDF</button>
+<button type="button" class="ghost" id="jsonBtn">Save settings</button>
+<button type="button" class="ghost" id="importBtn">Import settings</button>
+<button type="button" class="ghost" id="resetBtn">Reset</button>
+<input type="file" id="jsonInput" accept=".json,application/json" hidden>
 </div>
+<label class="km-check"><input type="checkbox" id="remember"> Remember my entries in this browser only</label>
+<p class="meta" id="status" role="status" aria-live="polite"></p>
+
+<div class="km-report" id="printReport" aria-hidden="true"></div>
+
+<p class="meta km-short"><b>Disclaimer:</b> This free online keto macro calculator gives general estimates for adults and is not medical or dietetic advice. A ketogenic diet is not suitable for everyone. Speak to a doctor or registered dietitian before starting, especially if you are pregnant, breastfeeding, have diabetes, kidney, liver or heart disease, or take medication. See the full <a href="#disclaimer">medical disclaimer</a> below.</p>
 </section>
 
-<h2>How to use this calculator</h2>
+<nav class="km-toc" aria-label="On this page"><b>On this page</b>
 <ol>
-<li>Pick Metric or Imperial units.</li>
-<li>Enter your sex, age, height and weight.</li>
-<li>Choose an activity level, diet preset and goal.</li>
-<li>Adjust protein if you train. Results appear instantly below the form.</li>
+<li><a href="#what-is">What is a keto macro calculator?</a></li>
+<li><a href="#how-to-use">How to use this calculator</a></li>
+<li><a href="#how-calculated">How the macros are calculated</a></li>
+<li><a href="#ratios">Keto macro ratios explained</a></li>
+<li><a href="#carbs">How many carbs on keto?</a></li>
+<li><a href="#protein">How much protein on keto?</a></li>
+<li><a href="#fat">How much fat on keto?</a></li>
+<li><a href="#goals">Keto macros for your goal</a></li>
+<li><a href="#calorie-table">Macros at different calorie levels</a></li>
+<li><a href="#electrolytes">Electrolytes, water and fiber</a></li>
+<li><a href="#results">How fast will I lose weight?</a></li>
+<li><a href="#food-carbs">Net carbs in common foods</a></li>
+<li><a href="#ketosis">Ketosis, ketones and testing</a></li>
+<li><a href="#adjust">How to adjust your macros</a></li>
+<li><a href="#mistakes">Common mistakes</a></li>
+<li><a href="#safety">Side effects and who should avoid keto</a></li>
+<li><a href="#accuracy">Accuracy and limitations</a></li>
+<li><a href="#faq">Frequently asked questions</a></li>
+<li><a href="#sources">Sources</a></li>
+<li><a href="#disclaimer">Medical disclaimer</a></li>
+</ol></nav>
+
+<p class="km-meta">Written by the Utiliby editorial team · Last updated October 12, 2026 · Reading time about 15 minutes</p>
+
+<h2 id="what-is">What is a free online keto macro calculator?</h2>
+<p>A keto macro calculator is a tool that converts your personal details into a daily calorie target and a gram-by-gram split of the three macronutrients: protein, fat and carbohydrate. “Macros” is simply short for macronutrients, the nutrients that supply calories. On a ketogenic diet the usual aim is to keep net carbohydrates very low, typically 20 to 50 grams a day, so that the body relies more on fat and on ketones made from fat. Because the carbohydrate allowance is so small, the other two macros matter more than they do on a standard diet: protein protects your muscle, and fat fills the calories that carbs normally would.</p>
+<p>This free online keto macro calculator goes further than a simple percentage split. It estimates your calories with a recognised equation, applies a calorie goal, sets protein by body weight or lean mass, fixes carbs by diet preset, and gives the remaining calories to fat. It then adds the details people usually have to look up elsewhere: net and total carbs with fiber, the ketogenic ratio, macros per meal, a week-by-week weight projection, typical sodium, potassium, magnesium and water ranges, and a net-carb tracker for common foods. It is built for people searching for a keto calorie calculator, a keto diet calculator, a net carb calculator, a low-carb macro calculator or a carnivore macro calculator, all in one place.</p>
+<ul>
+<li><b>Three diet families:</b> standard and strict keto, low-carb and moderate-carb, carnivore, and a balanced diet for comparison.</li>
+<li><b>Three BMR formulas:</b> Mifflin-St Jeor, revised Harris-Benedict and Katch-McArdle (with body fat %), or your own measured maintenance calories.</li>
+<li><b>Flexible goals:</b> five preset goals, a custom daily calorie change, or a target weight and timeline.</li>
+<li><b>Visuals:</b> a live macro donut chart, an energy-balance chart and a weight projection chart.</li>
+<li><b>Save and share:</b> copy results, share a link, download CSV, save settings, or print only your results.</li>
+</ul>
+
+<h2 id="how-to-use">How to use this calculator</h2>
+<ol>
+<li>Pick Metric or Imperial units. Your numbers are converted for you when you switch.</li>
+<li>Enter your sex, age, height and weight. Use your current, honest weight.</li>
+<li>Choose an activity level, diet preset and goal. If you pick a custom goal or a target weight, extra fields appear.</li>
+<li>Adjust protein if you train. Results appear instantly below the form and update with every change.</li>
+<li>Optional: open Advanced options to enter body fat %, choose a different BMR formula, set your planned fiber, change meals per day or type in your own maintenance calories.</li>
+<li>Read the donut chart, macro table, per-meal split, energy balance and weight projection. Expand “Show how these numbers were calculated” to see every step with your own numbers.</li>
+<li>Use the net carb tracker to check how much of your daily carb budget your usual foods use.</li>
+<li>Copy, download or print your results, or copy a link to come back to the same inputs later.</li>
 </ol>
 
-<h2>How the macros are calculated</h2>
+<h2 id="how-calculated">How the macros are calculated</h2>
 <p>Want the full explanation behind these numbers? Read our <a href="/guides/how-to-calculate-keto-macros/">complete guide to calculating keto macros</a>.</p>
-<p>The calculator uses the Mifflin-St Jeor equation for basal metabolic rate (BMR), multiplies by an activity factor for maintenance, adjusts by a goal multiplier, then splits the result into protein, fat and carbs.</p>
+<p>The calculator uses the Mifflin-St Jeor equation for basal metabolic rate (BMR) by default, multiplies by an activity factor for maintenance, adjusts by a goal multiplier, then splits the result into protein, fat and carbs.</p>
 <ul>
 <li>Men: BMR = 10 × kg + 6.25 × cm − 5 × age + 5</li>
 <li>Women: BMR = 10 × kg + 6.25 × cm − 5 × age − 161</li>
-<li>Protein = g/kg target × body weight</li>
+<li>Protein = g/kg target × body weight (or lean body mass)</li>
 <li>Carbs = fixed by diet preset</li>
 <li>Fat = remaining calories ÷ 9</li>
 </ul>
 
-<h2>Frequently asked questions</h2>
-<details><summary>How many carbs should I eat on keto?</summary><p>Most people aim for 20 to 50 grams of net carbs per day.</p></details>
-<details><summary>Should I use net carbs or total carbs?</summary><p>Keto plans usually count net carbs (total carbs minus fiber).</p></details>
-<details><summary>Is a macro calculator accurate?</summary><p>It is an estimate. Track for 2 to 3 weeks, then adjust.</p></details>
-<details><summary>Is anything I enter stored?</summary><p>No. All calculations run in your browser.</p></details>
+<figure class="km-fig"><svg viewBox="0 0 640 210" role="img" aria-labelledby="flowT flowD">
+<title id="flowT">How keto macros are calculated</title>
+<desc id="flowD">Flow chart: BMR times activity factor gives maintenance calories; adding or subtracting a goal adjustment gives your calorie target; protein comes from grams per kilogram, net carbs from a preset, and fat from the remaining calories.</desc>
+<defs><marker id="ar" markerWidth="8" markerHeight="8" refX="7" refY="4" orient="auto"><path d="M0,0 L8,4 L0,8 z" fill="#9ca3af"/></marker></defs>
+<g font-family="system-ui,sans-serif" font-size="13" text-anchor="middle" fill="currentColor">
+<rect x="6" y="14" width="136" height="54" rx="10" fill="none" stroke="#9ca3af"/><text x="74" y="36" font-weight="700">1. BMR</text><text x="74" y="55" font-size="11" opacity=".8">Mifflin-St Jeor</text>
+<rect x="176" y="14" width="136" height="54" rx="10" fill="none" stroke="#9ca3af"/><text x="244" y="36" font-weight="700">2. Maintenance</text><text x="244" y="55" font-size="11" opacity=".8">BMR × activity</text>
+<rect x="346" y="14" width="136" height="54" rx="10" fill="none" stroke="#9ca3af"/><text x="414" y="36" font-weight="700">3. Calorie target</text><text x="414" y="55" font-size="11" opacity=".8">± goal (−25% … +20%)</text>
+<rect x="516" y="14" width="118" height="54" rx="10" fill="none" stroke="#9ca3af"/><text x="575" y="36" font-weight="700">4. Macro split</text><text x="575" y="55" font-size="11" opacity=".8">grams per day</text>
+<line x1="142" y1="41" x2="174" y2="41" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="312" y1="41" x2="344" y2="41" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="482" y1="41" x2="514" y2="41" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="575" y1="68" x2="575" y2="100" stroke="#9ca3af" stroke-width="2"/>
+<line x1="150" y1="100" x2="575" y2="100" stroke="#9ca3af" stroke-width="2"/>
+<line x1="150" y1="100" x2="150" y2="118" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="320" y1="100" x2="320" y2="118" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<line x1="490" y1="100" x2="490" y2="118" stroke="#9ca3af" stroke-width="2" marker-end="url(#ar)"/>
+<rect x="60" y="120" width="180" height="76" rx="10" fill="#3b82f6" fill-opacity=".15" stroke="#3b82f6"/><text x="150" y="146" font-weight="700">Protein</text><text x="150" y="165" font-size="11">g/kg × body or lean mass</text><text x="150" y="182" font-size="11">× 4 kcal per gram</text>
+<rect x="230" y="120" width="180" height="76" rx="10" fill="#10b981" fill-opacity=".15" stroke="#10b981"/><text x="320" y="146" font-weight="700">Net carbs</text><text x="320" y="165" font-size="11">fixed by preset (15–100 g)</text><text x="320" y="182" font-size="11">× 4 kcal per gram</text>
+<rect x="400" y="120" width="180" height="76" rx="10" fill="#f59e0b" fill-opacity=".15" stroke="#f59e0b"/><text x="490" y="146" font-weight="700">Fat</text><text x="490" y="165" font-size="11">(calories − protein − carbs)</text><text x="490" y="182" font-size="11">÷ 9 kcal per gram</text>
+</g></svg><figcaption>From BMR to grams of protein, carbs and fat: the calculation flow used by this tool.</figcaption></figure>
+
+<h3>Step 1: Basal metabolic rate (BMR)</h3>
+<p>BMR is the energy your body uses at rest to keep you alive. Mifflin-St Jeor (1990) is the default because, in a widely cited comparison of prediction equations, it was more likely than the alternatives to land within 10% of measured resting energy expenditure. Two alternatives are available in the advanced options:</p>
+<ul>
+<li><b>Revised Harris-Benedict (Roza and Shizgal, 1984):</b> men 88.362 + 13.397 × kg + 4.799 × cm − 5.677 × age; women 447.593 + 9.247 × kg + 3.098 × cm − 4.330 × age.</li>
+<li><b>Katch-McArdle:</b> 370 + 21.6 × lean body mass in kg. It ignores sex and age, and is most useful when you know your body fat percentage, especially if you are very lean or very muscular.</li>
+</ul>
+
+<h3>Step 2: Activity factor and maintenance calories (TDEE)</h3>
+<p>Total daily energy expenditure (TDEE) is BMR multiplied by an activity factor. Choose the level that matches your typical week, not your best week. People tend to overestimate exercise, so if you are unsure, pick the lower level.</p>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>Activity level</th><th>Factor</th><th>Typical week</th></tr></thead><tbody>
+<tr><td>Sedentary</td><td>1.2</td><td>Desk job, little or no exercise</td></tr>
+<tr><td>Light</td><td>1.375</td><td>1–3 workouts per week</td></tr>
+<tr><td>Moderate</td><td>1.55</td><td>3–5 workouts per week</td></tr>
+<tr><td>Very active</td><td>1.725</td><td>6–7 workouts per week</td></tr>
+<tr><td>Athlete</td><td>1.9</td><td>Twice-daily training or a physical job plus training</td></tr>
+</tbody></table></div>
+
+<h3>Step 3: Calorie goal</h3>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>Goal</th><th>Adjustment</th><th>Who it suits</th></tr></thead><tbody>
+<tr><td>Lose – moderate</td><td>−15%</td><td>Most people; sustainable, preserves muscle</td></tr>
+<tr><td>Lose – aggressive</td><td>−25%</td><td>Short phases with high protein; harder to sustain</td></tr>
+<tr><td>Maintain</td><td>0%</td><td>Weight stable, improving habits</td></tr>
+<tr><td>Gain – moderate</td><td>+10%</td><td>Lean gain while strength training</td></tr>
+<tr><td>Gain – aggressive</td><td>+20%</td><td>Fast gain; expect extra body fat</td></tr>
+<tr><td>Custom or target weight</td><td>Your choice</td><td>Calculated from 7,700 kcal per kg (about 3,500 kcal per lb)</td></tr>
+</tbody></table></div>
+<p>If your goal would take you below 1,200 kcal (women) or 1,500 kcal (men), the calculator raises the target to that minimum and tells you. It also warns when the target is below your estimated BMR or when the implied rate of change exceeds 1% of body weight per week.</p>
+
+<h3>Step 4: Protein, carbs and fat</h3>
+<p>Protein is set first (grams per kilogram × body weight or lean mass × 4 kcal), then carbs (fixed grams from the preset × 4 kcal), and fat takes whatever calories remain (÷ 9 kcal per gram). This order is the key to keto macro maths: protein and carbs are targets; fat is the flexible remainder.</p>
+
+<h3>Worked example</h3>
+<p>A 30-year-old man, 175 cm, 75 kg, moderately active, aiming to lose weight at −15% on standard keto with 1.6 g/kg protein:</p>
+<ol>
+<li>BMR = 10 × 75 + 6.25 × 175 − 5 × 30 + 5 = <b>1,699 kcal</b></li>
+<li>Maintenance = 1,699 × 1.55 = <b>2,633 kcal</b></li>
+<li>Target = 2,633 × 0.85 = <b>2,238 kcal</b></li>
+<li>Protein = 1.6 × 75 = 120 g = 480 kcal</li>
+<li>Net carbs = 25 g = 100 kcal</li>
+<li>Fat = (2,238 − 480 − 100) ÷ 9 = <b>184 g</b> = 1,658 kcal</li>
+</ol>
+<p>That works out to roughly 74% fat, 21% protein and 5% carbs, the classic keto pattern.</p>
+
+<h2 id="ratios">Keto macro ratios explained: fat, protein and carbs</h2>
+<p>Most written keto guidance describes macros as percentages of calories: about 70–80% fat, 15–25% protein and 5–10% carbohydrate. Percentages are a handy summary, but grams are what you actually track, and the carb limit in grams is the one that matters most for ketosis. A fixed 25 g of net carbs is a smaller percentage of a 2,600 kcal day than of a 1,400 kcal day, so percentages shift as your calories change.</p>
+<figure class="km-fig" style="max-width:220px"><svg viewBox="0 0 42 42" role="img" aria-label="Example keto macro split: 70 percent fat, 25 percent protein, 5 percent carbs"><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#9ca3af" stroke-opacity=".25" stroke-width="6"/><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#f59e0b" stroke-width="6" stroke-dasharray="70 30" stroke-dashoffset="25"/><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#3b82f6" stroke-width="6" stroke-dasharray="25 75" stroke-dashoffset="-45"/><circle cx="21" cy="21" r="15.9155" fill="none" stroke="#10b981" stroke-width="6" stroke-dasharray="5 95" stroke-dashoffset="-70"/><text x="21" y="21.5" text-anchor="middle" font-size="4.6" font-weight="700" fill="currentColor">70/25/5</text></svg><figcaption>Example keto split (fat/protein/carbs).</figcaption></figure>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>Style</th><th>Fat / protein / carbs (% kcal)</th><th>At 2,000 kcal</th><th>Notes</th></tr></thead><tbody>
+<tr><td>Classic keto</td><td>75% / 20% / 5%</td><td>167 g / 100 g / 25 g</td><td>Very low carb, moderate protein. Common starting point.</td></tr>
+<tr><td>Standard keto</td><td>70% / 25% / 5%</td><td>156 g / 125 g / 25 g</td><td>Higher protein for muscle retention and satiety.</td></tr>
+<tr><td>High-protein keto</td><td>60% / 35% / 5%</td><td>133 g / 175 g / 25 g</td><td>For lifters or people who find fat very filling; ketone levels may be lower.</td></tr>
+<tr><td>Relaxed keto / low-carb</td><td>65% / 25% / 10%</td><td>144 g / 125 g / 50 g</td><td>About 50 g of net carbs at 2,000 kcal; ketosis is less certain.</td></tr>
+</tbody></table></div>
+<p>The “ketogenic ratio” used in some clinical settings compares grams of fat with grams of protein plus carbohydrate (for example 2:1 or 4:1). The calculator displays this ratio for reference. Clinical ketogenic diets for conditions such as drug-resistant epilepsy are medically supervised and should not be self-prescribed from an online calculator.</p>
+
+<h2 id="carbs">How many carbs on keto? Net carbs vs total carbs</h2>
+<p>The carb limit is the defining rule of a ketogenic diet. Typical ranges are:</p>
+<ul>
+<li><b>Strict keto:</b> 15–20 g net carbs per day, useful for fast adaptation or when ketones are stubbornly low.</li>
+<li><b>Standard keto:</b> 20–30 g net carbs per day, the most common prescription.</li>
+<li><b>Relaxed or “lazy” keto:</b> up to 50 g net carbs per day, simpler to follow but less reliable for ketosis.</li>
+<li><b>Low-carb (not keto):</b> 50–130 g per day, which can still help with appetite control and blood sugar for some people.</li>
+<li><b>Moderate carb:</b> around 100–150 g per day, a gentler reduction without aiming for ketosis.</li>
+</ul>
+<h3>What are net carbs and how do you calculate them?</h3>
+<p>Net carbs are the carbohydrates your body digests and absorbs. The common formula is: <b>net carbs = total carbohydrates − fiber − (some) sugar alcohols</b>. For example, a snack label shows 12 g total carbohydrate, 5 g fiber and 4 g erythritol: 12 − 5 − 4 = 3 g net carbs. Erythritol is usually subtracted in full, while maltitol and sorbitol have a larger effect on blood sugar and are commonly counted at half or not subtracted at all. Whole foods such as vegetables are easiest: avocado, spinach and cauliflower have a low net-carb count because much of their carbohydrate is fiber.</p>
+<p>Some people prefer to count total carbs because it avoids labelling errors and sugar-alcohol arguments. This calculator lets you plan a fiber amount and shows both net and total carbs, so you can follow whichever method you will stick to.</p>
+
+<h2 id="protein">How much protein on keto?</h2>
+<p>A persistent myth says that eating protein will “kick you out of ketosis” because protein can be converted to glucose. The body makes glucose from protein mostly on demand, and for most people moderate-to-high protein intakes do not stop ketone production. Under-eating protein is the more common problem on a keto diet, because it increases the risk of losing muscle while you lose weight.</p>
+<ul>
+<li><b>Minimum (RDA):</b> 0.8 g per kg body weight, the amount needed to prevent deficiency in healthy adults.</li>
+<li><b>Typical keto range:</b> 1.2–2.0 g per kg body weight (about 0.55–0.9 g per lb).</li>
+<li><b>Strength training or aggressive deficit:</b> 1.6–2.2 g per kg, in line with sports-nutrition position stands that recommend 1.4–2.0 g per kg for exercising adults.</li>
+<li><b>Lean-mass method:</b> about 1.3–2.2 g per kg of lean body mass (0.6–1.0 g per lb). Switch “Protein based on” to lean mass in the advanced options after entering body fat %.</li>
+</ul>
+<p>If your protein and carbs take up all your calories, the calculator warns you instead of hiding the problem. Lower the g/kg setting, pick a lower-carb preset or choose a gentler goal.</p>
+
+<h2 id="fat">How much fat on keto?</h2>
+<p>On keto, fat is the “dial” that fills the calories left after protein and carbs. It usually provides 60–80% of calories, and it gives the diet its satiety. When you want to lose weight, part of your fat intake comes from body fat, so you do not need to eat fat until you are uncomfortably full. If your result looks very high, eat to satisfaction within your calorie target rather than forcing every gram.</p>
+<p>Food quality matters. Favour monounsaturated and omega-3 sources such as olive oil, avocado, nuts, seeds and fatty fish, and include eggs, dairy, and meat according to your preference. Saturated fat intake can raise LDL cholesterol in some people on low-carb diets, so people with elevated cardiovascular risk should have their lipid levels checked and discuss fat choices with their clinician.</p>
+
+<h2 id="goals">Keto macros for your goal and lifestyle</h2>
+<h3>Keto macros for weight loss</h3>
+<p>Choose “Lose – moderate (−15%)” with 1.6 g/kg protein and 20–30 g net carbs. Weight loss on keto still comes down to a calorie deficit; the diet’s advantage for many people is reduced appetite and easier adherence rather than a metabolic loophole. Use the target-weight option if you have a date in mind and check that the implied weekly rate stays under about 1% of body weight.</p>
+<h3>Keto macros for maintenance</h3>
+<p>Select “Maintain weight” and adjust only if your weight drifts for two weeks. Many people find they can raise net carbs to 30–50 g at maintenance without leaving ketosis.</p>
+<h3>Keto macros for muscle gain and bodybuilding</h3>
+<p>Use “Gain – moderate (+10%)”, protein at 1.8–2.2 g/kg and consider body fat % with the lean-mass option. Train hard and progressively; expect slower gains than with a high-carb diet if you do very high-volume work. Some athletes use a small amount of carbs around training, often called targeted keto, which you can mimic with a custom carb setting.</p>
+<h3>Keto macros for women</h3>
+<p>Women generally have lower calorie needs, so the calculator’s 1,200 kcal minimum matters more. Typical results are 1,400–1,900 kcal with 20–25 g net carbs, 70–100 g protein and 100–150 g fat. Hormonal changes, menstrual cycle irregularity and bone health are worth monitoring, and keto is not recommended during pregnancy or breastfeeding without medical supervision.</p>
+<h3>Keto macros for men</h3>
+<p>Men typically see 1,800–2,600 kcal for fat loss with 100–160 g protein and 130–200 g fat. Larger frames and higher muscle mass raise protein needs, so check the lean-mass setting if you know your body fat.</p>
+<h3>Keto macros for beginners</h3>
+<p>Start with standard keto (25 g net carbs), a moderate deficit and 1.6 g/kg protein. Track carbs closely for the first two to four weeks and plan electrolytes, then refine calories and protein once you are fat-adapted.</p>
+<h3>Strict keto, lazy keto and dirty keto</h3>
+<p>Strict keto tracks everything and keeps net carbs near 15–20 g. Lazy keto only tracks carbs. “Dirty” keto meets the macros with heavily processed foods; it can fit the numbers but may fall short on fiber and micronutrients. The calculator’s numbers work for any of these, but nutrient quality still matters for long-term health.</p>
+<h3>Carnivore macro calculator settings</h3>
+<p>Choose the Carnivore preset for 0 g carbs. Because all calories then come from protein and fat, high protein targets can squeeze fat to zero at low calories. Lower g/kg slightly or raise calories if the tool warns you.</p>
+<h3>Low-carb and moderate-carb macros</h3>
+<p>The 50 g and 100 g presets are for people who want fewer carbs without strict ketosis. They are more forgiving and easier to sustain socially, but they are not designed to produce consistent ketosis.</p>
+<h3>Keto after 40 and older adults</h3>
+<p>Muscle loss accelerates with age, so protein at 1.6 g/kg or higher and resistance training are particularly important. Check blood pressure, kidney function and medication needs with a clinician first, as dosing can change on low-carb diets.</p>
+
+<h2 id="calorie-table">Keto macros at different calorie levels</h2>
+<p>If you are searching for “keto macros for 1,500 calories” or “keto macros for 2,000 calories”, the table below shows a 70% fat / 25% protein / 5% carbs split at common calorie levels. Your exact numbers from the calculator will differ because protein is set by body weight and carbs by a fixed gram limit.</p>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>Calories</th><th>Fat (70%)</th><th>Protein (25%)</th><th>Net carbs (5%)</th></tr></thead><tbody>
+<tr><td>1,200 kcal</td><td>93 g</td><td>75 g</td><td>15 g</td></tr>
+<tr><td>1,400 kcal</td><td>109 g</td><td>88 g</td><td>18 g</td></tr>
+<tr><td>1,500 kcal</td><td>117 g</td><td>94 g</td><td>19 g</td></tr>
+<tr><td>1,600 kcal</td><td>124 g</td><td>100 g</td><td>20 g</td></tr>
+<tr><td>1,800 kcal</td><td>140 g</td><td>112 g</td><td>22 g</td></tr>
+<tr><td>2,000 kcal</td><td>156 g</td><td>125 g</td><td>25 g</td></tr>
+<tr><td>2,200 kcal</td><td>171 g</td><td>138 g</td><td>28 g</td></tr>
+<tr><td>2,500 kcal</td><td>194 g</td><td>156 g</td><td>31 g</td></tr>
+<tr><td>3,000 kcal</td><td>233 g</td><td>188 g</td><td>38 g</td></tr>
+</tbody></table></div>
+
+<h2 id="electrolytes">Electrolytes, water and fiber on keto</h2>
+<p>Lower insulin levels on a very-low-carb diet make the kidneys excrete more sodium and water, and stored glycogen releases water, which is one reason people lose weight quickly at first. Common symptoms in the first one to two weeks (headache, tiredness, dizziness, cramps) are often called “keto flu” and are frequently linked to fluid and electrolyte shifts.</p>
+<ul>
+<li><b>Sodium:</b> ranges of 3,000–5,000 mg are often cited in low-carb guidance for the adaptation period. This is higher than the general population limit (2,300 mg), so it is not appropriate for everyone, particularly people with hypertension, heart failure or kidney disease.</li>
+<li><b>Potassium:</b> adequate intake is 2,600 mg for adult women and 3,400 mg for adult men. Leafy greens, avocado, salmon and mushrooms are keto-friendly sources. Potassium supplements need medical advice.</li>
+<li><b>Magnesium:</b> 300–500 mg total per day is commonly suggested. The tolerable upper limit for magnesium from supplements is 350 mg for adults.</li>
+<li><b>Water:</b> roughly 30–40 mL per kg of body weight from drinks and food, more with heat or exercise.</li>
+<li><b>Fiber:</b> 14 g per 1,000 kcal is the general target. Non-starchy vegetables, chia, flax and nuts help you reach it while keeping net carbs low.</li>
+</ul>
+
+<h2 id="results">How fast will I lose weight on keto?</h2>
+<p>A rough rule is that a deficit of about 7,700 kcal equals 1 kg of body weight (3,500 kcal per lb). That rule is a simplification: as you lose weight, your energy needs fall, so real-world loss slows over time. The weight projection chart models this by lowering your maintenance calories as your weight drops. In the first week or two, many people on low-carb diets also lose several pounds of water as glycogen stores empty, which is not fat loss and is not shown in the projection. Plateaus are normal; they are usually a sign to re-check your tracking, activity and calories rather than to cut calories sharply.</p>
+<p>A sustainable rate for most adults is 0.5–1% of body weight per week. Faster loss increases the risk of muscle loss, gallstones and fatigue.</p>
+
+<h2 id="food-carbs">Net carbs in common foods</h2>
+<p>Use these approximate values to see how quickly carbs add up. They are rounded from USDA FoodData Central entries; brands, ripeness and cooking change them. The tool’s tracker uses a larger list.</p>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>Food and serving</th><th>Net carbs</th></tr></thead><tbody>
+<tr><td>Avocado, ½ medium (100 g)</td><td>≈ 1.8 g</td></tr>
+<tr><td>Spinach, raw, 1 cup (30 g)</td><td>≈ 0.4 g</td></tr>
+<tr><td>Zucchini, 1 cup sliced (113 g)</td><td>≈ 2.4 g</td></tr>
+<tr><td>Cauliflower, 1 cup raw (107 g)</td><td>≈ 3.2 g</td></tr>
+<tr><td>Broccoli, 1 cup chopped raw (91 g)</td><td>≈ 3.6 g</td></tr>
+<tr><td>Egg, 1 large</td><td>≈ 0.4 g</td></tr>
+<tr><td>Cheddar cheese, 1 oz (28 g)</td><td>≈ 0.4 g</td></tr>
+<tr><td>Almonds, 1 oz (28 g)</td><td>≈ 2.6 g</td></tr>
+<tr><td>Pecans, 1 oz (28 g)</td><td>≈ 1.2 g</td></tr>
+<tr><td>Chia seeds, 1 oz (28 g)</td><td>≈ 2.1 g</td></tr>
+<tr><td>Raspberries, ½ cup (62 g)</td><td>≈ 3.3 g</td></tr>
+<tr><td>Strawberries, ½ cup sliced (83 g)</td><td>≈ 4.7 g</td></tr>
+<tr><td>Blueberries, ½ cup (74 g)</td><td>≈ 9.0 g</td></tr>
+<tr><td>Apple, 1 medium</td><td>≈ 21 g</td></tr>
+<tr><td>Banana, 1 medium</td><td>≈ 24 g</td></tr>
+<tr><td>White bread, 1 slice</td><td>≈ 12 g</td></tr>
+<tr><td>Cooked white rice, 1 cup</td><td>≈ 44 g</td></tr>
+<tr><td>Cola, 12 fl oz</td><td>≈ 39 g</td></tr>
+</tbody></table></div>
+
+<h2 id="ketosis">Ketosis, ketones and testing</h2>
+<p>Nutritional ketosis is generally defined as blood beta-hydroxybutyrate (BHB) of about 0.5–3.0 mmol/L. It is a normal, controlled state and is different from diabetic ketoacidosis (DKA), a dangerous emergency in which ketones are far higher (commonly above 10 mmol/L) and blood sugar and acid levels are abnormal. DKA mainly affects people with type 1 diabetes, and can occur in people on some diabetes medicines (such as SGLT2 inhibitors) following very-low-carb diets.</p>
+<ul>
+<li><b>Blood ketone meters</b> are the most accurate way to measure BHB.</li>
+<li><b>Urine strips</b> are cheap but become less reliable as you adapt.</li>
+<li><b>Breath meters</b> estimate acetone and are convenient but less precise.</li>
+</ul>
+<p>Most people reach measurable ketosis within two to four days at 20–30 g net carbs, but it can take a week or more.</p>
+
+<h2 id="adjust">How to adjust your macros after 2 to 4 weeks</h2>
+<div class="km-wrap"><table class="km-table"><thead><tr><th>What you notice</th><th>Try</th></tr></thead><tbody>
+<tr><td>No weight change for 2–3 weeks</td><td>Re-check portions and tracking, then reduce calories by 5–10% or add activity.</td></tr>
+<tr><td>Losing faster than 1% body weight per week</td><td>Raise calories by 5–10% to protect muscle and energy.</td></tr>
+<tr><td>Constant hunger</td><td>Increase protein and fiber, add non-starchy vegetables, keep meals regular.</td></tr>
+<tr><td>Low energy or poor workouts</td><td>Check sodium, potassium, magnesium and calories; consider a small increase in carbs around training.</td></tr>
+<tr><td>Ketones low</td><td>Lower net carbs toward 20 g, check hidden carbs, review protein and alcohol.</td></tr>
+<tr><td>Gaining weight when you want to lose</td><td>Re-check calorie tracking and portion sizes of calorie-dense fats (oils, nuts, cheese).</td></tr>
+</tbody></table></div>
+
+<h2 id="mistakes">Common keto macro mistakes</h2>
+<ul>
+<li><b>Eating too little protein</b> and losing muscle.</li>
+<li><b>Treating fat as unlimited.</b> Fat is calorie-dense; calories still determine weight change.</li>
+<li><b>Ignoring hidden carbs</b> in sauces, dressings, drinks, supplements and “keto” snacks.</li>
+<li><b>Skipping electrolytes and water</b> during the first weeks.</li>
+<li><b>Over-trusting exact numbers.</b> A calculator is a starting point; adjust using your results.</li>
+<li><b>Too large a deficit</b> that cannot be sustained or that drops below safe minimums.</li>
+<li><b>Not eating enough fiber and vegetables</b>, which can cause constipation and nutrient gaps.</li>
+</ul>
+
+<h2 id="safety">Keto side effects and who should avoid it</h2>
+<p>Short-term effects can include headache, fatigue, constipation, bad breath, muscle cramps and changes in exercise performance. Longer-term, cholesterol can rise in some people, and very restrictive versions can lead to nutrient shortfalls. A ketogenic diet is not suitable for everyone. Talk to a doctor before trying it if you:</p>
+<ul>
+<li>are pregnant, breastfeeding or planning a pregnancy;</li>
+<li>have type 1 or type 2 diabetes, especially if you use insulin, sulfonylureas or SGLT2 inhibitors;</li>
+<li>have kidney, liver or pancreatic disease, gallbladder disease, or a fat-metabolism disorder;</li>
+<li>take blood-pressure medicines or diuretics;</li>
+<li>have a history of eating disorders, or are under 18.</li>
+</ul>
+
+<h2 id="accuracy">Accuracy and limitations</h2>
+<p>All calorie equations are estimates. Differences in muscle mass, genetics, hormones, medications, sleep, stress and non-exercise activity mean your real needs may differ by several hundred calories. The calculator does not account for alcohol calories, sugar-alcohol effects, medical conditions, pregnancy or lactation. Treat the first result as a hypothesis: follow it for two to three weeks, track your weight trend and measurements, and adjust. For a personalised plan, see a registered dietitian.</p>
+<p><b>Privacy:</b> all calculations run in your browser. Nothing you enter is sent to a server. Entries are saved only if you tick “Remember my entries”, and they stay on your device.</p>
+
+<h2 id="faq">Frequently asked questions</h2>
+<details><summary>What is a keto macro calculator?</summary><p>A keto macro calculator is a tool that turns your age, sex, height, weight, activity level and goal into a daily calorie target and a split of protein, fat and carbohydrate in grams. This free online keto macro calculator also shows net carbs, fiber, electrolytes, macros per meal and a weight projection.</p></details>
+<details><summary>How do I calculate my keto macros?</summary><p>First estimate your basal metabolic rate (BMR), multiply it by an activity factor to get maintenance calories, then add or subtract calories for your goal. Set protein from your body weight or lean mass, fix net carbs at a low number such as 20 to 50 grams, and let fat make up the remaining calories (divide by 9 to get grams).</p></details>
+<details><summary>How many carbs should I eat on keto?</summary><p>Most people aim for 20 to 50 grams of net carbs per day. Strict keto is often 15 to 20 grams, standard keto about 20 to 30 grams, and a more relaxed low-carb plan up to 50 grams. Your own tolerance varies with activity, body size and metabolism.</p></details>
+<details><summary>Should I count net carbs or total carbs?</summary><p>Keto plans usually count net carbs, which are total carbohydrates minus fiber (and, for some sugar alcohols, minus part or all of those). Some people prefer total carbs because it is simpler and avoids label errors. This calculator shows both so you can pick the method you will follow consistently.</p></details>
+<details><summary>How much protein should I eat on keto?</summary><p>A common range is 1.2 to 2.0 grams of protein per kilogram of body weight (about 0.55 to 0.9 g per pound), or roughly 1.3 to 2.2 g per kg of lean body mass if you lift weights. Protein should be high enough to protect muscle but not so high that it crowds out fat and calories.</p></details>
+<details><summary>How much fat should I eat on keto?</summary><p>Fat is the remaining calories after protein and carbs, usually 60 to 80 percent of total calories. For weight loss, fat is also supplied by your body stores, so you do not need to eat fat to the point of being overfull. Eat enough to feel satisfied within your calorie target.</p></details>
+<details><summary>What is the best keto macro ratio for weight loss?</summary><p>A typical keto split is about 70 to 75 percent fat, 20 to 25 percent protein and 5 to 10 percent carbs. Weight loss still depends mainly on a sustained calorie deficit, so the exact ratio matters less than hitting your calories, protein and carb limit consistently.</p></details>
+<details><summary>Is this free online keto macro calculator accurate?</summary><p>It is an estimate. Equations such as Mifflin-St Jeor predict calorie needs reasonably well for most adults, but individual metabolism can differ by several hundred calories. Track your weight and measurements for 2 to 3 weeks, then adjust calories up or down by 5 to 10 percent.</p></details>
+<details><summary>What calorie deficit should I use on keto?</summary><p>A moderate deficit of about 10 to 20 percent below maintenance suits most people. The calculator offers 15 percent (moderate) and 25 percent (aggressive) presets, plus a custom option. It also enforces a minimum of 1,200 kcal for women and 1,500 kcal for men for unsupervised dieting.</p></details>
+<details><summary>Do I need to know my body fat percentage?</summary><p>No, it is optional. Without it the calculator uses Mifflin-St Jeor and protein per kilogram of body weight. If you do know your body fat percentage (for example from a DEXA scan, calipers or a smart scale), you can switch to the Katch-McArdle formula and base protein on lean body mass.</p></details>
+<details><summary>Which BMR formula does the calculator use?</summary><p>By default it uses Mifflin-St Jeor. In the advanced options you can choose the revised Harris-Benedict equation, or Katch-McArdle if you enter your body fat percentage, or type in your own maintenance calories if you have measured or tracked them.</p></details>
+<details><summary>How many calories should I eat on keto per day?</summary><p>It depends on your size, activity and goal. Many adult women land between about 1,400 and 2,000 kcal and many men between about 1,800 and 2,600 kcal when losing weight, but your result may be higher or lower. Use the calculator rather than a generic number.</p></details>
+<details><summary>What are good keto macros for women?</summary><p>Women usually need fewer calories than men, so the same 20 to 25 gram net carb limit makes up a slightly larger share of calories. A typical result is 1,400 to 1,900 kcal with 20 to 25 g net carbs, 70 to 100 g protein and 100 to 150 g fat, adjusted for height, weight and activity. Pregnant or breastfeeding women should not use this plan without medical advice.</p></details>
+<details><summary>Can I build muscle on keto?</summary><p>Yes, many people maintain or gain muscle on a ketogenic diet when calories and protein are adequate and they lift weights. Choose a small calorie surplus (+10 percent), set protein at 1.6 to 2.2 g per kg, and expect gains to be slower than with a higher-carb diet for some people.</p></details>
+<details><summary>What is lazy keto?</summary><p>Lazy keto means limiting carbs (often to 20 to 50 grams a day) without tracking calories, protein or fat. It is simpler to follow but gives you less control over weight loss. You can use the calorie and protein numbers here as a rough guide even if you only track carbs.</p></details>
+<details><summary>What is the difference between keto and carnivore macros?</summary><p>Carnivore is an animal-foods-only way of eating with close to zero carbs, so nearly all calories come from protein and fat. Choose the carnivore preset to set carbs to 0 g, and consider raising calories or lowering protein so fat is not squeezed out.</p></details>
+<details><summary>Do I need electrolytes on keto?</summary><p>Many people feel better when they pay attention to sodium, potassium and magnesium during the first weeks, because lower insulin makes the kidneys excrete more sodium and water. The calculator shows typical ranges, but people with kidney, heart or blood pressure conditions or on certain medicines must get individual advice first.</p></details>
+<details><summary>How long does it take to get into ketosis?</summary><p>It often takes two to four days of eating very few carbs, but for some people it takes a week or longer. Exercise, fasting and keeping carbs near 20 grams can speed it up. Blood, urine or breath tests can show whether you are in ketosis.</p></details>
+<details><summary>Why is my fat target so high or so low?</summary><p>Fat is the leftover after protein and carbs are set. A larger calorie target or a lower protein setting raises fat grams, while a tight calorie target or high protein lowers them. If fat falls below about 55 percent of calories on a keto preset, consider lowering protein per kg or loosening the deficit.</p></details>
+<details><summary>What if my protein and carbs exceed my calories?</summary><p>The calculator warns you and sets fat to 0 g. That usually means your calorie target is very low for your protein setting. Reduce protein per kg, choose a lower-carb preset, or choose a gentler goal so there is room for fat.</p></details>
+<details><summary>Can I use this calculator if I am pregnant, have diabetes or take medication?</summary><p>Do not rely on it. A ketogenic diet is not suitable for everyone, including people who are pregnant or breastfeeding, have type 1 diabetes, pancreatic, liver or kidney disease, or a history of eating disorders, and it can change the dose you need for diabetes or blood pressure medicines. Speak to your doctor first.</p></details>
+<details><summary>Is anything I enter stored?</summary><p>No data is sent to any server; all calculations run in your browser. By default nothing is saved. If you tick the option to remember your entries, they are stored only in this browser on this device and you can clear them with Reset. The Copy link button puts your entries in the link itself.</p></details>
+<details><summary>Can I save or print my results?</summary><p>Yes. You can copy a text summary, copy a shareable link, download a CSV file, save and re-import your settings as a JSON file, or print and save as PDF. The print view includes only your results, charts and disclaimer, not the whole web page.</p></details>
+<details><summary>Why does the calculator set a minimum calorie level?</summary><p>Very low calorie intakes can lead to muscle loss, nutrient shortfalls and gallstones, and should be supervised by a clinician. The tool therefore raises your target to 1,200 kcal (women) or 1,500 kcal (men) if your goal would take you lower, and warns you when you go below your estimated BMR.</p></details>
+
+<h2 id="sources">Sources and further reading</h2>
+<ul class="km-meta">
+<li>Mifflin MD, St Jeor ST, et al. A new predictive equation for resting energy expenditure in healthy individuals. <i>American Journal of Clinical Nutrition</i>, 1990.</li>
+<li>Frankenfield D, Roth-Yousey L, Compher C. Comparison of predictive equations for resting metabolic rate in healthy nonobese and obese adults: a systematic review. <i>Journal of the American Dietetic Association</i>, 2005.</li>
+<li>Roza AM, Shizgal HM. The Harris Benedict equation reevaluated: resting energy requirements and the body cell mass. <i>American Journal of Clinical Nutrition</i>, 1984.</li>
+<li>McArdle WD, Katch FI, Katch VL. <i>Exercise Physiology: Nutrition, Energy, and Human Performance</i> (Katch-McArdle formula).</li>
+<li>Hall KD, et al. Quantification of the effect of energy imbalance on bodyweight. <i>The Lancet</i>, 2011.</li>
+<li>Jäger R, et al. International Society of Sports Nutrition Position Stand: protein and exercise. <i>Journal of the International Society of Sports Nutrition</i>, 2017.</li>
+<li>Kirkpatrick CF, et al. Review of current evidence and clinical recommendations on the effects of low-carbohydrate and very-low-carbohydrate (including ketogenic) diets for the management of body weight and other cardiometabolic risk factors: a scientific statement from the National Lipid Association. <i>Journal of Clinical Lipidology</i>, 2019.</li>
+<li>National Academies of Sciences, Engineering, and Medicine. <i>Dietary Reference Intakes for Sodium and Potassium</i>, 2019; Institute of Medicine, <i>Dietary Reference Intakes for Energy, Carbohydrate, Fiber, Fat, Fatty Acids, Cholesterol, Protein, and Amino Acids</i>, 2005.</li>
+<li>USDA FoodData Central (nutrient values for foods).</li>
+<li>Volek JS, Phinney SD. <i>The Art and Science of Low Carbohydrate Living</i>, 2011.</li>
+</ul>
+
+<h2 id="disclaimer">Medical disclaimer</h2>
+<p><b>This calculator and article are for general information and education only.</b> They are not medical, nutritional or dietetic advice, and do not create a doctor–patient or dietitian–client relationship. Results are estimates based on standard equations and the numbers you enter; they are not a diagnosis, treatment or guarantee of weight loss, ketosis or any health outcome.</p>
+<ul>
+<li><b>Speak to a professional first.</b> Consult a doctor or registered dietitian before starting a ketogenic, low-carb or calorie-restricted diet, especially if you are pregnant or breastfeeding, have diabetes, kidney, liver, heart, pancreatic or gallbladder disease, high blood pressure, a history of eating disorders, or take prescription medication (including insulin, SGLT2 inhibitors and diuretics).</li>
+<li><b>Adults only.</b> This tool is designed for healthy adults aged 18 and over. It is not for children or teenagers.</li>
+<li><b>Seek urgent care</b> if you feel unwell, with persistent vomiting, severe abdominal pain, confusion, rapid breathing, or a fruity smell on the breath, particularly if you have diabetes.</li>
+<li><b>Electrolyte and supplement ranges</b> are general guidance, not prescriptions. They may be unsafe for people with certain conditions.</li>
+<li><b>Food values are approximate</b> and vary by brand, ripeness and preparation. Check labels.</li>
+<li><b>No liability.</b> Utiliby and its authors are not responsible for any loss, injury or adverse outcome arising from use of this calculator or its content. You use it at your own risk.</li>
+<li><b>Your data.</b> Calculations run in your browser; nothing is sent to a server. Optional saving is on your device only, and shared links contain your entries.</li>
+</ul>
 
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
 <script src="/assets/site.js" defer></script>
 <script>
+(function(){
+"use strict";
+
 function $(id){ return document.getElementById(id); }
-function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
-function fmt(n){ return Math.round(n).toLocaleString(); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function val(id){ var el = $(id); if(!el) return NaN; var s = String(el.value).trim(); if(s === "") return NaN; var n = Number(s); return isFinite(n) ? n : NaN; }
+function isBlank(id){ return String($(id).value).trim() === ""; }
+function fmt(n){ return Math.round(n).toLocaleString("en-US"); }
+function fmt1(n){ return (Math.round(n * 10) / 10).toLocaleString("en-US", { minimumFractionDigits: 1, maximumFractionDigits: 1 }); }
 function round1(n){ return Math.round(n * 10) / 10; }
+function plain(n, d){ return Number(n).toFixed(d); }
+
+var LB = 0.45359237, IN_CM = 2.54, KCAL_PER_KG = 7700;
+var STORE = "utiliby-keto-macro-v1";
+var SITE_URL = "https://utiliby.com/tools/health-fitness/keto-macro-calculator/";
+var SHORT_DISCLAIMER = "For general information only. Estimates, not medical advice. Talk to a doctor or registered dietitian before starting a ketogenic or very-low-carb diet.";
 
 var unit = "metric";
-var LAST = "";
+var tracker = [];
+var lastModel = null;
 
-function presetCarbs(diet, custom){
-  if(diet === "keto") return 25;
-  if(diet === "strict") return 15;
-  if(diet === "lowcarb") return 50;
-  if(diet === "carnivore") return 1;
-  if(diet === "moderate") return 100;
-  if(diet === "custom") return Math.max(0, num(custom, 25));
-  if(diet === "standard") return null;
-  return 25;
-}
+var FIELDS = ["sex", "age", "act", "cm", "kg", "ft", "in", "lb", "bf", "formula", "tdeeOverride", "diet", "customCarbs", "customPct",
+  "goal", "goalKcal", "targetWeight", "targetWeeks", "prot", "protBasis", "fiber", "meals"];
+var DEFAULTS = {};
 
-function goalMult(g){
-  if(g === "lose2") return 0.75;
-  if(g === "lose1") return 0.85;
-  if(g === "maintain") return 1.0;
-  if(g === "gain1") return 1.1;
-  if(g === "gain2") return 1.2;
-  return 1.0;
-}
+/* ---------- FOOD DATA: approximate net carbs (g) per serving, rounded from USDA FoodData Central values ---------- */
+var FOODS = [
+  ["Avocado, ½ medium (100 g)", 1.8], ["Spinach, raw, 1 cup (30 g)", 0.4], ["Romaine lettuce, 1 cup (47 g)", 0.6],
+  ["Cucumber, ½ cup sliced (52 g)", 1.6], ["Zucchini, 1 cup sliced (113 g)", 2.4], ["Mushrooms, 1 cup sliced (70 g)", 1.6],
+  ["Asparagus, 5 spears (80 g)", 1.5], ["Cauliflower, 1 cup raw (107 g)", 3.2], ["Broccoli, 1 cup chopped raw (91 g)", 3.6],
+  ["Tomato, 1 medium (123 g)", 3.3], ["Green bell pepper, ½ cup (75 g)", 2.2], ["Onion, ¼ cup chopped (40 g)", 3.0],
+  ["Egg, 1 large", 0.4], ["Cheddar cheese, 1 oz (28 g)", 0.4], ["Heavy cream, 1 tbsp (15 g)", 0.4],
+  ["Greek yogurt, plain whole-milk, ¾ cup (170 g)", 6.0], ["Meat, poultry or fish, plain, 100 g", 0],
+  ["Butter or olive oil, 1 tbsp", 0], ["Almonds, 1 oz (28 g)", 2.6], ["Walnuts, 1 oz (28 g)", 2.0],
+  ["Pecans, 1 oz (28 g)", 1.2], ["Macadamia nuts, 1 oz (28 g)", 1.5], ["Chia seeds, 1 oz (28 g)", 2.1],
+  ["Peanut butter, 2 tbsp (32 g)", 5.0], ["Raspberries, ½ cup (62 g)", 3.3], ["Strawberries, ½ cup sliced (83 g)", 4.7],
+  ["Blueberries, ½ cup (74 g)", 9.0], ["Apple, 1 medium (182 g)", 21], ["Banana, 1 medium (118 g)", 24],
+  ["White bread, 1 slice (25 g)", 12], ["Cooked white rice, 1 cup (158 g)", 44], ["Baked potato, 1 medium (173 g)", 33],
+  ["Table sugar, 1 tsp (4 g)", 4], ["Cola, 12 fl oz (355 mL)", 39]
+];
 
-function calc(){
-  var sex = $("sex").value;
-  var age = num($("age").value, 30);
-  var act = num($("act").value, 1.55);
-  var diet = $("diet").value;
-  var goal = $("goal").value;
-  var protPerKg = Math.max(0.8, Math.min(3, num($("prot").value, 1.6)));
-  var custom = num($("customCarbs").value, 25);
-  var cm, kg;
+var MACRO_COLORS = { fat: "#f59e0b", protein: "#3b82f6", carb: "#10b981" };
+
+/* ---------- INPUT READING ---------- */
+function readInputs(){
+  var E = [], I = { unit: unit };
+  I.sex = $("sex").value === "f" ? "f" : "m";
+  I.age = val("age");
+  if(!(I.age >= 18 && I.age <= 100)) E.push("Enter an age between 18 and 100. This calculator is for adults.");
 
   if(unit === "metric"){
-    cm = num($("cm").value, 175);
-    kg = num($("kg").value, 75);
+    I.cm = val("cm"); I.kg = val("kg");
   } else {
-    cm = (num($("ft").value, 5) * 12 + num($("in").value, 9)) * 2.54;
-    kg = num($("lb").value, 165) * 0.45359237;
+    var ft = val("ft"), inch = isBlank("in") ? 0 : val("in");
+    I.cm = (ft * 12 + inch) * IN_CM;
+    I.kg = val("lb") * LB;
+    if(!(ft >= 3 && ft <= 8) || !(inch >= 0 && inch < 12)) E.push("Enter a height between 3 ft 4 in and 8 ft 2 in (inches 0 to 11.9).");
+  }
+  if(unit === "metric" || E.length === 0){
+    if(!(I.cm >= 100 && I.cm <= 250)) E.push("Height must be between 100 and 250 cm (about 3 ft 4 in to 8 ft 2 in).");
+  }
+  if(!(I.kg >= 30 && I.kg <= 300)) E.push("Weight must be between 30 and 300 kg (66 to 661 lb).");
+
+  I.bf = null;
+  if(!isBlank("bf")){
+    I.bf = val("bf");
+    if(!(I.bf >= 3 && I.bf <= 60)) E.push("Body fat % must be between 3 and 60, or left blank.");
+  }
+  I.tdeeOverride = null;
+  if(!isBlank("tdeeOverride")){
+    I.tdeeOverride = val("tdeeOverride");
+    if(!(I.tdeeOverride >= 1000 && I.tdeeOverride <= 6000)) E.push("Your own maintenance calories must be between 1,000 and 6,000, or left blank.");
+  }
+  I.act = Number($("act").value);
+  I.formula = $("formula").value;
+
+  I.goal = $("goal").value;
+  if(I.goal === "kcal"){
+    I.goalKcal = val("goalKcal");
+    if(!(I.goalKcal >= -1500 && I.goalKcal <= 1500)) E.push("Daily calorie change must be between -1,500 and +1,500 kcal.");
+  }
+  if(I.goal === "target"){
+    var tw = val("targetWeight");
+    I.targetKg = unit === "metric" ? tw : tw * LB;
+    I.targetWeeks = val("targetWeeks");
+    if(!(I.targetKg >= 30 && I.targetKg <= 300)) E.push("Target weight must be between 30 and 300 kg (66 to 661 lb).");
+    if(!(I.targetWeeks >= 1 && I.targetWeeks <= 104)) E.push("Weeks to reach your target must be between 1 and 104.");
   }
 
-  if(cm < 100 || cm > 250 || kg < 30 || kg > 300 || age < 14 || age > 100){
-    return { err: "Please check your height, weight and age." };
+  I.diet = $("diet").value;
+  if(I.diet === "custom"){
+    I.customCarbs = val("customCarbs");
+    if(!(I.customCarbs >= 0 && I.customCarbs <= 400)) E.push("Custom net carbs must be between 0 and 400 g.");
   }
+  if(I.diet === "pct"){
+    I.customPct = val("customPct");
+    if(!(I.customPct >= 0 && I.customPct <= 80)) E.push("Custom carb % must be between 0 and 80.");
+  }
+  I.protPerKg = val("prot");
+  if(!(I.protPerKg >= 0.8 && I.protPerKg <= 3)) E.push("Protein target must be between 0.8 and 3 g per kg.");
+  I.protBasis = $("protBasis").value === "lbm" ? "lbm" : "bw";
+  I.fiber = isBlank("fiber") ? 0 : val("fiber");
+  if(!(I.fiber >= 0 && I.fiber <= 100)) E.push("Fiber must be between 0 and 100 g.");
+  I.meals = val("meals");
+  if(!(I.meals >= 1 && I.meals <= 8) || Math.floor(I.meals) !== I.meals) E.push("Meals per day must be a whole number from 1 to 8.");
 
-  var bmr = (sex === "m")
-    ? 10 * kg + 6.25 * cm - 5 * age + 5
-    : 10 * kg + 6.25 * cm - 5 * age - 161;
+  return E.length ? { ok: false, errors: E } : { ok: true, I: I };
+}
 
-  var maint = bmr * act;
-  var target = maint * goalMult(goal);
-  var protein = protPerKg * kg;
-  var carbG = presetCarbs(diet, custom);
-  var isStandard = (diet === "standard");
-  var carbKcal, proteinKcal, fatKcal, fatG, warning = "";
+/* ---------- CALCULATION ---------- */
+function pctSplit(vals){
+  var tot = vals.reduce(function(a, b){ return a + b; }, 0);
+  if(tot <= 0) return vals.map(function(){ return 0; });
+  var raw = vals.map(function(v){ return v / tot * 100; });
+  var fl = raw.map(Math.floor);
+  var rem = 100 - fl.reduce(function(a, b){ return a + b; }, 0);
+  var order = raw.map(function(r, i){ return [r - fl[i], i]; }).sort(function(a, b){ return b[0] - a[0]; });
+  for(var k = 0; k < rem; k++) fl[order[k][1]]++;
+  return fl;
+}
 
-  if(isStandard){
-    carbKcal = target * 0.40;
-    carbG = carbKcal / 4;
-    proteinKcal = protein * 4;
-    fatKcal = target - carbKcal - proteinKcal;
-    if(fatKcal < 0){ fatKcal = 0; warning = "Protein and carbs exceed your calorie target."; }
-    fatG = fatKcal / 9;
+function project(I, maint, target, weeks){
+  var w = I.kg, arr = [w], slope = 10 * I.act;
+  for(var t = 1; t <= weeks; t++){
+    var m = maint + slope * (w - I.kg);
+    w = w + (target - m) * 7 / KCAL_PER_KG;
+    if(w < 30) w = 30;
+    arr.push(w);
+  }
+  return arr;
+}
+
+function compute(I){
+  var N = [], W = [];
+  var lbm = I.bf !== null ? I.kg * (1 - I.bf / 100) : null;
+  var formula = I.formula, formulaName, bmr, formulaText;
+  if(formula === "katch" && lbm === null){
+    formula = "mifflin";
+    N.push("Katch-McArdle needs your body fat %, so Mifflin-St Jeor was used instead.");
+  }
+  if(formula === "katch"){
+    bmr = 370 + 21.6 * lbm;
+    formulaName = "Katch-McArdle";
+    formulaText = "370 + 21.6 × " + fmt1(lbm) + " kg lean mass";
+  } else if(formula === "harris"){
+    bmr = I.sex === "m" ? 88.362 + 13.397 * I.kg + 4.799 * I.cm - 5.677 * I.age : 447.593 + 9.247 * I.kg + 3.098 * I.cm - 4.330 * I.age;
+    formulaName = "Revised Harris-Benedict";
+    formulaText = I.sex === "m" ? "88.362 + 13.397 × " + fmt1(I.kg) + " + 4.799 × " + fmt1(I.cm) + " − 5.677 × " + I.age
+                                : "447.593 + 9.247 × " + fmt1(I.kg) + " + 3.098 × " + fmt1(I.cm) + " − 4.330 × " + I.age;
   } else {
-    carbKcal = carbG * 4;
-    proteinKcal = protein * 4;
-    fatKcal = target - carbKcal - proteinKcal;
-    if(fatKcal < 0){ fatKcal = 0; warning = "Protein and carbs exceed your calorie target."; }
-    fatG = fatKcal / 9;
+    bmr = 10 * I.kg + 6.25 * I.cm - 5 * I.age + (I.sex === "m" ? 5 : -161);
+    formulaName = "Mifflin-St Jeor";
+    formulaText = "10 × " + fmt1(I.kg) + " + 6.25 × " + fmt1(I.cm) + " − 5 × " + I.age + (I.sex === "m" ? " + 5" : " − 161");
   }
 
-  var carbPct = target > 0 ? Math.round(carbKcal / target * 100) : 0;
-  var protPct = target > 0 ? Math.round(proteinKcal / target * 100) : 0;
-  var fatPct = Math.max(0, 100 - carbPct - protPct);
+  var maint = I.tdeeOverride !== null ? I.tdeeOverride : bmr * I.act;
+  var delta, goalLabel;
+  if(I.goal === "lose2"){ delta = -0.25 * maint; goalLabel = "Lose weight, aggressive (−25%)"; }
+  else if(I.goal === "lose1"){ delta = -0.15 * maint; goalLabel = "Lose weight, moderate (−15%)"; }
+  else if(I.goal === "gain1"){ delta = 0.10 * maint; goalLabel = "Gain weight, moderate (+10%)"; }
+  else if(I.goal === "gain2"){ delta = 0.20 * maint; goalLabel = "Gain weight, aggressive (+20%)"; }
+  else if(I.goal === "kcal"){ delta = I.goalKcal; goalLabel = "Custom change (" + (I.goalKcal >= 0 ? "+" : "−") + fmt(Math.abs(I.goalKcal)) + " kcal/day)"; }
+  else if(I.goal === "target"){
+    delta = (I.targetKg - I.kg) * KCAL_PER_KG / (I.targetWeeks * 7);
+    goalLabel = "Reach " + fmt1(unit === "metric" ? I.targetKg : I.targetKg / LB) + (unit === "metric" ? " kg" : " lb") + " in " + I.targetWeeks + " weeks";
+  }
+  else { delta = 0; goalLabel = "Maintain weight"; }
+
+  var raw = maint + delta;
+  var floor = I.sex === "m" ? 1500 : 1200;
+  var target = raw, floored = false;
+  if(raw < floor){
+    target = floor; floored = true;
+    W.push("Your goal would put you at " + fmt(raw) + " kcal a day, below the commonly used minimum of " + fmt(floor) + " kcal for unsupervised dieting. Calories were raised to " + fmt(floor) + ". Choose a gentler goal, a longer timeline, or ask a clinician about a supervised plan.");
+  }
+  delta = target - maint;
+  if(target < bmr - 1) W.push("Your calorie target is below your estimated BMR (" + fmt(bmr) + " kcal). That is hard to sustain and can cost muscle. A smaller deficit is usually safer.");
+
+  var weeklyKg = delta * 7 / KCAL_PER_KG;
+  var weeklyPct = weeklyKg / I.kg * 100;
+  if(weeklyPct < -1) W.push("This deficit would mean losing more than 1% of your body weight per week, which is faster than is generally considered sustainable.");
+  if(weeklyPct > 0.5) W.push("This surplus would mean gaining more than 0.5% of your body weight per week, which is faster than lean gain typically allows. Expect extra body fat.");
+
+  var protBase = I.kg, protBasisUsed = "bw";
+  if(I.protBasis === "lbm"){
+    if(lbm !== null){ protBase = lbm; protBasisUsed = "lbm"; }
+    else N.push("Protein per kg of lean mass needs your body fat %, so body weight was used instead.");
+  }
+  var proteinG = I.protPerKg * protBase;
+  var proteinKcal = proteinG * 4;
+
+  var std = I.diet === "standard", carbG;
+  if(I.diet === "keto") carbG = 25;
+  else if(I.diet === "strict") carbG = 15;
+  else if(I.diet === "lowcarb") carbG = 50;
+  else if(I.diet === "carnivore") carbG = 0;
+  else if(I.diet === "moderate") carbG = 100;
+  else if(I.diet === "custom") carbG = I.customCarbs;
+  else if(I.diet === "pct") carbG = I.customPct / 100 * target / 4;
+  else carbG = 0.5 * target / 4;
+  var carbKcal = carbG * 4;
+
+  var fatRaw = target - carbKcal - proteinKcal, short = false, fatKcal = fatRaw;
+  if(fatRaw < 0){
+    short = true; fatKcal = 0;
+    W.push("Your protein (" + fmt(proteinG) + " g) and carbs (" + fmt(carbG) + " g) alone use " + fmt(proteinKcal + carbKcal) + " kcal, which is more than your " + fmt(target) + " kcal target, so fat is set to 0 g. Lower the protein per kg, pick a lower-carb preset, or choose a less aggressive goal.");
+  }
+  var fatG = fatKcal / 9;
+  var macroKcal = carbKcal + proteinKcal + fatKcal;
+  var split = pctSplit([fatKcal, proteinKcal, carbKcal]);
+  var ratio = (proteinG + carbG) > 0 ? fatG / (proteinG + carbG) : null;
+
+  var zone;
+  if(std) zone = "Balanced diet";
+  else if(carbG <= 50) zone = "Ketogenic range";
+  else if(carbG <= 130) zone = "Low-carb";
+  else zone = "Moderate carb";
+  if(!std && carbG > 50) N.push("Net carbs above about 50 g a day are higher than the 20 to 50 g range usually used to reach nutritional ketosis. This is a low-carb plan rather than a strict keto plan.");
+  if(!std && carbG <= 50 && !short && split[0] < 55) N.push("Fat is only " + split[0] + "% of calories here because protein and calories are tight. Fat rises as calories rise.");
+
+  var fiberTarget = Math.max(20, Math.round(14 * target / 1000));
+  var totalCarbs = std ? carbG : carbG + I.fiber;
+
+  var meals = [];
+  for(var i = 1; i <= I.meals; i++){
+    meals.push({ n: i, kcal: macroKcal / I.meals, fat: fatG / I.meals, protein: proteinG / I.meals, carb: carbG / I.meals });
+  }
+
+  var elec = {
+    sodium: [3000, 5000],
+    potassium: [I.sex === "m" ? 3400 : 2600, 4700],
+    magnesium: [300, 500],
+    waterL: [I.kg * 30 / 1000, I.kg * 40 / 1000]
+  };
+
+  var weeks = I.goal === "target" ? Math.min(52, Math.max(12, I.targetWeeks + 4)) : 26;
+  var series = project(I, maint, target, weeks);
+
+  var bmi = I.kg / Math.pow(I.cm / 100, 2);
+
+  var steps = [];
+  steps.push("BMR (" + formulaName + ") = " + formulaText + " = " + fmt(bmr) + " kcal");
+  steps.push(I.tdeeOverride !== null ? "Maintenance = your own figure = " + fmt(maint) + " kcal" : "Maintenance (TDEE) = " + fmt(bmr) + " × " + I.act + " = " + fmt(maint) + " kcal");
+  steps.push("Goal: " + goalLabel + " → " + (delta >= 0 ? "+" : "−") + fmt(Math.abs(delta)) + " kcal → " + fmt(target) + " kcal" + (floored ? " (raised to the minimum)" : ""));
+  steps.push("Protein = " + I.protPerKg + " g/kg × " + fmt1(protBase) + " kg " + (protBasisUsed === "lbm" ? "lean mass" : "body weight") + " = " + fmt(proteinG) + " g (" + fmt(proteinKcal) + " kcal)");
+  steps.push((std ? "Carbs = 50% of calories ÷ 4" : (I.diet === "pct" ? "Net carbs = " + I.customPct + "% of calories ÷ 4" : "Net carbs = preset")) + " = " + fmt(carbG) + " g (" + fmt(carbKcal) + " kcal)");
+  steps.push("Fat = (" + fmt(target) + " − " + fmt(proteinKcal) + " − " + fmt(carbKcal) + ") ÷ 9 = " + fmt(fatG) + " g (" + fmt(fatKcal) + " kcal)");
 
   return {
-    bmr: bmr, maint: maint, target: target,
-    carbG: carbG, proteinG: protein, fatG: fatG,
-    carbKcal: carbKcal, proteinKcal: proteinKcal, fatKcal: fatKcal,
-    carbPct: carbPct, protPct: protPct, fatPct: fatPct,
-    warning: warning, diet: diet
+    I: I, bmr: bmr, formulaName: formulaName, maint: maint, delta: delta, target: target, floored: floored, goalLabel: goalLabel,
+    weeklyKg: weeklyKg, weeklyPct: weeklyPct, lbm: lbm, protBase: protBase, protBasisUsed: protBasisUsed,
+    proteinG: proteinG, proteinKcal: proteinKcal, carbG: carbG, carbKcal: carbKcal, fatG: fatG, fatKcal: fatKcal,
+    macroKcal: macroKcal, split: split, ratio: ratio, zone: zone, std: std, short: short,
+    fiberTarget: fiberTarget, totalCarbs: totalCarbs, meals: meals, elec: elec, series: series, weeks: weeks, bmi: bmi,
+    notes: N, warnings: W, steps: steps
   };
 }
 
-function render(){
-  var r = calc();
-  var out = $("out");
-  if(r.err){ out.innerHTML = "<p>" + r.err + "</p>"; LAST = ""; return; }
+/* ---------- DISPLAY HELPERS ---------- */
+function dispW(kg){ return unit === "metric" ? kg : kg / LB; }
+function wUnit(){ return unit === "metric" ? "kg" : "lb"; }
 
-  var h = '<div>Daily calories</div><div class="big">' + fmt(r.target) + ' kcal</div>';
-  h += '<table class="res">';
-  h += '<tr><th>Macronutrient</th><th>Grams</th><th>Calories</th><th>%</th></tr>';
-  h += '<tr><td>Protein</td><td>' + fmt(r.proteinG) + ' g</td><td>' + fmt(r.proteinKcal) + '</td><td>' + r.protPct + '%</td></tr>';
-  h += '<tr><td>Fat</td><td>' + fmt(r.fatG) + ' g</td><td>' + fmt(r.fatKcal) + '</td><td>' + r.fatPct + '%</td></tr>';
-  h += '<tr><td>' + (r.diet === "standard" ? "Carbs" : "Net carbs") + '</td><td>' + fmt(r.carbG) + ' g</td><td>' + fmt(r.carbKcal) + '</td><td>' + r.carbPct + '%</td></tr>';
-  h += '</table>';
-  h += '<p>BMR: ' + fmt(r.bmr) + ' kcal · Maintenance: ' + fmt(r.maint) + ' kcal</p>';
-  if(r.warning) h += '<p><b>Note:</b> ' + r.warning + '</p>';
-  out.innerHTML = h;
-
-  LAST = "Keto Macro Calculator\nDaily calories: " + fmt(r.target) + " kcal\n"
-       + "Protein: " + fmt(r.proteinG) + " g\nFat: " + fmt(r.fatG) + " g\n"
-       + "Carbs: " + fmt(r.carbG) + " g";
+function donutSvg(m){
+  var parts = [["Fat", m.split[0], MACRO_COLORS.fat], ["Protein", m.split[1], MACRO_COLORS.protein], ["Carbs", m.split[2], MACRO_COLORS.carb]];
+  var off = 0;
+  var s = '<svg class="km-donut" viewBox="0 0 42 42" role="img" aria-label="Macro split by calories: fat ' + m.split[0] + ' percent, protein ' + m.split[1] + ' percent, carbs ' + m.split[2] + ' percent">';
+  s += '<circle cx="21" cy="21" r="15.9155" fill="none" stroke="#9ca3af" stroke-opacity=".25" stroke-width="6"/>';
+  parts.forEach(function(p){
+    if(p[1] <= 0) return;
+    s += '<circle cx="21" cy="21" r="15.9155" fill="none" stroke="' + p[2] + '" stroke-width="6" stroke-dasharray="' + p[1] + ' ' + (100 - p[1]) + '" stroke-dashoffset="' + (25 - off) + '"/>';
+    off += p[1];
+  });
+  s += '<text x="21" y="21" text-anchor="middle" font-size="5" font-weight="700" fill="currentColor">' + fmt(m.macroKcal) + '</text>';
+  s += '<text x="21" y="26" text-anchor="middle" font-size="2.8" fill="currentColor" opacity=".7">kcal / day</text></svg>';
+  return s;
 }
 
-function setUnit(u){
-  var newUnit = (u === "imperial") ? "imperial" : "metric";
-  if(newUnit === unit){ return; }
-
-  if(newUnit === "imperial"){
-    var cm = num($("cm").value, 175);
-    var kg = num($("kg").value, 75);
-    var totalIn = cm / 2.54;
-    var ft = Math.floor(totalIn / 12);
-    var inch = round1(totalIn - ft * 12);
-    $("ft").value = ft;
-    $("in").value = inch;
-    $("lb").value = round1(kg * 2.2046226218);
-  } else {
-    var ft2 = num($("ft").value, 5);
-    var in2 = num($("in").value, 9);
-    var lb2 = num($("lb").value, 165);
-    $("cm").value = round1((ft2 * 12 + in2) * 2.54);
-    $("kg").value = round1(lb2 * 0.45359237);
+function projSvg(m){
+  var W = 360, H = 180, pl = 44, pr = 12, pt = 12, pb = 30;
+  var vals = m.series.map(dispW);
+  var tgt = (m.I.goal === "target") ? dispW(m.I.targetKg) : null;
+  var all = vals.slice(); if(tgt !== null) all.push(tgt);
+  var mn = Math.min.apply(null, all), mx = Math.max.apply(null, all);
+  if(mx - mn < 1){ mx += 0.5; mn -= 0.5; }
+  var padv = (mx - mn) * 0.1; mn -= padv; mx += padv;
+  var n = vals.length - 1;
+  function X(i){ return pl + (W - pl - pr) * i / n; }
+  function Y(v){ return pt + (H - pt - pb) * (1 - (v - mn) / (mx - mn)); }
+  var s = '<svg class="km-chart" viewBox="0 0 ' + W + ' ' + H + '" role="img" aria-label="Projected body weight over ' + n + ' weeks, from ' + fmt1(vals[0]) + ' to ' + fmt1(vals[n]) + ' ' + wUnit() + '">';
+  for(var g = 0; g <= 4; g++){
+    var gv = mn + (mx - mn) * g / 4, gy = Y(gv);
+    s += '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + gy.toFixed(1) + '" y2="' + gy.toFixed(1) + '" stroke="#9ca3af" stroke-opacity=".3"/>';
+    s += '<text x="' + (pl - 5) + '" y="' + (gy + 3).toFixed(1) + '" text-anchor="end" font-size="9" fill="currentColor" opacity=".75">' + fmt1(gv) + '</text>';
   }
+  var step = n <= 12 ? 2 : (n <= 26 ? 4 : 8);
+  for(var i = 0; i <= n; i += step){
+    s += '<text x="' + X(i).toFixed(1) + '" y="' + (H - 12) + '" text-anchor="middle" font-size="9" fill="currentColor" opacity=".75">' + i + '</text>';
+  }
+  s += '<text x="' + ((pl + W - pr) / 2) + '" y="' + (H - 1) + '" text-anchor="middle" font-size="9" fill="currentColor" opacity=".75">Weeks (' + wUnit() + ' on the vertical axis)</text>';
+  if(tgt !== null){
+    s += '<line x1="' + pl + '" x2="' + (W - pr) + '" y1="' + Y(tgt).toFixed(1) + '" y2="' + Y(tgt).toFixed(1) + '" stroke="' + MACRO_COLORS.carb + '" stroke-dasharray="4 3"/>';
+  }
+  var pts = vals.map(function(v, i){ return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+  s += '<polyline points="' + pts + '" fill="none" stroke="' + MACRO_COLORS.protein + '" stroke-width="2.2" stroke-linejoin="round"/>';
+  s += '<circle cx="' + X(0).toFixed(1) + '" cy="' + Y(vals[0]).toFixed(1) + '" r="3" fill="' + MACRO_COLORS.protein + '"/>';
+  s += '<circle cx="' + X(n).toFixed(1) + '" cy="' + Y(vals[n]).toFixed(1) + '" r="3" fill="' + MACRO_COLORS.protein + '"/>';
+  s += '</svg>';
+  return s;
+}
 
-  unit = newUnit;
+function barRow(label, v, max, color){
+  var w = Math.max(2, Math.min(100, v / max * 100));
+  return '<div class="km-barrow"><span>' + esc(label) + '</span><div class="km-track"><i style="width:' + w.toFixed(1) + '%;background:' + color + '"></i></div><b>' + fmt(v) + '</b></div>';
+}
+
+/* ---------- RENDER ---------- */
+function renderResult(m){
+  var I = m.I, h = "";
+  h += '<div>Daily calories</div><div class="big">' + fmt(m.target) + ' kcal</div>';
+  h += '<p class="km-badges"><span class="km-badge">' + esc(m.zone) + '</span><span class="km-badge">' + esc(m.goalLabel) + '</span>' +
+       (m.ratio !== null && !m.std ? '<span class="km-badge">Keto ratio ' + fmt1(m.ratio) + ':1</span>' : '') + '</p>';
+
+  h += '<div class="km-grid"><div class="km-donutwrap">' + donutSvg(m) + '</div><div>';
+  h += '<table class="res"><tr><th>Macronutrient</th><th>Grams</th><th>Calories</th><th>%</th></tr>';
+  h += '<tr><td><i class="km-dot" style="background:' + MACRO_COLORS.protein + '"></i>Protein</td><td>' + fmt(m.proteinG) + ' g</td><td>' + fmt(m.proteinKcal) + '</td><td>' + m.split[1] + '%</td></tr>';
+  h += '<tr><td><i class="km-dot" style="background:' + MACRO_COLORS.fat + '"></i>Fat</td><td>' + fmt(m.fatG) + ' g</td><td>' + fmt(m.fatKcal) + '</td><td>' + m.split[0] + '%</td></tr>';
+  h += '<tr><td><i class="km-dot" style="background:' + MACRO_COLORS.carb + '"></i>' + (m.std ? "Carbs" : "Net carbs") + '</td><td>' + fmt(m.carbG) + ' g</td><td>' + fmt(m.carbKcal) + '</td><td>' + m.split[2] + '%</td></tr>';
+  if(!m.std){
+    h += '<tr><td>Fiber (your plan)</td><td>' + fmt(m.I.fiber) + ' g</td><td colspan="2">–</td></tr>';
+    h += '<tr><td>Total carbs (net + fiber)</td><td>' + fmt(m.totalCarbs) + ' g</td><td colspan="2">–</td></tr>';
+  }
+  h += '</table></div></div>';
+
+  h += '<p>BMR: ' + fmt(m.bmr) + ' kcal · Maintenance: ' + fmt(m.maint) + ' kcal · BMI: ' + fmt1(m.bmi) + '</p>';
+  if(m.warnings.length) h += '<div class="km-warn">' + m.warnings.map(function(w){ return '<p><b>Note:</b> ' + esc(w) + '</p>'; }).join("") + '</div>';
+  if(m.notes.length) h += '<div class="km-tip">' + m.notes.map(function(w){ return '<p>' + esc(w) + '</p>'; }).join("") + '</div>';
+
+  // Energy balance
+  var mx = Math.max(m.bmr, m.maint, m.target) * 1.05;
+  h += '<h3 class="km-h">Energy balance</h3><div class="km-bars">';
+  h += barRow("BMR", m.bmr, mx, "#9ca3af");
+  h += barRow("Maintenance", m.maint, mx, MACRO_COLORS.protein);
+  h += barRow("Your target", m.target, mx, MACRO_COLORS.fat);
+  h += '</div><p class="meta">Daily change vs maintenance: ' + (m.delta >= 0 ? "+" : "−") + fmt(Math.abs(m.delta)) + ' kcal. Expected change: about ' + (m.weeklyKg >= 0 ? "+" : "−") + fmt1(Math.abs(dispW(m.weeklyKg))) + ' ' + wUnit() + ' per week (' + (m.weeklyPct >= 0 ? "+" : "−") + plain(Math.abs(m.weeklyPct), 2) + '% of body weight).</p>';
+
+  // Per-meal
+  h += '<h3 class="km-h">Macros per meal (' + I.meals + ' meal' + (I.meals > 1 ? "s" : "") + ' a day)</h3>';
+  h += '<div class="km-scroll"><table class="res"><tr><th>Meal</th><th>Calories</th><th>Fat</th><th>Protein</th><th>' + (m.std ? "Carbs" : "Net carbs") + '</th></tr>';
+  m.meals.forEach(function(x){ h += '<tr><td>Meal ' + x.n + '</td><td>' + fmt(x.kcal) + '</td><td>' + fmt(x.fat) + ' g</td><td>' + fmt(x.protein) + ' g</td><td>' + fmt1(x.carb) + ' g</td></tr>'; });
+  h += '</table></div>';
+
+  // Projection
+  h += '<h3 class="km-h">Weight projection (' + m.weeks + ' weeks)</h3>' + projSvg(m);
+  var picks = [0, 4, 8, 12, m.weeks].filter(function(w, i, a){ return w <= m.weeks && a.indexOf(w) === i; });
+  h += '<div class="km-scroll"><table class="res"><tr><th>Week</th>' + picks.map(function(w){ return '<td>' + w + '</td>'; }).join("") + '</tr><tr><th>Weight (' + wUnit() + ')</th>' + picks.map(function(w){ return '<td>' + fmt1(dispW(m.series[w])) + '</td>'; }).join("") + '</tr></table></div>';
+  h += '<p class="meta">Simple model: 7,700 kcal per kg of body-weight change, with maintenance calories falling as weight falls. It does not include the early water and glycogen loss many people see in the first one to two weeks of low-carb eating, or plateaus. Real results vary.</p>';
+
+  // Electrolytes
+  h += '<h3 class="km-h">Electrolytes, water and fiber (typical keto guidance)</h3>';
+  h += '<div class="km-scroll"><table class="res"><tr><th>Item</th><th>Typical daily range</th></tr>';
+  h += '<tr><td>Sodium</td><td>' + fmt(m.elec.sodium[0]) + '–' + fmt(m.elec.sodium[1]) + ' mg</td></tr>';
+  h += '<tr><td>Potassium</td><td>' + fmt(m.elec.potassium[0]) + '–' + fmt(m.elec.potassium[1]) + ' mg</td></tr>';
+  h += '<tr><td>Magnesium</td><td>' + fmt(m.elec.magnesium[0]) + '–' + fmt(m.elec.magnesium[1]) + ' mg</td></tr>';
+  h += '<tr><td>Water (30–40 mL per kg)</td><td>' + fmt1(m.elec.waterL[0]) + '–' + fmt1(m.elec.waterL[1]) + ' L</td></tr>';
+  h += '<tr><td>Fiber (14 g per 1,000 kcal)</td><td>about ' + fmt(m.fiberTarget) + ' g</td></tr>';
+  h += '</table></div><p class="meta">General ranges, not prescriptions. The sodium range is higher than the general-population limit, so skip it and ask your clinician if you have high blood pressure, heart, liver or kidney disease, or take diuretics or related medicines.</p>';
+
+  // Steps
+  h += '<details class="km-steps"><summary>Show how these numbers were calculated</summary><ol>' + m.steps.map(function(s){ return '<li>' + esc(s) + '</li>'; }).join("") + '</ol></details>';
+  return h;
+}
+
+function renderTracker(){
+  var list = $("trackerList"), bar = $("trackerBar");
+  if(!list) return;
+  var used = 0, h = "";
+  tracker.forEach(function(t, i){
+    var f = FOODS[t.i]; if(!f) return;
+    var net = f[1] * t.s; used += net;
+    h += '<li><span>' + esc(t.s) + ' × ' + esc(f[0]) + '</span><b>' + fmt1(net) + ' g</b><button type="button" class="ghost km-x" data-rm="' + i + '" aria-label="Remove ' + esc(f[0]) + '">×</button></li>';
+  });
+  list.innerHTML = h || '<li class="km-empty">No foods added yet.</li>';
+  var budget = lastModel ? lastModel.carbG : null;
+  if(budget === null){ bar.innerHTML = ""; return; }
+  var pct = budget > 0 ? Math.min(100, used / budget * 100) : (used > 0 ? 100 : 0);
+  var over = used > budget + 1e-9;
+  bar.innerHTML = '<div class="km-track"><i style="width:' + pct.toFixed(1) + '%;background:' + (over ? "#dc2626" : MACRO_COLORS.carb) + '"></i></div>' +
+    '<p class="meta"><b>' + fmt1(used) + ' g</b> of ' + fmt1(budget) + ' g ' + (lastModel.std ? "carbs" : "net carbs") + ' used · ' +
+    (over ? '<b style="color:#dc2626">' + fmt1(used - budget) + ' g over budget</b>' : fmt1(budget - used) + ' g left') + '</p>';
+}
+
+function render(){
+  var r = readInputs(), out = $("out");
+  if(!r.ok){
+    out.innerHTML = '<div class="km-warn"><p><b>Please check your entries:</b></p>' + r.errors.map(function(e){ return '<p>' + esc(e) + '</p>'; }).join("") + '</div>';
+    lastModel = null; renderTracker(); return;
+  }
+  var m = compute(r.I);
+  lastModel = m;
+  out.innerHTML = renderResult(m);
+  updateHints(m);
+  renderTracker();
+  saveState();
+}
+
+function updateHints(m){
+  var el = $("protHint");
+  if(!el) return;
+  el.textContent = "≈ " + fmt(m.proteinG) + " g protein per day (" + plain(m.proteinG / m.I.kg, 2) + " g per kg body weight). Typical keto range: 1.2–2.0 g/kg; 1.6–2.2 g/kg when lifting.";
+}
+
+/* ---------- UNIT HANDLING ---------- */
+function applyUnit(u){
+  unit = u === "imperial" ? "imperial" : "metric";
   $("metricBox").hidden = unit !== "metric";
   $("imperialBox").hidden = unit !== "imperial";
   $("imperialBox2").hidden = unit !== "imperial";
-  var tabs = document.querySelectorAll(".tab[data-unit]");
-  for(var i = 0; i < tabs.length; i++){
-    if(tabs[i].dataset.unit === unit) tabs[i].classList.add("on");
-    else tabs[i].classList.remove("on");
+  document.querySelectorAll(".tab[data-unit]").forEach(function(t){
+    var on = t.dataset.unit === unit;
+    t.classList.toggle("on", on);
+    t.setAttribute("aria-pressed", on ? "true" : "false");
+  });
+  var lbl = $("targetWeightLbl");
+  if(lbl) lbl.textContent = "Target weight (" + wUnit() + ")";
+}
+function setUnit(u){
+  var nu = u === "imperial" ? "imperial" : "metric";
+  if(nu === unit) return;
+  if(nu === "imperial"){
+    var cm = val("cm"), kg = val("kg");
+    if(isFinite(cm)){
+      var totalIn = cm / IN_CM, ft = Math.floor(totalIn / 12), inch = round1(totalIn - ft * 12);
+      if(inch >= 12){ ft += 1; inch = 0; }
+      $("ft").value = ft; $("in").value = inch;
+    }
+    if(isFinite(kg)) $("lb").value = round1(kg / LB);
+    var twk = val("targetWeight"); if(isFinite(twk)) $("targetWeight").value = round1(twk / LB);
+  } else {
+    var ft2 = val("ft"), in2 = isBlank("in") ? 0 : val("in"), lb2 = val("lb");
+    if(isFinite(ft2) && isFinite(in2)) $("cm").value = round1((ft2 * 12 + in2) * IN_CM);
+    if(isFinite(lb2)) $("kg").value = round1(lb2 * LB);
+    var twl = val("targetWeight"); if(isFinite(twl)) $("targetWeight").value = round1(twl * LB);
   }
+  applyUnit(nu);
+}
+function syncBoxes(){
+  $("customCarbsBox").hidden = $("diet").value !== "custom";
+  $("customPctBox").hidden = $("diet").value !== "pct";
+  $("goalKcalBox").hidden = $("goal").value !== "kcal";
+  $("targetBox").hidden = $("goal").value !== "target";
 }
 
+/* ---------- STATE: share link, local save, JSON ---------- */
+function collectFields(){
+  var o = {};
+  FIELDS.forEach(function(id){ var el = $(id); if(el) o[id] = String(el.value); });
+  return o;
+}
+function optionExists(el, v){
+  if(!el.options) return true;
+  for(var i = 0; i < el.options.length; i++){ if(el.options[i].value === v) return true; }
+  return false;
+}
+function applyFields(map){
+  var n = 0;
+  if(!map || typeof map !== "object") return 0;
+  FIELDS.forEach(function(id){
+    if(!Object.prototype.hasOwnProperty.call(map, id)) return;
+    var el = $(id), v = map[id];
+    if(!el || (typeof v !== "string" && typeof v !== "number")) return;
+    v = String(v);
+    if(el.tagName === "SELECT"){ if(!optionExists(el, v)) return; }
+    else { if(v.length > 12) return; if(v.trim() !== "" && !isFinite(Number(v))) return; }
+    el.value = v; n++;
+  });
+  return n;
+}
+function saveState(){
+  if(!$("remember") || !$("remember").checked) return;
+  try { localStorage.setItem(STORE, JSON.stringify({ v: 1, unit: unit, fields: collectFields(), foods: tracker })); } catch(e){}
+}
+function loadSaved(){
+  try {
+    var raw = localStorage.getItem(STORE);
+    if(!raw) return false;
+    var s = JSON.parse(raw);
+    if(!s || s.v !== 1) return false;
+    if(s.unit === "imperial" || s.unit === "metric") applyUnit(s.unit);
+    applyFields(s.fields);
+    if(Array.isArray(s.foods)) tracker = cleanFoods(s.foods);
+    return true;
+  } catch(e){ return false; }
+}
+function cleanFoods(arr){
+  var out = [];
+  arr.slice(0, 60).forEach(function(t){
+    if(t && Number.isInteger(t.i) && t.i >= 0 && t.i < FOODS.length && typeof t.s === "number" && t.s > 0 && t.s <= 50) out.push({ i: t.i, s: t.s });
+  });
+  return out;
+}
+function shareLink(){
+  var p = ["unit=" + unit];
+  var f = collectFields();
+  FIELDS.forEach(function(id){ if(f[id] !== undefined && f[id] !== "") p.push(encodeURIComponent(id) + "=" + encodeURIComponent(f[id])); });
+  return location.href.split("#")[0] + "#" + p.join("&");
+}
+function loadFromHash(){
+  var h = location.hash.replace(/^#/, "");
+  if(!h || h.indexOf("=") < 0) return false;
+  var map = {}, u = null;
+  h.split("&").forEach(function(kv){
+    var i = kv.indexOf("=");
+    if(i < 1) return;
+    var k, v;
+    try { k = decodeURIComponent(kv.slice(0, i)); v = decodeURIComponent(kv.slice(i + 1)); } catch(e){ return; }
+    if(k === "unit") u = v; else map[k] = v;
+  });
+  if(u !== "metric" && u !== "imperial") return false;
+  applyUnit(u);
+  FIELDS.forEach(function(id){ if(!Object.prototype.hasOwnProperty.call(map, id) && (id === "bf" || id === "tdeeOverride")) $(id).value = ""; });
+  return applyFields(map) > 0;
+}
+
+/* ---------- EXPORT ---------- */
+function setStatus(msg, bad){
+  var el = $("status");
+  if(!el) return;
+  el.textContent = msg;
+  el.style.color = bad ? "#dc2626" : "";
+}
+function needModel(){
+  if(!lastModel){ setStatus("Fix the highlighted entries first, then try again.", true); return null; }
+  return lastModel;
+}
+function inputRows(m){
+  var I = m.I, rows = [];
+  rows.push(["Unit system", unit === "metric" ? "Metric" : "Imperial"]);
+  rows.push(["Sex", I.sex === "m" ? "Male" : "Female"]);
+  rows.push(["Age", I.age + " years"]);
+  rows.push(["Height", unit === "metric" ? fmt1(I.cm) + " cm" : Math.floor(I.cm / IN_CM / 12) + " ft " + fmt1(I.cm / IN_CM - Math.floor(I.cm / IN_CM / 12) * 12) + " in"]);
+  rows.push(["Weight", fmt1(dispW(I.kg)) + " " + wUnit()]);
+  rows.push(["Body fat", I.bf !== null ? I.bf + " %" : "not given"]);
+  rows.push(["Activity factor", String(I.act)]);
+  rows.push(["BMR formula", m.formulaName]);
+  rows.push(["Diet preset", $("diet").options[$("diet").selectedIndex].text]);
+  rows.push(["Goal", m.goalLabel]);
+  rows.push(["Protein target", I.protPerKg + " g/kg " + (m.protBasisUsed === "lbm" ? "lean mass" : "body weight")]);
+  return rows;
+}
+function resultRows(m){
+  var r = [];
+  r.push(["Daily calories", fmt(m.target), "kcal"]);
+  r.push(["Protein", fmt(m.proteinG), "g"]);
+  r.push(["Fat", fmt(m.fatG), "g"]);
+  r.push([m.std ? "Carbs" : "Net carbs", fmt(m.carbG), "g"]);
+  if(!m.std){ r.push(["Fiber (planned)", fmt(m.I.fiber), "g"]); r.push(["Total carbs (net + fiber)", fmt(m.totalCarbs), "g"]); }
+  r.push(["Macro split fat / protein / carbs", m.split[0] + " / " + m.split[1] + " / " + m.split[2], "%"]);
+  if(m.ratio !== null) r.push(["Keto ratio (fat : protein+carbs)", fmt1(m.ratio) + ":1", ""]);
+  r.push(["BMR", fmt(m.bmr), "kcal"]);
+  r.push(["Maintenance calories", fmt(m.maint), "kcal"]);
+  r.push(["Daily change vs maintenance", (m.delta >= 0 ? "+" : "-") + fmt(Math.abs(m.delta)), "kcal"]);
+  r.push(["Expected weekly change", (m.weeklyKg >= 0 ? "+" : "-") + fmt1(Math.abs(dispW(m.weeklyKg))), wUnit() + " / week"]);
+  r.push(["Sodium (typical range)", fmt(m.elec.sodium[0]) + "-" + fmt(m.elec.sodium[1]), "mg"]);
+  r.push(["Potassium (typical range)", fmt(m.elec.potassium[0]) + "-" + fmt(m.elec.potassium[1]), "mg"]);
+  r.push(["Magnesium (typical range)", fmt(m.elec.magnesium[0]) + "-" + fmt(m.elec.magnesium[1]), "mg"]);
+  r.push(["Water (typical range)", fmt1(m.elec.waterL[0]) + "-" + fmt1(m.elec.waterL[1]), "L"]);
+  return r;
+}
+function trackerRows(){
+  var out = [], used = 0;
+  tracker.forEach(function(t){ var f = FOODS[t.i]; if(f){ out.push([f[0], t.s, f[1] * t.s]); used += f[1] * t.s; } });
+  return { rows: out, used: used };
+}
+function summaryText(m){
+  var L = [];
+  L.push("Utiliby Keto Macro Calculator: results");
+  L.push("Generated: " + new Date().toLocaleString());
+  L.push(SITE_URL);
+  L.push("");
+  L.push("INPUTS");
+  inputRows(m).forEach(function(r){ L.push("  " + r[0] + ": " + r[1]); });
+  L.push("");
+  L.push("RESULTS");
+  resultRows(m).forEach(function(r){ L.push("  " + r[0] + ": " + r[1] + (r[2] ? " " + r[2] : "")); });
+  L.push("");
+  L.push("PER MEAL (" + m.meals.length + ")");
+  m.meals.forEach(function(x){ L.push("  Meal " + x.n + ": " + fmt(x.kcal) + " kcal, fat " + fmt(x.fat) + " g, protein " + fmt(x.protein) + " g, " + (m.std ? "carbs " : "net carbs ") + fmt1(x.carb) + " g"); });
+  L.push("");
+  L.push("PROJECTION (" + wUnit() + ")");
+  [0, 4, 8, 12, m.weeks].filter(function(w, i, a){ return w <= m.weeks && a.indexOf(w) === i; }).forEach(function(w){ L.push("  Week " + w + ": " + fmt1(dispW(m.series[w]))); });
+  var tr = trackerRows();
+  if(tr.rows.length){
+    L.push(""); L.push("CARB TRACKER");
+    tr.rows.forEach(function(r){ L.push("  " + r[1] + " x " + r[0] + ": " + fmt1(r[2]) + " g net carbs"); });
+    L.push("  Total: " + fmt1(tr.used) + " g");
+  }
+  m.warnings.concat(m.notes).forEach(function(w){ L.push(""); L.push("Note: " + w); });
+  L.push("");
+  L.push("DISCLAIMER");
+  L.push(SHORT_DISCLAIMER + " Results are estimates only. Full disclaimer: " + SITE_URL + "#disclaimer");
+  return L.join("\n");
+}
+function csvCell(x){
+  var s = String(x == null ? "" : x);
+  if(/^[=+\-@\t\r]/.test(s)) s = "'" + s;
+  if(/[",\n\r]/.test(s)) s = '"' + s.replace(/"/g, '""') + '"';
+  return s;
+}
+function csvText(m){
+  var rows = [["Section", "Item", "Value", "Unit"]];
+  inputRows(m).forEach(function(r){ rows.push(["Inputs", r[0], r[1], ""]); });
+  resultRows(m).forEach(function(r){ rows.push(["Results", r[0], r[1], r[2]]); });
+  m.meals.forEach(function(x){ rows.push(["Per meal", "Meal " + x.n, fmt(x.kcal) + " kcal | fat " + fmt(x.fat) + " g | protein " + fmt(x.protein) + " g | carbs " + fmt1(x.carb) + " g", ""]); });
+  for(var w = 0; w <= m.weeks; w++){ rows.push(["Projection", "Week " + w, fmt1(dispW(m.series[w])), wUnit()]); }
+  var tr = trackerRows();
+  tr.rows.forEach(function(r){ rows.push(["Carb tracker", r[0] + " x " + r[1], fmt1(r[2]), "g net carbs"]); });
+  m.warnings.concat(m.notes).forEach(function(w2){ rows.push(["Notes", "Note", w2, ""]); });
+  rows.push(["Meta", "Generated", new Date().toISOString(), ""]);
+  rows.push(["Meta", "Source", SITE_URL, ""]);
+  rows.push(["Disclaimer", "Notice", SHORT_DISCLAIMER + " Results are estimates only.", ""]);
+  return rows.map(function(r){ return r.map(csvCell).join(","); }).join("\r\n");
+}
+function stamp(){ return new Date().toISOString().slice(0, 10); }
+function download(name, mime, content){
+  var blob = new Blob([content], { type: mime });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url; a.download = name;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  setTimeout(function(){ URL.revokeObjectURL(url); }, 1000);
+}
+function fallbackCopy(text){
+  try {
+    var ta = document.createElement("textarea");
+    ta.value = text; ta.setAttribute("readonly", "");
+    ta.style.position = "fixed"; ta.style.opacity = "0";
+    document.body.appendChild(ta); ta.select();
+    var ok = document.execCommand("copy");
+    document.body.removeChild(ta);
+    return ok;
+  } catch(e){ return false; }
+}
+function copyText(text, okMsg){
+  function done(ok){ setStatus(ok ? okMsg : "Copy failed. Use Download CSV or Print instead.", !ok); }
+  if(navigator.clipboard && navigator.clipboard.writeText){
+    navigator.clipboard.writeText(text).then(function(){ done(true); }, function(){ done(fallbackCopy(text)); });
+  } else { done(fallbackCopy(text)); }
+}
+function buildReport(m){
+  var h = '<h2>Keto Macro Calculator: your results</h2><p>Generated ' + esc(new Date().toLocaleString()) + ' · ' + esc(SITE_URL) + '</p>';
+  h += '<div class="km-reportgrid"><div>' + donutSvg(m) + '</div><div>';
+  h += '<table class="res"><tr><th>Item</th><th>Value</th></tr>';
+  resultRows(m).forEach(function(r){ h += '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1] + (r[2] ? " " + r[2] : "")) + '</td></tr>'; });
+  h += '</table></div></div>';
+  h += '<h3>Inputs</h3><table class="res">' + inputRows(m).map(function(r){ return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td></tr>'; }).join("") + '</table>';
+  h += '<h3>Per meal</h3><table class="res"><tr><th>Meal</th><th>Calories</th><th>Fat</th><th>Protein</th><th>' + (m.std ? "Carbs" : "Net carbs") + '</th></tr>' +
+       m.meals.map(function(x){ return '<tr><td>Meal ' + x.n + '</td><td>' + fmt(x.kcal) + '</td><td>' + fmt(x.fat) + ' g</td><td>' + fmt(x.protein) + ' g</td><td>' + fmt1(x.carb) + ' g</td></tr>'; }).join("") + '</table>';
+  h += '<h3>Weight projection</h3>' + projSvg(m);
+  var tr = trackerRows();
+  if(tr.rows.length){
+    h += '<h3>Carb tracker</h3><table class="res"><tr><th>Food</th><th>Servings</th><th>Net carbs</th></tr>' +
+      tr.rows.map(function(r){ return '<tr><td>' + esc(r[0]) + '</td><td>' + esc(r[1]) + '</td><td>' + fmt1(r[2]) + ' g</td></tr>'; }).join("") +
+      '<tr><th colspan="2">Total</th><th>' + fmt1(tr.used) + ' g</th></tr></table>';
+  }
+  m.warnings.concat(m.notes).forEach(function(w){ h += '<p><b>Note:</b> ' + esc(w) + '</p>'; });
+  h += '<h3>Disclaimer</h3><p>' + esc(SHORT_DISCLAIMER) + ' Results are estimates based on standard equations and the numbers you entered. They are not a diagnosis, treatment or personal medical advice.</p>';
+  return h;
+}
+function printReport(){
+  var m = needModel(); if(!m) return;
+  $("printReport").innerHTML = buildReport(m);
+  window.print();
+}
+function importJson(file){
+  if(file.size > 100000){ setStatus("That file is too large to be a settings file.", true); return; }
+  var reader = new FileReader();
+  reader.onload = function(e){
+    var obj;
+    try { obj = JSON.parse(String(e.target.result)); } catch(err){ setStatus("That file is not valid JSON.", true); return; }
+    if(!obj || obj.tool !== "utiliby-keto-macro-calculator" || !obj.fields || typeof obj.fields !== "object"){
+      setStatus("That file is not a settings file from this calculator.", true); return;
+    }
+    if(obj.unit === "imperial" || obj.unit === "metric") applyUnit(obj.unit);
+    var n = applyFields(obj.fields);
+    if(!n){ setStatus("No usable settings were found in that file.", true); return; }
+    if(Array.isArray(obj.foods)) tracker = cleanFoods(obj.foods);
+    syncBoxes(); render(); setStatus("Imported " + n + " settings.", false);
+  };
+  reader.readAsText(file);
+}
+function resetAll(){
+  if(!confirm("Reset all entries to the defaults and clear anything saved in this browser?")) return;
+  try { localStorage.removeItem(STORE); } catch(e){}
+  FIELDS.forEach(function(id){ if(DEFAULTS[id] !== undefined) $(id).value = DEFAULTS[id]; });
+  tracker = [];
+  applyUnit("metric");
+  syncBoxes(); render(); setStatus("All entries were reset.", false);
+}
+
+/* ---------- WIRING ---------- */
 window.addEventListener("DOMContentLoaded", function(){
   var T = $("tool");
   if(!T) return;
+  T.querySelectorAll("input, select").forEach(function(el){ if(el.type !== "checkbox") el.setAttribute("autocomplete", "off"); });
+  FIELDS.forEach(function(id){ var el = $(id); if(el) DEFAULTS[id] = String(el.value); });
 
-  T.addEventListener("input", render);
+  // foods dropdown
+  var sel = $("foodSelect");
+  if(sel){
+    sel.innerHTML = FOODS.map(function(f, i){ return '<option value="' + i + '">' + esc(f[0]) + ' (≈' + f[1] + ' g net)</option>'; }).join("");
+  }
+
+  var fromHash = loadFromHash();
+  if(!fromHash){
+    var on = false;
+    try { on = localStorage.getItem(STORE + "-on") === "1"; } catch(e){}
+    if(on){ $("remember").checked = true; loadSaved(); }
+  }
+  applyUnit(unit);
+  syncBoxes();
+
+  T.addEventListener("input", function(e){
+    if(e.target && e.target.id === "foodServings") return;
+    render();
+  });
   T.addEventListener("change", function(e){
-    if(e.target.dataset && e.target.dataset.unit){ setUnit(e.target.dataset.unit); render(); return; }
-    if(e.target.id === "diet"){ $("customCarbsBox").hidden = ($("diet").value !== "custom"); }
+    var id = e.target && e.target.id;
+    if(id === "diet" || id === "goal") syncBoxes();
+    if(id === "remember"){
+      try {
+        if(e.target.checked){ localStorage.setItem(STORE + "-on", "1"); saveState(); setStatus("Entries will be remembered in this browser only.", false); }
+        else { localStorage.removeItem(STORE + "-on"); localStorage.removeItem(STORE); setStatus("Saved entries were cleared.", false); }
+      } catch(err){}
+      return;
+    }
+    if(id === "foodSelect" || id === "foodServings") return;
     render();
   });
   T.addEventListener("click", function(e){
+    var rm = e.target.closest("[data-rm]");
+    if(rm){ tracker.splice(parseInt(rm.getAttribute("data-rm"), 10), 1); renderTracker(); saveState(); return; }
     var b = e.target.closest("button");
     if(!b) return;
     if(b.dataset && b.dataset.unit){ setUnit(b.dataset.unit); render(); return; }
-    if(b.id === "cpres" && navigator.clipboard){
-      navigator.clipboard.writeText(LAST);
-      b.textContent = "Copied!";
-      setTimeout(function(){ b.textContent = "Copy results"; }, 1500);
+    if(b.id === "cpres"){ var m = needModel(); if(m) copyText(summaryText(m), "Results copied to the clipboard."); }
+    else if(b.id === "cplink"){ copyText(shareLink(), "Link copied. It contains your entries so anyone you send it to sees the same inputs."); }
+    else if(b.id === "csvBtn"){ var m2 = needModel(); if(m2){ download("utiliby-keto-macros-" + stamp() + ".csv", "text/csv;charset=utf-8", "\uFEFF" + csvText(m2)); setStatus("CSV downloaded.", false); } }
+    else if(b.id === "jsonBtn"){
+      download("utiliby-keto-settings-" + stamp() + ".json", "application/json", JSON.stringify({ tool: "utiliby-keto-macro-calculator", version: 1, exportedAt: new Date().toISOString(), unit: unit, fields: collectFields(), foods: tracker, disclaimer: SHORT_DISCLAIMER }, null, 2));
+      setStatus("Settings file downloaded. Use 'Import settings' to restore it.", false);
     }
+    else if(b.id === "importBtn"){ $("jsonInput").click(); }
+    else if(b.id === "printBtn"){ printReport(); }
+    else if(b.id === "resetBtn"){ resetAll(); }
+    else if(b.id === "addFoodBtn"){
+      var idx = parseInt($("foodSelect").value, 10), s = val("foodServings");
+      if(!(s > 0 && s <= 50)){ setStatus("Servings must be greater than 0 and no more than 50.", true); return; }
+      if(tracker.length >= 60){ setStatus("The tracker is limited to 60 entries.", true); return; }
+      tracker.push({ i: idx, s: s }); renderTracker(); saveState(); setStatus("", false);
+    }
+    else if(b.id === "clearFoodsBtn"){ tracker = []; renderTracker(); saveState(); }
+  });
+  $("jsonInput").addEventListener("change", function(e){
+    if(e.target.files && e.target.files[0]) importJson(e.target.files[0]);
+    e.target.value = "";
   });
 
   render();
 });
+})();
 </script>
 </body>
 </html>
