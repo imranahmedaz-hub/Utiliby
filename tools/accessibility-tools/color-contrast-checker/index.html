@@ -1,0 +1,455 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Color Contrast Checker Online – WCAG 2.2 AA & AAA</title>
+<meta name="description" content="Free online color contrast checker for WCAG 2.2 AA and AAA plus APCA. Test text and background colors, fix failures, check a palette and preview color blindness.">
+<link rel="canonical" href="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Color Contrast Checker Online – WCAG 2.2 AA & AAA">
+<meta property="og:description" content="Free online color contrast checker: WCAG 2.2 ratio, AA and AAA results, APCA score, palette grid and color blind preview with passing color fixes.">
+<meta property="og:url" content="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Color Contrast Checker Online – WCAG 2.2 AA & AAA">
+<meta name="twitter:description" content="Free online color contrast checker: WCAG 2.2 ratio, AA and AAA results, APCA score, palette grid and color blind preview with passing color fixes.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#4338ca;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#a5b4fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #4338ca;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#4338ca;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(67,56,202,.06);border-left:3px solid #4338ca;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#4338ca}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#4338ca;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(67,56,202,.12);color:#3730a3;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#a5b4fc;background:rgba(129,140,248,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.cCol{display:flex;gap:8px;align-items:center}.cCol input[type=color]{width:46px;height:40px;padding:2px;border-radius:8px;flex:none}.cCol input[type=text]{flex:1;min-width:0}
+.cErr{color:#b91c1c;font-size:.78rem;min-height:1em;display:block}
+#cCss{width:100%;font-family:ui-monospace,monospace;font-size:.82rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Color Contrast Checker","url":"https://utiliby.com/tools/accessibility-tools/color-contrast-checker/","description":"Free online color contrast checker for WCAG 2.2 and APCA: test text and background colors, see AA and AAA pass or fail, find the nearest passing color, check a whole palette and preview contrast under color blindness.","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["WCAG 2.2 contrast ratio with AA, AAA and non-text results","APCA Lc score with plain-language guidance","Large text detection by size and weight","Nearest passing text and background colors","Palette grid: test every color pair at once","Color blind preview for four vision types","Print, CSV and copy for the active tab"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is color contrast and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Color contrast is the difference in brightness between text (or an icon) and its background. Low contrast makes content hard to read for people with low vision, color vision deficiency, ageing eyes, glare on a phone screen or a poor display. Good contrast helps everyone, and in many countries it is part of accessibility law."}},{"@type":"Question","name":"What contrast ratio do I need to pass WCAG AA?","acceptedAnswer":{"@type":"Answer","text":"WCAG 2.2 level AA requires at least 4.5:1 for normal text and 3:1 for large text, as well as 3:1 for user interface components and meaningful graphics (success criteria 1.4.3 and 1.4.11)."}},{"@type":"Question","name":"What contrast ratio do I need for AAA?","acceptedAnswer":{"@type":"Answer","text":"Level AAA (success criterion 1.4.6) asks for 7:1 for normal text and 4.5:1 for large text. AAA is not required for most sites but is a great target for body text."}},{"@type":"Question","name":"What counts as large text in WCAG?","acceptedAnswer":{"@type":"Answer","text":"Large text is at least 18 point (24 CSS pixels) regular weight, or at least 14 point (about 18.66 CSS pixels) bold. Enter your size and weight in the tool and it applies the right threshold for you."}},{"@type":"Question","name":"How is the WCAG contrast ratio calculated?","acceptedAnswer":{"@type":"Answer","text":"Each color is converted to relative luminance using the sRGB formula, then the ratio is (L1 + 0.05) divided by (L2 + 0.05), where L1 is the lighter color. The range is 1:1 (identical) to 21:1 (black on white)."}},{"@type":"Question","name":"Does the checker round up 4.49 to 4.5?","acceptedAnswer":{"@type":"Answer","text":"No. WCAG does not allow rounding up, so a real ratio of 4.499 fails. The tool truncates the displayed ratio to two decimals and compares the exact value."}},{"@type":"Question","name":"What is APCA and is it part of WCAG?","acceptedAnswer":{"@type":"Answer","text":"APCA, the Advanced Perceptual Contrast Algorithm, is a newer method being developed for WCAG 3. It returns a lightness contrast value Lc that depends on polarity (dark text on light, or the reverse), and gives different guidance for font size and weight. It is not part of WCAG 2.2, so legal requirements still use the WCAG 2 ratio. The tool shows both."}},{"@type":"Question","name":"What is a good APCA Lc score?","acceptedAnswer":{"@type":"Answer","text":"Roughly Lc 90 or more for body text and any size, Lc 75 for body text at about 18 px regular, Lc 60 for larger content text, Lc 45 for large headlines and Lc 30 as an absolute minimum for non-essential text. Guidance may change as the draft develops."}},{"@type":"Question","name":"Do placeholders, disabled buttons and logos need contrast?","acceptedAnswer":{"@type":"Answer","text":"Placeholder text should meet the normal text ratio because it conveys information. Disabled controls and logos or brand names are exempt from the WCAG contrast rules, though very faint disabled states are still hard to use."}},{"@type":"Question","name":"Do icons, borders and focus rings need contrast?","acceptedAnswer":{"@type":"Answer","text":"Yes. Success criterion 1.4.11 asks for 3:1 against adjacent colors for icons and graphics needed to understand content, form field borders and the visual state of controls, including focus indicators."}},{"@type":"Question","name":"How do I fix a color that fails?","acceptedAnswer":{"@type":"Answer","text":"Change the lightness. The tool searches for the nearest shade that keeps the same hue and saturation and reaches the target, either by changing the text color or the background. Darkening grey text from #999999 to #767676 on white is the classic fix."}},{"@type":"Question","name":"Can I test text on images or gradients?","acceptedAnswer":{"@type":"Answer","text":"Check the worst point: pick the lightest part behind dark text, or the darkest part behind light text. Adding a solid or semi-transparent overlay behind text is the most reliable fix."}},{"@type":"Question","name":"Does dark mode need the same contrast?","acceptedAnswer":{"@type":"Answer","text":"Yes. The same ratios apply to dark themes. Avoid pure white on pure black for long text if it causes glare, but keep the ratio high; grey on dark grey often fails."}},{"@type":"Question","name":"How does color blindness affect contrast?","acceptedAnswer":{"@type":"Answer","text":"Color blind users depend mostly on lightness differences. Red and green with the same brightness can look identical. Use the Color blind preview tab to see the ratio under protanopia, deuteranopia, tritanopia and achromatopsia."}},{"@type":"Question","name":"Which color formats can I enter?","acceptedAnswer":{"@type":"Answer","text":"Hex codes (#fff or #1a1a1a), rgb() and hsl() values and CSS color names such as rebeccapurple all work, as does the color picker."}},{"@type":"Question","name":"Is my data sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run in your browser and nothing is uploaded or stored."}},{"@type":"Question","name":"What can I print or export?","acceptedAnswer":{"@type":"Answer","text":"Print / save as PDF, CSV and Copy summary work on the tab you are viewing. The Check tab also has a Copy CSS button for the colors you chose."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Accessibility Tools","item":"https://utiliby.com/tools/accessibility-tools/"},{"@type":"ListItem","position":3,"name":"Color Contrast Checker","item":"https://utiliby.com/tools/accessibility-tools/color-contrast-checker/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/accessibility-tools/">Accessibility Tools</a> › Color Contrast Checker</nav>
+<h1 class="noembed">Free Online Color Contrast Checker: WCAG 2.2 AA, AAA and APCA</h1>
+<p class="lead noembed">Free online color contrast checker. Enter a text color and a background color to get the WCAG 2.2 contrast ratio, AA and AAA results, the APCA Lc score, a live preview, passing color suggestions, a palette grid and color blind simulation. Private, instant, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/" target="_blank" rel="noopener">Color Contrast Checker by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Color contrast checker">
+<div class="dt-hero noembed">
+<h2>Free Color Contrast Checker Online (WCAG 2.2 and APCA)</h2>
+<p>Enter a text color and a background color to get the WCAG ratio, AA and AAA results, the APCA Lc score, color blind previews and a passing color fix. Free and private.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-ck" aria-pressed="true">Check contrast</button>
+<button type="button" class="dt-tab" id="dtTabBtn-gr" aria-pressed="false">Palette grid</button>
+<button type="button" class="dt-tab" id="dtTabBtn-cv" aria-pressed="false">Color blind preview</button>
+</div>
+<div id="dtTab-ck"><div class="dt-panel"><div class="dt-row4"><div><label for="cFg">Text color</label><div class="cCol"><input type="color" id="cFgP" aria-label="Pick text color"><input type="text" id="cFg" spellcheck="false" autocomplete="off"></div><span class="cErr" id="cFgErr"></span></div><div><label for="cBg">Background color</label><div class="cCol"><input type="color" id="cBgP" aria-label="Pick background color"><input type="text" id="cBg" spellcheck="false" autocomplete="off"></div><span class="cErr" id="cBgErr"></span></div><div><label for="cPx">Text size (px)</label><input type="number" id="cPx" min="8" max="200" step="1"></div><div><label for="cWt">Weight</label><select id="cWt"><option value="400">Regular</option><option value="700">Bold</option></select></div></div><div class="dt-actions" style="margin:6px 0"><button type="button" class="dt-btn ghost small" id="cSwap">Swap colors</button><select id="cPre" aria-label="Example color pairs" style="max-width:260px"></select></div></div><div id="cRes"></div><h3 class="dt-lbl">Copy the CSS</h3><textarea id="cCss" rows="2" readonly></textarea><div class="dt-actions" style="margin-top:6px"><button type="button" class="dt-btn ghost small" data-copy-target="cCss">Copy CSS</button></div></div>
+<div id="dtTab-gr" hidden><div class="dt-panel"><label for="gIn">Brand or palette colors (hex, rgb or names, one per line or separated by commas, up to 12)</label><textarea id="gIn" rows="6" spellcheck="false"></textarea></div><div id="gRes"></div></div>
+<div id="dtTab-cv" hidden><div class="dt-panel"><div><label for="vSev">Severity</label><select id="vSev"><option value="1">Full (dichromacy)</option><option value="0.6">Moderate (60%)</option><option value="0.3">Mild (30%)</option></select></div><p class="ck-note">Uses the text and background colors from the Check tab.</p></div><div id="vRes"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button><button type="button" class="dt-btn" id="cPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="cCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="cCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> Contrast results are a guide, not an accessibility audit. Test real designs with real users.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Color Contrast Checker. https://utiliby.com/tools/accessibility-tools/color-contrast-checker/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Color Contrast Checker by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/accessibility-tools/color-contrast-checker/"&gt;Color Contrast Checker by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free color contrast checker does</a></li><li><a href="#how">How to use the contrast checker</a></li><li><a href="#wcag">WCAG contrast requirements at a glance</a></li><li><a href="#formula">How the WCAG contrast ratio is calculated</a></li><li><a href="#apca">APCA and the future of contrast in WCAG 3</a></li><li><a href="#fix">How to fix low-contrast colors</a></li><li><a href="#common">Common color combinations that fail</a></li><li><a href="#nontext">Contrast for buttons, form fields, icons and focus rings</a></li><li><a href="#cvd">Color contrast and color blindness</a></li><li><a href="#design">Contrast in design systems and dark mode</a></li><li><a href="#limits">Limits of automated contrast checking</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free color contrast checker does</h2>
+<p>This free online <b>color contrast checker</b> tells you whether a text color is easy enough to read on a background color. Enter two colors and you instantly get the <b>WCAG 2.2 contrast ratio</b>, pass or fail marks for <b>AA and AAA</b>, a score from the newer <b>APCA</b> method and a live preview of normal text, small text and a button outline. If the pair fails, the tool suggests the nearest colors that pass, so you can keep your brand hue and still meet the standard.</p><p>Two extra tabs save time on real projects. The <b>palette grid</b> tests every text and background combination in a color palette at once, which is how designers check a brand system or a design token set. The <b>color blind preview</b> shows the same pair as seen with protanopia, deuteranopia, tritanopia and achromatopsia, with the ratio recalculated for each. Everything runs in your browser, so nothing you test is uploaded.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Four sample text and background pairs with their contrast ratios and pass or fail marks"><title>Contrast ratio examples</title>
+<g font-size="22" font-weight="700"><rect class="dt-bar" x="10" y="14" width="146" height="84" rx="10" fill="#ffffff" stroke="#94a3b8"/><text x="83" y="64" text-anchor="middle" fill="#1a1a1a">Aa</text>
+<rect class="dt-bar" x="170" y="14" width="146" height="84" rx="10" fill="#767676" style="animation-delay:.12s"/><text x="243" y="64" text-anchor="middle" fill="#ffffff">Aa</text>
+<rect class="dt-bar" x="330" y="14" width="146" height="84" rx="10" fill="#ffffff" stroke="#94a3b8" style="animation-delay:.24s"/><text x="403" y="64" text-anchor="middle" fill="#9ca3af">Aa</text>
+<rect class="dt-bar" x="490" y="14" width="140" height="84" rx="10" fill="#ffd60a" style="animation-delay:.36s"/><text x="560" y="64" text-anchor="middle" fill="#ffffff">Aa</text></g>
+<g font-size="13" fill="currentColor" text-anchor="middle" font-weight="700"><text x="83" y="124">17.4:1</text><text x="243" y="124">4.5:1</text><text x="403" y="124">2.5:1</text><text x="560" y="124">1.4:1</text></g>
+<g font-size="13" text-anchor="middle" font-weight="700"><text x="83" y="146" fill="#166534">Pass AAA</text><text x="243" y="146" fill="#166534">Pass AA</text><text x="403" y="146" fill="#991b1b">Fail</text><text x="560" y="146" fill="#991b1b">Fail</text></g>
+<text x="320" y="196" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">Normal text needs 4.5:1 for AA and 7:1 for AAA. Large text needs 3:1 and 4.5:1.</text></svg><figcaption>Four color pairs and their WCAG contrast ratios. Light grey on white and white on yellow both look stylish and both fail.</figcaption></figure>
+<h2 id="how">How to use the contrast checker</h2>
+<ol><li><b>Choose colors.</b> Use the pickers or type hex, rgb, hsl or CSS color names. Swap them with one click, or load an example.</li><li><b>Set the text size and weight.</b> This decides whether WCAG treats the text as large (3:1 for AA) or normal (4.5:1).</li><li><b>Read the result.</b> The big number is the contrast ratio. The table shows AA, AAA and non-text results, and the APCA card explains what Lc score you reached.</li><li><b>Fix failures.</b> Use the nearest passing colors, then copy the CSS.</li><li><b>Test a palette.</b> Open Palette grid, paste your brand colors and scan the matrix for combinations that pass.</li><li><b>Check color vision.</b> Open Color blind preview to see how the pair holds up.</li></ol>
+<h2 id="wcag">WCAG contrast requirements at a glance</h2>
+<div class="dt-wrap"><table><tr><th>Success criterion</th><th>Level</th><th>What it covers</th><th>Required ratio</th></tr><tr><td>1.4.3 Contrast (Minimum)</td><td>AA</td><td>Normal text and images of text</td><td>4.5:1</td></tr><tr><td>1.4.3 Contrast (Minimum)</td><td>AA</td><td>Large text (24 px, or 18.66 px bold)</td><td>3:1</td></tr><tr><td>1.4.6 Contrast (Enhanced)</td><td>AAA</td><td>Normal text</td><td>7:1</td></tr><tr><td>1.4.6 Contrast (Enhanced)</td><td>AAA</td><td>Large text</td><td>4.5:1</td></tr><tr><td>1.4.11 Non-text Contrast</td><td>AA</td><td>UI components, icons, focus indicators, chart elements</td><td>3:1</td></tr><tr><td>1.4.1 Use of Color</td><td>A</td><td>Color must not be the only way to show information</td><td>No ratio, needs another cue</td></tr><tr><td>2.4.13 Focus Appearance (draft)</td><td>AAA</td><td>Size and contrast of keyboard focus indicators</td><td>3:1 change</td></tr></table></div><p>Exemptions: purely decorative text, inactive (disabled) controls, logos and brand names, and text that is part of a picture with no informational purpose do not have to meet the ratios. Everything else on the page, including placeholder text, link text, button labels, error messages and chart labels, does.</p>
+<h2 id="formula">How the WCAG contrast ratio is calculated</h2>
+<p>WCAG converts each 8-bit sRGB channel to a linear value: if the channel divided by 255 is 0.03928 or less, divide it by 12.92; otherwise add 0.055, divide by 1.055 and raise it to the power 2.4. The relative luminance is then <b>L = 0.2126 R + 0.7152 G + 0.0722 B</b>. The ratio is <b>(L<sub>light</sub> + 0.05) ÷ (L<sub>dark</sub> + 0.05)</b>.</p><p>Example: grey #767676 has a luminance of about 0.181. White has a luminance of 1. The ratio is (1 + 0.05) ÷ (0.181 + 0.05) = 4.54, which is just enough for AA. Light grey #9ca3af has a luminance of about 0.36 and gives 2.5:1 on white, a clear fail.</p><p>Because green dominates the formula, a green and a red of similar luminance have almost no contrast even when they look very different in hue. That is why hue alone should never carry meaning.</p>
+<h2 id="apca">APCA and the future of contrast in WCAG 3</h2>
+<p>The WCAG 2 ratio is simple but has known weaknesses: it treats dark-on-light and light-on-dark the same, and it over-rates some dark color pairs while under-rating others. <b>APCA</b> (the Advanced Perceptual Contrast Algorithm) models how humans perceive lightness, so its result, <b>Lc</b>, depends on which color is the text. It runs from about 0 to 106 in magnitude, and the required Lc increases for smaller and thinner text.</p><div class="dt-wrap"><table><tr><th>APCA Lc (absolute)</th><th>Typical use</th></tr><tr><td>90 or more</td><td>Body text at any size, fluent reading</td></tr><tr><td>75</td><td>Body text, about 18 px regular and up</td></tr><tr><td>60</td><td>Content text, 24 px regular or 16 px bold</td></tr><tr><td>45</td><td>Large headlines, 36 px regular or 24 px bold</td></tr><tr><td>30</td><td>Placeholders and disabled text, not for reading</td></tr><tr><td>15</td><td>Non-text elements only</td></tr></table></div><p>APCA is a draft inside the WCAG 3 work and is not yet a legal standard. Use the WCAG 2 ratio for compliance and APCA as a second opinion. If the two disagree, fix to satisfy both.</p>
+<h2 id="fix">How to fix low-contrast colors</h2>
+<ul><li><b>Darken text on a light background.</b> Move the text lightness down until the ratio passes. #767676 is the lightest grey that meets 4.5:1 on white.</li><li><b>Lighten text on a dark background.</b> Move the lightness up, not the saturation.</li><li><b>Change the background instead.</b> Sometimes a lighter card or a darker button color is the easier fix, and the tool shows that option too.</li><li><b>Keep the brand hue.</b> Changing lightness while holding hue and saturation preserves the look of the color.</li><li><b>Use a different color for small text.</b> It is fine to use a brighter brand color for large headings and a darker tint for body text and links.</li><li><b>Add an outline or underline.</b> For links in body text, underline them so color is not the only cue.</li></ul>
+<h2 id="common">Common color combinations that fail</h2>
+<div class="dt-wrap"><table><tr><th>Pair</th><th>Ratio</th><th>Problem</th></tr><tr><td>Light grey #999 on white</td><td>2.85:1</td><td>Very common for helper text and placeholders</td></tr><tr><td>White on yellow #ffd60a</td><td>1.4:1</td><td>Use black or very dark text on yellow</td></tr><tr><td>White on orange #f97316</td><td>2.8:1</td><td>Darken the orange or use dark text</td></tr><tr><td>White on bright green #22c55e</td><td>2.3:1</td><td>Use a darker green such as #15803d</td></tr><tr><td>White on sky blue #38bdf8</td><td>2.1:1</td><td>Choose a deeper blue for buttons</td></tr><tr><td>Red #ff0000 on black</td><td>5.25:1</td><td>Passes but vibrates; avoid for long text</td></tr></table></div><p>Run your own colors through the palette grid; the surprises are usually in the middle tones, where a color looks bold but lacks lightness difference.</p>
+<h2 id="nontext">Contrast for buttons, form fields, icons and focus rings</h2>
+<p>WCAG 1.4.11 applies a 3:1 ratio to the parts of the interface that people need to see in order to use it. That includes the border of a text field (or another cue showing where it is), the unchecked state of a checkbox, an icon with no text label, the segments of a chart, and the visible state of focus and selection. The ratio is measured against the neighbouring colors, so a grey border on a white card must be dark enough against the white, and a filled button must contrast with the page behind it unless the label alone makes the button obvious.</p><p>Quick tip: use the checker with the border color as the text color and the surface as the background, and aim for 3:1 or more.</p>
+<h2 id="cvd">Color contrast and color blindness</h2>
+<p>About 1 in 12 men and 1 in 200 women have some form of color vision deficiency, most often red-green. People with these conditions see color differences less clearly, but they see lightness well. That is why contrast based on lightness is the most inclusive tool you have. A red button with white text may look fine to you but a deuteranope sees a dark olive. Always pair color with a second cue such as an icon, label, pattern or underline.</p><p>The Color blind preview tab applies the Machado et al. (2009) simulation matrices to your pair, in linear light, and recalculates the contrast. If the ratio holds up in every row, the pair relies on lightness and is safe. If a row collapses below 3:1, change the lightness.</p>
+<h2 id="design">Contrast in design systems and dark mode</h2>
+<p>Build contrast into your design tokens. Pick a neutral scale where each step has a documented ratio against your page background, mark which steps are safe for body text, and test every brand color with both light and dark surfaces. Dark mode is not just an inversion: a color that passes on white may fail on charcoal. Test both themes, and check hover, focus, active, visited and disabled states, which are easy to forget.</p><p>Paste your tokens into the Palette grid and export the results as CSV to include in a design review or an accessibility statement.</p>
+<h2 id="limits">Limits of automated contrast checking</h2>
+<p>A contrast calculator measures two flat colors. It cannot judge text over photographs, gradients or video, semi-transparent layers, anti-aliasing on thin fonts, text that changes with hover, or very small text. Screen brightness, ambient light and personal vision all matter. Treat a pass as a strong start and test the real page, including on a phone outdoors.</p>
+<h2 id="privacy">Privacy</h2>
+<p>Color values are processed locally in your browser. They are not uploaded, saved or shared. Exports are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is color contrast and why does it matter?</summary><p>Color contrast is the difference in brightness between text (or an icon) and its background. Low contrast makes content hard to read for people with low vision, color vision deficiency, ageing eyes, glare on a phone screen or a poor display. Good contrast helps everyone, and in many countries it is part of accessibility law.</p></details><details><summary>What contrast ratio do I need to pass WCAG AA?</summary><p>WCAG 2.2 level AA requires at least 4.5:1 for normal text and 3:1 for large text, as well as 3:1 for user interface components and meaningful graphics (success criteria 1.4.3 and 1.4.11).</p></details><details><summary>What contrast ratio do I need for AAA?</summary><p>Level AAA (success criterion 1.4.6) asks for 7:1 for normal text and 4.5:1 for large text. AAA is not required for most sites but is a great target for body text.</p></details><details><summary>What counts as large text in WCAG?</summary><p>Large text is at least 18 point (24 CSS pixels) regular weight, or at least 14 point (about 18.66 CSS pixels) bold. Enter your size and weight in the tool and it applies the right threshold for you.</p></details><details><summary>How is the WCAG contrast ratio calculated?</summary><p>Each color is converted to relative luminance using the sRGB formula, then the ratio is (L1 + 0.05) divided by (L2 + 0.05), where L1 is the lighter color. The range is 1:1 (identical) to 21:1 (black on white).</p></details><details><summary>Does the checker round up 4.49 to 4.5?</summary><p>No. WCAG does not allow rounding up, so a real ratio of 4.499 fails. The tool truncates the displayed ratio to two decimals and compares the exact value.</p></details><details><summary>What is APCA and is it part of WCAG?</summary><p>APCA, the Advanced Perceptual Contrast Algorithm, is a newer method being developed for WCAG 3. It returns a lightness contrast value Lc that depends on polarity (dark text on light, or the reverse), and gives different guidance for font size and weight. It is not part of WCAG 2.2, so legal requirements still use the WCAG 2 ratio. The tool shows both.</p></details><details><summary>What is a good APCA Lc score?</summary><p>Roughly Lc 90 or more for body text and any size, Lc 75 for body text at about 18 px regular, Lc 60 for larger content text, Lc 45 for large headlines and Lc 30 as an absolute minimum for non-essential text. Guidance may change as the draft develops.</p></details><details><summary>Do placeholders, disabled buttons and logos need contrast?</summary><p>Placeholder text should meet the normal text ratio because it conveys information. Disabled controls and logos or brand names are exempt from the WCAG contrast rules, though very faint disabled states are still hard to use.</p></details><details><summary>Do icons, borders and focus rings need contrast?</summary><p>Yes. Success criterion 1.4.11 asks for 3:1 against adjacent colors for icons and graphics needed to understand content, form field borders and the visual state of controls, including focus indicators.</p></details><details><summary>How do I fix a color that fails?</summary><p>Change the lightness. The tool searches for the nearest shade that keeps the same hue and saturation and reaches the target, either by changing the text color or the background. Darkening grey text from #999999 to #767676 on white is the classic fix.</p></details><details><summary>Can I test text on images or gradients?</summary><p>Check the worst point: pick the lightest part behind dark text, or the darkest part behind light text. Adding a solid or semi-transparent overlay behind text is the most reliable fix.</p></details><details><summary>Does dark mode need the same contrast?</summary><p>Yes. The same ratios apply to dark themes. Avoid pure white on pure black for long text if it causes glare, but keep the ratio high; grey on dark grey often fails.</p></details><details><summary>How does color blindness affect contrast?</summary><p>Color blind users depend mostly on lightness differences. Red and green with the same brightness can look identical. Use the Color blind preview tab to see the ratio under protanopia, deuteranopia, tritanopia and achromatopsia.</p></details><details><summary>Which color formats can I enter?</summary><p>Hex codes (#fff or #1a1a1a), rgb() and hsl() values and CSS color names such as rebeccapurple all work, as does the color picker.</p></details><details><summary>Is my data sent anywhere?</summary><p>No. All calculations run in your browser and nothing is uploaded or stored.</p></details><details><summary>What can I print or export?</summary><p>Print / save as PDF, CSV and Copy summary work on the tab you are viewing. The Check tab also has a Copy CSS button for the colors you chose.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>W3C Web Content Accessibility Guidelines (WCAG) 2.2: success criteria 1.4.1, 1.4.3, 1.4.6, 1.4.11 and the definitions of relative luminance and contrast ratio.</li><li>W3C Understanding Success Criterion 1.4.3 and 1.4.11, for large text sizes and non-text contrast.</li><li>Myndex, APCA (Accessible Perceptual Contrast Algorithm) 0.0.98G constants and WCAG 3 contrast draft, for the Lc method.</li><li>Machado, Oliveira and Fernandes (2009), A Physiologically-based Model for Simulation of Color Vision Deficiency, IEEE Transactions on Visualization and Computer Graphics.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online color contrast checker calculates the WCAG 2.2 contrast ratio and the APCA lightness contrast (Lc) from the colors you enter. The results are a guide for design and testing and do not constitute a legal opinion, an accessibility audit or a certification of conformance. Real-world legibility also depends on font, size, weight, anti-aliasing, gradients, images behind text, screen quality, lighting, user settings and the content around the text. Color vision deficiency simulation is an approximation. Always confirm important designs with real users and a qualified accessibility professional, and check the requirements that apply to you.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+/* ---------- accessibility helpers ---------- */
+function parseColor(s) {
+  s = String(s == null ? "" : s).trim(); if (!s) return null; var m = s.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (m) { var h = m[1]; if (h.length === 3) h = h.replace(/./g, "$&$&"); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; }
+  try { var c = document.createElement("canvas").getContext("2d"); c.fillStyle = "#010203"; c.fillStyle = s; var v = c.fillStyle; if (v === "#010203" && !/^#?010203$/i.test(s)) return null; if (v.charAt(0) === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16)]; var r = v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); if (r) return [+r[1], +r[2], +r[3]]; } catch (e) { }
+  return null;
+}
+function toHex(c) { return "#" + c.map(function (v) { v = Math.max(0, Math.min(255, Math.round(v))); return (v < 16 ? "0" : "") + v.toString(16); }).join(""); }
+function lin(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+function relLum(c) { return 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]); }
+function contrastRatio(a, b) { var l1 = relLum(a), l2 = relLum(b); if (l1 < l2) { var t = l1; l1 = l2; l2 = t; } return (l1 + 0.05) / (l2 + 0.05); }
+function apcaLc(txt, bg) {
+  function Y(c) { return Math.pow(c[0] / 255, 2.4) * 0.2126729 + Math.pow(c[1] / 255, 2.4) * 0.7151522 + Math.pow(c[2] / 255, 2.4) * 0.072175; }
+  var yt = Y(txt), yb = Y(bg); if (yt < 0.022) yt += Math.pow(0.022 - yt, 1.414); if (yb < 0.022) yb += Math.pow(0.022 - yb, 1.414);
+  if (Math.abs(yb - yt) < 0.0005) return 0; var s, o;
+  if (yb > yt) { s = (Math.pow(yb, 0.56) - Math.pow(yt, 0.57)) * 1.14; o = s < 0.1 ? 0 : s - 0.027; } else { s = (Math.pow(yb, 0.65) - Math.pow(yt, 0.62)) * 1.14; o = s > -0.1 ? 0 : s + 0.027; }
+  return o * 100;
+}
+function rgb2hsl(c) { var r = c[0] / 255, g = c[1] / 255, b = c[2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), h = 0, s = 0, l = (mx + mn) / 2; if (mx !== mn) { var d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } return [h, s, l]; }
+function hsl2rgb(h, s, l) { function f(p, q, t) { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1 / 6) return p + (q - p) * 6 * t; if (t < 1 / 2) return q; if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6; return p; } if (s === 0) { var v = l * 255; return [v, v, v]; } var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; return [f(p, q, h + 1 / 3) * 255, f(p, q, h) * 255, f(p, q, h - 1 / 3) * 255]; }
+/* nearest colour to c (same hue and saturation) that reaches ratio against other */
+function fixColor(c, other, target) {
+  var hsl = rgb2hsl(c), best = null, d, i, cand;
+  for (i = 0; i <= 200; i++) { d = i / 200; [hsl[2] + d, hsl[2] - d].forEach(function (l) { if (l < 0 || l > 1) return; cand = hsl2rgb(hsl[0], hsl[1], l).map(Math.round); if (contrastRatio(cand, other) >= target && (!best || Math.abs(l - hsl[2]) < best.d)) best = { c: cand, d: Math.abs(l - hsl[2]) }; }); if (best) break; }
+  return best ? best.c : null;
+}
+var CVD = { prot: [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]], deut: [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]], trit: [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.3039]] };
+function toLin(v) { return lin(v); }
+function fromLin(v) { v = Math.max(0, Math.min(1, v)); return Math.round((v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055) * 255); }
+function cvdColor(c, type, sev) {
+  sev = sev == null ? 1 : sev; var r = toLin(c[0]), g = toLin(c[1]), b = toLin(c[2]), o;
+  if (type === "achro") { var y = 0.2126 * r + 0.7152 * g + 0.0722 * b; o = [y, y, y]; }
+  else { var m = CVD[type]; o = [m[0][0] * r + m[0][1] * g + m[0][2] * b, m[1][0] * r + m[1][1] * g + m[1][2] * b, m[2][0] * r + m[2][1] * g + m[2][2] * b]; }
+  return [fromLin(r + (o[0] - r) * sev), fromLin(g + (o[1] - g) * sev), fromLin(b + (o[2] - b) * sev)];
+}
+function dlText(name, type, data) { saveBlob(new Blob([data], { type: type + ";charset=utf-8" }), name); }
+
+/* ---------- color contrast checker UI ---------- */
+var ST = { tab: "ck", rows: { ck: [], gr: [], cv: [] }, fg: [26, 26, 26], bg: [255, 255, 255] };
+var TITLES = { ck: "Color contrast check", gr: "Palette contrast grid", cv: "Contrast under color vision deficiency" };
+var PRE = [["#1a1a1a|#ffffff", "Near-black on white"], ["#595959|#ffffff", "Grey 595959 on white"], ["#767676|#ffffff", "Grey 767676 (AA limit)"], ["#0645ad|#ffffff", "Classic link blue"], ["#ffffff|#0b5fff", "White on bright blue"], ["#ffffff|#e5484d", "White on red"], ["#000000|#ffd60a", "Black on yellow"], ["#ffffff|#16a34a", "White on green"], ["#9ca3af|#ffffff", "Light grey on white"], ["#ffffff|#6366f1", "White on indigo"]];
+var VIS = [["prot", "Protanopia (no red)"], ["deut", "Deuteranopia (no green)"], ["trit", "Tritanopia (no blue)"], ["achro", "Achromatopsia (no color)"]];
+function r2(x) { return Math.floor(x * 100) / 100; }
+function ratioTxt(r) { return r2(r).toFixed(2) + ":1"; }
+function badge(ok, t) { return '<span class="ck-tag" style="' + (ok ? "background:#dcfce7;color:#166534" : "background:#fee2e2;color:#991b1b") + '">' + (ok ? "Pass" : "Fail") + (t ? " " + t : "") + "</span>"; }
+function isLarge(px, bold) { return px >= 24 || (bold && px >= 18.66); }
+function apcaNote(lc) {
+  var a = Math.abs(lc); if (a >= 90) return "Excellent. Fine for any text size, including long body text."; if (a >= 75) return "Good for body text at about 18 px regular or larger."; if (a >= 60) return "OK for content text at 24 px regular or 16 px bold and larger.";
+  if (a >= 45) return "Only for large headlines (36 px regular or 24 px bold and up)."; if (a >= 30) return "Minimum for non-essential text such as placeholders. Avoid for reading."; if (a >= 15) return "Fine only for non-text elements such as decorative lines."; return "Too low for text.";
+}
+function readColors() {
+  var f = parseColor($("cFg").value), b = parseColor($("cBg").value);
+  $("cFgErr").textContent = f ? "" : "Not a valid color"; $("cBgErr").textContent = b ? "" : "Not a valid color";
+  if (f) { ST.fg = f; try { $("cFgP").value = toHex(f); } catch (e) { } } if (b) { ST.bg = b; try { $("cBgP").value = toHex(b); } catch (e) { } }
+}
+function gauge(r) {
+  var X = function (v) { return 40 + Math.log(v) / Math.log(21) * 520; }, h = '<svg viewBox="0 0 600 96" width="100%" role="img" aria-label="Contrast ratio scale from 1 to 21 with the current value marked"><title>Contrast ratio scale</title>';
+  h += '<rect x="40" y="34" width="' + (X(3) - 40) + '" height="20" rx="4" fill="#fecaca"/><rect x="' + X(3) + '" y="34" width="' + (X(4.5) - X(3)) + '" height="20" fill="#fde68a"/><rect x="' + X(4.5) + '" y="34" width="' + (X(7) - X(4.5)) + '" height="20" fill="#bbf7d0"/><rect x="' + X(7) + '" y="34" width="' + (X(21) - X(7)) + '" height="20" rx="4" fill="#86efac"/>';
+  [[1, "1"], [3, "3"], [4.5, "4.5"], [7, "7"], [21, "21"]].forEach(function (m) { h += '<line x1="' + X(m[0]) + '" y1="30" x2="' + X(m[0]) + '" y2="58" stroke="#475569"/><text x="' + X(m[0]) + '" y="74" font-size="12" text-anchor="middle" fill="currentColor">' + m[1] + "</text>"; });
+  var x = X(Math.max(1, Math.min(21, r)));
+  h += '<g><path d="M' + (x - 8) + ' 8 L' + (x + 8) + ' 8 L' + x + ' 28 Z" fill="#4338ca"/><text x="' + Math.min(540, Math.max(60, x)) + '" y="20" font-size="12" font-weight="700" text-anchor="middle" fill="currentColor">' + r2(r).toFixed(2) + "</text></g>";
+  return h + '<text x="300" y="92" font-size="11" text-anchor="middle" fill="currentColor">Contrast ratio (log scale). Red under 3, amber 3 to 4.5, green 4.5 and above.</text></svg>';
+}
+function check() {
+  readColors(); var f = ST.fg, b = ST.bg, r = contrastRatio(f, b), lc = apcaLc(f, b), px = nv("cPx", 16, 8, 200), bold = $("cWt").value === "700", lg = isLarge(px, bold);
+  var tests = [["AA normal text (1.4.3)", 4.5], ["AA large text (1.4.3)", 3], ["AAA normal text (1.4.6)", 7], ["AAA large text (1.4.6)", 4.5], ["UI components and graphics (1.4.11)", 3]];
+  var need = lg ? 3 : 4.5, needAAA = lg ? 4.5 : 7;
+  var h = '<div class="dt-result"><div class="dt-label">Contrast ratio</div><div class="dt-big">' + ratioTxt(r) + '</div><p class="dt-sum">Your text at <b>' + n1(px, 0) + " px " + (bold ? "bold" : "regular") + "</b> counts as <b>" + (lg ? "large" : "normal") + " text</b>. It " + (r >= need ? "<b>passes</b>" : "<b>fails</b>") + " WCAG AA (needs " + need + ":1) and " + (r >= needAAA ? "<b>passes</b>" : "<b>fails</b>") + " AAA (needs " + needAAA + ":1). APCA Lc " + n1(Math.abs(lc), 0) + ": " + apcaNote(lc) + "</p></div>";
+  h += '<div style="background:' + toHex(b) + ";color:" + toHex(f) + ";border:1px solid #cbd5e1;border-radius:12px;padding:16px;margin:10px 0\"><div style=\"font-size:" + px + "px;font-weight:" + (bold ? 700 : 400) + ';line-height:1.35">The quick brown fox jumps over the lazy dog.</div><div style="font-size:14px;margin-top:8px">Small text sample, 14 px. <b>Bold small text.</b> <span style="text-decoration:underline">Link text</span></div><div style="margin-top:10px;display:inline-block;border:2px solid ' + toHex(f) + ';border-radius:8px;padding:6px 14px;font-weight:600">Button outline</div></div>';
+  h += '<div class="dt-diagram">' + gauge(r) + "</div>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>WCAG 2.2 test</th><th>Needs</th><th>Result</th></tr>' + tests.map(function (t) { return "<tr><td>" + t[0] + "</td><td>" + t[1] + ':1</td><td>' + badge(r >= t[1]) + "</td></tr>"; }).join("") + "</table></div>";
+  h += '<div class="dt-stats">' + tile("WCAG ratio", ratioTxt(r), "truncated, not rounded up") + tile("APCA Lc", n1(lc, 1), "WCAG 3 draft method") + tile("Text luminance", n1(relLum(f), 3), toHex(f)) + tile("Background luminance", n1(relLum(b), 3), toHex(b)) + "</div>";
+  var fx = [["AA", need], ["AAA", needAAA]].map(function (t) { return [t[0], t[1], fixColor(f, b, t[1]), fixColor(b, f, t[1])]; });
+  h += '<h3 class="dt-lbl">Nearest colors that pass</h3>';
+  if (r >= needAAA) h += '<p class="dt-hint">This pair already meets AAA for your text size. Nothing to fix.</p>';
+  else { h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Goal</th><th>Adjust the text color</th><th>Or adjust the background</th></tr>'; fx.forEach(function (t) { var cell = function (c, other, isText) { return c ? '<span style="display:inline-block;width:46px;padding:2px 4px;border-radius:6px;border:1px solid #cbd5e1;text-align:center;font-weight:700;background:' + toHex(isText ? other : c) + ";color:" + toHex(isText ? c : other) + '">Aa</span> <code>' + toHex(c) + "</code> " + ratioTxt(contrastRatio(isText ? c : f, isText ? other : c)) : "No passing shade"; }; h += "<tr><td>" + t[0] + " (" + t[1] + ":1)</td><td>" + (r >= t[1] ? "Already passes" : cell(t[2], b, true)) + "</td><td>" + (r >= t[1] ? "Already passes" : cell(t[3], f, false)) + "</td></tr>"; }); h += "</table></div>"; }
+  $("cRes").innerHTML = h; $("cCss").value = "color: " + toHex(f) + ";\nbackground-color: " + toHex(b) + ";";
+  ST.rows.ck = [["Text color", toHex(f)], ["Background color", toHex(b)], ["Text size", n1(px, 0) + " px " + (bold ? "bold" : "regular") + " (" + (lg ? "large" : "normal") + " text)"], ["WCAG contrast ratio", ratioTxt(r)], ["AA normal text (4.5:1)", r >= 4.5 ? "Pass" : "Fail"], ["AA large text (3:1)", r >= 3 ? "Pass" : "Fail"], ["AAA normal text (7:1)", r >= 7 ? "Pass" : "Fail"], ["AAA large text (4.5:1)", r >= 4.5 ? "Pass" : "Fail"], ["UI components (3:1)", r >= 3 ? "Pass" : "Fail"], ["APCA Lc", n1(lc, 1)], ["APCA guidance", apcaNote(lc)]];
+}
+function grid() {
+  var list = []; $("gIn").value.split(/[\n,;]+/).forEach(function (s) { s = s.trim(); if (!s) return; var c = parseColor(s); if (c) { var hx = toHex(c); if (list.indexOf(hx) < 0) list.push(hx); } }); list = list.slice(0, 12);
+  var rows = [], pass = 0, tot = 0, best = [];
+  var h = '<p class="dt-hint">' + list.length + ' valid colors. Rows are text colors, columns are backgrounds.</p><div class="dt-scroll"><table class="dt-table" style="text-align:center"><tr><th>Text \\ Background</th>' + list.map(function (c) { return '<th><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #94a3b8;background:' + c + ';vertical-align:middle"></span> ' + c + "</th>"; }).join("") + "</tr>";
+  list.forEach(function (t) { h += '<tr><th><span style="display:inline-block;width:14px;height:14px;border-radius:3px;border:1px solid #94a3b8;background:' + t + ';vertical-align:middle"></span> ' + t + "</th>"; list.forEach(function (bg) { if (t === bg) { h += "<td>-</td>"; return; } var a = parseColor(t), c = parseColor(bg), r = contrastRatio(a, c), lc = apcaLc(a, c), lv = r >= 7 ? "AAA" : r >= 4.5 ? "AA" : r >= 3 ? "AA Large" : "Fail"; tot++; if (r >= 4.5) pass++; if (r >= 4.5) best.push([t, bg, r]); rows.push([t, bg, r2(r).toFixed(2), r >= 4.5 ? "Pass" : "Fail", r >= 3 ? "Pass" : "Fail", r >= 7 ? "Pass" : "Fail", n1(Math.abs(lc), 0), lv]); h += '<td style="background:' + bg + ";color:" + t + '"><b style="font-size:1.1rem">Aa</b><br><span style="font-size:.74rem">' + r2(r).toFixed(2) + " " + lv + "</span></td>"; }); h += "</tr>"; });
+  h += "</table></div>"; best.sort(function (a, b) { return b[2] - a[2]; });
+  h = '<div class="dt-stats">' + tile("Colors", list.length) + tile("Pairs tested", tot) + tile("Pass AA (4.5:1)", pass, tot ? Math.round(pass / tot * 100) + "% of pairs" : "") + tile("Best pair", best.length ? r2(best[0][2]).toFixed(1) + ":1" : "none", best.length ? best[0][0] + " on " + best[0][1] : "") + "</div>" + h;
+  $("gRes").innerHTML = h; ST.gridHead = ["Text", "Background", "Ratio", "AA normal", "AA large", "AAA normal", "APCA Lc", "Level"]; ST.rows.gr = rows;
+}
+function cvd() {
+  readColors(); var sev = parseFloat($("vSev").value), f = ST.fg, b = ST.bg, r0 = contrastRatio(f, b), rows = [["Normal vision", toHex(f), toHex(b), ratioTxt(r0), r0 >= 4.5 ? "Pass" : "Fail"]];
+  VIS.forEach(function (v) { var a = cvdColor(f, v[0], sev), c = cvdColor(b, v[0], sev), r = contrastRatio(a, c); rows.push([v[1], toHex(a), toHex(c), ratioTxt(r), r >= 4.5 ? "Pass" : "Fail"]); });
+  var h = '<p class="dt-hint">Simulated with the Machado 2009 model at ' + Math.round(sev * 100) + '% severity. The text size and weight from the Check tab are used.</p><div class="dt-row">';
+  var px = nv("cPx", 16, 8, 200);
+  rows.forEach(function (x) { h += '<div style="border:1px solid #cbd5e1;border-radius:12px;overflow:hidden;margin:6px 0"><div style="background:' + x[2] + ";color:" + x[1] + ";padding:14px;font-size:" + Math.min(px, 32) + 'px;font-weight:600">Sample text Aa</div><div style="padding:8px 12px;font-size:.85rem"><b>' + x[0] + "</b><br>" + x[3] + " " + badge(x[4] === "Pass") + "</div></div>"; });
+  h += "</div>"; var worst = rows.slice(1).reduce(function (m, x) { return Math.min(m, parseFloat(x[3])); }, 99);
+  h += '<div class="dt-diagram">' + hbars(rows.map(function (x) { return { l: x[0].split(" (")[0], v: parseFloat(x[3]), c: parseFloat(x[3]) >= 4.5 ? "#16a34a" : parseFloat(x[3]) >= 3 ? "#f59e0b" : "#dc2626" }; }), function (x) { return n1(x, 2) + ":1"; }) + '<p class="dt-hint" style="text-align:center">Ratio under each type of color vision. Green is 4.5:1 or more.</p></div>';
+  h += worst < 3 ? '<p class="dt-warn">The ratio drops below 3:1 for at least one type of color vision. Add a lightness difference, not just a hue difference.</p>' : worst < 4.5 ? '<p class="dt-hint">The ratio falls under 4.5:1 for at least one simulation. Increase the lightness difference for safety.</p>' : '<p class="dt-hint">The pair keeps 4.5:1 or more under every simulation. Good.</p>';
+  $("vRes").innerHTML = h; ST.rows.cv = rows;
+}
+function calc() { check(); grid(); cvd(); }
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab], "Free online Color Contrast Checker");
+  if (ST.tab === "ck") { repTbl(b, ["Item", "Value"], ST.rows.ck); repFig(b, '<div style="background:' + toHex(ST.bg) + ";color:" + toHex(ST.fg) + ';padding:14px;border:1px solid #888;font-size:20px;font-weight:600">The quick brown fox jumps over the lazy dog.</div>'); }
+  else if (ST.tab === "gr") repTbl(b, ST.gridHead, ST.rows.gr); else repTbl(b, ["Vision", "Text", "Background", "Ratio", "AA normal"], ST.rows.cv);
+  repDisc(b, "Automated contrast results are a guide. Real conformance also depends on text size, anti-aliasing, images, gradients, states and context. Test with real users.");
+}
+function setPre(v) { var p = v.split("|"); $("cFg").value = p[0]; $("cBg").value = p[1]; }
+function setDef() { setPre(PRE[0][0]); $("cPx").value = 16; $("cWt").value = "400"; $("gIn").value = "#1a1a1a\n#ffffff\n#4338ca\n#f59e0b\n#16a34a\n#e5484d\n#f1f5f9"; $("vSev").value = "1"; }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["ck", "gr", "cv"], function (n) { ST.tab = n; });
+  $("cPre").innerHTML = '<option value="">Pick an example…</option>' + PRE.map(function (p) { return '<option value="' + p[0] + '">' + p[1] + "</option>"; }).join(""); setDef();
+  document.querySelectorAll("#tool input, #tool select, #tool textarea").forEach(function (e) { if (e.id === "cCss") return; e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("cFgP").addEventListener("input", function () { $("cFg").value = $("cFgP").value; calc(); }); $("cBgP").addEventListener("input", function () { $("cBg").value = $("cBgP").value; calc(); });
+  $("cPre").addEventListener("change", function () { if ($("cPre").value) { setPre($("cPre").value); calc(); } });
+  $("cSwap").addEventListener("click", function () { var t = $("cFg").value; $("cFg").value = $("cBg").value; $("cBg").value = t; calc(); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("cCsv").addEventListener("click", function () { var t = ST.tab; csvDownload(t === "ck" ? [["Item", "Value"]].concat(ST.rows.ck) : t === "gr" ? [ST.gridHead].concat(ST.rows.gr) : [["Vision", "Text", "Background", "Ratio", "AA normal"]].concat(ST.rows.cv), "contrast-" + t + ".csv"); });
+  $("cCopy").addEventListener("click", function () { var t = ST.tab, rows = t === "ck" ? ST.rows.ck : t === "gr" ? ST.rows.gr : ST.rows.cv; copyText(TITLES[t] + "\n" + rows.map(function (x) { return x.join(": "); }).join("\n") + "\n\nChecked with the free online Color Contrast Checker at utiliby.com", $("cCopy")); });
+  $("cPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

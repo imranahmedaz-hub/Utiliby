@@ -1,0 +1,497 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free HTML Accessibility Checker Online – WCAG 2.2 Test</title>
+<meta name="description" content="Free online HTML accessibility checker. Paste code to find missing alt text, labels, headings, ARIA and language errors mapped to WCAG 2.2 with fixes. Private.">
+<link rel="canonical" href="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free HTML Accessibility Checker Online – WCAG 2.2 Test">
+<meta property="og:description" content="Free online HTML accessibility checker: paste HTML and get alt text, form label, heading, ARIA and page problems mapped to WCAG 2.2, with a score and fixes.">
+<meta property="og:url" content="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free HTML Accessibility Checker Online – WCAG 2.2 Test">
+<meta name="twitter:description" content="Free online HTML accessibility checker: paste HTML and get alt text, form label, heading, ARIA and page problems mapped to WCAG 2.2, with a score and fixes.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#4338ca;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#a5b4fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #4338ca;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#4338ca;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(67,56,202,.06);border-left:3px solid #4338ca;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#4338ca}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#4338ca;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(67,56,202,.12);color:#3730a3;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#a5b4fc;background:rgba(129,140,248,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+#hIn{width:100%;font-family:ui-monospace,Consolas,monospace;font-size:.82rem;min-height:230px;tab-size:2}
+.hIssue{border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:10px 0;background:var(--bg)}.hIssue h3{margin:6px 0 4px;font-size:1rem}.hIssue p{margin:4px 0;font-size:.92rem}
+.hIssue pre{margin:6px 0;padding:8px 10px;background:rgba(15,23,42,.06);border-radius:8px;overflow-x:auto;font-size:.78rem;white-space:pre-wrap;word-break:break-all}
+@media(prefers-color-scheme:dark){.hIssue pre{background:rgba(255,255,255,.07)}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"HTML Accessibility Checker","url":"https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/","description":"Free online HTML accessibility checker that parses pasted HTML in your browser and reports missing alt text, form labels, button and link names, heading order, ARIA errors, language and title problems mapped to WCAG 2.2, with a score and suggested fixes.","applicationCategory":"DeveloperApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["48 automated rules mapped to WCAG 2.2","Missing alt text, labels, link and button names","Headings, landmarks, language, title and viewport zoom","ARIA role, attribute and reference errors","Score, severity filter and WCAG principle breakdown","Rules list and manual testing checklist","CSV, print and copy for the active tab"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What does this HTML accessibility checker test?","acceptedAnswer":{"@type":"Answer","text":"It parses the HTML you paste and tests it against 48 rules covering text alternatives, form labels, button and link names, headings, page language and title, landmarks, ARIA, tables, media, frames, zoom blocking, focus order and more. Each finding is linked to the relevant WCAG 2.2 success criterion and comes with a suggested fix."}},{"@type":"Question","name":"Is a clean result proof that my page is accessible?","acceptedAnswer":{"@type":"Answer","text":"No. Automated rules can find only a share of accessibility barriers. They cannot judge colour contrast of rendered styles, keyboard use, focus order, the quality of alt text and captions, or how a screen reader actually sounds. Use the Manual checks tab and test with real users."}},{"@type":"Question","name":"Is my HTML uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. The code is parsed in your browser with the built-in DOMParser. Scripts in the pasted code are never run, and nothing is sent to a server."}},{"@type":"Question","name":"Can I check a live URL?","acceptedAnswer":{"@type":"Answer","text":"Not directly, because a browser tool cannot fetch other sites. Open the page, choose View Source or Save as, copy the HTML and paste it here. For pages built by JavaScript, copy the rendered HTML from the developer tools Elements panel."}},{"@type":"Question","name":"What is the difference between errors, warnings and notices?","acceptedAnswer":{"@type":"Answer","text":"Errors are clear failures of a WCAG success criterion, such as an image with no alt attribute. Warnings are likely problems that need a human decision, such as generic link text. Notices are best-practice suggestions or things to review."}},{"@type":"Question","name":"How is the score calculated?","acceptedAnswer":{"@type":"Answer","text":"The score starts at 100 and subtracts 4 points per error, 2 per warning and half a point per notice, down to zero. It is a quick guide to progress as you fix things, not a WCAG conformance rating."}},{"@type":"Question","name":"What is the difference between this and tools like axe, WAVE or Lighthouse?","acceptedAnswer":{"@type":"Answer","text":"Those tools run in a live browser and can test rendered colours, visibility and computed accessible names. This tool is a lightweight static check of the code you paste, which makes it fast, private and good for templates, snippets, emails and CMS output. Use both."}},{"@type":"Question","name":"Which WCAG version does it use?","acceptedAnswer":{"@type":"Answer","text":"WCAG 2.2, the current W3C Recommendation. It lists the success criterion number and level (A, AA or AAA) beside every rule."}},{"@type":"Question","name":"Why does it say my fragment skipped page-level rules?","acceptedAnswer":{"@type":"Answer","text":"If your code has no html element, the tool treats it as a fragment and does not test the page language, title, viewport, doctype, main landmark or h1, because those belong to a full page."}},{"@type":"Question","name":"What is alt text and when should it be empty?","acceptedAnswer":{"@type":"Answer","text":"Alt text is the text alternative for an image. Informative images need a short description. Purely decorative images should have alt=\"\" so screen readers skip them. A missing alt attribute is different: the screen reader may read the file name."}},{"@type":"Question","name":"Why are placeholders not enough as labels?","acceptedAnswer":{"@type":"Answer","text":"Placeholders vanish as soon as you type, often have low contrast and are not reliably announced. A visible label stays on screen and is the best accessible name for a form field."}},{"@type":"Question","name":"What does 'Heading levels are skipped' mean?","acceptedAnswer":{"@type":"Answer","text":"It means a heading jumps down more than one level, such as an h2 followed by an h4. Screen reader users navigate by heading level, so a logical outline helps them. Style headings with CSS rather than choosing a level for its size."}},{"@type":"Question","name":"Does it check colour contrast?","acceptedAnswer":{"@type":"Answer","text":"No, because contrast depends on rendered styles. Use the free colour contrast checker on this site for text and background colours."}},{"@type":"Question","name":"What are ARIA rules and should I add ARIA everywhere?","acceptedAnswer":{"@type":"Answer","text":"ARIA adds roles and properties for custom widgets. The first rule of ARIA is to use native HTML when you can. The checker flags invalid roles, unknown aria- attributes, broken id references and focusable content hidden with aria-hidden."}},{"@type":"Question","name":"Can it check an HTML email or a CMS template?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste the markup and check alt text, link text, headings, tables and language. Email clients limit some features, so keep structure simple."}},{"@type":"Question","name":"Can I use the results in an audit or accessibility statement?","acceptedAnswer":{"@type":"Answer","text":"Use them as one input. A formal audit also needs manual and assistive technology testing, and an accessibility statement should describe your real conformance status."}},{"@type":"Question","name":"What can I print or save?","acceptedAnswer":{"@type":"Answer","text":"Print / save as PDF, CSV and Copy summary work on the tab you are viewing. The CSV lists every issue with its WCAG criterion, code snippet and suggested fix."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Accessibility Tools","item":"https://utiliby.com/tools/accessibility-tools/"},{"@type":"ListItem","position":3,"name":"HTML Accessibility Checker","item":"https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/accessibility-tools/">Accessibility Tools</a> › HTML Accessibility Checker</nav>
+<h1 class="noembed">Free Online HTML Accessibility Checker: Test Code Against WCAG 2.2</h1>
+<p class="lead noembed">Free online HTML accessibility checker. Paste a page, template or snippet and find missing alt text, unlabeled form fields, empty links and buttons, skipped headings, ARIA errors and page language or title problems, all mapped to WCAG 2.2 with fixes and a score. Private: your code never leaves your browser.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/" target="_blank" rel="noopener">HTML Accessibility Checker by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="HTML accessibility checker">
+<div class="dt-hero noembed">
+<h2>Free HTML Accessibility Checker Online (WCAG 2.2)</h2>
+<p>Paste HTML and get missing alt text, form label, heading, ARIA, language, title and landmark problems mapped to WCAG 2.2, with a score and fixes. Free, private, no sign-up.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-rs" aria-pressed="true">Check HTML</button>
+<button type="button" class="dt-tab" id="dtTabBtn-ru" aria-pressed="false">Rules</button>
+<button type="button" class="dt-tab" id="dtTabBtn-mn" aria-pressed="false">Manual checks</button>
+</div>
+<div id="dtTab-rs"><div class="dt-panel"><label for="hIn">Paste your HTML (a full page or just a fragment)</label><textarea id="hIn" spellcheck="false" aria-describedby="hHelp"></textarea><p class="ck-note" id="hHelp">Your code is parsed in your browser and never sent anywhere. Scripts are not run.</p><div class="dt-actions" style="margin:6px 0"><button type="button" class="dt-btn" id="hRun">Check accessibility</button><button type="button" class="dt-btn ghost" id="hOpen">Open .html file</button><input type="file" id="hFile" accept=".html,.htm,text/html" style="position:absolute;left:-9999px"><button type="button" class="dt-btn ghost" id="hClear">Clear</button></div><div class="dt-row"><div><label for="hSev">Show</label><select id="hSev"><option value="all">All issues</option><option value="error">Errors only</option><option value="warn">Warnings only</option><option value="info">Notices only</option></select></div><div></div></div></div><div id="hRes"></div></div>
+<div id="dtTab-ru" hidden><div id="hRu"></div></div>
+<div id="dtTab-mn" hidden><div class="dt-panel"><p class="ck-note">Automated checks find only part of the barriers real people meet. Work through these manual tests too.</p></div><div id="hMn"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to sample</button><button type="button" class="dt-btn" id="hPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="hCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="hCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> Automated rules find only some barriers. A clean result does not prove WCAG conformance.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). HTML Accessibility Checker. https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="HTML Accessibility Checker by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/accessibility-tools/html-accessibility-checker/"&gt;HTML Accessibility Checker by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free HTML accessibility checker does</a></li><li><a href="#how">How to use the HTML accessibility checker</a></li><li><a href="#rules">What the checker tests, with WCAG references</a></li><li><a href="#alt">Alt text: the most common failure</a></li><li><a href="#forms">Forms: labels, groups and autocomplete</a></li><li><a href="#structure">Headings, landmarks and page structure</a></li><li><a href="#aria">ARIA: use it carefully</a></li><li><a href="#score">How the score works</a></li><li><a href="#limits">What automated checking cannot do</a></li><li><a href="#manual">Manual tests to do next</a></li><li><a href="#legal">Accessibility law and standards</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free HTML accessibility checker does</h2>
+<p>This free online <b>HTML accessibility checker</b> reads the HTML you paste and tells you what is likely to stop people using screen readers, keyboards and other assistive technology. It finds <b>images without alt text</b>, <b>form fields without labels</b>, <b>empty buttons and links</b>, <b>skipped heading levels</b>, a <b>missing page language or title</b>, invalid <b>ARIA</b>, blocked zoom, unnamed iframes, tables without headers and more. Every finding is mapped to a <b>WCAG 2.2</b> success criterion and level, and comes with a plain-language fix and the offending code.</p><p>The results are sorted by severity and shown with a score, a donut chart of errors, warnings and notices, and a breakdown by the four WCAG principles. A built-in rules list and a manual-checks list show what the tool cannot test. Your HTML is parsed in your browser and never uploaded, so it is safe for unreleased pages and client work.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Diagram: HTML is parsed, checked against rules, and results are grouped as errors, warnings and notices"><title>How the HTML accessibility checker works</title>
+<g font-size="12.5" font-weight="700" fill="#fff"><rect class="dt-bar" x="12" y="30" width="130" height="70" rx="10" fill="#4338ca"/><text x="77" y="62" text-anchor="middle">Your HTML</text><text x="77" y="80" text-anchor="middle" font-weight="400">pasted or opened</text>
+<rect class="dt-bar" x="178" y="30" width="130" height="70" rx="10" fill="#6366f1" style="animation-delay:.15s"/><text x="243" y="62" text-anchor="middle">Parsed safely</text><text x="243" y="80" text-anchor="middle" font-weight="400">no scripts run</text>
+<rect class="dt-bar" x="344" y="30" width="130" height="70" rx="10" fill="#7c3aed" style="animation-delay:.3s"/><text x="409" y="62" text-anchor="middle">48 rules</text><text x="409" y="80" text-anchor="middle" font-weight="400">mapped to WCAG</text></g>
+<g stroke="currentColor" stroke-width="2.5" fill="none"><path d="M144 65h32"/><path d="M310 65h32"/><path d="M476 50l30-16"/><path d="M476 65h30"/><path d="M476 80l30 16"/></g>
+<g font-size="12.5" font-weight="700" fill="#fff"><rect class="dt-bar" x="510" y="14" width="120" height="38" rx="8" fill="#dc2626" style="animation-delay:.45s"/><text x="570" y="38" text-anchor="middle">Errors</text><rect class="dt-bar" x="510" y="56" width="120" height="38" rx="8" fill="#d97706" style="animation-delay:.55s"/><text x="570" y="80" text-anchor="middle">Warnings</text><rect class="dt-bar" x="510" y="98" width="120" height="38" rx="8" fill="#2563eb" style="animation-delay:.65s"/><text x="570" y="122" text-anchor="middle">Notices</text></g>
+<text x="320" y="190" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">Automated rules catch the common mistakes. Manual tests catch the rest.</text></svg><figcaption>The checker parses your code with the browser's HTML parser, tests it against a fixed rule set and sorts what it finds by severity.</figcaption></figure>
+<h2 id="how">How to use the HTML accessibility checker</h2>
+<ol><li><b>Paste your HTML.</b> A full page works best, but a template, component or snippet is fine. You can also open an .html file.</li><li><b>Read the score and summary.</b> The tiles show errors, warnings and notices and how many rules passed.</li><li><b>Fix errors first.</b> Each issue card gives the rule, the WCAG criterion, a description, how to fix it and up to four code examples.</li><li><b>Filter.</b> Show errors only to focus, or notices only to polish.</li><li><b>Re-check.</b> The page re-runs as you edit. Watch the score rise.</li><li><b>Test the rest by hand.</b> Open the Manual checks tab for keyboard, zoom, screen reader and captions tests.</li><li><b>Export.</b> Print to PDF, download the CSV or copy the summary for a ticket or report.</li></ol>
+<h2 id="rules">What the checker tests, with WCAG references</h2>
+<div class="dt-wrap"><table><tr><th>Area</th><th>Examples of what is flagged</th><th>WCAG</th></tr><tr><td>Text alternatives</td><td>Missing alt, linked image with empty alt, file-name alt, SVG without a name, image map areas</td><td>1.1.1</td></tr><tr><td>Forms</td><td>Fields without labels, placeholder-only labels, ungrouped radio buttons, missing autocomplete</td><td>1.3.1, 1.3.5, 3.3.2, 4.1.2</td></tr><tr><td>Names for controls</td><td>Empty buttons and links, generic link text, unnamed iframes</td><td>2.4.4, 4.1.2</td></tr><tr><td>Structure</td><td>Skipped or empty headings, missing h1, list items outside lists, no main landmark</td><td>1.3.1, 2.4.1</td></tr><tr><td>Page</td><td>Missing lang or title, blocked zoom, meta refresh, missing doctype</td><td>2.4.2, 3.1.1, 1.4.4, 2.2.1</td></tr><tr><td>ARIA</td><td>Invalid role, unknown aria attribute, broken id reference, focusable aria-hidden</td><td>1.3.1, 4.1.2</td></tr><tr><td>Keyboard and focus</td><td>Positive tabindex, click handlers on divs, accesskey</td><td>2.1.1, 2.4.3, 2.1.4</td></tr><tr><td>Media and motion</td><td>Autoplay, no controls, no captions track, marquee and blink</td><td>1.2.2, 1.4.2, 2.2.2</td></tr><tr><td>Tables</td><td>Data tables without th, no caption</td><td>1.3.1</td></tr></table></div><p>The Rules tab lists all of them with their severity, so you can see exactly what is covered.</p>
+<h2 id="alt">Alt text: the most common failure</h2>
+<p>Missing image alternatives are among the most common automated findings on the web. Screen readers announce an image with no alt attribute by reading its file name, such as IMG 2041 dot jpg, which is noise. The fix depends on the image: an <b>informative</b> image needs a short description of what matters in context, a <b>functional</b> image such as a linked logo or an icon button needs text that says what it does, and a <b>decorative</b> image should have an empty alt attribute (alt="") so it is skipped.</p><div class="dt-wrap"><table><tr><th>Image</th><th>Good alt text</th><th>Poor alt text</th></tr><tr><td>Product photo</td><td>Blue ceramic mug with a wooden handle</td><td>IMG_2041.jpg</td></tr><tr><td>Logo linking home</td><td>Utiliby home</td><td>logo</td></tr><tr><td>Decorative divider</td><td>(empty alt)</td><td>divider image</td></tr><tr><td>Chart</td><td>Sales rose 20% from 2024 to 2025 (details in the table below)</td><td>chart</td></tr></table></div><p>The checker detects missing alt, empty-alt images inside links, file-name or filler alt text and very long alt text. It cannot tell whether the text is correct, so review it yourself.</p>
+<h2 id="forms">Forms: labels, groups and autocomplete</h2>
+<p>A form control needs an accessible name. The best way is a visible <code>&lt;label for="id"&gt;</code> that matches the field's id, or a label that wraps the field. aria-label and aria-labelledby can name a control that has no visible label, such as a search box with only an icon. A placeholder alone is not enough. Related radio buttons and checkboxes should sit in a <code>fieldset</code> with a <code>legend</code> so the question is read before each option. Fields collecting personal data should use the <code>autocomplete</code> attribute (name, email, tel, street-address, postal-code) so browsers and password managers can help, which is required by WCAG 1.3.5 at level AA.</p>
+<h2 id="structure">Headings, landmarks and page structure</h2>
+<p>Screen reader users move around a page by headings and landmarks. A single <b>h1</b> names the page, <b>h2</b> to <b>h6</b> make an outline without skipping levels, and landmark elements (<code>header</code>, <code>nav</code>, <code>main</code>, <code>footer</code>) let people jump to the part they want. Several nav elements should each have a name, such as aria-label="Footer". The page itself needs a <b>lang</b> attribute so that the screen reader pronounces text correctly and a unique <b>title</b> that appears in tabs, history and search results.</p>
+<h2 id="aria">ARIA: use it carefully</h2>
+<p>ARIA (Accessible Rich Internet Applications) adds roles, states and properties for custom components. The first rule of ARIA use is: if a native HTML element does the job, use it. A <code>button</code> element is a button for everyone; a div with role="button" must also be focusable and respond to Enter and Space. The checker finds the common ARIA errors that break things: roles that do not exist (often a typo), unknown aria- attributes, aria-labelledby and aria-controls that point to ids that are not there, and aria-hidden on content that can still receive focus, which creates a keyboard trap that screen readers cannot see.</p><p>Bad ARIA is often worse than no ARIA. If you are not sure, remove it and use native elements first.</p>
+<h2 id="score">How the score works</h2>
+<p>The score is a simple progress meter: it starts at 100 and subtracts 4 for each error, 2 for each warning and half a point for each notice. It is useful for comparing two versions of the same page and for seeing the effect of a fix, but it is not a WCAG conformance rating. Two pages with the same score can differ enormously in how usable they are, and a score of 100 only means that none of these automated rules fired.</p>
+<h2 id="limits">What automated checking cannot do</h2>
+<p>Studies of accessibility testing tools consistently find that automated rules catch a minority to about half of barriers. They cannot decide whether alt text is meaningful, whether the reading order makes sense, whether focus is visible, whether a custom widget works with a keyboard, or whether captions are accurate. Rendered colour contrast, target size, motion and content clarity also need other checks. Use this tool as a quick first pass, and then complete the Manual checks list, test with a keyboard and a screen reader and, where possible, with disabled users.</p>
+<h2 id="manual">Manual tests to do next</h2>
+<ul><li><b>Unplug the mouse.</b> Tab, Shift+Tab, Enter, Space and arrow keys should do everything.</li><li><b>Zoom to 200% and 400%.</b> Content should reflow with no sideways scrolling.</li><li><b>Turn on a screen reader.</b> NVDA (free) on Windows, VoiceOver on Mac and iOS, TalkBack on Android.</li><li><b>Check colour contrast</b> of text and controls with the colour contrast checker.</li><li><b>Check captions</b> on every video.</li><li><b>Read error messages</b> in forms; they should say what went wrong and how to fix it.</li></ul>
+<h2 id="legal">Accessibility law and standards</h2>
+<p>Many laws point to WCAG: the Americans with Disabilities Act (through court decisions and Department of Justice guidance), Section 508 in the United States, the European Accessibility Act and EN 301 549 in the EU, the Accessibility for Ontarians with Disabilities Act, the UK Equality Act and Public Sector Bodies Accessibility Regulations. WCAG 2.2 Level AA is the most common target. This tool does not decide legal compliance. Treat it as a developer aid.</p>
+<h2 id="privacy">Privacy</h2>
+<p>Your HTML is processed by your browser's own parser. It is not uploaded, logged or shared, and scripts or external resources in the code are never loaded. Reloading the page returns the sample.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What does this HTML accessibility checker test?</summary><p>It parses the HTML you paste and tests it against 48 rules covering text alternatives, form labels, button and link names, headings, page language and title, landmarks, ARIA, tables, media, frames, zoom blocking, focus order and more. Each finding is linked to the relevant WCAG 2.2 success criterion and comes with a suggested fix.</p></details><details><summary>Is a clean result proof that my page is accessible?</summary><p>No. Automated rules can find only a share of accessibility barriers. They cannot judge colour contrast of rendered styles, keyboard use, focus order, the quality of alt text and captions, or how a screen reader actually sounds. Use the Manual checks tab and test with real users.</p></details><details><summary>Is my HTML uploaded?</summary><p>No. The code is parsed in your browser with the built-in DOMParser. Scripts in the pasted code are never run, and nothing is sent to a server.</p></details><details><summary>Can I check a live URL?</summary><p>Not directly, because a browser tool cannot fetch other sites. Open the page, choose View Source or Save as, copy the HTML and paste it here. For pages built by JavaScript, copy the rendered HTML from the developer tools Elements panel.</p></details><details><summary>What is the difference between errors, warnings and notices?</summary><p>Errors are clear failures of a WCAG success criterion, such as an image with no alt attribute. Warnings are likely problems that need a human decision, such as generic link text. Notices are best-practice suggestions or things to review.</p></details><details><summary>How is the score calculated?</summary><p>The score starts at 100 and subtracts 4 points per error, 2 per warning and half a point per notice, down to zero. It is a quick guide to progress as you fix things, not a WCAG conformance rating.</p></details><details><summary>What is the difference between this and tools like axe, WAVE or Lighthouse?</summary><p>Those tools run in a live browser and can test rendered colours, visibility and computed accessible names. This tool is a lightweight static check of the code you paste, which makes it fast, private and good for templates, snippets, emails and CMS output. Use both.</p></details><details><summary>Which WCAG version does it use?</summary><p>WCAG 2.2, the current W3C Recommendation. It lists the success criterion number and level (A, AA or AAA) beside every rule.</p></details><details><summary>Why does it say my fragment skipped page-level rules?</summary><p>If your code has no html element, the tool treats it as a fragment and does not test the page language, title, viewport, doctype, main landmark or h1, because those belong to a full page.</p></details><details><summary>What is alt text and when should it be empty?</summary><p>Alt text is the text alternative for an image. Informative images need a short description. Purely decorative images should have alt="" so screen readers skip them. A missing alt attribute is different: the screen reader may read the file name.</p></details><details><summary>Why are placeholders not enough as labels?</summary><p>Placeholders vanish as soon as you type, often have low contrast and are not reliably announced. A visible label stays on screen and is the best accessible name for a form field.</p></details><details><summary>What does 'Heading levels are skipped' mean?</summary><p>It means a heading jumps down more than one level, such as an h2 followed by an h4. Screen reader users navigate by heading level, so a logical outline helps them. Style headings with CSS rather than choosing a level for its size.</p></details><details><summary>Does it check colour contrast?</summary><p>No, because contrast depends on rendered styles. Use the free colour contrast checker on this site for text and background colours.</p></details><details><summary>What are ARIA rules and should I add ARIA everywhere?</summary><p>ARIA adds roles and properties for custom widgets. The first rule of ARIA is to use native HTML when you can. The checker flags invalid roles, unknown aria- attributes, broken id references and focusable content hidden with aria-hidden.</p></details><details><summary>Can it check an HTML email or a CMS template?</summary><p>Yes. Paste the markup and check alt text, link text, headings, tables and language. Email clients limit some features, so keep structure simple.</p></details><details><summary>Can I use the results in an audit or accessibility statement?</summary><p>Use them as one input. A formal audit also needs manual and assistive technology testing, and an accessibility statement should describe your real conformance status.</p></details><details><summary>What can I print or save?</summary><p>Print / save as PDF, CSV and Copy summary work on the tab you are viewing. The CSV lists every issue with its WCAG criterion, code snippet and suggested fix.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>W3C Web Content Accessibility Guidelines (WCAG) 2.2, for success criteria numbers, levels and techniques.</li><li>W3C WAI-ARIA 1.2 specification and the ARIA Authoring Practices Guide, for valid roles, states and properties.</li><li>WHATWG HTML Living Standard, for element semantics such as label, fieldset, table headers and landmarks.</li><li>W3C Accessibility Conformance Testing (ACT) rules, which guide how automated checks map to success criteria.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online HTML accessibility checker runs a fixed set of automated rules against the HTML you paste and maps them to WCAG 2.2 success criteria. Automated testing can detect only a portion of accessibility barriers and cannot judge colour contrast of rendered styles, keyboard behaviour, focus order, the quality of alt text or captions, screen reader experience or reading level. A page with no reported issues is not necessarily accessible or WCAG conformant, and the score shown is a quick guide from this tool, not a conformance rating, VPAT, audit or legal opinion. Results may include false positives and miss problems. For legal compliance, consult a qualified accessibility specialist and test with real users, including people who use assistive technology. Your HTML is processed in your browser and is not uploaded.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+/* ---------- accessibility helpers ---------- */
+function parseColor(s) {
+  s = String(s == null ? "" : s).trim(); if (!s) return null; var m = s.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (m) { var h = m[1]; if (h.length === 3) h = h.replace(/./g, "$&$&"); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; }
+  try { var c = document.createElement("canvas").getContext("2d"); c.fillStyle = "#010203"; c.fillStyle = s; var v = c.fillStyle; if (v === "#010203" && !/^#?010203$/i.test(s)) return null; if (v.charAt(0) === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16)]; var r = v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); if (r) return [+r[1], +r[2], +r[3]]; } catch (e) { }
+  return null;
+}
+function toHex(c) { return "#" + c.map(function (v) { v = Math.max(0, Math.min(255, Math.round(v))); return (v < 16 ? "0" : "") + v.toString(16); }).join(""); }
+function lin(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+function relLum(c) { return 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]); }
+function contrastRatio(a, b) { var l1 = relLum(a), l2 = relLum(b); if (l1 < l2) { var t = l1; l1 = l2; l2 = t; } return (l1 + 0.05) / (l2 + 0.05); }
+function apcaLc(txt, bg) {
+  function Y(c) { return Math.pow(c[0] / 255, 2.4) * 0.2126729 + Math.pow(c[1] / 255, 2.4) * 0.7151522 + Math.pow(c[2] / 255, 2.4) * 0.072175; }
+  var yt = Y(txt), yb = Y(bg); if (yt < 0.022) yt += Math.pow(0.022 - yt, 1.414); if (yb < 0.022) yb += Math.pow(0.022 - yb, 1.414);
+  if (Math.abs(yb - yt) < 0.0005) return 0; var s, o;
+  if (yb > yt) { s = (Math.pow(yb, 0.56) - Math.pow(yt, 0.57)) * 1.14; o = s < 0.1 ? 0 : s - 0.027; } else { s = (Math.pow(yb, 0.65) - Math.pow(yt, 0.62)) * 1.14; o = s > -0.1 ? 0 : s + 0.027; }
+  return o * 100;
+}
+function rgb2hsl(c) { var r = c[0] / 255, g = c[1] / 255, b = c[2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), h = 0, s = 0, l = (mx + mn) / 2; if (mx !== mn) { var d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } return [h, s, l]; }
+function hsl2rgb(h, s, l) { function f(p, q, t) { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1 / 6) return p + (q - p) * 6 * t; if (t < 1 / 2) return q; if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6; return p; } if (s === 0) { var v = l * 255; return [v, v, v]; } var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; return [f(p, q, h + 1 / 3) * 255, f(p, q, h) * 255, f(p, q, h - 1 / 3) * 255]; }
+/* nearest colour to c (same hue and saturation) that reaches ratio against other */
+function fixColor(c, other, target) {
+  var hsl = rgb2hsl(c), best = null, d, i, cand;
+  for (i = 0; i <= 200; i++) { d = i / 200; [hsl[2] + d, hsl[2] - d].forEach(function (l) { if (l < 0 || l > 1) return; cand = hsl2rgb(hsl[0], hsl[1], l).map(Math.round); if (contrastRatio(cand, other) >= target && (!best || Math.abs(l - hsl[2]) < best.d)) best = { c: cand, d: Math.abs(l - hsl[2]) }; }); if (best) break; }
+  return best ? best.c : null;
+}
+var CVD = { prot: [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]], deut: [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]], trit: [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.3039]] };
+function toLin(v) { return lin(v); }
+function fromLin(v) { v = Math.max(0, Math.min(1, v)); return Math.round((v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055) * 255); }
+function cvdColor(c, type, sev) {
+  sev = sev == null ? 1 : sev; var r = toLin(c[0]), g = toLin(c[1]), b = toLin(c[2]), o;
+  if (type === "achro") { var y = 0.2126 * r + 0.7152 * g + 0.0722 * b; o = [y, y, y]; }
+  else { var m = CVD[type]; o = [m[0][0] * r + m[0][1] * g + m[0][2] * b, m[1][0] * r + m[1][1] * g + m[1][2] * b, m[2][0] * r + m[2][1] * g + m[2][2] * b]; }
+  return [fromLin(r + (o[0] - r) * sev), fromLin(g + (o[1] - g) * sev), fromLin(b + (o[2] - b) * sev)];
+}
+function dlText(name, type, data) { saveBlob(new Blob([data], { type: type + ";charset=utf-8" }), name); }
+
+/* ---------- HTML accessibility checker UI ---------- */
+var ST = { tab: "rs", issues: [], rows: { rs: [], ru: [], mn: [] }, frag: false, sum: [] };
+var TITLES = { rs: "HTML accessibility check", ru: "Rules checked", mn: "Manual accessibility checks" };
+var ROLES = "alert alertdialog application article banner blockquote button caption cell checkbox code columnheader combobox complementary contentinfo definition deletion dialog directory document emphasis feed figure form generic grid gridcell group heading img insertion link list listbox listitem log main marquee math meter menu menubar menuitem menuitemcheckbox menuitemradio navigation none note option paragraph presentation progressbar radio radiogroup region row rowgroup rowheader scrollbar search searchbox separator slider spinbutton status strong subscript superscript switch tab table tablist tabpanel term textbox time timer toolbar tooltip tree treegrid treeitem".split(" ");
+var ARIAA = "activedescendant atomic autocomplete braillelabel brailleroledescription busy checked colcount colindex colindextext colspan controls current describedby description details disabled dropeffect errormessage expanded flowto grabbed haspopup hidden invalid keyshortcuts label labelledby level live modal multiline multiselectable orientation owns placeholder posinset pressed readonly relevant required roledescription rowcount rowindex rowindextext rowspan selected setsize sort valuemax valuemin valuenow valuetext".split(" ");
+var FOCUS = 'a[href],button,input:not([type=hidden]),select,textarea,summary,iframe,[contenteditable=""],[contenteditable=true],[tabindex]';
+function sn(el) { var s = el.outerHTML || ""; s = s.replace(/\s+/g, " "); return s.length > 170 ? s.slice(0, 167) + "..." : s; }
+function txt(el) {
+  var out = ""; (function walk(n) { if (n.nodeType === 3) { out += n.nodeValue; return; } if (n.nodeType !== 1) return; if (n.getAttribute("aria-hidden") === "true" || n.hasAttribute("hidden")) return; var t = n.tagName.toLowerCase(); if (t === "script" || t === "style") return; if (t === "img") { out += " " + (n.getAttribute("alt") || ""); return; } if (t === "svg") { var ti = n.querySelector("title"); out += " " + (n.getAttribute("aria-label") || (ti ? ti.textContent : "")); return; } if (n.getAttribute("aria-label")) { out += " " + n.getAttribute("aria-label"); return; } for (var c = n.firstChild; c; c = c.nextSibling) walk(c); })(el);
+  return out.replace(/\s+/g, " ").trim();
+}
+function nameOf(el, d) {
+  var lb = el.getAttribute("aria-labelledby"); if (lb) { var s = lb.split(/\s+/).map(function (i) { var e = d.getElementById(i); return e ? txt(e) : ""; }).join(" ").trim(); if (s) return s; }
+  var al = (el.getAttribute("aria-label") || "").trim(); if (al) return al;
+  return null;
+}
+function hasLabel(el, d) {
+  if (nameOf(el, d)) return "yes"; var id = el.getAttribute("id");
+  if (id) { var ls = d.querySelectorAll("label[for]"); for (var i = 0; i < ls.length; i++) if (ls[i].getAttribute("for") === id && txt(ls[i])) return "yes"; }
+  var p = el.parentElement; while (p) { if (p.tagName === "LABEL" && txt(p).length) return "yes"; p = p.parentElement; }
+  if ((el.getAttribute("title") || "").trim()) return "yes"; if ((el.getAttribute("placeholder") || "").trim()) return "placeholder"; return "no";
+}
+function isHidden(el) { var p = el; while (p) { if (p.hasAttribute && (p.hasAttribute("hidden") || /display\s*:\s*none/i.test(p.getAttribute("style") || ""))) return true; p = p.parentElement; } return false; }
+function $$(d, s) { return Array.prototype.slice.call(d.querySelectorAll(s)); }
+var GEN = /^(click here|here|read more|more|learn more|link|this|click|details|continue|go|more info|info)$/i;
+var RULES = [
+  { id: "img-alt", sev: "error", sc: "1.1.1", lvl: "A", name: "Images need an alt attribute", desc: "Every img element needs an alt attribute so screen reader users get a text alternative. Decorative images use alt=\"\".", fix: "Add alt=\"short description\" for meaningful images or alt=\"\" for decorative ones.", run: function (d) { return $$(d, "img").filter(function (e) { return !e.hasAttribute("alt") && e.getAttribute("role") !== "presentation" && e.getAttribute("role") !== "none" && !nameOf(e, d); }); } },
+  { id: "img-alt-link", sev: "error", sc: "1.1.1", lvl: "A", name: "Linked image has no text alternative", desc: "A link that contains only an image with empty alt text has no accessible name.", fix: "Give the image alt text that describes where the link goes, or add visible link text.", run: function (d) { return $$(d, "a[href]").filter(function (a) { return a.querySelector("img") && !txt(a) && !nameOf(a, d) && !(a.getAttribute("title") || "").trim(); }); } },
+  { id: "img-alt-bad", sev: "warn", sc: "1.1.1", lvl: "A", name: "Alt text looks like a file name or filler", desc: "Alt text such as IMG_1234.jpg, image or photo does not describe the picture.", fix: "Replace it with a short description of what the image shows or why it is there.", run: function (d) { return $$(d, "img[alt]").filter(function (e) { var a = e.getAttribute("alt").trim(); return a && (/\.(jpe?g|png|gif|svg|webp|avif)$/i.test(a) || /^(image|photo|picture|graphic|img|icon|untitled|spacer)\d*$/i.test(a) || /^(image|photo|picture|graphic) of\b/i.test(a)); }); } },
+  { id: "img-alt-long", sev: "info", sc: "1.1.1", lvl: "A", name: "Very long alt text", desc: "Alt text over about 150 characters is hard to listen to.", fix: "Shorten the alt text and put detailed descriptions in the page text or a caption.", run: function (d) { return $$(d, "img[alt]").filter(function (e) { return e.getAttribute("alt").length > 150; }); } },
+  { id: "area-alt", sev: "error", sc: "1.1.1", lvl: "A", name: "Image map areas need alt text", desc: "Each area in an image map is a link and needs alt text.", fix: "Add an alt attribute to every area element.", run: function (d) { return $$(d, "area[href]").filter(function (e) { return !(e.getAttribute("alt") || "").trim() && !nameOf(e, d); }); } },
+  { id: "svg-name", sev: "warn", sc: "1.1.1", lvl: "A", name: "Meaningful SVG has no name", desc: "An svg with role=\"img\" needs a title or aria-label.", fix: "Add a title element or aria-label. Use aria-hidden=\"true\" for decorative SVG.", run: function (d) { return $$(d, "svg[role=img]").filter(function (e) { return !e.getAttribute("aria-label") && !e.getAttribute("aria-labelledby") && !(e.querySelector("title") && e.querySelector("title").textContent.trim()); }); } },
+  { id: "input-label", sev: "error", sc: "1.3.1", lvl: "A", name: "Form fields need a label", desc: "Inputs, selects and textareas need an accessible name from a label, aria-label or aria-labelledby.", fix: "Add <label for=\"id\">Name</label> that matches the field id, or wrap the field in a label.", run: function (d) { return $$(d, "input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=reset]):not([type=image]),select,textarea").filter(function (e) { return !isHidden(e) && hasLabel(e, d) === "no"; }); } },
+  { id: "input-placeholder", sev: "warn", sc: "3.3.2", lvl: "A", name: "Placeholder used as the only label", desc: "Placeholder text disappears when typing and often has low contrast, so it is not a reliable label.", fix: "Add a visible label and keep the placeholder only as an example.", run: function (d) { return $$(d, "input:not([type=hidden]):not([type=submit]):not([type=button]):not([type=reset]):not([type=image]),select,textarea").filter(function (e) { return !isHidden(e) && hasLabel(e, d) === "placeholder"; }); } },
+  { id: "label-for", sev: "warn", sc: "1.3.1", lvl: "A", name: "Label points to a missing field", desc: "A label for attribute does not match the id of any element.", fix: "Make label for equal to the id of its field.", run: function (d) { return $$(d, "label[for]").filter(function (e) { return !d.getElementById(e.getAttribute("for")); }); } },
+  { id: "fieldset", sev: "info", sc: "1.3.1", lvl: "A", name: "Radio and checkbox groups should be grouped", desc: "Related radio buttons or checkboxes need a fieldset and legend (or role=group with a name) so the question is announced.", fix: "Wrap the group in <fieldset><legend>Question</legend>...</fieldset>.", run: function (d) { var g = {}, out = []; $$(d, "input[type=radio][name]").forEach(function (e) { (g[e.name] = g[e.name] || []).push(e); }); Object.keys(g).forEach(function (k) { var e = g[k][0]; if (g[k].length > 1 && !e.closest("fieldset,[role=group],[role=radiogroup]")) out.push(e); }); return out; } },
+  { id: "autocomplete", sev: "info", sc: "1.3.5", lvl: "AA", name: "Personal data fields should use autocomplete", desc: "Fields that collect common personal details should use the autocomplete attribute so browsers can fill them in.", fix: "Add autocomplete values such as name, email, tel, street-address, postal-code.", run: function (d) { return $$(d, "input[type=text],input[type=email],input[type=tel],input:not([type])").filter(function (e) { var s = (e.name || "") + " " + (e.id || "") + " " + (e.getAttribute("placeholder") || ""); return /(e-?mail|phone|tel|first.?name|last.?name|full.?name|address|zip|postal|city|username)/i.test(s) && !e.hasAttribute("autocomplete"); }); } },
+  { id: "button-name", sev: "error", sc: "4.1.2", lvl: "A", name: "Buttons need an accessible name", desc: "A button with no text, aria-label or title cannot be understood by screen reader users.", fix: "Add visible text or an aria-label, for example aria-label=\"Close\".", run: function (d) { return $$(d, "button,[role=button],input[type=submit],input[type=button],input[type=reset],input[type=image]").filter(function (e) { if (isHidden(e)) return false; if (e.tagName === "INPUT") { var t = e.type; if (t === "image") return !(e.getAttribute("alt") || nameOf(e, d)); return !((e.getAttribute("value") || "").trim() || nameOf(e, d) || (e.getAttribute("title") || "").trim()); } return !(txt(e) || nameOf(e, d) || (e.getAttribute("title") || "").trim()); }); } },
+  { id: "link-name", sev: "error", sc: "2.4.4", lvl: "A", name: "Links need an accessible name", desc: "A link with no text, image alt or aria-label is announced as just link.", fix: "Add descriptive link text, or aria-label for icon-only links.", run: function (d) { return $$(d, "a[href]").filter(function (a) { return !isHidden(a) && !txt(a) && !nameOf(a, d) && !(a.getAttribute("title") || "").trim() && !a.querySelector("img[alt]:not([alt=''])"); }); } },
+  { id: "link-generic", sev: "warn", sc: "2.4.4", lvl: "A", name: "Link text is not descriptive", desc: "Links such as click here or read more mean nothing out of context, and screen reader users often list links on their own.", fix: "Use link text that describes the destination, for example Read the pricing guide.", run: function (d) { return $$(d, "a[href]").filter(function (a) { return GEN.test(txt(a).replace(/[.:>»]+$/, "").trim()) && !nameOf(a, d); }); } },
+  { id: "link-newwin", sev: "info", sc: "3.2.5", lvl: "AAA", name: "Link opens a new window without warning", desc: "Links with target=_blank should tell users they open a new tab or window.", fix: "Add text such as (opens in a new tab) or an icon with a text alternative.", run: function (d) { return $$(d, "a[target=_blank]").filter(function (a) { return !/new (window|tab)|opens/i.test(txt(a) + " " + (a.getAttribute("title") || "") + " " + (a.getAttribute("aria-label") || "")); }); } },
+  { id: "html-lang", sev: "error", sc: "3.1.1", lvl: "A", name: "Page language is missing", desc: "The html element needs a valid lang attribute so screen readers pick the right voice.", fix: "Add lang=\"en\" (or the right code) to the html element.", page: true, run: function (d) { return d.documentElement.getAttribute("lang") ? [] : [d.documentElement]; } },
+  { id: "html-lang-valid", sev: "warn", sc: "3.1.1", lvl: "A", name: "Page language code looks invalid", desc: "The lang value should be a valid language code such as en, en-GB or es-MX.", fix: "Use a valid BCP 47 language tag.", page: true, run: function (d) { var l = d.documentElement.getAttribute("lang"); return l && !/^[a-zA-Z]{2,3}(-[a-zA-Z0-9]{2,8})*$/.test(l) ? [d.documentElement] : []; } },
+  { id: "doc-title", sev: "error", sc: "2.4.2", lvl: "A", name: "Page title is missing", desc: "Every page needs a title element that describes its topic or purpose.", fix: "Add a unique, descriptive title inside the head element.", page: true, run: function (d) { var t = d.querySelector("title"); return t && t.textContent.trim() ? [] : [d.documentElement]; } },
+  { id: "viewport-zoom", sev: "error", sc: "1.4.4", lvl: "AA", name: "Zooming is blocked", desc: "The viewport meta tag must not stop users from zooming in to at least 200%.", fix: "Remove user-scalable=no and maximum-scale below 2.", page: true, run: function (d) { return $$(d, "meta[name=viewport]").filter(function (m) { var c = (m.getAttribute("content") || "").toLowerCase(), mx = c.match(/maximum-scale\s*=\s*([\d.]+)/); return /user-scalable\s*=\s*(no|0)/.test(c) || (mx && parseFloat(mx[1]) < 2); }); } },
+  { id: "meta-refresh", sev: "error", sc: "2.2.1", lvl: "A", name: "Page refreshes or redirects on a timer", desc: "A timed refresh can reset a user who needs more time to read.", fix: "Remove the meta refresh or use a server-side redirect with no delay.", page: true, run: function (d) { return $$(d, "meta[http-equiv]").filter(function (m) { return m.getAttribute("http-equiv").toLowerCase() === "refresh" && parseFloat(m.getAttribute("content")) > 0; }); } },
+  { id: "heading-empty", sev: "error", sc: "1.3.1", lvl: "A", name: "Empty heading", desc: "A heading with no text confuses screen reader navigation.", fix: "Add text to the heading or remove it.", run: function (d) { return $$(d, "h1,h2,h3,h4,h5,h6,[role=heading]").filter(function (e) { return !txt(e) && !nameOf(e, d); }); } },
+  { id: "heading-order", sev: "warn", sc: "1.3.1", lvl: "A", name: "Heading levels are skipped", desc: "Jumping from h2 to h4, for example, breaks the outline for people who navigate by headings.", fix: "Use heading levels in order and style them with CSS instead.", run: function (d) { var out = [], last = 0; $$(d, "h1,h2,h3,h4,h5,h6").forEach(function (h) { var l = +h.tagName[1]; if (last && l > last + 1) out.push(h); last = l; }); return out; } },
+  { id: "h1-multiple", sev: "info", sc: "1.3.1", lvl: "A", name: "More than one h1", desc: "Pages usually have one main heading.", fix: "Keep one h1 that names the page and use h2 or lower for sections.", run: function (d) { var h = $$(d, "h1"); return h.length > 1 ? h.slice(1) : []; } },
+  { id: "h1-missing", sev: "warn", sc: "1.3.1", lvl: "A", name: "No h1 heading", desc: "A page should have a main heading that names it.", fix: "Add one h1 near the start of the main content.", page: true, run: function (d) { return d.querySelector("h1,[role=heading][aria-level='1']") ? [] : [d.body]; } },
+  { id: "iframe-title", sev: "error", sc: "4.1.2", lvl: "A", name: "Frames need a title", desc: "iframe and frame elements need a title that describes their content.", fix: "Add title=\"Description\" to every iframe.", run: function (d) { return $$(d, "iframe,frame").filter(function (e) { return !(e.getAttribute("title") || "").trim() && !nameOf(e, d) && e.getAttribute("aria-hidden") !== "true"; }); } },
+  { id: "dup-id", sev: "warn", sc: "4.1.1", lvl: "A", name: "Duplicate id values", desc: "ids must be unique, or labels, ARIA references and links point to the wrong element. (WCAG 4.1.1 was removed in WCAG 2.2, but duplicate ids still break labels and ARIA.)", fix: "Make each id unique on the page.", run: function (d) { var seen = {}, out = [], dup = {}; $$(d, "[id]").forEach(function (e) { var i = e.getAttribute("id"); if (!i) return; if (seen[i]) { if (!dup[i]) { out.push(seen[i]); dup[i] = 1; } out.push(e); } else seen[i] = e; }); return out; } },
+  { id: "aria-ref", sev: "error", sc: "1.3.1", lvl: "A", name: "ARIA reference points to a missing id", desc: "aria-labelledby, aria-describedby and aria-controls must reference ids that exist.", fix: "Fix the id or remove the attribute.", run: function (d) { return $$(d, "[aria-labelledby],[aria-describedby],[aria-controls],[aria-owns]").filter(function (e) { return ["aria-labelledby", "aria-describedby", "aria-controls", "aria-owns"].some(function (a) { var v = e.getAttribute(a); return v && v.split(/\s+/).some(function (i) { return i && !d.getElementById(i); }); }); }); } },
+  { id: "aria-role", sev: "error", sc: "4.1.2", lvl: "A", name: "Invalid ARIA role", desc: "The role value is not a valid ARIA role.", fix: "Use a valid role, or better, a native HTML element.", run: function (d) { return $$(d, "[role]").filter(function (e) { return e.getAttribute("role").trim().split(/\s+/).every(function (r) { return ROLES.indexOf(r) < 0 && !/^doc-/.test(r) && !/^graphics-/.test(r); }); }); } },
+  { id: "aria-attr", sev: "error", sc: "4.1.2", lvl: "A", name: "Unknown aria-* attribute", desc: "The aria- attribute is not part of the ARIA specification (often a typo).", fix: "Correct the attribute name.", run: function (d) { return $$(d, "*").filter(function (e) { return Array.prototype.some.call(e.attributes, function (a) { return /^aria-/i.test(a.name) && ARIAA.indexOf(a.name.toLowerCase().slice(5)) < 0; }); }); } },
+  { id: "aria-hidden-focus", sev: "error", sc: "4.1.2", lvl: "A", name: "Focusable content inside aria-hidden", desc: "Elements hidden from assistive technology must not be keyboard focusable.", fix: "Remove aria-hidden, or make the content unfocusable (tabindex=-1, disabled or hidden).", run: function (d) { var out = []; $$(d, "[aria-hidden=true]").forEach(function (h) { var f = h.matches(FOCUS) ? [h] : $$(h, FOCUS); if (f.some(function (e) { return e.getAttribute("tabindex") !== "-1" && !e.disabled; })) out.push(h); }); return out; } },
+  { id: "tabindex", sev: "warn", sc: "2.4.3", lvl: "A", name: "Positive tabindex", desc: "tabindex above 0 changes the natural tab order and usually creates confusing focus.", fix: "Use tabindex=\"0\" or \"-1\" only, and order the HTML logically.", run: function (d) { return $$(d, "[tabindex]").filter(function (e) { return parseInt(e.getAttribute("tabindex"), 10) > 0; }); } },
+  { id: "click-keyboard", sev: "error", sc: "2.1.1", lvl: "A", name: "Click handler on a non-interactive element", desc: "A div or span with onclick cannot be reached or used with the keyboard.", fix: "Use a button or link, or add role, tabindex=\"0\" and key handlers.", run: function (d) { return $$(d, "[onclick]").filter(function (e) { return !/^(a|button|input|select|textarea|summary|label|option)$/i.test(e.tagName) && !e.hasAttribute("tabindex") && !/button|link|menuitem|tab|checkbox|switch|option/.test(e.getAttribute("role") || ""); }); } },
+  { id: "marquee", sev: "error", sc: "2.2.2", lvl: "A", name: "Marquee or blink element", desc: "Moving or blinking content must be stoppable and should be avoided.", fix: "Remove marquee and blink, or add a pause control.", run: function (d) { return $$(d, "marquee,blink"); } },
+  { id: "media-autoplay", sev: "warn", sc: "1.4.2", lvl: "A", name: "Media plays automatically", desc: "Audio that plays by itself for more than three seconds must have a way to pause or stop it.", fix: "Remove autoplay, or provide a visible pause control and mute by default.", run: function (d) { return $$(d, "video[autoplay],audio[autoplay]"); } },
+  { id: "media-controls", sev: "warn", sc: "2.1.1", lvl: "A", name: "Media has no controls", desc: "Video and audio need controls that work with the keyboard.", fix: "Add the controls attribute or provide custom accessible controls.", run: function (d) { return $$(d, "video:not([controls]),audio:not([controls])"); } },
+  { id: "video-captions", sev: "warn", sc: "1.2.2", lvl: "A", name: "Video has no captions track", desc: "Prerecorded video with speech needs captions.", fix: "Add <track kind=\"captions\" src=\"...\" srclang=\"en\" label=\"English\"> or burned-in captions.", run: function (d) { return $$(d, "video").filter(function (v) { return !v.querySelector("track[kind=captions],track[kind=subtitles]") && !v.hasAttribute("muted"); }); } },
+  { id: "table-header", sev: "warn", sc: "1.3.1", lvl: "A", name: "Data table without header cells", desc: "Tables of data need th cells so screen readers can announce row and column headers.", fix: "Use th with scope=\"col\" or scope=\"row\". Use role=\"presentation\" only for layout tables.", run: function (d) { return $$(d, "table").filter(function (t) { return !/presentation|none/.test(t.getAttribute("role") || "") && !t.querySelector("th") && t.rows && t.rows.length > 1 && t.rows[0].cells.length > 1; }); } },
+  { id: "table-caption", sev: "info", sc: "1.3.1", lvl: "A", name: "Table has no caption or name", desc: "A caption or aria-label tells users what a data table is about.", fix: "Add a caption element as the first child of the table.", run: function (d) { return $$(d, "table").filter(function (t) { return t.querySelector("th") && !t.querySelector("caption") && !nameOf(t, d) && !t.getAttribute("title"); }); } },
+  { id: "list-struct", sev: "error", sc: "1.3.1", lvl: "A", name: "List items outside a list", desc: "li elements must be inside ul, ol or menu.", fix: "Wrap list items in a ul or ol.", run: function (d) { return $$(d, "li").filter(function (e) { var p = e.parentElement; return !p || !/^(ul|ol|menu)$/i.test(p.tagName) && p.getAttribute("role") !== "list"; }); } },
+  { id: "nested-interactive", sev: "warn", sc: "4.1.2", lvl: "A", name: "Interactive element inside another", desc: "A button inside a link (or the reverse) is invalid and confuses assistive technology.", fix: "Use one interactive element, not two nested.", run: function (d) { return $$(d, "a[href] button,button a[href],a[href] a[href],button button"); } },
+  { id: "landmark-main", sev: "warn", sc: "1.3.1", lvl: "A", name: "No main landmark", desc: "A main element lets screen reader users jump straight to the content.", fix: "Wrap the primary content in <main>.", page: true, run: function (d) { return d.querySelector("main,[role=main]") ? [] : [d.body]; } },
+  { id: "landmark-dup", sev: "info", sc: "1.3.1", lvl: "A", name: "Several nav landmarks without names", desc: "When a page has more than one nav, each needs a label such as aria-label=\"Footer\".", fix: "Add aria-label to each nav element.", run: function (d) { var n = $$(d, "nav,[role=navigation]"); return n.length > 1 ? n.filter(function (e) { return !nameOf(e, d); }) : []; } },
+  { id: "main-multiple", sev: "error", sc: "1.3.1", lvl: "A", name: "More than one main landmark", desc: "A page should have a single visible main region.", fix: "Keep one main element.", run: function (d) { var m = $$(d, "main:not([hidden]),[role=main]"); return m.length > 1 ? m.slice(1) : []; } },
+  { id: "doctype", sev: "info", sc: "4.1.1", lvl: "A", name: "Missing doctype", desc: "Without a doctype browsers use quirks mode, which can break layout and accessibility features.", fix: "Start the document with <!doctype html>.", page: true, run: function (d, c) { return /^\s*<!doctype/i.test(c.src) ? [] : [d.documentElement]; } },
+  { id: "text-small", sev: "info", sc: "1.4.4", lvl: "AA", name: "Very small fixed font size", desc: "Inline font sizes under 12px are hard to read and may not scale.", fix: "Use relative units (rem, em) and at least 16px for body text.", run: function (d) { return $$(d, "[style]").filter(function (e) { var m = (e.getAttribute("style") || "").match(/font-size\s*:\s*([\d.]+)px/i); return m && parseFloat(m[1]) < 12; }); } },
+  { id: "text-justify", sev: "info", sc: "1.4.8", lvl: "AAA", name: "Justified text", desc: "Justified text creates uneven gaps that hurt people with dyslexia.", fix: "Use left-aligned text.", run: function (d) { return $$(d, "[style]").filter(function (e) { return /text-align\s*:\s*justify/i.test(e.getAttribute("style") || ""); }); } },
+  { id: "accesskey", sev: "info", sc: "2.1.4", lvl: "A", name: "accesskey in use", desc: "Access keys can clash with screen reader and browser shortcuts.", fix: "Avoid accesskey, or make sure shortcuts can be remapped.", run: function (d) { return $$(d, "[accesskey]"); } },
+  { id: "obj-alt", sev: "warn", sc: "1.1.1", lvl: "A", name: "object or embed without alternative", desc: "object and embed elements need alternative text or fallback content.", fix: "Add fallback content or a title and aria-label.", run: function (d) { return $$(d, "object,embed").filter(function (e) { return !txt(e) && !nameOf(e, d) && !(e.getAttribute("title") || "").trim(); }); } }
+];
+var SEVN = { error: "Error", warn: "Warning", info: "Notice" }, SEVC = { error: "#dc2626", warn: "#f59e0b", info: "#2563eb" };
+var SAMPLE = '<!doctype html>\n<html>\n<head>\n<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">\n</head>\n<body>\n<div class="top" onclick="go()">Menu</div>\n<h2>Welcome to our shop</h2>\n<img src="hero.jpg">\n<img src="IMG_2041.jpg" alt="IMG_2041.jpg">\n<a href="/sale">Click here</a>\n<a href="/cart"><img src="cart.svg" alt=""></a>\n<button><i class="icon-close"></i></button>\n<form>\n  <input type="text" name="email" placeholder="Email">\n  <input type="text" id="n">\n  <select><option>One</option></select>\n  <input type="submit" value="Send">\n</form>\n<h4>Offers</h4>\n<table><tr><td>Item</td><td>Price</td></tr><tr><td>Tea</td><td>$4</td></tr></table>\n<iframe src="https://example.com/map"></iframe>\n<p id="a">One</p><p id="a">Two</p>\n<div role="buton" aria-labeledby="x" tabindex="3">Odd</div>\n</body>\n</html>';
+function run() {
+  var src = $("hIn").value, frag = !/<html[\s>]/i.test(src); ST.frag = frag;
+  var d = new DOMParser().parseFromString(src || "<!doctype html><html lang='en'><title>x</title><body></body></html>", "text/html"), issues = [], passed = 0, ran = 0;
+  RULES.forEach(function (r) {
+    if (frag && r.page) return; ran++; var els = []; try { els = r.run(d, { src: src }) || []; } catch (e) { els = []; }
+    if (!els.length) { passed++; return; } issues.push({ r: r, els: els });
+  });
+  ST.issues = issues; ST.ran = ran; ST.passed = passed;
+  var E = 0, W = 0, I = 0; issues.forEach(function (i) { var n = i.els.length; if (i.r.sev === "error") E += n; else if (i.r.sev === "warn") W += n; else I += n; });
+  var score = src.trim() ? Math.max(0, Math.round(100 - Math.min(100, E * 4 + W * 2 + I * 0.5))) : 0, flt = $("hSev").value;
+  var elCount = d.body ? d.body.querySelectorAll("*").length : 0;
+  var h = '<div class="dt-result"><div class="dt-label">Checker score</div><div class="dt-big">' + (src.trim() ? score + " / 100" : "No HTML yet") + '</div><p class="dt-sum">' + (!src.trim() ? "Paste HTML above to check it." : E + " errors, " + W + " warnings and " + I + " notices across " + elCount + " elements. " + passed + " of " + ran + " rules passed." + (frag ? " Page-level rules (language, title, viewport, main, doctype) were skipped because this looks like an HTML fragment." : "") + " This score is a quick guide from this tool, not a WCAG conformance rating.") + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Errors", E, "fix first") + tile("Warnings", W, "likely problems") + tile("Notices", I, "worth reviewing") + tile("Rules passed", passed + " / " + ran, "") + "</div>";
+  if (E + W + I > 0) {
+    var pr = { 1: 0, 2: 0, 3: 0, 4: 0 }; issues.forEach(function (i) { pr[+i.r.sc[0]] += i.els.length; });
+    h += '<div class="dt-row"><div class="dt-diagram">' + donut([{ l: "Errors", v: E, c: SEVC.error, t: E }, { l: "Warnings", v: W, c: SEVC.warn, t: W }, { l: "Notices", v: I, c: SEVC.info, t: I }], String(E + W + I), "issues") + '</div><div class="dt-diagram">' + hbars([{ l: "Perceivable", v: pr[1], c: "#4338ca" }, { l: "Operable", v: pr[2], c: "#6366f1" }, { l: "Understandable", v: pr[3], c: "#818cf8" }, { l: "Robust", v: pr[4], c: "#a5b4fc" }], function (x) { return x + " issues"; }) + '<p class="dt-hint" style="text-align:center">Issues by WCAG principle.</p></div></div>';
+  }
+  var list = issues.filter(function (i) { return flt === "all" || i.r.sev === flt; }).sort(function (a, b) { var o = { error: 0, warn: 1, info: 2 }; return o[a.r.sev] - o[b.r.sev] || b.els.length - a.els.length; });
+  if (src.trim() && !list.length) h += '<p class="dt-hint">' + (issues.length ? "No issues at this severity." : "No issues found by these automated rules. That does not mean the page is accessible: see the Manual checks tab.") + "</p>";
+  list.forEach(function (i) { var r = i.r; h += '<div class="hIssue" style="border-left:5px solid ' + SEVC[r.sev] + '"><div><span class="ck-tag" style="background:' + SEVC[r.sev] + ';color:#fff">' + SEVN[r.sev] + '</span><span class="ck-tag">WCAG ' + r.sc + " (" + r.lvl + ')</span><span class="ck-tag">' + i.els.length + " found</span></div><h3>" + esc(r.name) + "</h3><p>" + esc(r.desc) + '</p><p><b>How to fix:</b> ' + esc(r.fix) + "</p>" + i.els.slice(0, 4).map(function (e) { return "<pre><code>" + esc(sn(e)) + "</code></pre>"; }).join("") + (i.els.length > 4 ? '<p class="ck-note">and ' + (i.els.length - 4) + " more</p>" : "") + "</div>"; });
+  $("hRes").innerHTML = h;
+  ST.rows.rs = []; issues.forEach(function (i) { i.els.forEach(function (e) { ST.rows.rs.push([SEVN[i.r.sev], i.r.name, "WCAG " + i.r.sc + " (" + i.r.lvl + ")", sn(e), i.r.fix]); }); });
+  ST.sum = [["Score", src.trim() ? score + " / 100" : "n/a"], ["Errors", E], ["Warnings", W], ["Notices", I], ["Rules passed", passed + " of " + ran], ["Mode", frag ? "HTML fragment" : "Full page"]];
+  ST.counts = { E: E, W: W, I: I, score: score };
+}
+function rulesView() {
+  var h = '<div class="dt-scroll"><table class="dt-table"><tr><th>Rule</th><th>Severity</th><th>WCAG</th><th>What it checks</th></tr>' + RULES.map(function (r) { return "<tr><td>" + esc(r.name) + "</td><td>" + SEVN[r.sev] + "</td><td>" + r.sc + " (" + r.lvl + ")</td><td>" + esc(r.desc) + "</td></tr>"; }).join("") + "</table></div>";
+  $("hRu").innerHTML = '<p class="ck-note">' + RULES.length + " automated rules. Page-level rules apply only when your HTML includes an html element.</p>" + h; ST.rows.ru = RULES.map(function (r) { return [r.name, SEVN[r.sev], "WCAG " + r.sc + " (" + r.lvl + ")", r.desc]; });
+}
+var MAN = [["Keyboard only", "Tab through the whole page. Can you reach and use every control? Is focus always visible and in a logical order? Can you escape every popup?", "2.1.1, 2.4.3, 2.4.7"], ["Colour contrast", "Check text, icons and borders against their backgrounds with a contrast checker, including hover and focus states.", "1.4.3, 1.4.11"], ["Zoom and reflow", "Zoom to 200% and 400%. Does content reflow without sideways scrolling and without losing function?", "1.4.4, 1.4.10"], ["Screen reader", "Listen to the page with NVDA, JAWS, VoiceOver or TalkBack. Do headings, links, forms and errors make sense?", "1.3.1, 4.1.2"], ["Alt text quality", "Is each alt text accurate and useful in context, and are decorative images hidden?", "1.1.1"], ["Captions and transcripts", "Do videos have accurate captions, and do audio and video have transcripts or audio description where needed?", "1.2.1 to 1.2.5"], ["Error handling", "Are form errors described in text, tied to the field, and easy to fix?", "3.3.1, 3.3.3"], ["Link purpose", "Does every link make sense on its own and describe where it goes?", "2.4.4"], ["Motion and timing", "Can users pause moving content, and do time limits give enough warning?", "2.2.1, 2.2.2"], ["Touch targets", "Are targets at least 24 by 24 CSS pixels with enough space?", "2.5.8"], ["Reading level and language", "Is the text clear? Are language changes marked up?", "3.1.1, 3.1.2"], ["Consistent navigation", "Do menus and help appear in the same place on every page?", "3.2.3, 3.2.6"]];
+function manView() { $("hMn").innerHTML = '<div class="dt-scroll"><table class="dt-table"><tr><th>Check</th><th>How to test it</th><th>WCAG</th></tr>' + MAN.map(function (m) { return "<tr><td>" + m[0] + "</td><td>" + m[1] + "</td><td>" + m[2] + "</td></tr>"; }).join("") + "</table></div>"; ST.rows.mn = MAN; }
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab], "Free online HTML Accessibility Checker");
+  if (ST.tab === "rs") { repTbl(b, ["Item", "Result"], ST.sum); if (ST.rows.rs.length) repTbl(b, ["Severity", "Issue", "WCAG", "Code", "How to fix"], ST.rows.rs.slice(0, 80)); else repAdd(b, "p", "No issues found by the automated rules."); repFig(b, hbarsSummary()); }
+  else if (ST.tab === "ru") repTbl(b, ["Rule", "Severity", "WCAG", "What it checks"], ST.rows.ru); else repTbl(b, ["Check", "How to test it", "WCAG"], ST.rows.mn);
+  repDisc(b, "Automated checks find only some accessibility problems. This report is not a WCAG audit, VPAT or legal conformance statement.");
+}
+function hbarsSummary() { var c = ST.counts || { E: 0, W: 0, I: 0 }; return hbars([{ l: "Errors", v: c.E, c: SEVC.error }, { l: "Warnings", v: c.W, c: SEVC.warn }, { l: "Notices", v: c.I, c: SEVC.info }], function (x) { return String(x); }); }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["rs", "ru", "mn"], function (n) { ST.tab = n; });
+  $("hIn").value = SAMPLE; rulesView(); manView(); var t; $("hIn").addEventListener("input", function () { clearTimeout(t); t = setTimeout(run, 250); }); $("hSev").addEventListener("change", run);
+  $("hRun").addEventListener("click", run); $("hClear").addEventListener("click", function () { $("hIn").value = ""; run(); }); $("hOpen").addEventListener("click", function () { $("hFile").click(); });
+  $("hFile").addEventListener("change", function () { var f = $("hFile").files[0]; if (!f) return; var r = new FileReader(); r.onload = function () { $("hIn").value = String(r.result).slice(0, 600000); run(); msg("Loaded " + f.name + "."); }; r.readAsText(f); });
+  $("resetBtn").addEventListener("click", function () { $("hIn").value = SAMPLE; $("hSev").value = "all"; run(); msg("Reset to the sample page."); });
+  $("hCsv").addEventListener("click", function () { var t = ST.tab; csvDownload(t === "rs" ? [["Severity", "Issue", "WCAG", "Code", "How to fix"]].concat(ST.rows.rs) : t === "ru" ? [["Rule", "Severity", "WCAG", "What it checks"]].concat(ST.rows.ru) : [["Check", "How to test it", "WCAG"]].concat(ST.rows.mn), "html-accessibility-" + t + ".csv"); });
+  $("hCopy").addEventListener("click", function () { var t = ST.tab; copyText(t === "rs" ? "HTML accessibility check\n" + ST.sum.map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\n" + ST.rows.rs.map(function (r) { return "[" + r[0] + "] " + r[1] + " (" + r[2] + ")\n  " + r[3]; }).join("\n") : ST.rows[t].map(function (r) { return r.join(" | "); }).join("\n"), $("hCopy")); });
+  $("hPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  run();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

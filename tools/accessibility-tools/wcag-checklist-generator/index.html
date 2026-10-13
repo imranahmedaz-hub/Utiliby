@@ -1,0 +1,435 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free WCAG 2.2 Checklist Generator – 86 Criteria + Report</title>
+<meta name="description" content="Free online WCAG 2.2 checklist generator with all 86 success criteria. Mark pass, fail or N/A, add notes, filter by level and print an audit summary or CSV.">
+<link rel="canonical" href="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free WCAG 2.2 Checklist Generator – 86 Criteria + Report">
+<meta property="og:description" content="Free online WCAG 2.2 checklist: all 86 success criteria, pass/fail tracking, notes, level filters, progress, audit summary and CSV or PDF export.">
+<meta property="og:url" content="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free WCAG 2.2 Checklist Generator – 86 Criteria + Report">
+<meta name="twitter:description" content="Free online WCAG 2.2 checklist: all 86 success criteria, pass/fail tracking, notes, level filters, progress, audit summary and CSV or PDF export.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#4338ca;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#a5b4fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #4338ca;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#4338ca;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#4338ca,#6366f1);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(67,56,202,.06);border-left:3px solid #4338ca;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#4338ca}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#4338ca;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(67,56,202,.12);color:#3730a3;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#a5b4fc;background:rgba(129,140,248,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.wRow{border:1px solid var(--line);border-radius:10px;padding:8px 12px;margin:8px 0;background:var(--bg)}.wRow p{margin:4px 0;font-size:.9rem}.wHead{line-height:1.8}
+.wCtl{display:grid;grid-template-columns:150px 1fr;gap:8px}.wCtl select,.wCtl input{padding:7px 9px;font-size:.88rem}@media(max-width:520px){.wCtl{grid-template-columns:1fr}}
+.wBar{height:10px;border-radius:99px;background:rgba(99,102,241,.2);overflow:hidden}.wBar div{height:100%;background:#4338ca;transition:width .3s}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"WCAG Checklist Generator","url":"https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/","description":"Free online WCAG 2.2 checklist generator listing all 86 success criteria with levels, principles and plain-language tests. Mark pass, fail or not applicable, add notes, see an audit summary with charts and export CSV or PDF. Saved in your browser.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["All 86 WCAG 2.2 success criteria","Levels A, AA, AAA and four principles","New in 2.2 criteria flagged","Pass, fail, N/A and not tested with notes","Search and filters by level, principle and status","Audit summary with donut chart and failure list","Saved in your browser; CSV and print export"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a WCAG checklist?","acceptedAnswer":{"@type":"Answer","text":"A WCAG checklist lists the success criteria of the Web Content Accessibility Guidelines so you can check a website against each one and record whether it passes, fails or does not apply. This generator includes all 86 criteria of WCAG 2.2."}},{"@type":"Question","name":"How many success criteria are in WCAG 2.2?","acceptedAnswer":{"@type":"Answer","text":"There are 86: 31 at Level A, 24 at Level AA and 31 at Level AAA. WCAG 2.2 added nine criteria to WCAG 2.1 and removed 4.1.1 Parsing."}},{"@type":"Question","name":"What is new in WCAG 2.2?","acceptedAnswer":{"@type":"Answer","text":"Nine criteria: 2.4.11 Focus Not Obscured (Minimum), 2.4.12 Focus Not Obscured (Enhanced), 2.4.13 Focus Appearance, 2.5.7 Dragging Movements, 2.5.8 Target Size (Minimum), 3.2.6 Consistent Help, 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication (Minimum) and 3.3.9 Accessible Authentication (Enhanced). They are marked New in 2.2 in the checklist."}},{"@type":"Question","name":"Which level should I aim for?","acceptedAnswer":{"@type":"Answer","text":"Level AA is the target in most laws, policies and contracts, so it is the default. It means meeting all Level A and Level AA criteria. Level AAA is not required for whole sites, because some AAA criteria cannot be met for all content, but many AAA criteria are good practice."}},{"@type":"Question","name":"What do the four principles mean?","acceptedAnswer":{"@type":"Answer","text":"WCAG is organised under four principles, often abbreviated POUR: Perceivable (users can perceive the content), Operable (users can operate the interface), Understandable (content and operation are understandable) and Robust (content works with current and future technologies, including assistive technology)."}},{"@type":"Question","name":"Does this tool test my website automatically?","acceptedAnswer":{"@type":"Answer","text":"No. It is a checklist and record. You test the site yourself or with tools, then mark each criterion. For automated checks of code, use the HTML accessibility checker on this site."}},{"@type":"Question","name":"Where is my progress saved?","acceptedAnswer":{"@type":"Answer","text":"In your browser's local storage on this device. It is not uploaded, and it will not appear on another device or browser. Download the CSV or print to PDF to keep a copy."}},{"@type":"Question","name":"What does Not applicable mean?","acceptedAnswer":{"@type":"Answer","text":"Mark a criterion Not applicable when it does not apply to your content, for example media criteria on a site with no video or audio. Those criteria are excluded from the pass rate."}},{"@type":"Question","name":"What does the summary tab tell me?","acceptedAnswer":{"@type":"Answer","text":"It shows your overall result against the target level, pass, fail, not applicable and not tested counts, a donut chart, pass rates by principle, results by level and a list of failures with your notes."}},{"@type":"Question","name":"Is passing this checklist the same as being WCAG conformant?","acceptedAnswer":{"@type":"Answer","text":"Only if every Level A and AA criterion in scope is honestly tested and passes, for every page or every page in your defined sample, including processes. This tool records your judgement and does not verify it. A formal claim needs the full conformance requirements in WCAG."}},{"@type":"Question","name":"Can I use it to create a VPAT?","acceptedAnswer":{"@type":"Answer","text":"It can organise your testing, but a VPAT or Accessibility Conformance Report has a specific format with conformance levels and remarks for each criterion. Use the CSV as source material for that report."}},{"@type":"Question","name":"Can I check just Level A or Level AAA?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Target level menu. Level A shows 31 criteria, Level AA shows 55 and Level AAA shows all 86."}},{"@type":"Question","name":"What is WCAG 4.1.1 and why is it missing?","acceptedAnswer":{"@type":"Answer","text":"4.1.1 Parsing required valid markup. The W3C removed it in WCAG 2.2 because modern browsers and assistive technology handle most markup errors, so it no longer served users. Duplicate ids and broken ARIA references are still worth fixing, under other criteria."}},{"@type":"Question","name":"How do I test the criteria that need a human?","acceptedAnswer":{"@type":"Answer","text":"Use the keyboard alone, zoom to 200% and 400%, turn on a screen reader (NVDA, JAWS, VoiceOver or TalkBack), check contrast, read captions and try the forms. The one-line descriptions on each criterion tell you what to look for."}},{"@type":"Question","name":"Can a team use it together?","acceptedAnswer":{"@type":"Answer","text":"Because progress is saved only on one device, share results by exporting the CSV or PDF. For team audits, agree on one tester per section, or merge CSV files in a spreadsheet."}},{"@type":"Question","name":"Does it cover mobile apps?","acceptedAnswer":{"@type":"Answer","text":"WCAG applies to web content, including web content on mobile. For native mobile apps, WCAG is used by analogy and guidance such as WCAG2ICT, EN 301 549 and platform guidelines also applies."}},{"@type":"Question","name":"What can I print or save?","acceptedAnswer":{"@type":"Answer","text":"Print / save as PDF, CSV and Copy summary work for the tab you are viewing: the full checklist with statuses and notes, the audit summary with failures, or the list of new criteria in WCAG 2.2."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Accessibility Tools","item":"https://utiliby.com/tools/accessibility-tools/"},{"@type":"ListItem","position":3,"name":"WCAG Checklist Generator","item":"https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/accessibility-tools/">Accessibility Tools</a> › WCAG Checklist Generator</nav>
+<h1 class="noembed">Free Online WCAG 2.2 Checklist Generator and Audit Report</h1>
+<p class="lead noembed">Free online WCAG 2.2 checklist generator. Work through all 86 success criteria at levels A, AA and AAA, mark pass, fail or not applicable, add notes, and get an audit summary with charts and a failures list. Progress is saved in your browser. Print to PDF or export CSV. A self-assessment tool, not a certified audit.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/" target="_blank" rel="noopener">WCAG Checklist Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="WCAG checklist generator">
+<div class="dt-hero noembed">
+<h2>Free WCAG 2.2 Checklist Generator Online</h2>
+<p>Work through all 86 WCAG 2.2 success criteria, mark pass, fail or not applicable, add notes and print an audit summary. Free, saved in your browser, no sign-up.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-au" aria-pressed="true">Checklist</button>
+<button type="button" class="dt-tab" id="dtTabBtn-sm" aria-pressed="false">Audit summary</button>
+<button type="button" class="dt-tab" id="dtTabBtn-nw" aria-pressed="false">New in 2.2</button>
+</div>
+<div id="dtTab-au"><div class="dt-panel"><div class="dt-row4"><div><label for="wProj">Project or site name</label><input type="text" id="wProj"></div><div><label for="wUrl">Website address</label><input type="text" id="wUrl"></div><div><label for="wWho">Tester</label><input type="text" id="wWho"></div><div><label for="wDate">Date</label><input type="date" id="wDate"></div></div><div class="dt-row4"><div><label for="wLvl">Target level</label><select id="wLvl"><option value="A">Level A</option><option value="AA">Level AA (common)</option><option value="AAA">Level AAA</option></select></div><div><label for="wPr">Principle</label><select id="wPr"><option value="all">All principles</option><option value="1">Perceivable</option><option value="2">Operable</option><option value="3">Understandable</option><option value="4">Robust</option></select></div><div><label for="wSt">Status</label><select id="wSt"><option value="all">All statuses</option><option value="n">Not tested</option><option value="p">Pass</option><option value="f">Fail</option><option value="x">Not applicable</option></select></div><div><label for="wQ">Search criteria</label><input type="text" id="wQ"></div></div><div class="dt-actions" style="margin-top:6px"><button type="button" class="dt-btn ghost small" id="wAllP">Mark untested as Pass</button></div></div><div id="wProg"></div><div id="wList"></div></div>
+<div id="dtTab-sm" hidden><div id="wSum"></div></div>
+<div id="dtTab-nw" hidden><div class="dt-panel"><p class="ck-note">The nine criteria added in WCAG 2.2.</p></div><div id="wNw"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Clear all results</button><button type="button" class="dt-btn" id="wPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="wCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="wCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> A self-assessment tracker, not a certified audit. Refer to the official WCAG 2.2 text.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). WCAG Checklist Generator. https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="WCAG Checklist Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/accessibility-tools/wcag-checklist-generator/"&gt;WCAG Checklist Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free WCAG checklist generator does</a></li><li><a href="#how">How to use the WCAG checklist</a></li><li><a href="#levels">WCAG levels A, AA and AAA explained</a></li><li><a href="#pour">The four principles: POUR</a></li><li><a href="#new">What is new in WCAG 2.2</a></li><li><a href="#scope">Defining your scope: pages, processes and samples</a></li><li><a href="#test">How to test the criteria</a></li><li><a href="#reporting">Turning results into a report</a></li><li><a href="#legal">WCAG and the law</a></li><li><a href="#limits">Limits of a self-assessment checklist</a></li><li><a href="#privacy">Privacy and data</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free WCAG checklist generator does</h2>
+<p>This free online <b>WCAG 2.2 checklist generator</b> turns the Web Content Accessibility Guidelines into a working audit sheet. All <b>86 success criteria</b> are listed with their level (A, AA or AAA), their principle (Perceivable, Operable, Understandable or Robust), a one-line description of what to look for and a status menu: <b>Not tested, Pass, Fail or Not applicable</b>. You add notes for each item, filter by level, principle or status, and watch your progress and pass rate update as you go.</p><p>The <b>Audit summary</b> tab turns your marks into a report with the overall result against your target level, a donut chart, pass rates for each principle, results at each level and a table of failures with your notes. You can print it to PDF, export a CSV or copy it for a ticket or an email. Progress is kept in your browser, so you can come back and carry on. The nine criteria that are new in <b>WCAG 2.2</b> are clearly marked.</p><figure class="dt-fig"><svg viewBox="0 0 640 210" width="100%" role="img" aria-label="Bars showing the number of WCAG 2.2 success criteria at level A, AA and AAA"><title>WCAG 2.2 criteria by level</title>
+<g font-size="12.5" font-weight="700" fill="currentColor"><text x="14" y="38">Level A</text><text x="14" y="88">Level AA</text><text x="14" y="138">Level AAA</text></g>
+<rect class="dt-bar" x="100" y="16" width="310" height="32" rx="6" fill="#4338ca"/><rect class="dt-bar" x="100" y="66" width="240" height="32" rx="6" fill="#6366f1" style="animation-delay:.15s"/><rect class="dt-bar" x="100" y="116" width="310" height="32" rx="6" fill="#a5b4fc" style="animation-delay:.3s"/>
+<g font-size="12.5" font-weight="700" fill="#fff"><text x="112" y="37">31 criteria</text><text x="112" y="87">24 criteria</text></g><text x="112" y="137" font-size="12.5" font-weight="700" fill="#1e1b4b">31 criteria</text>
+<text x="320" y="186" font-size="13" font-weight="700" fill="currentColor" text-anchor="middle">86 success criteria in WCAG 2.2. Most laws ask for A plus AA (55 criteria).</text></svg><figcaption>WCAG 2.2 has 86 success criteria. Level AA conformance means meeting all 31 Level A and all 24 Level AA criteria.</figcaption></figure>
+<h2 id="how">How to use the WCAG checklist</h2>
+<ol><li><b>Set up.</b> Enter the project name, website address, tester and date, and choose the target level. AA is the usual choice.</li><li><b>Work through the criteria.</b> Test the site against each item and set Pass, Fail or Not applicable. Use Search and the Principle filter to focus on one area at a time.</li><li><b>Add notes.</b> Write the page, the problem or the fix beside each result. Notes appear in the summary and CSV.</li><li><b>Track progress.</b> The bar shows how many criteria you have reviewed.</li><li><b>Read the summary.</b> It tells you whether you meet the target level, and lists the failures.</li><li><b>Export.</b> Print to PDF or download the CSV to share, import into a tracker or use as a base for a VPAT.</li></ol>
+<h2 id="levels">WCAG levels A, AA and AAA explained</h2>
+<div class="dt-wrap"><table><tr><th>Level</th><th>Criteria</th><th>Meaning</th><th>Typically required?</th></tr><tr><td>A</td><td>31</td><td>The minimum. Without these, some people cannot use the content at all.</td><td>Always part of any conformance claim</td></tr><tr><td>AA</td><td>24 more (55 total)</td><td>Removes the biggest remaining barriers, such as low contrast and missing captions for live video.</td><td>Yes, in most laws and policies</td></tr><tr><td>AAA</td><td>31 more (86 total)</td><td>The highest level, with demanding requirements such as sign language and 7:1 contrast.</td><td>No, but useful as a goal for suitable content</td></tr></table></div><p>Conformance is cumulative: to claim Level AA you must meet all Level A and all Level AA criteria. You cannot skip A to reach AA.</p>
+<h2 id="pour">The four principles: POUR</h2>
+<ul><li><b>Perceivable.</b> Information must be presentable in ways users can perceive: text alternatives, captions, adaptable layout, colour contrast and distinguishable content (guidelines 1.1 to 1.4).</li><li><b>Operable.</b> The interface must be operable: keyboard access, enough time, no seizure-causing flashes, navigation, input modalities and pointer targets (guidelines 2.1 to 2.5).</li><li><b>Understandable.</b> Content and operation must be understandable: readable language, predictable behaviour and help with errors (guidelines 3.1 to 3.3).</li><li><b>Robust.</b> Content must work with current and future user agents, including assistive technology: names, roles, values and status messages (guideline 4.1).</li></ul>
+<h2 id="new">What is new in WCAG 2.2</h2>
+<p>WCAG 2.2 became a W3C Recommendation in October 2023 and builds on 2.1. It focuses on users with low vision, cognitive and learning disabilities and users of touch screens and mobile devices.</p><div class="dt-wrap"><table><tr><th>Criterion</th><th>Level</th><th>In plain English</th></tr><tr><td>2.4.11 Focus Not Obscured (Minimum)</td><td>AA</td><td>Sticky headers and banners must not completely cover the focused item.</td></tr><tr><td>2.4.12 Focus Not Obscured (Enhanced)</td><td>AAA</td><td>No part of the focused item is hidden.</td></tr><tr><td>2.4.13 Focus Appearance</td><td>AAA</td><td>The focus indicator must be big enough and contrast enough.</td></tr><tr><td>2.5.7 Dragging Movements</td><td>AA</td><td>Anything you can drag must also work with a simple click or tap.</td></tr><tr><td>2.5.8 Target Size (Minimum)</td><td>AA</td><td>Targets are at least 24 by 24 CSS pixels, or well spaced.</td></tr><tr><td>3.2.6 Consistent Help</td><td>A</td><td>Help links appear in the same place on every page.</td></tr><tr><td>3.3.7 Redundant Entry</td><td>A</td><td>Do not make users type the same information twice.</td></tr><tr><td>3.3.8 Accessible Authentication (Minimum)</td><td>AA</td><td>Logging in must not depend on remembering or solving a puzzle.</td></tr><tr><td>3.3.9 Accessible Authentication (Enhanced)</td><td>AAA</td><td>No cognitive test at all for authentication.</td></tr></table></div><p>WCAG 2.2 also removes 4.1.1 Parsing. Six of the nine new criteria are at Level A or AA (2.4.11, 2.5.7, 2.5.8, 3.2.6, 3.3.7 and 3.3.8), so a site that already meets WCAG 2.1 AA has six new items to check for AA.</p>
+<h2 id="scope">Defining your scope: pages, processes and samples</h2>
+<p>WCAG conformance is claimed for whole web pages, and for complete processes such as a checkout. Before you start, decide which pages or templates are in scope. For a large site, test a representative sample: the home page, key templates, forms, search, account pages, a few content pages, error states and PDFs or media that are essential. List the browser and assistive technology combinations you used. Write that scope in the project name or the notes so the summary can be understood later.</p>
+<h2 id="test">How to test the criteria</h2>
+<div class="dt-wrap"><table><tr><th>Technique</th><th>Helps you test</th></tr><tr><td>Keyboard only</td><td>2.1.1, 2.1.2, 2.4.3, 2.4.7, 2.4.11, 2.5.7</td></tr><tr><td>Zoom to 200% and 400%</td><td>1.4.4, 1.4.10, 1.4.12</td></tr><tr><td>Colour contrast checker</td><td>1.4.3, 1.4.6, 1.4.11</td></tr><tr><td>Screen reader (NVDA, VoiceOver, TalkBack)</td><td>1.1.1, 1.3.1, 2.4.4, 3.3.1, 4.1.2, 4.1.3</td></tr><tr><td>Automated checker</td><td>Language, titles, labels, ARIA errors, alt attributes</td></tr><tr><td>Review of captions and transcripts</td><td>1.2.1 to 1.2.5</td></tr><tr><td>Try forms and login with errors</td><td>3.3.1 to 3.3.4, 3.3.7, 3.3.8</td></tr></table></div><p>Automated tools find only a share of problems, so every criterion needs human judgement. Use the HTML accessibility checker and colour contrast checker on this site for the parts they can do.</p>
+<h2 id="reporting">Turning results into a report</h2>
+<p>After testing, open the Audit summary tab. It shows the headline result, a pass rate for each principle and a table of failures. Export the CSV to import into a bug tracker, a spreadsheet or a VPAT template. Group failures by template or component to fix the root causes. Re-test after fixes and update the date, then publish an honest accessibility statement, for example with the accessibility statement generator on this site.</p>
+<h2 id="legal">WCAG and the law</h2>
+<p>WCAG 2.2 AA is the usual technical benchmark behind accessibility laws and policies, including the European Accessibility Act and EN 301 549 (which currently references WCAG 2.1 AA), Section 508 in the United States (which refers to WCAG 2.0 AA), the ADA as applied in court and by the Department of Justice, the UK Public Sector Bodies Accessibility Regulations, the Accessibility for Ontarians with Disabilities Act and others. Which version applies depends on the law and your sector. Meeting a newer WCAG version normally satisfies older ones, because 2.2 is built to be backwards compatible with 2.1 and 2.0 (apart from the removed 4.1.1).</p>
+<h2 id="limits">Limits of a self-assessment checklist</h2>
+<p>The checklist is as accurate as the person who completes it. It does not verify your results, and one-line summaries cannot replace the full text, techniques and failure examples at the W3C. Complex products, single-page applications, PDFs, video and mobile apps often need specialist testing with assistive technology and real users with disabilities. Use this tool to organise your work and learn the standard, and bring in an expert for critical systems.</p>
+<h2 id="privacy">Privacy and data</h2>
+<p>Your project details, statuses and notes are saved only in your browser's local storage so you can return later. They are not uploaded or shared. Use Clear all results (click twice) to erase them, or clear your browser data. Export a CSV or PDF before you switch device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a WCAG checklist?</summary><p>A WCAG checklist lists the success criteria of the Web Content Accessibility Guidelines so you can check a website against each one and record whether it passes, fails or does not apply. This generator includes all 86 criteria of WCAG 2.2.</p></details><details><summary>How many success criteria are in WCAG 2.2?</summary><p>There are 86: 31 at Level A, 24 at Level AA and 31 at Level AAA. WCAG 2.2 added nine criteria to WCAG 2.1 and removed 4.1.1 Parsing.</p></details><details><summary>What is new in WCAG 2.2?</summary><p>Nine criteria: 2.4.11 Focus Not Obscured (Minimum), 2.4.12 Focus Not Obscured (Enhanced), 2.4.13 Focus Appearance, 2.5.7 Dragging Movements, 2.5.8 Target Size (Minimum), 3.2.6 Consistent Help, 3.3.7 Redundant Entry, 3.3.8 Accessible Authentication (Minimum) and 3.3.9 Accessible Authentication (Enhanced). They are marked New in 2.2 in the checklist.</p></details><details><summary>Which level should I aim for?</summary><p>Level AA is the target in most laws, policies and contracts, so it is the default. It means meeting all Level A and Level AA criteria. Level AAA is not required for whole sites, because some AAA criteria cannot be met for all content, but many AAA criteria are good practice.</p></details><details><summary>What do the four principles mean?</summary><p>WCAG is organised under four principles, often abbreviated POUR: Perceivable (users can perceive the content), Operable (users can operate the interface), Understandable (content and operation are understandable) and Robust (content works with current and future technologies, including assistive technology).</p></details><details><summary>Does this tool test my website automatically?</summary><p>No. It is a checklist and record. You test the site yourself or with tools, then mark each criterion. For automated checks of code, use the HTML accessibility checker on this site.</p></details><details><summary>Where is my progress saved?</summary><p>In your browser's local storage on this device. It is not uploaded, and it will not appear on another device or browser. Download the CSV or print to PDF to keep a copy.</p></details><details><summary>What does Not applicable mean?</summary><p>Mark a criterion Not applicable when it does not apply to your content, for example media criteria on a site with no video or audio. Those criteria are excluded from the pass rate.</p></details><details><summary>What does the summary tab tell me?</summary><p>It shows your overall result against the target level, pass, fail, not applicable and not tested counts, a donut chart, pass rates by principle, results by level and a list of failures with your notes.</p></details><details><summary>Is passing this checklist the same as being WCAG conformant?</summary><p>Only if every Level A and AA criterion in scope is honestly tested and passes, for every page or every page in your defined sample, including processes. This tool records your judgement and does not verify it. A formal claim needs the full conformance requirements in WCAG.</p></details><details><summary>Can I use it to create a VPAT?</summary><p>It can organise your testing, but a VPAT or Accessibility Conformance Report has a specific format with conformance levels and remarks for each criterion. Use the CSV as source material for that report.</p></details><details><summary>Can I check just Level A or Level AAA?</summary><p>Yes. Use the Target level menu. Level A shows 31 criteria, Level AA shows 55 and Level AAA shows all 86.</p></details><details><summary>What is WCAG 4.1.1 and why is it missing?</summary><p>4.1.1 Parsing required valid markup. The W3C removed it in WCAG 2.2 because modern browsers and assistive technology handle most markup errors, so it no longer served users. Duplicate ids and broken ARIA references are still worth fixing, under other criteria.</p></details><details><summary>How do I test the criteria that need a human?</summary><p>Use the keyboard alone, zoom to 200% and 400%, turn on a screen reader (NVDA, JAWS, VoiceOver or TalkBack), check contrast, read captions and try the forms. The one-line descriptions on each criterion tell you what to look for.</p></details><details><summary>Can a team use it together?</summary><p>Because progress is saved only on one device, share results by exporting the CSV or PDF. For team audits, agree on one tester per section, or merge CSV files in a spreadsheet.</p></details><details><summary>Does it cover mobile apps?</summary><p>WCAG applies to web content, including web content on mobile. For native mobile apps, WCAG is used by analogy and guidance such as WCAG2ICT, EN 301 549 and platform guidelines also applies.</p></details><details><summary>What can I print or save?</summary><p>Print / save as PDF, CSV and Copy summary work for the tab you are viewing: the full checklist with statuses and notes, the audit summary with failures, or the list of new criteria in WCAG 2.2.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>W3C Web Content Accessibility Guidelines (WCAG) 2.2, W3C Recommendation 5 October 2023 (updated 2024), for the success criteria, levels and principles.</li><li>W3C WAI, What's New in WCAG 2.2, for the nine new criteria and the removal of 4.1.1 Parsing.</li><li>W3C WAI, Understanding WCAG 2.2 and Techniques for WCAG 2.2, for testing guidance and failure examples.</li><li>W3C WAI, WCAG-EM Website Accessibility Conformance Evaluation Methodology, for scope and sampling.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online WCAG checklist generator is a self-assessment and record-keeping tool. The criteria summaries are short plain-language paraphrases of WCAG 2.2 success criteria and are not the normative text; always refer to the official W3C WCAG 2.2 Recommendation and its Understanding and Techniques documents. Marking criteria as Pass or Fail reflects your own judgement, and the tool does not test your website. The summary is not an accessibility audit, a VPAT or Accessibility Conformance Report, a certification or a legal statement of conformance, and passing every item does not guarantee that your site is accessible to all users or compliant with any law. For legal or contractual compliance, use a qualified accessibility professional. Your results are saved only in your browser's local storage on this device and are not uploaded.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+/* ---------- accessibility helpers ---------- */
+function parseColor(s) {
+  s = String(s == null ? "" : s).trim(); if (!s) return null; var m = s.match(/^#?([0-9a-f]{3}|[0-9a-f]{6})$/i);
+  if (m) { var h = m[1]; if (h.length === 3) h = h.replace(/./g, "$&$&"); return [parseInt(h.slice(0, 2), 16), parseInt(h.slice(2, 4), 16), parseInt(h.slice(4, 6), 16)]; }
+  try { var c = document.createElement("canvas").getContext("2d"); c.fillStyle = "#010203"; c.fillStyle = s; var v = c.fillStyle; if (v === "#010203" && !/^#?010203$/i.test(s)) return null; if (v.charAt(0) === "#") return [parseInt(v.slice(1, 3), 16), parseInt(v.slice(3, 5), 16), parseInt(v.slice(5, 7), 16)]; var r = v.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/); if (r) return [+r[1], +r[2], +r[3]]; } catch (e) { }
+  return null;
+}
+function toHex(c) { return "#" + c.map(function (v) { v = Math.max(0, Math.min(255, Math.round(v))); return (v < 16 ? "0" : "") + v.toString(16); }).join(""); }
+function lin(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+function relLum(c) { return 0.2126 * lin(c[0]) + 0.7152 * lin(c[1]) + 0.0722 * lin(c[2]); }
+function contrastRatio(a, b) { var l1 = relLum(a), l2 = relLum(b); if (l1 < l2) { var t = l1; l1 = l2; l2 = t; } return (l1 + 0.05) / (l2 + 0.05); }
+function apcaLc(txt, bg) {
+  function Y(c) { return Math.pow(c[0] / 255, 2.4) * 0.2126729 + Math.pow(c[1] / 255, 2.4) * 0.7151522 + Math.pow(c[2] / 255, 2.4) * 0.072175; }
+  var yt = Y(txt), yb = Y(bg); if (yt < 0.022) yt += Math.pow(0.022 - yt, 1.414); if (yb < 0.022) yb += Math.pow(0.022 - yb, 1.414);
+  if (Math.abs(yb - yt) < 0.0005) return 0; var s, o;
+  if (yb > yt) { s = (Math.pow(yb, 0.56) - Math.pow(yt, 0.57)) * 1.14; o = s < 0.1 ? 0 : s - 0.027; } else { s = (Math.pow(yb, 0.65) - Math.pow(yt, 0.62)) * 1.14; o = s > -0.1 ? 0 : s + 0.027; }
+  return o * 100;
+}
+function rgb2hsl(c) { var r = c[0] / 255, g = c[1] / 255, b = c[2] / 255, mx = Math.max(r, g, b), mn = Math.min(r, g, b), h = 0, s = 0, l = (mx + mn) / 2; if (mx !== mn) { var d = mx - mn; s = l > 0.5 ? d / (2 - mx - mn) : d / (mx + mn); h = mx === r ? (g - b) / d + (g < b ? 6 : 0) : mx === g ? (b - r) / d + 2 : (r - g) / d + 4; h /= 6; } return [h, s, l]; }
+function hsl2rgb(h, s, l) { function f(p, q, t) { if (t < 0) t += 1; if (t > 1) t -= 1; if (t < 1 / 6) return p + (q - p) * 6 * t; if (t < 1 / 2) return q; if (t < 2 / 3) return p + (q - p) * (2 / 3 - t) * 6; return p; } if (s === 0) { var v = l * 255; return [v, v, v]; } var q = l < 0.5 ? l * (1 + s) : l + s - l * s, p = 2 * l - q; return [f(p, q, h + 1 / 3) * 255, f(p, q, h) * 255, f(p, q, h - 1 / 3) * 255]; }
+/* nearest colour to c (same hue and saturation) that reaches ratio against other */
+function fixColor(c, other, target) {
+  var hsl = rgb2hsl(c), best = null, d, i, cand;
+  for (i = 0; i <= 200; i++) { d = i / 200; [hsl[2] + d, hsl[2] - d].forEach(function (l) { if (l < 0 || l > 1) return; cand = hsl2rgb(hsl[0], hsl[1], l).map(Math.round); if (contrastRatio(cand, other) >= target && (!best || Math.abs(l - hsl[2]) < best.d)) best = { c: cand, d: Math.abs(l - hsl[2]) }; }); if (best) break; }
+  return best ? best.c : null;
+}
+var CVD = { prot: [[0.152286, 1.052583, -0.204868], [0.114503, 0.786281, 0.099216], [-0.003882, -0.048116, 1.051998]], deut: [[0.367322, 0.860646, -0.227968], [0.280085, 0.672501, 0.047413], [-0.01182, 0.04294, 0.968881]], trit: [[1.255528, -0.076749, -0.178779], [-0.078411, 0.930809, 0.147602], [0.004733, 0.691367, 0.3039]] };
+function toLin(v) { return lin(v); }
+function fromLin(v) { v = Math.max(0, Math.min(1, v)); return Math.round((v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055) * 255); }
+function cvdColor(c, type, sev) {
+  sev = sev == null ? 1 : sev; var r = toLin(c[0]), g = toLin(c[1]), b = toLin(c[2]), o;
+  if (type === "achro") { var y = 0.2126 * r + 0.7152 * g + 0.0722 * b; o = [y, y, y]; }
+  else { var m = CVD[type]; o = [m[0][0] * r + m[0][1] * g + m[0][2] * b, m[1][0] * r + m[1][1] * g + m[1][2] * b, m[2][0] * r + m[2][1] * g + m[2][2] * b]; }
+  return [fromLin(r + (o[0] - r) * sev), fromLin(g + (o[1] - g) * sev), fromLin(b + (o[2] - b) * sev)];
+}
+function dlText(name, type, data) { saveBlob(new Blob([data], { type: type + ";charset=utf-8" }), name); }
+
+var SC = [["1.1.1", "Non-text Content", "A", "Images, icons, charts and controls have a text alternative. Decorative images are hidden from assistive technology.", 0], ["1.2.1", "Audio-only and Video-only (Prerecorded)", "A", "Prerecorded audio has a transcript; silent video has a transcript or audio track.", 0], ["1.2.2", "Captions (Prerecorded)", "A", "Prerecorded videos with sound have accurate synchronized captions.", 0], ["1.2.3", "Audio Description or Media Alternative (Prerecorded)", "A", "Video has audio description or a full text alternative.", 0], ["1.2.4", "Captions (Live)", "AA", "Live video with audio, such as webinars, has live captions.", 0], ["1.2.5", "Audio Description (Prerecorded)", "AA", "Prerecorded video has audio description for important visual content.", 0], ["1.2.6", "Sign Language (Prerecorded)", "AAA", "Prerecorded video with sound has sign language interpretation.", 0], ["1.2.7", "Extended Audio Description (Prerecorded)", "AAA", "Where pauses are too short, video has extended audio description.", 0], ["1.2.8", "Media Alternative (Prerecorded)", "AAA", "Prerecorded video has a full text alternative.", 0], ["1.2.9", "Audio-only (Live)", "AAA", "Live audio-only content has a text alternative.", 0], ["1.3.1", "Info and Relationships", "A", "Headings, lists, tables, form labels and landmarks use real HTML structure, not only visual styling.", 0], ["1.3.2", "Meaningful Sequence", "A", "The reading order in the code matches the visual order and makes sense.", 0], ["1.3.3", "Sensory Characteristics", "A", "Instructions do not rely only on shape, colour, size, position or sound (for example, click the green button).", 0], ["1.3.4", "Orientation", "AA", "Content works in both portrait and landscape unless one is essential.", 0], ["1.3.5", "Identify Input Purpose", "AA", "Fields for personal data use the right autocomplete values.", 0], ["1.3.6", "Identify Purpose", "AAA", "The purpose of icons, regions and controls can be determined programmatically.", 0], ["1.4.1", "Use of Color", "A", "Colour is not the only way to show errors, links, states or chart data.", 0], ["1.4.2", "Audio Control", "A", "Audio that plays automatically for over 3 seconds can be paused, stopped or muted.", 0], ["1.4.3", "Contrast (Minimum)", "AA", "Text has at least 4.5:1 contrast (3:1 for large text).", 0], ["1.4.4", "Resize Text", "AA", "Text can be resized to 200% without loss of content or function.", 0], ["1.4.5", "Images of Text", "AA", "Real text is used instead of images of text, except logos.", 0], ["1.4.6", "Contrast (Enhanced)", "AAA", "Text has at least 7:1 contrast (4.5:1 for large text).", 0], ["1.4.7", "Low or No Background Audio", "AAA", "Speech audio has no or very quiet background sound.", 0], ["1.4.8", "Visual Presentation", "AAA", "Users can choose colours; lines are under 80 characters; text is not justified; spacing is generous.", 0], ["1.4.9", "Images of Text (No Exception)", "AAA", "Images of text are used only for decoration or when essential.", 0], ["1.4.10", "Reflow", "AA", "At 320 CSS pixels wide (400% zoom) content reflows without two-way scrolling.", 0], ["1.4.11", "Non-text Contrast", "AA", "UI components, focus indicators and meaningful graphics have at least 3:1 contrast.", 0], ["1.4.12", "Text Spacing", "AA", "Content still works when users increase line, paragraph, letter and word spacing.", 0], ["1.4.13", "Content on Hover or Focus", "AA", "Pop-ups on hover or focus can be dismissed, hovered over and stay visible until dismissed.", 0], ["2.1.1", "Keyboard", "A", "All functions work with a keyboard alone.", 0], ["2.1.2", "No Keyboard Trap", "A", "Keyboard focus can always move away from any component.", 0], ["2.1.3", "Keyboard (No Exception)", "AAA", "All functionality works by keyboard with no exceptions.", 0], ["2.1.4", "Character Key Shortcuts", "A", "Single-key shortcuts can be turned off, remapped or only work on focus.", 0], ["2.2.1", "Timing Adjustable", "A", "Time limits can be turned off, adjusted or extended.", 0], ["2.2.2", "Pause, Stop, Hide", "A", "Moving, blinking or auto-updating content can be paused, stopped or hidden.", 0], ["2.2.3", "No Timing", "AAA", "Timing is not an essential part of the content.", 0], ["2.2.4", "Interruptions", "AAA", "Interruptions can be postponed or suppressed.", 0], ["2.2.5", "Re-authenticating", "AAA", "After a session expires, users can continue without losing data.", 0], ["2.2.6", "Timeouts", "AAA", "Users are warned about inactivity timeouts that could lose data.", 0], ["2.3.1", "Three Flashes or Below Threshold", "A", "Nothing flashes more than three times per second.", 0], ["2.3.2", "Three Flashes", "AAA", "No content flashes more than three times per second at all.", 0], ["2.3.3", "Animation from Interactions", "AAA", "Motion animation triggered by interaction can be disabled.", 0], ["2.4.1", "Bypass Blocks", "A", "A skip link, landmarks or headings let users skip repeated blocks.", 0], ["2.4.2", "Page Titled", "A", "Every page has a unique, descriptive title.", 0], ["2.4.3", "Focus Order", "A", "Keyboard focus moves in a logical, meaningful order.", 0], ["2.4.4", "Link Purpose (In Context)", "A", "Link text, with its context, says where the link goes.", 0], ["2.4.5", "Multiple Ways", "AA", "There are at least two ways to find a page, such as menu, search or sitemap.", 0], ["2.4.6", "Headings and Labels", "AA", "Headings and labels describe the topic or purpose.", 0], ["2.4.7", "Focus Visible", "AA", "Keyboard focus is clearly visible.", 0], ["2.4.8", "Location", "AAA", "Users can tell where they are within the site.", 0], ["2.4.9", "Link Purpose (Link Only)", "AAA", "Link text alone describes its purpose.", 0], ["2.4.10", "Section Headings", "AAA", "Content is organised with section headings.", 0], ["2.4.11", "Focus Not Obscured (Minimum)", "AA", "A focused item is not completely hidden by sticky headers, banners or pop-ups.", 1], ["2.4.12", "Focus Not Obscured (Enhanced)", "AAA", "No part of the focused item is hidden by other content.", 1], ["2.4.13", "Focus Appearance", "AAA", "The focus indicator is large enough and has at least 3:1 contrast change.", 1], ["2.5.1", "Pointer Gestures", "A", "Multi-finger or path gestures have a single-pointer alternative.", 0], ["2.5.2", "Pointer Cancellation", "A", "Actions trigger on release, and can be aborted or undone.", 0], ["2.5.3", "Label in Name", "A", "The accessible name contains the visible label text.", 0], ["2.5.4", "Motion Actuation", "A", "Functions triggered by shaking or tilting also have a normal control and can be disabled.", 0], ["2.5.5", "Target Size (Enhanced)", "AAA", "Click and tap targets are at least 44 by 44 CSS pixels.", 0], ["2.5.6", "Concurrent Input Mechanisms", "AAA", "Users can switch between touch, mouse, keyboard and voice.", 0], ["2.5.7", "Dragging Movements", "AA", "Any drag action has a single-pointer alternative such as buttons or taps.", 1], ["2.5.8", "Target Size (Minimum)", "AA", "Targets are at least 24 by 24 CSS pixels, or have enough spacing.", 1], ["3.1.1", "Language of Page", "A", "The page language is set with the lang attribute.", 0], ["3.1.2", "Language of Parts", "AA", "Passages in another language are marked with lang.", 0], ["3.1.3", "Unusual Words", "AAA", "Idioms and jargon are explained.", 0], ["3.1.4", "Abbreviations", "AAA", "Abbreviations are explained.", 0], ["3.1.5", "Reading Level", "AAA", "Text is understandable at lower secondary level, or a simpler version is offered.", 0], ["3.1.6", "Pronunciation", "AAA", "Pronunciation is given where meaning depends on it.", 0], ["3.2.1", "On Focus", "A", "Receiving focus does not cause an unexpected change of context.", 0], ["3.2.2", "On Input", "A", "Changing a form field does not cause an unexpected change of context.", 0], ["3.2.3", "Consistent Navigation", "AA", "Navigation appears in the same order on every page.", 0], ["3.2.4", "Consistent Identification", "AA", "Components with the same function are labelled the same way.", 0], ["3.2.5", "Change on Request", "AAA", "Context changes happen only when the user asks for them.", 0], ["3.2.6", "Consistent Help", "A", "Help links or contact details appear in the same place on every page.", 1], ["3.3.1", "Error Identification", "A", "Errors are identified and described in text.", 0], ["3.3.2", "Labels or Instructions", "A", "Fields have labels or instructions.", 0], ["3.3.3", "Error Suggestion", "AA", "Error messages suggest how to fix the problem.", 0], ["3.3.4", "Error Prevention (Legal, Financial, Data)", "AA", "Submissions for legal, financial or data changes can be reviewed, corrected or reversed.", 0], ["3.3.5", "Help", "AAA", "Context-sensitive help is available.", 0], ["3.3.6", "Error Prevention (All)", "AAA", "All submissions can be reviewed, corrected or reversed.", 0], ["3.3.7", "Redundant Entry", "A", "Information already entered in a process is not requested again.", 1], ["3.3.8", "Accessible Authentication (Minimum)", "AA", "Logging in does not require a cognitive test, such as remembering or transcribing, unless there is an alternative.", 1], ["3.3.9", "Accessible Authentication (Enhanced)", "AAA", "Logging in requires no cognitive function test at all.", 1], ["4.1.2", "Name, Role, Value", "A", "Custom controls expose name, role and state to assistive technology.", 0], ["4.1.3", "Status Messages", "AA", "Status messages are announced without moving focus.", 0]];
+/* ---------- WCAG 2.2 checklist UI ---------- */
+var ST = { tab: "au", rec: {}, rows: { au: [], sm: [], nw: [] } };
+var KEY = "utiliby_wcag22_v1", LV = { A: 1, AA: 2, AAA: 3 };
+var PR = { 1: "Perceivable", 2: "Operable", 3: "Understandable", 4: "Robust" };
+var STN = { n: "Not tested", p: "Pass", f: "Fail", x: "Not applicable" }, STC = { n: "#94a3b8", p: "#16a34a", f: "#dc2626", x: "#6366f1" };
+var TITLES = { au: "WCAG 2.2 audit checklist", sm: "WCAG 2.2 audit summary", nw: "What is new in WCAG 2.2" };
+function get(num) { return ST.rec[num] || ["n", ""]; }
+function inScope() { var t = LV[$("wLvl").value]; return SC.filter(function (s) { return LV[s[2]] <= t; }); }
+function save() { lsSet(KEY, JSON.stringify({ rec: ST.rec, proj: v("wProj"), url: v("wUrl"), who: v("wWho"), date: v("wDate"), lvl: $("wLvl").value })); }
+function load() { try { var o = JSON.parse(lsGet(KEY)); if (o) { ST.rec = o.rec || {}; $("wProj").value = o.proj || ""; $("wUrl").value = o.url || ""; $("wWho").value = o.who || ""; $("wDate").value = o.date || ""; if (o.lvl) $("wLvl").value = o.lvl; } } catch (e) { } }
+function v(id) { return ($(id).value || "").trim(); }
+function counts(list) { var c = { n: 0, p: 0, f: 0, x: 0 }; list.forEach(function (s) { c[get(s[0])[0]]++; }); return c; }
+function renderList() {
+  var q = v("wQ").toLowerCase(), pr = $("wPr").value, sf = $("wSt").value, list = inScope().filter(function (s) { return (pr === "all" || s[0][0] === pr) && (sf === "all" || get(s[0])[0] === sf) && (!q || (s[0] + " " + s[1] + " " + s[3]).toLowerCase().indexOf(q) >= 0); });
+  var h = list.map(function (s) {
+    var r = get(s[0]);
+    return '<div class="wRow" style="border-left:5px solid ' + STC[r[0]] + '"><div class="wHead"><b>' + s[0] + " " + esc(s[1]) + '</b> <span class="ck-tag">' + s[2] + "</span>" + (s[4] ? '<span class="ck-tag" style="background:#fde68a;color:#78350f">New in 2.2</span>' : "") + '<span class="ck-tag">' + PR[s[0][0]] + "</span></div><p>" + esc(s[3]) + '</p><div class="wCtl"><label class="sr-only" for="ws' + s[0] + '">Status for ' + s[0] + '</label><select id="ws' + s[0] + '" data-sc="' + s[0] + '">' + Object.keys(STN).map(function (k) { return '<option value="' + k + '"' + (k === r[0] ? " selected" : "") + ">" + STN[k] + "</option>"; }).join("") + '</select><label class="sr-only" for="wn' + s[0] + '">Notes for ' + s[0] + '</label><input type="text" id="wn' + s[0] + '" data-note="' + s[0] + '" placeholder="Notes, page or fix" value="' + esc(r[1]) + '"></div></div>';
+  }).join("");
+  $("wList").innerHTML = h || '<p class="dt-hint">No criteria match these filters.</p>'; progress();
+}
+function progress() {
+  var sc = inScope(), c = counts(sc), done = c.p + c.f + c.x, pct = sc.length ? Math.round(done / sc.length * 100) : 0;
+  $("wProg").innerHTML = '<div class="wBar"><div style="width:' + pct + '%"></div></div><p class="ck-note">' + done + " of " + sc.length + " criteria reviewed (" + pct + "%). " + c.p + " pass, " + c.f + " fail, " + c.x + " not applicable, " + c.n + " not tested.</p>";
+  ST.rows.au = sc.map(function (s) { var r = get(s[0]); return [s[0], s[1], s[2], PR[s[0][0]], STN[r[0]], r[1]]; });
+}
+function summary() {
+  var out = "", rows = [];
+  ["A", "AA", "AAA"].forEach(function (l) { var list = SC.filter(function (s) { return LV[s[2]] <= LV[l]; }), c = counts(list); rows.push([l, list.length, c.p, c.f, c.x, c.n]); });
+  var tgt = $("wLvl").value, sc = inScope(), c = counts(sc), applicable = sc.length - c.x, res, tone;
+  if (c.f > 0) { res = "Does not yet meet WCAG 2.2 " + tgt + ": " + c.f + " failing criteria"; tone = "bad"; } else if (c.n > 0) { res = "Not yet complete: " + c.n + " criteria still to test"; tone = "mid"; } else { res = "Meets WCAG 2.2 " + tgt + " for the scope you tested"; tone = "good"; }
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(v("wProj") || "Your project") + " &middot; target level " + tgt + '</div><div class="dt-big" style="font-size:1.5rem">' + res + '</div><p class="dt-sum">' + c.p + " pass, " + c.f + " fail, " + c.x + " not applicable and " + c.n + " not tested out of " + sc.length + " criteria in scope. This is a self-assessment tracker, not a certified audit.</p></div>";
+  h += '<div class="dt-row"><div class="dt-diagram">' + donut([{ l: "Pass", v: c.p, c: STC.p, t: c.p }, { l: "Fail", v: c.f, c: STC.f, t: c.f }, { l: "Not applicable", v: c.x, c: STC.x, t: c.x }, { l: "Not tested", v: c.n, c: STC.n, t: c.n }], String(applicable ? Math.round(c.p / applicable * 100) : 0) + "%", "of applicable pass") + '</div><div class="dt-diagram">';
+  var pb = [1, 2, 3, 4].map(function (p) { var l = sc.filter(function (s) { return +s[0][0] === p; }), cc = counts(l), ap = l.length - cc.x; return { l: PR[p], v: ap ? Math.round(cc.p / ap * 100) : 0, c: "#4338ca" }; });
+  h += hbars(pb, function (x) { return x + "% pass"; }) + '<p class="dt-hint" style="text-align:center">Pass rate by WCAG principle.</p></div></div>';
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Level</th><th>Criteria</th><th>Pass</th><th>Fail</th><th>N/A</th><th>Not tested</th></tr>' + rows.map(function (r) { return "<tr><td>" + (r[0] === "A" ? "A" : "A + " + r[0]) + "</td><td>" + r.slice(1).join("</td><td>") + "</td></tr>"; }).join("") + "</table></div>";
+  var fails = sc.filter(function (s) { return get(s[0])[0] === "f"; });
+  h += '<h3 class="dt-lbl">Failures to fix</h3>' + (fails.length ? '<div class="dt-scroll"><table class="dt-table"><tr><th>Criterion</th><th>Level</th><th>Notes</th></tr>' + fails.map(function (s) { return "<tr><td>" + s[0] + " " + esc(s[1]) + "</td><td>" + s[2] + "</td><td>" + esc(get(s[0])[1] || "(no notes)") + "</td></tr>"; }).join("") + "</table></div>" : '<p class="dt-hint">No failures recorded.</p>');
+  $("wSum").innerHTML = h; ST.sum = [["Project", v("wProj") || "(not set)"], ["Website", v("wUrl") || "(not set)"], ["Tester", v("wWho") || "(not set)"], ["Date", v("wDate") || "(not set)"], ["Target level", "WCAG 2.2 " + tgt], ["Result", res], ["Pass", c.p], ["Fail", c.f], ["Not applicable", c.x], ["Not tested", c.n]];
+  ST.fails = fails.map(function (s) { return [s[0], s[1], s[2], get(s[0])[1]]; }); ST.rows.sm = ST.sum;
+}
+function newView() {
+  var nw = SC.filter(function (s) { return s[4]; });
+  $("wNw").innerHTML = '<div class="dt-scroll"><table class="dt-table"><tr><th>Criterion</th><th>Level</th><th>What it requires</th></tr>' + nw.map(function (s) { return "<tr><td>" + s[0] + " " + esc(s[1]) + "</td><td>" + s[2] + "</td><td>" + esc(s[3]) + "</td></tr>"; }).join("") + '</table></div><p class="ck-note">WCAG 2.2 also removes success criterion 4.1.1 Parsing, which is obsolete. It adds 9 criteria to WCAG 2.1, for 86 in total (31 at A, 24 at AA, 31 at AAA).</p>';
+  ST.rows.nw = nw.map(function (s) { return [s[0], s[1], s[2], s[3]]; });
+}
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab], "Free online WCAG Checklist Generator");
+  if (ST.tab === "au") repTbl(b, ["SC", "Criterion", "Level", "Principle", "Status", "Notes"], ST.rows.au);
+  else if (ST.tab === "sm") { repTbl(b, ["Item", "Value"], ST.sum); if (ST.fails.length) repTbl(b, ["SC", "Criterion", "Level", "Notes"], ST.fails); }
+  else repTbl(b, ["SC", "Criterion", "Level", "Requirement"], ST.rows.nw);
+  repDisc(b, "This checklist is a self-assessment record. It is not an audit, VPAT or certification of WCAG conformance.");
+}
+function recalc() { renderList(); summary(); save(); }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["au", "sm", "nw"], function (n) { ST.tab = n; if (n === "sm") summary(); });
+  $("wDate").value = new Date().toISOString().slice(0, 10); load(); newView();
+  ["wLvl", "wPr", "wSt"].forEach(function (k) { $(k).addEventListener("change", recalc); }); $("wQ").addEventListener("input", renderList);
+  ["wProj", "wUrl", "wWho", "wDate"].forEach(function (k) { $(k).addEventListener("input", function () { summary(); save(); }); });
+  $("wList").addEventListener("change", function (e) { var t = e.target; if (t.getAttribute("data-sc")) { var n = t.getAttribute("data-sc"); ST.rec[n] = [t.value, get(n)[1]]; t.closest(".wRow").style.borderLeftColor = STC[t.value]; progress(); summary(); save(); if ($("wSt").value !== "all") renderList(); } });
+  $("wList").addEventListener("input", function (e) { var t = e.target; if (t.getAttribute("data-note")) { var n = t.getAttribute("data-note"); ST.rec[n] = [get(n)[0], t.value]; summary(); save(); ST.rows.au = ST.rows.au; progress(); } });
+  $("wAllP").addEventListener("click", function () { var vis = inScope().filter(function (s) { return get(s[0])[0] === "n"; }); vis.forEach(function (s) { ST.rec[s[0]] = ["p", get(s[0])[1]]; }); recalc(); msg("Marked " + vis.length + " untested criteria as Pass."); });
+  $("resetBtn").addEventListener("click", function () { if (!ST.armed) { ST.armed = true; $("resetBtn").textContent = "Click again to clear all"; setTimeout(function () { ST.armed = false; $("resetBtn").textContent = "Clear all results"; }, 3500); return; } ST.armed = false; ST.rec = {}; lsDel(KEY); $("wProj").value = $("wUrl").value = $("wWho").value = ""; $("wQ").value = ""; $("wPr").value = "all"; $("wSt").value = "all"; $("resetBtn").textContent = "Clear all results"; recalc(); msg("All results cleared."); });
+  $("wCsv").addEventListener("click", function () { var t = ST.tab; csvDownload(t === "au" ? [["SC", "Criterion", "Level", "Principle", "Status", "Notes"]].concat(ST.rows.au) : t === "sm" ? [["Item", "Value"]].concat(ST.sum).concat([[], ["SC", "Failing criterion", "Level", "Notes"]]).concat(ST.fails) : [["SC", "Criterion", "Level", "Requirement"]].concat(ST.rows.nw), "wcag-22-" + t + ".csv"); });
+  $("wCopy").addEventListener("click", function () { var t = ST.tab; copyText(t === "au" ? ST.rows.au.map(function (r) { return r.join(" | "); }).join("\n") : t === "sm" ? ST.sum.map(function (r) { return r[0] + ": " + r[1]; }).join("\n") + (ST.fails.length ? "\n\nFailures:\n" + ST.fails.map(function (r) { return r.join(" | "); }).join("\n") : "") : ST.rows.nw.map(function (r) { return r.join(" | "); }).join("\n"), $("wCopy")); });
+  $("wPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  recalc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
