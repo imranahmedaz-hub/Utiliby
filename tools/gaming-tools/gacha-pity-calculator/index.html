@@ -1,0 +1,438 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Gacha Pity Calculator Online – Pull Probability &amp; 50/50 Odds</title>
+<meta name="description" content="Free online gacha pity calculator: your chance of the featured 5-star, pulls needed for 50%, 90% or 99%, soft pity and 50/50. Editable rates. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Gacha Pity Calculator Online – Pull Probability &amp; 50/50 Odds">
+<meta property="og:description" content="Free online gacha pity and pull probability calculator with soft pity, hard pity, 50/50 guarantee and currency planning.">
+<meta property="og:url" content="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Gacha Pity Calculator Online – Pull Probability &amp; 50/50 Odds">
+<meta name="twitter:description" content="Free online gacha pity and pull probability calculator with soft pity, hard pity, 50/50 guarantee and currency planning.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Gacha Pity & Pull Probability Calculator","url":"https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/","description":"Free online gacha pity and pull probability calculator: chance of the featured item within your pulls, pulls for 50%, 75%, 90% and 99% chance, soft pity, hard pity, 50/50 guarantee, multiple copies and currency planning.","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Soft pity, hard pity and 50/50 guarantee","Chance within your pulls and currency","Pulls for 50%, 75%, 90% and 99% chance","Multiple featured copies","Rate-per-pull curve","Presets plus fully editable rates","Print, CSV and copy export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is pity in a gacha game?","acceptedAnswer":{"@type":"Answer","text":"Pity is a counter of pulls since your last top-rarity item. When it reaches a threshold, the chance rises (soft pity) or the next pull is guaranteed (hard pity). This calculator models both."}},{"@type":"Question","name":"What is soft pity and hard pity?","acceptedAnswer":{"@type":"Answer","text":"Soft pity is the point where the per-pull chance starts to climb sharply, for example from pull 74 in many 90-pity banners. Hard pity is the pull number where the item is guaranteed, for example pull 90."}},{"@type":"Question","name":"What is the 50/50 mechanic?","acceptedAnswer":{"@type":"Answer","text":"On many banners, the first top-rarity item has a 50% chance of being the featured one. If you lose, the next one is guaranteed to be featured. The calculator tracks whether the guarantee is active."}},{"@type":"Question","name":"How many pulls do I need for a featured 5-star?","acceptedAnswer":{"@type":"Answer","text":"With a typical 90-pity banner, 0.6% base rate, soft pity from 74 and a 50/50, the average is about 93.4 pulls from zero pity, or about 62 pulls if the guarantee is active. For a 90% chance from zero pity without the guarantee, plan for about 155 pulls."}},{"@type":"Question","name":"What is the chance of getting a 5-star in 90 pulls?","acceptedAnswer":{"@type":"Answer","text":"On a 90-pity banner it is 100% by definition, because of hard pity. The chance of the featured item within 90 pulls without a guarantee is about 59%."}},{"@type":"Question","name":"How much currency do I need for a guaranteed featured character?","acceptedAnswer":{"@type":"Answer","text":"The worst case without a guarantee is 180 pulls. At 160 currency per pull that is 28,800. With the guarantee active the worst case is 90 pulls, or 14,400. Enter your own cost per pull."}},{"@type":"Question","name":"How do I calculate my chance with my current gems?","acceptedAnswer":{"@type":"Answer","text":"Enter your currency and the cost per pull. The calculator converts currency to pulls, adds any tickets and expected free pulls, and shows your chance of success."}},{"@type":"Question","name":"Does this work for Genshin Impact, Honkai Star Rail, Zenless Zone Zero and Wuthering Waves?","acceptedAnswer":{"@type":"Answer","text":"Yes for the common structures. Pick a preset or enter your own base rate, soft pity start, increase and hard pity. The numbers are editable because publishers can change them."}},{"@type":"Question","name":"Why does the calculator ask for pity and guarantee status?","acceptedAnswer":{"@type":"Answer","text":"Both change your odds a lot. At high pity your next pull is much more likely to hit, and an active guarantee removes the 50/50 risk."}},{"@type":"Question","name":"What does the rate curve show?","acceptedAnswer":{"@type":"Answer","text":"It shows the chance of a top-rarity item on each pull number. The jump after soft pity starts is why stopping just before it is costly."}},{"@type":"Question","name":"Can I plan for several copies of the featured character?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set featured copies wanted to 2 or more. The calculator tracks pity and the guarantee across all the items you need. Getting two copies from zero pity takes about 187 pulls on average in the default model."}},{"@type":"Question","name":"What is the chance of any 5-star, not just the featured one?","acceptedAnswer":{"@type":"Answer","text":"The results include the chance of any top-rarity item within your pulls. On a 90-pity banner it is 100% by 90 pulls from zero pity."}},{"@type":"Question","name":"Is it better to save pulls or spend them now?","acceptedAnswer":{"@type":"Answer","text":"Pity usually carries over on the same banner type, so saving does not cost you progress if the rules allow it. The calculator shows how much you need for a given chance so you can decide."}},{"@type":"Question","name":"How accurate are the presets?","acceptedAnswer":{"@type":"Answer","text":"They are approximations of publicly reported rates. Check the in-game drop rate page and edit the numbers if they differ."}},{"@type":"Question","name":"Can I use it for a flat rate with no pity?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose the flat rate preset and enter the percentage. The chance of at least one success in n pulls is 1 − (1 − p)ⁿ, and at 1% you need about 69 pulls for a 50% chance."}},{"@type":"Question","name":"Is a lucky streak or an unlucky streak possible?","acceptedAnswer":{"@type":"Answer","text":"Yes. Probabilities describe the long run. Some players will get the item in 10 pulls and others need the maximum."}},{"@type":"Question","name":"Can I print or export?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the result summary, CSV downloads it and copy summary puts it on your clipboard."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. All calculations run in your browser. Nothing is sent to a server or stored."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Gaming Tools","item":"https://utiliby.com/tools/gaming-tools/"},{"@type":"ListItem","position":3,"name":"Gacha Pity & Pull Probability Calculator","item":"https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/gaming-tools/">Gaming Tools</a> › Gacha Pity Calculator</nav>
+<h1 class="noembed">Free Online Gacha Pity &amp; Pull Probability Calculator</h1>
+<p class="lead noembed">Free online gacha pity calculator: enter your pity, guarantee status and pulls to see your chance of the featured 5-star, the pulls and currency needed for a 50%, 90% or 99% chance and how soft pity changes each pull. Works for Genshin-style, Star Rail-style, Zenless Zone Zero-style and Wuthering Waves-style banners, or any custom rates. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/" target="_blank" rel="noopener">Gacha Pity &amp; Pull Probability Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Gacha pity and pull probability calculator">
+<div class="dt-hero noembed">
+<h2>Free Gacha Pity &amp; Pull Probability Calculator Online</h2>
+<p>Find your chance of landing the featured 5-star within your pulls, how many pulls give a 50%, 90% or 99% chance, and how much currency to save. Works for any game: edit the rates. Free, private, no sign-up.</p>
+</div>
+<div class="dt-panel">
+<h3>1. Banner rates</h3><div class="dt-row4"><div style="grid-column:1/-1"><label for="gcPre">Banner preset</label><select id="gcPre"></select></div></div><div class="dt-row4"><div><label for="gcBase">Base rate per pull (%)</label><input type="number" id="gcBase" min="0.0001" max="100" step="0.05"></div><div><label for="gcSoft">Soft pity starts at pull</label><input type="number" id="gcSoft" min="1" max="1000" step="1"></div><div><label for="gcInc">Rate increase per pull in soft pity (%)</label><input type="number" id="gcInc" min="0" max="100" step="0.1"></div><div><label for="gcHard">Hard pity (guaranteed by pull)</label><input type="number" id="gcHard" min="1" max="1000" step="1"></div></div><div class="dt-row4"><div><label for="gcFeat">Chance the item is the featured one (%)</label><input type="number" id="gcFeat" min="0.01" max="100" step="1"></div><div><label for="gcGuar">Next top item guaranteed featured?</label><select id="gcGuar"><option value="no">No (50/50 still active)</option><option value="yes">Yes (lost the last 50/50)</option></select></div><div><label for="gcPity">Your current pity (pulls since last top item)</label><input type="number" id="gcPity" min="0" max="999" step="1"></div><div><label for="gcCopies">Featured copies wanted</label><input type="number" id="gcCopies" min="1" max="10" step="1"></div></div><h3>2. Your pulls</h3><div class="dt-row4"><div><label for="gcOwned">Pull tickets you own</label><input type="number" id="gcOwned" min="0" step="1"></div><div><label for="gcCur">Currency you own (gems)</label><input type="number" id="gcCur" min="0" step="100"></div><div><label for="gcCost">Currency cost per pull</label><input type="number" id="gcCost" min="1" step="1"></div><div><label for="gcDaily">Pulls you earn per day (free)</label><input type="number" id="gcDaily" min="0" step="0.5"></div></div><div class="dt-row4"><div><label for="gcDays">Days until the banner ends</label><input type="number" id="gcDays" min="0" max="3650" step="1"></div></div>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-res" aria-pressed="true">Results</button>
+<button type="button" class="dt-tab" id="dtTabBtn-tab" aria-pressed="false">Pull table</button>
+<button type="button" class="dt-tab" id="dtTabBtn-rates" aria-pressed="false">Rate curve</button>
+</div>
+<div id="dtTab-res"><div id="gcRes"></div></div>
+<div id="dtTab-tab" hidden><div id="gcTab"></div></div>
+<div id="dtTab-rates" hidden><div id="gcRates"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="gcPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="gcCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="gcCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online gacha calculator estimates odds from the rates you enter. Games change their rates and rules, so always check the in-game drop rate page. It is for planning and entertainment only and is not affiliated with any game publisher.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Gacha Pity &amp; Pull Probability Calculator. https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Gacha Pity &amp; Pull Probability Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/gaming-tools/gacha-pity-calculator/"&gt;Gacha Pity &amp; Pull Probability Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What a gacha pity and pull probability calculator does</a></li><li><a href="#how">How to use this calculator</a></li><li><a href="#how-pity">How pity systems work</a></li><li><a href="#numbers">Worked example: 100 pulls on a 90-pity character banner</a></li><li><a href="#planning">Planning your pulls and saving</a></li><li><a href="#rates">Understanding rates and why numbers differ by game</a></li><li><a href="#responsible">Spending responsibly</a></li><li><a href="#tips">Tips for reading the results</a></li><li><a href="#mistakes">Common gacha probability mistakes</a></li><li><a href="#costs">Expected cost of one, two and three copies</a></li><li><a href="#soft">Why soft pity changes how you plan</a></li><li><a href="#mechanics">Mechanics this calculator does not model</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What a gacha pity and pull probability calculator does</h2>
+<p>Gacha games sell randomised pulls, and the rules behind them are more mathematical than most players realise. A <b>gacha pity calculator</b> turns the base rate, soft pity, hard pity and the 50/50 system into clear answers: <b>how likely am I to get the character I want with the pulls I have, and how many pulls do I need to feel safe?</b></p><p>This free online tool models each pull exactly. It tracks your pity counter and whether the next top-rarity item is guaranteed to be the featured one, then computes the chance of success for any number of pulls. You get your chance with the pulls you own, the average number of pulls, the pulls needed for a <b>50%, 75%, 90% and 99%</b> chance, the currency that represents, and a rate curve showing how soft pity lifts each pull. It works for Genshin-style, Star Rail-style, Zenless Zone Zero-style and Wuthering Waves-style banners and any custom banner you define. It runs in your browser.</p><figure class="dt-fig"><svg viewBox="0 0 640 210" width="100%" role="img" aria-label="Pull rate stays low, rises in soft pity and reaches 100 percent at hard pity"><title>How pity changes your chance per pull</title>
+<line x1="40" y1="170" x2="620" y2="170" stroke="currentColor" opacity=".3"/>
+<polyline fill="none" stroke="#0369a1" stroke-width="3" stroke-linecap="round" points="40,166 400,166 420,150 440,128 460,104 480,78 500,50 520,30 530,24"><animate attributeName="stroke-dasharray" from="0 900" to="900 0" dur="2.2s" fill="freeze"/></polyline>
+<circle class="dt-pop" cx="530" cy="24" r="6" fill="#16a34a"/>
+<g font-size="11" fill="currentColor" opacity=".85"><text x="46" y="188">Pull 1</text><text x="380" y="188" text-anchor="middle">Soft pity (about 74)</text><text x="530" y="188" text-anchor="middle">Hard pity (90)</text><text x="180" y="156" text-anchor="middle">Base rate (about 0.6%)</text><text x="548" y="28">100%</text></g>
+<g font-size="12" font-weight="700" fill="currentColor"><text x="40" y="18">Chance of a top-rarity item on each pull</text></g></svg><figcaption>Most of the risk is front-loaded; once soft pity starts, each pull is far more likely to hit.</figcaption></figure>
+<h2 id="how">How to use this calculator</h2>
+<ol><li><b>Pick a banner preset</b> or choose custom and enter the base rate, soft pity start, increase per pull and hard pity from the game's drop rate page.</li><li><b>Enter your state.</b> Your current pity, whether you lost the last 50/50, and how many featured copies you want.</li><li><b>Enter your resources.</b> Pull tickets, currency and the cost per pull. Add expected free pulls per day and days left to include future income.</li><li><b>Read the results.</b> See your chance, the average pulls and the pulls for 50%, 75%, 90% and 99% chances.</li><li><b>Open the pull table and rate curve</b> to see the odds at specific pull counts and the shape of soft pity.</li></ol>
+<h2 id="how-pity">How pity systems work</h2>
+<table><tr><th>Term</th><th>What it means</th><th>Typical 90-pity banner</th></tr><tr><td>Base rate</td><td>Chance per pull before soft pity</td><td>about 0.6%</td></tr><tr><td>Soft pity</td><td>Chance rises on each pull</td><td>from about pull 74</td></tr><tr><td>Hard pity</td><td>Item guaranteed</td><td>pull 90</td></tr><tr><td>50/50</td><td>Chance the item is the featured one</td><td>50%, then a guarantee</td></tr></table><p>Because the rate jumps in soft pity, the top-rarity item usually arrives between pulls 74 and 90. The average for any top-rarity item is around 62 pulls, which is much higher than the 167 pulls you would expect from the base rate alone. Pity counters generally persist between banners of the same type, but the rules differ by game and by banner, so confirm them in the game.</p>
+<h2 id="numbers">Worked example: 100 pulls on a 90-pity character banner</h2>
+<p>With zero pity and no guarantee, 100 pulls (16,000 currency at 160 each) gives a chance of about <b>63%</b> of getting the featured character. The chance of getting <i>some</i> 5-star is 100%, but about half the time it will be the wrong one and you would need a guarantee to finish. The average cost is 93.4 pulls; 50% needs 80 pulls, 75% needs 135, 90% needs 155 and 99% needs 161. With the guarantee active, the average is 62 pulls, a 50% chance needs 76 pulls and a 90% chance needs 80.</p><p>Two copies of the featured character cost about 187 pulls on average and 265 pulls for a 90% chance, which at 160 currency each is over 42,000. This is the kind of number worth knowing before you decide how much to save.</p>
+<h2 id="planning">Planning your pulls and saving</h2>
+<ul><li>Work out your total pulls: tickets + currency ÷ cost + free pulls until the banner ends.</li><li>Compare that total with the pulls needed for 50%, 90% and 99% and decide how much risk you accept.</li><li>If your chance is low, check whether saving for a later banner is more efficient for your goals.</li><li>Treat the guarantee as an asset: with it active, your cost is lower and your worst case is hard pity.</li></ul>
+<h2 id="rates">Understanding rates and why numbers differ by game</h2>
+<p>Games differ in more than the base rate. Some have two-stage guarantees, bonus rules after losing several 50/50s, multiple rarity levels, weapon banners with different curves and a limited number of guaranteed pulls across banners. This calculator models the most common structure: a base rate, a linear soft pity, a hard pity and a single featured guarantee. If a game uses a more complicated system, treat the results as an approximation and use the editable rates to match it as best you can.</p>
+<h2 id="responsible">Spending responsibly</h2>
+<p>Pull odds are probabilities, not promises. Set a budget before you start, do not chase losses and remember that you can reach the guaranteed outcome only by spending the amount shown. If you are worried about your spending, consider spending limits on your account or device and speak to someone you trust.</p>
+<h2 id="tips">Tips for reading the results</h2>
+<ul><li>Look at the 90% and 99% pull counts rather than the average if you want certainty.</li><li>Check your pity before and after each banner to keep the starting state accurate.</li><li>Use the rate curve to see where the big jump begins.</li><li>Edit the featured chance for banners that use 75/25 or other splits.</li></ul>
+<h2 id="mistakes">Common gacha probability mistakes</h2>
+<ul><li><b>Using the base rate only.</b> Ignoring soft pity makes the odds look far worse than they are.</li><li><b>Ignoring the 50/50.</b> The first 5-star is the featured character only half the time.</li><li><b>Treating a single pull as due.</b> Each pull's chance depends on pity, not on earlier bad luck except through the counter.</li><li><b>Forgetting cost per pull.</b> Always convert pulls to currency to see the true price.</li></ul>
+<h2 id="costs">Expected cost of one, two and three copies</h2>
+<p>On a typical 90-pity character banner with a 50/50, starting from zero pity without a guarantee, one featured copy takes about 93.4 pulls on average, two copies take about 187 and three take about 280. With the guarantee already active, the first copy takes about 62 pulls. At 160 currency per pull, those averages are about 14,900, 29,900 and 44,900 currency. These are averages: you may need far less or as much as 180 pulls for the first copy in the worst case. Plan with the 90% and 99% figures if you cannot afford to fall short.</p>
+<h2 id="soft">Why soft pity changes how you plan</h2>
+<p>Because the rate climbs steeply from around pull 74, the pulls before soft pity are the least productive and the pulls after it are the most productive. If your pity is 60, the next 13 pulls are still at the base rate, but pulls 14 to 30 are the most valuable you will make. This is why sunk pity matters: a banner you have already invested 70 pulls in is worth far more to finish than a fresh banner with the same remaining budget. The rate curve tab shows the shape for any numbers you enter.</p>
+<h2 id="mechanics">Mechanics this calculator does not model</h2>
+<p>Some games add extra systems on top of the basic soft pity and 50/50: a stronger guarantee after several lost 50/50s, a second pity counter for secondary items, a limit on the number of pulls per banner, shared pity between banners or bonus items at milestone pulls. If your game uses one of these, change the featured chance and the guarantee setting to approximate it, and treat the result as an estimate rather than an exact figure.</p>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs in your browser. The numbers you enter are not sent to a server and are not stored. Reloading the page returns the example. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is pity in a gacha game?</summary><p>Pity is a counter of pulls since your last top-rarity item. When it reaches a threshold, the chance rises (soft pity) or the next pull is guaranteed (hard pity). This calculator models both.</p></details><details><summary>What is soft pity and hard pity?</summary><p>Soft pity is the point where the per-pull chance starts to climb sharply, for example from pull 74 in many 90-pity banners. Hard pity is the pull number where the item is guaranteed, for example pull 90.</p></details><details><summary>What is the 50/50 mechanic?</summary><p>On many banners, the first top-rarity item has a 50% chance of being the featured one. If you lose, the next one is guaranteed to be featured. The calculator tracks whether the guarantee is active.</p></details><details><summary>How many pulls do I need for a featured 5-star?</summary><p>With a typical 90-pity banner, 0.6% base rate, soft pity from 74 and a 50/50, the average is about 93.4 pulls from zero pity, or about 62 pulls if the guarantee is active. For a 90% chance from zero pity without the guarantee, plan for about 155 pulls.</p></details><details><summary>What is the chance of getting a 5-star in 90 pulls?</summary><p>On a 90-pity banner it is 100% by definition, because of hard pity. The chance of the featured item within 90 pulls without a guarantee is about 59%.</p></details><details><summary>How much currency do I need for a guaranteed featured character?</summary><p>The worst case without a guarantee is 180 pulls. At 160 currency per pull that is 28,800. With the guarantee active the worst case is 90 pulls, or 14,400. Enter your own cost per pull.</p></details><details><summary>How do I calculate my chance with my current gems?</summary><p>Enter your currency and the cost per pull. The calculator converts currency to pulls, adds any tickets and expected free pulls, and shows your chance of success.</p></details><details><summary>Does this work for Genshin Impact, Honkai Star Rail, Zenless Zone Zero and Wuthering Waves?</summary><p>Yes for the common structures. Pick a preset or enter your own base rate, soft pity start, increase and hard pity. The numbers are editable because publishers can change them.</p></details><details><summary>Why does the calculator ask for pity and guarantee status?</summary><p>Both change your odds a lot. At high pity your next pull is much more likely to hit, and an active guarantee removes the 50/50 risk.</p></details><details><summary>What does the rate curve show?</summary><p>It shows the chance of a top-rarity item on each pull number. The jump after soft pity starts is why stopping just before it is costly.</p></details><details><summary>Can I plan for several copies of the featured character?</summary><p>Yes. Set featured copies wanted to 2 or more. The calculator tracks pity and the guarantee across all the items you need. Getting two copies from zero pity takes about 187 pulls on average in the default model.</p></details><details><summary>What is the chance of any 5-star, not just the featured one?</summary><p>The results include the chance of any top-rarity item within your pulls. On a 90-pity banner it is 100% by 90 pulls from zero pity.</p></details><details><summary>Is it better to save pulls or spend them now?</summary><p>Pity usually carries over on the same banner type, so saving does not cost you progress if the rules allow it. The calculator shows how much you need for a given chance so you can decide.</p></details><details><summary>How accurate are the presets?</summary><p>They are approximations of publicly reported rates. Check the in-game drop rate page and edit the numbers if they differ.</p></details><details><summary>Can I use it for a flat rate with no pity?</summary><p>Yes. Choose the flat rate preset and enter the percentage. The chance of at least one success in n pulls is 1 − (1 − p)ⁿ, and at 1% you need about 69 pulls for a 50% chance.</p></details><details><summary>Is a lucky streak or an unlucky streak possible?</summary><p>Yes. Probabilities describe the long run. Some players will get the item in 10 pulls and others need the maximum.</p></details><details><summary>Can I print or export?</summary><p>Yes. Print / save as PDF prints only the result summary, CSV downloads it and copy summary puts it on your clipboard.</p></details><details><summary>Is my data private?</summary><p>Yes. All calculations run in your browser. Nothing is sent to a server or stored.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Publicly reported drop rate and pity information published by game developers on in-game rate pages (rates change and should be confirmed in the game).</li><li>Community analyses of pity and guarantee systems in gacha games, which describe the standard soft pity and 50/50 structure.</li><li>Standard probability theory for Markov chains and geometric distributions.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online gacha pity and pull probability calculator is provided for entertainment and planning only. Results are mathematical estimates based on the rates, pity rules and numbers that you enter. Presets use publicly reported approximations of drop rates and pity systems, which publishers can change at any time and which may be simplified here (for example, extra guarantee systems, capturing radiance, epitomized paths and bonus rules are not modelled). Always check the official in-game drop rate information. A probability does not predict the result of any individual pull. Spending money on randomised in-game purchases carries risk, and nothing here encourages spending. If spending on games is affecting your finances or wellbeing, please seek support. Game and product names are used only to describe common rate structures and are trademarks of their respective owners. This site is not affiliated with or endorsed by any game publisher.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+function vbars(vals, labels, hi, fmt) {
+  /* vertical bars; hi(i) -> true to highlight */
+  var n = vals.length, W = 640, H = 230, mx = 0; vals.forEach(function (v) { mx = Math.max(mx, v); }); if (!mx) mx = 1;
+  var bw = Math.max(1.5, (W - 64) / n), s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Distribution chart"><title>Distribution chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var y = 20 + (1 - f) * 150; s += '<line x1="48" x2="' + (W - 8) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="44" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(mx * f)) + "</text>"; });
+  vals.forEach(function (v, i) { var h = v / mx * 150, x = 52 + i * ((W - 64) / n); s += '<rect class="dt-bar" x="' + x.toFixed(1) + '" y="' + (170 - h).toFixed(1) + '" width="' + Math.max(1, bw - (n > 60 ? 0.5 : 2)).toFixed(1) + '" height="' + h.toFixed(1) + '" rx="' + (n > 60 ? 0 : 2) + '" fill="' + (hi && hi(i) ? "#16a34a" : "#0369a1") + '"><title>' + esc(labels[i]) + ": " + esc(fmt(v)) + "</title></rect>"; });
+  var step = Math.max(1, Math.ceil(n / 14));
+  labels.forEach(function (l, i) { if (i % step === 0) s += '<text x="' + (52 + i * ((W - 64) / n) + bw / 2).toFixed(1) + '" y="190" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + esc(String(l)) + "</text>"; });
+  return s + "</svg>";
+}
+
+/* ---------- gacha engine ---------- */
+function gRate(o, c) { /* chance the next pull is a top-rarity item when c pulls have passed since the last one */
+  if (o.flat) return o.base; var n = c + 1; if (n >= o.hard) return 1; if (n >= o.soft) return Math.min(1, o.base + o.inc * (n - o.soft + 1)); return o.base;
+}
+function gDist(o) {
+  /* returns cum[t] = P(at least o.copies featured items within t pulls), t = 0..T */
+  var H = o.hard, K = o.copies, T = o.flat ? Math.min(30000, Math.ceil(K * 14 / o.base)) : Math.min(5000, 2 * H * K), cum = new Float64Array(T + 1);
+  var idx = function (c, g, j) { return (c * 2 + g) * K + j; };
+  var cur = new Float64Array(H * 2 * K), nxt = new Float64Array(H * 2 * K), done = 0, c0 = Math.min(Math.max(0, o.pity), H - 1);
+  cur[idx(c0, o.guar ? 1 : 0, 0)] = 1; cum[0] = 0;
+  for (var t = 1; t <= T; t++) {
+    nxt.fill(0);
+    for (var c = 0; c < H; c++) {
+      var p = gRate(o, c);
+      for (var g = 0; g < 2; g++) for (var j = 0; j < K; j++) {
+        var m = cur[idx(c, g, j)]; if (!m) continue;
+        if (p < 1 && (o.flat || c + 1 < H)) nxt[idx(o.flat ? 0 : c + 1, g, j)] += m * (1 - p);
+        var hit = m * p, win, lose;
+        if (g === 1) { win = hit; lose = 0; } else { win = hit * o.feat; lose = hit - win; }
+        if (win > 0) { if (j + 1 >= K) done += win; else nxt[idx(0, 0, j + 1)] += win; }
+        if (lose > 0) nxt[idx(0, 1, j)] += lose;
+      }
+    }
+    var tmp = cur; cur = nxt; nxt = tmp; cum[t] = Math.min(1, done);
+  }
+  return cum;
+}
+function gAny(o, n) { var q = 1, c = Math.min(Math.max(0, o.pity), o.hard - 1); for (var i = 0; i < n; i++) { q *= 1 - gRate(o, c); if (!o.flat) { c++; if (c >= o.hard) break; } } return 1 - q; }
+function gPct(cum, q) { for (var t = 0; t < cum.length; t++) if (cum[t] >= q - 1e-12) return t; return null; }
+function gMean(cum) { var s = 0; for (var t = 0; t < cum.length - 1; t++) s += 1 - cum[t]; return s; }
+
+/* ---------- gacha UI ---------- */
+var ST = { o: null, cum: null, N: 0, rows: [] };
+var PRE = { gen: ["Genshin Impact / Honkai Star Rail / Zenless Zone Zero — 5★ character banner (90 pity, 50/50)", { base: 0.6, soft: 74, inc: 6, hard: 90, feat: 50 }], wpn: ["Weapon-style banner (80 pity, soft pity 63, 75% featured)", { base: 0.7, soft: 63, inc: 7, hard: 80, feat: 75 }], lc: ["Light cone / W-Engine style banner (80 pity, 75% featured)", { base: 0.8, soft: 66, inc: 7, hard: 80, feat: 75 }], ww: ["Wuthering Waves style banner (80 pity, 50/50, approximate)", { base: 0.8, soft: 66, inc: 4, hard: 80, feat: 50 }], flat: ["Flat rate, no pity (simple percentage)", { base: 1, soft: 999, inc: 0, hard: 999, feat: 100 }], custom: ["Custom: use the numbers below", null] };
+var DEF = { gcPity: 0, gcCopies: 1, gcOwned: 0, gcCur: 16000, gcCost: 160, gcDaily: 0, gcDays: 0 };
+function readO() {
+  var o = { base: nv("gcBase", 0.6, 0.0001, 100) / 100, soft: Math.round(nv("gcSoft", 74, 1, 1000)), inc: nv("gcInc", 6, 0, 100) / 100, hard: Math.round(nv("gcHard", 90, 1, 1000)), feat: nv("gcFeat", 50, 0.01, 100) / 100, copies: Math.round(nv("gcCopies", 1, 1, 10)), guar: $("gcGuar").value === "yes", pity: Math.round(nv("gcPity", 0, 0, 999)) };
+  var cost = nv("gcCost", 160, 1); o.cost = cost; o.pity = Math.min(o.pity, o.hard - 1);
+  o.pulls = Math.round(nv("gcOwned", 0, 0, 100000)) + Math.floor(nv("gcCur", 0, 0, 1e9) / cost) + Math.round(nv("gcDaily", 0, 0, 1000) * nv("gcDays", 0, 0, 3650));
+  if (o.hard >= 500) { o.flat = true; o.hard = 2; o.pity = 0; o.soft = 9999; } return o;
+}
+function pct(p) { return pc(p * 100, p < 0.01 ? 2 : 1); }
+function calc() {
+  var o = readO(); ST.o = o; var K = o.copies, cum = gDist(o), T = cum.length - 1, N = Math.min(o.pulls, T); ST.cum = cum; ST.N = N;
+  var pn = cum[N], any = gAny(o, o.pulls), mean = gMean(cum), p50 = gPct(cum, 0.5), p75 = gPct(cum, 0.75), p90 = gPct(cum, 0.9), p99 = gPct(cum, 0.99), worst = o.flat ? (gPct(cum, 0.9999) || T) : ((o.feat < 1 ? 2 : 1) * K * o.hard - o.pity - (o.guar && o.feat < 1 ? o.hard : 0));
+  worst = Math.min(worst, T);
+  var label = K === 1 ? "the featured item" : K + " copies of the featured item";
+  var h = '<div class="dt-result"><div class="dt-label">Chance of getting ' + label + " within " + o.pulls.toLocaleString() + ' pulls</div><div class="dt-big">' + pct(o.pulls >= T ? 1 : pn) + '</div><p class="dt-sum">You start at pity ' + o.pity + (o.guar ? " with the next top-rarity item guaranteed to be the featured one" : " without a guarantee") + ". On average you need about <b>" + mean.toFixed(1) + "</b> pulls (" + fmN(mean * o.cost) + " currency). For a 90% chance, plan on <b>" + p90 + "</b> pulls.</p></div>";
+  h += '<div class="dt-stats">' + tile("Chance with your pulls", pct(o.pulls >= T ? 1 : pn), o.pulls.toLocaleString() + " pulls", pn >= 0.9 ? "ok" : pn >= 0.5 ? "warn" : "err") + tile("Any top-rarity item", pct(any), "in " + o.pulls.toLocaleString() + " pulls") + tile("Average pulls needed", mean.toFixed(1), fmN(mean * o.cost) + " currency") + tile("50% chance at", p50 + " pulls", fmN(p50 * o.cost) + " currency") + tile("75% chance at", p75 + " pulls", fmN(p75 * o.cost) + " currency") + tile("90% chance at", p90 + " pulls", fmN(p90 * o.cost) + " currency") + tile("99% chance at", p99 + " pulls", fmN(p99 * o.cost) + " currency") + tile(o.flat ? "99.99% chance at" : "Worst case", worst + " pulls", o.flat ? "no guarantee" : "guaranteed by then") + "</div>";
+  var step = Math.max(1, Math.ceil(worst / 60)), vals = [], labs = []; for (var t = 0; t <= worst; t += step) { vals.push(cum[t]); labs.push(t); }
+  h += '<h3 class="dt-lbl">Chance of success by number of pulls (green bars are within your pulls)</h3><div class="dt-diagram">' + vbars(vals, labs, function (i) { return labs[i] <= o.pulls; }, function (x) { return pc(x * 100, 0); }) + "</div>";
+  $("gcRes").innerHTML = h;
+  var rows = [], marks = [10, 20, 30, 40, 50, 60, 70, 80, 90, 100, 120, 140, 160, 180, 200, 250, 300, 400, 500]; marks.forEach(function (m) { if (m <= worst + 20 && m <= T) rows.push([m, cum[m], m * o.cost]); });
+  var tb = '<div class="dt-scroll"><table class="dt-table"><tr><th>Pulls</th><th>Currency</th><th>Chance of ' + (K === 1 ? "the featured item" : K + " copies") + "</th></tr>" + rows.map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + fmN(r[2]) + "</td><td>" + pct(r[1]) + "</td></tr>"; }).join("") + "</table></div>";
+  var tb2 = ""; if (K > 1 || true) { tb2 = '<h3 class="dt-lbl">Pulls needed for each copy (from your starting pity)</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Copies</th><th>Average pulls</th><th>50%</th><th>90%</th></tr>'; for (var k = 1; k <= Math.min(7, Math.max(K, 3)); k++) { var c2 = gDist(Object.assign({}, o, { copies: k })); tb2 += "<tr><td>" + k + "</td><td>" + gMean(c2).toFixed(1) + "</td><td>" + gPct(c2, 0.5) + "</td><td>" + gPct(c2, 0.9) + "</td></tr>"; } tb2 += "</table></div>"; }
+  $("gcTab").innerHTML = '<h3 class="dt-lbl">Chance by pulls spent</h3>' + tb + tb2;
+  var rv = [], rl = []; for (var c = 0; c < (o.flat ? 90 : Math.min(o.hard, 200)); c++) { rv.push(gRate(o, c)); rl.push(c + 1); }
+  $("gcRates").innerHTML = '<p class="dt-hint">The chance that each single pull gives a top-rarity item. It stays at the base rate, climbs steeply in soft pity and reaches 100% at hard pity.</p><div class="dt-diagram">' + vbars(rv, rl, function (i) { return !o.flat && rl[i] >= o.soft; }, function (x) { return pc(x * 100, 0); }) + "</div>";
+  ST.rows = [["Banner model", "Base " + pc(o.base * 100, 2) + ", soft pity from " + o.soft + ", +" + pc(o.inc * 100, 1) + " per pull, hard pity " + o.hard + ", featured " + pc(o.feat * 100, 0)], ["Starting pity", String(o.pity)], ["Guaranteed featured", o.guar ? "Yes" : "No"], ["Copies wanted", String(K)], ["Pulls available", String(o.pulls)], ["Chance within your pulls", pct(o.pulls >= T ? 1 : pn)], ["Any top-rarity item", pct(any)], ["Average pulls", mean.toFixed(1)], ["50% chance", p50 + " pulls"], ["75% chance", p75 + " pulls"], ["90% chance", p90 + " pulls"], ["99% chance", p99 + " pulls"], ["Currency for 90%", fmN(p90 * o.cost)]];
+}
+function fmN(x) { return Math.round(x).toLocaleString(); }
+function fillReport() { var b = repBox(); repHead(b, "Gacha pull probability", "Free online Gacha Pity & Pull Probability Calculator"); repTbl(b, ["Item", "Value"], ST.rows); repDisc(b, "Estimate based on the rates you entered. Games change rates and rules; check the in-game drop rate page. Not affiliated with any game publisher."); }
+function applyPre(k) { var p = PRE[k][1]; if (!p) return; $("gcBase").value = p.base; $("gcSoft").value = p.soft; $("gcInc").value = p.inc; $("gcHard").value = p.hard; $("gcFeat").value = p.feat; }
+function setDef() { for (var k in DEF) $(k).value = DEF[k]; $("gcGuar").value = "no"; $("gcPre").value = "gen"; applyPre("gen"); }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["res", "tab", "rates"]);
+  var sel = $("gcPre"); for (var k in PRE) { var op = document.createElement("option"); op.value = k; op.textContent = PRE[k][0]; sel.appendChild(op); }
+  setDef();
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", function () { if (e.id !== "gcPre" && /^gc(Base|Soft|Inc|Hard|Feat)$/.test(e.id)) $("gcPre").value = "custom"; calc(); }); e.addEventListener("change", function () { if (e.id === "gcPre") applyPre(e.value); calc(); }); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("gcCsv").addEventListener("click", function () { csvDownload([["Item", "Value"]].concat(ST.rows), "gacha-pull-probability.csv"); });
+  $("gcCopy").addEventListener("click", function () { copyText("Gacha pull probability\n" + ST.rows.map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online Gacha Pity & Pull Probability Calculator at utiliby.com", $("gcCopy")); });
+  $("gcPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,421 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Elo Rating Calculator Online – Win Rate &amp; Rank Climb Planner</title>
+<meta name="description" content="Free online Elo rating calculator with win probability, wins needed for a target win rate and games to climb rank. Instant results, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Elo Rating Calculator Online – Win Rate &amp; Rank Climb Planner">
+<meta property="og:description" content="Free online Elo rating calculator, win rate planner and rank climb calculator for chess and competitive games.">
+<meta property="og:url" content="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Elo Rating Calculator Online – Win Rate &amp; Rank Climb Planner">
+<meta name="twitter:description" content="Free online Elo rating calculator, win rate planner and rank climb calculator for chess and competitive games.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Elo Rating & Win Rate Calculator","url":"https://utiliby.com/tools/gaming-tools/elo-rating-calculator/","description":"Free online Elo rating calculator: win probability and rating change, wins in a row needed for a target win rate, games needed at a given win rate and rank climb planner with days to target.","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Elo expected score and rating change for win, draw or loss","Rating lead needed for a win chance","Wins in a row for a target win rate","Games needed at a future win rate","Rank climb: games and days to target","Break-even win rate","Print, CSV and copy export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Elo rating system?","acceptedAnswer":{"@type":"Answer","text":"Elo is a method for rating players by comparing expected and actual results. It was created for chess by Arpad Elo and is now used, or adapted, for many games and sports. The higher your rating compared with your opponent's, the more likely you are expected to win."}},{"@type":"Question","name":"How do you calculate Elo rating change?","acceptedAnswer":{"@type":"Answer","text":"New rating = old rating + K × (actual score − expected score). Actual score is 1 for a win, 0.5 for a draw and 0 for a loss. Expected score is 1 ÷ (1 + 10^((opponent − yours) ÷ 400))."}},{"@type":"Question","name":"What is the Elo expected score formula?","acceptedAnswer":{"@type":"Answer","text":"E = 1 / (1 + 10^((Rb − Ra) / 400)). A player rated 100 points higher has an expected score of about 64%, and 200 points higher about 76%."}},{"@type":"Question","name":"What is the K-factor?","acceptedAnswer":{"@type":"Answer","text":"K controls how fast ratings change. A higher K (such as 32) moves ratings more after each game and is used for new or less established players. A lower K (such as 10 or 16) is used for stable ratings."}},{"@type":"Question","name":"What does a 100-point rating difference mean?","acceptedAnswer":{"@type":"Answer","text":"On the standard 400 scale, the higher-rated player is expected to score about 64% in the long run. At 200 points it is about 76%, and at 400 points about 91%."}},{"@type":"Question","name":"How many wins in a row do I need to reach a target win rate?","acceptedAnswer":{"@type":"Answer","text":"Solve (W + x) ÷ (G + x) = target. For example, with 45 wins in 100 games you need 23 straight wins to reach a 55% win rate. The win rate planner calculates this."}},{"@type":"Question","name":"How many games to reach a target win rate at a given win rate?","acceptedAnswer":{"@type":"Answer","text":"If you win a share q of future games, n = (T × G − W) ÷ (q − T). From 45 wins in 100 games, a 55% target at a 65% future win rate takes 100 games."}},{"@type":"Question","name":"Why does my win rate rise so slowly?","acceptedAnswer":{"@type":"Answer","text":"The more games you have played, the more weight your past record carries. Each extra game moves the average by less."}},{"@type":"Question","name":"How many games to climb ranked?","acceptedAnswer":{"@type":"Answer","text":"Divide the points you need by the average points per game. Average points per game = win rate × points per win − (1 − win rate) × points per loss. The rank climb tab does this and converts it to days."}},{"@type":"Question","name":"What win rate do I need to climb?","acceptedAnswer":{"@type":"Answer","text":"You must beat the break-even win rate, which is points per loss ÷ (points per win + points per loss). With +22 and −20 that is 47.6%."}},{"@type":"Question","name":"Does this work for League of Legends, Valorant or chess?","acceptedAnswer":{"@type":"Answer","text":"The formulas are standard, but each game has its own system. For chess-style Elo use the Elo tab. For ranked ladders, enter the typical points per win and loss on the rank climb tab."}},{"@type":"Question","name":"What is a good win rate?","acceptedAnswer":{"@type":"Answer","text":"In a balanced matchmaking system most players hover near 50%. A sustained 55% to 60% is strong, and above 60% over many games is exceptional."}},{"@type":"Question","name":"Can I use a different scale than 400?","acceptedAnswer":{"@type":"Answer","text":"Yes. The scale field changes how steeply win probability rises with rating difference. 400 is the standard in chess."}},{"@type":"Question","name":"What happens if I lose to a lower-rated player?","acceptedAnswer":{"@type":"Answer","text":"You lose more points because a loss was less expected. Use the loss result with a lower opponent rating to see the exact change."}},{"@type":"Question","name":"Does Elo account for draws?","acceptedAnswer":{"@type":"Answer","text":"Yes, a draw counts as half a point for each player."}},{"@type":"Question","name":"What is the difference between Elo and Glicko or TrueSkill?","acceptedAnswer":{"@type":"Answer","text":"Glicko and TrueSkill also estimate how uncertain a rating is, so new players move faster. Elo uses one number and a fixed K-factor."}},{"@type":"Question","name":"Can I print or export?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the active tab's results, CSV downloads them and copy summary puts them on your clipboard."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser. Nothing is sent to a server or stored."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Gaming Tools","item":"https://utiliby.com/tools/gaming-tools/"},{"@type":"ListItem","position":3,"name":"Elo Rating & Win Rate Calculator","item":"https://utiliby.com/tools/gaming-tools/elo-rating-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/gaming-tools/">Gaming Tools</a> › Elo Rating & Win Rate Calculator</nav>
+<h1 class="noembed">Free Online Elo Rating &amp; Win Rate Rank Climb Calculator</h1>
+<p class="lead noembed">Free online Elo rating calculator: find your win probability and rating change, how many wins in a row you need for a target win rate, and how many games a rank climb will take at your win rate. Includes tables, charts and a printable summary. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/" target="_blank" rel="noopener">Elo Rating &amp; Win Rate Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Elo rating and win rate calculator">
+<div class="dt-hero noembed">
+<h2>Free Elo Rating &amp; Win Rate Rank Climb Calculator Online</h2>
+<p>Calculate Elo rating changes and win probability, find how many wins in a row you need to reach a win rate, and plan how many games a rank climb will take. Free, private, no sign-up.</p>
+</div>
+<div class="dt-actions"><button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button></div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-elo" aria-pressed="true">Elo rating</button>
+<button type="button" class="dt-tab" id="dtTabBtn-wr" aria-pressed="false">Win rate planner</button>
+<button type="button" class="dt-tab" id="dtTabBtn-rank" aria-pressed="false">Rank climb</button>
+</div>
+<div id="dtTab-elo"><div class="dt-panel"><div class="dt-row4"><div><label for="elA">Your rating</label><input type="number" id="elA" step="10"></div><div><label for="elB">Opponent rating</label><input type="number" id="elB" step="10"></div><div><label for="elK">K-factor (volatility)</label><input type="number" id="elK" min="0" step="1"></div><div><label for="elRes">Your result</label><select id="elRes"><option value="win">Win</option><option value="draw">Draw</option><option value="loss">Loss</option></select></div></div><div class="dt-row4"><div><label for="elScale">Rating scale (400 is standard)</label><input type="number" id="elScale" min="1" step="10"></div></div></div><div id="elOut"></div></div>
+<div id="dtTab-wr" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="wrW">Wins</label><input type="number" id="wrW" min="0" step="1"></div><div><label for="wrL">Losses</label><input type="number" id="wrL" min="0" step="1"></div><div><label for="wrT">Target win rate (%)</label><input type="number" id="wrT" min="1" max="99.9" step="0.5"></div><div><label for="wrQ">Win rate you expect from now (%)</label><input type="number" id="wrQ" min="0" max="100" step="0.5"></div></div></div><div id="wrOut"></div></div>
+<div id="dtTab-rank" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="rkCur">Current rating / points</label><input type="number" id="rkCur" step="10"></div><div><label for="rkTgt">Target rating / points</label><input type="number" id="rkTgt" step="10"></div><div><label for="rkGain">Points per win</label><input type="number" id="rkGain" min="0" step="0.5"></div><div><label for="rkLoss">Points per loss</label><input type="number" id="rkLoss" min="0" step="0.5"></div></div><div class="dt-row4"><div><label for="rkWR">Your win rate (%)</label><input type="number" id="rkWR" min="0" max="100" step="0.5"></div><div><label for="rkPerDay">Games you play per day</label><input type="number" id="rkPerDay" min="0" step="1"></div></div></div><div id="rkOut"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="elPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="elCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="elCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online Elo and win rate calculator uses the standard Elo formula and simple averages. Real ranked systems use hidden ratings, streaks and seasonal rules that are not modelled, so treat the results as estimates for planning.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Elo Rating &amp; Win Rate Calculator. https://utiliby.com/tools/gaming-tools/elo-rating-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Elo Rating &amp; Win Rate Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/gaming-tools/elo-rating-calculator/"&gt;Elo Rating &amp; Win Rate Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What an Elo and win rate calculator does</a></li><li><a href="#how">How to use this calculator</a></li><li><a href="#elo">How Elo works</a></li><li><a href="#diff">What rating differences mean</a></li><li><a href="#winrate">Planning a win rate</a></li><li><a href="#climb">Planning a rank climb</a></li><li><a href="#limits">Limits of Elo and rank maths</a></li><li><a href="#tips">Tips for climbing</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#kfactor">Choosing a K-factor</a></li><li><a href="#systems">Elo compared with Glicko, TrueSkill and other systems</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What an Elo and win rate calculator does</h2>
+<p>Competitive players ask the same three questions: <b>How likely am I to beat this opponent?</b> <b>How much will my rating change?</b> and <b>how long will it take to reach my target rank?</b> This free online calculator answers all three. The <b>Elo tab</b> uses the standard Elo formula to give win probability and rating change for a win, draw or loss. The <b>win rate planner</b> shows how many wins in a row, or how many games at a given win rate, you need to reach a target percentage. The <b>rank climb tab</b> turns your points per win and loss into the number of games and days to your target.</p><p>It suits chess, online games, esports ladders, tabletop leagues and any competition rated on a points system. It runs in your browser and nothing is stored.</p><figure class="dt-fig"><svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Elo win probability rises with the rating difference, from 50 percent when equal"><title>Win probability by rating difference</title>
+<line x1="50" y1="160" x2="610" y2="160" stroke="currentColor" opacity=".3"/><line x1="330" y1="30" x2="330" y2="160" stroke="currentColor" opacity=".2" stroke-dasharray="4 4"/>
+<path d="M50 156 C150 154 230 140 330 95 C430 50 510 36 610 34" fill="none" stroke="#0369a1" stroke-width="3.2" stroke-linecap="round"><animate attributeName="stroke-dasharray" from="0 800" to="800 0" dur="2s" fill="freeze"/></path>
+<circle class="dt-pop" cx="330" cy="95" r="6" fill="#16a34a"/>
+<g font-size="11" fill="currentColor" opacity=".85" text-anchor="middle"><text x="50" y="180">−400</text><text x="330" y="180">equal ratings</text><text x="610" y="180">+400</text><text x="350" y="92" text-anchor="start">50%</text><text x="560" y="26">91%</text><text x="100" y="146">9%</text></g></svg><figcaption>A 400-point rating lead gives about a 91% chance to win; equal ratings give 50%.</figcaption></figure>
+<h2 id="how">How to use this calculator</h2>
+<ol><li><b>Elo tab.</b> Enter your rating and your opponent's, choose the K-factor, pick the result and read the win probability and new ratings.</li><li><b>Win rate planner.</b> Enter your wins and losses, a target win rate and the win rate you expect from now on.</li><li><b>Rank climb.</b> Enter your current and target points, the points you gain and lose per game, your win rate and games per day.</li><li><b>Compare scenarios.</b> The tables show how the answer changes with a different win rate or rating difference.</li></ol>
+<h2 id="elo">How Elo works</h2>
+<p>Elo predicts the expected score of a player from the rating difference and then adjusts each rating by how far the real result was from that prediction. The formulas are:</p><table><tr><th>Quantity</th><th>Formula</th></tr><tr><td>Expected score of A</td><td>1 ÷ (1 + 10^((Rb − Ra) ÷ 400))</td></tr><tr><td>New rating</td><td>Ra + K × (S − Ea)</td></tr><tr><td>Rating lead for win chance p</td><td>400 × log10(p ÷ (1 − p))</td></tr></table><p><b>Worked example.</b> A 1600-rated player faces a 1500-rated player. The expected score is 64.0%. With K = 32, a win gives +11.5 points and a loss costs 20.5 points, because the loss was the less expected result. A draw costs about 4.5 points. The two ratings always move by equal and opposite amounts.</p>
+<h2 id="diff">What rating differences mean</h2>
+<table><tr><th>Rating lead</th><th>Expected score</th></tr><tr><td>0</td><td>50%</td></tr><tr><td>100</td><td>64%</td></tr><tr><td>200</td><td>76%</td></tr><tr><td>400</td><td>91%</td></tr></table><p>To have a 75% chance to win you need a lead of about 191 points. For 90% you need about 382. Notice how a big lead does not make a win certain: the best players still lose.</p>
+<h2 id="winrate">Planning a win rate</h2>
+<p>Win rate is wins divided by games, so the weight of your history grows with every game. To go from 45 wins and 55 losses to a 55% win rate you need 23 wins in a row. If you instead win 65% of your games from now on, it takes about 100 games. If your future win rate is at or below the target, you never reach it, which the planner shows as no number of games. When you already beat the target, it also tells you how many consecutive losses you can absorb before dropping below it.</p>
+<h2 id="climb">Planning a rank climb</h2>
+<p>A ranked ladder that gives +22 for a win and −20 for a loss has a break-even win rate of 47.6%. At 55%, your average gain is 3.1 points per game. To climb 500 points you need about 162 games, which is about 17 days at 10 games a day. Raising your win rate to 60% roughly doubles the speed to 6.2 points per game. The table shows the effect of every win rate from 45% to 70%, and the chart makes it easy to see how much each percentage point is worth.</p>
+<h2 id="limits">Limits of Elo and rank maths</h2>
+<ul><li>Many games use hidden matchmaking ratings that differ from the visible rank.</li><li>Streak bonuses, performance adjustments and placement games change point values.</li><li>New players move faster in systems such as Glicko or TrueSkill than in simple Elo.</li><li>Ratings tend to inflate or deflate over time and some systems reset each season.</li><li>A win rate over a few games is noisy; trust long samples.</li></ul>
+<h2 id="tips">Tips for climbing</h2>
+<ul><li>Track your results to get a real win rate before you plan.</li><li>Focus on the average points per game, not single results.</li><li>Take breaks after losing streaks; tilt lowers your win rate.</li><li>Use realistic win rates when planning, not your best week.</li></ul>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li>Assuming a rating lead guarantees a win.</li><li>Using the best win rate recently rather than a long average.</li><li>Ignoring the points lost per defeat when calculating the climb.</li><li>Using a K-factor that does not match your system.</li></ul>
+<h2 id="kfactor">Choosing a K-factor</h2>
+<p>K sets the maximum rating change in one game. For the example above (1600 against 1500), a win is worth +5.8 at K = 16, +11.5 at K = 32 and +14.4 at K = 40, while a loss costs 10.2, 20.5 or 25.6. Chess federations use different K-factors by experience and rating: higher for new players so that ratings settle quickly, and lower for established players to keep them stable. Online games usually pick a value that balances speed and stability, and many add provisional or placement games for new accounts.</p>
+<h2 id="systems">Elo compared with Glicko, TrueSkill and other systems</h2>
+<p>Elo is the simplest rating method: a single number and a single K-factor. Glicko adds a rating deviation, an estimate of how uncertain a rating is, so players who return after a break or are new move faster. TrueSkill, designed for team games, models each player's skill as a distribution and updates it with team results. Many modern games also use hidden matchmaking ratings separate from the visible rank, which is why your displayed points can differ from what the matchmaker thinks. This calculator is exact for classic Elo and a reasonable guide for any points-based ladder.</p>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs in your browser. The numbers you enter are not sent to a server and are not stored. Reloading the page returns the example. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is the Elo rating system?</summary><p>Elo is a method for rating players by comparing expected and actual results. It was created for chess by Arpad Elo and is now used, or adapted, for many games and sports. The higher your rating compared with your opponent's, the more likely you are expected to win.</p></details><details><summary>How do you calculate Elo rating change?</summary><p>New rating = old rating + K × (actual score − expected score). Actual score is 1 for a win, 0.5 for a draw and 0 for a loss. Expected score is 1 ÷ (1 + 10^((opponent − yours) ÷ 400)).</p></details><details><summary>What is the Elo expected score formula?</summary><p>E = 1 / (1 + 10^((Rb − Ra) / 400)). A player rated 100 points higher has an expected score of about 64%, and 200 points higher about 76%.</p></details><details><summary>What is the K-factor?</summary><p>K controls how fast ratings change. A higher K (such as 32) moves ratings more after each game and is used for new or less established players. A lower K (such as 10 or 16) is used for stable ratings.</p></details><details><summary>What does a 100-point rating difference mean?</summary><p>On the standard 400 scale, the higher-rated player is expected to score about 64% in the long run. At 200 points it is about 76%, and at 400 points about 91%.</p></details><details><summary>How many wins in a row do I need to reach a target win rate?</summary><p>Solve (W + x) ÷ (G + x) = target. For example, with 45 wins in 100 games you need 23 straight wins to reach a 55% win rate. The win rate planner calculates this.</p></details><details><summary>How many games to reach a target win rate at a given win rate?</summary><p>If you win a share q of future games, n = (T × G − W) ÷ (q − T). From 45 wins in 100 games, a 55% target at a 65% future win rate takes 100 games.</p></details><details><summary>Why does my win rate rise so slowly?</summary><p>The more games you have played, the more weight your past record carries. Each extra game moves the average by less.</p></details><details><summary>How many games to climb ranked?</summary><p>Divide the points you need by the average points per game. Average points per game = win rate × points per win − (1 − win rate) × points per loss. The rank climb tab does this and converts it to days.</p></details><details><summary>What win rate do I need to climb?</summary><p>You must beat the break-even win rate, which is points per loss ÷ (points per win + points per loss). With +22 and −20 that is 47.6%.</p></details><details><summary>Does this work for League of Legends, Valorant or chess?</summary><p>The formulas are standard, but each game has its own system. For chess-style Elo use the Elo tab. For ranked ladders, enter the typical points per win and loss on the rank climb tab.</p></details><details><summary>What is a good win rate?</summary><p>In a balanced matchmaking system most players hover near 50%. A sustained 55% to 60% is strong, and above 60% over many games is exceptional.</p></details><details><summary>Can I use a different scale than 400?</summary><p>Yes. The scale field changes how steeply win probability rises with rating difference. 400 is the standard in chess.</p></details><details><summary>What happens if I lose to a lower-rated player?</summary><p>You lose more points because a loss was less expected. Use the loss result with a lower opponent rating to see the exact change.</p></details><details><summary>Does Elo account for draws?</summary><p>Yes, a draw counts as half a point for each player.</p></details><details><summary>What is the difference between Elo and Glicko or TrueSkill?</summary><p>Glicko and TrueSkill also estimate how uncertain a rating is, so new players move faster. Elo uses one number and a fixed K-factor.</p></details><details><summary>Can I print or export?</summary><p>Yes. Print / save as PDF prints only the active tab's results, CSV downloads them and copy summary puts them on your clipboard.</p></details><details><summary>Is my data private?</summary><p>Yes. Everything runs in your browser. Nothing is sent to a server or stored.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Elo, A. E. (1978). The Rating of Chessplayers, Past and Present: the original description of the Elo rating system.</li><li>FIDE Handbook sections on rating calculation, expected score and K-factor.</li><li>Standard probability and averages for win rate arithmetic.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online Elo rating and win rate calculator is provided for general information, learning and planning purposes. Rating changes use the standard Elo formula with the K-factor and scale you enter, and rank planning uses simple averages of the points per win and loss that you enter. Many games and platforms use different systems (hidden matchmaking ratings, Glicko, TrueSkill, placement games, streak bonuses, performance adjustments, rank decay or seasonal resets), so results here will not match them exactly. Win probabilities describe the long run and do not predict any single match. Game, platform and rating system names are used only to describe common formulas; they are trademarks of their respective owners and this site is not affiliated with any of them.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+function vbars(vals, labels, hi, fmt) {
+  /* vertical bars; hi(i) -> true to highlight */
+  var n = vals.length, W = 640, H = 230, mx = 0; vals.forEach(function (v) { mx = Math.max(mx, v); }); if (!mx) mx = 1;
+  var bw = Math.max(1.5, (W - 64) / n), s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Distribution chart"><title>Distribution chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var y = 20 + (1 - f) * 150; s += '<line x1="48" x2="' + (W - 8) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="44" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(mx * f)) + "</text>"; });
+  vals.forEach(function (v, i) { var h = v / mx * 150, x = 52 + i * ((W - 64) / n); s += '<rect class="dt-bar" x="' + x.toFixed(1) + '" y="' + (170 - h).toFixed(1) + '" width="' + Math.max(1, bw - (n > 60 ? 0.5 : 2)).toFixed(1) + '" height="' + h.toFixed(1) + '" rx="' + (n > 60 ? 0 : 2) + '" fill="' + (hi && hi(i) ? "#16a34a" : "#0369a1") + '"><title>' + esc(labels[i]) + ": " + esc(fmt(v)) + "</title></rect>"; });
+  var step = Math.max(1, Math.ceil(n / 14));
+  labels.forEach(function (l, i) { if (i % step === 0) s += '<text x="' + (52 + i * ((W - 64) / n) + bw / 2).toFixed(1) + '" y="190" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + esc(String(l)) + "</text>"; });
+  return s + "</svg>";
+}
+
+/* ---------- elo engine ---------- */
+function eloExp(a, b, scale) { return 1 / (1 + Math.pow(10, (b - a) / scale)); }
+function eloUpdate(a, b, k, sa, scale) { var ea = eloExp(a, b, scale); return { ea: ea, eb: 1 - ea, da: k * (sa - ea), db: k * ((1 - sa) - (1 - ea)) }; }
+function diffForProb(p, scale) { /* rating advantage needed for win probability p */ return scale * Math.log(p / (1 - p)) / Math.LN10; }
+function winsInRow(W, G, T) { if (T >= 1) return null; if (W / Math.max(G, 1e-9) >= T && G > 0) return 0; return Math.ceil((T * G - W) / (1 - T) - 1e-9); }
+function gamesAt(W, G, T, q) { if (G > 0 && W / G >= T) return 0; if (q <= T) return null; return Math.ceil((T * G - W) / (q - T) - 1e-9); }
+function lossesAllowed(W, G, T) { if (T <= 0) return null; return Math.max(0, Math.floor(W / T - G + 1e-9)); }
+function netPerGame(w, gain, loss) { return w * gain - (1 - w) * loss; }
+
+/* ---------- elo UI ---------- */
+var ST = { tab: "elo", rows: { elo: [], wr: [], rank: [] } };
+var DEF = { elA: 1600, elB: 1500, elK: 32, elScale: 400, wrW: 45, wrL: 55, wrT: 55, wrQ: 65, rkCur: 1000, rkTgt: 1500, rkGain: 22, rkLoss: 20, rkWR: 55, rkPerDay: 10 };
+function r1(x) { return (Math.round(x * 10) / 10).toString(); }
+function sg(x) { return (x >= 0 ? "+" : "−") + Math.abs(x).toFixed(1); }
+function elo() {
+  var a = nv("elA", 1600, -100000, 100000), b = nv("elB", 1500, -100000, 100000), k = nv("elK", 32, 0, 1000), sc = nv("elScale", 400, 1, 100000), res = $("elRes").value, sa = res === "win" ? 1 : res === "draw" ? 0.5 : 0;
+  var u = eloUpdate(a, b, k, sa, sc), na = a + u.da, nb = b + u.db;
+  var h = '<div class="dt-result"><div class="dt-label">Your win probability</div><div class="dt-big">' + pc(u.ea * 100, 1) + '</div><p class="dt-sum">A ' + a + '-rated player is expected to score <b>' + pc(u.ea * 100, 1) + "</b> against a " + b + "-rated player (" + (a >= b ? "+" : "−") + Math.abs(a - b) + " rating). After a " + (res === "win" ? "win" : res === "draw" ? "draw" : "loss") + " with K = " + k + ", you move to <b>" + r1(na) + "</b> (" + sg(u.da) + ") and your opponent to <b>" + r1(nb) + "</b> (" + sg(u.db) + ").</p></div>";
+  h += '<div class="dt-stats">' + tile("Expected score (you)", pc(u.ea * 100, 1), "", u.ea >= 0.5 ? "ok" : "warn") + tile("Expected score (opponent)", pc(u.eb * 100, 1)) + tile("Your new rating", r1(na), sg(u.da)) + tile("Opponent new rating", r1(nb), sg(u.db)) + tile("If you win", sg(k * (1 - u.ea)), "rating change") + tile("If you lose", sg(-k * u.ea), "rating change") + tile("If you draw", sg(k * (0.5 - u.ea)), "rating change") + "</div>";
+  var labs = [], vals = []; for (var d = -400; d <= 400; d += 50) { labs.push((d > 0 ? "+" : "") + d); vals.push(eloExp(d, 0, sc)); }
+  h += '<h3 class="dt-lbl">Win probability by rating difference</h3><div class="dt-diagram">' + vbars(vals, labs, function (i) { return Math.abs(parseInt(labs[i], 10) - (a - b)) < 25; }, function (x) { return pc(x * 100, 0); }) + "</div>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Rating difference</th><th>Higher-rated wins</th><th>Lower-rated wins</th></tr>' + [0, 50, 100, 200, 300, 400, 600, 800].map(function (d) { var e = eloExp(d, 0, sc); return "<tr><td>" + d + "</td><td>" + pc(e * 100, 1) + "</td><td>" + pc((1 - e) * 100, 1) + "</td></tr>"; }).join("") + "</table></div>";
+  var need = [60, 70, 75, 80, 90].map(function (p) { return "<tr><td>" + p + "%</td><td>" + Math.round(diffForProb(p / 100, sc)) + "</td></tr>"; }).join("");
+  h += '<h3 class="dt-lbl">Rating lead needed for a given win chance</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Win chance</th><th>Rating lead</th></tr>' + need + "</table></div>";
+  $("elOut").innerHTML = h;
+  ST.rows.elo = [["Your rating", String(a)], ["Opponent rating", String(b)], ["K-factor", String(k)], ["Result", res], ["Your win probability", pc(u.ea * 100, 1)], ["Your new rating", r1(na) + " (" + sg(u.da) + ")"], ["Opponent new rating", r1(nb) + " (" + sg(u.db) + ")"]];
+}
+function wr() {
+  var W = Math.round(nv("wrW", 45, 0, 1e7)), L = Math.round(nv("wrL", 55, 0, 1e7)), T = nv("wrT", 55, 1, 99.9) / 100, q = nv("wrQ", 65, 0, 100) / 100, G = W + L, cur = G > 0 ? W / G : 0;
+  var x = winsInRow(W, G, T), n = gamesAt(W, G, T, q), la = lossesAllowed(W, G, T);
+  var h = '<div class="dt-result"><div class="dt-label">Your win rate now</div><div class="dt-big">' + pc(cur * 100, 2) + '</div><p class="dt-sum">' + W + " wins and " + L + " losses (" + G + " games). " + (cur >= T ? "You are already at or above " + pc(T * 100, 1) + ". You can lose <b>" + la + "</b> more games in a row and stay there." : "To reach <b>" + pc(T * 100, 1) + "</b> you need <b>" + x + "</b> wins in a row, or about <b>" + (n == null ? "no number of games" : n + " games") + "</b> at a " + pc(q * 100, 0) + " win rate.") + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Current win rate", pc(cur * 100, 2), G + " games") + tile("Wins in a row needed", cur >= T ? "0" : String(x), "to reach " + pc(T * 100, 1), "ok") + tile("Games at " + pc(q * 100, 0), n == null ? "n/a" : String(n), q <= T ? "needs a win rate above target" : "expected games to reach target") + tile("Losses you can afford", cur >= T ? String(la) : "n/a", "before dropping below " + pc(T * 100, 1)) + "</div>";
+  var rows = [55, 60, 65, 70, 75, 80, 90].filter(function (p) { return p / 100 > T; }).map(function (p) { return [p, gamesAt(W, G, T, p / 100)]; });
+  h += '<h3 class="dt-lbl">Games needed at different win rates</h3>' + (rows.length ? '<div class="dt-scroll"><table class="dt-table"><tr><th>Your future win rate</th><th>Games needed</th></tr>' + rows.map(function (r) { return "<tr><td>" + r[0] + "%</td><td>" + r[1] + "</td></tr>"; }).join("") + "</table></div>" : '<p class="dt-hint">Choose a target win rate below your likely future win rate.</p>');
+  var labs = [], vals = [], w = W, l = L; for (var i = 0; i <= 20; i++) { labs.push(i); vals.push(G + i > 0 ? (W + i) / (G + i) : 0); }
+  h += '<h3 class="dt-lbl">Win rate after consecutive wins</h3><div class="dt-diagram">' + vbars(vals, labs, function (i) { return vals[i] >= T; }, function (x) { return pc(x * 100, 0); }) + "</div>";
+  $("wrOut").innerHTML = h;
+  ST.rows.wr = [["Record", W + " wins, " + L + " losses"], ["Win rate", pc(cur * 100, 2)], ["Target win rate", pc(T * 100, 1)], ["Wins in a row needed", cur >= T ? "0" : String(x)], ["Expected win rate afterwards", pc(q * 100, 0)], ["Games needed at that rate", n == null ? "n/a" : String(n)]].concat(cur >= T ? [["Losses you can afford", String(la)]] : []);
+}
+function rank() {
+  var cur = nv("rkCur", 1000, -1e7, 1e7), tgt = nv("rkTgt", 1500, -1e7, 1e7), gain = nv("rkGain", 22, 0, 1e6), loss = nv("rkLoss", 20, 0, 1e6), w = nv("rkWR", 55, 0, 100) / 100, pd = nv("rkPerDay", 10, 0, 1000);
+  var need = tgt - cur, net = netPerGame(w, gain, loss), games = need <= 0 ? 0 : net > 0 ? Math.ceil(need / net) : null, be = gain + loss > 0 ? loss / (gain + loss) : 0;
+  var h = '<div class="dt-result"><div class="dt-label">Games to climb ' + Math.max(0, need) + ' points</div><div class="dt-big">' + (games == null ? "Not climbing" : games.toLocaleString() + " games") + '</div><p class="dt-sum">At a <b>' + pc(w * 100, 1) + "</b> win rate with +" + gain + " per win and −" + loss + " per loss, you gain <b>" + sg(net) + "</b> points per game on average. " + (games == null ? "You need a win rate above the break-even of " + pc(be * 100, 1) + " to climb." : (pd > 0 && games > 0 ? "At " + pd + " games a day that is about <b>" + Math.ceil(games / pd) + " days</b>." : "")) + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Points to climb", String(Math.max(0, need))) + tile("Average per game", sg(net), "points", net > 0 ? "ok" : "err") + tile("Break-even win rate", pc(be * 100, 1), "to hold your rank") + tile("Games to target", games == null ? "never" : games.toLocaleString(), "", games == null ? "err" : "ok") + tile("Days at " + pd + " a day", games == null || pd <= 0 ? "n/a" : String(Math.ceil(games / pd))) + "</div>";
+  var rows = [], wrs = [45, 48, 50, 52, 55, 58, 60, 65, 70]; wrs.forEach(function (p) { var nt = netPerGame(p / 100, gain, loss), g = need <= 0 ? 0 : nt > 0 ? Math.ceil(need / nt) : null; rows.push([p, nt, g]); });
+  h += '<h3 class="dt-lbl">Games to your target at different win rates</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Win rate</th><th>Points per game</th><th>Games needed</th><th>Days</th></tr>' + rows.map(function (r) { return "<tr><td>" + r[0] + "%</td><td>" + sg(r[1]) + "</td><td>" + (r[2] == null ? "never" : r[2].toLocaleString()) + "</td><td>" + (r[2] == null || pd <= 0 ? "n/a" : Math.ceil(r[2] / pd)) + "</td></tr>"; }).join("") + "</table></div>";
+  var vv = rows.filter(function (r) { return r[2] != null; }); if (vv.length) h += '<div class="dt-diagram">' + hbars(vv.map(function (r) { return { l: r[0] + "% win rate", v: r[2], c: "#0369a1" }; }), function (x) { return x.toLocaleString() + " games"; }) + "</div>";
+  $("rkOut").innerHTML = h;
+  ST.rows.rank = [["Current points", String(cur)], ["Target points", String(tgt)], ["Points per win", "+" + gain], ["Points per loss", "−" + loss], ["Win rate", pc(w * 100, 1)], ["Average per game", sg(net)], ["Break-even win rate", pc(be * 100, 1)], ["Games needed", games == null ? "never" : games.toLocaleString()]];
+}
+var TITLES = { elo: "Elo rating calculation", wr: "Win rate planner", rank: "Rank climb planner" };
+function calc() { elo(); wr(); rank(); }
+function fillReport() { var b = repBox(); repHead(b, TITLES[ST.tab], "Free online Elo Rating & Win Rate Rank Climb Calculator"); repTbl(b, ["Item", "Value"], ST.rows[ST.tab]); repDisc(b, "Estimates from the numbers you enter. Real ranked systems use hidden ratings, streaks and seasonal rules that are not modelled."); }
+function setDef() { for (var k in DEF) $(k).value = DEF[k]; $("elRes").value = "win"; }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["elo", "wr", "rank"], function (n) { ST.tab = n; });
+  setDef();
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("elCsv").addEventListener("click", function () { csvDownload([["Item", "Value"]].concat(ST.rows[ST.tab]), "elo-" + ST.tab + ".csv"); });
+  $("elCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + "\n" + ST.rows[ST.tab].map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online Elo Rating & Win Rate Rank Climb Calculator at utiliby.com", $("elCopy")); });
+  $("elPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,472 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Dice Probability Calculator Online – Advantage, 4d6 &amp; Dice Pools</title>
+<meta name="description" content="Free online dice probability calculator: exact odds for sums, advantage, 4d6 drop lowest, dice pools and roll vs roll, with charts. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Dice Probability Calculator Online – Advantage, 4d6 &amp; Dice Pools">
+<meta property="og:description" content="Free online dice probability calculator for d20 advantage, 4d6 drop lowest, dice pools and roll comparisons.">
+<meta property="og:url" content="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Dice Probability Calculator Online – Advantage, 4d6 &amp; Dice Pools">
+<meta name="twitter:description" content="Free online dice probability calculator for d20 advantage, 4d6 drop lowest, dice pools and roll comparisons.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Dice Probability Calculator","url":"https://utiliby.com/tools/gaming-tools/dice-probability-calculator/","description":"Free online dice probability calculator: exact odds for sums of dice, advantage and disadvantage, keep-highest rolls, success-counting dice pools and roll-versus-roll contests with distribution charts.","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Sums with modifiers and any number of sides","Advantage, disadvantage and best of three","Keep highest or lowest dice (4d6 drop lowest)","Success-counting dice pools","Roll-versus-roll win, tie and lose chances","Distribution charts and full probability tables","Print, CSV and copy export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate dice probability?","acceptedAnswer":{"@type":"Answer","text":"Count the ways to get the result and divide by the total number of equally likely outcomes. For two six-sided dice there are 36 outcomes, and 6 of them sum to 7, so the chance of a 7 is 6/36 = 16.7%. This calculator does the counting exactly for you."}},{"@type":"Question","name":"What is the probability of rolling a certain number or higher?","acceptedAnswer":{"@type":"Answer","text":"Add the probabilities of every result at or above the number. Choose \"at least\" in the dice roll tab and enter your target, and the tool shows the chance and the odds as 1 in N."}},{"@type":"Question","name":"How does advantage work in probability terms?","acceptedAnswer":{"@type":"Answer","text":"You roll twice and keep the higher result. The chance of getting at least a target T on a d20 becomes 1 − (chance of missing)². At least 11 goes from 50% to 75%. At least 15 goes from 30% to 51%."}},{"@type":"Question","name":"What is disadvantage in D&D?","acceptedAnswer":{"@type":"Answer","text":"You roll twice and keep the lower result, so both rolls must be high. At least 11 drops from 50% to 25%, and at least 15 drops from 30% to 9%."}},{"@type":"Question","name":"How much does advantage increase the average roll on a d20?","acceptedAnswer":{"@type":"Answer","text":"A normal d20 averages 10.5. With advantage it averages 13.825, an increase of about 3.3 points. With disadvantage it averages 7.175."}},{"@type":"Question","name":"What is 4d6 drop lowest?","acceptedAnswer":{"@type":"Answer","text":"It is a common method for generating ability scores: roll four six-sided dice and add the highest three. The average is about 12.24, compared with 10.5 for 3d6. Use the keep-highest option with 4 dice and keep 3."}},{"@type":"Question","name":"What is the chance of rolling an 18 with 4d6 drop lowest?","acceptedAnswer":{"@type":"Answer","text":"About 1.62%. With plain 3d6 it is 0.46%, which is 1 in 216."}},{"@type":"Question","name":"What does keep highest or keep lowest mean?","acceptedAnswer":{"@type":"Answer","text":"You roll a number of dice but only add some of them. 2d20 keep highest 1 is the same as advantage. The calculator supports keeping the top or bottom dice for up to 12 dice."}},{"@type":"Question","name":"What is a dice pool?","acceptedAnswer":{"@type":"Answer","text":"A dice pool is a handful of dice where each die is a success or a failure, usually by meeting a target number. You count the successes. Many tabletop games use this, for example 6d6 with a success on 5 or 6."}},{"@type":"Question","name":"How do I find the chance of at least 2 successes in a dice pool?","acceptedAnswer":{"@type":"Answer","text":"Use the dice pool tab. Enter the number of dice, sides, the success number and the successes needed. For 6d6 with success on 5+, the chance of at least 2 successes is about 64.9%."}},{"@type":"Question","name":"How do I compare two different rolls?","acceptedAnswer":{"@type":"Answer","text":"Use the compare tab. It computes the exact chance that roll A beats, ties or loses to roll B. For example 2d6+3 against a d20 wins 45.0%, ties 5.0% and loses 50.0%."}},{"@type":"Question","name":"What is standard deviation for dice?","acceptedAnswer":{"@type":"Answer","text":"It measures how spread out the results are. Rolling more dice makes results cluster around the average, so the standard deviation grows slower than the total."}},{"@type":"Question","name":"Why do dice sums form a bell curve?","acceptedAnswer":{"@type":"Answer","text":"There are more ways to make middle totals than extremes. With 2d6 there is one way to roll 2 and six ways to roll 7. The more dice you add, the closer the shape gets to a normal bell curve."}},{"@type":"Question","name":"Is a d100 the same as 2d10?","acceptedAnswer":{"@type":"Answer","text":"A d100 is uniform: each value from 1 to 100 has a 1% chance. Two d10s read as tens and units are also uniform. Adding two d10s is not the same, because the sum has a triangular shape."}},{"@type":"Question","name":"Does this calculator handle exploding dice or rerolls?","acceptedAnswer":{"@type":"Answer","text":"No. It models fair dice with the options listed. Exploding dice and reroll rules vary by game and are not included."}},{"@type":"Question","name":"Can I use it for board games and RPGs?","acceptedAnswer":{"@type":"Answer","text":"Yes, for any game that uses sums, keep-highest rolls, advantage or success counting. It is useful for Dungeons & Dragons style games, board games and war games."}},{"@type":"Question","name":"Can I export or print the results?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the active tab's results, CSV downloads them and copy summary puts them on your clipboard."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser. Nothing is sent to a server or stored."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Gaming Tools","item":"https://utiliby.com/tools/gaming-tools/"},{"@type":"ListItem","position":3,"name":"Dice Probability Calculator","item":"https://utiliby.com/tools/gaming-tools/dice-probability-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/gaming-tools/">Gaming Tools</a> › Dice Probability Calculator</nav>
+<h1 class="noembed">Free Online Dice Probability Calculator</h1>
+<p class="lead noembed">Free online dice probability calculator: get the exact odds of any dice roll, from 2d6 sums and d20 advantage to 4d6 drop lowest, dice pools and roll-versus-roll contests. See the chance of hitting your target, the odds as 1 in N, the average and a distribution chart. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/" target="_blank" rel="noopener">Dice Probability Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Dice probability calculator">
+<div class="dt-hero noembed">
+<h2>Free Dice Probability Calculator Online</h2>
+<p>Find the exact odds of any dice roll: sums, advantage and disadvantage, keep-highest rolls like 4d6 drop lowest, success-counting dice pools and roll-versus-roll contests. Free, private, no sign-up.</p>
+</div>
+<div class="dt-actions"><button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button></div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-roll" aria-pressed="true">Dice roll</button>
+<button type="button" class="dt-tab" id="dtTabBtn-pool" aria-pressed="false">Dice pool</button>
+<button type="button" class="dt-tab" id="dtTabBtn-cmp" aria-pressed="false">Compare rolls</button>
+</div>
+<div id="dtTab-roll"><div class="dt-panel"><div class="dt-actions" id="dcPresets" aria-label="Presets"></div><div class="dt-row4"><div><label for="dcN">Number of dice</label><input type="number" id="dcN" min="1" max="50" step="1"></div><div><label for="dcS">Sides per die</label><input type="number" id="dcS" min="2" max="100" step="1"></div><div><label for="dcMod">Modifier (+/−)</label><input type="number" id="dcMod" step="1"></div><div><label for="dcMethod">How the roll works</label><select id="dcMethod"><option value="sum">Add the dice</option><option value="high">Keep the highest dice</option><option value="low">Keep the lowest dice</option><option value="adv">Advantage (roll twice, take higher)</option><option value="dis">Disadvantage (roll twice, take lower)</option><option value="tri">Best of three rolls</option></select></div></div><div class="dt-row4" id="dcKBox" hidden><div><label for="dcK">How many dice to keep</label><input type="number" id="dcK" min="1" max="50" step="1"></div></div><div class="dt-row4"><div><label for="dcOp">I want a result that is</label><select id="dcOp"><option value="ge">at least (≥)</option><option value="gt">more than (>)</option><option value="le">at most (≤)</option><option value="lt">less than (<)</option><option value="eq">exactly (=)</option></select></div><div><label for="dcTarget">Target number</label><input type="number" id="dcTarget" step="1"></div></div></div><div id="dcRes"></div></div>
+<div id="dtTab-pool" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="dpN">Dice in the pool</label><input type="number" id="dpN" min="1" max="200" step="1"></div><div><label for="dpS">Sides per die</label><input type="number" id="dpS" min="2" max="100" step="1"></div><div><label for="dpT">A die succeeds on this number or higher</label><input type="number" id="dpT" min="1" max="100" step="1"></div><div><label for="dpK">Successes needed</label><input type="number" id="dpK" min="0" max="200" step="1"></div></div></div><div id="dpRes"></div></div>
+<div id="dtTab-cmp" hidden><div class="dt-panel"><p class="dt-hint">Roll A is compared with roll B. Higher total wins.</p><div class="dt-row4"><div><label for="dbN1">A: number of dice</label><input type="number" id="dbN1" min="1" max="40" step="1"></div><div><label for="dbS1">A: sides</label><input type="number" id="dbS1" min="2" max="100" step="1"></div><div><label for="dbM1">A: modifier</label><input type="number" id="dbM1" step="1"></div></div><div class="dt-row4"><div><label for="dbN2">B: number of dice</label><input type="number" id="dbN2" min="1" max="40" step="1"></div><div><label for="dbS2">B: sides</label><input type="number" id="dbS2" min="2" max="100" step="1"></div><div><label for="dbM2">B: modifier</label><input type="number" id="dbM2" step="1"></div></div></div><div id="dbRes"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="dcPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="dcCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="dcCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online dice probability calculator gives exact odds for fair dice. Real games may use house rules, rerolls or exploding dice that are not modelled here.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Dice Probability Calculator. https://utiliby.com/tools/gaming-tools/dice-probability-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Dice Probability Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/gaming-tools/dice-probability-calculator/"&gt;Dice Probability Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What a dice probability calculator does</a></li><li><a href="#how">How to use this calculator</a></li><li><a href="#math">The maths behind dice odds</a></li><li><a href="#advantage">Advantage and disadvantage, in numbers</a></li><li><a href="#abilities">Ability scores: 3d6, 4d6 drop lowest and more</a></li><li><a href="#pools">Dice pools and success counting</a></li><li><a href="#contests">Comparing rolls and contests</a></li><li><a href="#tips">Tips for using dice odds</a></li><li><a href="#mistakes">Common dice probability mistakes</a></li><li><a href="#design">Dice in game design: d12 or 2d6?</a></li><li><a href="#crits">Critical hits and natural 20s</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What a dice probability calculator does</h2>
+<p>Dice feel random, but the odds are exact. A <b>dice probability calculator</b> turns a roll such as <b>3d6</b>, <b>d20 with advantage</b> or <b>4d6 drop lowest</b> into the precise chance of each result, so you can decide whether to attack, pick a build or design an encounter with real numbers instead of hunches.</p><p>This free online tool computes the <b>full probability distribution</b> for sums of dice with a modifier, <b>keep-highest and keep-lowest</b> rolls, <b>advantage, disadvantage</b> and best-of-three rolls. It also handles <b>success-counting dice pools</b> and a <b>roll-versus-roll</b> comparison. You get the chance of hitting a target, the odds as "1 in N", the average, standard deviation, median, the most likely result and a chart. Everything runs in your browser.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Probability of rolling a d20 result with normal rolls, advantage and disadvantage"><title>Chance to roll 15 or higher on a d20</title>
+<g font-size="12.5" font-weight="700" text-anchor="start" fill="currentColor"><text x="10" y="42">Disadvantage</text><text x="10" y="92">Normal</text><text x="10" y="142">Advantage</text></g>
+<rect class="dt-bar" x="130" y="22" width="45" height="30" rx="6" fill="#dc2626"/><rect class="dt-bar" x="130" y="72" width="150" height="30" rx="6" fill="#0369a1" style="animation-delay:.2s"/><rect class="dt-bar" x="130" y="122" width="255" height="30" rx="6" fill="#16a34a" style="animation-delay:.4s"/>
+<g font-size="13" font-weight="700" fill="currentColor"><text x="185" y="42">9%</text><text x="290" y="92">30%</text><text x="395" y="142">51%</text></g>
+<text x="130" y="178" font-size="11" fill="currentColor" opacity=".8">Chance of 15 or higher on a d20</text></svg><figcaption>Advantage lifts a 30% chance to 51%; disadvantage drops it to 9%.</figcaption></figure>
+<h2 id="how">How to use this calculator</h2>
+<ol><li><b>Choose a tab.</b> Dice roll for one roll, Dice pool for success counting, Compare rolls for contests.</li><li><b>Enter the dice.</b> Number of dice, sides per die and a modifier. Use a preset such as d20 advantage or 4d6 drop lowest to start.</li><li><b>Pick how the roll works.</b> Add the dice, keep the highest or lowest, advantage, disadvantage or best of three.</li><li><b>Set your target.</b> Choose at least, more than, at most, less than or exactly, then enter the number.</li><li><b>Read the chance.</b> The green bars in the chart show which results meet your target. Open the full table for every result.</li></ol>
+<h2 id="math">The maths behind dice odds</h2>
+<table><tr><th>Roll</th><th>How it is calculated</th></tr><tr><td>Sum of dice</td><td>Convolution of the single-die distributions, counting every combination exactly</td></tr><tr><td>Keep highest k of n</td><td>Dynamic programming over face values, counting how many dice show each face</td></tr><tr><td>Advantage</td><td>P(max ≤ x) = P(single roll ≤ x)²</td></tr><tr><td>Disadvantage</td><td>P(min ≥ x) = P(single roll ≥ x)²</td></tr><tr><td>Dice pool</td><td>Binomial distribution with success chance (sides − target + 1) ÷ sides</td></tr><tr><td>Roll against roll</td><td>Sum over every pair of results of the product of their probabilities</td></tr></table><p>The tool uses exact calculation, not random simulation, so the results are the same every time and do not carry sampling error. Values are shown to two decimal places of a percent for ordinary chances and more for very rare ones.</p>
+<h2 id="advantage">Advantage and disadvantage, in numbers</h2>
+<p>Advantage on a d20 is worth a lot, but its value depends on the number you need. The closer your chance is to 50%, the bigger the swing. The table gives the chance of reaching a target on a single d20.</p><table><tr><th>Need</th><th>Normal</th><th>Advantage</th><th>Disadvantage</th></tr><tr><td>5 or higher</td><td>80%</td><td>96%</td><td>64%</td></tr><tr><td>11 or higher</td><td>50%</td><td>75%</td><td>25%</td></tr><tr><td>15 or higher</td><td>30%</td><td>51%</td><td>9%</td></tr><tr><td>20</td><td>5%</td><td>9.75%</td><td>0.25%</td></tr></table><p>Best of three rolls (some features and spells let you roll three times) lifts the chance of a natural 20 to about 14.3%. Notice that advantage helps little when you already need a very low number, and helps most when you need a middling or high one.</p>
+<h2 id="abilities">Ability scores: 3d6, 4d6 drop lowest and more</h2>
+<p>Rolling for ability scores is a classic use of keep-highest rolls. With 3d6 the average is 10.5 and an 18 appears 1 time in 216. With 4d6 drop lowest the average climbs to about 12.24 and the chance of at least 15 for a single score is about 23.1%, while at least 18 is about 1.6%. This is why 4d6 drop lowest feels generous: it removes most bad rolls.</p><p>Use the keep-highest option to test your own variants, such as 5d6 keep the highest three, or 2d20 keep the highest one for a quick comparison with advantage.</p>
+<h2 id="pools">Dice pools and success counting</h2>
+<p>In many systems you roll a handful of dice and count how many beat a threshold. The chance of one success is (sides − target + 1) ÷ sides, and the number of successes follows a binomial distribution. Six six-sided dice with success on 5 or 6 give each die a 1 in 3 chance, an expected 2.0 successes and about a 64.9% chance of at least two. Use the pool tab to find how adding one more die changes the odds of reaching the number of successes you need.</p>
+<h2 id="contests">Comparing rolls and contests</h2>
+<p>Opposed rolls and contested checks compare two totals. The compare tab shows the exact chance that A wins, ties or loses. A flat bonus matters less than it seems when the dice are wide: a +3 on 2d6 against a d20 is a coin flip, with A winning about 45% and B about 50%, and ties of about 5%. If ties favour the attacker, add the tie chance to the win chance.</p>
+<h2 id="tips">Tips for using dice odds</h2>
+<ul><li>Think in terms of the chance of the result you need, not the average.</li><li>Remember that probabilities describe the long run. A 90% roll still fails one time in ten.</li><li>Use the standard deviation to see how swingy a roll is: fewer, larger dice are swingier.</li><li>For game design, compare two options by chance of success and average result together.</li><li>Check the rules of your game for rerolls and special cases that change the maths.</li></ul>
+<h2 id="mistakes">Common dice probability mistakes</h2>
+<ul><li><b>Gambler's fallacy.</b> Past rolls do not change future ones for fair dice.</li><li><b>Adding probabilities of independent rolls.</b> Two d6 do not have a 2 in 6 chance of a six; it is 11 in 36, about 30.6%.</li><li><b>Assuming averages equal likely.</b> The average of 2d6 is 7, but 7 only occurs 1 time in 6.</li><li><b>Mixing up "at least" and "more than".</b> A difference of one on a d20 is 5 percentage points.</li></ul>
+<h2 id="design">Dice in game design: d12 or 2d6?</h2>
+<p>Two dice rolls can have a similar average and feel completely different. A d12 averages 6.5 and a 2d6 averages 7, but the d12 has a standard deviation of about 3.45 while 2d6 has about 2.42. The d12 is flat and swingy, with every value from 1 to 12 equally likely. The 2d6 clusters around 7, with 6, 7 and 8 together making up 44% of rolls. Designers choose flat distributions for excitement and bell curves for reliability. Use the compare tab and the distribution chart to see the difference for any pair.</p><p>Modifiers shift the whole distribution but do not change its shape. On a d20 each +1 modifier is worth 5 percentage points of chance until you hit the 5% minimum or 95% maximum. Advantage at a 50% base chance is worth about +5; at 30% it is worth about +4.2; and it is worth less at both extremes.</p>
+<h2 id="crits">Critical hits and natural 20s</h2>
+<p>A natural 20 has a 5% chance on one d20. Over two attacks in a turn the chance of at least one is 1 − 0.95² = 9.75%, the same as one attack with advantage. Over three attacks it is 14.3%. Over ten attacks in a fight it is about 40%. These numbers explain why extra attacks matter so much to damage output: the more rolls you make, the more often the rare high result shows up. Use the keep-highest option or the dice pool tab to explore similar questions for your own game.</p>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs in your browser. The numbers you enter are not sent to a server and are not stored. Reloading the page returns the example. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate dice probability?</summary><p>Count the ways to get the result and divide by the total number of equally likely outcomes. For two six-sided dice there are 36 outcomes, and 6 of them sum to 7, so the chance of a 7 is 6/36 = 16.7%. This calculator does the counting exactly for you.</p></details><details><summary>What is the probability of rolling a certain number or higher?</summary><p>Add the probabilities of every result at or above the number. Choose "at least" in the dice roll tab and enter your target, and the tool shows the chance and the odds as 1 in N.</p></details><details><summary>How does advantage work in probability terms?</summary><p>You roll twice and keep the higher result. The chance of getting at least a target T on a d20 becomes 1 − (chance of missing)². At least 11 goes from 50% to 75%. At least 15 goes from 30% to 51%.</p></details><details><summary>What is disadvantage in D&amp;D?</summary><p>You roll twice and keep the lower result, so both rolls must be high. At least 11 drops from 50% to 25%, and at least 15 drops from 30% to 9%.</p></details><details><summary>How much does advantage increase the average roll on a d20?</summary><p>A normal d20 averages 10.5. With advantage it averages 13.825, an increase of about 3.3 points. With disadvantage it averages 7.175.</p></details><details><summary>What is 4d6 drop lowest?</summary><p>It is a common method for generating ability scores: roll four six-sided dice and add the highest three. The average is about 12.24, compared with 10.5 for 3d6. Use the keep-highest option with 4 dice and keep 3.</p></details><details><summary>What is the chance of rolling an 18 with 4d6 drop lowest?</summary><p>About 1.62%. With plain 3d6 it is 0.46%, which is 1 in 216.</p></details><details><summary>What does keep highest or keep lowest mean?</summary><p>You roll a number of dice but only add some of them. 2d20 keep highest 1 is the same as advantage. The calculator supports keeping the top or bottom dice for up to 12 dice.</p></details><details><summary>What is a dice pool?</summary><p>A dice pool is a handful of dice where each die is a success or a failure, usually by meeting a target number. You count the successes. Many tabletop games use this, for example 6d6 with a success on 5 or 6.</p></details><details><summary>How do I find the chance of at least 2 successes in a dice pool?</summary><p>Use the dice pool tab. Enter the number of dice, sides, the success number and the successes needed. For 6d6 with success on 5+, the chance of at least 2 successes is about 64.9%.</p></details><details><summary>How do I compare two different rolls?</summary><p>Use the compare tab. It computes the exact chance that roll A beats, ties or loses to roll B. For example 2d6+3 against a d20 wins 45.0%, ties 5.0% and loses 50.0%.</p></details><details><summary>What is standard deviation for dice?</summary><p>It measures how spread out the results are. Rolling more dice makes results cluster around the average, so the standard deviation grows slower than the total.</p></details><details><summary>Why do dice sums form a bell curve?</summary><p>There are more ways to make middle totals than extremes. With 2d6 there is one way to roll 2 and six ways to roll 7. The more dice you add, the closer the shape gets to a normal bell curve.</p></details><details><summary>Is a d100 the same as 2d10?</summary><p>A d100 is uniform: each value from 1 to 100 has a 1% chance. Two d10s read as tens and units are also uniform. Adding two d10s is not the same, because the sum has a triangular shape.</p></details><details><summary>Does this calculator handle exploding dice or rerolls?</summary><p>No. It models fair dice with the options listed. Exploding dice and reroll rules vary by game and are not included.</p></details><details><summary>Can I use it for board games and RPGs?</summary><p>Yes, for any game that uses sums, keep-highest rolls, advantage or success counting. It is useful for Dungeons &amp; Dragons style games, board games and war games.</p></details><details><summary>Can I export or print the results?</summary><p>Yes. Print / save as PDF prints only the active tab's results, CSV downloads them and copy summary puts them on your clipboard.</p></details><details><summary>Is my data private?</summary><p>Yes. Everything runs in your browser. Nothing is sent to a server or stored.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Standard probability theory for discrete uniform distributions, convolution of independent variables and the binomial distribution.</li><li>The publicly available System Reference Document 5.1 (Wizards of the Coast, Creative Commons licence) for the definitions of advantage and disadvantage.</li><li>Combinatorics references on counting ordered outcomes and order statistics of independent random variables.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online dice probability calculator is provided for general entertainment, learning and game-planning purposes. Results are exact probabilities for fair dice rolled independently, calculated in your browser. They do not model house rules, rerolls, exploding dice, critical hits, rounding conventions or other special rules that a particular game may use, and a probability does not predict the next roll. Do not use any probability result to make gambling or financial decisions. Dice and game names are used only to describe common rolls; they are trademarks of their respective owners and this site is not affiliated with any game publisher.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+function vbars(vals, labels, hi, fmt) {
+  /* vertical bars; hi(i) -> true to highlight */
+  var n = vals.length, W = 640, H = 230, mx = 0; vals.forEach(function (v) { mx = Math.max(mx, v); }); if (!mx) mx = 1;
+  var bw = Math.max(1.5, (W - 64) / n), s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Distribution chart"><title>Distribution chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var y = 20 + (1 - f) * 150; s += '<line x1="48" x2="' + (W - 8) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="44" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(mx * f)) + "</text>"; });
+  vals.forEach(function (v, i) { var h = v / mx * 150, x = 52 + i * ((W - 64) / n); s += '<rect class="dt-bar" x="' + x.toFixed(1) + '" y="' + (170 - h).toFixed(1) + '" width="' + Math.max(1, bw - (n > 60 ? 0.5 : 2)).toFixed(1) + '" height="' + h.toFixed(1) + '" rx="' + (n > 60 ? 0 : 2) + '" fill="' + (hi && hi(i) ? "#16a34a" : "#0369a1") + '"><title>' + esc(labels[i]) + ": " + esc(fmt(v)) + "</title></rect>"; });
+  var step = Math.max(1, Math.ceil(n / 14));
+  labels.forEach(function (l, i) { if (i % step === 0) s += '<text x="' + (52 + i * ((W - 64) / n) + bw / 2).toFixed(1) + '" y="190" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + esc(String(l)) + "</text>"; });
+  return s + "</svg>";
+}
+
+/* ---------- dice engine: distributions as {min, p:[...]} ---------- */
+function conv(a, b) { var p = new Array(a.p.length + b.p.length - 1).fill(0); for (var i = 0; i < a.p.length; i++) { if (!a.p[i]) continue; for (var j = 0; j < b.p.length; j++) p[i + j] += a.p[i] * b.p[j]; } return { min: a.min + b.min, p: p }; }
+function dieDist(s) { return { min: 1, p: new Array(s).fill(1 / s) }; }
+function sumDist(n, s) { var d = { min: 0, p: [1] }; for (var i = 0; i < n; i++) d = conv(d, dieDist(s)); return d; }
+function keepDist(n, s, k, high) {
+  /* sum of the k highest (or lowest) of n dice with s sides. DP over faces. */
+  if (k >= n) return sumDist(n, s);
+  var fact = [1]; for (var i = 1; i <= n; i++) fact[i] = fact[i - 1] * i;
+  var C = function (a, b) { return fact[a] / (fact[b] * fact[a - b]); };
+  var maxSum = k * s, cur = {}; /* key used|kept -> array over sum */
+  var st = [], u, kp; for (u = 0; u <= n; u++) { st[u] = []; for (kp = 0; kp <= k; kp++) st[u][kp] = null; }
+  st[0][0] = new Array(maxSum + 1).fill(0); st[0][0][0] = 1;
+  for (var step = 0; step < s; step++) {
+    var face = high ? s - step : step + 1, nx = []; for (u = 0; u <= n; u++) { nx[u] = []; for (kp = 0; kp <= k; kp++) nx[u][kp] = null; }
+    for (u = 0; u <= n; u++) for (kp = 0; kp <= k; kp++) {
+      var arr = st[u][kp]; if (!arr) continue;
+      for (var c = 0; u + c <= n; c++) {
+        var take = Math.min(c, k - kp), w = C(n - u, c), tgt = nx[u + c][kp + take]; if (!tgt) { tgt = nx[u + c][kp + take] = new Array(maxSum + 1).fill(0); }
+        var add = take * face; for (var sm = 0; sm + add <= maxSum; sm++) if (arr[sm]) tgt[sm + add] += arr[sm] * w;
+      }
+    }
+    st = nx;
+  }
+  var res = st[n][k], tot = Math.pow(s, n), p = res.map(function (v) { return v / tot; });
+  return { min: 0, p: p };
+}
+function shift(d, m) { return { min: d.min + m, p: d.p }; }
+function cdfAt(d, v) { var s = 0; for (var i = 0; i < d.p.length; i++) if (d.min + i <= v) s += d.p[i]; return s; }
+function bestOf(d, m, high) {
+  /* distribution of max (or min) of m independent rolls of d */
+  var p = [], prev = 0, F = [], c = 0; for (var i = 0; i < d.p.length; i++) { c += d.p[i]; F.push(Math.min(1, c)); }
+  for (var j = 0; j < d.p.length; j++) { var cur = high ? Math.pow(F[j], m) : 1 - Math.pow(1 - F[j], m); var pr = high ? cur - prev : 0; p.push(pr); prev = cur; }
+  if (!high) { /* min: P(min >= v) = (1-F(v-1))^m */ p = []; for (var j2 = 0; j2 < d.p.length; j2++) { var ge = j2 === 0 ? 1 : 1 - F[j2 - 1], ge2 = 1 - F[j2]; p.push(Math.pow(ge, m) - Math.pow(ge2, m)); } }
+  return { min: d.min, p: p };
+}
+function stats(d) {
+  var mean = 0, e2 = 0, best = 0, bi = 0, cum = 0, med = null;
+  for (var i = 0; i < d.p.length; i++) { var v = d.min + i; mean += v * d.p[i]; e2 += v * v * d.p[i]; if (d.p[i] > best) { best = d.p[i]; bi = v; } cum += d.p[i]; if (med == null && cum >= 0.5 - 1e-12) med = v; }
+  var lo = d.min, hi = d.min + d.p.length - 1; while (lo < hi && d.p[lo - d.min] < 1e-15) lo++; while (hi > lo && d.p[hi - d.min] < 1e-15) hi--;
+  return { mean: mean, sd: Math.sqrt(Math.max(0, e2 - mean * mean)), mode: bi, median: med, min: lo, max: hi };
+}
+function probCmp(d, op, t) { var s = 0; for (var i = 0; i < d.p.length; i++) { var v = d.min + i; if ((op === "ge" && v >= t) || (op === "gt" && v > t) || (op === "le" && v <= t) || (op === "lt" && v < t) || (op === "eq" && v === t)) s += d.p[i]; } return Math.min(1, Math.max(0, s)); }
+function rollDist(o) {
+  var d;
+  if (o.method === "high" || o.method === "low") d = keepDist(o.n, o.s, Math.min(o.k, o.n), o.method === "high"); else d = sumDist(o.n, o.s);
+  d = shift(d, o.mod);
+  if (o.method === "adv") d = bestOf(d, 2, true); else if (o.method === "dis") d = bestOf(d, 2, false); else if (o.method === "tri") d = bestOf(d, 3, true);
+  return d;
+}
+function poolDist(n, p) { /* binomial */ var out = [], c = 1; for (var k = 0; k <= n; k++) { out.push(c * Math.pow(p, k) * Math.pow(1 - p, n - k)); c = c * (n - k) / (k + 1); } return out; }
+function beats(a, b) { var win = 0, tie = 0, lose = 0; for (var i = 0; i < a.p.length; i++) for (var j = 0; j < b.p.length; j++) { var x = a.min + i, y = b.min + j, w = a.p[i] * b.p[j]; if (x > y) win += w; else if (x === y) tie += w; else lose += w; } return { win: win, tie: tie, lose: lose }; }
+
+/* ---------- dice UI ---------- */
+var ST = { tab: "roll", rows: { roll: [], pool: [], cmp: [] }, note: "" };
+var DEF = { dcN: 1, dcS: 20, dcMod: 0, dcK: 3, dcTarget: 15, dpN: 6, dpS: 6, dpT: 5, dpK: 2, dbN1: 2, dbS1: 6, dbM1: 3, dbN2: 1, dbS2: 20, dbM2: 0 };
+var PRESETS = [["d20", { n: 1, s: 20, m: "sum", mod: 0, t: 11 }], ["d20 advantage", { n: 1, s: 20, m: "adv", mod: 0, t: 11 }], ["d20 disadvantage", { n: 1, s: 20, m: "dis", mod: 0, t: 11 }], ["4d6 drop lowest", { n: 4, s: 6, m: "high", k: 3, mod: 0, t: 14 }], ["2d6", { n: 2, s: 6, m: "sum", mod: 0, t: 7 }], ["3d6", { n: 3, s: 6, m: "sum", mod: 0, t: 12 }], ["d100", { n: 1, s: 100, m: "sum", mod: 0, t: 50 }], ["2d10", { n: 2, s: 10, m: "sum", mod: 0, t: 11 }]];
+var OPN = { ge: "at least", gt: "more than", le: "at most", lt: "less than", eq: "exactly" };
+var OPS = { ge: "≥", gt: ">", le: "≤", lt: "<", eq: "=" };
+var MN = { sum: "", high: "keep highest", low: "keep lowest", adv: "with advantage", dis: "with disadvantage", tri: "with triple advantage (best of 3)" };
+function pct(p) { return pc(p * 100, p < 0.001 && p > 0 ? 4 : p < 0.01 ? 3 : 2); }
+function odds(p) { return p >= 0.99995 ? "certain" : p > 0 ? "1 in " + (1 / p >= 100 ? Math.round(1 / p).toLocaleString() : (1 / p).toFixed(1)) : "never"; }
+function expr(o) { var m = o.mod ? (o.mod > 0 ? "+" : "−") + Math.abs(o.mod) : ""; if (o.method === "high" || o.method === "low") return o.n + "d" + o.s + (o.method === "high" ? "kh" : "kl") + Math.min(o.k, o.n) + m; return o.n + "d" + o.s + m + (o.method === "adv" ? " (advantage)" : o.method === "dis" ? " (disadvantage)" : o.method === "tri" ? " (best of 3)" : ""); }
+function readRoll() {
+  var o = { method: $("dcMethod").value, n: Math.round(nv("dcN", 1, 1, 50)), s: Math.round(nv("dcS", 20, 2, 100)), mod: Math.round(nv("dcMod", 0, -1000, 1000)), k: Math.round(nv("dcK", 3, 1, 50)), op: $("dcOp").value, t: Math.round(nv("dcTarget", 15, -1000, 100000)) };
+  ST.note = ""; if (o.method === "high" || o.method === "low") { if (o.n > 12) { o.n = 12; ST.note = "Keep-highest and keep-lowest are limited to 12 dice. "; } if (o.s > 20) { o.s = 20; ST.note += "They are also limited to dice with up to 20 sides. "; } if (o.k > o.n) o.k = o.n; }
+  $("dcKBox").hidden = !(o.method === "high" || o.method === "low"); return o;
+}
+function flat(d) { var a = d.p.filter(function (x) { return x > 1e-15; }); return Math.max.apply(null, a) - Math.min.apply(null, a) < 1e-12; }
+function roll() {
+  var o = readRoll(), d = rollDist(o), st = stats(d), p = probCmp(d, o.op, o.t), e = expr(o);
+  var h = '<div class="dt-result"><div class="dt-label">Probability of rolling ' + OPN[o.op] + " " + o.t + " on " + esc(e) + '</div><div class="dt-big">' + pct(p) + '</div><p class="dt-sum">That is <b>' + odds(p) + "</b>. The average result is " + st.mean.toFixed(2) + ", " + (flat(d) ? "every result is equally likely" : "the most likely single result is " + st.mode) + ", and results run from " + st.min + " to " + st.max + ".</p></div>" + (ST.note ? '<p class="dt-hint">' + ST.note + "</p>" : "");
+  h += '<div class="dt-stats">' + tile("Chance", pct(p), OPS[o.op] + " " + o.t, "ok") + tile("Chance of the opposite", pct(1 - p), "the roll misses") + tile("Average", st.mean.toFixed(2)) + tile("Standard deviation", st.sd.toFixed(2)) + tile("Median", String(st.median)) + tile("Most likely", flat(d) ? "All equal" : String(st.mode), pct(Math.max.apply(null, d.p)) + " each") + tile("Range", st.min + " to " + st.max) + "</div>";
+  var vals = d.p.slice(0, d.p.length), labels = vals.map(function (_, i) { return d.min + i; }); while (vals.length > 1 && vals[vals.length - 1] < 1e-15) { vals.pop(); labels.pop(); }
+  h += '<h3 class="dt-lbl">Distribution (green bars match your target)</h3><div class="dt-diagram">' + vbars(vals, labels, function (i) { return probCmp({ min: labels[i], p: [1] }, o.op, o.t) > 0; }, function (x) { return pc(x * 100, 1); }) + "</div>";
+  var rows = []; for (var i = 0; i < vals.length; i++) { var v = labels[i]; rows.push([v, probCmp(d, "eq", v), probCmp(d, "ge", v), probCmp(d, "le", v)]); }
+  h += '<details><summary class="dt-lbl" style="cursor:pointer">Full probability table (' + rows.length + " results)</summary><div class=\"dt-scroll\"><table class=\"dt-table\"><tr><th>Result</th><th>Exactly</th><th>At least</th><th>At most</th></tr>" + rows.slice(0, 400).map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + pct(r[1]) + "</td><td>" + pct(r[2]) + "</td><td>" + pct(r[3]) + "</td></tr>"; }).join("") + "</table></div></details>";
+  $("dcRes").innerHTML = h;
+  ST.rows.roll = [["Roll", e], ["Question", "Chance of rolling " + OPN[o.op] + " " + o.t], ["Probability", pct(p)], ["Odds", odds(p)], ["Average", st.mean.toFixed(2)], ["Standard deviation", st.sd.toFixed(2)], ["Median", String(st.median)], ["Most likely result", String(st.mode)], ["Range", st.min + " to " + st.max]];
+  ST.rollTable = rows;
+}
+function pool() {
+  var n = Math.round(nv("dpN", 6, 1, 200)), s = Math.round(nv("dpS", 6, 2, 100)), t = Math.round(nv("dpT", 5, 1, s)), k = Math.round(nv("dpK", 2, 0, n)), p = (s - t + 1) / s, dist = poolDist(n, p);
+  var ge = 0; for (var i = k; i <= n; i++) ge += dist[i];
+  var h = '<div class="dt-result"><div class="dt-label">Chance of ' + k + " or more successes from " + n + "d" + s + " (success on " + t + (t < s ? " or higher" : "") + ')</div><div class="dt-big">' + pct(ge) + '</div><p class="dt-sum">Each die succeeds with probability ' + pct(p) + ". Expected successes: <b>" + (n * p).toFixed(2) + "</b>. Chance of no successes at all: " + pct(dist[0]) + ".</p></div>";
+  h += '<div class="dt-stats">' + tile("At least " + k, pct(ge), odds(ge), "ok") + tile("Exactly " + k, pct(dist[k])) + tile("Fewer than " + k, pct(1 - ge)) + tile("Expected successes", (n * p).toFixed(2)) + tile("Zero successes", pct(dist[0])) + "</div>";
+  h += '<h3 class="dt-lbl">Number of successes</h3><div class="dt-diagram">' + vbars(dist, dist.map(function (_, i) { return i; }), function (i) { return i >= k; }, function (x) { return pc(x * 100, 1); }) + "</div>";
+  var cum = 0, rows = []; for (var j = n; j >= 0; j--) { cum += dist[j]; rows.push([j, dist[j], cum]); } rows.reverse();
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Successes</th><th>Exactly</th><th>At least</th></tr>' + rows.slice(0, 60).map(function (r) { return "<tr><td>" + r[0] + "</td><td>" + pct(r[1]) + "</td><td>" + pct(r[2]) + "</td></tr>"; }).join("") + "</table></div>";
+  $("dpRes").innerHTML = h;
+  ST.rows.pool = [["Dice pool", n + "d" + s], ["Success on", t + " or higher"], ["Needed", k + " or more successes"], ["Chance per die", pct(p)], ["Probability", pct(ge)], ["Odds", odds(ge)], ["Expected successes", (n * p).toFixed(2)]];
+}
+function cmp() {
+  var a = shift(sumDist(Math.round(nv("dbN1", 2, 1, 40)), Math.round(nv("dbS1", 6, 2, 100))), Math.round(nv("dbM1", 0, -1000, 1000))), b = shift(sumDist(Math.round(nv("dbN2", 1, 1, 40)), Math.round(nv("dbS2", 20, 2, 100))), Math.round(nv("dbM2", 0, -1000, 1000)));
+  var A = Math.round(nv("dbN1", 2, 1, 40)) + "d" + Math.round(nv("dbS1", 6, 2, 100)) + (nv("dbM1", 0) ? (nv("dbM1", 0) > 0 ? "+" : "−") + Math.abs(nv("dbM1", 0)) : ""), B = Math.round(nv("dbN2", 1, 1, 40)) + "d" + Math.round(nv("dbS2", 20, 2, 100)) + (nv("dbM2", 0) ? (nv("dbM2", 0) > 0 ? "+" : "−") + Math.abs(nv("dbM2", 0)) : "");
+  var r = beats(a, b), sa = stats(a), sb = stats(b);
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(A) + " against " + esc(B) + '</div><div class="dt-big">' + pct(r.win) + ' that ' + esc(A) + ' wins</div><p class="dt-sum">Tie: ' + pct(r.tie) + ". " + esc(B) + " wins: " + pct(r.lose) + ". If ties go to " + esc(A) + ", it succeeds " + pct(r.win + r.tie) + " of the time.</p></div>";
+  h += '<div class="dt-stats">' + tile(A + " wins", pct(r.win), "", "ok") + tile("Tie", pct(r.tie)) + tile(B + " wins", pct(r.lose), "", "warn") + tile(A + " average", sa.mean.toFixed(2)) + tile(B + " average", sb.mean.toFixed(2)) + "</div>";
+  h += '<div class="dt-diagram">' + hbars([{ l: A + " wins", v: r.win * 100, c: "#16a34a" }, { l: "Tie", v: r.tie * 100, c: "#94a3b8" }, { l: B + " wins", v: r.lose * 100, c: "#dc2626" }], function (x) { return pc(x, 1); }) + "</div>";
+  $("dbRes").innerHTML = h; ST.rows.cmp = [["Roll A", A], ["Roll B", B], ["A wins", pct(r.win)], ["Tie", pct(r.tie)], ["B wins", pct(r.lose)], ["A average", sa.mean.toFixed(2)], ["B average", sb.mean.toFixed(2)]];
+}
+var TITLES = { roll: "Dice roll probability", pool: "Dice pool successes", cmp: "Roll comparison" };
+function calc() { roll(); pool(); cmp(); }
+function fillReport() { var b = repBox(); repHead(b, TITLES[ST.tab], "Free online Dice Probability Calculator"); repTbl(b, ["Item", "Value"], ST.rows[ST.tab]); if (ST.tab === "roll") { repAdd(b, "h3", "Probability table"); repTbl(b, ["Result", "Exactly", "At least", "At most"], ST.rollTable.slice(0, 60).map(function (r) { return [r[0], pct(r[1]), pct(r[2]), pct(r[3])]; })); } repDisc(b, "Exact probabilities for fair dice. Real tables may use house rules, rerolls or exploding dice that are not modelled here."); }
+function setDef() { for (var k in DEF) $(k).value = DEF[k]; $("dcMethod").value = "sum"; $("dcOp").value = "ge"; }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["roll", "pool", "cmp"], function (n) { ST.tab = n; });
+  setDef();
+  var pb = $("dcPresets"); PRESETS.forEach(function (p, i) { var b = document.createElement("button"); b.type = "button"; b.className = "dt-btn ghost"; b.textContent = p[0]; b.addEventListener("click", function () { var q = p[1]; $("dcN").value = q.n; $("dcS").value = q.s; $("dcMethod").value = q.m; $("dcMod").value = q.mod; $("dcTarget").value = q.t; if (q.k) $("dcK").value = q.k; $("dcOp").value = "ge"; if (!$("dtTab-roll").hidden) {} initTabs.show("roll"); calc(); }); pb.appendChild(b); });
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("dcCsv").addEventListener("click", function () { csvDownload([["Item", "Value"]].concat(ST.rows[ST.tab]).concat(ST.tab === "roll" ? [["", ""], ["Result", "Exactly / At least / At most"]].concat(ST.rollTable.map(function (r) { return [r[0], pct(r[1]) + " / " + pct(r[2]) + " / " + pct(r[3])]; })) : []), "dice-probability-" + ST.tab + ".csv"); });
+  $("dcCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + "\n" + ST.rows[ST.tab].map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online Dice Probability Calculator at utiliby.com", $("dcCopy")); });
+  $("dcPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

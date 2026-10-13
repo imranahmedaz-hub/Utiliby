@@ -1,0 +1,440 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free D&amp;D 5e Encounter Calculator Online – Difficulty &amp; XP Budget</title>
+<meta name="description" content="Free online D&amp;amp;D 5e encounter calculator: check if a fight is easy, medium, hard or deadly, XP per player and monster counts by CR. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free D&amp;D 5e Encounter Calculator Online – Difficulty &amp; XP Budget">
+<meta property="og:description" content="Free online D&amp;amp;D 5e encounter difficulty calculator with 2014 XP thresholds, 2024 XP budgets and monster counts by CR.">
+<meta property="og:url" content="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free D&amp;D 5e Encounter Calculator Online – Difficulty &amp; XP Budget">
+<meta name="twitter:description" content="Free online D&amp;amp;D 5e encounter difficulty calculator with 2014 XP thresholds, 2024 XP budgets and monster counts by CR.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"D&D 5e Encounter Difficulty Calculator","url":"https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/","description":"Free online D&D 5e encounter difficulty calculator: XP thresholds, monster multiplier, 2024 XP budget, XP per player and how many monsters of each challenge rating reach each difficulty.","applicationCategory":"GameApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["2014 Easy, Medium, Hard, Deadly thresholds with the monster multiplier","2024 Low, Moderate, High XP budget","Mixed-level parties and up to six monster groups","XP per player","How many monsters of each CR reach each difficulty","Threshold and CR to XP reference tables","Print, CSV and copy export","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate D&D 5e encounter difficulty?","acceptedAnswer":{"@type":"Answer","text":"Add up the XP of all monsters, apply the number-of-monsters multiplier (2014 rules), then compare the adjusted XP with the sum of your players' XP thresholds for Easy, Medium, Hard and Deadly. This calculator does each step."}},{"@type":"Question","name":"What are the XP thresholds by character level?","acceptedAnswer":{"@type":"Answer","text":"They are listed in the Tables tab. For example, a level 3 character has thresholds of 75 (Easy), 150 (Medium), 225 (Hard) and 400 (Deadly) under the 2014 rules."}},{"@type":"Question","name":"What is the encounter multiplier?","acceptedAnswer":{"@type":"Answer","text":"Under the 2014 rules, more monsters are harder than their XP alone suggests, so total XP is multiplied: ×1 for one monster, ×1.5 for two, ×2 for three to six, ×2.5 for seven to ten, ×3 for eleven to fourteen and ×4 for fifteen or more."}},{"@type":"Question","name":"How does party size change the multiplier?","acceptedAnswer":{"@type":"Answer","text":"With fewer than three players the multiplier moves up one step, and with six or more it moves down one step. The calculator applies this automatically."}},{"@type":"Question","name":"What is an XP budget?","acceptedAnswer":{"@type":"Answer","text":"In the 2024 rules each character has an XP budget for Low, Moderate and High difficulty. You add up monster XP and compare the total with the party's budget. There is no multiplier."}},{"@type":"Question","name":"What is the difference between the 2014 and 2024 encounter rules?","acceptedAnswer":{"@type":"Answer","text":"The 2014 rules use Easy, Medium, Hard and Deadly thresholds with a monster-number multiplier. The 2024 rules use Low, Moderate and High budgets with no multiplier, so the same encounter can be rated differently."}},{"@type":"Question","name":"What is a deadly encounter?","acceptedAnswer":{"@type":"Answer","text":"Deadly under the 2014 rules means the encounter could kill one or more characters, particularly if the party is unlucky or makes mistakes. It is not a guarantee of death, and many groups use deadly encounters as set-piece fights."}},{"@type":"Question","name":"How many monsters can I use for a level 3 party of four?","acceptedAnswer":{"@type":"Answer","text":"The How many monsters tab lists, for each CR, how many identical monsters reach each difficulty. For a party of four at level 3, about 3 CR 1/4 monsters reach Easy, 8 reach Hard and 11 reach Deadly under the 2014 rules."}},{"@type":"Question","name":"How much XP does each player get?","acceptedAnswer":{"@type":"Answer","text":"Divide the total monster XP by the number of players. This calculator shows the unadjusted XP share, because the multiplier only affects difficulty."}},{"@type":"Question","name":"Does the calculator include monster stat blocks?","acceptedAnswer":{"@type":"Answer","text":"No. It only needs each monster's challenge rating. For stat blocks use the books, the SRD or your own notes."}},{"@type":"Question","name":"What is challenge rating (CR)?","acceptedAnswer":{"@type":"Answer","text":"CR is a number that rates how dangerous a monster is for a party of four characters of the same level. Each CR has an XP value, for example CR 1 is 200 XP and CR 5 is 1,800 XP."}},{"@type":"Question","name":"Can I mix characters of different levels?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add up to three groups of players at different levels. Thresholds are added together across all characters."}},{"@type":"Question","name":"Why does a boss alone feel easy?","acceptedAnswer":{"@type":"Answer","text":"A single powerful monster gets only one set of actions per round, so it can be less dangerous than the same XP split among several creatures. The multiplier partly corrects this, but tactics and action economy matter."}},{"@type":"Question","name":"Why do my players find my medium encounters too easy?","acceptedAnswer":{"@type":"Answer","text":"The guidelines are conservative for optimised parties and for multiple encounters per day. Use the tool as a starting point, then adjust."}},{"@type":"Question","name":"Should I count minions or allies?","acceptedAnswer":{"@type":"Answer","text":"Count only the monsters that fight the party. If allied NPCs fight beside the players, add them as extra characters."}},{"@type":"Question","name":"Does it work for the free Basic Rules and SRD monsters?","acceptedAnswer":{"@type":"Answer","text":"Yes, because it only uses challenge ratings. You can use monsters from any source."}},{"@type":"Question","name":"Can I print or export an encounter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the result for the tab you are on, CSV downloads it and copy summary puts it on your clipboard."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser. Nothing is sent to a server or stored."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Gaming Tools","item":"https://utiliby.com/tools/gaming-tools/"},{"@type":"ListItem","position":3,"name":"D&D 5e Encounter Difficulty Calculator","item":"https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/gaming-tools/">Gaming Tools</a> › D&D Encounter Calculator</nav>
+<h1 class="noembed">Free Online D&amp;D 5e Encounter Difficulty &amp; XP Budget Calculator</h1>
+<p class="lead noembed">Free online D&amp;D 5e encounter calculator: enter your party and the monsters' challenge ratings to see whether a fight is easy, medium, hard or deadly, how much XP each player earns and how many monsters of any CR you can use. Supports mixed-level parties, the 2014 thresholds and the 2024 XP budget. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/" target="_blank" rel="noopener">D&amp;D 5e Encounter Difficulty Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="D&D encounter difficulty calculator">
+<div class="dt-hero noembed">
+<h2>Free D&amp;D 5e Encounter Difficulty &amp; XP Budget Calculator Online</h2>
+<p>Add your party and monsters to see whether an encounter is easy, medium, hard or deadly, how much XP each player earns and how many monsters of a given CR you can use. Free, private, no sign-up.</p>
+</div>
+<div class="dt-panel">
+<h3>1. Rules</h3><div class="dt-row4"><div><label for="ecRules">Encounter-building rules</label><select id="ecRules"><option value="2014">2014 rules (XP thresholds and multiplier)</option><option value="2024">2024 rules (XP budget)</option></select></div></div><h3>2. Your party</h3><p class="dt-hint">Add up to three groups of players if your party has mixed levels.</p><div class="dt-row4"><div><label for="ecN0">Group 1: number of players</label><input type="number" id="ecN0" min="0" max="30" step="1"></div><div><label for="ecL0">Group 1: character level</label><input type="number" id="ecL0" min="1" max="20" step="1"></div></div><div class="dt-row4"><div><label for="ecN1">Group 2: number of players</label><input type="number" id="ecN1" min="0" max="30" step="1"></div><div><label for="ecL1">Group 2: character level</label><input type="number" id="ecL1" min="1" max="20" step="1"></div></div><div class="dt-row4"><div><label for="ecN2">Group 3: number of players</label><input type="number" id="ecN2" min="0" max="30" step="1"></div><div><label for="ecL2">Group 3: character level</label><input type="number" id="ecL2" min="1" max="20" step="1"></div></div><h3>3. The monsters</h3><div class="dt-row4"><div><label for="emName0">Monster group 1 name (optional)</label><input type="text" id="emName0" maxlength="40"></div><div><label for="emCR0">Challenge rating</label><select id="emCR0"></select></div><div><label for="emN0">How many</label><input type="number" id="emN0" min="0" max="100" step="1"></div></div><div class="dt-row4"><div><label for="emName1">Monster group 2 name (optional)</label><input type="text" id="emName1" maxlength="40"></div><div><label for="emCR1">Challenge rating</label><select id="emCR1"></select></div><div><label for="emN1">How many</label><input type="number" id="emN1" min="0" max="100" step="1"></div></div><div class="dt-row4"><div><label for="emName2">Monster group 3 name (optional)</label><input type="text" id="emName2" maxlength="40"></div><div><label for="emCR2">Challenge rating</label><select id="emCR2"></select></div><div><label for="emN2">How many</label><input type="number" id="emN2" min="0" max="100" step="1"></div></div><div class="dt-row4"><div><label for="emName3">Monster group 4 name (optional)</label><input type="text" id="emName3" maxlength="40"></div><div><label for="emCR3">Challenge rating</label><select id="emCR3"></select></div><div><label for="emN3">How many</label><input type="number" id="emN3" min="0" max="100" step="1"></div></div><div class="dt-row4"><div><label for="emName4">Monster group 5 name (optional)</label><input type="text" id="emName4" maxlength="40"></div><div><label for="emCR4">Challenge rating</label><select id="emCR4"></select></div><div><label for="emN4">How many</label><input type="number" id="emN4" min="0" max="100" step="1"></div></div><div class="dt-row4"><div><label for="emName5">Monster group 6 name (optional)</label><input type="text" id="emName5" maxlength="40"></div><div><label for="emCR5">Challenge rating</label><select id="emCR5"></select></div><div><label for="emN5">How many</label><input type="number" id="emN5" min="0" max="100" step="1"></div></div>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-res" aria-pressed="true">Encounter</button>
+<button type="button" class="dt-tab" id="dtTabBtn-many" aria-pressed="false">How many monsters</button>
+<button type="button" class="dt-tab" id="dtTabBtn-ref" aria-pressed="false">Tables</button>
+</div>
+<div id="dtTab-res"><div id="ecOut"></div></div>
+<div id="dtTab-many" hidden><div id="ecMany"></div></div>
+<div id="dtTab-ref" hidden><div id="ecRef"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="ecPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="ecCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="ecCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online D&amp;D encounter calculator is an unofficial fan tool for planning. Real encounters depend on terrain, tactics, party strength and monster abilities, so treat the difficulty as guidance. It is not affiliated with or endorsed by Wizards of the Coast.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). D&amp;D 5e Encounter Difficulty Calculator. https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="D&amp;D 5e Encounter Difficulty Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/gaming-tools/dnd-encounter-calculator/"&gt;D&amp;D 5e Encounter Difficulty Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What a D&D encounter difficulty calculator does</a></li><li><a href="#how">How to use this calculator</a></li><li><a href="#math14">The 2014 method, step by step</a></li><li><a href="#math24">The 2024 XP budget method</a></li><li><a href="#cr">Challenge rating and XP</a></li><li><a href="#tuning">Tuning the difficulty beyond the numbers</a></li><li><a href="#tips">Tips for building better encounters</a></li><li><a href="#mistakes">Common encounter building mistakes</a></li><li><a href="#table">Thresholds for common parties</a></li><li><a href="#bosses">Solo bosses, minions and legendary actions</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What a D&D encounter difficulty calculator does</h2>
+<p>Building a fair fight is one of the hardest parts of running a game. A <b>D&amp;D 5e encounter difficulty calculator</b> turns the guidelines into a quick check: add your players and the monsters you want to use, and it tells you whether the fight is easy, medium, hard or deadly, how much XP each player earns and how many monsters of a given challenge rating the party can handle.</p><p>This free online tool follows both the <b>2014 encounter-building rules</b> (XP thresholds per character, challenge rating XP and the monster-number multiplier) and the <b>2024 XP budget</b> approach. It supports parties of mixed levels, up to six groups of monsters, a table of how many monsters of each CR reach each difficulty and reference tables for thresholds and CR to XP. It runs in your browser and nothing is stored.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Encounter XP compared with easy, medium, hard and deadly thresholds"><title>Encounter difficulty bands</title>
+<rect class="dt-bar" x="40" y="40" width="130" height="34" rx="6" fill="#16a34a"/><rect class="dt-bar" x="170" y="40" width="130" height="34" rx="0" fill="#0ea5e9" style="animation-delay:.15s"/><rect class="dt-bar" x="300" y="40" width="130" height="34" rx="0" fill="#d97706" style="animation-delay:.3s"/><rect class="dt-bar" x="430" y="40" width="170" height="34" rx="6" fill="#dc2626" style="animation-delay:.45s"/>
+<g font-size="12" font-weight="700" fill="#fff" text-anchor="middle"><text x="105" y="62">Easy</text><text x="235" y="62">Medium</text><text x="365" y="62">Hard</text><text x="515" y="62">Deadly</text></g>
+<path d="M270 100 V82" stroke="currentColor" stroke-width="2.5" fill="none"/><circle class="dt-pop" cx="270" cy="108" r="7" fill="#7c3aed"/>
+<g font-size="11.5" fill="currentColor" text-anchor="middle" opacity=".9"><text x="270" y="134">Your encounter's adjusted XP</text><text x="320" y="170">Compare monster XP with the party's thresholds</text></g></svg><figcaption>Adding up monster XP and comparing it with the party's thresholds tells you which band an encounter falls into.</figcaption></figure>
+<h2 id="how">How to use this calculator</h2>
+<ol><li><b>Choose the rules.</b> 2014 uses Easy to Deadly with a multiplier. 2024 uses Low, Moderate and High budgets.</li><li><b>Enter your party.</b> Players and level. Use extra groups for characters at different levels.</li><li><b>Add monsters.</b> Pick each group's challenge rating and number. Names are optional and appear in your report.</li><li><b>Read the difficulty.</b> See the monster XP, adjusted XP, thresholds and the XP each player earns.</li><li><b>Open How many monsters</b> to see counts for any CR, or <b>Tables</b> for thresholds and CR to XP.</li></ol>
+<h2 id="math14">The 2014 method, step by step</h2>
+<ol><li>Add the XP thresholds of all characters for each difficulty.</li><li>Add up the XP of all monsters.</li><li>Multiply by the number-of-monsters multiplier (shifted up for parties under three, down for six or more).</li><li>Compare the adjusted XP with the party thresholds. The highest band reached is the difficulty.</li></ol><p><b>Worked example.</b> Four level 3 characters have thresholds of 300 Easy, 600 Medium, 900 Hard and 1,600 Deadly. Four CR 1/4 monsters (50 XP each) and one CR 1 monster (200 XP) total 400 XP. Five monsters use a ×2 multiplier, so the adjusted XP is 800: a <b>Medium</b> encounter, because it is above 600 and below 900. Each player earns 100 XP. Replace the CR 1 monster with a second one and the adjusted XP rises to 1,200, which is Hard.</p>
+<h2 id="math24">The 2024 XP budget method</h2>
+<p>The 2024 rules simplify the process. Each character has an XP budget for Low, Moderate and High difficulty. You add the budgets of your players and compare the total XP of the monsters with them. There is no multiplier, so budgets are larger than the 2014 thresholds. A level 3 character has budgets of 150, 225 and 400. For four players that is 600, 900 and 1,600. The same 400 XP encounter from the example above is below the Low budget, so it rates as trivial under the 2024 numbers, and you would need to add monsters to make it a real challenge.</p><p>The calculator shows both so that you can see the difference and pick the method your table uses. Check the figures against your own book.</p>
+<h2 id="cr">Challenge rating and XP</h2>
+<p>Challenge rating (CR) estimates how strong a monster is for a party of four characters of a similar level. Each CR has an XP value, from 10 XP for CR 0 and 25 for CR 1/8 up to 155,000 for CR 30. The values rise steeply: a CR 5 monster is worth 1,800 XP and a CR 10 monster 5,900 XP. As a rough guide, a single monster whose CR equals the party's level is usually a Medium fight for four characters, while a CR well above the party's level can be Deadly on its own: a CR 5 monster is Deadly for four level 3 characters.</p>
+<h2 id="tuning">Tuning the difficulty beyond the numbers</h2>
+<ul><li><b>Action economy.</b> More creatures take more actions. A boss with minions is safer for the players than a boss alone.</li><li><b>Terrain and cover.</b> Choke points, hazards and ranged attackers change the balance quickly.</li><li><b>Resources.</b> Fights later in the adventuring day are harder because spell slots and hit points are lower.</li><li><b>Party strength.</b> Optimised parties and magic items push difficulty down; inexperienced parties push it up.</li><li><b>Number of encounters.</b> The guidelines assume several encounters per day.</li></ul>
+<h2 id="tips">Tips for building better encounters</h2>
+<ul><li>Start with the difficulty you want and use the How many monsters tab to choose counts.</li><li>Mix a few strong monsters with weaker ones for variety.</li><li>Prepare a way to scale up or down if the fight is going too easily or too hard.</li><li>Give players a reason to fight smart: terrain, objectives and retreat options.</li></ul>
+<h2 id="mistakes">Common encounter building mistakes</h2>
+<ul><li>Forgetting the multiplier for large groups of monsters (2014 rules).</li><li>Comparing monster XP with the wrong party size.</li><li>Treating Deadly as impossible to survive.</li><li>Ignoring how many encounters the party faces in a day.</li><li>Relying only on CR for monsters with unusual abilities.</li></ul>
+<h2 id="table">Thresholds for common parties</h2>
+<p>Here are the 2014 thresholds for a party of four characters at three levels:</p><table><tr><th>Level</th><th>Easy</th><th>Medium</th><th>Hard</th><th>Deadly</th></tr><tr><td>1</td><td>100</td><td>200</td><td>300</td><td>400</td></tr><tr><td>5</td><td>1,000</td><td>2,000</td><td>3,000</td><td>4,400</td></tr><tr><td>10</td><td>2,400</td><td>4,800</td><td>7,600</td><td>11,200</td></tr></table><p>A single CR 5 monster is worth 1,800 XP, which is only an Easy encounter for four level 5 characters but a Deadly one for four level 3 characters. The same monster is a different fight depending on the party, which is why CR alone is not enough.</p>
+<h2 id="bosses">Solo bosses, minions and legendary actions</h2>
+<p>A single strong monster is a classic boss, but it gets one turn a round while the party gets four or more, so a solo creature at the same XP often loses the action economy. Legendary actions, lair actions, minions and phases help even this out. If you build a boss fight, treat the calculator's difficulty as a minimum and add minions, terrain effects or legendary actions to keep the fight tense. For groups of many weak monsters, the number-of-monsters multiplier in the 2014 rules is the main correction for the extra attacks they make; the 2024 budget approach leaves the judgement to you.</p>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs in your browser. The numbers you enter are not sent to a server and are not stored. Reloading the page returns the example. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate D&amp;D 5e encounter difficulty?</summary><p>Add up the XP of all monsters, apply the number-of-monsters multiplier (2014 rules), then compare the adjusted XP with the sum of your players' XP thresholds for Easy, Medium, Hard and Deadly. This calculator does each step.</p></details><details><summary>What are the XP thresholds by character level?</summary><p>They are listed in the Tables tab. For example, a level 3 character has thresholds of 75 (Easy), 150 (Medium), 225 (Hard) and 400 (Deadly) under the 2014 rules.</p></details><details><summary>What is the encounter multiplier?</summary><p>Under the 2014 rules, more monsters are harder than their XP alone suggests, so total XP is multiplied: ×1 for one monster, ×1.5 for two, ×2 for three to six, ×2.5 for seven to ten, ×3 for eleven to fourteen and ×4 for fifteen or more.</p></details><details><summary>How does party size change the multiplier?</summary><p>With fewer than three players the multiplier moves up one step, and with six or more it moves down one step. The calculator applies this automatically.</p></details><details><summary>What is an XP budget?</summary><p>In the 2024 rules each character has an XP budget for Low, Moderate and High difficulty. You add up monster XP and compare the total with the party's budget. There is no multiplier.</p></details><details><summary>What is the difference between the 2014 and 2024 encounter rules?</summary><p>The 2014 rules use Easy, Medium, Hard and Deadly thresholds with a monster-number multiplier. The 2024 rules use Low, Moderate and High budgets with no multiplier, so the same encounter can be rated differently.</p></details><details><summary>What is a deadly encounter?</summary><p>Deadly under the 2014 rules means the encounter could kill one or more characters, particularly if the party is unlucky or makes mistakes. It is not a guarantee of death, and many groups use deadly encounters as set-piece fights.</p></details><details><summary>How many monsters can I use for a level 3 party of four?</summary><p>The How many monsters tab lists, for each CR, how many identical monsters reach each difficulty. For a party of four at level 3, about 3 CR 1/4 monsters reach Easy, 8 reach Hard and 11 reach Deadly under the 2014 rules.</p></details><details><summary>How much XP does each player get?</summary><p>Divide the total monster XP by the number of players. This calculator shows the unadjusted XP share, because the multiplier only affects difficulty.</p></details><details><summary>Does the calculator include monster stat blocks?</summary><p>No. It only needs each monster's challenge rating. For stat blocks use the books, the SRD or your own notes.</p></details><details><summary>What is challenge rating (CR)?</summary><p>CR is a number that rates how dangerous a monster is for a party of four characters of the same level. Each CR has an XP value, for example CR 1 is 200 XP and CR 5 is 1,800 XP.</p></details><details><summary>Can I mix characters of different levels?</summary><p>Yes. Add up to three groups of players at different levels. Thresholds are added together across all characters.</p></details><details><summary>Why does a boss alone feel easy?</summary><p>A single powerful monster gets only one set of actions per round, so it can be less dangerous than the same XP split among several creatures. The multiplier partly corrects this, but tactics and action economy matter.</p></details><details><summary>Why do my players find my medium encounters too easy?</summary><p>The guidelines are conservative for optimised parties and for multiple encounters per day. Use the tool as a starting point, then adjust.</p></details><details><summary>Should I count minions or allies?</summary><p>Count only the monsters that fight the party. If allied NPCs fight beside the players, add them as extra characters.</p></details><details><summary>Does it work for the free Basic Rules and SRD monsters?</summary><p>Yes, because it only uses challenge ratings. You can use monsters from any source.</p></details><details><summary>Can I print or export an encounter?</summary><p>Yes. Print / save as PDF prints only the result for the tab you are on, CSV downloads it and copy summary puts it on your clipboard.</p></details><details><summary>Is my data private?</summary><p>Yes. Everything runs in your browser. Nothing is sent to a server or stored.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Dungeon Master's Guide (2014), Wizards of the Coast: encounter building, XP thresholds by character level and the encounter multiplier.</li><li>Dungeon Master's Guide (2024), Wizards of the Coast: XP budget per character for Low, Moderate and High encounters.</li><li>Challenge rating and XP values as published in the Monster Manual and the System Reference Document 5.1 (Creative Commons).</li><li>Players should always check the numbers against their own rulebooks, as editions and printings differ.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online D&amp;D encounter difficulty calculator is an unofficial fan-made planning tool provided for general entertainment and game preparation. It applies the published encounter-building guidelines (XP thresholds per character level, challenge rating XP values and the number-of-monsters multiplier from the 2014 rules, and the XP budget approach from the 2024 rules) to the numbers you enter. The thresholds are included here for convenience and should be checked against your own rulebook. Real encounter difficulty depends on terrain, tactics, party composition, magic items, resources and monster abilities, and the guidelines can under or over-state the challenge, especially for very large or small groups and at the extremes of level. This tool does not include monster stat blocks or other copyrighted game text. Dungeons &amp; Dragons, D&amp;D and related names are trademarks of Wizards of the Coast LLC; this site is not affiliated with or endorsed by Wizards of the Coast.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+function vbars(vals, labels, hi, fmt) {
+  /* vertical bars; hi(i) -> true to highlight */
+  var n = vals.length, W = 640, H = 230, mx = 0; vals.forEach(function (v) { mx = Math.max(mx, v); }); if (!mx) mx = 1;
+  var bw = Math.max(1.5, (W - 64) / n), s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Distribution chart"><title>Distribution chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var y = 20 + (1 - f) * 150; s += '<line x1="48" x2="' + (W - 8) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="44" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(mx * f)) + "</text>"; });
+  vals.forEach(function (v, i) { var h = v / mx * 150, x = 52 + i * ((W - 64) / n); s += '<rect class="dt-bar" x="' + x.toFixed(1) + '" y="' + (170 - h).toFixed(1) + '" width="' + Math.max(1, bw - (n > 60 ? 0.5 : 2)).toFixed(1) + '" height="' + h.toFixed(1) + '" rx="' + (n > 60 ? 0 : 2) + '" fill="' + (hi && hi(i) ? "#16a34a" : "#0369a1") + '"><title>' + esc(labels[i]) + ": " + esc(fmt(v)) + "</title></rect>"; });
+  var step = Math.max(1, Math.ceil(n / 14));
+  labels.forEach(function (l, i) { if (i % step === 0) s += '<text x="' + (52 + i * ((W - 64) / n) + bw / 2).toFixed(1) + '" y="190" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + esc(String(l)) + "</text>"; });
+  return s + "</svg>";
+}
+
+/* ---------- D&D encounter engine (SRD 5.1 / 2014 DMG thresholds; 2024 XP budgets) ---------- */
+var T14 = [null, [25, 50, 75, 100], [50, 100, 150, 200], [75, 150, 225, 400], [125, 250, 375, 500], [250, 500, 750, 1100], [300, 600, 900, 1400], [350, 750, 1100, 1700], [450, 900, 1400, 2100], [550, 1100, 1600, 2400], [600, 1200, 1900, 2800], [800, 1600, 2400, 3600], [1000, 2000, 3000, 4500], [1100, 2200, 3400, 5100], [1250, 2500, 3800, 5700], [1400, 2800, 4300, 6400], [1600, 3200, 4800, 7200], [2000, 3900, 5900, 8800], [2100, 4200, 6300, 9500], [2400, 4900, 7300, 10900], [2800, 5700, 8500, 12700]];
+var T24 = [null, [50, 75, 100], [100, 150, 200], [150, 225, 400], [250, 375, 500], [500, 750, 1100], [600, 1000, 1400], [750, 1300, 1700], [1000, 1700, 2100], [1300, 2000, 2600], [1600, 2300, 3100], [1900, 2900, 4100], [2200, 3700, 4700], [2600, 4200, 5400], [2900, 4900, 6200], [3300, 5400, 7800], [3800, 6100, 9800], [4500, 7200, 11700], [5000, 8700, 14200], [5500, 10700, 17200], [6400, 13200, 22000]];
+var CRS = [["0", 10], ["1/8", 25], ["1/4", 50], ["1/2", 100], ["1", 200], ["2", 450], ["3", 700], ["4", 1100], ["5", 1800], ["6", 2300], ["7", 2900], ["8", 3900], ["9", 5000], ["10", 5900], ["11", 7200], ["12", 8400], ["13", 10000], ["14", 11500], ["15", 13000], ["16", 15000], ["17", 18000], ["18", 20000], ["19", 22000], ["20", 25000], ["21", 33000], ["22", 41000], ["23", 50000], ["24", 62000], ["25", 75000], ["26", 90000], ["27", 105000], ["28", 120000], ["29", 135000], ["30", 155000]];
+var MULT = [0.5, 1, 1.5, 2, 2.5, 3, 4, 5];
+function multIndex(nMon) { return nMon <= 1 ? 1 : nMon === 2 ? 2 : nMon <= 6 ? 3 : nMon <= 10 ? 4 : nMon <= 14 ? 5 : 6; }
+function multFor(nMon, party) { if (nMon <= 0) return 1; var i = multIndex(nMon); if (party < 3) i = Math.min(MULT.length - 1, i + 1); else if (party >= 6) i = Math.max(0, i - 1); return MULT[i]; }
+function partyThr(groups, rules) { var n = rules === "2014" ? 4 : 3, t = new Array(n).fill(0), count = 0; groups.forEach(function (g) { var L = Math.min(20, Math.max(1, g.level)), row = (rules === "2014" ? T14 : T24)[L]; for (var i = 0; i < n; i++) t[i] += row[i] * g.count; count += g.count; }); return { t: t, count: count }; }
+function xpOf(crIdx) { return CRS[crIdx][1]; }
+function encounter(groups, mons, rules) {
+  var p = partyThr(groups, rules), raw = 0, nm = 0; mons.forEach(function (m) { raw += xpOf(m.cr) * m.count; nm += m.count; });
+  var mult = rules === "2014" ? multFor(nm, p.count) : 1, adj = raw * mult, t = p.t, label, idx;
+  if (rules === "2014") { idx = adj >= t[3] ? 4 : adj >= t[2] ? 3 : adj >= t[1] ? 2 : adj >= t[0] ? 1 : 0; label = ["Trivial", "Easy", "Medium", "Hard", "Deadly"][idx]; }
+  else { idx = raw >= t[2] ? 3 : raw >= t[1] ? 2 : raw >= t[0] ? 1 : 0; label = ["Trivial", "Low", "Moderate", "High"][idx]; }
+  return { raw: raw, nm: nm, mult: mult, adj: adj, t: t, party: p.count, label: label, idx: idx, perPlayer: p.count ? raw / p.count : 0 };
+}
+function neededCount(crIdx, thr, rules, party) { /* smallest number of monsters of that CR whose value reaches thr */ var x = xpOf(crIdx); for (var n = 1; n <= 40; n++) { var v = x * n * (rules === "2014" ? multFor(n, party) : 1); if (v >= thr) return n; } return null; }
+
+/* ---------- D&D encounter UI ---------- */
+var ST = { tab: "res", rows: { res: [], many: [], ref: [] } };
+var NG = 3, NM = 6;
+var DEFG = [[4, 3], [0, 3], [0, 3]], DEFM = [["Goblin-type", 2, 4], ["Boss", 4, 1], ["", 0, 0], ["", 0, 0], ["", 0, 0], ["", 0, 0]];
+function fmt(n) { return Math.round(n).toLocaleString(); }
+function crLabel(i) { return "CR " + CRS[i][0]; }
+function read() {
+  var rules = $("ecRules").value, groups = [], mons = [], i;
+  for (i = 0; i < NG; i++) { var c = Math.round(nv("ecN" + i, 0, 0, 30)); if (c > 0) groups.push({ count: c, level: Math.round(nv("ecL" + i, 1, 1, 20)) }); }
+  for (i = 0; i < NM; i++) { var k = Math.round(nv("emN" + i, 0, 0, 100)); if (k > 0) mons.push({ name: $("emName" + i).value || "Monsters", cr: parseInt($("emCR" + i).value, 10), count: k }); }
+  return { rules: rules, groups: groups, mons: mons };
+}
+var BAND14 = ["Easy", "Medium", "Hard", "Deadly"], BAND24 = ["Low", "Moderate", "High"];
+function res() {
+  var r = read(), e = encounter(r.groups, r.mons, r.rules), names = r.rules === "2014" ? BAND14 : BAND24;
+  if (!e.party) { $("ecOut").innerHTML = '<p class="dt-hint">Add at least one player.</p>'; ST.rows.res = []; return; }
+  var cls = e.idx <= 1 ? "ok" : e.idx === 2 ? "warn" : "err", val = r.rules === "2014" ? e.adj : e.raw;
+  var h = '<div class="dt-result"><div class="dt-label">Encounter difficulty (' + (r.rules === "2014" ? "2014 / SRD 5.1 rules" : "2024 rules") + ')</div><div class="dt-big">' + e.label + '</div><p class="dt-sum">' + e.nm + " monster" + (e.nm === 1 ? "" : "s") + " worth <b>" + fmt(e.raw) + " XP</b>" + (r.rules === "2014" ? ", multiplied by ×" + e.mult + " for the number of monsters (" + fmt(e.adj) + " adjusted XP)" : "") + " against a party of " + e.party + ". Each player earns about <b>" + fmt(e.perPlayer) + " XP</b>.</p></div>";
+  h += '<div class="dt-stats">' + tile("Difficulty", e.label, "", cls) + tile("Monster XP", fmt(e.raw), e.nm + " monsters") + (r.rules === "2014" ? tile("Adjusted XP", fmt(e.adj), "×" + e.mult + " multiplier") : "") + tile("XP each player", fmt(e.perPlayer), "total ÷ " + e.party) + names.map(function (n, i) { return tile(n + " budget", fmt(e.t[i]), val >= e.t[i] ? "reached" : "not reached", val >= e.t[i] ? (i <= 1 ? "ok" : "warn") : ""); }).join("") + "</div>";
+  var rows = names.map(function (n, i) { return { l: n + " threshold", v: e.t[i], c: ["#16a34a", "#0ea5e9", "#d97706", "#dc2626"][i] }; }); rows.push({ l: "This encounter", v: val, c: "#7c3aed" });
+  h += '<h3 class="dt-lbl">Encounter against your party\'s thresholds</h3><div class="dt-diagram">' + hbars(rows, fmt) + "</div>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Group</th><th>Count</th><th>XP each</th><th>Total XP</th></tr>' + r.mons.map(function (m) { return "<tr><td>" + esc(m.name) + " (" + crLabel(m.cr) + ")</td><td>" + m.count + "</td><td>" + fmt(xpOf(m.cr)) + "</td><td>" + fmt(xpOf(m.cr) * m.count) + "</td></tr>"; }).join("") + "<tr><th>Total</th><th>" + e.nm + "</th><th></th><th>" + fmt(e.raw) + "</th></tr></table></div>";
+  if (e.nm === 0) h += '<p class="dt-hint">Add monsters (choose a challenge rating and a number) to see the difficulty.</p>';
+  $("ecOut").innerHTML = h;
+  ST.rows.res = [["Rules", r.rules === "2014" ? "2014 / SRD 5.1" : "2024"], ["Party", e.party + " players (" + r.groups.map(function (g) { return g.count + " × level " + g.level; }).join(", ") + ")"]].concat(r.mons.map(function (m) { return [m.name + " (" + crLabel(m.cr) + ")", m.count + " × " + fmt(xpOf(m.cr)) + " XP"]; })).concat([["Monster XP", fmt(e.raw)]]).concat(r.rules === "2014" ? [["Multiplier", "×" + e.mult], ["Adjusted XP", fmt(e.adj)]] : []).concat(names.map(function (n, i) { return [n + " threshold", fmt(e.t[i])]; })).concat([["Difficulty", e.label], ["XP per player", fmt(e.perPlayer)]]);
+}
+function many() {
+  var r = read(), p = partyThr(r.groups, r.rules), names = r.rules === "2014" ? BAND14 : BAND24;
+  if (!p.count) { $("ecMany").innerHTML = '<p class="dt-hint">Add at least one player.</p>'; return; }
+  var h = '<p class="dt-hint">How many identical monsters of one challenge rating reach each difficulty for your party of ' + p.count + ". A dash means more than 40 are needed.</p>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Monster CR</th><th>XP each</th>' + names.map(function (n) { return "<th>" + n + "</th>"; }).join("") + "</tr>";
+  var rows = [];
+  for (var i = 0; i < CRS.length && i <= 24; i++) { var cells = names.map(function (n, k) { var c = neededCount(i, p.t[k], r.rules, p.count); return c == null ? "—" : String(c); }); if (cells.every(function (c) { return c === "—"; })) continue; if (cells.every(function (c) { return c === "1"; }) && i > 0 && CRS[i][1] > p.t[names.length - 1] * 2) continue; rows.push([crLabel(i), fmt(CRS[i][1])].concat(cells)); }
+  h += rows.map(function (r2) { return "<tr>" + r2.map(function (c, j) { return "<td>" + c + "</td>"; }).join("") + "</tr>"; }).join("") + "</table></div>";
+  $("ecMany").innerHTML = h;
+  ST.rows.many = rows.map(function (r2) { return [r2[0], names.map(function (n, k) { return n + ": " + r2[2 + k]; }).join(", ")]; });
+}
+function ref() {
+  var rules = $("ecRules").value, T = rules === "2014" ? T14 : T24, names = rules === "2014" ? BAND14 : BAND24;
+  var h = '<h3 class="dt-lbl">XP threshold per character</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Level</th>' + names.map(function (n) { return "<th>" + n + "</th>"; }).join("") + "</tr>";
+  for (var L = 1; L <= 20; L++) h += "<tr><td>" + L + "</td>" + T[L].map(function (x) { return "<td>" + fmt(x) + "</td>"; }).join("") + "</tr>";
+  h += "</table></div>";
+  h += '<h3 class="dt-lbl">Challenge rating to XP</h3><div class="dt-scroll"><table class="dt-table"><tr><th>CR</th><th>XP</th><th>CR</th><th>XP</th><th>CR</th><th>XP</th></tr>';
+  for (var i = 0; i < 11; i++) { h += "<tr>"; for (var c = 0; c < 3; c++) { var k = i + c * 11; h += k < CRS.length ? "<td>" + CRS[k][0] + "</td><td>" + fmt(CRS[k][1]) + "</td>" : "<td></td><td></td>"; } h += "</tr>"; }
+  h += "</table></div>";
+  if (rules === "2014") h += '<h3 class="dt-lbl">Monster number multiplier</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Number of monsters</th><th>Multiplier</th></tr><tr><td>1</td><td>×1</td></tr><tr><td>2</td><td>×1.5</td></tr><tr><td>3–6</td><td>×2</td></tr><tr><td>7–10</td><td>×2.5</td></tr><tr><td>11–14</td><td>×3</td></tr><tr><td>15 or more</td><td>×4</td></tr></table></div><p class="dt-hint">With fewer than 3 players use the next higher multiplier; with 6 or more use the next lower one.</p>';
+  $("ecRef").innerHTML = h;
+  ST.rows.ref = [["Reference", "Thresholds for the selected rules"]];
+}
+var TITLES = { res: "Encounter difficulty", many: "Monster counts by difficulty", ref: "Reference tables" };
+function calc() { res(); many(); ref(); }
+function fillReport() { var b = repBox(); repHead(b, TITLES[ST.tab], "Free online D&D Encounter Difficulty & XP Budget Calculator"); if (ST.tab === "ref") { var rules = $("ecRules").value, T = rules === "2014" ? T14 : T24; repTbl(b, ["Level"].concat(rules === "2014" ? BAND14 : BAND24), T.slice(1).map(function (r, i) { return [i + 1].concat(r.map(fmt)); })); } else repTbl(b, ["Item", "Value"], ST.rows[ST.tab]); repDisc(b, "Guidance only. The challenge of a real encounter also depends on terrain, tactics, party strength and monster abilities."); }
+function setDef() { $("ecRules").value = "2014"; for (var i = 0; i < NG; i++) { $("ecN" + i).value = DEFG[i][0]; $("ecL" + i).value = DEFG[i][1]; } for (var j = 0; j < NM; j++) { $("emName" + j).value = DEFM[j][0]; $("emCR" + j).value = DEFM[j][1]; $("emN" + j).value = DEFM[j][2]; } }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["res", "many", "ref"], function (n) { ST.tab = n; });
+  for (var j = 0; j < NM; j++) { var sel = $("emCR" + j); CRS.forEach(function (c, i) { var o = document.createElement("option"); o.value = i; o.textContent = "CR " + c[0] + " (" + c[1].toLocaleString() + " XP)"; sel.appendChild(o); }); }
+  setDef();
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("ecCsv").addEventListener("click", function () { csvDownload([["Item", "Value"]].concat(ST.rows[ST.tab] || []), "dnd-encounter-" + ST.tab + ".csv"); });
+  $("ecCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + "\n" + (ST.rows[ST.tab] || []).map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online D&D Encounter Difficulty Calculator at utiliby.com", $("ecCopy")); });
+  $("ecPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
