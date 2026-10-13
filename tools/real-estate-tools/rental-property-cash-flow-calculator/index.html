@@ -1,0 +1,462 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Rental Property Cash Flow Calculator – Cash-on-Cash, Cap Rate &amp; DSCR</title>
+<meta name="description" content="Free online rental property calculator: monthly cash flow, cash-on-cash return, cap rate, DSCR, 1% rule, break-even occupancy and IRR. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Rental Property Cash Flow Calculator – Cash-on-Cash, Cap Rate &amp; DSCR">
+<meta property="og:description" content="Free online rental property cash flow calculator with cash-on-cash, cap rate, DSCR, 1% rule, IRR and what-if tables.">
+<meta property="og:url" content="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Rental Property Cash Flow Calculator – Cash-on-Cash, Cap Rate &amp; DSCR">
+<meta name="twitter:description" content="Free online rental property cash flow calculator with cash-on-cash, cap rate, DSCR, 1% rule, IRR and what-if tables.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Rental Property Cash Flow Calculator","url":"https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/","description":"Free online rental property cash flow calculator: monthly cash flow, cash-on-cash return, cap rate, DSCR, GRM, 1%, 2% and 50% rules, break-even occupancy, projection with IRR and what-if tables.","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Monthly and yearly cash flow","Cash-on-cash, cap rate, DSCR and GRM","1%, 2% and 50% rule checks","Highest price for your target return","Break-even occupancy","Projection up to 30 years with IRR and equity multiple","What-if tables for rate, rent, vacancy, down payment and price","Print, CSV and copy export"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do you calculate rental property cash flow?","acceptedAnswer":{"@type":"Answer","text":"Cash flow = rent and other income − vacancy − operating expenses − loan payments. Operating expenses include property tax, insurance, maintenance, capital expenses, management, HOA and utilities. This calculator does each step and shows a monthly and yearly figure."}},{"@type":"Question","name":"What is NOI in real estate?","acceptedAnswer":{"@type":"Answer","text":"Net operating income is income after vacancy and operating expenses but before loan payments and income tax. It is used to compute cap rate and DSCR."}},{"@type":"Question","name":"What is cash-on-cash return?","acceptedAnswer":{"@type":"Answer","text":"It is yearly pre-tax cash flow divided by the cash you invested (down payment, closing costs and repairs). A 10,000 cash flow on 100,000 invested is a 10% cash-on-cash return."}},{"@type":"Question","name":"What is a good cash-on-cash return for a rental?","acceptedAnswer":{"@type":"Answer","text":"Many investors look for 8% to 12%, but the right number depends on your market, risk and alternatives. Use the target field to see the highest price that still reaches your goal."}},{"@type":"Question","name":"What is a cap rate and how is it different from cash-on-cash?","acceptedAnswer":{"@type":"Answer","text":"Cap rate is NOI divided by the purchase price and ignores financing. Cash-on-cash uses cash flow after the loan and your invested cash, so it changes with your down payment and rate."}},{"@type":"Question","name":"What is DSCR?","acceptedAnswer":{"@type":"Answer","text":"Debt service coverage ratio is NOI divided by yearly loan payments. A DSCR of 1.0 means income exactly covers the loan. Lenders for investment loans often want 1.2 or more."}},{"@type":"Question","name":"What is the 1% rule?","acceptedAnswer":{"@type":"Answer","text":"The 1% rule is a screen that monthly rent should be at least 1% of the purchase price. A 250,000 property should rent for about 2,500. It is a quick filter, not a guarantee of cash flow."}},{"@type":"Question","name":"What is the 2% rule?","acceptedAnswer":{"@type":"Answer","text":"The 2% rule asks for monthly rent of 2% of price. It is rare today and is mostly met by low-priced properties in some markets, which may come with higher risk."}},{"@type":"Question","name":"What is the 50% rule?","acceptedAnswer":{"@type":"Answer","text":"The 50% rule estimates that operating expenses, excluding the mortgage, take about half of rental income over time. This calculator compares your actual expense ratio to it."}},{"@type":"Question","name":"What vacancy rate should I use?","acceptedAnswer":{"@type":"Answer","text":"Use the typical vacancy in your area, often 5% to 10%. Never use 0% unless the property is guaranteed to be let continuously, because turnover and make-ready time are real costs."}},{"@type":"Question","name":"How much should I budget for maintenance and capital expenses?","acceptedAnswer":{"@type":"Answer","text":"A common rule is 5% to 10% of rent for repairs and another 5% to 10% for big items such as roofs, boilers and appliances. Older properties need more."}},{"@type":"Question","name":"What is break-even occupancy?","acceptedAnswer":{"@type":"Answer","text":"It is the share of the year the property must be let to cover operating costs and the loan. A lower number means a bigger safety cushion."}},{"@type":"Question","name":"What is gross rent multiplier?","acceptedAnswer":{"@type":"Answer","text":"GRM is the purchase price divided by yearly rent. Lower numbers mean more rent for the price. It is useful for quick comparison but ignores expenses."}},{"@type":"Question","name":"What is IRR and the equity multiple?","acceptedAnswer":{"@type":"Answer","text":"IRR is the yearly return that makes the cash invested equal to all later cash flows plus sale proceeds. The equity multiple is total cash returned divided by cash invested. The projection tab calculates both."}},{"@type":"Question","name":"Does the calculator include taxes and depreciation?","acceptedAnswer":{"@type":"Answer","text":"It shows pre-tax figures. Depreciation and income tax depend on your situation and country, so ask a tax professional."}},{"@type":"Question","name":"Can I compare a mortgage with an all-cash purchase?","acceptedAnswer":{"@type":"Answer","text":"Yes. Switch financing between mortgage and all cash and compare cash-on-cash, cash flow and IRR. Leverage can raise returns but also raises risk."}},{"@type":"Question","name":"How is this different from the Rental Yield Calculator?","acceptedAnswer":{"@type":"Answer","text":"The Rental Yield Calculator gives gross and net yield quickly. This tool adds the loan, cash-on-cash return, DSCR, the 1%, 2% and 50% rules, a projection and what-if tables."}},{"@type":"Question","name":"Is my data private, and can I print or export?","acceptedAnswer":{"@type":"Answer","text":"Yes. Everything runs in your browser and nothing is uploaded. You can print only the report, download a CSV or copy a summary."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Real Estate Tools","item":"https://utiliby.com/tools/real-estate-tools/"},{"@type":"ListItem","position":3,"name":"Rental Property Cash Flow Calculator","item":"https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/real-estate-tools/">Real Estate Tools</a> › Rental Property Cash Flow Calculator</nav>
+<h1 class="noembed">Free Online Rental Property Cash Flow Calculator</h1>
+<p class="lead noembed">Free online rental property cash flow calculator: enter price, loan, rent and expenses to see monthly cash flow, cash-on-cash return, cap rate, DSCR, break-even occupancy and the 1%, 2% and 50% rules. Includes what-if tables, a 30-year projection with IRR and a printable report. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/" target="_blank" rel="noopener">Rental Property Cash Flow Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Rental property cash flow calculator">
+<div class="dt-hero noembed">
+<h2>Free Rental Property Cash Flow Calculator Online</h2>
+<p>Work out monthly cash flow, cash-on-cash return, cap rate, DSCR and break-even occupancy for a rental, then project equity and IRR. Free, private, no sign-up.</p>
+</div>
+<div class="dt-panel">
+<h3>1. Purchase and loan</h3><div class="dt-row4"><div><label for="rpPrice">Purchase price</label><input type="number" id="rpPrice" min="0" step="1000"></div><div><label for="rpFin">Financing</label><select id="rpFin"><option value="mortgage">Mortgage</option><option value="cash">All cash</option></select></div><div><label for="rpClose">Closing costs (% of price)</label><input type="number" id="rpClose" min="0" step="0.1"></div><div><label for="rpRehab">Repairs / initial rehab</label><input type="number" id="rpRehab" min="0" step="500"></div></div><div id="rpLoanBox" class="dt-row4"><div><label for="rpDown">Down payment (%)</label><input type="number" id="rpDown" min="0" max="100" step="1"></div><div><label for="rpRate">Interest rate (%)</label><input type="number" id="rpRate" min="0" step="0.125"></div><div><label for="rpTerm">Loan term (years)</label><input type="number" id="rpTerm" min="1" max="40" step="1"></div><div><label for="reCur">Currency</label><select id="reCur"><option value="$">$ Dollar</option><option value="£">£ Pound</option><option value="€">€ Euro</option><option value="C$">C$ Canadian dollar</option><option value="A$">A$ Australian dollar</option><option value="₹">₹ Rupee</option><option value="AED ">AED Dirham</option><option value="R ">R Rand</option></select></div></div><h3>2. Income</h3><div class="dt-row4"><div><label for="rpRent">Monthly rent</label><input type="number" id="rpRent" min="0"></div><div><label for="rpOther">Other income per month (laundry, parking)</label><input type="number" id="rpOther" min="0"></div><div><label for="rpVac">Vacancy (%)</label><input type="number" id="rpVac" min="0" max="100" step="0.5"></div><div><label for="rpMgmt">Property management (% of income)</label><input type="number" id="rpMgmt" min="0" step="0.5"></div></div><h3>3. Operating expenses</h3><div class="dt-row4"><div><label for="rpTax">Property tax (% of price per year)</label><input type="number" id="rpTax" min="0" step="0.05"></div><div><label for="rpIns">Insurance per year</label><input type="number" id="rpIns" min="0"></div><div><label for="rpMaint">Maintenance (% of rent)</label><input type="number" id="rpMaint" min="0" step="0.5"></div><div><label for="rpCapex">Capital expenses (% of rent)</label><input type="number" id="rpCapex" min="0" step="0.5"></div></div><details><summary class="dt-lbl" style="cursor:pointer">More: HOA, utilities, growth, selling costs, targets</summary><div class="dt-row4"><div><label for="rpHoa">HOA per month</label><input type="number" id="rpHoa" min="0"></div><div><label for="rpUtil">Owner-paid utilities per month</label><input type="number" id="rpUtil" min="0"></div><div><label for="rpRentG">Rent growth per year (%)</label><input type="number" id="rpRentG" min="-20" step="0.5"></div><div><label for="rpExpG">Expense growth per year (%)</label><input type="number" id="rpExpG" min="-20" step="0.5"></div></div><div class="dt-row4"><div><label for="rpApp">Appreciation per year (%)</label><input type="number" id="rpApp" min="-20" step="0.5"></div><div><label for="rpSell">Selling costs at sale (%)</label><input type="number" id="rpSell" min="0" step="0.5"></div><div><label for="rpTarget">Target cash-on-cash (%)</label><input type="number" id="rpTarget" min="0" step="0.5"></div><div><label for="rpYears">Projection length</label><select id="rpYears"><option value="5">5 years</option><option value="10" selected>10 years</option><option value="15">15 years</option><option value="20">20 years</option><option value="30">30 years</option></select></div></div></details>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-res" aria-pressed="true">Results</button>
+<button type="button" class="dt-tab" id="dtTabBtn-sens" aria-pressed="false">What-if tables</button>
+<button type="button" class="dt-tab" id="dtTabBtn-proj" aria-pressed="false">Projection</button>
+</div>
+<div id="dtTab-res"><div id="rpRes"></div></div>
+<div id="dtTab-sens" hidden><div id="rpSens"></div></div>
+<div id="dtTab-proj" hidden><div id="rpProj"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="rpPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="rpCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="rpCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online rental property calculator gives estimates for education and planning. It is not financial, tax, legal or lending advice. Check every figure with your lender, property manager and an adviser before you invest.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Rental Property Cash Flow Calculator. https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Rental Property Cash Flow Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/real-estate-tools/rental-property-cash-flow-calculator/"&gt;Rental Property Cash Flow Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 12, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What a rental property cash flow calculator tells you</a></li><li><a href="#how">How to use this rental calculator</a></li><li><a href="#math">The rental property formulas</a></li><li><a href="#rules">The 1%, 2% and 50% rules</a></li><li><a href="#coc">Cash-on-cash return, cap rate and DSCR compared</a></li><li><a href="#projection">The projection, IRR and equity multiple</a></li><li><a href="#risk">Risks that spreadsheets often miss</a></li><li><a href="#tips">Tips for a more reliable analysis</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#example">A full example: reading the results together</a></li><li><a href="#financing">Mortgage, cash and DSCR loans compared</a></li><li><a href="#market">Choosing realistic inputs for your market</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What a rental property cash flow calculator tells you</h2>
+<p>A <b>rental property cash flow calculator</b> turns an advertisement into a set of numbers you can compare: how much money is left each month after every cost, how hard your cash works, and how safe the payment is. It matters because a property can look attractive by price or rent alone and still lose money once vacancy, repairs, insurance, tax and the mortgage are counted.</p><p>This free online tool calculates <b>monthly cash flow, cash-on-cash return, cap rate, DSCR, gross rent multiplier, break-even occupancy</b> and the <b>1%, 2% and 50% rules</b>. It also projects rent, expenses, loan balance, equity, sale proceeds and <b>IRR</b> for up to 30 years and builds what-if tables for rate, rent, vacancy, down payment and price. For a quick gross and net yield check, use the <a href="/tools/real-estate-tools/rental-yield-calculator/">Rental Yield Calculator</a>. Everything runs in your browser.</p><figure class="dt-fig"><svg viewBox="0 0 640 210" width="100%" role="img" aria-label="Rent flows down to cash flow after vacancy, expenses and loan payments"><title>From rent to cash flow</title>
+<g font-size="12" font-weight="700" fill="#fff" text-anchor="middle">
+<rect class="dt-pop" x="10" y="20" width="620" height="34" rx="8" fill="#0369a1"/><text x="320" y="42">Gross rent and other income</text>
+<rect class="dt-pop" x="10" y="64" width="520" height="34" rx="8" fill="#94a3b8" style="animation-delay:.15s"/><text x="270" y="86">− vacancy</text>
+<rect class="dt-pop" x="10" y="108" width="380" height="34" rx="8" fill="#d97706" style="animation-delay:.3s"/><text x="200" y="130">− tax, insurance, repairs, management = NOI</text>
+<rect class="dt-pop" x="10" y="152" width="270" height="34" rx="8" fill="#dc2626" style="animation-delay:.45s"/><text x="145" y="174">− loan payments</text>
+<rect class="dt-pop" x="284" y="152" width="96" height="34" rx="8" fill="#16a34a" style="animation-delay:.6s"/><text x="332" y="174">Cash flow</text></g>
+<text x="620" y="199" font-size="11" fill="currentColor" opacity=".8" text-anchor="end">Bar lengths are illustrative</text></svg><figcaption>NOI is what is left before the loan. Cash flow is what is left after it.</figcaption></figure>
+<h2 id="how">How to use this rental calculator</h2>
+<ol><li><b>Enter the price and financing.</b> Choose a mortgage and enter the down payment, rate and term, or choose all cash.</li><li><b>Add closing costs and repairs.</b> These count as cash invested.</li><li><b>Enter income.</b> Use realistic monthly rent, any extra income and a vacancy rate.</li><li><b>Enter operating expenses.</b> Use actual quotes for tax and insurance, and percentages for maintenance, capital expenses and management.</li><li><b>Read the verdict and rule-of-thumb checks.</b> Then open the what-if tab to stress-test rent, rate and vacancy.</li><li><b>Open the projection.</b> Pick a holding period to see equity, sale proceeds, IRR and the equity multiple.</li></ol>
+<h2 id="math">The rental property formulas</h2>
+<table><tr><th>Measure</th><th>Formula</th></tr><tr><td>Effective income</td><td>Rent + other income − vacancy</td></tr><tr><td>NOI</td><td>Effective income − operating expenses</td></tr><tr><td>Cash flow</td><td>NOI − yearly loan payments</td></tr><tr><td>Cash invested</td><td>Down payment + closing costs + repairs</td></tr><tr><td>Cash-on-cash</td><td>Yearly cash flow ÷ cash invested</td></tr><tr><td>Cap rate</td><td>NOI ÷ purchase price</td></tr><tr><td>DSCR</td><td>NOI ÷ yearly loan payments</td></tr><tr><td>GRM</td><td>Price ÷ yearly rent</td></tr><tr><td>Break-even occupancy</td><td>(Operating costs + loan payments) ÷ potential income</td></tr></table><p><b>Worked example.</b> A 250,000 property with 25% down, a 7% 30-year loan and rent of 2,200 a month has cash invested of about 75,000. After 6% vacancy, tax, insurance, maintenance, capex and management, NOI is about 15,800 a year. Loan payments are about 15,000, so cash flow is about 800 a year, a cash-on-cash return near 1%. The deal looks fine on rent-to-price but is thin once the mortgage is paid, which is why the full calculation matters.</p>
+<h2 id="rules">The 1%, 2% and 50% rules</h2>
+<ul><li><b>1% rule.</b> Monthly rent should be about 1% of the price. Higher prices make this hard to meet, so treat it as a screen.</li><li><b>2% rule.</b> Rent of 2% of the price is the rare high-yield benchmark.</li><li><b>50% rule.</b> Operating costs, excluding the mortgage, average roughly half of income. If your inputs are far below 50% check that you included repairs, capex and vacancy.</li></ul><p>These are quick filters. The final decision should rest on cash flow, cash-on-cash, DSCR and your own reserves.</p>
+<h2 id="coc">Cash-on-cash return, cap rate and DSCR compared</h2>
+<p><b>Cap rate</b> measures the property, ignoring how you pay for it. <b>Cash-on-cash</b> measures your cash, so it reflects the loan. <b>DSCR</b> measures safety, showing how well income covers the payment. A property can have a strong cap rate but weak cash-on-cash if the rate is high, or a good cash-on-cash and a thin DSCR if you borrowed heavily. Looking at all three gives a more complete picture.</p>
+<h2 id="projection">The projection, IRR and equity multiple</h2>
+<p>The projection grows rent and expenses by the rates you enter, tracks the mortgage balance and property value, and assumes you sell at the end after selling costs. <b>Equity</b> is value minus loan. <b>IRR</b> is the annual return that equates your cash invested with the stream of yearly cash flows and the final sale. The <b>equity multiple</b> shows total cash back for each dollar invested. Because growth is constant, treat the result as a scenario, not a forecast.</p>
+<h2 id="risk">Risks that spreadsheets often miss</h2>
+<ul><li>Vacancy longer than planned and bad debt.</li><li>Large repairs: roofs, boilers, plumbing, sewers.</li><li>Rising insurance and tax bills after a purchase reassessment.</li><li>Rent controls or notice rules that limit increases.</li><li>Variable or short-term loans that reset at higher rates.</li><li>Concentrating all your cash in one property.</li></ul>
+<h2 id="tips">Tips for a more reliable analysis</h2>
+<ul><li>Use quotes for insurance and an actual tax estimate for your purchase price.</li><li>Check rent against active and recently let comparable listings.</li><li>Always include repairs, capital expenses and vacancy.</li><li>Test a higher rate and 10% lower rent in the what-if tables.</li><li>Keep six months of reserves per property.</li><li>Compare against a lower-risk use of the same cash.</li></ul>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li>Leaving out vacancy, repairs and management because you plan to self-manage.</li><li>Using the seller's tax bill when a sale will trigger reassessment.</li><li>Confusing gross yield with net yield or cap rate.</li><li>Ignoring closing costs and initial repairs in cash invested.</li><li>Assuming rents and values only go up.</li></ul>
+<h2 id="example">A full example: reading the results together</h2>
+<p>Take the default property: 250,000 price, 25% down, a 7% 30-year loan and 2,200 rent. The cap rate of about 6.3% looks respectable, and the gross rent multiplier of 9.5 is not unusual. But the DSCR is only about 1.05 and the cash-on-cash return about 1%, which means the loan payment takes nearly all of the net operating income. The deal is not a failure, since the first-year total return including loan paydown and appreciation is far higher than cash flow alone, but it is fragile: a single month of vacancy or a 1 point rate rise turns cash flow negative, as the what-if table shows.</p><p>Now change one thing at a time. Raise the down payment to 35% and the cash flow improves but cash-on-cash may still be weak because you invested more. Lower the price by 10% and both measures improve a lot. Raise rent by 5% and cash flow moves more than it appears, because expenses that are percentages of rent rise less than rent. This is the real value of a calculator: you can see which lever matters most before you negotiate or choose a lender.</p>
+<h2 id="financing">Mortgage, cash and DSCR loans compared</h2>
+<p><b>Conventional investor mortgages</b> usually need a larger down payment than a home you live in and are underwritten on your income. <b>DSCR loans</b> look mainly at the property's income, which is why DSCR appears in the results; many lenders want 1.0 to 1.25 or more. <b>Cash</b> buyers avoid interest but tie up capital. Switch the financing selector to compare. A leveraged purchase raises cash-on-cash return when the property yield is higher than the loan rate, and lowers it when the loan rate is higher than the yield, so rising rates make leverage less attractive.</p>
+<h2 id="market">Choosing realistic inputs for your market</h2>
+<p>Rent: look at recently let comparable properties, not asking rents, and note how long they stayed on the market. Vacancy: ask local property managers for typical turnover time. Tax: use the rate that will apply after purchase, since some areas reassess at sale. Insurance: get a quote, especially in areas with wind, flood or wildfire exposure, where premiums have risen sharply. Maintenance and capital expenses: older roofs, boilers, plumbing and appliances justify higher percentages. Management: even if you manage yourself, include a fee so the deal still works if you stop.</p>
+<h2 id="privacy">Privacy</h2>
+<p>The calculator runs in your browser. The figures you enter are not sent to a server and are not stored. Reloading the page returns the example property. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do you calculate rental property cash flow?</summary><p>Cash flow = rent and other income − vacancy − operating expenses − loan payments. Operating expenses include property tax, insurance, maintenance, capital expenses, management, HOA and utilities. This calculator does each step and shows a monthly and yearly figure.</p></details><details><summary>What is NOI in real estate?</summary><p>Net operating income is income after vacancy and operating expenses but before loan payments and income tax. It is used to compute cap rate and DSCR.</p></details><details><summary>What is cash-on-cash return?</summary><p>It is yearly pre-tax cash flow divided by the cash you invested (down payment, closing costs and repairs). A 10,000 cash flow on 100,000 invested is a 10% cash-on-cash return.</p></details><details><summary>What is a good cash-on-cash return for a rental?</summary><p>Many investors look for 8% to 12%, but the right number depends on your market, risk and alternatives. Use the target field to see the highest price that still reaches your goal.</p></details><details><summary>What is a cap rate and how is it different from cash-on-cash?</summary><p>Cap rate is NOI divided by the purchase price and ignores financing. Cash-on-cash uses cash flow after the loan and your invested cash, so it changes with your down payment and rate.</p></details><details><summary>What is DSCR?</summary><p>Debt service coverage ratio is NOI divided by yearly loan payments. A DSCR of 1.0 means income exactly covers the loan. Lenders for investment loans often want 1.2 or more.</p></details><details><summary>What is the 1% rule?</summary><p>The 1% rule is a screen that monthly rent should be at least 1% of the purchase price. A 250,000 property should rent for about 2,500. It is a quick filter, not a guarantee of cash flow.</p></details><details><summary>What is the 2% rule?</summary><p>The 2% rule asks for monthly rent of 2% of price. It is rare today and is mostly met by low-priced properties in some markets, which may come with higher risk.</p></details><details><summary>What is the 50% rule?</summary><p>The 50% rule estimates that operating expenses, excluding the mortgage, take about half of rental income over time. This calculator compares your actual expense ratio to it.</p></details><details><summary>What vacancy rate should I use?</summary><p>Use the typical vacancy in your area, often 5% to 10%. Never use 0% unless the property is guaranteed to be let continuously, because turnover and make-ready time are real costs.</p></details><details><summary>How much should I budget for maintenance and capital expenses?</summary><p>A common rule is 5% to 10% of rent for repairs and another 5% to 10% for big items such as roofs, boilers and appliances. Older properties need more.</p></details><details><summary>What is break-even occupancy?</summary><p>It is the share of the year the property must be let to cover operating costs and the loan. A lower number means a bigger safety cushion.</p></details><details><summary>What is gross rent multiplier?</summary><p>GRM is the purchase price divided by yearly rent. Lower numbers mean more rent for the price. It is useful for quick comparison but ignores expenses.</p></details><details><summary>What is IRR and the equity multiple?</summary><p>IRR is the yearly return that makes the cash invested equal to all later cash flows plus sale proceeds. The equity multiple is total cash returned divided by cash invested. The projection tab calculates both.</p></details><details><summary>Does the calculator include taxes and depreciation?</summary><p>It shows pre-tax figures. Depreciation and income tax depend on your situation and country, so ask a tax professional.</p></details><details><summary>Can I compare a mortgage with an all-cash purchase?</summary><p>Yes. Switch financing between mortgage and all cash and compare cash-on-cash, cash flow and IRR. Leverage can raise returns but also raises risk.</p></details><details><summary>How is this different from the Rental Yield Calculator?</summary><p>The Rental Yield Calculator gives gross and net yield quickly. This tool adds the loan, cash-on-cash return, DSCR, the 1%, 2% and 50% rules, a projection and what-if tables.</p></details><details><summary>Is my data private, and can I print or export?</summary><p>Yes. Everything runs in your browser and nothing is uploaded. You can print only the report, download a CSV or copy a summary.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Standard real estate investment analysis texts on net operating income, cap rate, cash-on-cash return and debt service coverage ratio.</li><li>Consumer Financial Protection Bureau: explanations of mortgage payments, closing costs and escrow.</li><li>Common investor rules of thumb (1% rule, 2% rule, 50% rule) as widely described in investing education; they are screens, not guarantees.</li><li>Investor loan lender published guidelines for DSCR requirements (terms vary by lender; confirm current quotes).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online rental property cash flow calculator is provided for general education and planning only. It is not financial, investment, tax, legal or lending advice, and it is not an appraisal or a loan offer. Results depend entirely on the numbers you enter and on simplified assumptions: expenses are averages and percentages, rent growth and appreciation are constant every year, the loan is a standard fixed-rate amortising mortgage, and income tax, depreciation, mortgage insurance, rent control, local regulations and unexpected repairs are not modelled. Real rents, vacancy, interest rates and values change and are often worse than assumed. Real estate investing carries risk of loss. Verify all figures with your lender, accountant and a qualified adviser before you commit money.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+
+/* ---------- rental engine ---------- */
+function rental(o) {
+  var r = {}, P = o.price;
+  r.down = o.fin === "cash" ? P : P * o.downPct / 100; r.loan = P - r.down; r.closing = P * o.closePct / 100;
+  r.cashIn = r.down + r.closing + o.rehab;
+  r.pmt = r.loan > 0 ? pmt(r.loan, o.rate, o.term) : 0; r.ds = r.pmt * 12;
+  var rentY = o.rent * 12, gpi = rentY + o.other * 12; r.gpi = gpi; r.vacancy = rentY * o.vac / 100; r.egi = gpi - r.vacancy;
+  r.opex = { tax: P * o.taxPct / 100, ins: o.ins, hoa: o.hoa * 12, maint: rentY * o.maint / 100, capex: rentY * o.capex / 100, mgmt: r.egi * o.mgmt / 100, util: o.util * 12 };
+  r.opexTotal = 0; for (var k in r.opex) r.opexTotal += r.opex[k];
+  r.noi = r.egi - r.opexTotal; r.cf = r.noi - r.ds;
+  r.coc = r.cashIn > 0 ? r.cf / r.cashIn * 100 : null; r.cap = r.noi / P * 100;
+  r.dscr = r.ds > 0 ? r.noi / r.ds : null; r.grm = rentY > 0 ? P / rentY : null;
+  r.rentPct = o.rent / P * 100; r.opexRatio = r.egi > 0 ? r.opexTotal / r.egi * 100 : null;
+  r.beOcc = gpi > 0 ? (r.opexTotal + r.ds) / gpi * 100 : null;
+  r.paydown = r.loan > 0 ? r.loan - balAfter(r.loan, o.rate, o.term, 12) : 0;
+  r.apprec = P * o.app / 100; r.totalRet = r.cf + r.paydown + r.apprec; r.totalRetPct = r.cashIn > 0 ? r.totalRet / r.cashIn * 100 : null;
+  r.ltv = P > 0 ? r.loan / P * 100 : 0;
+  return r;
+}
+function rentalProj(o, r, years) {
+  var rows = [], cum = 0, rentY = o.rent * 12, cf0 = [-r.cashIn];
+  for (var y = 1; y <= years; y++) {
+    var g = Math.pow(1 + o.rentG / 100, y - 1), e = Math.pow(1 + o.expG / 100, y - 1);
+    var egi = (rentY * (1 - o.vac / 100) + o.other * 12) * g;
+    var opex = (r.opex.tax + r.opex.ins + r.opex.hoa + r.opex.util) * e + (r.opex.maint + r.opex.capex) * g + egi * o.mgmt / 100;
+    var noi = egi - opex, cf = noi - r.ds; cum += cf;
+    var bal = r.loan > 0 ? balAfter(r.loan, o.rate, o.term, y * 12) : 0, val = o.price * Math.pow(1 + o.app / 100, y);
+    var sale = val * (1 - o.sellPct / 100) - bal;
+    rows.push({ y: y, noi: noi, cf: cf, cum: cum, bal: bal, val: val, eq: val - bal, sale: sale });
+  }
+  return rows;
+}
+function rentalIrr(r, rows, n) {
+  var cf = [-r.cashIn]; for (var i = 0; i < n; i++) cf.push(rows[i].cf + (i === n - 1 ? rows[i].sale : 0));
+  var tot = 0; for (var j = 1; j < cf.length; j++) tot += cf[j];
+  return { irr: irr(cf), mult: r.cashIn > 0 ? tot / r.cashIn : null, profit: tot - r.cashIn };
+}
+function rentalMaxPrice(o, targetCoc) {
+  /* highest price giving cash-on-cash >= target (bisection) */
+  var lo = 1000, hi = o.price * 5 + 1e6, f = function (p) { var r = rental(Object.assign({}, o, { price: p, rehab: o.rehab })); return r.coc == null ? -999 : r.coc; };
+  if (f(lo) < targetCoc) return null;
+  for (var i = 0; i < 60; i++) { var m = (lo + hi) / 2; if (f(m) >= targetCoc) lo = m; else hi = m; }
+  return lo;
+}
+
+/* ---------- rental UI ---------- */
+var ST = { o: null, r: null, proj: null, yrs: 10 };
+var IDS = { price: ["rpPrice", 250000], downPct: ["rpDown", 25], rate: ["rpRate", 7], term: ["rpTerm", 30], closePct: ["rpClose", 3], rehab: ["rpRehab", 5000], rent: ["rpRent", 2200], other: ["rpOther", 0], vac: ["rpVac", 6], taxPct: ["rpTax", 1.1], ins: ["rpIns", 1400], hoa: ["rpHoa", 0], maint: ["rpMaint", 6], capex: ["rpCapex", 5], mgmt: ["rpMgmt", 8], util: ["rpUtil", 0], rentG: ["rpRentG", 3], expG: ["rpExpG", 3], app: ["rpApp", 3], sellPct: ["rpSell", 6], targetCoc: ["rpTarget", 8] };
+function readO() { var o = { fin: $("rpFin").value }; for (var k in IDS) o[k] = nv(IDS[k][0], IDS[k][1], 0); o.price = Math.max(1, o.price); o.downPct = Math.min(o.downPct, 100); o.term = Math.max(1, o.term); o.vac = Math.min(o.vac, 100); ST.yrs = parseInt($("rpYears").value, 10) || 10; return o; }
+function v(o, ch) { return rental(Object.assign({}, o, ch)); }
+function calc() {
+  var o = readO(), r = rental(o); ST.o = o; ST.r = r; ST.proj = rentalProj(o, r, 30);
+  $("rpLoanBox").hidden = o.fin === "cash";
+  var cfc = r.cf >= 0 ? "ok" : "err", h = '<div class="dt-result"><div class="dt-label">Rental property verdict</div><div class="dt-big">' + (r.cf >= 0 ? "Positive cash flow of " + fm(r.cf / 12) + " a month" : "Negative cash flow of " + fm(-r.cf / 12) + " a month") + '</div><p class="dt-sum">Cash-on-cash return <b>' + (r.coc == null ? "n/a" : pc(r.coc, 1)) + "</b>, cap rate <b>" + pc(r.cap, 2) + "</b>, DSCR <b>" + (r.dscr == null ? "no loan" : r.dscr.toFixed(2)) + "</b> on " + fm(r.cashIn) + " of cash invested.</p></div>";
+  h += '<div class="dt-stats">' + tile("Monthly cash flow", fm(r.cf / 12), fm(r.cf) + " a year", cfc) + tile("Cash-on-cash return", r.coc == null ? "n/a" : pc(r.coc, 1), "cash flow / cash invested", r.coc >= 8 ? "ok" : r.coc >= 0 ? "warn" : "err") + tile("Cap rate", pc(r.cap, 2), "NOI / price", r.cap >= 6 ? "ok" : "warn") + tile("NOI (year 1)", fm(r.noi), "before loan payments") + tile("DSCR", r.dscr == null ? "n/a" : r.dscr.toFixed(2), "NOI / debt service", r.dscr == null || r.dscr >= 1.25 ? "ok" : r.dscr >= 1 ? "warn" : "err") + tile("Cash invested", fm(r.cashIn), "down payment, closing, repairs") + tile("Monthly mortgage", fm(r.pmt), r.loan > 0 ? "loan " + fm(r.loan) : "no loan") + tile("Total return, year 1", r.totalRetPct == null ? "n/a" : pc(r.totalRetPct, 1), "cash flow + paydown + appreciation") + tile("Gross rent multiplier", r.grm == null ? "n/a" : r.grm.toFixed(1), "price / yearly rent") + tile("Break-even occupancy", r.beOcc == null ? "n/a" : pc(r.beOcc, 0), "to cover costs and loan", r.beOcc <= 85 ? "ok" : r.beOcc <= 95 ? "warn" : "err") + "</div>";
+  h += '<h3 class="dt-lbl">Rules of thumb</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Result</th><th>Test</th><th>Your property</th></tr>' +
+    check(r.rentPct >= 1, "1% rule: monthly rent at least 1% of price", pc(r.rentPct, 2)) +
+    check(r.rentPct >= 2, "2% rule: monthly rent at least 2% of price", pc(r.rentPct, 2)) +
+    check(r.opexRatio != null && r.opexRatio <= 50, "50% rule: operating costs about 50% of income or less", r.opexRatio == null ? "n/a" : pc(r.opexRatio, 0)) +
+    check(r.cf > 0, "Positive cash flow after the loan payment", fm(r.cf / 12) + " a month") +
+    check(r.dscr == null || r.dscr >= 1.2, "DSCR of 1.20 or more (most lenders)", r.dscr == null ? "no loan" : r.dscr.toFixed(2)) +
+    check(r.coc != null && r.coc >= o.targetCoc, "Cash-on-cash at or above your " + o.targetCoc + "% target", r.coc == null ? "n/a" : pc(r.coc, 1)) + "</table></div>";
+  var mp = rentalMaxPrice(o, o.targetCoc);
+  h += '<p class="dt-sum">Highest price that still gives a <b>' + o.targetCoc + "%</b> cash-on-cash return with these terms: <b>" + (mp == null ? "none (even a very low price fails)" : fm(mp)) + "</b>.</p>";
+  h += '<h3 class="dt-lbl">Where the rent goes (per year)</h3><div class="dt-diagram">' + hbars([{ l: "Vacancy", v: r.vacancy, c: "#94a3b8" }, { l: "Property tax", v: r.opex.tax, c: "#0369a1" }, { l: "Insurance", v: r.opex.ins, c: "#0ea5e9" }, { l: "Maintenance and capex", v: r.opex.maint + r.opex.capex, c: "#d97706" }, { l: "Management", v: r.opex.mgmt, c: "#7c3aed" }, { l: "HOA and utilities", v: r.opex.hoa + r.opex.util, c: "#64748b" }, { l: "Loan payments", v: r.ds, c: "#dc2626" }, { l: "Cash flow", v: Math.max(0, r.cf), c: "#16a34a" }], fm) + "</div>";
+  $("rpRes").innerHTML = h; sens(); proj();
+}
+function sens() {
+  var o = ST.o, rents = [-10, -5, 0, 5, 10], rates = [5, 6, 7, 8, 9];
+  var h = '<h3 class="dt-lbl">Monthly cash flow: interest rate against rent</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Rate \\ Rent</th>' + rents.map(function (a) { return "<th>" + (a > 0 ? "+" : "") + a + "%<br>" + fm(o.rent * (1 + a / 100)) + "</th>"; }).join("") + "</tr>";
+  rates.forEach(function (rt) { h += "<tr><th>" + rt + "%</th>" + rents.map(function (a) { var r = v(o, { rate: rt, rent: o.rent * (1 + a / 100) }); return '<td style="' + (r.cf >= 0 ? "background:rgba(22,163,74,.15)" : "background:rgba(220,38,38,.15)") + '">' + fm(r.cf / 12) + "</td>"; }).join("") + "</tr>"; });
+  h += "</table></div>";
+  h += '<h3 class="dt-lbl">Vacancy and down payment</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Scenario</th><th>Monthly cash flow</th><th>Cash-on-cash</th><th>DSCR</th></tr>';
+  [0, 5, 8, 12, 20].forEach(function (x) { var r = v(o, { vac: x }); h += "<tr><td>Vacancy " + x + "%</td><td>" + fm(r.cf / 12) + "</td><td>" + (r.coc == null ? "n/a" : pc(r.coc, 1)) + "</td><td>" + (r.dscr ? r.dscr.toFixed(2) : "n/a") + "</td></tr>"; });
+  if (o.fin !== "cash") [10, 15, 20, 25, 30, 40].forEach(function (x) { var r = v(o, { downPct: x }); h += "<tr><td>Down payment " + x + "%</td><td>" + fm(r.cf / 12) + "</td><td>" + (r.coc == null ? "n/a" : pc(r.coc, 1)) + "</td><td>" + (r.dscr ? r.dscr.toFixed(2) : "n/a") + "</td></tr>"; });
+  h += "</table></div>";
+  h += '<h3 class="dt-lbl">Purchase price</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Price</th><th>Cash invested</th><th>Monthly cash flow</th><th>Cash-on-cash</th><th>Cap rate</th></tr>';
+  [-15, -10, -5, 0, 5].forEach(function (d) { var r = v(o, { price: o.price * (1 + d / 100) }); h += "<tr><td>" + fm(o.price * (1 + d / 100)) + " (" + (d > 0 ? "+" : "") + d + "%)</td><td>" + fm(r.cashIn) + "</td><td>" + fm(r.cf / 12) + "</td><td>" + (r.coc == null ? "n/a" : pc(r.coc, 1)) + "</td><td>" + pc(r.cap, 2) + "</td></tr>"; });
+  h += "</table></div>"; $("rpSens").innerHTML = h;
+}
+function proj() {
+  var o = ST.o, r = ST.r, n = ST.yrs, p = ST.proj.slice(0, n), x = rentalIrr(r, ST.proj, n), last = p[n - 1];
+  var h = '<div class="dt-diagram">' + linechart([{ n: "Equity", c: "#0369a1", d: p.map(function (y) { return y.eq; }) }, { n: "Cumulative cash flow", c: "#16a34a", d: p.map(function (y) { return y.cum; }) }], p.map(function (y) { return "Y" + y.y; }), fm) + "</div>";
+  h += '<div class="dt-stats">' + tile("Equity at year " + n, fm(last.eq), "value minus loan") + tile("Cash flow over " + n + " years", fm(last.cum)) + tile("Net sale proceeds", fm(last.sale), "after " + o.sellPct + "% selling costs") + tile("Total profit", fm(x.profit), "cash flow + sale − cash invested", x.profit >= 0 ? "ok" : "err") + tile("IRR", x.irr == null ? "n/a" : pc(x.irr * 100, 1), "annual return incl. sale") + tile("Equity multiple", x.mult == null ? "n/a" : x.mult.toFixed(2) + "x", "total cash back / invested") + "</div>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Year</th><th>NOI</th><th>Cash flow</th><th>Cumulative</th><th>Loan balance</th><th>Value</th><th>Equity</th></tr>';
+  p.forEach(function (y) { h += "<tr><td>" + y.y + "</td><td>" + fm(y.noi) + "</td><td>" + fm(y.cf) + "</td><td>" + fm(y.cum) + "</td><td>" + fm(y.bal) + "</td><td>" + fm(y.val) + "</td><td>" + fm(y.eq) + "</td></tr>"; });
+  h += "</table></div>"; $("rpProj").innerHTML = h; ST.x = x;
+}
+function summaryRows() {
+  var o = ST.o, r = ST.r;
+  return [["Purchase price", fm(o.price)], ["Financing", o.fin === "cash" ? "All cash" : o.downPct + "% down, " + o.rate + "%, " + o.term + " years"], ["Cash invested", fm(r.cashIn)], ["Monthly rent", fm(o.rent)], ["Operating expenses (year 1)", fm(r.opexTotal)], ["NOI (year 1)", fm(r.noi)], ["Monthly mortgage", fm(r.pmt)], ["Monthly cash flow", fm(r.cf / 12)], ["Annual cash flow", fm(r.cf)], ["Cash-on-cash", r.coc == null ? "n/a" : pc(r.coc, 1)], ["Cap rate", pc(r.cap, 2)], ["DSCR", r.dscr ? r.dscr.toFixed(2) : "no loan"], ["Gross rent multiplier", r.grm ? r.grm.toFixed(1) : "n/a"], ["Rent to price", pc(r.rentPct, 2)], ["Break-even occupancy", r.beOcc == null ? "n/a" : pc(r.beOcc, 0)], ["IRR over " + ST.yrs + " years", ST.x.irr == null ? "n/a" : pc(ST.x.irr * 100, 1)]];
+}
+function fillReport() {
+  var b = repBox(); repHead(b, "Rental property analysis", "Free online Rental Property Cash Flow Calculator"); repTbl(b, ["Item", "Value"], summaryRows());
+  repAdd(b, "h3", ST.yrs + "-year projection"); repTbl(b, ["Year", "NOI", "Cash flow", "Cumulative", "Loan balance", "Equity"], ST.proj.slice(0, ST.yrs).map(function (x) { return [x.y, fm(x.noi), fm(x.cf), fm(x.cum), fm(x.bal), fm(x.eq)]; }));
+  repDisc(b, "Estimates for education only. Not financial, tax or lending advice. Verify rents, costs and loan terms.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["res", "sens", "proj"]);
+  for (var k in IDS) $(IDS[k][0]).value = IDS[k][1];
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { for (var k in IDS) $(IDS[k][0]).value = IDS[k][1]; $("rpFin").value = "mortgage"; $("rpYears").value = "10"; calc(); msg("Reset to the example property."); });
+  $("rpCsv").addEventListener("click", function () { csvDownload([["Item", "Value"]].concat(summaryRows()), "rental-property-analysis.csv"); });
+  $("rpCopy").addEventListener("click", function () { copyText("Rental property analysis\n" + summaryRows().map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online Rental Property Cash Flow Calculator at utiliby.com", $("rpCopy")); });
+  $("rpPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
