@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Recipe Nutrition Calculator Online – Calories & Macros</title>
+<meta name="description" content="Free online recipe nutrition calculator: paste ingredients to get calories, protein, carbs, fat, fibre and sodium per serving with % daily values.">
+<link rel="canonical" href="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Recipe Nutrition Calculator Online – Calories & Macros">
+<meta property="og:description" content="Free online recipe nutrition calculator: calories, macros and %DV per serving from any ingredient list, with a food database and nutrition facts table.">
+<meta property="og:url" content="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Recipe Nutrition Calculator Online – Calories & Macros">
+<meta name="twitter:description" content="Free online recipe nutrition calculator: calories, macros and %DV per serving from any ingredient list, with a food database and nutrition facts table.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#c2410c;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#fdba74}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #c2410c;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#c2410c;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(194,65,12,.06);border-left:3px solid #c2410c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#c2410c}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#c2410c;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(194,65,12,.12);color:#9a3412;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fdba74;background:rgba(251,146,60,.16)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Recipe Nutrition Calculator","url":"https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/","description":"Free online recipe nutrition calculator: paste a recipe to calculate calories, protein, carbohydrate, fat, fibre, sugars, sodium and cholesterol per serving and per 100 g, with % daily values, a macro chart and a searchable ingredient database.","applicationCategory":"HealthApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Paste a recipe and read it automatically","Calories, protein, carbs, fat, fibre, sugars, sodium, cholesterol","Cup, spoon and item to gram conversion","% Daily Value, per 100 g and macro chart","Searchable database of about 150 foods","Add your own ingredients","Print, CSV and copy; saves in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate the calories in a recipe?","acceptedAnswer":{"@type":"Answer","text":"Add up the calories of every ingredient, then divide by the number of servings. Each ingredient's calories are its weight in grams ÷ 100 × the calories per 100 g. For example, 250 g of all-purpose flour (364 kcal per 100 g) is about 910 kcal. The calculator does all of this and also converts cups and spoons to grams."}},{"@type":"Question","name":"How accurate is this recipe nutrition calculator?","acceptedAnswer":{"@type":"Answer","text":"It is a good estimate, usually within about 5 to 10% for common recipes made with standard ingredients, but not exact. Brands, ripeness, trimming, cooking method and how you measure change real values. Weigh ingredients on a scale for the best accuracy."}},{"@type":"Question","name":"Where does the nutrition data come from?","acceptedAnswer":{"@type":"Answer","text":"The calculator contains about 150 common ingredients with typical values per 100 g, based on the USDA FoodData Central reference data and rounded for clarity. For packaged foods, use the nutrition facts panel and add them as your own ingredient."}},{"@type":"Question","name":"How do I enter ingredients?","acceptedAnswer":{"@type":"Answer","text":"Paste your ingredient list, one per line, such as '2 cups flour', '1/2 cup butter' or '3 large eggs', and press Analyse. The tool reads the amount, unit and name and matches it to a food. You can fix any row, change units or add rows by hand."}},{"@type":"Question","name":"What if an ingredient is not in the list?","acceptedAnswer":{"@type":"Answer","text":"Open 'Add your own ingredient' and enter its values per 100 g from the product label or a nutrition database. It is saved in your browser and can be used in any recipe."}},{"@type":"Question","name":"How are cups and spoons converted to grams?","acceptedAnswer":{"@type":"Answer","text":"Using average grams per US cup for each food, for example 125 g for all-purpose flour, 200 g for sugar and 227 g for butter. A tablespoon is 1/16 cup and a teaspoon 1/48 cup. Items counted by number, such as eggs or bananas, use an average weight."}},{"@type":"Question","name":"Is the nutrition for raw or cooked ingredients?","acceptedAnswer":{"@type":"Answer","text":"It uses the form you name. For example, 'white rice, uncooked' and 'white rice, cooked' have different values. If your recipe loses or gains water in cooking, enter the final cooked weight to get per 100 g correctly. Calories per serving are not affected."}},{"@type":"Question","name":"How do I choose the number of servings?","acceptedAnswer":{"@type":"Answer","text":"Use the number of portions you actually cut or serve, such as 12 slices or 24 cookies. For per-serving accuracy, weigh the finished dish and divide by the servings, or enter the serving size text so labels are clear."}},{"@type":"Question","name":"What does % Daily Value mean?","acceptedAnswer":{"@type":"Answer","text":"It shows how much a serving contributes to a nutrient's daily reference amount on a 2,000 calorie diet: total fat 78 g, saturated fat 20 g, cholesterol 300 mg, sodium 2,300 mg, carbohydrate 275 g, dietary fibre 28 g and protein 50 g (US FDA values). 5% or less is low, 20% or more is high."}},{"@type":"Question","name":"What are net carbs?","acceptedAnswer":{"@type":"Answer","text":"Net carbs are total carbohydrate minus fibre. The calculator shows it on the Nutrition facts tab. It is not an official label value and some people also subtract sugar alcohols, which this tool does not."}},{"@type":"Question","name":"Does it count added sugars?","acceptedAnswer":{"@type":"Answer","text":"It reports total sugars. It cannot tell added sugars from natural sugars. The nutrition facts label generator lets you type added sugars yourself."}},{"@type":"Question","name":"Can I use it for weight loss or meal prep?","acceptedAnswer":{"@type":"Answer","text":"Yes. It gives calories and macros per serving so you can plan portions. It is a planning aid, not a diet prescription. Ask a doctor or dietitian for advice about your needs."}},{"@type":"Question","name":"Can I use these numbers on a nutrition label to sell food?","acceptedAnswer":{"@type":"Answer","text":"Not as they are. Legal labels have rules on methods, rounding and databases, and may require laboratory analysis. Use this as a starting estimate, and open the nutrition facts label generator to prepare a draft that you check against your local regulations."}},{"@type":"Question","name":"Why do the macros not add up to the calories exactly?","acceptedAnswer":{"@type":"Answer","text":"Calories are taken from the food data, which uses specific energy factors for each food, while the macro chart uses 4 kcal per gram of protein and carbohydrate and 9 kcal per gram of fat. Small differences are normal, especially for foods with fibre or alcohol."}},{"@type":"Question","name":"Does it include vitamins and minerals?","acceptedAnswer":{"@type":"Answer","text":"This version covers calories, protein, carbohydrate, fibre, sugars, fat, saturated fat, cholesterol and sodium. These are the main values people need for tracking and labels. Micronutrients are not included."}},{"@type":"Question","name":"Is my recipe saved?","acceptedAnswer":{"@type":"Answer","text":"Your recipe is kept in your own browser's local storage so it is there when you return, and the latest result is available to the nutrition facts label generator. Nothing is sent to a server."}},{"@type":"Question","name":"Can I print or save the nutrition information?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the tab you are viewing, CSV downloads the table for a spreadsheet and copy summary puts it on your clipboard."}},{"@type":"Question","name":"Is this tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free with no sign-up and no limits."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Recipe & Cooking Tools","item":"https://utiliby.com/tools/recipe-cooking-tools/"},{"@type":"ListItem","position":3,"name":"Recipe Nutrition Calculator","item":"https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/recipe-cooking-tools/">Recipe &amp; Cooking Tools</a> › Recipe Nutrition Calculator</nav>
+<h1 class="noembed">Free Online Recipe Nutrition Calculator: Calories, Macros and %DV per Serving</h1>
+<p class="lead noembed">Free online recipe nutrition calculator. Paste your ingredient list to get calories, protein, carbohydrates, fat, fibre, sugars and sodium per serving and per 100 g, with % daily values, a macro chart and a searchable database of about 150 foods. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/" target="_blank" rel="noopener">Recipe Nutrition Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Recipe nutrition calculator">
+<div class="dt-hero noembed">
+<h2>Free Recipe Nutrition Calculator Online</h2>
+<p>Paste your ingredients to get calories, protein, carbs, fat, fibre, sugar and sodium per serving, with % daily values and a macro chart. Free, private, no sign-up.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-rc" aria-pressed="true">Recipe</button>
+<button type="button" class="dt-tab" id="dtTabBtn-nf" aria-pressed="false">Nutrition facts</button>
+<button type="button" class="dt-tab" id="dtTabBtn-db" aria-pressed="false">Food database</button>
+</div>
+<div id="dtTab-rc"><div class="dt-panel"><label for="nuText">Paste your ingredients, one per line (quantity, unit, name)</label><textarea id="nuText" rows="7" spellcheck="false" style="width:100%;font:inherit;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);color:inherit"></textarea><div class="dt-actions" style="margin:8px 0 12px"><button type="button" class="dt-btn" id="nuParse">Analyse (replace rows)</button><button type="button" class="dt-btn ghost" id="nuMore">Add to existing rows</button></div><div class="dt-row4"><div><label for="nuName">Recipe name</label><input type="text" id="nuName" maxlength="80"></div><div><label for="nuServ">Servings</label><input type="number" id="nuServ" min="1" step="1"></div><div><label for="nuSize">Serving size (text)</label><input type="text" id="nuSize" maxlength="40"></div><div><label for="nuCooked">Final cooked weight in g (optional)</label><input type="number" id="nuCooked" min="0" step="1"></div></div><datalist id="nuFoods"></datalist><div id="nuRows"></div><div class="dt-actions" style="margin:8px 0 0"><button type="button" class="dt-btn ghost" id="nuAdd">+ Add ingredient</button></div><details style="margin:10px 0"><summary style="cursor:pointer;font-weight:700">Add your own ingredient (values per 100 g)</summary><div style="margin-top:8px"><div class="dt-row4"><div><label for="nuCN">Name</label><input type="text" id="nuCN" maxlength="60"></div><div><label for="nuCK">Calories (kcal)</label><input type="number" id="nuCK" min="0" step="1"></div><div><label for="nuCP">Protein (g)</label><input type="number" id="nuCP" min="0" step="0.1"></div><div><label for="nuCC">Carbohydrate (g)</label><input type="number" id="nuCC" min="0" step="0.1"></div></div><div class="dt-row4"><div><label for="nuCF">Fat (g)</label><input type="number" id="nuCF" min="0" step="0.1"></div><div><label for="nuCFi">Fibre (g)</label><input type="number" id="nuCFi" min="0" step="0.1"></div><div><label for="nuCS">Sugars (g)</label><input type="number" id="nuCS" min="0" step="0.1"></div><div><label for="nuCSat">Saturated fat (g)</label><input type="number" id="nuCSat" min="0" step="0.1"></div></div><div class="dt-row4"><div><label for="nuCNa">Sodium (mg)</label><input type="number" id="nuCNa" min="0" step="1"></div><div><label for="nuCCh">Cholesterol (mg)</label><input type="number" id="nuCCh" min="0" step="1"></div><div><label>&nbsp;</label><button type="button" class="dt-btn ghost" id="nuCAdd">Add ingredient</button></div><div></div></div><p class="ck-note">Saved in this browser only. Use the nutrition facts panel of the product, converted to per 100 g.</p></div></details></div><div id="nuRcRes"></div></div>
+<div id="dtTab-nf" hidden><div class="dt-panel"><div id="nuNfRes"></div></div></div>
+<div id="dtTab-db" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="nuQ">Search foods</label><input type="text" id="nuQ" maxlength="40" placeholder="e.g. rice, butter, chicken"></div><div><label for="nuG">Food group</label><select id="nuG"><option value="all">All groups</option></select></div><div></div><div></div></div><div id="nuDbRes"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button><button type="button" class="dt-btn" id="nuPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="nuCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="nuCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> Estimates only, from average ingredient data. Not medical advice or a legal nutrition label.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Recipe Nutrition Calculator. https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Recipe Nutrition Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/recipe-cooking-tools/recipe-nutrition-calculator/"&gt;Recipe Nutrition Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free recipe nutrition calculator does</a></li><li><a href="#how">How to use the recipe nutrition calculator</a></li><li><a href="#calc">How recipe calories and nutrients are calculated</a></li><li><a href="#units">Converting cups, spoons and items to grams</a></li><li><a href="#dv">Understanding % Daily Value</a></li><li><a href="#macros">Calories, macros and balance</a></li><li><a href="#tips">Tips for more accurate recipe nutrition</a></li><li><a href="#diets">Using the results for meal prep and special diets</a></li><li><a href="#label">From recipe nutrition to a nutrition facts label</a></li><li><a href="#limits">Limits of recipe nutrition calculators</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free recipe nutrition calculator does</h2>
+<p>This free online <b>recipe nutrition calculator</b> turns a list of ingredients into the <b>calories, protein, carbohydrate, fat, fibre, sugars, sodium and cholesterol</b> in your recipe, per serving and per 100 g, with % Daily Values and a chart of where the calories come from. It is useful for <b>meal prep, weight management, macro tracking, diabetic and low-sodium cooking</b> and for anyone who wants to know what is in a favourite dish.</p><p>You can paste a recipe exactly as written, such as "2 cups all-purpose flour" or "3 large eggs". The tool reads the amount, the unit and the ingredient name, matches it to about 150 common foods and converts cups, spoons and counts to grams. A food database tab lets you browse and search every food's nutrition per 100 g. Everything runs in your browser and your recipe is saved only on your device.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="How recipe nutrition is calculated: ingredient weight times nutrients per 100 grams, added up and divided by servings"><title>From ingredients to nutrition per serving</title>
+<g font-size="12.5" font-weight="700">
+<rect class="dt-bar" x="14" y="20" width="150" height="70" rx="10" fill="#c2410c"/><text x="89" y="48" text-anchor="middle" fill="#fff">Ingredient</text><text x="89" y="68" text-anchor="middle" fill="#fff" font-weight="400">2 cups flour</text>
+<rect class="dt-bar" x="190" y="20" width="150" height="70" rx="10" fill="#ea580c" style="animation-delay:.15s"/><text x="265" y="48" text-anchor="middle" fill="#fff">Weight in grams</text><text x="265" y="68" text-anchor="middle" fill="#fff" font-weight="400">2 × 125 = 250 g</text>
+<rect class="dt-bar" x="366" y="20" width="130" height="70" rx="10" fill="#fb923c" style="animation-delay:.3s"/><text x="431" y="48" text-anchor="middle" fill="#431407">× per 100 g</text><text x="431" y="68" text-anchor="middle" fill="#431407" font-weight="400">364 kcal → 910</text>
+<rect class="dt-bar" x="520" y="20" width="106" height="70" rx="10" fill="#16a34a" style="animation-delay:.45s"/><text x="573" y="48" text-anchor="middle" fill="#fff">÷ servings</text><text x="573" y="68" text-anchor="middle" fill="#fff" font-weight="400">per slice</text></g>
+<g fill="currentColor" font-size="13"><text x="14" y="135" font-weight="700">Add up every ingredient, then divide by the number of servings.</text><text x="14" y="160">Calories, protein, carbohydrate, fat, fibre, sugars, sodium and cholesterol are all worked out together.</text><text x="14" y="185">% Daily Value = amount per serving ÷ FDA daily reference value × 100.</text></g></svg><figcaption>A recipe's nutrition is the sum of each ingredient's weight times its nutrients per 100 g, divided by the number of servings.</figcaption></figure>
+<h2 id="how">How to use the recipe nutrition calculator</h2>
+<ol><li><b>Paste the ingredients</b> and press Analyse. Each line becomes a row with its amount, unit and matched food. The example is banana bread.</li><li><b>Check the matches.</b> Rows with no match are marked in red. Type a different name from the suggestions, change the unit or amount, or add your own ingredient.</li><li><b>Set servings.</b> Enter how many servings the recipe makes and a serving size description such as "1 slice". Add the cooked weight if you know it.</li><li><b>Read the results.</b> The Recipe tab shows calories, macros, flags and the nutrition of each ingredient. The Nutrition facts tab shows per serving, % DV and per 100 g.</li><li><b>Print, download or copy,</b> or take the result to the nutrition facts label generator.</li></ol>
+<h2 id="calc">How recipe calories and nutrients are calculated</h2>
+<p>For each ingredient the weight in grams is multiplied by its nutrient content per 100 g and divided by 100. The totals of all ingredients are the nutrition of the whole recipe; dividing by the number of servings gives the nutrition per serving. Per 100 g divides the recipe total by its weight, so it is useful for comparing recipes of different sizes.</p><p><b>Example.</b> A banana bread of 2 cups flour (250 g), ¾ cup sugar (150 g), ½ cup butter (113 g), 2 eggs (100 g), 3 bananas (354 g), plus baking soda, salt, vanilla and ½ cup walnuts totals about 3,150 kcal. Cut into 12 slices it is about 260 kcal each, and the flour, sugar and butter account for roughly three quarters of it.</p><p>Calories from macronutrients use the Atwater factors: 4 kcal per gram of protein and carbohydrate and 9 kcal per gram of fat. Food database values already include fibre and other factors, so the sum of macros can differ slightly from the listed calories.</p>
+<h2 id="units">Converting cups, spoons and items to grams</h2>
+<div class="dt-wrap"><table><tr><th>Ingredient</th><th>1 cup is about</th><th>1 tablespoon</th></tr><tr><td>All-purpose flour</td><td>125 g</td><td>7.8 g</td></tr><tr><td>Granulated sugar</td><td>200 g</td><td>12.5 g</td></tr><tr><td>Brown sugar (packed)</td><td>213 g</td><td>13.3 g</td></tr><tr><td>Butter</td><td>227 g</td><td>14.2 g</td></tr><tr><td>Olive oil</td><td>216 g</td><td>13.5 g</td></tr><tr><td>Milk</td><td>245 g</td><td>15.3 g</td></tr><tr><td>Honey</td><td>340 g</td><td>21 g</td></tr><tr><td>Rolled oats</td><td>90 g</td><td>5.6 g</td></tr></table></div><p>Cup measures are the largest source of error in home recipe nutrition: flour scooped from the bag can weigh 20% more than flour spooned and levelled. If you can, enter weights in grams. Items counted by number use typical sizes: a large egg is 50 g, a medium banana 118 g peeled, a medium onion 110 g and a garlic clove 3 g.</p>
+<h2 id="dv">Understanding % Daily Value</h2>
+<p>The % Daily Value (%DV) tells you how much of a nutrient a serving contributes to a daily diet of 2,000 calories. As a guide, 5% DV or less per serving is low and 20% or more is high. Look for lower values of saturated fat, sodium and added sugars, and higher values of fibre.</p><div class="dt-wrap"><table><tr><th>Nutrient</th><th>Daily reference value</th></tr><tr><td>Total fat</td><td>78 g</td></tr><tr><td>Saturated fat</td><td>20 g</td></tr><tr><td>Cholesterol</td><td>300 mg</td></tr><tr><td>Sodium</td><td>2,300 mg</td></tr><tr><td>Total carbohydrate</td><td>275 g</td></tr><tr><td>Dietary fibre</td><td>28 g</td></tr><tr><td>Protein</td><td>50 g</td></tr></table></div><p>These are the US FDA values. Other countries have their own reference intakes, and your own needs depend on your age, sex, size, activity and health.</p>
+<h2 id="macros">Calories, macros and balance</h2>
+<p>A common split is 45 to 65% of calories from carbohydrate, 20 to 35% from fat and 10 to 35% from protein for adults. Active people, and those following high-protein or low-carb eating plans, vary from this. The donut chart in the results shows your recipe's balance so you can see whether it leans on carbohydrate, fat or protein, and the ingredient table shows which ingredients contribute the most.</p>
+<h2 id="tips">Tips for more accurate recipe nutrition</h2>
+<ul><li>Weigh ingredients on a kitchen scale, and use the raw weight for meat, rice and pasta unless you pick the cooked version.</li><li>Choose the closest food: salted or unsalted butter, whole or skim milk, 80% or 90% lean beef.</li><li>For packaged ingredients, add them as your own food using the label.</li><li>Include oil used for pan frying, but not marinade you throw away.</li><li>Count servings by weighing the finished dish and dividing, not by guessing portions.</li><li>Enter the cooked weight when a dish absorbs or loses a lot of water.</li></ul>
+<h2 id="diets">Using the results for meal prep and special diets</h2>
+<p>Calories and macros per serving help with <b>weight management, high-protein, low-carb and balanced meal prep</b>. The flags highlight when a serving meets FDA-style thresholds such as low fat (3 g or less), low sodium (140 mg or less), a good source of fibre (2.8 g or more) or high protein (10 g or more). People managing <b>diabetes, kidney disease, high blood pressure or food allergies</b> should rely on their healthcare professional's advice and on product labels, because ingredient databases cannot capture allergens, additives or every brand's formulation.</p>
+<h2 id="label">From recipe nutrition to a nutrition facts label</h2>
+<p>Once you know your per-serving values you can create a US-style label with the companion <a href="/tools/recipe-cooking-tools/nutrition-facts-label-generator/">nutrition facts label generator</a>. This tool saves the latest result in your browser so the label generator can load it. For selling packaged food, labelling regulations apply, including rounding rules, serving size rules and allergen declarations, and laboratory analysis or an approved database may be required.</p>
+<h2 id="limits">Limits of recipe nutrition calculators</h2>
+<p>No calculator can be perfect. Natural foods vary in nutrient content, brands reformulate, cooking can add or remove fat and water, and home measuring is imprecise. This tool does not include vitamins and minerals other than sodium, does not separate added sugars, and does not estimate nutrient losses from cooking. Treat the numbers as a reliable guide, not a laboratory result.</p>
+<h2 id="privacy">Privacy</h2>
+<p>Calculations run in your browser. Your recipe, any custom ingredients and the latest nutrition result are stored only in your browser's local storage so they are available when you return and to the label generator. Nothing is uploaded. You can remove them with the reset button or by clearing site data.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate the calories in a recipe?</summary><p>Add up the calories of every ingredient, then divide by the number of servings. Each ingredient's calories are its weight in grams ÷ 100 × the calories per 100 g. For example, 250 g of all-purpose flour (364 kcal per 100 g) is about 910 kcal. The calculator does all of this and also converts cups and spoons to grams.</p></details><details><summary>How accurate is this recipe nutrition calculator?</summary><p>It is a good estimate, usually within about 5 to 10% for common recipes made with standard ingredients, but not exact. Brands, ripeness, trimming, cooking method and how you measure change real values. Weigh ingredients on a scale for the best accuracy.</p></details><details><summary>Where does the nutrition data come from?</summary><p>The calculator contains about 150 common ingredients with typical values per 100 g, based on the USDA FoodData Central reference data and rounded for clarity. For packaged foods, use the nutrition facts panel and add them as your own ingredient.</p></details><details><summary>How do I enter ingredients?</summary><p>Paste your ingredient list, one per line, such as '2 cups flour', '1/2 cup butter' or '3 large eggs', and press Analyse. The tool reads the amount, unit and name and matches it to a food. You can fix any row, change units or add rows by hand.</p></details><details><summary>What if an ingredient is not in the list?</summary><p>Open 'Add your own ingredient' and enter its values per 100 g from the product label or a nutrition database. It is saved in your browser and can be used in any recipe.</p></details><details><summary>How are cups and spoons converted to grams?</summary><p>Using average grams per US cup for each food, for example 125 g for all-purpose flour, 200 g for sugar and 227 g for butter. A tablespoon is 1/16 cup and a teaspoon 1/48 cup. Items counted by number, such as eggs or bananas, use an average weight.</p></details><details><summary>Is the nutrition for raw or cooked ingredients?</summary><p>It uses the form you name. For example, 'white rice, uncooked' and 'white rice, cooked' have different values. If your recipe loses or gains water in cooking, enter the final cooked weight to get per 100 g correctly. Calories per serving are not affected.</p></details><details><summary>How do I choose the number of servings?</summary><p>Use the number of portions you actually cut or serve, such as 12 slices or 24 cookies. For per-serving accuracy, weigh the finished dish and divide by the servings, or enter the serving size text so labels are clear.</p></details><details><summary>What does % Daily Value mean?</summary><p>It shows how much a serving contributes to a nutrient's daily reference amount on a 2,000 calorie diet: total fat 78 g, saturated fat 20 g, cholesterol 300 mg, sodium 2,300 mg, carbohydrate 275 g, dietary fibre 28 g and protein 50 g (US FDA values). 5% or less is low, 20% or more is high.</p></details><details><summary>What are net carbs?</summary><p>Net carbs are total carbohydrate minus fibre. The calculator shows it on the Nutrition facts tab. It is not an official label value and some people also subtract sugar alcohols, which this tool does not.</p></details><details><summary>Does it count added sugars?</summary><p>It reports total sugars. It cannot tell added sugars from natural sugars. The nutrition facts label generator lets you type added sugars yourself.</p></details><details><summary>Can I use it for weight loss or meal prep?</summary><p>Yes. It gives calories and macros per serving so you can plan portions. It is a planning aid, not a diet prescription. Ask a doctor or dietitian for advice about your needs.</p></details><details><summary>Can I use these numbers on a nutrition label to sell food?</summary><p>Not as they are. Legal labels have rules on methods, rounding and databases, and may require laboratory analysis. Use this as a starting estimate, and open the nutrition facts label generator to prepare a draft that you check against your local regulations.</p></details><details><summary>Why do the macros not add up to the calories exactly?</summary><p>Calories are taken from the food data, which uses specific energy factors for each food, while the macro chart uses 4 kcal per gram of protein and carbohydrate and 9 kcal per gram of fat. Small differences are normal, especially for foods with fibre or alcohol.</p></details><details><summary>Does it include vitamins and minerals?</summary><p>This version covers calories, protein, carbohydrate, fibre, sugars, fat, saturated fat, cholesterol and sodium. These are the main values people need for tracking and labels. Micronutrients are not included.</p></details><details><summary>Is my recipe saved?</summary><p>Your recipe is kept in your own browser's local storage so it is there when you return, and the latest result is available to the nutrition facts label generator. Nothing is sent to a server.</p></details><details><summary>Can I print or save the nutrition information?</summary><p>Yes. Print / save as PDF prints only the tab you are viewing, CSV downloads the table for a spreadsheet and copy summary puts it on your clipboard.</p></details><details><summary>Is this tool free?</summary><p>Yes. It is free with no sign-up and no limits.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>USDA FoodData Central (SR Legacy and Foundation Foods), the basis for the per 100 g nutrient values (rounded and averaged for this tool).</li><li>US FDA, Daily Value on the Nutrition and Supplement Facts Labels, for the %DV reference amounts.</li><li>King Arthur Baking ingredient weight chart, for grams-per-cup conversions (rounded averages).</li><li>US FDA nutrient content claim definitions, for the guidance thresholds used in the flags.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online recipe nutrition calculator provides estimates for general information only. Values come from an embedded set of typical USDA-style averages per 100 g and from the amounts, units and matches you choose; real nutrition varies with brand, variety, ripeness, trimming, cooking method and loss or gain of moisture and fat. Cup, spoon and per-item weights are averages. It is not medical, dietetic or nutritional advice, does not diagnose or treat any condition, and is not suitable for legal food labelling, allergen declarations or medical diets (such as diabetes, kidney disease or allergies) without checking the product labels and consulting a qualified professional. Sellers of packaged food should rely on a laboratory analysis or an approved database and follow the labelling rules of their country.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+var FOODS = [["All-purpose flour","Grains and flours",364.0,10.3,76.3,1.0,2.7,0.3,0.2,2.0,0.0,125.0,0,["plain flour","flour","white flour"]],["Bread flour","Grains and flours",361.0,12.0,72.5,1.7,2.4,0.3,0.3,2.0,0.0,127.0,0,["strong flour"]],["Whole wheat flour","Grains and flours",340.0,13.2,72.0,2.5,10.7,0.4,0.4,2.0,0.0,120.0,0,["wholemeal flour","whole-wheat flour"]],["Cake flour","Grains and flours",362.0,8.5,78.5,0.9,1.7,0.3,0.2,2.0,0.0,114.0,0,[]],["Almond flour","Grains and flours",590.0,21.0,21.0,53.0,10.0,4.0,4.0,0.0,0.0,96.0,0,["almond meal"]],["Cornmeal","Grains and flours",361.0,6.9,76.9,3.9,7.3,0.6,0.5,5.0,0.0,157.0,0,["polenta"]],["Cornstarch","Grains and flours",381.0,0.3,91.3,0.1,0.9,0.0,0.0,9.0,0.0,128.0,0,["corn flour","cornflour"]],["Rolled oats","Grains and flours",379.0,13.2,67.7,6.5,10.1,1.0,1.1,6.0,0.0,90.0,0,["oats","old-fashioned oats","porridge oats"]],["White rice, uncooked","Grains and flours",365.0,7.1,80.0,0.7,1.3,0.1,0.2,5.0,0.0,185.0,0,["rice","long grain rice","basmati rice","jasmine rice"]],["Brown rice, uncooked","Grains and flours",370.0,7.9,77.2,2.9,3.5,0.9,0.6,7.0,0.0,190.0,0,[]],["White rice, cooked","Grains and flours",130.0,2.7,28.2,0.3,0.4,0.1,0.1,1.0,0.0,158.0,0,["cooked rice"]],["Pasta, dry","Grains and flours",371.0,13.0,74.7,1.5,3.2,2.7,0.3,6.0,0.0,100.0,0,["spaghetti","penne","macaroni","noodles"]],["Pasta, cooked","Grains and flours",158.0,5.8,30.9,0.9,1.8,0.6,0.2,1.0,0.0,140.0,0,["cooked spaghetti","cooked pasta"]],["Quinoa, uncooked","Grains and flours",368.0,14.1,64.2,6.1,7.0,0.0,0.9,5.0,0.0,170.0,0,[]],["Quinoa, cooked","Grains and flours",120.0,4.4,21.3,1.9,2.8,0.9,0.2,7.0,0.0,185.0,0,[]],["White bread","Grains and flours",266.0,8.9,49.4,3.3,2.7,5.7,0.8,491.0,0.0,0,30.0,["bread","sandwich bread","bread slice"]],["Whole wheat bread","Grains and flours",252.0,12.3,42.7,3.5,6.0,5.6,0.8,450.0,0.0,0,30.0,["wholemeal bread","wheat bread"]],["Breadcrumbs","Grains and flours",395.0,13.4,72.0,5.3,4.5,6.2,1.2,732.0,0.0,108.0,0,["panko"]],["Granulated sugar","Sweeteners",387.0,0.0,100.0,0.0,0.0,100.0,0.0,1.0,0.0,200.0,0,["sugar","white sugar","caster sugar"]],["Brown sugar","Sweeteners",380.0,0.1,98.1,0.0,0.0,97.0,0.0,28.0,0.0,213.0,0,["light brown sugar","dark brown sugar"]],["Powdered sugar","Sweeteners",389.0,0.0,99.8,0.0,0.0,97.8,0.0,2.0,0.0,120.0,0,["icing sugar","confectioners sugar"]],["Honey","Sweeteners",304.0,0.3,82.4,0.0,0.2,82.1,0.0,4.0,0.0,340.0,0,[]],["Maple syrup","Sweeteners",260.0,0.0,67.0,0.1,0.0,60.5,0.0,12.0,0.0,322.0,0,[]],["Molasses","Sweeteners",290.0,0.0,74.7,0.1,0.0,74.7,0.0,37.0,0.0,340.0,0,["treacle"]],["Butter, salted","Fats and oils",717.0,0.9,0.1,81.1,0.0,0.1,51.4,643.0,215.0,227.0,113.0,["butter","stick of butter"]],["Butter, unsalted","Fats and oils",717.0,0.9,0.1,81.1,0.0,0.1,50.5,11.0,215.0,227.0,113.0,[]],["Olive oil","Fats and oils",884.0,0.0,0.0,100.0,0.0,0.0,13.8,2.0,0.0,216.0,0,["extra virgin olive oil"]],["Vegetable oil","Fats and oils",884.0,0.0,0.0,100.0,0.0,0.0,14.0,0.0,0.0,218.0,0,["canola oil","sunflower oil","cooking oil","oil"]],["Coconut oil","Fats and oils",892.0,0.0,0.0,99.1,0.0,0.0,82.5,0.0,0.0,218.0,0,[]],["Margarine","Fats and oils",717.0,0.2,0.7,80.5,0.0,0.3,15.0,751.0,0.0,227.0,0,[]],["Shortening","Fats and oils",884.0,0.0,0.0,100.0,0.0,0.0,25.0,0.0,0.0,190.0,0,["crisco"]],["Lard","Fats and oils",902.0,0.0,0.0,100.0,0.0,0.0,39.0,0.0,95.0,205.0,0,[]],["Mayonnaise","Fats and oils",680.0,1.0,0.6,75.0,0.0,0.6,11.0,635.0,42.0,220.0,0,["mayo"]],["Peanut butter","Nuts and seeds",588.0,25.0,20.0,50.0,6.0,9.0,10.0,426.0,0.0,258.0,0,[]],["Almond butter","Nuts and seeds",614.0,21.0,19.0,56.0,10.0,4.4,4.0,7.0,0.0,256.0,0,[]],["Whole milk","Dairy and eggs",61.0,3.2,4.8,3.3,0.0,5.1,1.9,43.0,10.0,245.0,0,["milk"]],["2% milk","Dairy and eggs",50.0,3.3,4.8,2.0,0.0,5.0,1.3,47.0,8.0,245.0,0,["reduced fat milk"]],["Skim milk","Dairy and eggs",34.0,3.4,5.0,0.1,0.0,5.0,0.1,42.0,2.0,245.0,0,["skimmed milk","nonfat milk"]],["Heavy cream","Dairy and eggs",340.0,2.8,2.7,36.0,0.0,2.9,23.0,27.0,137.0,238.0,0,["double cream","whipping cream","cream"]],["Half and half","Dairy and eggs",131.0,3.1,4.3,11.5,0.0,4.2,7.2,40.0,36.0,242.0,0,[]],["Sour cream","Dairy and eggs",198.0,2.4,4.6,19.4,0.0,3.4,12.5,31.0,52.0,240.0,0,[]],["Plain yogurt, whole milk","Dairy and eggs",61.0,3.5,4.7,3.3,0.0,4.7,2.1,46.0,13.0,245.0,0,["yogurt","yoghurt"]],["Greek yogurt, nonfat","Dairy and eggs",59.0,10.2,3.6,0.4,0.0,3.2,0.1,36.0,5.0,245.0,0,["greek yoghurt"]],["Cream cheese","Dairy and eggs",342.0,6.0,5.5,34.0,0.0,3.2,19.0,321.0,110.0,232.0,0,[]],["Cheddar cheese","Dairy and eggs",403.0,24.9,1.3,33.1,0.0,0.5,18.9,653.0,105.0,113.0,0,["cheddar","cheese","shredded cheese"]],["Mozzarella cheese","Dairy and eggs",300.0,22.2,2.2,22.4,0.0,1.0,13.2,627.0,79.0,112.0,0,["mozzarella"]],["Parmesan cheese","Dairy and eggs",431.0,38.0,4.1,29.0,0.0,0.9,17.0,1529.0,88.0,100.0,0,["parmesan","parmigiano"]],["Feta cheese","Dairy and eggs",264.0,14.2,4.1,21.3,0.0,4.1,14.9,917.0,89.0,150.0,0,["feta"]],["Ricotta cheese","Dairy and eggs",174.0,11.3,3.0,13.0,0.0,0.3,8.3,84.0,51.0,246.0,0,["ricotta"]],["Egg, whole","Dairy and eggs",143.0,12.6,0.7,9.5,0.0,0.4,3.1,142.0,372.0,243.0,50.0,["eggs","large egg","large eggs","egg"]],["Egg white","Dairy and eggs",52.0,10.9,0.7,0.2,0.0,0.7,0.0,166.0,0.0,243.0,33.0,["egg whites"]],["Egg yolk","Dairy and eggs",322.0,15.9,3.6,26.5,0.0,0.6,9.6,48.0,1085.0,243.0,17.0,["egg yolks"]],["Chicken breast, raw","Meat and fish",120.0,22.5,0.0,2.6,0.0,0.0,0.6,45.0,73.0,140.0,0,["chicken breast","chicken"]],["Chicken breast, cooked","Meat and fish",165.0,31.0,0.0,3.6,0.0,0.0,1.0,74.0,85.0,140.0,0,["cooked chicken"]],["Chicken thigh, skinless, raw","Meat and fish",121.0,19.7,0.0,4.1,0.0,0.0,1.1,85.0,125.0,0,0,["chicken thighs"]],["Ground beef, 80% lean, raw","Meat and fish",254.0,17.2,0.0,20.0,0.0,0.0,7.7,66.0,71.0,225.0,0,["ground beef","minced beef","beef mince"]],["Ground beef, 90% lean, raw","Meat and fish",176.0,20.0,0.0,10.0,0.0,0.0,4.1,66.0,65.0,225.0,0,["lean ground beef"]],["Beef sirloin, raw","Meat and fish",143.0,21.0,0.0,6.0,0.0,0.0,2.3,55.0,57.0,0,0,["steak","beef steak","beef"]],["Pork loin, raw","Meat and fish",143.0,21.0,0.0,5.9,0.0,0.0,2.1,50.0,62.0,0,0,["pork","pork chop"]],["Bacon, cooked","Meat and fish",541.0,37.0,1.4,42.0,0.0,0.0,14.0,1717.0,110.0,0,0,["bacon"]],["Ham, cooked","Meat and fish",145.0,21.0,1.5,5.5,0.0,0.0,1.8,1203.0,53.0,0,0,["ham"]],["Ground turkey, raw","Meat and fish",148.0,19.7,0.0,7.7,0.0,0.0,2.1,69.0,75.0,225.0,0,["turkey mince"]],["Salmon, raw","Meat and fish",208.0,20.4,0.0,13.4,0.0,0.0,3.1,59.0,55.0,0,0,["salmon fillet"]],["Tuna, canned in water","Meat and fish",116.0,25.5,0.0,0.8,0.0,0.0,0.2,247.0,42.0,0,0,["tuna"]],["Shrimp, raw","Meat and fish",99.0,20.1,0.2,1.7,0.0,0.0,0.3,111.0,189.0,0,0,["prawns"]],["Cod, raw","Meat and fish",82.0,17.8,0.0,0.7,0.0,0.0,0.1,54.0,43.0,0,0,[]],["Black beans, cooked","Beans and legumes",132.0,8.9,23.7,0.5,8.7,0.3,0.1,1.0,0.0,172.0,0,["black beans"]],["Chickpeas, cooked","Beans and legumes",164.0,8.9,27.4,2.6,7.6,4.8,0.3,7.0,0.0,164.0,0,["garbanzo beans","chickpeas"]],["Lentils, cooked","Beans and legumes",116.0,9.0,20.1,0.4,7.9,1.8,0.1,2.0,0.0,198.0,0,["lentils"]],["Kidney beans, cooked","Beans and legumes",127.0,8.7,22.8,0.5,6.4,0.3,0.1,1.0,0.0,177.0,0,["kidney beans"]],["Tofu, firm","Beans and legumes",144.0,17.3,2.8,8.7,2.3,0.6,1.3,14.0,0.0,252.0,0,["tofu"]],["Almonds","Nuts and seeds",579.0,21.2,21.6,49.9,12.5,4.4,3.8,1.0,0.0,143.0,0,[]],["Walnuts","Nuts and seeds",654.0,15.2,13.7,65.2,6.7,2.6,6.1,2.0,0.0,117.0,0,[]],["Pecans","Nuts and seeds",691.0,9.2,13.9,72.0,9.6,4.0,6.2,0.0,0.0,109.0,0,[]],["Peanuts","Nuts and seeds",567.0,25.8,16.1,49.2,8.5,4.7,6.8,18.0,0.0,146.0,0,[]],["Cashews","Nuts and seeds",553.0,18.2,30.2,43.9,3.3,5.9,7.8,12.0,0.0,137.0,0,[]],["Chia seeds","Nuts and seeds",486.0,16.5,42.1,30.7,34.4,0.0,3.3,16.0,0.0,170.0,0,[]],["Ground flaxseed","Nuts and seeds",534.0,18.3,28.9,42.2,27.3,1.6,3.7,30.0,0.0,168.0,0,["flaxseed","flax"]],["Sunflower seeds","Nuts and seeds",584.0,20.8,20.0,51.5,8.6,2.6,4.5,9.0,0.0,140.0,0,[]],["Sesame seeds","Nuts and seeds",573.0,17.7,23.4,49.7,11.8,0.3,7.0,11.0,0.0,144.0,0,[]],["Raisins","Fruit",299.0,3.1,79.2,0.5,3.7,59.2,0.1,11.0,0.0,145.0,0,["sultanas"]],["Dried cranberries","Fruit",308.0,0.1,82.8,1.4,5.3,72.6,0.2,5.0,0.0,120.0,0,["craisins"]],["Shredded coconut, unsweetened","Nuts and seeds",660.0,6.9,23.7,64.5,16.3,7.4,57.2,20.0,0.0,93.0,0,["desiccated coconut","coconut"]],["Chocolate chips, semi-sweet","Chocolate",479.0,4.2,63.9,30.0,5.9,51.5,17.8,11.0,2.0,170.0,0,["chocolate chips","chocolate chunks"]],["Cocoa powder, unsweetened","Chocolate",228.0,19.6,57.9,13.7,37.0,1.8,8.1,21.0,0.0,85.0,0,["cocoa","cacao"]],["Dark chocolate","Chocolate",598.0,7.8,45.9,42.6,10.9,24.0,24.5,20.0,3.0,170.0,0,[]],["Milk chocolate","Chocolate",535.0,7.7,59.4,29.7,3.4,51.5,18.5,79.0,23.0,170.0,0,[]],["Onion","Vegetables",40.0,1.1,9.3,0.1,1.7,4.2,0.0,4.0,0.0,160.0,110.0,["onions","yellow onion","red onion"]],["Garlic","Vegetables",149.0,6.4,33.1,0.5,2.1,1.0,0.1,17.0,0.0,136.0,3.0,["garlic clove","garlic cloves","cloves garlic"]],["Tomato","Vegetables",18.0,0.9,3.9,0.2,1.2,2.6,0.0,5.0,0.0,180.0,123.0,["tomatoes","fresh tomato"]],["Diced tomatoes, canned","Vegetables",23.0,1.0,4.7,0.2,1.3,3.2,0.0,132.0,0.0,240.0,0,["canned tomatoes","crushed tomatoes"]],["Tomato paste","Vegetables",82.0,4.3,18.9,0.5,4.1,12.2,0.1,98.0,0.0,262.0,0,[]],["Tomato sauce, canned","Vegetables",29.0,1.3,6.6,0.2,1.5,4.1,0.0,330.0,0.0,245.0,0,["marinara","pasta sauce"]],["Potato","Vegetables",77.0,2.0,17.5,0.1,2.2,0.8,0.0,6.0,0.0,150.0,173.0,["potatoes"]],["Sweet potato","Vegetables",86.0,1.6,20.1,0.1,3.0,4.2,0.0,55.0,0.0,133.0,130.0,["sweet potatoes"]],["Carrot","Vegetables",41.0,0.9,9.6,0.2,2.8,4.7,0.0,69.0,0.0,128.0,61.0,["carrots"]],["Celery","Vegetables",16.0,0.7,3.0,0.2,1.6,1.3,0.0,80.0,0.0,101.0,40.0,["celery stalk"]],["Bell pepper, red","Vegetables",31.0,1.0,6.0,0.3,2.1,4.2,0.1,4.0,0.0,149.0,119.0,["bell pepper","capsicum","red pepper","green pepper"]],["Broccoli","Vegetables",34.0,2.8,6.6,0.4,2.6,1.7,0.1,33.0,0.0,91.0,0,[]],["Spinach, raw","Vegetables",23.0,2.9,3.6,0.4,2.2,0.4,0.1,79.0,0.0,30.0,0,["spinach"]],["Mushrooms, white","Vegetables",22.0,3.1,3.3,0.3,1.0,2.0,0.0,5.0,0.0,70.0,0,["mushrooms"]],["Zucchini","Vegetables",17.0,1.2,3.1,0.3,1.0,2.5,0.1,8.0,0.0,124.0,196.0,["courgette"]],["Cucumber","Vegetables",15.0,0.7,3.6,0.1,0.5,1.7,0.0,2.0,0.0,104.0,0,[]],["Romaine lettuce","Vegetables",17.0,1.2,3.3,0.3,2.1,1.2,0.0,8.0,0.0,47.0,0,["lettuce"]],["Cauliflower","Vegetables",25.0,1.9,5.0,0.3,2.0,1.9,0.1,30.0,0.0,107.0,0,[]],["Corn kernels","Vegetables",86.0,3.3,18.7,1.4,2.0,6.3,0.2,15.0,0.0,154.0,0,["sweetcorn","corn"]],["Green peas","Vegetables",81.0,5.4,14.5,0.4,5.7,5.7,0.1,5.0,0.0,145.0,0,["peas"]],["Green beans","Vegetables",31.0,1.8,7.0,0.2,2.7,3.3,0.1,6.0,0.0,100.0,0,[]],["Cabbage","Vegetables",25.0,1.3,5.8,0.1,2.5,3.2,0.0,18.0,0.0,89.0,0,[]],["Kale","Vegetables",49.0,4.3,8.8,0.9,3.6,2.3,0.1,38.0,0.0,67.0,0,[]],["Avocado","Vegetables",160.0,2.0,8.5,14.7,6.7,0.7,2.1,7.0,0.0,150.0,136.0,["avocados"]],["Pumpkin puree, canned","Vegetables",34.0,1.1,8.1,0.3,2.9,3.3,0.2,4.0,0.0,245.0,0,["pumpkin"]],["Eggplant","Vegetables",25.0,1.0,5.9,0.2,3.0,3.5,0.0,2.0,0.0,82.0,0,["aubergine"]],["Asparagus","Vegetables",20.0,2.2,3.9,0.1,2.1,1.9,0.0,2.0,0.0,134.0,0,[]],["Jalapeno pepper","Vegetables",29.0,0.9,6.5,0.4,2.8,4.1,0.1,3.0,0.0,90.0,0,["jalapeño"]],["Apple","Fruit",52.0,0.3,13.8,0.2,2.4,10.4,0.0,1.0,0.0,125.0,182.0,["apples"]],["Banana","Fruit",89.0,1.1,22.8,0.3,2.6,12.2,0.1,1.0,0.0,225.0,118.0,["bananas"]],["Orange","Fruit",47.0,0.9,11.8,0.1,2.4,9.4,0.0,0.0,0.0,180.0,131.0,["oranges"]],["Lemon juice","Fruit",22.0,0.4,6.9,0.2,0.3,2.5,0.0,1.0,0.0,244.0,0,[]],["Lime juice","Fruit",25.0,0.4,8.4,0.1,0.4,1.7,0.0,2.0,0.0,246.0,0,[]],["Strawberries","Fruit",32.0,0.7,7.7,0.3,2.0,4.9,0.0,1.0,0.0,152.0,0,[]],["Blueberries","Fruit",57.0,0.7,14.5,0.3,2.4,10.0,0.0,1.0,0.0,148.0,0,[]],["Grapes","Fruit",69.0,0.7,18.1,0.2,0.9,15.5,0.1,2.0,0.0,151.0,0,[]],["Pineapple","Fruit",50.0,0.5,13.1,0.1,1.4,9.9,0.0,1.0,0.0,165.0,0,[]],["Mango","Fruit",60.0,0.8,15.0,0.4,1.6,13.7,0.1,1.0,0.0,165.0,0,[]],["Raspberries","Fruit",52.0,1.2,11.9,0.7,6.5,4.4,0.0,1.0,0.0,123.0,0,[]],["Peach","Fruit",39.0,0.9,9.5,0.3,1.5,8.4,0.0,0.0,0.0,154.0,150.0,["peaches"]],["Dates, medjool","Fruit",277.0,1.8,75.0,0.2,6.7,66.5,0.0,1.0,0.0,147.0,24.0,["dates"]],["Applesauce, unsweetened","Fruit",42.0,0.2,11.3,0.1,1.2,9.4,0.0,2.0,0.0,244.0,0,["apple sauce"]],["Salt","Pantry and condiments",0.0,0.0,0.0,0.0,0.0,0.0,0.0,38758.0,0.0,288.0,0,["table salt","sea salt","kosher salt"]],["Baking powder","Pantry and condiments",53.0,0.0,27.7,0.0,0.2,0.0,0.0,10600.0,0.0,192.0,0,[]],["Baking soda","Pantry and condiments",0.0,0.0,0.0,0.0,0.0,0.0,0.0,27360.0,0.0,220.0,0,["bicarbonate of soda","bicarb"]],["Dry yeast","Pantry and condiments",325.0,40.4,41.2,7.6,26.9,0.0,1.0,51.0,0.0,144.0,0,["yeast","instant yeast","active dry yeast"]],["Vanilla extract","Pantry and condiments",288.0,0.1,12.7,0.1,0.0,12.7,0.0,9.0,0.0,208.0,0,["vanilla"]],["Soy sauce","Pantry and condiments",53.0,8.1,4.9,0.6,0.8,0.4,0.1,5493.0,0.0,255.0,0,[]],["Ketchup","Pantry and condiments",101.0,1.0,27.4,0.1,0.3,21.3,0.0,907.0,0.0,240.0,0,[]],["Yellow mustard","Pantry and condiments",60.0,3.7,5.8,3.3,4.0,0.9,0.2,1135.0,0.0,249.0,0,["mustard"]],["White vinegar","Pantry and condiments",18.0,0.0,0.0,0.0,0.0,0.4,0.0,2.0,0.0,239.0,0,["vinegar","apple cider vinegar"]],["Chicken broth","Pantry and condiments",8.0,1.1,0.4,0.2,0.0,0.4,0.1,343.0,0.0,240.0,0,["chicken stock","stock"]],["Beef broth","Pantry and condiments",7.0,1.1,0.1,0.2,0.0,0.3,0.1,338.0,0.0,240.0,0,["beef stock"]],["Vegetable broth","Pantry and condiments",6.0,0.1,1.2,0.1,0.0,0.9,0.0,250.0,0.0,240.0,0,["vegetable stock"]],["Water","Pantry and condiments",0.0,0.0,0.0,0.0,0.0,0.0,0.0,4.0,0.0,237.0,0,[]],["Red wine","Pantry and condiments",85.0,0.1,2.6,0.0,0.0,0.6,0.0,4.0,0.0,236.0,0,["wine"]],["Cinnamon, ground","Pantry and condiments",247.0,4.0,80.6,1.2,53.1,2.2,0.3,10.0,0.0,125.0,0,["cinnamon"]],["Black pepper","Pantry and condiments",251.0,10.4,64.0,3.3,25.3,0.6,1.4,20.0,0.0,110.0,0,["pepper"]],["Paprika","Pantry and condiments",282.0,14.0,54.0,13.0,35.0,10.0,2.0,68.0,0.0,112.0,0,[]],["Garlic powder","Pantry and condiments",331.0,16.6,72.7,0.7,9.0,2.4,0.2,60.0,0.0,150.0,0,[]],["Hummus","Pantry and condiments",166.0,7.9,14.3,9.6,6.0,0.3,1.4,379.0,0.0,246.0,0,[]],["Coconut milk, canned","Dairy and eggs",197.0,2.0,2.8,21.3,0.0,2.8,18.9,13.0,0.0,240.0,0,["coconut cream"]],["Almond milk, unsweetened","Dairy and eggs",15.0,0.6,0.6,1.2,0.3,0.0,0.1,71.0,0.0,240.0,0,[]],["Oat milk","Dairy and eggs",48.0,1.0,6.7,1.5,0.8,3.4,0.2,40.0,0.0,240.0,0,[]],["Soy milk","Dairy and eggs",33.0,2.9,1.2,1.6,0.4,0.8,0.2,51.0,0.0,243.0,0,[]]];
+/* ---------- recipe nutrition calculator UI ---------- */
+/* FOODS rows: name, group, kcal, protein, carb, fat, fibre, sugar, satfat, sodium mg, cholesterol mg, g per cup, g each, aliases (per 100 g) */
+var ST = { tab: "rc", rows: { rc: [], nf: [], db: [] }, head: { rc: [], nf: [], db: [] } }, R = [], CK = "utiliby_nutrition_custom_v1", SK = "utiliby_nutrition_recipe_v1", LK = "utiliby_nutrition_last_v1";
+var BASE = FOODS.length;
+var DV = { fat: 78, sat: 20, chol: 300, na: 2300, carb: 275, fib: 28, prot: 50 };
+var EX = "2 cups all-purpose flour\n3/4 cup granulated sugar\n1/2 cup butter, softened\n2 large eggs\n3 ripe bananas\n1 tsp baking soda\n1/2 tsp salt\n1 tsp vanilla extract\n1/2 cup chopped walnuts";
+var UNITS = [["g", "g"], ["kg", "kg"], ["oz", "oz"], ["lb", "lb"], ["cup", "cup"], ["tbsp", "tbsp"], ["tsp", "tsp"], ["ml", "ml"], ["floz", "fl oz"], ["each", "each"], ["pinch", "pinch"]];
+var UMAP = { cup: "cup", cups: "cup", c: "cup", tbsp: "tbsp", tbs: "tbsp", tbl: "tbsp", tablespoon: "tbsp", tablespoons: "tbsp", t: "tsp", tsp: "tsp", teaspoon: "tsp", teaspoons: "tsp", g: "g", gram: "g", grams: "g", gr: "g", kg: "kg", kilogram: "kg", kilograms: "kg", oz: "oz", ounce: "oz", ounces: "oz", lb: "lb", lbs: "lb", pound: "lb", pounds: "lb", ml: "ml", milliliter: "ml", milliliters: "ml", millilitre: "ml", millilitres: "ml", l: "l", liter: "l", litre: "l", liters: "l", litres: "l", pinch: "pinch", dash: "pinch", clove: "each", cloves: "each", slice: "each", slices: "each", stick: "each", sticks: "each" };
+var STOP = "large medium small extra ripe fresh finely roughly chopped diced minced sliced softened melted packed room temperature of the a an and or to taste optional about cooked uncooked dry whole lightly beaten shredded grated ground peeled boneless skinless".split(" ");
+function norm(s) { return String(s).toLowerCase().replace(/\([^)]*\)/g, " ").replace(/[^a-z0-9%\s]/g, " ").replace(/\s+/g, " ").trim(); }
+function sing(w) { if (w.length <= 3) return w; if (/ies$/.test(w)) return w.slice(0, -3) + "y"; if (/oes$/.test(w)) return w.slice(0, -2); if (/ss$/.test(w)) return w; return /s$/.test(w) ? w.slice(0, -1) : w; }
+function toks(s) { return norm(s).split(" ").filter(function (w) { return w && STOP.indexOf(w) < 0; }).map(sing); }
+var IDX = [];
+function buildIdx() { IDX = FOODS.map(function (f) { var cands = [f[0]].concat(f[13] || []); return { f: f, c: cands.map(function (c) { return { n: norm(c), t: toks(c) }; }), nm: toks(f[0].replace(/,.*$/, "")) }; }); }
+function match(text) {
+  var q = norm(text), qt = toks(text); if (!q) return -1; var best = -1, bs = 0;
+  IDX.forEach(function (x, i) {
+    var s = 0;
+    x.c.forEach(function (c, k) {
+      var v = 0; if (q === c.n) v = 1000 - k; else if (c.n.length >= 3 && (" " + q + " ").indexOf(" " + c.n + " ") > -1) v = 500 + c.n.length - k; else if (qt.length && c.t.length) { var hit = 0; qt.forEach(function (w) { if (c.t.indexOf(w) > -1) hit++; }); var cov = hit / qt.length, cov2 = hit / c.t.length; if (hit) v = cov * 60 + cov2 * 35 - k * 2; }
+      if (v > s) s = v;
+    });
+    if (s > bs) { bs = s; best = i; }
+  });
+  return bs >= 50 ? best : -1;
+}
+function parseLine(line) {
+  var s = line.replace(/^[\s\-\*•\d]*\.\s+|^[\s\-\*•]+/, "").trim(); if (!s) return null;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; });
+  var m = s.match(/^(\d+\/\d+|\d+(?:\.\d+)?(?:\s+\d+\/\d+)?|\.\d+)(?:\s*(?:-|to)\s*(?:\d+\/\d+|\d+(?:\.\d+)?(?:\s+\d+\/\d+)?))?\s*(.*)$/), q = 1, rest = s;
+  if (m) { q = parseQty(m[1]); rest = m[2]; if (isNaN(q)) { q = 1; rest = s; } } else { q = 1; }
+  var unit = "each", name = rest, pm = rest.match(/^\(\s*(\d+(?:\.\d+)?)\s*(oz|ounces?|g|grams?|ml|lb|pounds?)\b[^)]*\)\s*(?:[a-z]+\s+)?(.*)$/i);
+  if (pm && UMAP[pm[2].toLowerCase()]) { q = q * parseFloat(pm[1]); unit = UMAP[pm[2].toLowerCase()]; name = pm[3]; }
+  else { var um = rest.match(/^(fl\.?\s*oz|fluid ounces?|[a-zA-Z]+)\b\.?\s*(?:of\s+)?(.*)$/); if (um) { var w = um[1].toLowerCase().replace(/\.\s*/, " "); if (/^(fl oz|fluid ounces?)$/.test(w)) { unit = "floz"; name = um[2]; } else if (UMAP[w] && !(w === "t" && false)) { unit = UMAP[w]; name = um[2]; if (unit === "l") { unit = "ml"; q *= 1000; } } } }
+  name = name.replace(/,.*$/, function (x) { return /^,\s*(softened|melted|chopped|diced|minced|sliced|beaten|grated|shredded|peeled|divided|optional|to taste|at room|packed|cut|cubed|crushed)/i.test(x) ? "" : x; }).trim();
+  if (!name) return null; var f = match(name);
+  return { t: name, q: q, u: unit, f: f };
+}
+function parseText(txt) { var out = []; txt.split(/\r?\n/).forEach(function (l) { var r = parseLine(l); if (r) out.push(r); }); return out; }
+function gramsOf(r) {
+  var f = r.f >= 0 ? FOODS[r.f] : null, q = r.q, u = r.u; if (!f) return { g: 0, note: "No match" };
+  var cup = f[11], each = f[12], ml = cup ? cup / 236.588 : 1, note = "";
+  switch (u) { case "g": return { g: q }; case "kg": return { g: q * 1000 }; case "oz": return { g: q * 28.3495 }; case "lb": return { g: q * 453.592 };
+    case "cup": if (!cup) note = "No cup weight; assumed like water"; return { g: q * (cup || 236.588), note: note };
+    case "tbsp": if (!cup) note = "No spoon weight; assumed like water"; return { g: q * (cup || 236.588) / 16, note: note };
+    case "tsp": if (!cup) note = "No spoon weight; assumed like water"; return { g: q * (cup || 236.588) / 48, note: note };
+    case "ml": return { g: q * ml }; case "floz": return { g: q * 29.5735 * ml };
+    case "pinch": return { g: q * 0.36 };
+    case "each": if (!each) return { g: 0, note: "No per-item weight; use grams or cups" }; return { g: q * each }; }
+  return { g: 0 };
+}
+function nut(f, g) { var k = g / 100; return { kcal: f[2] * k, prot: f[3] * k, carb: f[4] * k, fat: f[5] * k, fib: f[6] * k, sug: f[7] * k, sat: f[8] * k, na: f[9] * k, chol: f[10] * k }; }
+function sum(a, b) { var o = {}; Object.keys(a).forEach(function (k) { o[k] = a[k] + b[k]; }); return o; }
+function zero() { return { kcal: 0, prot: 0, carb: 0, fat: 0, fib: 0, sug: 0, sat: 0, na: 0, chol: 0 }; }
+function scl(a, k) { var o = {}; Object.keys(a).forEach(function (x) { o[x] = a[x] * k; }); return o; }
+function dvp(v, k) { return DV[k] ? Math.round(v / DV[k] * 100) + "%" : ""; }
+function r0(v) { return Math.round(v); }
+function dg(v, d) { return n1(v, d == null ? 1 : d); }
+function rowsHtml() {
+  var h = '<div class="ck-scroll"><table class="dt-table" style="min-width:760px"><tr><th>Ingredient</th><th>Amount</th><th>Unit</th><th>Matched food</th><th>Grams</th><th>kcal</th><th></th></tr>';
+  R.forEach(function (r, i) { h += '<tr><td><input type="text" list="nuFoods" data-i="' + i + '" data-f="t" value="' + esc(r.t) + '" aria-label="Ingredient" style="min-width:170px"></td><td><input type="number" min="0" step="any" data-i="' + i + '" data-f="q" value="' + r.q + '" aria-label="Amount" style="width:80px"></td><td><select data-i="' + i + '" data-f="u" aria-label="Unit" style="min-width:96px">' + UNITS.map(function (u) { return '<option value="' + u[0] + '">' + u[1] + "</option>"; }).join("") + '</select></td><td id="nuM' + i + '" class="ck-note" style="min-width:150px"></td><td id="nuG' + i + '" style="white-space:nowrap"></td><td id="nuK' + i + '" style="white-space:nowrap;font-weight:700"></td><td><button type="button" class="dt-btn ghost small" data-del="' + i + '" aria-label="Remove ingredient">×</button></td></tr>'; });
+  return h + "</table></div>";
+}
+function renderRows() { $("nuRows").innerHTML = rowsHtml(); $("nuRows").querySelectorAll("select").forEach(function (s) { s.value = R[+s.getAttribute("data-i")].u; }); }
+function oneNum(v) { var x = parseFloat(v); return isNaN(x) ? 0 : x; }
+function calcRes() {
+  var servings = nv("nuServ", 12, 1, 10000), tot = zero(), grams = 0, lines = [], warn = [];
+  R.forEach(function (r, i) { var f = r.f >= 0 ? FOODS[r.f] : null, gr = gramsOf(r), n = f ? nut(f, gr.g) : zero(); tot = sum(tot, n); grams += gr.g; lines.push({ r: r, f: f, g: gr.g, n: n, note: gr.note });
+    var m = $("nuM" + i); if (m) { m.textContent = f ? f[0] : "No match: pick a name from the list"; m.style.color = f ? "" : "#dc2626"; } var g = $("nuG" + i); if (g) g.textContent = gr.g ? n1(gr.g, 1) + " g" : "-"; var k = $("nuK" + i); if (k) k.textContent = f ? r0(n.kcal) : "-";
+    if (!f && r.t) warn.push((r.t || "Ingredient") + ": no matching food found. Pick a name from the suggestions or add your own."); else if (gr.note && gr.note !== "No match") warn.push(r.t + ": " + gr.note + "."); });
+  var cooked = nv("nuCooked", 0, 0, 1e7), wt = cooked > 0 ? cooked : grams, per = scl(tot, 1 / servings), sw = wt / servings, p100 = wt > 0 ? scl(tot, 100 / wt) : zero();
+  var calP = per.prot * 4, calC = per.carb * 4 - per.fib * 2 * 0, calF = per.fat * 9, tc = calP + calC + calF || 1;
+  var name = $("nuName").value || "Recipe", sizeTxt = $("nuSize").value || "1 serving";
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(name) + ": calories per serving (" + esc(sizeTxt) + ')</div><div class="dt-big">' + r0(per.kcal) + ' kcal</div><p class="dt-sum"><b>' + dg(per.prot) + " g</b> protein, <b>" + dg(per.carb) + " g</b> carbohydrate (" + dg(per.fib) + " g fibre, " + dg(per.sug) + " g sugars), <b>" + dg(per.fat) + " g</b> fat (" + dg(per.sat) + " g saturated) and <b>" + r0(per.na) + " mg</b> sodium. The whole recipe is " + r0(tot.kcal) + " kcal in " + n1(servings, 2) + " servings, about " + r0(sw) + " g each.</p></div>";
+  h += '<div class="dt-stats">' + tile("Calories", r0(per.kcal), "per serving") + tile("Protein", dg(per.prot) + " g", dvp(per.prot, "prot") + " DV") + tile("Carbs", dg(per.carb) + " g", dvp(per.carb, "carb") + " DV") + tile("Fat", dg(per.fat) + " g", dvp(per.fat, "fat") + " DV") + "</div>";
+  if (warn.length) h += '<div class="dt-warn"><b>Check these ingredients:</b><ul>' + warn.slice(0, 8).map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
+  h += '<div class="dt-diagram">' + donut([{ l: "Carbohydrate", v: calC, c: "#ea580c", t: pc(calC / tc * 100, 0) }, { l: "Fat", v: calF, c: "#ca8a04", t: pc(calF / tc * 100, 0) }, { l: "Protein", v: calP, c: "#16a34a", t: pc(calP / tc * 100, 0) }], r0(per.kcal), "kcal per serving") + '<p class="dt-hint" style="text-align:center">Where the calories come from (carbohydrate and protein 4 kcal per g, fat 9 kcal per g).</p></div>';
+  var flags = []; if (per.fat <= 3) flags.push("Low fat (3 g or less)"); if (per.sat <= 1) flags.push("Low saturated fat (1 g or less)"); if (per.na <= 140) flags.push("Low sodium (140 mg or less)"); if (per.chol <= 20) flags.push("Low cholesterol (20 mg or less)"); if (per.fib >= 5.6) flags.push("High fibre (20% DV or more)"); else if (per.fib >= 2.8) flags.push("Good source of fibre"); if (per.prot >= 10) flags.push("High protein (20% DV or more)"); else if (per.prot >= 5) flags.push("Good source of protein"); if (per.carb - per.fib <= 10) flags.push("Low net carbs (10 g or less)"); if (per.kcal <= 40) flags.push("Low calorie (40 kcal or less)"); if (per.na >= 460) flags.push("Watch: high sodium (20% DV or more)"); if (per.sat >= 4) flags.push("Watch: high saturated fat (20% DV or more)");
+  if (flags.length) h += '<p class="dt-hint"><b>Quick flags per serving:</b> ' + flags.map(function (x) { return '<span class="ck-tag">' + x + "</span>"; }).join("") + '</p><p class="ck-note">Flags use FDA-style thresholds for guidance only; they are not a labelling claim.</p>';
+  h += '<h3 class="dt-lbl">Nutrition by ingredient</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Ingredient</th><th>Grams</th><th>kcal</th><th>Protein</th><th>Carbs</th><th>Fat</th><th>% of calories</th></tr>'; var rows = [];
+  lines.forEach(function (l) { var row = [l.r.t || "Ingredient", l.g ? n1(l.g, 1) : "-", r0(l.n.kcal), dg(l.n.prot) + " g", dg(l.n.carb) + " g", dg(l.n.fat) + " g", tot.kcal ? pc(l.n.kcal / tot.kcal * 100, 0) : "0%"]; rows.push(row); h += "<tr><td>" + esc(row[0]) + "</td>" + row.slice(1).map(function (c) { return "<td>" + c + "</td>"; }).join("") + "</tr>"; });
+  h += "</table></div>"; $("nuRcRes").innerHTML = h;
+  ST.head.rc = ["Ingredient", "Grams", "kcal", "Protein", "Carbs", "Fat", "% of calories"]; ST.rows.rc = rows.concat([["Total recipe", n1(grams, 1), r0(tot.kcal), dg(tot.prot) + " g", dg(tot.carb) + " g", dg(tot.fat) + " g", "100%"], ["Per serving (" + n1(servings, 2) + ")", n1(sw, 1), r0(per.kcal), dg(per.prot) + " g", dg(per.carb) + " g", dg(per.fat) + " g", ""]]);
+  ST.N = { name: name, servings: servings, sizeTxt: sizeTxt, per: per, p100: p100, tot: tot, sw: sw, wt: wt, flags: flags };
+  save();
+}
+function table() {
+  var N = ST.N, p = N.per, q = N.p100, h = '<p class="dt-hint">Nutrition facts for <b>' + esc(N.name) + "</b>, per serving (" + esc(N.sizeTxt) + ", about " + r0(N.sw) + " g) and per 100 g. % Daily Value uses the FDA reference values (2,000 calorie diet).</p>";
+  var L = [["Calories", r0(p.kcal), "", r0(q.kcal), ""], ["Total fat", dg(p.fat) + " g", dvp(p.fat, "fat"), dg(q.fat) + " g"], ["Saturated fat", dg(p.sat) + " g", dvp(p.sat, "sat"), dg(q.sat) + " g"], ["Cholesterol", r0(p.chol) + " mg", dvp(p.chol, "chol"), r0(q.chol) + " mg"], ["Sodium", r0(p.na) + " mg", dvp(p.na, "na"), r0(q.na) + " mg"], ["Total carbohydrate", dg(p.carb) + " g", dvp(p.carb, "carb"), dg(q.carb) + " g"], ["Dietary fibre", dg(p.fib) + " g", dvp(p.fib, "fib"), dg(q.fib) + " g"], ["Total sugars", dg(p.sug) + " g", "", dg(q.sug) + " g"], ["Protein", dg(p.prot) + " g", dvp(p.prot, "prot"), dg(q.prot) + " g"], ["Net carbohydrate (carbs minus fibre)", dg(p.carb - p.fib) + " g", "", dg(q.carb - q.fib) + " g"]];
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Nutrient</th><th>Per serving</th><th>% DV</th><th>Per 100 g</th></tr>' + L.map(function (r) { return "<tr><td>" + r[0] + "</td><td><b>" + r[1] + "</b></td><td>" + (r[2] || "") + "</td><td>" + r[3] + "</td></tr>"; }).join("") + '</table></div><p class="dt-hint">Per-100 g figures use the recipe\'s total ingredient weight (or the cooked weight you enter). Want a label to publish? Open the <a href="/tools/recipe-cooking-tools/nutrition-facts-label-generator/">nutrition facts label generator</a>: your result is saved in this browser and can be loaded there.</p>';
+  $("nuNfRes").innerHTML = h; ST.head.nf = ["Nutrient", "Per serving", "% DV", "Per 100 g"]; ST.rows.nf = L.map(function (r) { return [r[0], r[1], r[2] || "", r[3]]; });
+}
+function db() {
+  var q = norm($("nuQ").value), g = $("nuG").value, rows = [], h = "", ct = 0;
+  FOODS.forEach(function (f, i) { if (g !== "all" && f[1] !== g) return; if (q && norm(f[0] + " " + (f[13] || []).join(" ")).indexOf(q) < 0) return; ct++; rows.push([f[0], f[1], r0(f[2]), dg(f[3]), dg(f[4]), dg(f[5]), dg(f[6]), dg(f[7]), r0(f[9])]); });
+  h = '<p class="dt-hint">' + ct + " of " + FOODS.length + " foods. Values per 100 g (about 3.5 oz), rounded, based on typical USDA data.</p>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Food</th><th>Group</th><th>kcal</th><th>Protein g</th><th>Carbs g</th><th>Fat g</th><th>Fibre g</th><th>Sugars g</th><th>Sodium mg</th></tr>' + rows.slice(0, 200).map(function (r) { return "<tr>" + r.map(function (c) { return "<td>" + esc(c) + "</td>"; }).join("") + "</tr>"; }).join("") + (rows.length ? "" : '<tr><td colspan="9">No food matches.</td></tr>') + "</table></div>";
+  $("nuDbRes").innerHTML = h; ST.head.db = ["Food", "Group", "kcal", "Protein g", "Carbs g", "Fat g", "Fibre g", "Sugars g", "Sodium mg"]; ST.rows.db = rows;
+}
+var TITLES = { rc: "Recipe nutrition", nf: "Nutrition facts per serving", db: "Ingredient nutrition database" };
+function calc() { calcRes(); table(); db(); }
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab] + (ST.N ? ": " + ST.N.name : ""), "Free online Recipe Nutrition Calculator");
+  repTbl(b, ST.head[ST.tab], ST.rows[ST.tab]); if (ST.tab === "rc") { var d = $("nuRcRes").querySelector(".dt-diagram"); if (d) repFig(b, d.innerHTML); }
+  repDisc(b, "Estimates from average USDA-style ingredient values and the amounts you entered. Actual nutrition varies by brand and preparation. Not medical or dietary advice and not suitable for legal food labelling without laboratory analysis.");
+}
+function save() { try { var o = { R: R, name: $("nuName").value, servings: $("nuServ").value, size: $("nuSize").value, cooked: $("nuCooked").value, text: $("nuText").value }; lsSet(SK, JSON.stringify(o)); var N = ST.N; if (N) lsSet(LK, JSON.stringify({ name: N.name, servings: N.servings, sizeTxt: N.sizeTxt, gramsPer: Math.round(N.sw), per: N.per, savedAt: Date.now() })); } catch (e) { } }
+function addCustom() {
+  var n = $("nuCN").value.trim(); if (!n) { msg("Give the ingredient a name.", "err"); return; }
+  var g = function (id) { return oneNum($(id).value); }, f = [n, "Your foods", g("nuCK"), g("nuCP"), g("nuCC"), g("nuCF"), g("nuCFi"), g("nuCS"), g("nuCSat"), g("nuCNa"), g("nuCCh"), 0, 0, []];
+  FOODS.push(f); var cu = []; try { cu = JSON.parse(lsGet(CK) || "[]"); } catch (e) { cu = []; } cu.push(f); lsSet(CK, JSON.stringify(cu.slice(-100))); afterFoods(); msg("Added " + n + ". Type its name in an ingredient row to use it."); $("nuCN").value = "";
+}
+function afterFoods() { buildIdx(); $("nuFoods").innerHTML = FOODS.map(function (f) { return '<option value="' + esc(f[0]) + '"></option>'; }).join(""); var gs = {}; FOODS.forEach(function (f) { gs[f[1]] = 1; }); var cur = $("nuG").value; $("nuG").innerHTML = '<option value="all">All groups</option>' + Object.keys(gs).sort().map(function (x) { return '<option value="' + esc(x) + '">' + esc(x) + "</option>"; }).join(""); $("nuG").value = gs[cur] ? cur : "all"; R.forEach(function (r) { if (r.f < 0 || r.f >= FOODS.length) r.f = match(r.t); }); }
+function setDef() { $("nuName").value = "Banana bread"; $("nuServ").value = 12; $("nuSize").value = "1 slice"; $("nuCooked").value = ""; $("nuText").value = EX; R = parseText(EX); renderRows(); }
+function load() { var s = lsGet(SK); if (!s) return; try { var o = JSON.parse(s); if (!o.R || !o.R.length) return; R = o.R.map(function (r) { var q = oneNum(r.q); return { t: String(r.t || ""), q: q, u: UNITS.some(function (u) { return u[0] === r.u; }) ? r.u : "g", f: -1 }; }); R.forEach(function (r) { r.f = match(r.t); }); $("nuName").value = o.name || ""; $("nuServ").value = o.servings || 1; $("nuSize").value = o.size || ""; $("nuCooked").value = o.cooked || ""; if (o.text) $("nuText").value = o.text; renderRows(); } catch (e) { } }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["rc", "nf", "db"], function (n) { ST.tab = n; });
+  try { JSON.parse(lsGet(CK) || "[]").forEach(function (f) { if (f && f.length === 14) FOODS.push(f); }); } catch (e) { }
+  afterFoods(); setDef(); load();
+  $("nuRows").addEventListener("input", function (e) { var t = e.target, i = t.getAttribute("data-i"), f = t.getAttribute("data-f"); if (i === null) return; if (f === "t") { R[+i].t = t.value; R[+i].f = match(t.value); } else if (f === "q") R[+i].q = oneNum(t.value); calc(); });
+  $("nuRows").addEventListener("change", function (e) { var t = e.target, i = t.getAttribute("data-i"); if (i !== null && t.tagName === "SELECT") { R[+i].u = t.value; calc(); } });
+  $("nuRows").addEventListener("click", function (e) { var b = e.target.closest("[data-del]"); if (!b) return; R.splice(+b.getAttribute("data-del"), 1); if (!R.length) R.push({ t: "", q: 1, u: "g", f: -1 }); renderRows(); calc(); });
+  $("nuAdd").addEventListener("click", function () { if (R.length >= 80) return; R.push({ t: "", q: 100, u: "g", f: -1 }); renderRows(); calc(); var inp = $("nuRows").querySelectorAll('input[data-f="t"]'); inp[inp.length - 1].focus(); });
+  $("nuParse").addEventListener("click", function () { var r = parseText($("nuText").value); if (!r.length) { msg("Paste one ingredient per line, for example: 2 cups flour.", "err"); return; } R = r; renderRows(); calc(); msg("Parsed " + r.length + " ingredients. Check the matched foods."); });
+  $("nuMore").addEventListener("click", function () { var r = parseText($("nuText").value); if (!r.length) return; R = R.concat(r).slice(0, 80); renderRows(); calc(); msg("Added " + r.length + " ingredients."); });
+  $("nuCAdd").addEventListener("click", addCustom);
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { if (e.getAttribute("data-i") === null) { e.addEventListener("input", calc); e.addEventListener("change", calc); } });
+  $("resetBtn").addEventListener("click", function () { lsDel(SK); setDef(); calc(); msg("Reset to the example recipe."); });
+  $("nuCsv").addEventListener("click", function () { csvDownload([ST.head[ST.tab]].concat(ST.rows[ST.tab]), "recipe-nutrition-" + ST.tab + ".csv"); });
+  $("nuCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + (ST.N ? ": " + ST.N.name : "") + "\n" + ST.rows[ST.tab].map(function (x) { return x.filter(Boolean).join(" | "); }).join("\n") + "\n\nCalculated with the free online Recipe Nutrition Calculator at utiliby.com", $("nuCopy")); });
+  $("nuPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

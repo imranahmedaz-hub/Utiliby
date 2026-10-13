@@ -1,0 +1,453 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Recipe Cost Calculator Online – Cost per Serving</title>
+<meta name="description" content="Free online recipe cost calculator: cost per serving, food cost percentage, yield, labour and menu price from ingredient prices. Private, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Recipe Cost Calculator Online – Cost per Serving">
+<meta property="og:description" content="Free online recipe cost calculator: ingredient costing with unit conversion, yield %, food cost percentage, cost per serving and menu price.">
+<meta property="og:url" content="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Recipe Cost Calculator Online – Cost per Serving">
+<meta name="twitter:description" content="Free online recipe cost calculator: ingredient costing with unit conversion, yield %, food cost percentage, cost per serving and menu price.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#c2410c;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#fdba74}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #c2410c;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#c2410c;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(194,65,12,.06);border-left:3px solid #c2410c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#c2410c}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#c2410c;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(194,65,12,.12);color:#9a3412;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fdba74;background:rgba(251,146,60,.16)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Recipe Cost Calculator","url":"https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/","description":"Free online recipe cost calculator: work out the cost of a recipe, cost per serving, food cost percentage, labour and overhead, and a menu price at your target margin, with cup to gram conversion and yield percentage.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Ingredient costing with cup, gram, ounce and pound conversion","Cost per serving and scaling to any batch size","Yield percentage (AP vs EP cost), packaging, labour and overhead","Menu price by food cost %, markup or profit margin","Price per unit comparison for any package","Saves your recipe in your browser","Print, CSV and copy for the active tab"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate the cost of a recipe?","acceptedAnswer":{"@type":"Answer","text":"List every ingredient with the amount the recipe uses, the price you paid and the size of the package. For each ingredient, cost = package price × (amount used ÷ package size). Add all the ingredient costs, then divide by the number of servings. The calculator converts between cups, grams, ounces and pounds for you."}},{"@type":"Question","name":"How do I work out cost per serving?","acceptedAnswer":{"@type":"Answer","text":"Cost per serving = total recipe cost ÷ number of servings. For example, a $9.59 batch of 24 cookies costs about $0.40 per cookie in ingredients. Add packaging, labour and overhead for the full cost per serving."}},{"@type":"Question","name":"What is food cost percentage and how is it calculated?","acceptedAnswer":{"@type":"Answer","text":"Food cost percentage = food cost per serving ÷ selling price × 100. A dish with $3 of ingredients sold for $10 has a 30% food cost. Many restaurants aim for 28 to 35%, but the right level depends on the business."}},{"@type":"Question","name":"How do I price a menu item from its cost?","acceptedAnswer":{"@type":"Answer","text":"Divide the food cost by your target food cost percentage. With $3.00 of food cost and a 30% target, the price is $3.00 ÷ 0.30 = $10.00. You can also use a markup multiple (food cost × 3.33) or a margin on total cost. The Menu price tab does all three."}},{"@type":"Question","name":"What is a good food cost percentage?","acceptedAnswer":{"@type":"Answer","text":"As a general guide, full-service restaurants often run 28 to 35%, pizzerias 25 to 30%, cafes and coffee drinks 15 to 25%, and bars 18 to 25%. Home bakers who sell often price at about three times ingredient cost. These are rules of thumb, not requirements."}},{"@type":"Question","name":"What is yield percentage and why does it matter?","acceptedAnswer":{"@type":"Answer","text":"Yield is the share of a purchased ingredient that ends up usable after trimming, peeling or cooking. If you buy 1 kg of carrots and 800 g are usable, the yield is 80% and your real cost is the price divided by 0.80. Ignoring yield understates your cost."}},{"@type":"Question","name":"What is the difference between AP and EP cost?","acceptedAnswer":{"@type":"Answer","text":"AP (as purchased) cost is what you pay for the whole item. EP (edible portion) cost is the cost of the part you actually use. EP cost = AP cost ÷ yield percentage. Enter the yield % in the calculator to get EP costing automatically."}},{"@type":"Question","name":"Does the calculator convert cups to grams?","acceptedAnswer":{"@type":"Answer","text":"Yes. It has built-in average densities for about 90 common ingredients such as flour, sugar, butter and milk. If you buy flour by the pound and use it by the cup, type 'flour' in the name and the calculator converts it. If an ingredient is not recognised it assumes the density of water and shows a warning."}},{"@type":"Question","name":"Can I include labour and overhead?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the hours of labour and the hourly rate, plus an overhead percentage of ingredient cost and any packaging per serving. The calculator reports food cost, prime cost and total cost per serving separately."}},{"@type":"Question","name":"What is prime cost?","acceptedAnswer":{"@type":"Answer","text":"Prime cost is food cost plus labour cost, usually shown as a percentage of sales. Restaurants often aim to keep prime cost around 60 to 65% of sales. The Menu price tab shows your prime cost percentage."}},{"@type":"Question","name":"How do I scale a recipe and see the new cost?","acceptedAnswer":{"@type":"Answer","text":"Enter the number of servings the recipe makes and the number you want. All amounts and costs in the breakdown scale proportionally, so you can see the cost of a batch for 6, 24 or 100 servings."}},{"@type":"Question","name":"How do I cost a recipe for a bakery or cottage food business?","acceptedAnswer":{"@type":"Answer","text":"Include every ingredient, packaging and your time. A common starting rule is to charge at least three times the ingredient and packaging cost, then check that the price also covers labour, overhead, fees and profit. Check your local cottage food rules before selling."}},{"@type":"Question","name":"Can I compare prices of different package sizes?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Price per unit tab shows the price per gram, ounce, pound, kilogram, cup, tablespoon, teaspoon or item for any package, so you can compare brands and sizes fairly."}},{"@type":"Question","name":"Does it work in euros, pounds or other currencies?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose the currency symbol in the settings. The calculator does not convert exchange rates; it only changes the symbol. Metric and US units are both supported."}},{"@type":"Question","name":"Are my recipes saved?","acceptedAnswer":{"@type":"Answer","text":"The calculator saves your current recipe in your own browser (local storage) so it is there when you return. Nothing is sent to a server. Clearing your browser data, or using private browsing, removes it, and the Reset button restores the example."}},{"@type":"Question","name":"Are prices updated automatically?","acceptedAnswer":{"@type":"Answer","text":"No. Prices change often, so the numbers come from what you enter. Update your package prices from time to time, especially for ingredients with volatile prices such as eggs, butter and cooking oil."}},{"@type":"Question","name":"Can I print or export the cost breakdown?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the tab you are viewing, CSV downloads the table for a spreadsheet and copy summary puts it on your clipboard."}},{"@type":"Question","name":"Is this recipe cost calculator really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use with no sign-up, no limits on the number of recipes and no data collection."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Recipe & Cooking Tools","item":"https://utiliby.com/tools/recipe-cooking-tools/"},{"@type":"ListItem","position":3,"name":"Recipe Cost Calculator","item":"https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/recipe-cooking-tools/">Recipe &amp; Cooking Tools</a> › Recipe Cost Calculator</nav>
+<h1 class="noembed">Free Online Recipe Cost Calculator: Cost per Serving, Food Cost % and Menu Price</h1>
+<p class="lead noembed">Free online recipe cost calculator for home cooks, bakers, caterers and restaurants. Enter ingredients and prices to get total recipe cost, cost per serving, food cost percentage and a menu price at your target margin, with cups-to-grams conversion, yield percentage, labour and overhead. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/" target="_blank" rel="noopener">Recipe Cost Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Recipe cost calculator">
+<div class="dt-hero noembed">
+<h2>Free Recipe Cost Calculator Online</h2>
+<p>List your ingredients, prices and package sizes and get the cost per recipe and per serving, the food cost percentage and a menu price that hits your target margin. Free, private, no sign-up.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-rc" aria-pressed="true">Recipe cost</button>
+<button type="button" class="dt-tab" id="dtTabBtn-mp" aria-pressed="false">Menu price and profit</button>
+<button type="button" class="dt-tab" id="dtTabBtn-up" aria-pressed="false">Price per unit</button>
+</div>
+<div id="dtTab-rc"><div class="dt-panel"><div class="dt-row4"><div><label for="csName">Recipe or dish name</label><input type="text" id="csName" maxlength="80"></div><div><label for="csMade">Servings the recipe makes</label><input type="number" id="csMade" min="1" step="1"></div><div><label for="csWant">Scale to this many servings</label><input type="number" id="csWant" min="1" step="1"></div><div><label for="ckCur">Currency</label><select id="ckCur"><option value="$">$ Dollar</option><option value="£">£ Pound</option><option value="€">€ Euro</option><option value="C$">C$ Canadian dollar</option><option value="A$">A$ Australian dollar</option><option value="₹">₹ Rupee</option><option value="AED ">AED Dirham</option><option value="R ">R Rand</option></select></div></div><div class="dt-row4"><div><label for="csHrs">Labour hours (prep and cook)</label><input type="number" id="csHrs" min="0" step="0.25"></div><div><label for="csRate">Labour rate per hour</label><input type="number" id="csRate" min="0" step="0.5"></div><div><label for="csOvh">Overhead % of ingredient cost</label><input type="number" id="csOvh" min="0" step="1"></div><div><label for="csPack">Packaging per serving</label><input type="number" id="csPack" min="0" step="0.01"></div></div><datalist id="csNames"></datalist><div id="csRows"></div><div class="dt-actions" style="margin:8px 0 0"><button type="button" class="dt-btn ghost" id="csAdd">+ Add ingredient</button><button type="button" class="dt-btn ghost" id="csClear">Clear all rows</button></div></div><div id="csRcRes"></div></div>
+<div id="dtTab-mp" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="csMeth">Pricing method</label><select id="csMeth"><option value="fc">Target food cost %</option><option value="mu">Markup multiple</option><option value="mg">Profit margin %</option></select></div><div><label for="csVal">Target value (% or multiple)</label><input type="number" id="csVal" min="1" step="0.5"></div><div><label for="csPrice">Test your own menu price (optional)</label><input type="number" id="csPrice" min="0" step="0.05"></div><div><label for="csWk">Servings sold per week</label><input type="number" id="csWk" min="0" step="1"></div></div></div><div id="csMpRes"></div></div>
+<div id="dtTab-up" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="csUName">Ingredient name</label><input type="text" id="csUName" list="csNames" maxlength="60"></div><div><label for="csUPrice">Package price</label><input type="number" id="csUPrice" min="0" step="0.01"></div><div><label for="csUSize">Package size</label><input type="number" id="csUSize" min="0" step="0.01"></div><div><label for="csUUnit">Package unit</label><select id="csUUnit"><option value="g">g</option><option value="kg">kg</option><option value="oz">oz</option><option value="lb">lb</option><option value="ml">ml</option><option value="l">litre</option><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="cup">cup</option><option value="floz">fl oz</option><option value="pt">pint</option><option value="qt">quart</option><option value="gal">gallon</option><option value="each">each</option><option value="dozen">dozen</option></select></div></div></div><div id="csUpRes"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button><button type="button" class="dt-btn" id="csPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="csCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="csCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> Estimates only. Prices, yields and densities vary. Not accounting or financial advice.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Recipe Cost Calculator. https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Recipe Cost Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/recipe-cooking-tools/recipe-cost-calculator/"&gt;Recipe Cost Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free recipe cost calculator does</a></li><li><a href="#how">How to use the recipe cost calculator</a></li><li><a href="#formula">How to cost a recipe: formulas and an example</a></li><li><a href="#units">Unit conversions and ingredient densities</a></li><li><a href="#yield">Yield percentage and edible portion cost</a></li><li><a href="#foodcost">Food cost percentage benchmarks</a></li><li><a href="#pricing">Three ways to set a menu price</a></li><li><a href="#prime">Labour, overhead and prime cost</a></li><li><a href="#save">Ways to lower your recipe cost</a></li><li><a href="#scale">Scaling a recipe and batch costing</a></li><li><a href="#home">Recipe costing for home bakers and cottage food sellers</a></li><li><a href="#restaurant">Recipe costing for restaurants, caterers and meal prep</a></li><li><a href="#mistakes">Common recipe costing mistakes</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free recipe cost calculator does</h2>
+<p>Knowing what a recipe really costs is the first step to pricing food for sale, trimming a household budget or deciding whether a homemade version is cheaper than the shop's. This free online <b>recipe cost calculator</b> turns a list of ingredients into a <b>total recipe cost, cost per serving, food cost percentage and a suggested menu price</b>.</p><p>You enter each ingredient with the amount the recipe uses, the price you paid and the size of the package. The calculator converts between units (it knows about cups, spoons, grams, ounces, pounds, litres and counts), accounts for trimming waste with a <b>yield percentage</b>, and adds packaging, labour and overhead if you want them. A second tab turns costs into a price, and a third compares the unit price of any ingredient. It runs in your browser and saves your recipe on your own device.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="How a recipe cost becomes a menu price: ingredients, packaging, labour and overhead add up to total cost, then a target food cost sets the price"><title>From ingredient cost to menu price</title>
+<g font-size="12.5" font-weight="700">
+<rect class="dt-bar" x="14" y="20" width="132" height="64" rx="10" fill="#c2410c"/><text x="80" y="48" text-anchor="middle" fill="#fff">Ingredients</text><text x="80" y="68" text-anchor="middle" fill="#fff" font-weight="400">price ÷ yield</text>
+<rect class="dt-bar" x="166" y="20" width="132" height="64" rx="10" fill="#ea580c" style="animation-delay:.15s"/><text x="232" y="48" text-anchor="middle" fill="#fff">Packaging</text><text x="232" y="68" text-anchor="middle" fill="#fff" font-weight="400">per serving</text>
+<rect class="dt-bar" x="318" y="20" width="132" height="64" rx="10" fill="#fb923c" style="animation-delay:.3s"/><text x="384" y="48" text-anchor="middle" fill="#431407">Labour</text><text x="384" y="68" text-anchor="middle" fill="#431407" font-weight="400">hours × rate</text>
+<rect class="dt-bar" x="470" y="20" width="156" height="64" rx="10" fill="#ca8a04" style="animation-delay:.45s"/><text x="548" y="48" text-anchor="middle" fill="#fff">Overhead</text><text x="548" y="68" text-anchor="middle" fill="#fff" font-weight="400">% of ingredients</text></g>
+<g fill="currentColor" font-size="13" font-weight="700"><text x="14" y="130">Food cost ÷ target food cost % = menu price</text><text x="14" y="158" font-weight="400">Example: $0.40 ingredients and packaging ÷ 30% = $1.33 per cookie</text></g>
+<rect x="14" y="176" width="612" height="34" rx="8" fill="currentColor" opacity=".08"/><rect class="dt-bar" x="14" y="176" width="184" height="34" rx="8" fill="#16a34a"/><text x="106" y="198" text-anchor="middle" font-size="12.5" font-weight="700" fill="#fff">Food cost 30%</text><text x="412" y="198" text-anchor="middle" font-size="12.5" fill="currentColor">Labour, overhead, rent, profit 70%</text></svg><figcaption>A menu price is built from ingredient cost, packaging, labour and overhead. The food cost percentage is the share of the price spent on ingredients.</figcaption></figure>
+<h2 id="how">How to use the recipe cost calculator</h2>
+<ol><li><b>Name the recipe</b> and enter how many servings it makes. To see the cost of a bigger or smaller batch, change the "scale to" servings.</li><li><b>Add ingredients.</b> For each row enter the name, the amount the recipe uses and its unit, the price you paid for the package, the package size and its unit. Pick names from the suggestions (flour, butter, milk, sugar and so on) so the calculator can convert between volume and weight.</li><li><b>Set yield %.</b> If you lose part of the ingredient to peeling, trimming or cooking, enter the usable percentage (for example 80 for carrots).</li><li><b>Add labour, overhead and packaging</b> if you want the full cost.</li><li><b>Open the Menu price tab</b> to turn costs into a price using a target food cost percentage, a markup or a profit margin, or to test a price of your own.</li><li><b>Print, download or copy.</b> The export contains only the active tab.</li></ol>
+<h2 id="formula">How to cost a recipe: formulas and an example</h2>
+<p><b>Ingredient cost</b> = package price × (amount used ÷ package size) ÷ yield. <b>Cost per serving</b> = total cost ÷ servings. <b>Food cost %</b> = food cost per serving ÷ menu price × 100. <b>Menu price</b> = food cost per serving ÷ target food cost %.</p><p><b>Worked example (the default recipe).</b> A batch of 24 chocolate chip cookies uses 2¼ cups of flour, 1 cup of butter, ¾ cup of white sugar, ¾ cup of brown sugar, 2 eggs, a 12 oz bag of chocolate chips, 2 teaspoons of vanilla, and a little baking soda and salt. At typical US supermarket prices the ingredients come to about <b>$9.59</b>, which is about <b>40 cents per cookie</b>. At a 30% target food cost the cookie would sell for about $1.33. Chocolate chips and butter are over two thirds of the cost, so those are the lines to shop around.</p>
+<h2 id="units">Unit conversions and ingredient densities</h2>
+<p>Recipes are written in cups and spoons, but ingredients are priced by weight. To bridge the two, the calculator uses average grams per US cup for common ingredients:</p><div class="dt-wrap"><table><tr><th>Ingredient</th><th>Grams per cup</th><th>Ingredient</th><th>Grams per cup</th></tr><tr><td>All-purpose flour</td><td>125</td><td>Butter</td><td>227</td></tr><tr><td>Granulated sugar</td><td>200</td><td>Brown sugar (packed)</td><td>213</td></tr><tr><td>Powdered sugar</td><td>120</td><td>Honey</td><td>340</td></tr><tr><td>Milk</td><td>245</td><td>Vegetable oil</td><td>218</td></tr><tr><td>Rice (uncooked)</td><td>185</td><td>Rolled oats</td><td>90</td></tr><tr><td>Cocoa powder</td><td>85</td><td>Chocolate chips</td><td>170</td></tr></table></div><p>These are averages. Flour packed into a cup can weigh 20% more than flour spooned and levelled, and brands differ. For the most accurate costing, weigh ingredients in grams when you can. When the used unit and the package unit are both weights, or both volumes, or both counts, no density is needed.</p>
+<h2 id="yield">Yield percentage and edible portion cost</h2>
+<p>Many ingredients lose weight before they reach the plate. <b>As purchased (AP)</b> cost is what you pay; <b>edible portion (EP)</b> cost is what you actually use: EP cost = AP cost ÷ yield. Typical yields are approximate and depend on the item and your trimming:</p><div class="dt-wrap"><table><tr><th>Ingredient</th><th>Typical yield</th></tr><tr><td>Onions, peeled</td><td>about 90%</td></tr><tr><td>Carrots, peeled and trimmed</td><td>about 80 to 85%</td></tr><tr><td>Potatoes, peeled</td><td>about 80 to 85%</td></tr><tr><td>Bell peppers, seeded</td><td>about 80 to 85%</td></tr><tr><td>Celery, trimmed</td><td>about 75 to 85%</td></tr><tr><td>Fresh herbs, leaves only</td><td>about 50 to 70%</td></tr><tr><td>Pineapple, peeled and cored</td><td>about 50%</td></tr><tr><td>Whole fish to fillets</td><td>about 35 to 45%</td></tr><tr><td>Trimmed beef roast</td><td>about 80 to 90%</td></tr></table></div><p>Enter your own yield from a test: weigh the item, trim it and weigh what you keep. Cooking loss (meat shrinking in the oven) is a separate matter, but you can include it in the yield if your recipe uses cooked weight.</p>
+<h2 id="foodcost">Food cost percentage benchmarks</h2>
+<div class="dt-wrap"><table><tr><th>Business</th><th>Typical food cost %</th></tr><tr><td>Full-service restaurant</td><td>28 to 35%</td></tr><tr><td>Pizzeria</td><td>25 to 30%</td></tr><tr><td>Fast food and quick service</td><td>25 to 32%</td></tr><tr><td>Cafe, coffee and tea drinks</td><td>15 to 25%</td></tr><tr><td>Bar (beverage cost)</td><td>18 to 25%</td></tr><tr><td>Bakery and cottage food</td><td>25 to 35% (about 3× ingredient cost)</td></tr><tr><td>Catering</td><td>25 to 35%</td></tr></table></div><p>These are rules of thumb that differ by region and concept. A fine-dining restaurant with expensive ingredients may run a higher food cost and charge for the experience; a cafe selling coffee has a very low one. Use them as a starting point and let your real labour, rent and sales volume decide.</p>
+<h2 id="pricing">Three ways to set a menu price</h2>
+<ul><li><b>Target food cost %:</b> price = food cost ÷ target %. Simple and the most common. 30% means the price is about 3.3 times the food cost.</li><li><b>Markup multiple:</b> price = food cost × multiple. A 3× markup equals a 33% food cost.</li><li><b>Profit margin:</b> price = total cost ÷ (1 − margin). A 25% margin on a $5 total cost gives $6.67. Use this when you want a specific profit after labour and overhead.</li></ul><p>The Menu price tab shows all three results (one at a time) and a table of prices at food cost targets from 20 to 40%, plus friendly price points such as $x.49 or $x.95. It also shows profit per serving, gross margin and prime cost, and weekly and monthly profit if you enter how many servings you sell.</p>
+<h2 id="prime">Labour, overhead and prime cost</h2>
+<p>Ingredients are only part of the story. <b>Labour</b> is hours × hourly rate (include your own time if you are self-employed). <b>Overhead</b> covers rent, utilities, equipment, insurance and fees; here it is entered as a percentage of ingredient cost for simplicity. <b>Prime cost</b> is food plus labour and is one of the most-watched numbers in restaurants, usually held under about 65% of sales. If your profit per serving is negative, the calculator highlights it.</p>
+<h2 id="save">Ways to lower your recipe cost</h2>
+<ul><li>Check the biggest line on the cost breakdown first; a 10% saving on your largest ingredient beats a 50% saving on a pinch of spice.</li><li>Compare unit prices with the Price per unit tab, because the bigger package is not always cheaper per ounce.</li><li>Buy in-season produce and store brands for staples such as flour, sugar and oil.</li><li>Cut waste: raise your yield by trimming less aggressively and using trimmings in stocks.</li><li>Adjust portion size rather than quality, and check that every garnish earns its cost.</li><li>Scale recipes to batch sizes that use whole packages, so nothing is left over to spoil.</li></ul>
+<h2 id="scale">Scaling a recipe and batch costing</h2>
+<p>Because costs are proportional to amounts, you can scale a recipe by multiplying every quantity by the same factor. Enter the number of servings you make now and the number you want, and the breakdown table shows the scaled amounts and costs. Beware that some things do not scale linearly: spices and leavening, cooking times and equipment capacity. Round packaged items up to whole units when you shop.</p>
+<h2 id="home">Recipe costing for home bakers and cottage food sellers</h2>
+<p>If you sell cakes, cookies or preserves from home, the cost of ingredients is typically a third or less of the price. The rest pays for your time, packaging, fees, the cost of cooking energy, equipment wear and a small profit. Many home bakers undercharge because they leave out labour. Enter an honest hourly rate, add packaging per serving (box, ribbon, label) and check the price against what your market will pay. Cottage food laws vary by location, so check the rules for labels, licences and permitted products before selling.</p>
+<h2 id="restaurant">Recipe costing for restaurants, caterers and meal prep</h2>
+<p>Professional kitchens cost every recipe, called plate costing, and review it whenever supplier prices change. Use the yield percentage for trimmed produce and proteins, enter portion sizes carefully, and update package prices from your latest invoices. For meal prep and catering, scale to the number of portions you will make and use the batch total for the shopping budget. Combine the Menu price tab's prime cost with your actual sales to see which dishes earn their place on the menu.</p>
+<h2 id="mistakes">Common recipe costing mistakes</h2>
+<ul><li>Forgetting small items such as oil, salt, spices and garnishes, which can add 5 to 10% to the cost.</li><li>Ignoring trimming and cooking loss.</li><li>Using shelf prices that do not match what you actually paid, such as sale prices or bulk prices you no longer buy.</li><li>Mixing up fluid ounces and ounces by weight.</li><li>Leaving out packaging and labour.</li><li>Not updating prices for months.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>All calculations run in your browser. Your recipe is saved only in your own browser's local storage so it is there when you return. It is never uploaded. You can remove it with the reset button or by clearing your site data.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate the cost of a recipe?</summary><p>List every ingredient with the amount the recipe uses, the price you paid and the size of the package. For each ingredient, cost = package price × (amount used ÷ package size). Add all the ingredient costs, then divide by the number of servings. The calculator converts between cups, grams, ounces and pounds for you.</p></details><details><summary>How do I work out cost per serving?</summary><p>Cost per serving = total recipe cost ÷ number of servings. For example, a $9.59 batch of 24 cookies costs about $0.40 per cookie in ingredients. Add packaging, labour and overhead for the full cost per serving.</p></details><details><summary>What is food cost percentage and how is it calculated?</summary><p>Food cost percentage = food cost per serving ÷ selling price × 100. A dish with $3 of ingredients sold for $10 has a 30% food cost. Many restaurants aim for 28 to 35%, but the right level depends on the business.</p></details><details><summary>How do I price a menu item from its cost?</summary><p>Divide the food cost by your target food cost percentage. With $3.00 of food cost and a 30% target, the price is $3.00 ÷ 0.30 = $10.00. You can also use a markup multiple (food cost × 3.33) or a margin on total cost. The Menu price tab does all three.</p></details><details><summary>What is a good food cost percentage?</summary><p>As a general guide, full-service restaurants often run 28 to 35%, pizzerias 25 to 30%, cafes and coffee drinks 15 to 25%, and bars 18 to 25%. Home bakers who sell often price at about three times ingredient cost. These are rules of thumb, not requirements.</p></details><details><summary>What is yield percentage and why does it matter?</summary><p>Yield is the share of a purchased ingredient that ends up usable after trimming, peeling or cooking. If you buy 1 kg of carrots and 800 g are usable, the yield is 80% and your real cost is the price divided by 0.80. Ignoring yield understates your cost.</p></details><details><summary>What is the difference between AP and EP cost?</summary><p>AP (as purchased) cost is what you pay for the whole item. EP (edible portion) cost is the cost of the part you actually use. EP cost = AP cost ÷ yield percentage. Enter the yield % in the calculator to get EP costing automatically.</p></details><details><summary>Does the calculator convert cups to grams?</summary><p>Yes. It has built-in average densities for about 90 common ingredients such as flour, sugar, butter and milk. If you buy flour by the pound and use it by the cup, type 'flour' in the name and the calculator converts it. If an ingredient is not recognised it assumes the density of water and shows a warning.</p></details><details><summary>Can I include labour and overhead?</summary><p>Yes. Enter the hours of labour and the hourly rate, plus an overhead percentage of ingredient cost and any packaging per serving. The calculator reports food cost, prime cost and total cost per serving separately.</p></details><details><summary>What is prime cost?</summary><p>Prime cost is food cost plus labour cost, usually shown as a percentage of sales. Restaurants often aim to keep prime cost around 60 to 65% of sales. The Menu price tab shows your prime cost percentage.</p></details><details><summary>How do I scale a recipe and see the new cost?</summary><p>Enter the number of servings the recipe makes and the number you want. All amounts and costs in the breakdown scale proportionally, so you can see the cost of a batch for 6, 24 or 100 servings.</p></details><details><summary>How do I cost a recipe for a bakery or cottage food business?</summary><p>Include every ingredient, packaging and your time. A common starting rule is to charge at least three times the ingredient and packaging cost, then check that the price also covers labour, overhead, fees and profit. Check your local cottage food rules before selling.</p></details><details><summary>Can I compare prices of different package sizes?</summary><p>Yes. The Price per unit tab shows the price per gram, ounce, pound, kilogram, cup, tablespoon, teaspoon or item for any package, so you can compare brands and sizes fairly.</p></details><details><summary>Does it work in euros, pounds or other currencies?</summary><p>Yes. Choose the currency symbol in the settings. The calculator does not convert exchange rates; it only changes the symbol. Metric and US units are both supported.</p></details><details><summary>Are my recipes saved?</summary><p>The calculator saves your current recipe in your own browser (local storage) so it is there when you return. Nothing is sent to a server. Clearing your browser data, or using private browsing, removes it, and the Reset button restores the example.</p></details><details><summary>Are prices updated automatically?</summary><p>No. Prices change often, so the numbers come from what you enter. Update your package prices from time to time, especially for ingredients with volatile prices such as eggs, butter and cooking oil.</p></details><details><summary>Can I print or export the cost breakdown?</summary><p>Yes. Print / save as PDF prints only the tab you are viewing, CSV downloads the table for a spreadsheet and copy summary puts it on your clipboard.</p></details><details><summary>Is this recipe cost calculator really free?</summary><p>Yes. It is free to use with no sign-up, no limits on the number of recipes and no data collection.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>National Restaurant Association and culinary school textbooks on food cost percentage, plate costing and prime cost.</li><li>USDA FoodData Central and USDA food yield tables, for typical edible-portion yields (values here are rounded approximations).</li><li>King Arthur Baking ingredient weight chart, for grams-per-cup densities (rounded averages).</li><li>Standard culinary math: AP versus EP cost, markup multiples and margin pricing.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online recipe cost calculator provides estimates for planning and pricing only. Results depend entirely on the prices, quantities, yields and unit conversions you enter, and the built-in ingredient densities (grams per cup) are averages that vary by brand, moisture and how an ingredient is packed or chopped. Ingredient prices change, and suggested menu prices ignore taxes, fees, discounts, local regulations and market conditions. It is not accounting, tax, legal or financial advice. If you sell food, check the licensing, labelling and food safety rules that apply to you. Your recipes stay in your browser; clearing site data removes them.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+/* ---------- recipe cost calculator UI ---------- */
+var ST = { tab: "rc", rows: { rc: [], mp: [], up: [] }, head: { rc: [], mp: [], up: [] } };
+var UN = { g: ["w", 1, "g"], kg: ["w", 1000, "kg"], oz: ["w", 28.3495, "oz"], lb: ["w", 453.592, "lb"], ml: ["v", 1, "ml"], l: ["v", 1000, "l"], tsp: ["v", 4.92892, "tsp"], tbsp: ["v", 14.7868, "tbsp"], cup: ["v", 236.588, "cup"], floz: ["v", 29.5735, "fl oz"], pt: ["v", 473.176, "pint"], qt: ["v", 946.353, "quart"], gal: ["v", 3785.41, "gallon"], each: ["c", 1, "each"], dozen: ["c", 12, "dozen"] };
+var UOPT = '<optgroup label="Weight"><option value="g">g</option><option value="kg">kg</option><option value="oz">oz</option><option value="lb">lb</option></optgroup><optgroup label="Volume"><option value="tsp">tsp</option><option value="tbsp">tbsp</option><option value="cup">cup</option><option value="ml">ml</option><option value="l">litre</option><option value="floz">fl oz</option><option value="pt">pint</option><option value="qt">quart</option><option value="gal">gallon</option></optgroup><optgroup label="Count"><option value="each">each</option><option value="dozen">dozen</option></optgroup>';
+/* grams per US cup */
+var DENS = [["all-purpose flour", 125], ["bread flour", 127], ["whole wheat flour", 120], ["cake flour", 114], ["almond flour", 96], ["flour", 125], ["powdered sugar", 120], ["confectioners", 120], ["icing sugar", 120], ["brown sugar", 213], ["granulated sugar", 200], ["caster sugar", 200], ["sugar", 200], ["honey", 340], ["maple syrup", 322], ["molasses", 340], ["corn syrup", 328], ["butter", 227], ["margarine", 227], ["shortening", 190], ["olive oil", 216], ["vegetable oil", 218], ["canola oil", 218], ["coconut oil", 218], ["oil", 218], ["whole milk", 245], ["milk", 245], ["heavy cream", 238], ["cream", 238], ["sour cream", 240], ["yogurt", 245], ["cream cheese", 232], ["cottage cheese", 225], ["ricotta", 246], ["parmesan", 100], ["shredded cheese", 113], ["cheddar", 113], ["mozzarella", 113], ["cheese", 113], ["cocoa", 85], ["chocolate chips", 170], ["chocolate", 170], ["cornstarch", 128], ["baking powder", 192], ["baking soda", 220], ["kosher salt", 135], ["salt", 288], ["instant yeast", 144], ["yeast", 144], ["oats", 90], ["rice", 185], ["quinoa", 170], ["lentils", 192], ["beans", 190], ["peanut butter", 258], ["walnuts", 117], ["pecans", 109], ["almonds", 143], ["peanuts", 146], ["nuts", 125], ["raisins", 145], ["coconut", 93], ["breadcrumbs", 108], ["mayonnaise", 220], ["ketchup", 240], ["tomato sauce", 245], ["tomato paste", 262], ["diced tomatoes", 240], ["soy sauce", 255], ["vinegar", 240], ["lemon juice", 244], ["lime juice", 244], ["vanilla", 208], ["cinnamon", 125], ["paprika", 112], ["onion", 160], ["carrot", 130], ["celery", 100], ["potato", 150], ["spinach", 30], ["broccoli", 90], ["mushroom", 70], ["chicken", 140], ["ground beef", 225], ["broth", 240], ["stock", 240], ["water", 237], ["wine", 236], ["juice", 248]];
+DENS.sort(function (a, b) { return b[0].length - a[0].length; });
+var DEFSET = { name: "Chocolate chip cookies", made: 24, want: 24, hrs: 0.75, rate: 15, ovh: 10, pack: 0.05, meth: "fc", val: 30, price: "", wk: 100, cur: "$" };
+var DEFROWS = [["All-purpose flour", 2.25, "cup", 4.5, 5, "lb", 100], ["Butter", 1, "cup", 5.49, 1, "lb", 100], ["Granulated sugar", 0.75, "cup", 3.99, 4, "lb", 100], ["Brown sugar", 0.75, "cup", 2.79, 2, "lb", 100], ["Large eggs", 2, "each", 4.2, 1, "dozen", 100], ["Chocolate chips", 12, "oz", 3.99, 12, "oz", 100], ["Vanilla extract", 2, "tsp", 8.99, 4, "floz", 100], ["Baking soda", 1, "tsp", 1.29, 16, "oz", 100], ["Salt", 1, "tsp", 1.5, 26, "oz", 100]];
+var R = [], SK = "utiliby_recipe_cost_v1";
+function mk(a) { return { name: a[0], q: a[1], u: a[2], price: a[3], ps: a[4], pu: a[5], y: a[6] }; }
+function dens(name) { var n = String(name || "").toLowerCase(); for (var i = 0; i < DENS.length; i++) if (n.indexOf(DENS[i][0]) > -1) return { g: DENS[i][1] / 236.588, found: true, key: DENS[i][0] }; return { g: 1, found: false }; }
+function rowCalc(r) {
+  var fu = UN[r.u][0], fp = UN[r.pu][0], used = r.q * UN[r.u][1], pkg = r.ps * UN[r.pu][1], y = Math.max(1, Math.min(100, r.y || 100)) / 100;
+  if (!(pkg > 0) || !(r.q >= 0) || !(r.price >= 0)) return { cost: 0, note: "Enter a package price and size." };
+  var ratio, note = "";
+  if (fu === fp) ratio = used / pkg;
+  else if (fu === "c" || fp === "c") return { cost: 0, note: "Cannot convert between a count and a weight or volume. Use the same kind of unit." };
+  else { var d = dens(r.name); if (!d.found) note = "Using water density (1 g per ml) because the ingredient was not recognised. Rename it, or use matching units."; ratio = fu === "v" ? used * d.g / pkg : used / d.g / pkg; if (!note && d.key) note = "Converted using " + d.key + " density."; }
+  return { cost: r.price * ratio / y, note: note, ratio: ratio };
+}
+function readSet() { return { name: $("csName").value, made: nv("csMade", 24, 1, 100000), want: nv("csWant", 24, 1, 100000), hrs: nv("csHrs", 0, 0, 1000), rate: nv("csRate", 0, 0, 10000), ovh: nv("csOvh", 0, 0, 500), pack: nv("csPack", 0, 0, 10000), cur: $("ckCur").value }; }
+function rowsHtml() {
+  var h = '<div class="ck-scroll"><table class="dt-table" style="min-width:900px"><tr><th>Ingredient</th><th>Amount used</th><th>Unit</th><th>Package price</th><th>Package size</th><th>Package unit</th><th>Yield %</th><th>Cost</th><th></th></tr>';
+  R.forEach(function (r, i) { h += '<tr><td><input type="text" list="csNames" data-i="' + i + '" data-f="name" value="' + esc(r.name) + '" aria-label="Ingredient name" style="min-width:150px"></td><td><input type="number" min="0" step="any" data-i="' + i + '" data-f="q" value="' + r.q + '" aria-label="Amount used" style="width:76px"></td><td><select data-i="' + i + '" data-f="u" aria-label="Unit used" style="min-width:84px">' + UOPT + '</select></td><td><input type="number" min="0" step="any" data-i="' + i + '" data-f="price" value="' + r.price + '" aria-label="Package price" style="width:80px"></td><td><input type="number" min="0" step="any" data-i="' + i + '" data-f="ps" value="' + r.ps + '" aria-label="Package size" style="width:76px"></td><td><select data-i="' + i + '" data-f="pu" aria-label="Package unit" style="min-width:84px">' + UOPT + '</select></td><td><input type="number" min="1" max="100" step="1" data-i="' + i + '" data-f="y" value="' + r.y + '" aria-label="Yield percent" style="width:64px"></td><td id="csC' + i + '" style="white-space:nowrap;font-weight:700"></td><td><button type="button" class="dt-btn ghost small" data-del="' + i + '" aria-label="Remove ingredient">×</button></td></tr>'; });
+  return h + "</table></div>";
+}
+function renderRows() {
+  $("csRows").innerHTML = rowsHtml();
+  R.forEach(function (r, i) { var s = $("csRows").querySelectorAll("select"); });
+  $("csRows").querySelectorAll("select").forEach(function (s) { var i = +s.getAttribute("data-i"), f = s.getAttribute("data-f"); s.value = R[i][f]; });
+}
+function oneNum(v) { var x = parseFloat(v); return isNaN(x) ? 0 : x; }
+function costing() {
+  var S = readSet(), tot = 0, lines = [], warn = [];
+  R.forEach(function (r, i) { var c = rowCalc(r); tot += c.cost; lines.push({ r: r, c: c.cost, note: c.note, i: i }); var e = $("csC" + i); if (e) { e.textContent = fm(c.cost, 2); e.title = c.note || ""; } if (c.note && c.note.indexOf("Cannot") === 0 || c.note && c.note.indexOf("Using water") === 0 || c.note && c.note.indexOf("Enter") === 0) warn.push((r.name || "Ingredient " + (i + 1)) + ": " + c.note); });
+  var sc = S.want / S.made, ing = tot, pack = S.pack * S.made, labor = S.hrs * S.rate, ovh = ing * S.ovh / 100, all = ing + pack + labor + ovh, food = ing + pack;
+  var perS = ing / S.made, foodS = food / S.made, allS = all / S.made;
+  var sorted = lines.slice().sort(function (a, b) { return b.c - a.c; }), cols = ["#c2410c", "#ea580c", "#fb923c", "#ca8a04", "#0ea5e9", "#64748b", "#16a34a"], parts = [];
+  sorted.slice(0, 5).forEach(function (l, k) { if (l.c > 0) parts.push({ l: l.r.name || "Ingredient", v: l.c, c: cols[k], t: fm(l.c, 2) }); });
+  var rest = 0; sorted.slice(5).forEach(function (l) { rest += l.c; }); if (rest > 0) parts.push({ l: "Other ingredients", v: rest, c: cols[6], t: fm(rest, 2) });
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(S.name || "Recipe") + ": cost per serving (ingredients only)</div><div class=\"dt-big\">" + fm(perS, 2) + '</div><p class="dt-sum">Ingredients cost <b>' + fm(ing, 2) + "</b> for <b>" + n1(S.made, 2) + "</b> servings. Including packaging, labour and overhead the full cost is <b>" + fm(all, 2) + "</b>, or <b>" + fm(allS, 2) + "</b> per serving.</p></div>";
+  h += '<div class="dt-stats">' + tile("Ingredient cost", fm(ing, 2), fm(perS, 2) + " per serving") + tile("Food cost (with packaging)", fm(food, 2), fm(foodS, 2) + " per serving") + tile("Labour", fm(labor, 2), n1(S.hrs, 2) + " h at " + fm(S.rate, 2)) + tile("Total cost", fm(all, 2), fm(allS, 2) + " per serving") + "</div>";
+  if (warn.length) h += '<div class="dt-warn"><b>Check these rows:</b><ul>' + warn.map(function (x) { return "<li>" + esc(x) + "</li>"; }).join("") + "</ul></div>";
+  if (parts.length) h += '<div class="dt-diagram">' + donut(parts, fm(ing, 2), "ingredients") + '<p class="dt-hint" style="text-align:center">Where the ingredient money goes.</p></div>';
+  h += '<h3 class="dt-lbl">Cost breakdown' + (S.want !== S.made ? " (scaled ×" + n1(sc, 2) + " to " + n1(S.want, 2) + " servings)" : "") + '</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Ingredient</th><th>Amount' + (S.want !== S.made ? " (scaled)" : "") + "</th><th>Cost</th><th>Share</th><th>Per serving</th></tr>";
+  var rows = [];
+  lines.forEach(function (l) { var q = l.r.q * sc, cs = l.c * sc; h += "<tr><td>" + esc(l.r.name || "Ingredient") + "</td><td>" + n1(q, 2) + " " + UN[l.r.u][2] + "</td><td>" + fm(cs, 2) + "</td><td>" + pc(ing ? l.c / ing * 100 : 0, 0) + "</td><td>" + fm(l.c / S.made, 3) + "</td></tr>"; rows.push([l.r.name || "Ingredient", n1(q, 2) + " " + UN[l.r.u][2], fm(cs, 2), pc(ing ? l.c / ing * 100 : 0, 0), fm(l.c / S.made, 3)]); });
+  h += "</table></div>";
+  var tc = ing * sc; rows.push(["Total ingredients", "", fm(tc, 2), "100%", fm(perS, 3)]);
+  var ex = [["Packaging", pack * sc], ["Labour", labor * sc], ["Overhead", ovh * sc], ["Total cost", all * sc]]; ex.forEach(function (e) { rows.push([e[0], "", fm(e[1], 2), "", fm(e[1] / S.want, 3)]); });
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>Cost line</th><th>Total</th><th>Per serving</th></tr><tr><td>Ingredients</td><td>' + fm(tc, 2) + "</td><td>" + fm(perS, 3) + "</td></tr>" + ex.map(function (e) { return "<tr><td>" + e[0] + "</td><td>" + fm(e[1], 2) + "</td><td>" + fm(e[1] / S.want, 3) + "</td></tr>"; }).join("") + "</table></div>";
+  if (sorted.length && sorted[0].c > 0) h += '<p class="dt-hint">Biggest cost: <b>' + esc(sorted[0].r.name || "Ingredient") + "</b> at " + pc(ing ? sorted[0].c / ing * 100 : 0, 0) + " of ingredient cost. Small savings on the largest lines make the biggest difference.</p>";
+  $("csRcRes").innerHTML = h; ST.head.rc = ["Ingredient", "Amount", "Cost", "Share", "Per serving"]; ST.rows.rc = [[S.name || "Recipe", n1(S.want, 2) + " servings", "", "", ""]].concat(rows); ST.parts = parts;
+  ST.num = { S: S, ing: ing, pack: pack, food: food, labor: labor, ovh: ovh, all: all, foodS: foodS, allS: allS, perS: perS };
+  save();
+}
+function nice(p) { var out = [], b = Math.ceil(p), c = [Math.ceil(p * 4) / 4, b - 0.05, b - 0.01, Math.ceil(p * 2) / 2 - 0.01, b + 0.49]; if (!isFinite(p) || p <= 0) return out; c.forEach(function (x) { x = Math.round(x * 100) / 100; if (x >= p - 0.001 && x <= p * 1.15 + 0.01 && out.indexOf(x) < 0) out.push(x); }); return out.sort(function (a, b) { return a - b; }).slice(0, 4); }
+function menu() {
+  var N = ST.num, S = N.S, meth = $("csMeth").value, v = nv("csVal", 30, 1, 1000), price, pr = $("csPrice").value.trim() === "" ? null : nv("csPrice", 0, 0, 1e6), wk = nv("csWk", 0, 0, 1e6);
+  if (meth === "fc") price = N.foodS / (v / 100); else if (meth === "mu") price = N.foodS * v; else price = N.allS / (1 - Math.min(v, 99) / 100);
+  var use = pr != null ? pr : price, fc = use > 0 ? N.foodS / use * 100 : NaN, prof = use - N.allS, gm = use > 0 ? prof / use * 100 : NaN, prime = (N.food + N.labor) / S.made, primeP = use > 0 ? prime / use * 100 : NaN;
+  var h = '<div class="dt-result"><div class="dt-label">Suggested menu price per serving</div><div class="dt-big">' + fm(price, 2) + '</div><p class="dt-sum">' + (meth === "fc" ? "Food cost " + fm(N.foodS, 2) + " ÷ " + n1(v, 1) + "% target food cost" : meth === "mu" ? "Food cost " + fm(N.foodS, 2) + " × " + n1(v, 2) + " markup" : "Total cost " + fm(N.allS, 2) + " ÷ (1 − " + n1(v, 1) + "% margin)") + ". " + (pr != null ? "Showing results at your price of <b>" + fm(pr, 2) + "</b>." : "Enter your own price below to test it.") + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Food cost %", pc(fc, 1), fm(N.foodS, 2) + " of " + fm(use, 2), fc > 35 ? "bad" : "") + tile("Profit per serving", fm(prof, 2), "after labour and overhead", prof < 0 ? "bad" : "") + tile("Gross margin", pc(gm, 1), "on total cost") + tile("Prime cost %", pc(primeP, 1), "food plus labour") + "</div>";
+  if (fc > 35) h += '<p class="dt-warn">A food cost above about 35% leaves little room for rent, wages and profit in most food businesses. Consider a higher price, a smaller portion or cheaper ingredients.</p>';
+  if (prof < 0) h += '<p class="dt-warn">At this price every serving loses money once labour and overhead are counted.</p>';
+  if (wk > 0) h += '<div class="dt-stats">' + tile("Weekly sales", fm(use * wk, 0), n1(wk, 0) + " servings") + tile("Weekly food cost", fm(N.foodS * wk, 0)) + tile("Weekly profit", fm(prof * wk, 0), "", prof * wk < 0 ? "bad" : "") + tile("Monthly profit (4.33 weeks)", fm(prof * wk * 4.33, 0)) + "</div>";
+  var np = nice(price); if (np.length) h += '<p class="dt-hint">Friendly price points near the suggestion: ' + np.map(function (x) { return "<b>" + fm(x, 2) + "</b>"; }).join(", ") + ".</p>";
+  h += '<h3 class="dt-lbl">Menu price at different food cost targets</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Target food cost %</th><th>Menu price</th><th>Profit per serving</th><th>Weekly profit</th></tr>'; var rows = [];
+  [20, 25, 28, 30, 33, 35, 40].forEach(function (t) { var p = N.foodS / (t / 100), pf = p - N.allS; h += "<tr><td>" + t + "%</td><td>" + fm(p, 2) + "</td><td>" + fm(pf, 2) + "</td><td>" + (wk > 0 ? fm(pf * wk, 0) : "n/a") + "</td></tr>"; rows.push([t + "%", fm(p, 2), fm(pf, 2), wk > 0 ? fm(pf * wk, 0) : "n/a"]); });
+  h += "</table></div>"; $("csMpRes").innerHTML = h;
+  ST.head.mp = ["Item", "Value"]; ST.rows.mp = [["Recipe", S.name], ["Food cost per serving", fm(N.foodS, 2)], ["Total cost per serving", fm(N.allS, 2)], ["Suggested menu price", fm(price, 2)], ["Price tested", fm(use, 2)], ["Food cost %", pc(fc, 1)], ["Profit per serving", fm(prof, 2)], ["Gross margin", pc(gm, 1)], ["Prime cost %", pc(primeP, 1)]].concat(wk > 0 ? [["Weekly profit", fm(prof * wk, 0)]] : []);
+  ST.rows.mp.push(["", ""]); ST.rows.mp.push(["Food cost target", "Menu price / profit per serving"]); rows.forEach(function (r) { ST.rows.mp.push([r[0], r[1] + " / " + r[2]]); });
+}
+function unitPrice() {
+  var name = $("csUName").value, pr = nv("csUPrice", 0, 0, 1e9), sz = nv("csUSize", 0, 0, 1e9), u = $("csUUnit").value, fam = UN[u][0], base = sz * UN[u][1], d = dens(name);
+  if (!(base > 0)) { $("csUpRes").innerHTML = '<p class="dt-hint">Enter the package size to see unit prices.</p>'; ST.rows.up = []; return; }
+  var rows = [], per = function (label, bu, unit) { rows.push([label, fm(pr / (base / bu), unit < 0.01 ? 4 : 3)]); };
+  var gBase = fam === "w" ? base : fam === "v" && d.found ? base * d.g : null, mlBase = fam === "v" ? base : fam === "w" && d.found ? base / d.g : null;
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(name || "Ingredient") + ": " + fm(pr, 2) + " for " + n1(sz, 2) + " " + UN[u][2] + '</div><div class="dt-big">', head = "";
+  if (gBase) head = fm(pr / gBase * 100, 2) + " per 100 g"; else if (fam === "c") head = fm(pr / base, 2) + " each"; else head = fm(pr / mlBase * 100, 2) + " per 100 ml";
+  h += head + "</div></div>";
+  var t = '<div class="dt-scroll"><table class="dt-table"><tr><th>Per</th><th>Price</th></tr>';
+  var items = [];
+  if (gBase) { items.push(["gram", pr / gBase, 4]); items.push(["100 g", pr / gBase * 100, 2]); items.push(["kilogram", pr / gBase * 1000, 2]); items.push(["ounce (weight)", pr / gBase * 28.3495, 3]); items.push(["pound", pr / gBase * 453.592, 2]); }
+  if (mlBase) { items.push(["100 ml", pr / mlBase * 100, 2]); items.push(["litre", pr / mlBase * 1000, 2]); items.push(["fl oz", pr / mlBase * 29.5735, 3]); items.push(["cup", pr / mlBase * 236.588, 2]); items.push(["tablespoon", pr / mlBase * 14.7868, 3]); items.push(["teaspoon", pr / mlBase * 4.92892, 3]); }
+  if (fam === "c") items.push(["each", pr / base, 3], ["dozen", pr / base * 12, 2]);
+  items.forEach(function (x) { t += "<tr><td>" + x[0] + "</td><td>" + fm(x[1], x[2]) + "</td></tr>"; });
+  var cv = fam === "v" && !d.found ? "<p class=\"dt-hint\">Add an ingredient name from the list (such as flour, butter or sugar) to see price per gram and per ounce.</p>" : fam === "w" && !d.found ? "<p class=\"dt-hint\">Add a recognised ingredient name to also see price per cup and per spoon.</p>" : "";
+  $("csUpRes").innerHTML = h + t + "</table></div>" + cv; ST.rows.up = [["Ingredient", name], ["Package", fm(pr, 2) + " for " + n1(sz, 2) + " " + UN[u][2]]].concat(items.map(function (x) { return ["Per " + x[0], fm(x[1], x[2])]; }));
+}
+var TITLES = { rc: "Recipe cost breakdown", mp: "Menu price and profit", up: "Ingredient price per unit" };
+function calc() { costing(); menu(); unitPrice(); }
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab], "Free online Recipe Cost Calculator");
+  if (ST.tab === "rc") { repTbl(b, ST.head.rc, ST.rows.rc); var d = $("csRcRes").querySelector(".dt-diagram"); if (d) repFig(b, d.innerHTML); } else repTbl(b, ST.tab === "mp" ? ST.head.mp : ["Item", "Value"], ST.rows[ST.tab]);
+  repDisc(b, "Costs are estimates from the prices and conversions you entered. Ingredient prices change, and this is not accounting, tax or financial advice.");
+}
+function save() { var o = { R: R, S: { name: $("csName").value, made: $("csMade").value, want: $("csWant").value, hrs: $("csHrs").value, rate: $("csRate").value, ovh: $("csOvh").value, pack: $("csPack").value, cur: $("ckCur").value, meth: $("csMeth").value, val: $("csVal").value, price: $("csPrice").value, wk: $("csWk").value } }; lsSet(SK, JSON.stringify(o)); }
+function applySet(S) { $("csName").value = S.name; $("csMade").value = S.made; $("csWant").value = S.want; $("csHrs").value = S.hrs; $("csRate").value = S.rate; $("csOvh").value = S.ovh; $("csPack").value = S.pack; $("ckCur").value = S.cur; $("csMeth").value = S.meth; $("csVal").value = S.val; $("csPrice").value = S.price; $("csWk").value = S.wk; }
+function setDef() { R = DEFROWS.map(mk); applySet(DEFSET); $("csUName").value = "Butter"; $("csUPrice").value = 5.49; $("csUSize").value = 1; $("csUUnit").value = "lb"; renderRows(); }
+function load() { var s = lsGet(SK); if (!s) return false; try { var o = JSON.parse(s); if (!o.R || !o.R.length) return false; R = o.R.map(function (r) { return { name: String(r.name || ""), q: oneNum(r.q), u: UN[r.u] ? r.u : "g", price: oneNum(r.price), ps: oneNum(r.ps), pu: UN[r.pu] ? r.pu : "g", y: oneNum(r.y) || 100 }; }); applySet(o.S); renderRows(); return true; } catch (e) { return false; } }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["rc", "mp", "up"], function (n) { ST.tab = n; });
+  $("csNames").innerHTML = DENS.map(function (d) { return '<option value="' + esc(d[0].replace(/\b\w/g, function (c) { return c.toUpperCase(); })) + '"></option>'; }).join("");
+  setDef(); load();
+  $("csRows").addEventListener("input", function (e) { var t = e.target, i = t.getAttribute("data-i"), f = t.getAttribute("data-f"); if (i === null) return; R[+i][f] = (f === "name" || f === "u" || f === "pu") ? t.value : oneNum(t.value); if (f === "y" && !R[+i].y) R[+i].y = 100; calc(); });
+  $("csRows").addEventListener("change", function (e) { var t = e.target, i = t.getAttribute("data-i"), f = t.getAttribute("data-f"); if (i !== null && t.tagName === "SELECT") { R[+i][f] = t.value; calc(); } });
+  $("csRows").addEventListener("click", function (e) { var b = e.target.closest("[data-del]"); if (!b) return; R.splice(+b.getAttribute("data-del"), 1); if (!R.length) R.push(mk(["", 0, "g", 0, 1, "kg", 100])); renderRows(); calc(); });
+  $("csAdd").addEventListener("click", function () { if (R.length >= 60) return; R.push(mk(["", 1, "cup", 0, 1, "lb", 100])); renderRows(); calc(); var inp = $("csRows").querySelectorAll('input[data-f="name"]'); if (inp.length) inp[inp.length - 1].focus(); });
+  $("csClear").addEventListener("click", function () { R = [mk(["", 0, "g", 0, 1, "kg", 100])]; renderRows(); calc(); });
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { if (e.getAttribute("data-i") === null) { e.addEventListener("input", calc); e.addEventListener("change", calc); } });
+  $("ckCur").addEventListener("change", calc);
+  $("resetBtn").addEventListener("click", function () { lsDel(SK); setDef(); calc(); msg("Reset to the example recipe."); });
+  $("csCsv").addEventListener("click", function () { csvDownload([ST.tab === "rc" ? ST.head.rc : ["Item", "Value"]].concat(ST.rows[ST.tab]), "recipe-cost-" + ST.tab + ".csv"); });
+  $("csCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + "\n" + ST.rows[ST.tab].map(function (x) { return x.filter(Boolean).join(": "); }).join("\n") + "\n\nCalculated with the free online Recipe Cost Calculator at utiliby.com", $("csCopy")); });
+  $("csPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

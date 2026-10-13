@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Meat & Turkey Cooking Time Calculator – Roast & Thaw</title>
+<meta name="description" content="Free online meat and turkey cooking time calculator: roast time by weight, thaw time, pull temperature and a serve-by plan for turkey, beef, pork, lamb.">
+<link rel="canonical" href="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Meat & Turkey Cooking Time Calculator – Roast & Thaw">
+<meta property="og:description" content="Free online turkey and meat cooking time calculator: roasting time by weight and oven temperature, thawing time, doneness temperatures and a dinner-time plan.">
+<meta property="og:url" content="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Meat & Turkey Cooking Time Calculator – Roast & Thaw">
+<meta name="twitter:description" content="Free online turkey and meat cooking time calculator: roasting time by weight and oven temperature, thawing time, doneness temperatures and a dinner-time plan.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#c2410c;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#fdba74}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #c2410c;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#c2410c;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#c2410c,#ea580c);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(194,65,12,.06);border-left:3px solid #c2410c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#c2410c}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#c2410c;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(194,65,12,.12);color:#9a3412;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fdba74;background:rgba(251,146,60,.16)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Meat Cooking Time Calculator","url":"https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/","description":"Free online meat and turkey cooking time calculator: estimate roasting time by weight and oven temperature for turkey, chicken, prime rib, pork, lamb and ham, plus thawing time, safe temperatures and a plan that works back from dinner.","applicationCategory":"LifestyleApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["24 cuts: turkey, chicken, beef, pork, lamb, ham","Roasting time by weight, oven temperature and fan oven","Pull temperature, doneness and resting time","Thawing time: fridge, cold water, microwave","Serve-by plan that works back from dinner","Guests to pounds to buy","Print, CSV and copy for the active tab"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How long do I cook a turkey per pound?","acceptedAnswer":{"@type":"Answer","text":"At 325°F (160°C) an unstuffed turkey needs roughly 13 to 17 minutes per pound, with larger birds taking fewer minutes per pound. About 2¾ to 3 hours for 8 to 12 lb, 3 to 3¾ hours for 12 to 14 lb, and 4½ to 5 hours for 20 to 24 lb. Always check that the thickest part of the thigh and breast reach 165°F (74°C)."}},{"@type":"Question","name":"What temperature should turkey be cooked to?","acceptedAnswer":{"@type":"Answer","text":"165°F (74°C) in the thickest part of the breast, the innermost part of the thigh and the wing, as measured by a food thermometer. If the bird is stuffed, the stuffing must also reach 165°F (74°C)."}},{"@type":"Question","name":"How long should I thaw a turkey?","acceptedAnswer":{"@type":"Answer","text":"In the refrigerator allow 24 hours for every 4 to 5 pounds, so a 16 lb turkey needs 3 to 4 days. In cold water allow 30 minutes per pound, changing the water every 30 minutes. Never thaw it on the counter."}},{"@type":"Question","name":"Can I cook a turkey from frozen?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is safe, and takes about 50% longer than a thawed bird. Do not stuff a frozen bird, and remove the giblet bag when it has loosened. Check the temperature in several places."}},{"@type":"Question","name":"How much turkey do I need per person?","acceptedAnswer":{"@type":"Answer","text":"Plan about 1 to 1½ pounds of whole bone-in turkey per person (1½ lb if you want leftovers), about ¾ lb for a bone-in breast and ½ lb for a boneless breast. Enter your guest count and the calculator gives the weight to buy."}},{"@type":"Question","name":"Should I cook the turkey stuffed or unstuffed?","acceptedAnswer":{"@type":"Answer","text":"Unstuffed cooks faster and more evenly, and is safer, because the stuffing in the cavity must reach 165°F (74°C) by the time the meat is done. Many cooks bake the stuffing in a separate dish."}},{"@type":"Question","name":"How long should turkey rest before carving?","acceptedAnswer":{"@type":"Answer","text":"Rest 20 to 30 minutes, loosely covered with foil. Resting lets the juices redistribute so the meat stays moist, and it makes carving cleaner. Large birds stay hot for much longer than you expect."}},{"@type":"Question","name":"How long do I cook a whole chicken?","acceptedAnswer":{"@type":"Answer","text":"At 375°F (190°C) about 20 minutes per pound, so a 4 lb chicken takes roughly 80 minutes. Check that the thickest part of the thigh reaches 165°F (74°C); dark meat tastes better at about 175°F (80°C)."}},{"@type":"Question","name":"How long do I cook a prime rib?","acceptedAnswer":{"@type":"Answer","text":"At 325°F (160°C) allow about 15 minutes per pound for medium rare with a bone-in roast. Pull it at about 125 to 130°F (52 to 54°C) and rest 20 to 30 minutes; it will rise to about 135°F (57°C). Doneness temperatures are in the Cook time and Safe temperatures tabs."}},{"@type":"Question","name":"How long do I cook a pork loin or pork roast?","acceptedAnswer":{"@type":"Answer","text":"At 350°F (175°C) roughly 20 to 25 minutes per pound, until the centre reaches 145°F (63°C), then rest 3 minutes or more. Pork shoulder for pulled pork is cooked low and slow, about 90 minutes per pound at 300°F until it reaches 195 to 205°F."}},{"@type":"Question","name":"How long to cook a ham?","acceptedAnswer":{"@type":"Answer","text":"A fully cooked ham only needs reheating to 140°F (60°C), about 15 minutes per pound at 325°F. A raw ham needs to reach 145°F (63°C), about 22 minutes per pound, then a 3 minute rest."}},{"@type":"Question","name":"Does oven temperature change the cooking time?","acceptedAnswer":{"@type":"Answer","text":"Yes. Roughly, time is inversely related to how far the oven is above room temperature, so 350°F is about 10% faster than 325°F and 300°F is about 10% slower. The tool adjusts for this. Fan ovens cook faster; the tool takes about 12% off, or you can lower the temperature by 25°F."}},{"@type":"Question","name":"Should I cook meat to a time or to a temperature?","acceptedAnswer":{"@type":"Answer","text":"A temperature. Times are estimates; ovens, pans and the shape of the meat all change them. Use the time to plan the meal, and a probe or instant-read thermometer to decide when it is done."}},{"@type":"Question","name":"What is carryover cooking?","acceptedAnswer":{"@type":"Answer","text":"Large roasts keep cooking after you take them out of the oven because the hot outside heats the centre. The temperature rises about 5 to 10°F (3 to 6°C) on a large roast. That is why steaks and roasts are pulled a little below the final temperature."}},{"@type":"Question","name":"Is a pink turkey or chicken safe?","acceptedAnswer":{"@type":"Answer","text":"Colour is not a reliable indicator. Properly cooked poultry can look slightly pink near the bone, and fully cooked meat can still be pink for harmless reasons. Go by a thermometer reading of 165°F (74°C)."}},{"@type":"Question","name":"Should I brine my turkey?","acceptedAnswer":{"@type":"Answer","text":"A wet or dry brine of 12 to 48 hours seasons the meat deeply and helps it hold moisture. The plan tab lets you add brine hours. A wet-brined turkey should be rinsed and dried well, and the pan juices will be salty."}},{"@type":"Question","name":"Can I use this for a Thanksgiving or Christmas plan?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set the meal date (a button sets Thanksgiving Day), the serving time, the weight, whether it is frozen and any brining. The plan tab works back to give you the day to start thawing, when to take the bird out of the refrigerator, when to preheat and when to put it in."}},{"@type":"Question","name":"Can I print or save the plan?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save as PDF prints only the active tab, which is useful as a checklist on the fridge. You can also download a CSV or copy the summary. Nothing is uploaded."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Recipe & Cooking Tools","item":"https://utiliby.com/tools/recipe-cooking-tools/"},{"@type":"ListItem","position":3,"name":"Meat Cooking Time Calculator","item":"https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/recipe-cooking-tools/">Recipe &amp; Cooking Tools</a> › Meat Cooking Time Calculator</nav>
+<h1 class="noembed">Free Online Turkey and Meat Cooking Time Calculator: Roast, Thaw and Plan</h1>
+<p class="lead noembed">Free online meat and turkey cooking time calculator. Get roasting time by weight and oven temperature, pull and rest temperatures, thawing time and a serve-by plan for turkey, chicken, prime rib, pork, lamb and ham. Private, no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/" target="_blank" rel="noopener">Meat Cooking Time Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Meat and turkey cooking time calculator">
+<div class="dt-hero noembed">
+<h2>Free Turkey and Meat Cooking Time Calculator Online</h2>
+<p>Choose the cut, weight and oven temperature to get roasting time, pull temperature and rest time. Add thawing time and a plan that works back from dinner. Free, private, no sign-up.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-ct" aria-pressed="true">Cooking time</button>
+<button type="button" class="dt-tab" id="dtTabBtn-th" aria-pressed="false">Thaw time</button>
+<button type="button" class="dt-tab" id="dtTabBtn-pl" aria-pressed="false">Plan the day</button>
+<button type="button" class="dt-tab" id="dtTabBtn-st" aria-pressed="false">Safe temperatures</button>
+</div>
+<div id="dtTab-ct"><div class="dt-panel"><div class="dt-row4"><div><label for="mtCut">Meat or cut</label><select id="mtCut"><option value="tur">Whole turkey</option></select></div><div><label for="mtWt">Weight</label><input type="number" id="mtWt" min="0.1" step="0.1"></div><div><label for="mtU">Weight unit</label><select id="mtU"><option value="lb">Pounds (lb)</option><option value="kg">Kilograms (kg)</option></select></div><div><label for="mtGuests">Guests (optional)</label><input type="number" id="mtGuests" min="0" step="1"></div></div><div class="dt-row4"><div><label for="mtOven">Oven temperature</label><input type="number" id="mtOven" min="100" step="5"></div><div><label for="mtOU">Temperature unit</label><select id="mtOU"><option value="F">°F</option><option value="C">°C</option></select></div><div><label for="mtType">Oven type</label><select id="mtType"><option value="conv">Conventional</option><option value="fan">Fan / convection</option></select></div><div id="mtDoneW"><label for="mtDone">Doneness (beef and lamb)</label><select id="mtDone"><option value="r">Rare</option><option value="mr">Medium rare</option><option value="m">Medium</option><option value="mw">Medium well</option><option value="w">Well done</option></select></div></div></div><div id="mtCtRes"></div></div>
+<div id="dtTab-th" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="mtTWt">Weight (frozen)</label><input type="number" id="mtTWt" min="0.1" step="0.1"></div><div><label for="mtTU">Weight unit</label><select id="mtTU"><option value="lb">Pounds (lb)</option><option value="kg">Kilograms (kg)</option></select></div><div><label for="mtTMeth">Thawing method</label><select id="mtTMeth"><option value="fridge">Refrigerator</option><option value="water">Cold water</option><option value="mw">Microwave</option></select></div><div><label>&nbsp;</label><span class="ck-note">Never thaw on the counter.</span></div></div></div><div id="mtThRes"></div></div>
+<div id="dtTab-pl" hidden><div class="dt-panel"><div class="dt-row4"><div><label for="mtDate">Meal date (optional)</label><input type="date" id="mtDate"></div><div><label for="mtTime">Serve at (time)</label><input type="time" id="mtTime"></div><div><label for="mtFrozen">Is it frozen?</label><select id="mtFrozen"><option value="yes">Yes, frozen</option><option value="no">No, fresh</option></select></div><div><label for="mtBrine">Brine or dry brine (hours)</label><input type="number" id="mtBrine" min="0" step="1"></div></div><div class="dt-actions" style="margin:6px 0 0"><button type="button" class="dt-btn ghost" id="mtTg">Set to Thanksgiving Day (US)</button></div></div><div id="mtPlRes"></div></div>
+<div id="dtTab-st" hidden><div class="dt-panel"><div id="mtStRes"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button><button type="button" class="dt-btn" id="mtPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="mtCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="mtCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> Estimates only. Always cook to a safe internal temperature measured with a food thermometer.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Meat Cooking Time Calculator. https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Meat Cooking Time Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/recipe-cooking-tools/meat-cooking-time-calculator/"&gt;Meat Cooking Time Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free meat cooking time calculator does</a></li><li><a href="#how">How to use the calculator</a></li><li><a href="#turkey">How long to cook a turkey</a></li><li><a href="#temps">Safe internal temperatures</a></li><li><a href="#method">How the cooking time is estimated</a></li><li><a href="#thaw">Thawing times and safe methods</a></li><li><a href="#rest">Resting meat and carryover cooking</a></li><li><a href="#portions">How much meat to buy per person</a></li><li><a href="#tips">Tips for juicier, safer roasts</a></li><li><a href="#fan">Fan, convection and altitude</a></li><li><a href="#holiday">Planning a holiday dinner</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#privacy">Privacy</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free meat cooking time calculator does</h2>
+<p>Cooking a large piece of meat for a crowd is mostly a timing problem: the turkey must be thawed days ahead, put in the oven at the right moment and rested so that dinner is hot and ready together. This free online <b>meat and turkey cooking time calculator</b> estimates the <b>roasting time</b> for turkey, chicken, beef, pork, lamb and ham by weight and oven temperature, gives the <b>pull temperature, final temperature and resting time</b>, calculates <b>thawing time</b> and builds a <b>plan that works back from the time you want to eat</b>.</p><p>Pick a cut, enter the weight in pounds or kilograms, set the oven, and the tool shows the time as a range, a timeline and a table of how it changes at other oven temperatures. It runs in your browser with no sign-up.</p><figure class="dt-fig"><svg viewBox="0 0 640 240" width="100%" role="img" aria-label="Roasting time for a turkey by weight: about 2 hours 50 minutes for 10 pounds up to 5 hours for 24 pounds"><title>Turkey roasting time by weight at 325°F</title>
+<g font-size="12.5" fill="currentColor"><text x="14" y="34" font-weight="700">10 lb</text><text x="14" y="78" font-weight="700">13 lb</text><text x="14" y="122" font-weight="700">16 lb</text><text x="14" y="166" font-weight="700">19 lb</text><text x="14" y="210" font-weight="700">22 lb</text></g>
+<rect class="dt-bar" x="70" y="14" width="297" height="30" rx="6" fill="#fb923c"/><rect class="dt-bar" x="70" y="58" width="350" height="30" rx="6" fill="#f97316" style="animation-delay:.1s"/><rect class="dt-bar" x="70" y="102" width="414" height="30" rx="6" fill="#ea580c" style="animation-delay:.2s"/><rect class="dt-bar" x="70" y="146" width="454" height="30" rx="6" fill="#c2410c" style="animation-delay:.3s"/><rect class="dt-bar" x="70" y="190" width="492" height="30" rx="6" fill="#9a3412" style="animation-delay:.4s"/>
+<g font-size="12.5" font-weight="700" fill="#fff"><text x="80" y="34">about 2 h 50 min</text><text x="80" y="78">about 3 h 20 min</text><text x="80" y="122">about 4 h</text><text x="80" y="166">about 4 h 20 min</text><text x="80" y="210">about 4 h 45 min</text></g></svg><figcaption>Unstuffed turkey at 325°F (160°C): bigger birds take less time per pound. Always confirm 165°F (74°C) in the thickest part.</figcaption></figure>
+<h2 id="how">How to use the calculator</h2>
+<ol><li><b>Cooking time.</b> Choose the meat, enter its weight and the oven temperature, and pick conventional or fan. For beef and lamb choose a doneness. Enter your guest count to see how much meat to buy.</li><li><b>Thaw time.</b> Enter the frozen weight and the method (refrigerator, cold water or microwave).</li><li><b>Plan the day.</b> Choose the meal date and serving time, say whether the meat is frozen and add brining hours. The tool lists each step from thawing to carving with clock times.</li><li><b>Safe temperatures.</b> A quick reference of safe internal temperatures and steak doneness.</li><li><b>Print, download or copy</b> the active tab.</li></ol>
+<h2 id="turkey">How long to cook a turkey</h2>
+<div class="dt-wrap"><table><tr><th>Turkey weight</th><th>Unstuffed at 325°F</th><th>Stuffed at 325°F</th></tr><tr><td>8 to 12 lb</td><td>2¾ to 3 hours</td><td>3 to 3½ hours</td></tr><tr><td>12 to 14 lb</td><td>3 to 3¾ hours</td><td>3½ to 4 hours</td></tr><tr><td>14 to 18 lb</td><td>3¾ to 4¼ hours</td><td>4 to 4¼ hours</td></tr><tr><td>18 to 20 lb</td><td>4¼ to 4½ hours</td><td>4¼ to 4¾ hours</td></tr><tr><td>20 to 24 lb</td><td>4½ to 5 hours</td><td>4¾ to 5¼ hours</td></tr></table></div><p>These are the widely published guidelines for a fresh or fully thawed turkey. The calculator uses them, interpolating between sizes, and adjusts for oven temperature and fan ovens. Always start checking about 45 minutes before the time is up, and use the temperature, not the clock, to decide.</p><p>For an even bird, put it on a rack breast side up, tent the breast with foil if it browns too fast, and roast at 325°F. A spatchcocked (butterflied) turkey roasts in about half the time at 425°F, though it needs the backbone removed. A bird that is cold from the refrigerator will take longer than one that has stood for an hour.</p>
+<h2 id="temps">Safe internal temperatures</h2>
+<div class="dt-wrap"><table><tr><th>Food</th><th>Minimum internal temperature</th></tr><tr><td>Turkey, chicken, duck, ground poultry and stuffing</td><td>165°F (74°C)</td></tr><tr><td>Ground beef, pork, lamb, veal</td><td>160°F (71°C)</td></tr><tr><td>Beef, pork, lamb steaks, chops and roasts</td><td>145°F (63°C) plus 3 minute rest</td></tr><tr><td>Fish</td><td>145°F (63°C)</td></tr><tr><td>Leftovers and casseroles</td><td>165°F (74°C)</td></tr><tr><td>Fully cooked ham, reheating</td><td>140°F (60°C)</td></tr></table></div><p>These are the USDA's recommended minimums. Measure with a food thermometer in the thickest part, away from bone, fat and gristle. Poultry should be checked in the thigh, wing and breast.</p>
+<h2 id="method">How the cooking time is estimated</h2>
+<p>Each cut has a reference time at a reference oven temperature, for example 15 minutes per pound at 325°F for a bone-in prime rib roast, or 20 minutes per pound at 375°F for a whole chicken. Some items have a fixed base time plus a time per pound (chicken breasts, boneless turkey breast). Turkeys use a table of published times by weight, because the minutes per pound fall as the bird gets bigger.</p><p>For a different oven temperature the time is scaled by the ratio of how far the reference and chosen temperatures are above 60°F, limited to between 0.6 and 1.5 times. Fan ovens take about 12% off the time. Doneness for beef and lamb adjusts the time by about 10% per level. The result is shown as a range of ±10% because the real figure depends on the shape of the meat and the accuracy of your oven. It is an estimate for planning, not a substitute for a thermometer.</p>
+<h2 id="thaw">Thawing times and safe methods</h2>
+<div class="dt-wrap"><table><tr><th>Weight</th><th>Refrigerator (24 h per 4 to 5 lb)</th><th>Cold water (30 min per lb)</th></tr><tr><td>4 lb</td><td>about 1 day</td><td>2 hours</td></tr><tr><td>8 lb</td><td>1½ to 2 days</td><td>4 hours</td></tr><tr><td>12 lb</td><td>2½ to 3 days</td><td>6 hours</td></tr><tr><td>16 lb</td><td>3 to 4 days</td><td>8 hours</td></tr><tr><td>20 lb</td><td>4 to 5 days</td><td>10 hours</td></tr><tr><td>24 lb</td><td>5 to 6 days</td><td>12 hours</td></tr></table></div><p>Refrigerator thawing is the safest and most forgiving: the meat stays at a safe temperature the whole time, and once thawed it keeps for another 1 to 2 days before cooking. Cold water thawing is faster but needs attention: keep the bird in a leak-proof bag, submerged, and change the water every 30 minutes. Cook it immediately. Microwave thawing is suitable for small cuts and requires cooking at once.</p>
+<h2 id="rest">Resting meat and carryover cooking</h2>
+<p>Take roasts out of the oven before they reach their final temperature. The hot outside continues to heat the centre for several minutes, raising it by about 5 to 10°F on a large roast. Resting for 15 to 30 minutes then lets the muscle fibres relax, so more of the juice stays in the meat when you slice. Cover loosely with foil; tight covering steams the skin and loses the crispness. Large cuts such as prime rib, brisket and turkey benefit most, whereas small steaks need only 5 minutes.</p>
+<h2 id="portions">How much meat to buy per person</h2>
+<div class="dt-wrap"><table><tr><th>Meat</th><th>Raw weight per person</th></tr><tr><td>Whole turkey (bone-in)</td><td>1 to 1½ lb</td></tr><tr><td>Turkey breast, bone-in</td><td>¾ lb</td></tr><tr><td>Turkey breast, boneless</td><td>½ lb</td></tr><tr><td>Whole chicken</td><td>1 lb</td></tr><tr><td>Prime rib, bone-in</td><td>1 lb</td></tr><tr><td>Beef tenderloin</td><td>½ lb</td></tr><tr><td>Pork loin</td><td>½ lb</td></tr><tr><td>Pork shoulder (pulled pork)</td><td>¾ lb raw, about ⅓ lb cooked</td></tr><tr><td>Ham, bone-in</td><td>¾ lb</td></tr><tr><td>Leg of lamb, bone-in</td><td>¾ to 1 lb</td></tr></table></div><p>Add up to 25% if big eaters or leftovers are part of the plan.</p>
+<h2 id="tips">Tips for juicier, safer roasts</h2>
+<ul><li>Use a probe thermometer left in the meat with an alarm, plus an oven thermometer to check the real oven temperature.</li><li>Pat the meat dry before roasting for better browning, and salt it well ahead of time.</li><li>Do not open the oven door unnecessarily; each time costs 10 to 15°F.</li><li>Let large roasts and birds stand out of the refrigerator for 30 to 60 minutes (not more than 2 hours) before roasting.</li><li>Use a roasting rack so heat circulates under the meat.</li><li>Keep raw meat away from other foods and wash hands, boards and knives that touch it. Do not rinse raw poultry; it spreads bacteria.</li><li>Refrigerate leftovers within 2 hours and use them within 3 to 4 days.</li></ul>
+<h2 id="fan">Fan, convection and altitude</h2>
+<p>A fan oven moves hot air around the meat so it cooks faster and browns more. Lower the temperature by 25°F (15°C) or shorten the time by about 10 to 15%. At high altitude (above about 3,000 feet) water boils at a lower temperature, so braised and covered dishes take longer, while roasts in dry heat are less affected. Always judge by temperature.</p>
+<h2 id="holiday">Planning a holiday dinner</h2>
+<p>A good holiday plan starts days ahead: thaw in the refrigerator, brine the day before, set the table and make side dishes that reheat well. On the day, count back from the serving time: carve after resting 20 to 30 minutes, take the bird out of the oven then, and put it in the oven about 3 to 5 hours earlier depending on size. Remember that the oven is busy: sides that need the oven can go in while the turkey rests, since a rested bird stays hot. The Plan tab produces this timeline for you.</p>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li>Cooking by the clock instead of the thermometer.</li><li>Thawing on the counter.</li><li>Not allowing enough thawing days.</li><li>Opening the oven too often.</li><li>Carving straight away.</li><li>Forgetting that stuffing must also reach 165°F.</li><li>Putting the probe into bone, which reads too hot.</li></ul>
+<h2 id="privacy">Privacy</h2>
+<p>This calculator runs in your browser. Nothing you enter is sent to a server or stored, and reloading restores the example. Downloaded files are created on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How long do I cook a turkey per pound?</summary><p>At 325°F (160°C) an unstuffed turkey needs roughly 13 to 17 minutes per pound, with larger birds taking fewer minutes per pound. About 2¾ to 3 hours for 8 to 12 lb, 3 to 3¾ hours for 12 to 14 lb, and 4½ to 5 hours for 20 to 24 lb. Always check that the thickest part of the thigh and breast reach 165°F (74°C).</p></details><details><summary>What temperature should turkey be cooked to?</summary><p>165°F (74°C) in the thickest part of the breast, the innermost part of the thigh and the wing, as measured by a food thermometer. If the bird is stuffed, the stuffing must also reach 165°F (74°C).</p></details><details><summary>How long should I thaw a turkey?</summary><p>In the refrigerator allow 24 hours for every 4 to 5 pounds, so a 16 lb turkey needs 3 to 4 days. In cold water allow 30 minutes per pound, changing the water every 30 minutes. Never thaw it on the counter.</p></details><details><summary>Can I cook a turkey from frozen?</summary><p>Yes. It is safe, and takes about 50% longer than a thawed bird. Do not stuff a frozen bird, and remove the giblet bag when it has loosened. Check the temperature in several places.</p></details><details><summary>How much turkey do I need per person?</summary><p>Plan about 1 to 1½ pounds of whole bone-in turkey per person (1½ lb if you want leftovers), about ¾ lb for a bone-in breast and ½ lb for a boneless breast. Enter your guest count and the calculator gives the weight to buy.</p></details><details><summary>Should I cook the turkey stuffed or unstuffed?</summary><p>Unstuffed cooks faster and more evenly, and is safer, because the stuffing in the cavity must reach 165°F (74°C) by the time the meat is done. Many cooks bake the stuffing in a separate dish.</p></details><details><summary>How long should turkey rest before carving?</summary><p>Rest 20 to 30 minutes, loosely covered with foil. Resting lets the juices redistribute so the meat stays moist, and it makes carving cleaner. Large birds stay hot for much longer than you expect.</p></details><details><summary>How long do I cook a whole chicken?</summary><p>At 375°F (190°C) about 20 minutes per pound, so a 4 lb chicken takes roughly 80 minutes. Check that the thickest part of the thigh reaches 165°F (74°C); dark meat tastes better at about 175°F (80°C).</p></details><details><summary>How long do I cook a prime rib?</summary><p>At 325°F (160°C) allow about 15 minutes per pound for medium rare with a bone-in roast. Pull it at about 125 to 130°F (52 to 54°C) and rest 20 to 30 minutes; it will rise to about 135°F (57°C). Doneness temperatures are in the Cook time and Safe temperatures tabs.</p></details><details><summary>How long do I cook a pork loin or pork roast?</summary><p>At 350°F (175°C) roughly 20 to 25 minutes per pound, until the centre reaches 145°F (63°C), then rest 3 minutes or more. Pork shoulder for pulled pork is cooked low and slow, about 90 minutes per pound at 300°F until it reaches 195 to 205°F.</p></details><details><summary>How long to cook a ham?</summary><p>A fully cooked ham only needs reheating to 140°F (60°C), about 15 minutes per pound at 325°F. A raw ham needs to reach 145°F (63°C), about 22 minutes per pound, then a 3 minute rest.</p></details><details><summary>Does oven temperature change the cooking time?</summary><p>Yes. Roughly, time is inversely related to how far the oven is above room temperature, so 350°F is about 10% faster than 325°F and 300°F is about 10% slower. The tool adjusts for this. Fan ovens cook faster; the tool takes about 12% off, or you can lower the temperature by 25°F.</p></details><details><summary>Should I cook meat to a time or to a temperature?</summary><p>A temperature. Times are estimates; ovens, pans and the shape of the meat all change them. Use the time to plan the meal, and a probe or instant-read thermometer to decide when it is done.</p></details><details><summary>What is carryover cooking?</summary><p>Large roasts keep cooking after you take them out of the oven because the hot outside heats the centre. The temperature rises about 5 to 10°F (3 to 6°C) on a large roast. That is why steaks and roasts are pulled a little below the final temperature.</p></details><details><summary>Is a pink turkey or chicken safe?</summary><p>Colour is not a reliable indicator. Properly cooked poultry can look slightly pink near the bone, and fully cooked meat can still be pink for harmless reasons. Go by a thermometer reading of 165°F (74°C).</p></details><details><summary>Should I brine my turkey?</summary><p>A wet or dry brine of 12 to 48 hours seasons the meat deeply and helps it hold moisture. The plan tab lets you add brine hours. A wet-brined turkey should be rinsed and dried well, and the pan juices will be salty.</p></details><details><summary>Can I use this for a Thanksgiving or Christmas plan?</summary><p>Yes. Set the meal date (a button sets Thanksgiving Day), the serving time, the weight, whether it is frozen and any brining. The plan tab works back to give you the day to start thawing, when to take the bird out of the refrigerator, when to preheat and when to put it in.</p></details><details><summary>Can I print or save the plan?</summary><p>Yes. Print / save as PDF prints only the active tab, which is useful as a checklist on the fridge. You can also download a CSV or copy the summary. Nothing is uploaded.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>USDA Food Safety and Inspection Service (FSIS), Safe Minimum Internal Temperature Chart and Let's Talk Turkey: roasting times and thawing guidance.</li><li>USDA FSIS guidance on thawing meat and poultry: refrigerator, cold water and microwave methods.</li><li>Culinary roasting guides from major test kitchens for per-pound times and carryover cooking (rounded planning figures, not measured results).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online meat and turkey cooking time calculator gives estimates only. Cooking times vary with the shape and starting temperature of the meat, the accuracy of your oven, the pan, whether the meat is covered, and the altitude. Always use a calibrated food thermometer and cook to the safe internal temperature, not to the clock: 165°F (74°C) for poultry, 160°F (71°C) for ground meat and 145°F (63°C) with a 3 minute rest for whole cuts of beef, pork and lamb. Thaw meat only in the refrigerator, in cold water or in the microwave. Pregnant women, young children, older adults and people with weakened immune systems should avoid undercooked meat. Follow the instructions on your product's packaging and your local food safety guidance.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+
+/* ---------- meat and turkey cooking time UI ---------- */
+var ST = { tab: "ct", rows: { ct: [], th: [], pl: [], st: [] }, head: { ct: ["Item", "Value"], th: ["Item", "Value"], pl: ["When", "Step"], st: ["Food", "Minimum safe temperature"] } };
+/* id, name, group, refF, base min, min per lb, final F, carryover F, rest min, lb per person, doneness?, note, turkey table 0/1/2 */
+var CUTS = [
+  ["tur", "Whole turkey, unstuffed", "Turkey", 325, 0, 0, 165, 0, 30, 1.5, 0, "Roast breast side up. Check the thickest part of the thigh and breast; both must reach 165°F (74°C).", 1],
+  ["turs", "Whole turkey, stuffed", "Turkey", 325, 0, 0, 165, 0, 30, 1.5, 0, "Stuffing in the cavity must also reach 165°F (74°C). Cooking the stuffing separately is safer and faster.", 2],
+  ["turb", "Turkey breast, bone-in", "Turkey", 325, 0, 22, 165, 0, 20, 0.75, 0, "Cook to 165°F (74°C) in the thickest part.", 0],
+  ["turbl", "Turkey breast, boneless", "Turkey", 325, 20, 28, 165, 0, 15, 0.5, 0, "Tie or net the roast so it cooks evenly.", 0],
+  ["chw", "Whole chicken", "Chicken", 375, 0, 20, 165, 0, 15, 1, 0, "Check the thickest part of the thigh and breast, not touching bone.", 0],
+  ["chb", "Chicken breasts, bone-in", "Chicken", 375, 20, 10, 165, 0, 5, 0.75, 0, "Time is for the total weight of the pieces in one pan, 1 to 2 lb of breasts.", 0],
+  ["chbl", "Chicken breasts, boneless", "Chicken", 400, 10, 10, 165, 0, 5, 0.4, 0, "Pound to an even thickness for even cooking.", 0],
+  ["cht", "Chicken thighs or drumsticks, bone-in", "Chicken", 375, 15, 12, 175, 0, 5, 0.75, 0, "Dark meat is best at 175°F (80°C) for tenderness; safe at 165°F (74°C).", 0],
+  ["hen", "Cornish hens", "Chicken", 375, 0, 35, 165, 0, 10, 1, 0, "Usually 1 to 1½ lb each; time is per pound of one bird.", 0],
+  ["duck", "Whole duck", "Poultry", 350, 0, 25, 165, 0, 20, 1, 0, "Prick the skin and pour off fat during roasting for crisp skin.", 0],
+  ["pr", "Prime rib or standing rib roast, bone-in", "Beef", 325, 0, 15, 135, 10, 25, 1, 1, "Pull earlier than your target; the temperature rises 5 to 10°F while it rests.", 0],
+  ["prb", "Ribeye roast, boneless", "Beef", 325, 0, 17, 135, 10, 20, 0.6, 1, "Boneless roasts cook a little slower per pound than bone-in.", 0],
+  ["ten", "Beef tenderloin, whole", "Beef", 425, 0, 12, 135, 5, 15, 0.5, 1, "Roasted hot and fast. Tuck the thin tail under so it cooks evenly.", 0],
+  ["sir", "Sirloin tip or rump roast", "Beef", 325, 0, 22, 135, 10, 15, 0.5, 1, "A lean roast. Slice thinly across the grain.", 0],
+  ["pot", "Pot roast or chuck roast (covered, braised)", "Beef", 325, 0, 50, 195, 0, 20, 0.6, 0, "Braise covered until fork-tender, about 195 to 205°F (90 to 96°C).", 0],
+  ["bri", "Beef brisket (low and slow, covered)", "Beef", 275, 0, 60, 200, 0, 45, 0.75, 0, "Cook until probe-tender, usually 195 to 205°F (90 to 96°C), and rest it wrapped.", 0],
+  ["pkl", "Pork loin roast", "Pork", 350, 0, 25, 145, 0, 10, 0.5, 0, "145°F (63°C) with a 3 minute rest is the USDA minimum for pork.", 0],
+  ["pkt", "Pork tenderloin", "Pork", 425, 0, 22, 145, 0, 5, 0.4, 0, "Small and quick. Sear first if you like a crust.", 0],
+  ["pks", "Pork shoulder or butt (pulled pork)", "Pork", 300, 0, 90, 200, 0, 30, 0.75, 0, "Cook to about 195 to 205°F (90 to 96°C) until the bone slides out and the meat shreds.", 0],
+  ["rib", "Baby back pork ribs (one rack)", "Pork", 275, 165, 0, 195, 0, 10, 0.75, 0, "A rack takes about 2½ to 3 hours at 275°F regardless of weight. Ribs are done when the meat pulls back from the bones.", 0],
+  ["ham", "Ham, fully cooked, reheated", "Pork", 325, 0, 15, 140, 0, 15, 0.5, 0, "Reheat to 140°F (60°C). Cover with foil to keep it moist.", 0],
+  ["hamr", "Ham, raw (cook before eating)", "Pork", 325, 0, 22, 145, 0, 15, 0.75, 0, "Cook to 145°F (63°C) and rest 3 minutes.", 0],
+  ["lam", "Leg of lamb, bone-in", "Lamb", 325, 0, 22, 135, 10, 20, 0.8, 1, "Pull from the oven 5 to 10°F below your target and rest.", 0],
+  ["mlf", "Meatloaf (beef)", "Other", 350, 0, 30, 160, 0, 10, 0.4, 0, "Ground meat must reach 160°F (71°C).", 0]
+];
+var DONE = { r: ["Rare", 125, 0.9], mr: ["Medium rare", 135, 1], m: ["Medium", 145, 1.12], mw: ["Medium well", 150, 1.2], w: ["Well done", 160, 1.35] };
+var TURT = [[6, 130], [10, 172], [13, 203], [16, 240], [19, 263], [22, 285], [24, 300], [30, 345]];
+var DEF = { cut: "tur", wt: 14, u: "lb", oven: 325, ou: "F", ty: "conv", dn: "mr", guests: 10, tw: 14, tu: "lb", meth: "fridge", time: "15:00", frozen: "yes", brine: 0, date: "" };
+function cutOf(id) { for (var i = 0; i < CUTS.length; i++) if (CUTS[i][0] === id) return CUTS[i]; return CUTS[0]; }
+function toF(t, u) { return u === "C" ? t * 9 / 5 + 32 : t; }
+function tOut(f, u) { return u === "C" ? n1((f - 32) * 5 / 9, 0) + "°C" : Math.round(f) + "°F"; }
+function lbOf(id, uid, def) { var v = nv(id, def, 0.1, 500); return $(uid).value === "kg" ? v * 2.20462 : v; }
+function lbTxt(lb) { return n1(lb, 1) + " lb (" + n1(lb / 2.20462, 1) + " kg)"; }
+function hm(m) { if (!isFinite(m)) return "n/a"; m = Math.round(m); var h = Math.floor(m / 60), r = m % 60; return h > 0 ? h + " h" + (r ? " " + r + " min" : "") : r + " min"; }
+function turkeyMin(lb) { var T = TURT, i; if (lb <= T[0][0]) return T[0][1] * lb / T[0][0]; for (i = 1; i < T.length; i++) if (lb <= T[i][0]) return T[i - 1][1] + (T[i][1] - T[i - 1][1]) * (lb - T[i - 1][0]) / (T[i][0] - T[i - 1][0]); var a = T[T.length - 2], b = T[T.length - 1]; return b[1] + (b[1] - a[1]) / (b[0] - a[0]) * (lb - b[0]); }
+function baseMin(c, lb) { var m = c[12] ? turkeyMin(lb) * (c[12] === 2 ? 1.12 : 1) : c[4] + c[5] * lb; return m; }
+function ovenFactor(ref, F, type) { var f = (ref - 60) / (Math.max(150, F) - 60); f = Math.max(0.6, Math.min(1.5, f)); if (type === "fan") f *= 0.88; return f; }
+function cookInfo() {
+  var c = cutOf($("mtCut").value), lb = lbOf("mtWt", "mtU", 14), F = toF(nv("mtOven", 325, 100, 600), $("mtOU").value), type = $("mtType").value, dn = DONE[$("mtDone").value];
+  var m = baseMin(c, lb) * ovenFactor(c[3], F, type), fin = c[6], carry = c[7]; if (c[10]) { m *= dn[2]; fin = dn[1]; carry = lb >= 3 ? 10 : 5; } var pull = fin - carry;
+  return { c: c, lb: lb, F: F, m: m, lo: m * 0.9, hi: m * 1.1, fin: fin, pull: pull, rest: c[8], dn: dn, type: type };
+}
+function cook() {
+  var I = cookInfo(), c = I.c, g = intIn("mtGuests", 0, 500, 0), u = $("mtOU").value;
+  var h = '<div class="dt-result"><div class="dt-label">' + esc(c[1]) + ", " + lbTxt(I.lb) + " at " + tOut(I.F, u) + (I.type === "fan" ? " (fan or convection)" : "") + '</div><div class="dt-big">' + hm(I.lo) + " to " + hm(I.hi) + '</div><p class="dt-sum">Estimated roasting time, about <b>' + hm(I.m) + "</b>. Take it out at <b>" + tOut(I.pull, "F") + "</b>" + (I.fin !== I.pull ? " so it coasts up to " + tOut(I.fin, "F") + " while resting" : " and confirm it reads at least " + tOut(I.fin, "F")) + ". Rest it <b>" + I.rest + " minutes</b> before carving. Start checking the temperature at about <b>" + hm(I.lo * 0.75) + "</b>.</p></div>";
+  h += '<div class="dt-stats">' + tile("Cook time", hm(I.m), hm(I.lo) + " to " + hm(I.hi)) + tile("Pull at", tOut(I.pull, "F"), c[10] ? I.dn[0] + ", final " + tOut(I.fin, "F") : "final " + tOut(I.fin, "F")) + tile("Rest", I.rest + " min", "loosely covered") + tile("Oven to table", hm(I.m + I.rest), "cook plus rest") + "</div>";
+  if (g > 0) { var need = g * c[9]; h += '<div class="dt-tip"><b>Guests:</b> for ' + g + " guests buy about <b>" + lbTxt(need) + "</b> (" + n1(c[9], 2) + " lb per person" + (c[9] >= 1 ? ", allowing for bones, with some leftovers" : "") + ").</div>"; }
+  h += '<div class="dt-tip"><b>Notes</b><ul><li>' + esc(c[11]) + "</li><li>Times assume an oven at " + tOut(c[3], "F") + " as the reference temperature. Ovens run hot and cold; use an oven thermometer and a probe thermometer.</li>" + (I.lb > 22 && c[12] ? "<li>A very large bird is hard to cook evenly. Consider two smaller birds or spatchcocking.</li>" : "") + (I.F < 275 && !c[12] && c[5] < 40 ? "<li>A low oven can leave the outside pale. Raise the heat for a final 10 minutes if you want colour.</li>" : "") + "</ul></div>";
+  var W = 640, tot = I.m + I.rest, sx = function (x) { return 20 + x / tot * (W - 40); };
+  h += '<div class="dt-diagram"><svg viewBox="0 0 640 110" width="100%" role="img" aria-label="Timeline of roasting and resting time"><title>Roast and rest timeline</title><rect class="dt-bar" x="20" y="30" width="' + (sx(I.m) - 20).toFixed(1) + '" height="30" rx="6" fill="#c2410c"/><rect class="dt-bar" x="' + sx(I.m).toFixed(1) + '" y="30" width="' + (sx(tot) - sx(I.m)).toFixed(1) + '" height="30" rx="6" fill="#16a34a" style="animation-delay:.2s"/><text x="' + ((20 + sx(I.m)) / 2).toFixed(1) + '" y="50" font-size="12" font-weight="700" fill="#fff" text-anchor="middle">Roast ' + hm(I.m) + '</text><text x="' + ((sx(I.m) + sx(tot)) / 2).toFixed(1) + '" y="50" font-size="11" font-weight="700" fill="#fff" text-anchor="middle">Rest</text><line x1="' + sx(I.lo * 0.75).toFixed(1) + '" x2="' + sx(I.lo * 0.75).toFixed(1) + '" y1="22" y2="70" stroke="currentColor" stroke-dasharray="3 3"/><text x="' + sx(I.lo * 0.75).toFixed(1) + '" y="86" font-size="10.5" fill="currentColor" text-anchor="middle">first temperature check</text><text x="20" y="102" font-size="11" fill="currentColor">In the oven</text><text x="620" y="102" font-size="11" fill="currentColor" text-anchor="end">Carve (' + hm(tot) + ')</text></svg></div>';
+  if (c[10]) { h += '<h3 class="dt-lbl">Doneness for ' + esc(c[1].toLowerCase()) + '</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Doneness</th><th>Pull at</th><th>Final temperature</th><th>Estimated roast time</th></tr>'; Object.keys(DONE).forEach(function (k) { var d = DONE[k], mm = baseMin(c, I.lb) * ovenFactor(c[3], I.F, I.type) * d[2], cy = I.lb >= 3 ? 10 : 5; h += "<tr" + (d === I.dn ? ' style="font-weight:700"' : "") + "><td>" + d[0] + "</td><td>" + (d[1] - cy) + "°F</td><td>" + d[1] + "°F</td><td>" + hm(mm * 0.9) + " to " + hm(mm * 1.1) + "</td></tr>"; }); h += "</table></div><p class=\"dt-hint\">USDA advises at least 145°F (63°C) plus a 3 minute rest for whole cuts of beef, pork and lamb. Lower doneness is a personal choice with a higher food safety risk, especially for the young, elderly, pregnant or immunocompromised.</p>"; }
+  h += '<h3 class="dt-lbl">Same ' + esc(c[1].toLowerCase()) + " at other oven temperatures</h3><div class=\"dt-scroll\"><table class=\"dt-table\"><tr><th>Oven</th><th>Estimated time</th></tr>"; var rows = [];
+  [250, 275, 300, 325, 350, 375, 400, 425, 450].forEach(function (t) { var f = ovenFactor(c[3], t, I.type), mm = (baseMin(c, I.lb) * (c[10] ? I.dn[2] : 1)) * f; h += "<tr" + (Math.abs(t - I.F) < 13 ? ' style="font-weight:700"' : "") + "><td>" + tOut(t, u) + "</td><td>" + hm(mm * 0.9) + " to " + hm(mm * 1.1) + "</td></tr>"; rows.push([tOut(t, u), hm(mm * 0.9) + " to " + hm(mm * 1.1)]); });
+  h += "</table></div>"; $("mtCtRes").innerHTML = h;
+  ST.rows.ct = [["Cut", c[1]], ["Weight", lbTxt(I.lb)], ["Oven", tOut(I.F, u) + (I.type === "fan" ? " fan" : "")], ["Roasting time", hm(I.lo) + " to " + hm(I.hi)], ["Pull at", tOut(I.pull, "F")], ["Final temperature", tOut(I.fin, "F")], ["Rest", I.rest + " min"], ["Oven to table", hm(I.m + I.rest)]].concat(g > 0 ? [["Meat for " + g + " guests", lbTxt(g * c[9])]] : []).concat([["", ""], ["Other oven temperatures", "Estimated time"]]).concat(rows);
+  ST.I = I;
+}
+function thawCalc() {
+  var lb = lbOf("mtTWt", "mtTU", 14), meth = $("mtTMeth").value, fLo = lb / 5 * 24, fHi = lb / 4 * 24, cw = lb * 30, mw = lb * 6;
+  var days = Math.ceil(fHi / 24), main = meth === "fridge" ? hm(fLo * 60) + " to " + hm(fHi * 60) : meth === "water" ? hm(cw) : "about " + hm(mw);
+  var h = '<div class="dt-result"><div class="dt-label">Thawing ' + lbTxt(lb) + " in the " + (meth === "fridge" ? "refrigerator" : meth === "water" ? "cold water" : "microwave") + '</div><div class="dt-big">' + (meth === "fridge" ? "About " + n1(fLo / 24, 1) + " to " + n1(fHi / 24, 1) + " days" : main) + '</div><p class="dt-sum">' + (meth === "fridge" ? "Allow 24 hours for every 4 to 5 lb (about 2 kg) at 40°F (4°C) or below. Plan <b>" + days + " full days</b>, plus a spare day if you can. Once thawed it keeps 1 to 2 days in the refrigerator before cooking." : meth === "water" ? "Allow about 30 minutes per pound in cold tap water, in a leak-proof bag, with the water changed every 30 minutes. Cook it straight away after thawing." : "Follow your microwave's defrost guide (roughly 6 minutes per pound is typical for small items) and cook immediately, because parts of the meat may start to cook. Large turkeys do not fit.") + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Refrigerator", hm(fLo * 60) + " to " + hm(fHi * 60), n1(fLo / 24, 1) + " to " + n1(fHi / 24, 1) + " days") + tile("Cold water", hm(cw), "change water every 30 min") + tile("Microwave", "about " + hm(mw), "cook immediately") + tile("Safe in fridge after", "1 to 2 days", "thawed poultry") + "</div>";
+  h += '<h3 class="dt-lbl">Thawing times by weight</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Weight</th><th>Refrigerator</th><th>Cold water</th></tr>'; var rows = [];
+  [4, 8, 12, 16, 20, 24].forEach(function (w) { var a = n1(w / 5, 1) + " to " + n1(w / 4, 1) + " days", b = hm(w * 30); h += "<tr><td>" + w + " lb (" + n1(w / 2.20462, 1) + " kg)</td><td>" + a + "</td><td>" + b + "</td></tr>"; rows.push([w + " lb", a + " fridge, " + b + " cold water"]); });
+  h += '</table></div><div class="dt-tip"><b>Safe thawing</b><ul><li>Never thaw on the counter: the outside reaches the danger zone (40 to 140°F / 4 to 60°C) while the centre is still frozen.</li><li>Keep it in its wrapper, on a tray to catch drips, on the lowest shelf.</li><li>Poultry and meat can be cooked from frozen, but it takes about 50% longer.</li><li>Do not refreeze meat thawed in water or the microwave unless it is cooked first.</li></ul></div>';
+  $("mtThRes").innerHTML = h; ST.thawDays = days; ST.thawLo = fLo; ST.thawHi = fHi; ST.cw = cw;
+  ST.rows.th = [["Weight", lbTxt(lb)], ["Refrigerator", n1(fLo / 24, 1) + " to " + n1(fHi / 24, 1) + " days"], ["Cold water", hm(cw)], ["Microwave", "about " + hm(mw)], ["", ""]].concat(rows);
+}
+function parseTime() { var t = ($("mtTime").value || "15:00").split(":"); return (parseInt(t[0], 10) || 0) * 60 + (parseInt(t[1], 10) || 0); }
+function stamp(minFromServe) {
+  var S = parseTime(), abs = S + minFromServe, d = $("mtDate").value;
+  if (d) { var dt = new Date(d + "T00:00:00"); if (!isNaN(dt)) { dt = new Date(dt.getTime() + abs * 60000); return dt.toLocaleDateString(undefined, { weekday: "short", month: "short", day: "numeric" }) + ", " + dt.toLocaleTimeString(undefined, { hour: "numeric", minute: "2-digit" }); } }
+  var day = Math.floor(abs / 1440), m = ((abs % 1440) + 1440) % 1440, hh = Math.floor(m / 60), mm = Math.round(m % 60); if (mm === 60) { mm = 0; hh = (hh + 1) % 24; }
+  return (day === 0 ? "Meal day" : day === -1 ? "1 day before" : Math.abs(day) + " days before") + ", " + (hh % 12 === 0 ? 12 : hh % 12) + ":" + p2(mm) + " " + (hh >= 12 ? "pm" : "am");
+}
+function plan() {
+  var I = ST.I, lb = I.lb, frozen = $("mtFrozen").value === "yes", brine = nv("mtBrine", 0, 0, 72), meth = $("mtTMeth").value, steps = [];
+  var rest = I.rest, cook = I.m, tOutOven = -rest, tIn = tOutOven - cook, tPre = tIn - 30, tFr = tIn - (lb > 8 ? 60 : 30), tBr = tFr - brine * 60;
+  steps.push([0, "Carve and serve", "Slice across the grain and serve."]);
+  steps.push([tOutOven, "Take it out of the oven", "At " + tOut(I.pull, "F") + " in the thickest part. Rest loosely covered with foil for " + rest + " minutes."]);
+  steps.push([tOutOven - cook * 0.75, "First temperature check", "Probe the thickest part, away from bone. Rotate the pan if browning is uneven."]);
+  steps.push([tIn, "Into the oven", esc(I.c[1]) + " at " + tOut(I.F, $("mtOU").value) + ", about " + hm(cook) + " (" + hm(I.lo) + " to " + hm(I.hi) + ")."]);
+  steps.push([tPre, "Preheat the oven", "Allow about 30 minutes. Use an oven thermometer."]);
+  steps.push([tFr, "Take it out of the refrigerator", "Pat dry and let it sit for " + (lb > 8 ? "about an hour" : "about 30 minutes") + " (no longer than 2 hours). Season now if not brining."]);
+  if (brine > 0) steps.push([tBr, "Start the brine or dry brine", n1(brine, 0) + " hours in the refrigerator, covered. For a wet brine, rinse and pat dry before roasting."]);
+  var first = brine > 0 ? tBr : tFr;
+  if (frozen) { if (meth === "fridge") { steps.push([first - ST.thawHi * 60 - 720, "Move it from the freezer to the refrigerator", "Thaw in the refrigerator for " + n1(ST.thawLo / 24, 1) + " to " + n1(ST.thawHi / 24, 1) + " days, plus about 12 hours of spare time. Weight used: " + lbTxt(lbOf("mtTWt", "mtTU", 14)) + "."]); } else steps.push([first - ST.cw - 30, "Start cold-water thawing", "About " + hm(ST.cw) + ", changing the water every 30 minutes, then keep it refrigerated until cooking."]); }
+  steps.sort(function (a, b) { return a[0] - b[0]; });
+  var h = '<div class="dt-result"><div class="dt-label">Serve at ' + stamp(0) + '</div><div class="dt-big">Start ' + stamp(steps[0][0]) + '</div><p class="dt-sum">Working back from the meal for ' + esc(I.c[1].toLowerCase()) + ", " + lbTxt(lb) + ". Oven time is the middle of the estimate, so leave 30 minutes of slack.</p></div>";
+  h += '<div class="dt-scroll"><table class="dt-table"><tr><th>When</th><th>Step</th><th>Notes</th></tr>' + steps.map(function (s) { return "<tr><td>" + stamp(s[0]) + "</td><td><b>" + esc(s[1]) + "</b></td><td>" + s[2] + "</td></tr>"; }).join("") + "</table></div>";
+  h += '<p class="dt-hint">Set the cut, weight and oven on the Cook time tab and thawing details on the Thaw tab; this plan updates automatically. Choose the meal date to see real dates.</p>';
+  $("mtPlRes").innerHTML = h; ST.rows.pl = steps.map(function (s) { return [stamp(s[0]), s[1] + ": " + s[2].replace(/<[^>]+>/g, "")]; });
+}
+var SAFE = [["Poultry (whole, parts, ground)", 165], ["Ground beef, pork, lamb and veal", 160], ["Egg dishes", 160], ["Beef, pork, lamb steaks, chops and roasts", 145], ["Fish and shellfish", 145], ["Fresh ham (raw)", 145], ["Reheated leftovers and casseroles", 165], ["Fully cooked ham, reheated", 140]];
+function safe() {
+  var h = '<p class="dt-hint">US government minimum safe internal temperatures. Measure with a food thermometer in the thickest part, not touching bone. For whole cuts of beef, pork, lamb and veal, rest for at least 3 minutes after cooking.</p><div class="dt-scroll"><table class="dt-table"><tr><th>Food</th><th>Minimum</th><th>Celsius</th></tr>' + SAFE.map(function (s) { return "<tr><td>" + s[0] + "</td><td>" + s[1] + "°F</td><td>" + n1((s[1] - 32) * 5 / 9, 0) + "°C</td></tr>"; }).join("") + "</table></div>";
+  h += '<div class="dt-diagram">' + hbars(SAFE.map(function (s, i) { return { l: s[0].replace(/ \(.*\)/, "").slice(0, 30), v: s[1], c: s[1] >= 165 ? "#c2410c" : s[1] >= 160 ? "#ea580c" : "#fb923c" }; }), function (x) { return x + "°F"; }) + '<p class="dt-hint" style="text-align:center">Minimum safe internal temperature by food.</p></div>';
+  h += '<h3 class="dt-lbl">Steak and roast doneness (beef and lamb)</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Doneness</th><th>Pull at</th><th>Final after rest</th><th>Centre</th></tr><tr><td>Rare</td><td>120 to 125°F</td><td>125 to 130°F</td><td>Cool red</td></tr><tr><td>Medium rare</td><td>125 to 130°F</td><td>135°F</td><td>Warm red</td></tr><tr><td>Medium</td><td>135 to 140°F</td><td>145°F</td><td>Pink</td></tr><tr><td>Medium well</td><td>140 to 145°F</td><td>150 to 155°F</td><td>Slightly pink</td></tr><tr><td>Well done</td><td>155 to 160°F</td><td>160°F and above</td><td>Little or no pink</td></tr></table></div>';
+  $("mtStRes").innerHTML = h; ST.rows.st = SAFE.map(function (s) { return [s[0], s[1] + "°F (" + n1((s[1] - 32) * 5 / 9, 0) + "°C)"]; });
+}
+var TITLES = { ct: "Meat cooking time", th: "Thawing time", pl: "Cooking day plan", st: "Safe cooking temperatures" };
+function calc() { cook(); thawCalc(); plan(); safe(); }
+function fillReport() {
+  var b = repBox(); repHead(b, TITLES[ST.tab], "Free online Meat and Turkey Cooking Time Calculator");
+  repTbl(b, ST.head[ST.tab], ST.rows[ST.tab]);
+  if (ST.tab === "ct") { var d = $("mtCtRes").querySelector(".dt-diagram"); if (d) repFig(b, d.innerHTML); }
+  repDisc(b, "Times are estimates. Always confirm doneness with a food thermometer: poultry 165°F (74°C), ground meat 160°F (71°C), whole cuts of beef, pork and lamb 145°F (63°C) with a 3 minute rest.");
+}
+function showDone() { $("mtDoneW").style.opacity = cutOf($("mtCut").value)[10] ? 1 : 0.45; $("mtDone").disabled = !cutOf($("mtCut").value)[10]; }
+function setDef() { $("mtCut").value = DEF.cut; $("mtWt").value = DEF.wt; $("mtU").value = DEF.u; $("mtOven").value = DEF.oven; $("mtOU").value = DEF.ou; $("mtType").value = DEF.ty; $("mtDone").value = DEF.dn; $("mtGuests").value = DEF.guests; $("mtTWt").value = DEF.tw; $("mtTU").value = DEF.tu; $("mtTMeth").value = DEF.meth; $("mtTime").value = DEF.time; $("mtFrozen").value = DEF.frozen; $("mtBrine").value = DEF.brine; $("mtDate").value = DEF.date; showDone(); }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["ct", "th", "pl", "st"], function (n) { ST.tab = n; });
+  var groups = {}; CUTS.forEach(function (c) { (groups[c[2]] = groups[c[2]] || []).push(c); });
+  $("mtCut").innerHTML = Object.keys(groups).map(function (g) { return '<optgroup label="' + g + '">' + groups[g].map(function (c) { return '<option value="' + c[0] + '">' + c[1] + "</option>"; }).join("") + "</optgroup>"; }).join("");
+  setDef();
+  $("mtCut").addEventListener("change", function () { var c = cutOf($("mtCut").value), ou = $("mtOU").value; $("mtOven").value = ou === "C" ? Math.round((c[3] - 32) * 5 / 9 / 5) * 5 : c[3]; showDone(); $("mtTWt").value = $("mtWt").value; $("mtTU").value = $("mtU").value; });
+  $("mtWt").addEventListener("input", function () { $("mtTWt").value = $("mtWt").value; });
+  $("mtU").addEventListener("change", function () { $("mtTU").value = $("mtU").value; });
+  $("mtOU").addEventListener("change", function () { var v = parseFloat($("mtOven").value); if (!isNaN(v)) $("mtOven").value = $("mtOU").value === "C" ? Math.round((v - 32) * 5 / 9 / 5) * 5 : Math.round((v * 9 / 5 + 32) / 25) * 25; });
+  $("mtTg").addEventListener("click", function () { var n = new Date(), y = n.getFullYear(); function t4(yy) { var d = new Date(yy, 10, 1), off = (4 - d.getDay() + 7) % 7; return new Date(yy, 10, 1 + off + 21); } var d = t4(y); if (d < new Date(n.getFullYear(), n.getMonth(), n.getDate())) d = t4(y + 1); $("mtDate").value = d.getFullYear() + "-" + p2(d.getMonth() + 1) + "-" + p2(d.getDate()); calc(); msg("Set to Thanksgiving Day (US), " + d.toDateString() + "."); });
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("mtCsv").addEventListener("click", function () { csvDownload([ST.head[ST.tab]].concat(ST.rows[ST.tab]), "meat-cooking-" + ST.tab + ".csv"); });
+  $("mtCopy").addEventListener("click", function () { copyText(TITLES[ST.tab] + "\n" + ST.rows[ST.tab].map(function (x) { return x.join(": "); }).join("\n") + "\n\nCalculated with the free online Meat and Turkey Cooking Time Calculator at utiliby.com", $("mtCopy")); });
+  $("mtPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
