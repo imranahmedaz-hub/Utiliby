@@ -1,0 +1,659 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Silence Remover – Remove Silence from Audio Online</title>
+<meta name="description" content="Free online silence remover. Find and cut silent gaps in a podcast, lecture or recording, shorten pauses or trim the ends, and save MP3 or WAV. No upload.">
+<link rel="canonical" href="https://utiliby.com/tools/audio-music-tools/silence-remover/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Silence Remover – Remove Silence from Audio Online">
+<meta property="og:description" content="Remove silence from audio free in your browser. See the cuts on the waveform, set the threshold, shorten pauses and download MP3 or WAV. No upload, no sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/audio-music-tools/silence-remover/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Silence Remover – Remove Silence from Audio Online">
+<meta name="twitter:description" content="Remove silence from audio free in your browser. See the cuts on the waveform, set the threshold, shorten pauses and download MP3 or WAV. No upload, no sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#6d28d9;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#c4b5fd}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #6d28d9;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#6d28d9;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(109,40,217,.06);border-left:3px solid #6d28d9;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#6d28d9}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#6d28d9;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(185,28,28,.12);color:#991b1b;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fca5a5;background:rgba(248,113,113,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.pd-drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--bg);color:var(--muted);transition:border-color .15s}
+.pd-drop:hover,.pd-drop.on,.pd-drop:focus-visible{border-color:#6d28d9;color:inherit;outline:none}
+.pd-drop b{display:block;font-size:1.05rem;color:inherit;margin-bottom:2px}
+.pd-prog{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0 2px}
+.pd-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6d28d9,#8b5cf6);transition:width .15s}
+.pd-progtxt{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.au-wave{width:100%;display:block;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin:8px 0}
+.au-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.au-bar button{padding:7px 14px}
+.au-time{font-variant-numeric:tabular-nums;font-weight:700}
+.au-file{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--bg)}
+.au-file .nm{font-weight:700;word-break:break-all;font-size:.9rem}.au-file .mt{font-size:.78rem;color:var(--muted)}
+.au-file .bt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.au-file .bt button{padding:4px 9px;font-size:.78rem}
+.au-ok{color:#15803d;font-weight:700}.au-bad{color:#b91c1c;font-weight:700}
+.au-meter{height:14px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+.au-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#16a34a,#eab308 75%,#dc2626);transition:width .06s}
+.au-chroma{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:120px;margin:8px 0}
+.au-chroma div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:.72rem;height:100%}
+.au-chroma i{display:block;width:100%;background:#8b5cf6;border-radius:4px 4px 0 0;min-height:2px}
+.au-big{font-size:2.4rem;font-weight:800;line-height:1.1;color:#6d28d9}
+@media(prefers-color-scheme:dark){.au-big{color:#c4b5fd}}
+#tool textarea{width:100%}
+
+#sSum table{width:100%;border-collapse:collapse}#sSum th,#sSum td{padding:5px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:.85rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Silence Remover","url":"https://utiliby.com/tools/audio-music-tools/silence-remover/","description":"Free online silence remover. Detect and remove silent parts of an audio file, shorten long pauses or trim the start and end, with threshold, minimum length and padding controls, a waveform preview of the cuts and MP3 or WAV export. Runs in your browser with no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Remove, shorten or trim silences","Threshold, minimum length and padding controls","Auto threshold from the noise floor","Waveform preview with cut areas","Table of every silence found","MP3 and WAV export","No upload, no sign-up, no watermark"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove silence from an audio file for free?","acceptedAnswer":{"@type":"Answer","text":"Load your file above. Red areas on the waveform show the silences that will be cut. Adjust the threshold and minimum length if needed, press Play result to listen, then click Remove silence and download. It all runs in your browser."}},{"@type":"Question","name":"What threshold should I use?","acceptedAnswer":{"@type":"Answer","text":"Start with minus 40 dB, which suits clean speech. In a quiet studio, minus 50 to minus 60 dB catches only true silence. In a noisy room, try minus 30 dB. Click Auto threshold to let the tool choose a value from the quietest part of the file."}},{"@type":"Question","name":"What does the shortest silence setting do?","acceptedAnswer":{"@type":"Answer","text":"Only gaps at least this long are treated as silence. 500 ms removes noticeable pauses between sentences and leaves normal gaps between words. 200 to 300 ms makes tight, fast-paced edits."}},{"@type":"Question","name":"Why keep some air around the speech?","acceptedAnswer":{"@type":"Answer","text":"The padding keeps a short moment of quiet at each edge of a cut, so words are not clipped and the rhythm still feels natural. 80 to 150 ms is a good range for speech."}},{"@type":"Question","name":"What is the difference between removing and shortening silences?","acceptedAnswer":{"@type":"Answer","text":"Removing cuts the silence down to the padding on each side. Shortening cuts every long silence to a fixed length that you choose, for example 300 ms, so the pauses stay but get shorter. Shortening usually sounds more natural for conversation."}},{"@type":"Question","name":"What does Trim start and end do?","acceptedAnswer":{"@type":"Answer","text":"It removes only the silence at the beginning and the end of the file, and leaves all the pauses inside the recording alone. It is a safe way to clean up a recording before sharing it."}},{"@type":"Question","name":"Will it cut my breaths and quiet words?","acceptedAnswer":{"@type":"Answer","text":"It can, if they fall under the threshold for longer than the minimum length. Lower the threshold, use a longer minimum, or choose Shorten so that the quiet part is not removed completely. Always preview."}},{"@type":"Question","name":"Does it work on music?","acceptedAnswer":{"@type":"Answer","text":"It can trim silence at the start and end of a song or remove long gaps, but the music itself usually has no true silence. It is designed for speech such as podcasts, lectures, interviews and voice memos."}},{"@type":"Question","name":"Why does it find no silence in my file?","acceptedAnswer":{"@type":"Answer","text":"The background noise is probably louder than the threshold. Click Auto threshold, or raise the threshold toward minus 30 dB. A file with constant music or hum under the speech has no real silence to find."}},{"@type":"Question","name":"Will cutting cause clicks?","acceptedAnswer":{"@type":"Answer","text":"No. A five millisecond fade is applied where the audio is joined, which hides the edit in normal speech."}},{"@type":"Question","name":"Is my audio uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The file is decoded and edited on your device. The page downloads an open-source MP3 encoder from a public CDN the first time you choose MP3, but your audio is not sent anywhere."}},{"@type":"Question","name":"Can I remove silence from a video?","acceptedAnswer":{"@type":"Answer","text":"You can load a video file and process its audio track, but the download is an audio file. Removing audio gaps would also make the video out of sync, so the tool does not return video."}},{"@type":"Question","name":"How much shorter will my file get?","acceptedAnswer":{"@type":"Answer","text":"The summary shows the new length and the percentage saved. A recorded lecture often shrinks by 10 to 30 percent, and a voice memo with long pauses can shrink even more."}},{"@type":"Question","name":"Can I see exactly what was cut?","acceptedAnswer":{"@type":"Answer","text":"Yes. The waveform shows the cuts in red, and a table lists each silence with its start, end and length, and how much of it was removed."}},{"@type":"Question","name":"Is there a length limit?","acceptedAnswer":{"@type":"Answer","text":"No fixed limit, but the audio is decoded in memory, so very long files need more memory. One hour of stereo audio needs roughly 1.3 GB."}},{"@type":"Question","name":"Which formats can I save?","acceptedAnswer":{"@type":"Answer","text":"MP3 for small files and WAV for uncompressed audio that is best for further editing."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary prints the settings, the length saved and the waveform with the cuts. Copy summary copies the settings as text. The edited audio is the main download."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Audio & Music Tools","item":"https://utiliby.com/tools/audio-music-tools/"},{"@type":"ListItem","position":3,"name":"Silence Remover","item":"https://utiliby.com/tools/audio-music-tools/silence-remover/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/audio-music-tools/">Audio &amp; Music Tools</a> › Silence Remover</nav>
+<h1 class="noembed">Free Silence Remover for Audio</h1>
+<p class="lead noembed">Free online silence remover. Find the silent gaps in a podcast, lecture or voice recording, see the cuts on the waveform, shorten or remove them and download MP3 or WAV. It runs in your browser, so your file is never uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/audio-music-tools/silence-remover/" target="_blank" rel="noopener">Silence Remover by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Silence remover">
+<div class="dt-hero noembed">
+<h2>Free Silence Remover for Audio</h2>
+<p>Remove or shorten silent gaps in a podcast, lecture or recording. See the cuts on the waveform, listen, then download. No upload.</p>
+</div>
+<div class="dt-panel"><div class="pd-drop" id="sDrop" tabindex="0" role="button" aria-label="Choose a file"><b>Drop a podcast, lecture or recording here, or click to choose</b>Your file stays on your device. Nothing is uploaded.</div><input type="file" id="sFile" accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.ogg,.opus,.flac,.mp4,.mov,.mkv,.webm,.aiff,.wma,.3gp" hidden><div class="pd-prog" id="pdProg" hidden><i></i></div><div class="pd-progtxt" id="pdProgTxt"></div><p id="sInfo" class="ck-note"></p><canvas id="sWave" class="au-wave" height="120" aria-label="Audio waveform"></canvas><div class="au-bar"><button type="button" class="dt-btn" id="sPlay">Play result</button><button type="button" class="dt-btn ghost" id="sAuto">Auto threshold</button><span class="ck-note">Red areas are the parts that will be cut.</span></div><div class="dt-row4"><div><label for="sMode">Mode</label><select id="sMode"><option value="remove">Remove silences</option><option value="shorten">Shorten silences</option><option value="trim">Trim start and end</option></select></div><div><label for="sThr">Silence below (dB)</label><input type="number" id="sThr" min="-80" max="-5" step="1" value="-40"><input type="range" id="sThrR" min="-80" max="-10" step="1" value="-40" style="width:100%" aria-label="Silence threshold slider"></div><div><label for="sMin">Shortest silence (ms)</label><input type="number" id="sMin" min="50" max="10000" step="50"></div><div id="sPadBox"><div><label for="sPad">Keep around speech (ms)</label><input type="number" id="sPad" min="0" max="2000" step="10"></div></div><div id="sTgtBox" hidden><div><label for="sTgt">Shorten to (ms)</label><input type="number" id="sTgt" min="50" max="5000" step="10"></div></div></div><div class="dt-row"><div><label for="sFmt">Output format</label><select id="sFmt"><option value="mp3">MP3</option><option value="wav">WAV (lossless)</option></select></div><div id="sKbpsBox"><div><label for="sKbps">MP3 bitrate</label><select id="sKbps"><option value="96">96 kbps</option><option value="128">128 kbps</option><option value="160">160 kbps</option><option value="192">192 kbps</option><option value="256">256 kbps</option><option value="320">320 kbps</option></select></div></div></div><div id="sSum"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset options</button><button type="button" class="dt-btn" id="sDl">Remove silence and download</button>
+<button type="button" class="dt-btn ghost" id="sPrint">Print / save summary</button>
+<button type="button" class="dt-btn ghost" id="sCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online silence remover finds quiet parts of an audio file and cuts them in your browser. Your file is not uploaded. Automatic cutting can remove breaths, soft words or the natural pauses that make speech sound human, so listen to the result before you use it. The page downloads an open-source MP3 encoder from a public CDN the first time you choose MP3.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/audio-music-tools/silence-remover/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Silence Remover. https://utiliby.com/tools/audio-music-tools/silence-remover/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/audio-music-tools/silence-remover/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Silence Remover by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/audio-music-tools/silence-remover/"&gt;Silence Remover by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free silence remover does</a></li><li><a href="#how">How to remove silence from audio in four steps</a></li><li><a href="#threshold">Choosing the threshold</a></li><li><a href="#modes">Remove, shorten or trim</a></li><li><a href="#settings">Minimum length and padding</a></li><li><a href="#natural">Keeping speech natural</a></li><li><a href="#uses">Common uses</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#compare">Online tool or desktop editor?</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free silence remover does</h2>
+<p>Silence is where recordings waste your time. A lecture has long pauses while the speaker writes on a board, an interview has dead air between questions, a voice memo starts and ends with seconds of nothing, and a screen recording has stretches where nobody speaks. A <b>silence remover</b> finds the quiet stretches and cuts them so that the audio is tighter and shorter. Doing it by hand in an editor takes patience. This free online tool finds the gaps automatically, shows them on the waveform, and lets you listen before you save.</p><p>You can remove silences completely, shorten them to a pause of your choice, or just trim the start and the end. You control the threshold, the shortest gap to cut and the amount of quiet to keep around speech. It works in your browser, so your file is not uploaded.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="A waveform with three quiet gaps highlighted in red above, and the same audio below with the gaps removed so the speech bursts sit closer together"><title>Removing silence</title>
+<text x="20" y="22" font-size="13" fill="currentColor">Before: speech with long pauses</text>
+<g fill="#6d28d9"><rect class="dt-bar" x="30" y="50" width="8" height="40" rx="3"/><rect class="dt-bar" x="44" y="38" width="8" height="64" rx="3" style="animation-delay:.1s"/><rect class="dt-bar" x="58" y="46" width="8" height="48" rx="3" style="animation-delay:.2s"/><rect class="dt-bar" x="72" y="42" width="8" height="56" rx="3" style="animation-delay:.3s"/></g>
+<rect x="100" y="34" width="110" height="72" fill="rgba(220,38,38,.18)"/><text x="155" y="74" text-anchor="middle" font-size="12" fill="#b91c1c" font-weight="700">1.4 s silence</text>
+<g fill="#6d28d9"><rect class="dt-bar" x="226" y="48" width="8" height="44" rx="3" style="animation-delay:.2s"/><rect class="dt-bar" x="240" y="36" width="8" height="68" rx="3" style="animation-delay:.4s"/><rect class="dt-bar" x="254" y="44" width="8" height="52" rx="3"/><rect class="dt-bar" x="268" y="52" width="8" height="36" rx="3" style="animation-delay:.3s"/><rect class="dt-bar" x="282" y="40" width="8" height="60" rx="3" style="animation-delay:.1s"/></g>
+<rect x="306" y="34" width="150" height="72" fill="rgba(220,38,38,.18)"/><text x="381" y="74" text-anchor="middle" font-size="12" fill="#b91c1c" font-weight="700">2.1 s silence</text>
+<g fill="#6d28d9"><rect class="dt-bar" x="472" y="46" width="8" height="48" rx="3" style="animation-delay:.5s"/><rect class="dt-bar" x="486" y="38" width="8" height="64" rx="3"/><rect class="dt-bar" x="500" y="50" width="8" height="40" rx="3" style="animation-delay:.2s"/><rect class="dt-bar" x="514" y="42" width="8" height="56" rx="3" style="animation-delay:.4s"/><rect class="dt-bar" x="528" y="48" width="8" height="44" rx="3"/></g>
+<path d="M320 118 V138" stroke="#6d28d9" stroke-width="3"/><path d="M311 130 L320 142 L329 130" stroke="#6d28d9" stroke-width="3" fill="none"/>
+<text x="20" y="162" font-size="13" fill="currentColor">After: pauses removed, a little air kept</text>
+<g fill="#7c3aed"><rect x="30" y="176" width="8" height="30" rx="3"/><rect x="44" y="170" width="8" height="42" rx="3"/><rect x="58" y="174" width="8" height="34" rx="3"/><rect x="72" y="172" width="8" height="38" rx="3"/><rect x="110" y="176" width="8" height="30" rx="3"/><rect x="124" y="168" width="8" height="46" rx="3"/><rect x="138" y="173" width="8" height="36" rx="3"/><rect x="152" y="178" width="8" height="26" rx="3"/><rect x="166" y="171" width="8" height="40" rx="3"/><rect x="204" y="175" width="8" height="32" rx="3"/><rect x="218" y="169" width="8" height="44" rx="3"/><rect x="232" y="177" width="8" height="28" rx="3"/><rect x="246" y="172" width="8" height="38" rx="3"/><rect x="260" y="176" width="8" height="30" rx="3"/></g>
+<text x="420" y="196" font-size="13" font-weight="700" fill="#0f766e">3.5 s saved</text></svg>
+<figcaption>The tool finds stretches that stay below your threshold for long enough, and cuts them while keeping a short pause around speech so it still sounds natural.</figcaption></figure>
+<h2 id="how">How to remove silence from audio in four steps</h2>
+<ol><li><b>Load your file.</b> Drop an MP3, WAV, M4A or other audio file. The waveform and the red cut areas appear.</li><li><b>Set the threshold.</b> Anything quieter than this level counts as silence. Try Auto threshold first.</li><li><b>Choose what to cut.</b> Set the shortest silence and the padding, and pick Remove, Shorten or Trim.</li><li><b>Listen and save.</b> Press Play result. If it sounds right, choose MP3 or WAV and download.</li></ol>
+<h2 id="threshold">Choosing the threshold</h2>
+<p>The threshold is measured in decibels relative to full scale (dBFS). Zero is the loudest possible signal, and quieter sounds have negative values. Speech in a good recording sits around minus 30 to minus 12 dB, and room noise is often below minus 50 dB.</p><div class="dt-wrap"><table><tr><th>Recording</th><th>Starting threshold</th></tr><tr><td>Quiet studio, clean voice</td><td>-50 to -60 dB</td></tr><tr><td>Home office, light room noise</td><td>-40 to -45 dB</td></tr><tr><td>Noisy room, fans or traffic</td><td>-30 to -35 dB</td></tr><tr><td>Lecture hall or phone call</td><td>-35 to -40 dB</td></tr></table></div><p>If the threshold is too high, soft words and the ends of sentences are cut. If it is too low, the tool finds nothing because noise stays above it. The Auto button measures the quiet floor of your recording and sets the threshold a few decibels above it.</p>
+<h2 id="modes">Remove, shorten or trim</h2>
+<ul><li><b>Remove silences:</b> cuts each long silence down to a short pause, set by the padding. Good for podcasts and summaries where you want a quick pace.</li><li><b>Shorten silences:</b> cuts every long silence to a chosen length such as 300 ms. This keeps the rhythm of conversation but removes dead air.</li><li><b>Trim start and end:</b> removes only the silence before the first sound and after the last sound. All pauses inside stay.</li></ul><p>For dialogue, shortening usually sounds more natural than removing, because people need small pauses to follow who is speaking and to take in what was said.</p>
+<h2 id="settings">Minimum length and padding</h2>
+<p>The <b>shortest silence</b> setting decides which gaps count. At 500 ms, only pauses of half a second or more are touched, so the normal gaps between words stay. At 200 ms, even short pauses are cut and the result sounds fast and clipped. The <b>padding</b> is the quiet kept next to speech when a gap is removed. About 100 ms keeps the start and end of words clean.</p><p>Together, these two settings control the feel. A podcast edit might use minus 40 dB, 400 ms and 120 ms of padding. A lecture summary might use minus 40 dB, 600 ms and 100 ms. A tight highlight reel might use 250 ms and 60 ms.</p>
+<h2 id="natural">Keeping speech natural</h2>
+<ul><li>Preview the result from start to finish, not just the first minute.</li><li>Do not cut every pause. Pauses before important points give listeners time to think.</li><li>Use Shorten for interviews with more than one speaker.</li><li>Keep at least 80 ms of padding so consonants at the start and end of words are not clipped.</li><li>Listen for breaths. Cutting them completely can sound robotic, so a little padding helps.</li><li>If the audio has music or background noise under the voice, silence detection will not work, so use a noise reduction tool first.</li></ul>
+<h2 id="uses">Common uses</h2>
+<ul><li><b>Podcasts and interviews:</b> tighten the pace before publishing.</li><li><b>Lectures and webinars:</b> shorten long recordings for review.</li><li><b>Voice memos and dictation:</b> remove dead air before transcribing, which also lowers the cost of paid transcription by the minute.</li><li><b>Audiobooks and narration:</b> trim the pauses between takes.</li><li><b>Language lessons and recordings:</b> remove silent stretches.</li><li><b>Meeting recordings:</b> skip the time when no one was talking.</li></ul>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>Nothing is selected:</b> raise the threshold or click Auto threshold. Constant noise under the speech stays above a low threshold.</li><li><b>Words are clipped:</b> lower the threshold, increase the padding or lengthen the minimum silence.</li><li><b>It sounds too fast:</b> switch from Remove to Shorten, or raise the shortest silence.</li><li><b>Everything is red:</b> the threshold is too high for this file. Lower it.</li><li><b>MP3 export fails:</b> the encoder could not be downloaded. Choose WAV or check your connection.</li></ul>
+<h2 id="compare">Online tool or desktop editor?</h2>
+<p>Editors such as Audacity include a Truncate Silence effect, and full programs give you waveform editing at the level of a single breath. They are the best choice for finished productions. A browser tool is quicker for everyday jobs, and it keeps the file on your device. It works well as a first pass, after which you can fine-tune in an editor if you need to.</p>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>Your browser decodes the file to samples. The page measures the loudness of each ten millisecond slice, finds the stretches that stay below your threshold, and joins the remaining parts with a short fade. Nothing is uploaded, stored or logged. The MP3 encoder loads from a public CDN the first time you choose MP3, but your audio is not part of that request.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I remove silence from an audio file for free?</summary><p>Load your file above. Red areas on the waveform show the silences that will be cut. Adjust the threshold and minimum length if needed, press Play result to listen, then click Remove silence and download. It all runs in your browser.</p></details><details><summary>What threshold should I use?</summary><p>Start with minus 40 dB, which suits clean speech. In a quiet studio, minus 50 to minus 60 dB catches only true silence. In a noisy room, try minus 30 dB. Click Auto threshold to let the tool choose a value from the quietest part of the file.</p></details><details><summary>What does the shortest silence setting do?</summary><p>Only gaps at least this long are treated as silence. 500 ms removes noticeable pauses between sentences and leaves normal gaps between words. 200 to 300 ms makes tight, fast-paced edits.</p></details><details><summary>Why keep some air around the speech?</summary><p>The padding keeps a short moment of quiet at each edge of a cut, so words are not clipped and the rhythm still feels natural. 80 to 150 ms is a good range for speech.</p></details><details><summary>What is the difference between removing and shortening silences?</summary><p>Removing cuts the silence down to the padding on each side. Shortening cuts every long silence to a fixed length that you choose, for example 300 ms, so the pauses stay but get shorter. Shortening usually sounds more natural for conversation.</p></details><details><summary>What does Trim start and end do?</summary><p>It removes only the silence at the beginning and the end of the file, and leaves all the pauses inside the recording alone. It is a safe way to clean up a recording before sharing it.</p></details><details><summary>Will it cut my breaths and quiet words?</summary><p>It can, if they fall under the threshold for longer than the minimum length. Lower the threshold, use a longer minimum, or choose Shorten so that the quiet part is not removed completely. Always preview.</p></details><details><summary>Does it work on music?</summary><p>It can trim silence at the start and end of a song or remove long gaps, but the music itself usually has no true silence. It is designed for speech such as podcasts, lectures, interviews and voice memos.</p></details><details><summary>Why does it find no silence in my file?</summary><p>The background noise is probably louder than the threshold. Click Auto threshold, or raise the threshold toward minus 30 dB. A file with constant music or hum under the speech has no real silence to find.</p></details><details><summary>Will cutting cause clicks?</summary><p>No. A five millisecond fade is applied where the audio is joined, which hides the edit in normal speech.</p></details><details><summary>Is my audio uploaded to a server?</summary><p>No. The file is decoded and edited on your device. The page downloads an open-source MP3 encoder from a public CDN the first time you choose MP3, but your audio is not sent anywhere.</p></details><details><summary>Can I remove silence from a video?</summary><p>You can load a video file and process its audio track, but the download is an audio file. Removing audio gaps would also make the video out of sync, so the tool does not return video.</p></details><details><summary>How much shorter will my file get?</summary><p>The summary shows the new length and the percentage saved. A recorded lecture often shrinks by 10 to 30 percent, and a voice memo with long pauses can shrink even more.</p></details><details><summary>Can I see exactly what was cut?</summary><p>Yes. The waveform shows the cuts in red, and a table lists each silence with its start, end and length, and how much of it was removed.</p></details><details><summary>Is there a length limit?</summary><p>No fixed limit, but the audio is decoded in memory, so very long files need more memory. One hour of stereo audio needs roughly 1.3 GB.</p></details><details><summary>Which formats can I save?</summary><p>MP3 for small files and WAV for uncompressed audio that is best for further editing.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary prints the settings, the length saved and the waveform with the cuts. Copy summary copies the settings as text. The edited audio is the main download.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>AES17, standard method for digital audio engineering: measurement of digital audio equipment, which defines the dBFS scale used for the threshold.</li><li>Audacity Manual, Truncate Silence, a description of the same technique in a desktop editor.</li><li>MDN Web Docs, Web Audio API and AudioBuffer, for how browsers decode and handle audio samples.</li><li>LAME project and the lamejs encoder, the open-source MP3 encoder used for MP3 output.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online silence remover finds quiet parts of an audio file and cuts them in your browser. Your file is not uploaded. Automatic cutting can remove breaths, soft words or the natural pauses that make speech sound human, so listen to the result before you use it. The page downloads an open-source MP3 encoder from a public CDN the first time you choose MP3.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+function readBuf(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsArrayBuffer(file); }); }
+function fmtSize(n) { if (n == null) return "n/a"; if (n < 1024) return n + " B"; if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + " KB"; return (n / 1048576).toFixed(n < 10485760 ? 2 : 1) + " MB"; }
+function baseName(n) { return String(n || "document").replace(/\.[^.]+$/, "").replace(/[^\w\-. ]+/g, "_").slice(0, 60) || "document"; }
+function prog(f, text) {
+  var p = $("pdProg"); if (!p) return;
+  if (f == null) { p.hidden = true; var t0 = $("pdProgTxt"); if (t0) t0.textContent = ""; return; }
+  p.hidden = false; p.firstChild.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; p.title = text || "";
+  var t = $("pdProgTxt"); if (t) t.textContent = text || "";
+}
+function tick() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function bindDrop(dropId, fileId, cb) {
+  var d = $(dropId), f = $(fileId);
+  function open() { f.value = ""; f.click(); }
+  d.addEventListener("click", open);
+  d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  ["dragenter", "dragover"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add("on"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove("on"); }); });
+  d.addEventListener("drop", function (e) { var fl = e.dataTransfer && e.dataTransfer.files; if (fl && fl.length) cb(Array.prototype.slice.call(fl)); });
+  f.addEventListener("change", function () { if (f.files && f.files.length) cb(Array.prototype.slice.call(f.files)); });
+}
+var CRCT = null;
+function crc32(u8) {
+  if (!CRCT) { CRCT = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; CRCT[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) crc = CRCT[(crc ^ u8[i]) & 255] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cen = [], off = 0, d = new Date();
+  var dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), data = f.data, crc = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cen.push(c.buffer, nm); off += 30 + nm.length + data.length;
+  });
+  var csz = 0; cen.forEach(function (x) { csz += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, csz, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cen, [e.buffer]), { type: "application/zip" });
+}
+function blobBytes(b) { return b.arrayBuffer().then(function (x) { return new Uint8Array(x); }); }
+function busy(ids, on) { ids.forEach(function (i) { var e = $(i); if (e) e.disabled = !!on; }); }
+/* ---------- audio helpers ---------- */
+var AUURL = { lame: ["https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js", "https://unpkg.com/lamejs@1.2.1/lame.min.js"] };
+var AC = null;
+function actx() { if (!AC) { var C = window.AudioContext || window.webkitAudioContext; AC = new C(); } if (AC.state === "suspended" && AC.resume) AC.resume(); return AC; }
+function loadScript(src) { return new Promise(function (res, rej) { var s = document.createElement("script"); s.src = src; s.async = true; s.onload = res; s.onerror = function () { rej(new Error("load")); }; document.head.appendChild(s); }); }
+function needLame() {
+  if (window.lamejs && window.lamejs.Mp3Encoder) return Promise.resolve(window.lamejs);
+  if (needLame.p) return needLame.p;
+  needLame.p = (function nxt(i) {
+    if (i >= AUURL.lame.length) return Promise.reject(new Error("The MP3 encoder could not be downloaded. Check your connection, or choose WAV, which needs no download."));
+    return loadScript(AUURL.lame[i]).then(function () { if (window.lamejs && window.lamejs.Mp3Encoder) return window.lamejs; throw new Error("x"); }).catch(function () { return nxt(i + 1); });
+  })(0);
+  needLame.p.catch(function () { needLame.p = null; });
+  return needLame.p;
+}
+function fmtTime(s, ms) { if (!isFinite(s) || s < 0) s = 0; var m = Math.floor(s / 60), r = s - m * 60, t = r.toFixed(ms === 0 ? 0 : (ms || 2)); if (parseFloat(t) >= 60) { m++; t = (0).toFixed(ms === 0 ? 0 : (ms || 2)); } if (r < 10 && t.indexOf(".") === 1 || (ms === 0 && parseFloat(t) < 10)) t = "0" + t; return m + ":" + t; }
+function parseTime(str, def) {
+  str = String(str == null ? "" : str).trim(); if (!str) return def;
+  var p = str.split(":"), v = 0, i;
+  if (p.length > 3) return def;
+  for (i = 0; i < p.length; i++) { var x = parseFloat(p[i]); if (isNaN(x) || x < 0) return def; v = v * 60 + x; }
+  return v;
+}
+function dB(x) { return x <= 1e-9 ? -Infinity : 20 * Math.log10(x); }
+function dbStr(x, d) { return isFinite(x) ? x.toFixed(d == null ? 1 : d) + " dB" : "-∞ dB"; }
+function yieldUi() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function decodeAudio(file) {
+  return readBuf(file).then(function (buf) {
+    return new Promise(function (res, rej) {
+      var ctx = actx(), done = false;
+      function ok(ab) { if (done) return; done = true; res(ab); }
+      function bad(e) { if (done) return; done = true; rej(new Error("This file could not be decoded by your browser. Try MP3, WAV, M4A, OGG, FLAC, or a video with a standard audio track.")); }
+      try { var pr = ctx.decodeAudioData(buf, ok, bad); if (pr && pr.then) pr.then(ok, bad); } catch (e) { bad(e); }
+    });
+  }).then(function (ab) {
+    if (!ab || !ab.length || !ab.duration) throw new Error("No audio was found in this file.");
+    return ab;
+  });
+}
+function bufChans(ab) { var a = []; for (var c = 0; c < ab.numberOfChannels; c++) a.push(new Float32Array(ab.getChannelData(c))); return a; }
+function toAB(chs, rate) { var ab = actx().createBuffer(chs.length, chs[0].length, rate); for (var c = 0; c < chs.length; c++) ab.copyToChannel(chs[c], c); return ab; }
+function peakOf(chs) { var p = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) { var v = x[i] < 0 ? -x[i] : x[i]; if (v > p) p = v; } }); return p; }
+function rmsOf(chs) { var s = 0, n = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) s += x[i] * x[i]; n += x.length; }); return n ? Math.sqrt(s / n) : 0; }
+function mixMono(chs) { if (chs.length === 1) return chs[0]; var n = chs[0].length, o = new Float32Array(n), k = 1 / chs.length; for (var c = 0; c < chs.length; c++) for (var i = 0; i < n; i++) o[i] += chs[c][i] * k; return o; }
+function hermite(x, pos) {
+  var i = Math.floor(pos), f = pos - i, n = x.length, a = x[i < 1 ? 0 : i - 1], b = x[i], c = x[i + 1 < n ? i + 1 : n - 1], d = x[i + 2 < n ? i + 2 : n - 1];
+  var c1 = 0.5 * (c - a), c2 = a - 2.5 * b + 2 * c - 0.5 * d, c3 = 0.5 * (d - a) + 1.5 * (b - c);
+  return ((c3 * f + c2) * f + c1) * f + b;
+}
+function resampleStep(x, step) {
+  if (Math.abs(step - 1) < 1e-9) return x;
+  var n = Math.max(1, Math.floor((x.length - 1) / step) + 1), o = new Float32Array(n);
+  for (var i = 0; i < n; i++) o[i] = hermite(x, i * step);
+  return o;
+}
+function resampleRate(chs, from, to) {
+  if (from === to) return chs;
+  var step = from / to, lp = chs;
+  if (to < from) lp = chs.map(function (x) { var o = new Float32Array(x.length), a = 0, w = Math.max(2, Math.round(from / to)); /* box prefilter */ var s = 0; for (var i = 0; i < x.length; i++) { s += x[i]; if (i >= w) s -= x[i - w]; o[i] = s / Math.min(w, i + 1); } return o; });
+  return lp.map(function (x) { return resampleStep(x, step); });
+}
+function wavBlob(chs, rate) {
+  var ch = Math.min(2, chs.length), n = chs[0].length, bytes = n * ch * 2, ab = new ArrayBuffer(44 + bytes), v = new DataView(ab);
+  function s(o, t) { for (var i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); }
+  s(0, "RIFF"); v.setUint32(4, 36 + bytes, true); s(8, "WAVE"); s(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, ch, true); v.setUint32(24, rate, true); v.setUint32(28, rate * ch * 2, true); v.setUint16(32, ch * 2, true); v.setUint16(34, 16, true); s(36, "data"); v.setUint32(40, bytes, true);
+  var o = 44;
+  for (var i = 0; i < n; i++) for (var c = 0; c < ch; c++) { var x = chs[c][i]; x = x > 1 ? 1 : x < -1 ? -1 : x; v.setInt16(o, x < 0 ? Math.round(x * 32768) : Math.round(x * 32767), true); o += 2; }
+  return new Blob([ab], { type: "audio/wav" });
+}
+function mp3Blob(chs, rate, kbps, onProg) {
+  return needLame().then(function (L) {
+    var ok = [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000];
+    if (ok.indexOf(rate) < 0) { var to = rate > 48000 ? 48000 : 44100; chs = resampleRate(chs, rate, to); rate = to; }
+    var ch = Math.min(2, chs.length), n = chs[0].length, enc = new L.Mp3Encoder(ch, rate, kbps), parts = [], size = 1152 * 16, t0 = Date.now();
+    function conv(x, s, e) { var a = new Int16Array(e - s); for (var i = s; i < e; i++) { var v = x[i]; v = v > 1 ? 1 : v < -1 ? -1 : v; a[i - s] = v < 0 ? Math.round(v * 32768) : Math.round(v * 32767); } return a; }
+    function step(s) {
+      if (s >= n) { var tail = enc.flush(); if (tail && tail.length) parts.push(new Uint8Array(tail)); return new Blob(parts, { type: "audio/mpeg" }); }
+      var e = Math.min(n, s + size), l = conv(chs[0], s, e), c = ch > 1 ? enc.encodeBuffer(l, conv(chs[1], s, e)) : enc.encodeBuffer(l);
+      if (c && c.length) parts.push(new Uint8Array(c));
+      if (onProg) onProg(e / n);
+      if (Date.now() - t0 > 40) { t0 = Date.now(); return yieldUi().then(function () { return step(e); }); }
+      return step(e);
+    }
+    return step(0);
+  });
+}
+function exportAudio(chs, rate, fmt, kbps, onProg) {
+  if (fmt === "wav") return Promise.resolve({ blob: wavBlob(chs, rate), ext: "wav" });
+  return mp3Blob(chs, rate, kbps, onProg).then(function (b) { return { blob: b, ext: "mp3" }; });
+}
+function fmtOpts(p) { return { fmt: $(p + "Fmt").value, kbps: parseInt($(p + "Kbps").value, 10) || 192 }; }
+function bindFmt(p) { var f = $(p + "Fmt"); function u() { $(p + "KbpsBox").hidden = f.value === "wav"; } f.addEventListener("change", u); u(); }
+function estSize(sec, ch, rate, o) { return o.fmt === "wav" ? sec * rate * Math.min(2, ch) * 2 : sec * o.kbps * 125; }
+function isAud(f) { return /^(audio|video)\//.test(f.type) || /\.(mp3|wav|wave|ogg|oga|opus|m4a|aac|flac|aif|aiff|weba|webm|mp4|m4v|mov|mkv|3gp|amr|wma|mpg|mpeg|avi)$/i.test(f.name); }
+/* ----- waveform view with draggable selection ----- */
+function WaveView(cv, o) {
+  o = o || {};
+  var me = { chs: null, rate: 44100, dur: 0, a: 0, b: 0, sel: false, cursor: -1, regions: [], marks: [], pk: null, H: o.height || 130, color: o.color || "#7c3aed" };
+  var drag = null;
+  function dims() { var dpr = window.devicePixelRatio || 1, w = Math.max(200, cv.clientWidth || 640); cv.width = Math.round(w * dpr); cv.height = Math.round(me.H * dpr); cv.style.height = me.H + "px"; return { w: w, h: me.H, dpr: dpr }; }
+  function calcPeaks(w) {
+    var n = me.chs[0].length, bins = Math.round(w), pk = new Float32Array(bins * 2);
+    for (var i = 0; i < bins; i++) {
+      var s = Math.floor(i * n / bins), e = Math.max(s + 1, Math.floor((i + 1) * n / bins)), st = Math.max(1, Math.floor((e - s) / 200)), mn = 0, mx = 0;
+      for (var c = 0; c < me.chs.length; c++) { var x = me.chs[c]; for (var j = s; j < e; j += st) { var v = x[j]; if (v > mx) mx = v; if (v < mn) mn = v; } }
+      pk[i * 2] = mn; pk[i * 2 + 1] = mx;
+    }
+    me.pk = pk;
+  }
+  me.xOf = function (t) { return t / me.dur * (cv.clientWidth || 640); };
+  me.tOf = function (x) { return Math.max(0, Math.min(me.dur, x / (cv.clientWidth || 640) * me.dur)); };
+  me.draw = function () {
+    var d = dims(), ctx = cv.getContext("2d"), W = cv.width, H = cv.height, k = d.dpr, cs = getComputedStyle(cv);
+    var bg = (cs.getPropertyValue("--bg") || "").trim() || "#fff", line = (cs.getPropertyValue("--line") || "").trim() || "#ddd", mut = (cs.getPropertyValue("--muted") || "").trim() || "#666";
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+    if (!me.chs) { ctx.fillStyle = mut; ctx.font = (13 * k) + "px sans-serif"; ctx.textAlign = "center"; ctx.fillText("Choose a file to see its waveform", W / 2, H / 2 - 8 * k); return; }
+    if (!me.pk || me.pk.length / 2 !== Math.round(d.w)) calcPeaks(d.w);
+    var bins = me.pk.length / 2, ax = me.xOf(me.a), bx = me.xOf(me.b);
+    for (var i = 0; i < bins; i++) {
+      var mn = me.pk[i * 2], mx = me.pk[i * 2 + 1], inSel = !me.sel || (i + 0.5 >= ax && i + 0.5 <= bx);
+      ctx.fillStyle = inSel ? me.color : "rgba(124,58,237,.28)";
+      var y1 = H / 2 - mx * (H / 2 - 4 * k), y2 = H / 2 - mn * (H / 2 - 4 * k);
+      ctx.fillRect(i * k * (W / k / bins), y1, Math.max(1, k * (W / k / bins)), Math.max(1, y2 - y1));
+    }
+    me.regions.forEach(function (r) { ctx.fillStyle = r.color || "rgba(220,38,38,.25)"; var x1 = me.xOf(r.a) * k, x2 = me.xOf(r.b) * k; ctx.fillRect(x1, 0, Math.max(1, x2 - x1), H); });
+    me.marks.forEach(function (t) { ctx.fillStyle = "rgba(16,185,129,.8)"; ctx.fillRect(me.xOf(t) * k, 0, Math.max(1, k), H); });
+    if (me.sel) {
+      ctx.fillStyle = "#4c1d95"; ctx.fillRect(ax * k - k, 0, 2 * k, H); ctx.fillRect(bx * k - k, 0, 2 * k, H);
+      ctx.beginPath(); ctx.arc(ax * k, 10 * k, 6 * k, 0, 7); ctx.arc(bx * k, H - 10 * k, 6 * k, 0, 7); ctx.fill();
+    }
+    if (me.cursor >= 0) { ctx.fillStyle = "#ef4444"; ctx.fillRect(me.xOf(me.cursor) * k - k, 0, 2 * k, H); }
+  };
+  me.set = function (chs, rate) { me.chs = chs; me.rate = rate; me.dur = chs ? chs[0].length / rate : 0; me.a = 0; me.b = me.dur; me.sel = false; me.cursor = -1; me.regions = []; me.marks = []; me.pk = null; me.draw(); };
+  me.setSel = function (a, b) { me.a = Math.max(0, Math.min(a, me.dur)); me.b = Math.max(me.a, Math.min(b, me.dur)); me.sel = true; me.draw(); };
+  function px(e) { var r = cv.getBoundingClientRect(); return e.clientX - r.left; }
+  if (o.select) {
+    cv.style.touchAction = "none"; cv.style.cursor = "crosshair";
+    cv.addEventListener("pointerdown", function (e) {
+      if (!me.chs) return; var x = px(e), t = me.tOf(x); try { cv.setPointerCapture(e.pointerId); } catch (er) { }
+      if (me.sel && Math.abs(x - me.xOf(me.a)) < 12) drag = { m: "a", x0: x };
+      else if (me.sel && Math.abs(x - me.xOf(me.b)) < 12) drag = { m: "b", x0: x };
+      else drag = { m: "n", x0: x, t0: t, moved: false };
+    });
+    cv.addEventListener("pointermove", function (e) {
+      if (!drag) return; var x = px(e), t = me.tOf(x), mn = 0.01;
+      if (drag.m === "a") me.a = Math.min(t, me.b - mn);
+      else if (drag.m === "b") me.b = Math.max(t, me.a + mn);
+      else { if (Math.abs(x - drag.x0) < 4 && !drag.moved) return; drag.moved = true; me.a = Math.min(drag.t0, t); me.b = Math.max(drag.t0, t); me.sel = true; }
+      if (me.a < 0) me.a = 0; if (me.b > me.dur) me.b = me.dur;
+      me.draw(); if (o.onSel) o.onSel(me.a, me.b, true);
+    });
+    function up() { if (!drag) return; var d = drag; drag = null; if (d.m === "n" && !d.moved && o.onSeek) o.onSeek(me.tOf(d.x0)); else if (o.onSel) o.onSel(me.a, me.b, false); }
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+  } else if (o.onSeek) { cv.style.cursor = "pointer"; cv.addEventListener("click", function (e) { if (me.chs) o.onSeek(me.tOf(px(e))); }); }
+  var rt = 0; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { me.pk = null; me.draw(); }, 120); });
+  me.draw();
+  return me;
+}
+/* ----- simple player ----- */
+var PL = { src: null, raf: 0, t0: 0, from: 0, to: 0, cb: null, end: null };
+function plStop(silent) {
+  if (PL.src) { try { PL.src.onended = null; PL.src.stop(); } catch (e) { } PL.src = null; }
+  cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; PL.cb = null;
+  if (e && !silent) e();
+}
+function plPlay(ab, from, to, loop, onTick, onEnd, rate) {
+  plStop(true); var ctx = actx(), s = ctx.createBufferSource(); s.buffer = ab; s.playbackRate.value = rate || 1;
+  from = Math.max(0, Math.min(from, ab.duration - 0.01)); to = Math.max(from + 0.01, Math.min(to, ab.duration));
+  if (loop) { s.loop = true; s.loopStart = from; s.loopEnd = to; }
+  s.connect(ctx.destination); s.start(0, from, loop ? undefined : (to - from)); PL.src = s; PL.t0 = ctx.currentTime; PL.from = from; PL.to = to; PL.cb = onTick; PL.end = onEnd;
+  s.onended = function () { if (PL.src === s) { PL.src = null; cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; if (e) e(); } };
+  (function tk() { if (PL.src !== s) return; var el = (ctx.currentTime - PL.t0) * (rate || 1), t = loop ? from + (el % (to - from)) : Math.min(to, from + el); if (onTick) onTick(t); PL.raf = requestAnimationFrame(tk); })();
+}
+function dlName(base, suffix, ext) { return baseName(base) + (suffix ? "-" + suffix : "") + "." + ext; }
+function kbShort(n) { return fmtSize(n); }
+
+/* ---------- silence remover ---------- */
+var ST = { chs: null, rate: 44100, name: "", dur: 0, lv: null, win: 0, sil: [], cuts: [], keep: [], playing: false, rows: [], tm: 0 };
+var wv = null;
+function opts() {
+  var o = fmtOpts("s"); o.thr = numIn("sThr", -80, -5, -40); o.min = numIn("sMin", 50, 10000, 500) / 1000; o.pad = numIn("sPad", 0, 2000, 100) / 1000; o.mode = $("sMode").value; o.tgt = numIn("sTgt", 50, 5000, 300) / 1000; return o;
+}
+function levels() {
+  var r = ST.rate, w = Math.max(1, Math.round(r * 0.01)), n = ST.chs[0].length, nw = Math.floor(n / w), lv = new Float32Array(nw), c, i, k;
+  for (k = 0; k < nw; k++) { var s = 0, o = k * w; for (c = 0; c < ST.chs.length; c++) { var x = ST.chs[c]; for (i = 0; i < w; i++) s += x[o + i] * x[o + i]; } lv[k] = 10 * Math.log10(s / (w * ST.chs.length) + 1e-12); }
+  ST.lv = lv; ST.win = w;
+}
+function find(o) {
+  var lv = ST.lv, w = ST.win / ST.rate, sil = [], start = -1, k;
+  for (k = 0; k <= lv.length; k++) {
+    var q = k < lv.length && lv[k] < o.thr;
+    if (q && start < 0) start = k; else if (!q && start >= 0) { var a = start * w, b = k * w; if (k === lv.length) b = ST.dur; if (b - a >= o.min) sil.push([a, b]); start = -1; }
+  }
+  return sil;
+}
+function plan(o) {
+  var sil = find(o), cuts = [], d = ST.dur, each = o.mode === "shorten" ? o.tgt / 2 : o.pad;
+  sil.forEach(function (s) {
+    var a = s[0], b = s[1], lead = a <= 0.0005, trail = b >= d - 0.0005;
+    if (lead && trail) return;
+    if (o.mode === "trim" && !lead && !trail) return;
+    var ca = lead ? 0 : a + each, cb = trail ? d : b - each;
+    if (cb - ca > 0.005) cuts.push([ca, cb]);
+  });
+  var keep = [], pos = 0; cuts.forEach(function (c) { if (c[0] > pos) keep.push([pos, c[0]]); pos = c[1]; }); if (pos < d) keep.push([pos, d]);
+  return { sil: sil, cuts: cuts, keep: keep };
+}
+function build() {
+  var r = ST.rate, f = Math.round(0.005 * r), segs = ST.keep, total = 0; segs.forEach(function (s) { total += Math.round(s[1] * r) - Math.round(s[0] * r); });
+  var out = ST.chs.map(function () { return new Float32Array(total); }), pos = 0;
+  segs.forEach(function (s, si) {
+    var a = Math.round(s[0] * r), b = Math.min(ST.chs[0].length, Math.round(s[1] * r)), len = b - a;
+    ST.chs.forEach(function (x, c) { var y = out[c]; for (var i = 0; i < len; i++) y[pos + i] = x[a + i]; var fi = si > 0 ? Math.min(f, len >> 1) : 0, fo = si < segs.length - 1 ? Math.min(f, len >> 1) : 0; for (var j = 0; j < fi; j++) y[pos + j] *= j / fi; for (var k = 0; k < fo; k++) y[pos + len - 1 - k] *= k / fo; });
+    pos += len;
+  });
+  return out;
+}
+function mapT(t) { var acc = 0; for (var i = 0; i < ST.keep.length; i++) { var l = ST.keep[i][1] - ST.keep[i][0]; if (t <= acc + l) return ST.keep[i][0] + (t - acc); acc += l; } return ST.dur; }
+function update() {
+  if (!ST.chs) return; stopPlay(); var o = opts(), p = plan(o); ST.sil = p.sil; ST.cuts = p.cuts; ST.keep = p.keep;
+  wv.regions = p.cuts.map(function (c) { return { a: c[0], b: c[1], color: "rgba(220,38,38,.3)" }; }); wv.draw();
+  var removed = p.cuts.reduce(function (a, c) { return a + (c[1] - c[0]); }, 0), nd = ST.dur - removed;
+  $("sSum").innerHTML = '<div class="dt-stats">' + tile("Original", fmtTime(ST.dur, 1), "") + tile("After", fmtTime(nd, 1), "") + tile("Removed", fmtTime(removed, 1), (removed / ST.dur * 100).toFixed(1) + "% shorter") + tile("Silences cut", String(p.cuts.length), p.sil.length + " found") + "</div>" +
+    (p.sil.length ? '<div class="dt-wrap"><table><tr><th>#</th><th>Silence starts</th><th>Ends</th><th>Length</th><th>Cut</th></tr>' + p.sil.slice(0, 60).map(function (s, i) { var cut = p.cuts.filter(function (c) { return c[0] >= s[0] - 0.001 && c[1] <= s[1] + 0.001; })[0]; return "<tr><td>" + (i + 1) + "</td><td>" + fmtTime(s[0], 2) + "</td><td>" + fmtTime(s[1], 2) + "</td><td>" + (s[1] - s[0]).toFixed(2) + " s</td><td>" + (cut ? (cut[1] - cut[0]).toFixed(2) + " s" : "kept") + "</td></tr>"; }).join("") + "</table></div>" + (p.sil.length > 60 ? '<p class="ck-note">Showing the first 60 of ' + p.sil.length + " silences.</p>" : "") : '<p class="ck-note">No silences matched. Raise the threshold (for example -35 dB) or shorten the minimum length.</p>');
+  ST.rows = [["File", ST.name], ["Mode", { remove: "Remove silences", shorten: "Shorten silences to " + Math.round(o.tgt * 1000) + " ms", trim: "Trim start and end only" }[o.mode]], ["Threshold", o.thr + " dB"], ["Minimum silence", Math.round(o.min * 1000) + " ms"], ["Padding kept", Math.round(o.pad * 1000) + " ms"], ["Silences cut", p.cuts.length + " of " + p.sil.length], ["Length", fmtTime(ST.dur, 1) + " to " + fmtTime(nd, 1)], ["Format", o.fmt === "mp3" ? "MP3 " + o.kbps + " kbps" : "WAV 16-bit"]];
+  busy(["sDl", "sPlay"], !ST.keep.length || nd < 0.05);
+}
+function later() { clearTimeout(ST.tm); ST.tm = setTimeout(update, 120); }
+function autoThr() {
+  if (!ST.lv) return; var a = Array.prototype.slice.call(ST.lv).sort(function (x, y) { return x - y; }), p10 = a[Math.floor(a.length * 0.1)], t = Math.max(-70, Math.min(-15, Math.round(p10 + 8)));
+  $("sThr").value = t; $("sThrR").value = t; update(); msg("Threshold set to " + t + " dB from the quietest 10% of the file.");
+}
+function stopPlay() { plStop(true); ST.playing = false; $("sPlay").textContent = "Play result"; if (wv) { wv.cursor = -1; wv.draw(); } }
+function play() {
+  if (!ST.chs || !ST.keep.length) return; if (ST.playing) { stopPlay(); return; } var ab = toAB(build(), ST.rate); ST.playing = true; $("sPlay").textContent = "Stop";
+  plPlay(ab, 0, ab.duration, false, function (t) { wv.cursor = mapT(t); wv.draw(); }, function () { stopPlay(); });
+}
+function loadFile(files) {
+  var f = files.filter(isAud)[0]; if (!f) { msg("Please choose an audio or video file.", "err"); return; }
+  stopPlay(); prog(0.3, "Decoding " + f.name + "..."); busy(["sDl", "sPlay", "sAuto"], true);
+  decodeAudio(f).then(function (ab) {
+    ST.chs = bufChans(ab); if (ST.chs.length > 2) ST.chs = ST.chs.slice(0, 2); ST.rate = ab.sampleRate; ST.name = f.name; ST.dur = ab.duration; levels(); prog(null); wv.set(ST.chs, ST.rate); busy(["sAuto"], false);
+    $("sInfo").innerHTML = '<b>' + esc(f.name) + '</b> · ' + fmtTime(ab.duration, 1) + ' · ' + ab.numberOfChannels + ' channel' + (ab.numberOfChannels > 1 ? "s" : "") + ' · ' + ab.sampleRate + ' Hz'; update(); msg("File loaded. Red areas on the waveform will be cut. Adjust the settings and listen.");
+  }).catch(function (e) { prog(null); ST.chs = null; wv.set(null); busy(["sDl", "sPlay", "sAuto"], true); $("sInfo").textContent = ""; $("sSum").innerHTML = ""; msg(e.message, "err"); });
+}
+function run() {
+  if (!ST.chs || !ST.keep.length) return; stopPlay(); var o = opts(); busy(["sDl"], true); prog(0.1, "Removing silence..."); var res = build();
+  exportAudio(res, ST.rate, o.fmt, o.kbps, function (f) { prog(0.15 + 0.85 * f, "Encoding " + o.fmt.toUpperCase()); }).then(function (r) {
+    saveBlob(r.blob, dlName(ST.name, "no-silence", r.ext)); prog(1, "Done"); setTimeout(function () { prog(null); }, 900); busy(["sDl"], false); msg("Done. " + fmtTime(res[0].length / ST.rate, 1) + " saved (" + fmtSize(r.blob.size) + ").");
+  }).catch(function (e) { prog(null); busy(["sDl"], false); msg(e.message, "err"); });
+}
+function modeUi() { var m = $("sMode").value; $("sPadBox").hidden = m === "shorten"; $("sTgtBox").hidden = m !== "shorten"; }
+function setDef() { $("sThr").value = -40; $("sThrR").value = -40; $("sMin").value = 500; $("sPad").value = 100; $("sTgt").value = 300; $("sMode").value = "remove"; $("sFmt").value = "mp3"; $("sKbps").value = "192"; $("sKbpsBox").hidden = false; modeUi(); }
+function fillReport() {
+  var b = repBox(); repHead(b, "Silence remover: summary", "Free online silence remover"); repTbl(b, ["Setting", "Value"], ST.rows);
+  try { repFig(b, '<img alt="Waveform with cuts" style="max-width:100%;border:1px solid #999" src="' + $("sWave").toDataURL("image/png") + '">'); } catch (e) { }
+  repDisc(b, "Red areas on the waveform show the removed parts. The audio file is the main download.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; wv = WaveView($("sWave"), { height: 120 }); setDef(); bindFmt("s"); busy(["sDl", "sPlay", "sAuto"], true); bindDrop("sDrop", "sFile", loadFile);
+  $("sThr").addEventListener("input", function () { $("sThrR").value = $("sThr").value; later(); }); $("sThrR").addEventListener("input", function () { $("sThr").value = $("sThrR").value; later(); });
+  ["sMin", "sPad", "sTgt", "sMode", "sFmt", "sKbps"].forEach(function (id) { var h = function () { modeUi(); later(); }; $(id).addEventListener("input", h); $(id).addEventListener("change", h); });
+  $("sAuto").addEventListener("click", autoThr); $("sPlay").addEventListener("click", play); $("sDl").addEventListener("click", run);
+  $("resetBtn").addEventListener("click", function () { setDef(); update(); msg("Options reset."); });
+  $("sPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("sCopy").addEventListener("click", function () { copyText(ST.rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n"), $("sCopy")); });
+}
+init();
+
+})();
+</script>
+</body>
+</html>

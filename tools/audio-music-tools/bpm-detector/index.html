@@ -1,0 +1,735 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free BPM Detector & Tap Tempo Counter – Find Song BPM</title>
+<meta name="description" content="Free online BPM detector and tap tempo counter. Find the BPM of any song file, see the beat grid, tap to the beat and get delay times. Runs in your browser.">
+<link rel="canonical" href="https://utiliby.com/tools/audio-music-tools/bpm-detector/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free BPM Detector & Tap Tempo Counter – Find Song BPM">
+<meta property="og:description" content="Find the BPM of a song free: tap tempo or analyze an audio file, see the beats on the waveform, check with a click track and get delay times in ms.">
+<meta property="og:url" content="https://utiliby.com/tools/audio-music-tools/bpm-detector/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free BPM Detector & Tap Tempo Counter – Find Song BPM">
+<meta name="twitter:description" content="Find the BPM of a song free: tap tempo or analyze an audio file, see the beats on the waveform, check with a click track and get delay times in ms.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#6d28d9;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#c4b5fd}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #6d28d9;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#6d28d9;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(109,40,217,.06);border-left:3px solid #6d28d9;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#6d28d9}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#6d28d9;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(185,28,28,.12);color:#991b1b;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fca5a5;background:rgba(248,113,113,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.pd-drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--bg);color:var(--muted);transition:border-color .15s}
+.pd-drop:hover,.pd-drop.on,.pd-drop:focus-visible{border-color:#6d28d9;color:inherit;outline:none}
+.pd-drop b{display:block;font-size:1.05rem;color:inherit;margin-bottom:2px}
+.pd-prog{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0 2px}
+.pd-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6d28d9,#8b5cf6);transition:width .15s}
+.pd-progtxt{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.au-wave{width:100%;display:block;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin:8px 0}
+.au-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.au-bar button{padding:7px 14px}
+.au-time{font-variant-numeric:tabular-nums;font-weight:700}
+.au-file{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--bg)}
+.au-file .nm{font-weight:700;word-break:break-all;font-size:.9rem}.au-file .mt{font-size:.78rem;color:var(--muted)}
+.au-file .bt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.au-file .bt button{padding:4px 9px;font-size:.78rem}
+.au-ok{color:#15803d;font-weight:700}.au-bad{color:#b91c1c;font-weight:700}
+.au-meter{height:14px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+.au-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#16a34a,#eab308 75%,#dc2626);transition:width .06s}
+.au-chroma{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:120px;margin:8px 0}
+.au-chroma div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:.72rem;height:100%}
+.au-chroma i{display:block;width:100%;background:#8b5cf6;border-radius:4px 4px 0 0;min-height:2px}
+.au-big{font-size:2.4rem;font-weight:800;line-height:1.1;color:#6d28d9}
+@media(prefers-color-scheme:dark){.au-big{color:#c4b5fd}}
+#tool textarea{width:100%}
+
+#dTap{width:100%;padding:34px 10px;font-size:1.8rem;letter-spacing:.08em;user-select:none;touch-action:manipulation}
+#dTap.pulse{animation:dpulse .28s ease-out}
+@keyframes dpulse{0%{box-shadow:0 0 0 0 rgba(109,40,217,.55)}100%{box-shadow:0 0 0 26px rgba(109,40,217,0)}}
+@media(prefers-reduced-motion:reduce){#dTap.pulse{animation:none}}
+#dTable table{width:100%;border-collapse:collapse}#dTable th,#dTable td{padding:6px 8px;border-bottom:1px solid var(--line);text-align:left;font-size:.88rem}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"BPM Detector and Tap Tempo","url":"https://utiliby.com/tools/audio-music-tools/bpm-detector/","description":"Free online BPM detector and tap tempo counter. Analyze an MP3 or WAV file to find its beats per minute with a beat grid and click track, or tap along to find a tempo, and get delay times in milliseconds for any BPM. Runs in your browser with no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Tap tempo with space bar support","Automatic BPM detection from audio files","Beat grid on the waveform and click track","Half and double time shown","Delay time and note length table","Beat times CSV download","No upload, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I find the BPM of a song?","acceptedAnswer":{"@type":"Answer","text":"Open the Detect from a file tab, drop in the song, and the tool analyzes the beat in a few seconds. Or open the Tap tempo tab and tap along to the music. Both show the BPM, and the file tab also draws the beats on the waveform."}},{"@type":"Question","name":"How does tap tempo work?","acceptedAnswer":{"@type":"Answer","text":"Each tap is timed. The tool averages the gaps between your most recent taps and converts the average to beats per minute. The more you tap, the steadier the answer. Ten or more taps are plenty."}},{"@type":"Question","name":"Is the automatic BPM detector accurate?","acceptedAnswer":{"@type":"Answer","text":"For music with a clear, steady beat, it is usually accurate to within a fraction of a BPM. It can struggle with free tempo, heavy rubato, very sparse rhythm and music that changes speed. The tool shows a confidence level and lets you check by playing a click track over the song."}},{"@type":"Question","name":"Why does it say 87 BPM when I expected 174?","acceptedAnswer":{"@type":"Answer","text":"Tempo detection can land on half or double time, because a rhythm at 174 BPM also has a beat every second beat at 87 BPM. The result lists half and double time. Narrow the BPM range, or tap along, to choose the one that feels right."}},{"@type":"Question","name":"Can I detect the BPM of a section of a song?","acceptedAnswer":{"@type":"Answer","text":"The tool analyzes up to two minutes from the middle of the file. To check a specific part, cut it first with the Audio Cutter and load the clip."}},{"@type":"Question","name":"What does the beat grid do?","acceptedAnswer":{"@type":"Answer","text":"Green lines on the waveform mark the beats the tool found. Play with click track adds a click on each one, so you can hear immediately if the grid matches the music."}},{"@type":"Question","name":"What is the range of BPM it looks for?","acceptedAnswer":{"@type":"Answer","text":"By default 60 to 200 BPM. You can change the lowest and highest values, for example 80 to 160 for dance music, or 40 to 100 for slow music."}},{"@type":"Question","name":"What is a normal BPM for different music?","acceptedAnswer":{"@type":"Answer","text":"Slow ballads run around 60 to 80 BPM, hip hop 80 to 100, pop 100 to 130, house 118 to 130, techno 120 to 150, and drum and bass 160 to 180. Most popular songs fall between 90 and 140 BPM."}},{"@type":"Question","name":"What are the delay times for?","acceptedAnswer":{"@type":"Answer","text":"Producers and engineers sync echo and delay effects to the tempo. The table shows the length of each note value in milliseconds at the current BPM, with straight, dotted and triplet versions, and the matching rate in hertz for tempo-synced modulation."}},{"@type":"Question","name":"Does the metronome work?","acceptedAnswer":{"@type":"Answer","text":"Yes. After tapping or detecting a BPM, press Start metronome to hear a click at that tempo. The first click of every group of four is higher."}},{"@type":"Question","name":"Can I download the beat times?","acceptedAnswer":{"@type":"Answer","text":"Yes. After analyzing a file, click Download beat times to save a CSV with the time in seconds of each beat. It can be used to line up edits or lights."}},{"@type":"Question","name":"Is my file uploaded to a server?","acceptedAnswer":{"@type":"Answer","text":"No. The file is decoded and analyzed on your device. Nothing is sent anywhere. The tap tempo tab does not use any audio."}},{"@type":"Question","name":"Why is the confidence low?","acceptedAnswer":{"@type":"Answer","text":"A low value means the beat is weak or unclear, or there are several equally strong rhythms. Try a more rhythmic section, narrow the BPM range, or tap along to confirm."}},{"@type":"Question","name":"Will it work on spoken audio?","acceptedAnswer":{"@type":"Answer","text":"Speech has no steady beat, so BPM detection does not apply. It works best with music that has drums or a clear pulse."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Tap tempo works well with a finger, and file analysis works in a modern mobile browser, though long files take longer."}},{"@type":"Question","name":"How many taps do I need?","acceptedAnswer":{"@type":"Answer","text":"At least two to get a number, and about eight to ten for a stable result. The steadiness figure shows how even your taps were."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary prints the detected BPM, tap tempo and delay table. Copy copies the BPM and delay times as text, and the CSV contains the beat times."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Audio & Music Tools","item":"https://utiliby.com/tools/audio-music-tools/"},{"@type":"ListItem","position":3,"name":"BPM Detector and Tap Tempo","item":"https://utiliby.com/tools/audio-music-tools/bpm-detector/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/audio-music-tools/">Audio &amp; Music Tools</a> › BPM Detector and Tap Tempo</nav>
+<h1 class="noembed">Free BPM Detector and Tap Tempo Counter</h1>
+<p class="lead noembed">Free online BPM detector and tap tempo counter. Tap along to find a tempo or drop in a song to detect its BPM, see the beat grid on the waveform, check it with a click track and get delay times in milliseconds. It runs in your browser, so your file is never uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/audio-music-tools/bpm-detector/" target="_blank" rel="noopener">BPM Detector and Tap Tempo by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="BPM detector and tap tempo">
+<div class="dt-hero noembed">
+<h2>Free BPM Detector and Tap Tempo Counter</h2>
+<p>Tap along to find a tempo, or drop in a song to detect its BPM and beat grid. Includes a delay time table. Runs in your browser.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-tap" aria-pressed="true">Tap tempo</button>
+<button type="button" class="dt-tab" id="dtTabBtn-file" aria-pressed="false">Detect from a file</button>
+</div>
+<div id="dtTab-tap"><div class="dt-panel"><button type="button" class="dt-btn" id="dTap" aria-label="Tap to the beat. You can also press the space bar.">TAP</button><p class="ck-note">Tap with the mouse, your finger or the space bar in time with the music. The first tap starts a new count.</p><div id="dTapOut"></div><div class="au-bar"><button type="button" class="dt-btn ghost" id="dTapReset">Reset taps</button><button type="button" class="dt-btn ghost" id="dMet">Start metronome</button><div style="min-width:170px"><label for="dRst">Auto reset after a pause of</label><select id="dRst"><option value="0">Never</option><option value="2">2 seconds</option><option value="3">3 seconds</option><option value="5">5 seconds</option></select></div></div></div></div>
+<div id="dtTab-file" hidden><div class="dt-panel"><div class="pd-drop" id="dDrop" tabindex="0" role="button" aria-label="Choose a file"><b>Drop a song or loop here (MP3, WAV, M4A, FLAC), or click to choose</b>Your file stays on your device. Nothing is uploaded.</div><input type="file" id="dFile" accept="audio/*,video/*,.mp3,.wav,.m4a,.aac,.ogg,.opus,.flac,.mp4,.mov,.mkv,.webm,.aiff,.wma,.3gp" hidden><div class="pd-prog" id="pdProg" hidden><i></i></div><div class="pd-progtxt" id="pdProgTxt"></div><p id="dInfo" class="ck-note"></p><canvas id="dWave" class="au-wave" height="110" aria-label="Audio waveform"></canvas><div class="au-bar"><button type="button" class="dt-btn" id="dPlay">Play with click track</button><span class="ck-note">Green lines are the detected beats. Listen to the clicks to check them against the music.</span></div><div class="dt-row4"><div><label for="dMin">Lowest BPM to look for</label><input type="number" id="dMin" min="30" max="250" step="1"></div><div><label for="dMax">Highest BPM to look for</label><input type="number" id="dMax" min="40" max="300" step="1"></div><div></div><div></div></div><div id="dRes"></div></div></div>
+<div class="dt-panel"><div id="dTable"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="dPrint">Print / save summary</button>
+<button type="button" class="dt-btn ghost" id="dCsv">Download beat times (CSV)</button>
+<button type="button" class="dt-btn ghost" id="dCopy">Copy BPM and delay times</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online BPM detector estimates tempo in your browser and does not upload your file. Automatic detection can be off by a factor of two on some music, and it assumes a steady beat, so always check the result by ear. Tap tempo accuracy depends on how steadily you tap.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/audio-music-tools/bpm-detector/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). BPM Detector and Tap Tempo. https://utiliby.com/tools/audio-music-tools/bpm-detector/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/audio-music-tools/bpm-detector/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="BPM Detector and Tap Tempo by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/audio-music-tools/bpm-detector/"&gt;BPM Detector and Tap Tempo by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free BPM detector and tap tempo counter does</a></li><li><a href="#tap">How to use tap tempo</a></li><li><a href="#detect">How to detect the BPM of a song file</a></li><li><a href="#how">How automatic BPM detection works</a></li><li><a href="#octave">Half-time, double-time and why detectors disagree</a></li><li><a href="#delay">Delay times, note lengths and tempo sync</a></li><li><a href="#uses">Common uses</a></li><li><a href="#tips">Tips for accurate results</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free BPM detector and tap tempo counter does</h2>
+<p><b>BPM</b> stands for beats per minute, the standard way to describe how fast a piece of music is. DJs need it to mix tracks, drummers and runners need it to keep pace, producers need it to set up a session, and dancers need it to choose a routine. Finding it by ear is possible but slow. This free online tool gives you two ways to find it: a <b>tap tempo counter</b> that works out the BPM from your taps, and an <b>automatic BPM detector</b> that analyzes an audio file in your browser.</p><p>The file analysis draws the beats on the waveform and plays a click track so you can verify them. A delay time table turns any BPM into milliseconds for echo and delay effects. Nothing is uploaded, and there is no account.</p><figure class="dt-fig"><svg viewBox="0 0 640 210" width="100%" role="img" aria-label="A row of beats on a timeline with the time between beats marked; tempo in beats per minute is sixty divided by that interval in seconds"><title>How BPM is measured</title>
+<path d="M30 110 H610" stroke="#9ca3af" stroke-width="2"/>
+<g fill="#6d28d9"><rect class="dt-bar" x="60" y="62" width="14" height="96" rx="5"/><rect class="dt-bar" x="190" y="62" width="14" height="96" rx="5" style="animation-delay:.2s"/><rect class="dt-bar" x="320" y="62" width="14" height="96" rx="5" style="animation-delay:.4s"/><rect class="dt-bar" x="450" y="62" width="14" height="96" rx="5" style="animation-delay:.6s"/><rect class="dt-bar" x="580" y="62" width="14" height="96" rx="5" style="animation-delay:.8s"/></g>
+<g fill="#c4b5fd"><rect x="125" y="88" width="10" height="44" rx="4"/><rect x="255" y="88" width="10" height="44" rx="4"/><rect x="385" y="88" width="10" height="44" rx="4"/><rect x="515" y="88" width="10" height="44" rx="4"/></g>
+<path d="M67 46 H197" stroke="#0f766e" stroke-width="2.5"/><path d="M67 40 V52 M197 40 V52" stroke="#0f766e" stroke-width="2.5"/><text x="132" y="34" text-anchor="middle" font-size="13" font-weight="700" fill="#0f766e">0.469 s between beats</text>
+<text x="320" y="186" text-anchor="middle" font-size="14" fill="currentColor">BPM = 60 divided by seconds per beat = 60 / 0.469 = 128 BPM</text>
+<text x="320" y="204" text-anchor="middle" font-size="12" fill="currentColor">Tap tempo averages the gaps between your taps. File detection measures the gaps between musical onsets.</text></svg>
+<figcaption>Tempo is the number of beats in one minute. Average several gaps rather than one, because a single tap or beat is never perfectly even.</figcaption></figure>
+<h2 id="tap">How to use tap tempo</h2>
+<ol><li><b>Listen to the music.</b> Pick a song or a groove and find the main beat, the pulse you would tap your foot to.</li><li><b>Tap.</b> Click the TAP button, tap the screen or press the space bar on each beat. Start with the second tap to see a number.</li><li><b>Keep going.</b> The average settles after eight to ten taps. The steadiness figure shows how even your tapping was.</li><li><b>Reset.</b> After a pause of a few seconds the counter starts again by itself. You can also reset it by hand.</li></ol><p>If the number seems too slow or too fast, you may be tapping every second beat or every half beat. Check the half and double values shown beside the result.</p>
+<h2 id="detect">How to detect the BPM of a song file</h2>
+<ol><li><b>Drop the file</b> on the Detect from a file tab. MP3, WAV, M4A, FLAC and the audio of video files work.</li><li><b>Wait a few seconds.</b> The tool listens for the moments when the sound changes suddenly, such as drum hits, and finds the regular spacing between them.</li><li><b>Check the result.</b> Press Play with click track and listen to whether the clicks fall on the beat. If they sit on every second beat, use the double or half value.</li><li><b>Adjust the range if needed.</b> Set the lowest and highest BPM to the range you expect.</li></ol>
+<h2 id="how">How automatic BPM detection works</h2>
+<p>The detector first measures how the spectrum of the sound changes over time. Sudden increases in energy, which happen when a drum is struck or a note starts, produce an <b>onset curve</b>. The curve is then compared with delayed copies of itself, a technique called autocorrelation. When the delay matches the spacing between beats, the curve lines up with itself and the score is high. The tool also checks multiples of the delay, which sharpens the estimate, and favors tempos near the range where most music sits.</p><p>Once it has the tempo, it slides a pulse train over the onset curve to find where the beats fall, and extends that grid over the whole file. This approach follows methods described in research on beat tracking by Scheirer and Ellis. It works best on music with a steady, audible pulse.</p>
+<h2 id="octave">Half-time, double-time and why detectors disagree</h2>
+<p>A beat is a matter of perception. A song at 70 BPM with busy eighth notes can feel like 140, and a song at 140 BPM can feel like 70 if you tap along to the kick and snare. Software cannot know which the listener means, so it picks the most likely and reports the others. Many DJ programs show different values for the same track for exactly this reason.</p><div class="dt-wrap"><table><tr><th>Genre</th><th>Typical BPM</th></tr><tr><td>Reggae, slow ballads</td><td>60 to 90</td></tr><tr><td>Hip hop</td><td>80 to 100</td></tr><tr><td>Pop and rock</td><td>100 to 130</td></tr><tr><td>House</td><td>118 to 130</td></tr><tr><td>Techno and trance</td><td>125 to 150</td></tr><tr><td>Dubstep</td><td>about 140 (feels like 70)</td></tr><tr><td>Drum and bass</td><td>160 to 180</td></tr></table></div>
+<h2 id="delay">Delay times, note lengths and tempo sync</h2>
+<p>To make an echo fall in time with the music, set the delay time to a note length at the song's tempo. A quarter note lasts 60000 divided by the BPM, in milliseconds. At 120 BPM it is 500 ms, an eighth note is 250 ms and a sixteenth is 125 ms. A dotted note is 1.5 times as long as the straight note, and a triplet is two thirds as long.</p><p>The table in the tool fills in these numbers for the current BPM. The rate column gives the same value as a frequency in hertz, which is useful for syncing the speed of a tremolo, a chorus or an auto-pan to the beat.</p>
+<h2 id="uses">Common uses</h2>
+<ul><li><b>DJs:</b> match the tempo of two tracks before a mix.</li><li><b>Producers:</b> set the project tempo to sampled loops and calculate delay times.</li><li><b>Runners and fitness:</b> pick music that matches a cadence, often 150 to 180 BPM for running.</li><li><b>Dancers and teachers:</b> choose music for a routine.</li><li><b>Musicians:</b> find the speed of a song to practice with a metronome.</li><li><b>Video editors:</b> cut on the beat using the beat times.</li></ul>
+<h2 id="tips">Tips for accurate results</h2>
+<ul><li>Use a section with the full rhythm, not an intro or breakdown.</li><li>Narrow the BPM range if you know the genre.</li><li>Listen with the click track on, in headphones, and check the beat in several places.</li><li>If the music speeds up and slows down, note the tempo for each section, since a single figure cannot describe it.</li><li>For tap tempo, tap along to the kick or snare and keep your tapping relaxed and regular.</li><li>Use a clean version of the recording. Heavy reverb and live recordings blur the beat.</li></ul>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>The BPM is half or double what I expected:</b> use the half or double value shown, or change the range.</li><li><b>Confidence is low:</b> pick a more rhythmic section, or tap along to check.</li><li><b>The beat markers drift:</b> the tempo is not constant, or the estimate is a little off. Use the figure as an average.</li><li><b>The file will not load:</b> your browser may not support the format. Convert it to MP3 or WAV first.</li><li><b>The metronome will not start:</b> tap or detect a BPM first, and make sure your device sound is on.</li></ul>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>For file analysis, your browser decodes the audio into samples, and the page computes the onset curve and the tempo in memory with JavaScript. Nothing is uploaded, stored or logged. Tap tempo uses only the timing of your taps. Closing the tab clears everything.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I find the BPM of a song?</summary><p>Open the Detect from a file tab, drop in the song, and the tool analyzes the beat in a few seconds. Or open the Tap tempo tab and tap along to the music. Both show the BPM, and the file tab also draws the beats on the waveform.</p></details><details><summary>How does tap tempo work?</summary><p>Each tap is timed. The tool averages the gaps between your most recent taps and converts the average to beats per minute. The more you tap, the steadier the answer. Ten or more taps are plenty.</p></details><details><summary>Is the automatic BPM detector accurate?</summary><p>For music with a clear, steady beat, it is usually accurate to within a fraction of a BPM. It can struggle with free tempo, heavy rubato, very sparse rhythm and music that changes speed. The tool shows a confidence level and lets you check by playing a click track over the song.</p></details><details><summary>Why does it say 87 BPM when I expected 174?</summary><p>Tempo detection can land on half or double time, because a rhythm at 174 BPM also has a beat every second beat at 87 BPM. The result lists half and double time. Narrow the BPM range, or tap along, to choose the one that feels right.</p></details><details><summary>Can I detect the BPM of a section of a song?</summary><p>The tool analyzes up to two minutes from the middle of the file. To check a specific part, cut it first with the Audio Cutter and load the clip.</p></details><details><summary>What does the beat grid do?</summary><p>Green lines on the waveform mark the beats the tool found. Play with click track adds a click on each one, so you can hear immediately if the grid matches the music.</p></details><details><summary>What is the range of BPM it looks for?</summary><p>By default 60 to 200 BPM. You can change the lowest and highest values, for example 80 to 160 for dance music, or 40 to 100 for slow music.</p></details><details><summary>What is a normal BPM for different music?</summary><p>Slow ballads run around 60 to 80 BPM, hip hop 80 to 100, pop 100 to 130, house 118 to 130, techno 120 to 150, and drum and bass 160 to 180. Most popular songs fall between 90 and 140 BPM.</p></details><details><summary>What are the delay times for?</summary><p>Producers and engineers sync echo and delay effects to the tempo. The table shows the length of each note value in milliseconds at the current BPM, with straight, dotted and triplet versions, and the matching rate in hertz for tempo-synced modulation.</p></details><details><summary>Does the metronome work?</summary><p>Yes. After tapping or detecting a BPM, press Start metronome to hear a click at that tempo. The first click of every group of four is higher.</p></details><details><summary>Can I download the beat times?</summary><p>Yes. After analyzing a file, click Download beat times to save a CSV with the time in seconds of each beat. It can be used to line up edits or lights.</p></details><details><summary>Is my file uploaded to a server?</summary><p>No. The file is decoded and analyzed on your device. Nothing is sent anywhere. The tap tempo tab does not use any audio.</p></details><details><summary>Why is the confidence low?</summary><p>A low value means the beat is weak or unclear, or there are several equally strong rhythms. Try a more rhythmic section, narrow the BPM range, or tap along to confirm.</p></details><details><summary>Will it work on spoken audio?</summary><p>Speech has no steady beat, so BPM detection does not apply. It works best with music that has drums or a clear pulse.</p></details><details><summary>Does it work on a phone?</summary><p>Yes. Tap tempo works well with a finger, and file analysis works in a modern mobile browser, though long files take longer.</p></details><details><summary>How many taps do I need?</summary><p>At least two to get a number, and about eight to ten for a stable result. The steadiness figure shows how even your taps were.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary prints the detected BPM, tap tempo and delay table. Copy copies the BPM and delay times as text, and the CSV contains the beat times.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Scheirer, E. D. (1998). Tempo and beat analysis of acoustic musical signals. Journal of the Acoustical Society of America, 103(1), 588-601.</li><li>Ellis, D. P. W. (2007). Beat tracking by dynamic programming. Journal of New Music Research, 36(1), 51-60.</li><li>Müller, M. (2015). Fundamentals of Music Processing, Springer, chapter on tempo and beat tracking.</li><li>MDN Web Docs, Web Audio API, for how browsers decode and schedule audio.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online BPM detector estimates tempo in your browser and does not upload your file. Automatic detection can be off by a factor of two on some music, and it assumes a steady beat, so always check the result by ear. Tap tempo accuracy depends on how steadily you tap.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+function readBuf(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsArrayBuffer(file); }); }
+function fmtSize(n) { if (n == null) return "n/a"; if (n < 1024) return n + " B"; if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + " KB"; return (n / 1048576).toFixed(n < 10485760 ? 2 : 1) + " MB"; }
+function baseName(n) { return String(n || "document").replace(/\.[^.]+$/, "").replace(/[^\w\-. ]+/g, "_").slice(0, 60) || "document"; }
+function prog(f, text) {
+  var p = $("pdProg"); if (!p) return;
+  if (f == null) { p.hidden = true; var t0 = $("pdProgTxt"); if (t0) t0.textContent = ""; return; }
+  p.hidden = false; p.firstChild.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; p.title = text || "";
+  var t = $("pdProgTxt"); if (t) t.textContent = text || "";
+}
+function tick() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function bindDrop(dropId, fileId, cb) {
+  var d = $(dropId), f = $(fileId);
+  function open() { f.value = ""; f.click(); }
+  d.addEventListener("click", open);
+  d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  ["dragenter", "dragover"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add("on"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove("on"); }); });
+  d.addEventListener("drop", function (e) { var fl = e.dataTransfer && e.dataTransfer.files; if (fl && fl.length) cb(Array.prototype.slice.call(fl)); });
+  f.addEventListener("change", function () { if (f.files && f.files.length) cb(Array.prototype.slice.call(f.files)); });
+}
+var CRCT = null;
+function crc32(u8) {
+  if (!CRCT) { CRCT = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; CRCT[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) crc = CRCT[(crc ^ u8[i]) & 255] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cen = [], off = 0, d = new Date();
+  var dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), data = f.data, crc = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cen.push(c.buffer, nm); off += 30 + nm.length + data.length;
+  });
+  var csz = 0; cen.forEach(function (x) { csz += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, csz, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cen, [e.buffer]), { type: "application/zip" });
+}
+function blobBytes(b) { return b.arrayBuffer().then(function (x) { return new Uint8Array(x); }); }
+function busy(ids, on) { ids.forEach(function (i) { var e = $(i); if (e) e.disabled = !!on; }); }
+/* ---------- audio helpers ---------- */
+var AUURL = { lame: ["https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js", "https://unpkg.com/lamejs@1.2.1/lame.min.js"] };
+var AC = null;
+function actx() { if (!AC) { var C = window.AudioContext || window.webkitAudioContext; AC = new C(); } if (AC.state === "suspended" && AC.resume) AC.resume(); return AC; }
+function loadScript(src) { return new Promise(function (res, rej) { var s = document.createElement("script"); s.src = src; s.async = true; s.onload = res; s.onerror = function () { rej(new Error("load")); }; document.head.appendChild(s); }); }
+function needLame() {
+  if (window.lamejs && window.lamejs.Mp3Encoder) return Promise.resolve(window.lamejs);
+  if (needLame.p) return needLame.p;
+  needLame.p = (function nxt(i) {
+    if (i >= AUURL.lame.length) return Promise.reject(new Error("The MP3 encoder could not be downloaded. Check your connection, or choose WAV, which needs no download."));
+    return loadScript(AUURL.lame[i]).then(function () { if (window.lamejs && window.lamejs.Mp3Encoder) return window.lamejs; throw new Error("x"); }).catch(function () { return nxt(i + 1); });
+  })(0);
+  needLame.p.catch(function () { needLame.p = null; });
+  return needLame.p;
+}
+function fmtTime(s, ms) { if (!isFinite(s) || s < 0) s = 0; var m = Math.floor(s / 60), r = s - m * 60, t = r.toFixed(ms === 0 ? 0 : (ms || 2)); if (parseFloat(t) >= 60) { m++; t = (0).toFixed(ms === 0 ? 0 : (ms || 2)); } if (r < 10 && t.indexOf(".") === 1 || (ms === 0 && parseFloat(t) < 10)) t = "0" + t; return m + ":" + t; }
+function parseTime(str, def) {
+  str = String(str == null ? "" : str).trim(); if (!str) return def;
+  var p = str.split(":"), v = 0, i;
+  if (p.length > 3) return def;
+  for (i = 0; i < p.length; i++) { var x = parseFloat(p[i]); if (isNaN(x) || x < 0) return def; v = v * 60 + x; }
+  return v;
+}
+function dB(x) { return x <= 1e-9 ? -Infinity : 20 * Math.log10(x); }
+function dbStr(x, d) { return isFinite(x) ? x.toFixed(d == null ? 1 : d) + " dB" : "-∞ dB"; }
+function yieldUi() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function decodeAudio(file) {
+  return readBuf(file).then(function (buf) {
+    return new Promise(function (res, rej) {
+      var ctx = actx(), done = false;
+      function ok(ab) { if (done) return; done = true; res(ab); }
+      function bad(e) { if (done) return; done = true; rej(new Error("This file could not be decoded by your browser. Try MP3, WAV, M4A, OGG, FLAC, or a video with a standard audio track.")); }
+      try { var pr = ctx.decodeAudioData(buf, ok, bad); if (pr && pr.then) pr.then(ok, bad); } catch (e) { bad(e); }
+    });
+  }).then(function (ab) {
+    if (!ab || !ab.length || !ab.duration) throw new Error("No audio was found in this file.");
+    return ab;
+  });
+}
+function bufChans(ab) { var a = []; for (var c = 0; c < ab.numberOfChannels; c++) a.push(new Float32Array(ab.getChannelData(c))); return a; }
+function toAB(chs, rate) { var ab = actx().createBuffer(chs.length, chs[0].length, rate); for (var c = 0; c < chs.length; c++) ab.copyToChannel(chs[c], c); return ab; }
+function peakOf(chs) { var p = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) { var v = x[i] < 0 ? -x[i] : x[i]; if (v > p) p = v; } }); return p; }
+function rmsOf(chs) { var s = 0, n = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) s += x[i] * x[i]; n += x.length; }); return n ? Math.sqrt(s / n) : 0; }
+function mixMono(chs) { if (chs.length === 1) return chs[0]; var n = chs[0].length, o = new Float32Array(n), k = 1 / chs.length; for (var c = 0; c < chs.length; c++) for (var i = 0; i < n; i++) o[i] += chs[c][i] * k; return o; }
+function hermite(x, pos) {
+  var i = Math.floor(pos), f = pos - i, n = x.length, a = x[i < 1 ? 0 : i - 1], b = x[i], c = x[i + 1 < n ? i + 1 : n - 1], d = x[i + 2 < n ? i + 2 : n - 1];
+  var c1 = 0.5 * (c - a), c2 = a - 2.5 * b + 2 * c - 0.5 * d, c3 = 0.5 * (d - a) + 1.5 * (b - c);
+  return ((c3 * f + c2) * f + c1) * f + b;
+}
+function resampleStep(x, step) {
+  if (Math.abs(step - 1) < 1e-9) return x;
+  var n = Math.max(1, Math.floor((x.length - 1) / step) + 1), o = new Float32Array(n);
+  for (var i = 0; i < n; i++) o[i] = hermite(x, i * step);
+  return o;
+}
+function resampleRate(chs, from, to) {
+  if (from === to) return chs;
+  var step = from / to, lp = chs;
+  if (to < from) lp = chs.map(function (x) { var o = new Float32Array(x.length), a = 0, w = Math.max(2, Math.round(from / to)); /* box prefilter */ var s = 0; for (var i = 0; i < x.length; i++) { s += x[i]; if (i >= w) s -= x[i - w]; o[i] = s / Math.min(w, i + 1); } return o; });
+  return lp.map(function (x) { return resampleStep(x, step); });
+}
+function wavBlob(chs, rate) {
+  var ch = Math.min(2, chs.length), n = chs[0].length, bytes = n * ch * 2, ab = new ArrayBuffer(44 + bytes), v = new DataView(ab);
+  function s(o, t) { for (var i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); }
+  s(0, "RIFF"); v.setUint32(4, 36 + bytes, true); s(8, "WAVE"); s(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, ch, true); v.setUint32(24, rate, true); v.setUint32(28, rate * ch * 2, true); v.setUint16(32, ch * 2, true); v.setUint16(34, 16, true); s(36, "data"); v.setUint32(40, bytes, true);
+  var o = 44;
+  for (var i = 0; i < n; i++) for (var c = 0; c < ch; c++) { var x = chs[c][i]; x = x > 1 ? 1 : x < -1 ? -1 : x; v.setInt16(o, x < 0 ? Math.round(x * 32768) : Math.round(x * 32767), true); o += 2; }
+  return new Blob([ab], { type: "audio/wav" });
+}
+function mp3Blob(chs, rate, kbps, onProg) {
+  return needLame().then(function (L) {
+    var ok = [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000];
+    if (ok.indexOf(rate) < 0) { var to = rate > 48000 ? 48000 : 44100; chs = resampleRate(chs, rate, to); rate = to; }
+    var ch = Math.min(2, chs.length), n = chs[0].length, enc = new L.Mp3Encoder(ch, rate, kbps), parts = [], size = 1152 * 16, t0 = Date.now();
+    function conv(x, s, e) { var a = new Int16Array(e - s); for (var i = s; i < e; i++) { var v = x[i]; v = v > 1 ? 1 : v < -1 ? -1 : v; a[i - s] = v < 0 ? Math.round(v * 32768) : Math.round(v * 32767); } return a; }
+    function step(s) {
+      if (s >= n) { var tail = enc.flush(); if (tail && tail.length) parts.push(new Uint8Array(tail)); return new Blob(parts, { type: "audio/mpeg" }); }
+      var e = Math.min(n, s + size), l = conv(chs[0], s, e), c = ch > 1 ? enc.encodeBuffer(l, conv(chs[1], s, e)) : enc.encodeBuffer(l);
+      if (c && c.length) parts.push(new Uint8Array(c));
+      if (onProg) onProg(e / n);
+      if (Date.now() - t0 > 40) { t0 = Date.now(); return yieldUi().then(function () { return step(e); }); }
+      return step(e);
+    }
+    return step(0);
+  });
+}
+function exportAudio(chs, rate, fmt, kbps, onProg) {
+  if (fmt === "wav") return Promise.resolve({ blob: wavBlob(chs, rate), ext: "wav" });
+  return mp3Blob(chs, rate, kbps, onProg).then(function (b) { return { blob: b, ext: "mp3" }; });
+}
+function fmtOpts(p) { return { fmt: $(p + "Fmt").value, kbps: parseInt($(p + "Kbps").value, 10) || 192 }; }
+function bindFmt(p) { var f = $(p + "Fmt"); function u() { $(p + "KbpsBox").hidden = f.value === "wav"; } f.addEventListener("change", u); u(); }
+function estSize(sec, ch, rate, o) { return o.fmt === "wav" ? sec * rate * Math.min(2, ch) * 2 : sec * o.kbps * 125; }
+function isAud(f) { return /^(audio|video)\//.test(f.type) || /\.(mp3|wav|wave|ogg|oga|opus|m4a|aac|flac|aif|aiff|weba|webm|mp4|m4v|mov|mkv|3gp|amr|wma|mpg|mpeg|avi)$/i.test(f.name); }
+/* ----- waveform view with draggable selection ----- */
+function WaveView(cv, o) {
+  o = o || {};
+  var me = { chs: null, rate: 44100, dur: 0, a: 0, b: 0, sel: false, cursor: -1, regions: [], marks: [], pk: null, H: o.height || 130, color: o.color || "#7c3aed" };
+  var drag = null;
+  function dims() { var dpr = window.devicePixelRatio || 1, w = Math.max(200, cv.clientWidth || 640); cv.width = Math.round(w * dpr); cv.height = Math.round(me.H * dpr); cv.style.height = me.H + "px"; return { w: w, h: me.H, dpr: dpr }; }
+  function calcPeaks(w) {
+    var n = me.chs[0].length, bins = Math.round(w), pk = new Float32Array(bins * 2);
+    for (var i = 0; i < bins; i++) {
+      var s = Math.floor(i * n / bins), e = Math.max(s + 1, Math.floor((i + 1) * n / bins)), st = Math.max(1, Math.floor((e - s) / 200)), mn = 0, mx = 0;
+      for (var c = 0; c < me.chs.length; c++) { var x = me.chs[c]; for (var j = s; j < e; j += st) { var v = x[j]; if (v > mx) mx = v; if (v < mn) mn = v; } }
+      pk[i * 2] = mn; pk[i * 2 + 1] = mx;
+    }
+    me.pk = pk;
+  }
+  me.xOf = function (t) { return t / me.dur * (cv.clientWidth || 640); };
+  me.tOf = function (x) { return Math.max(0, Math.min(me.dur, x / (cv.clientWidth || 640) * me.dur)); };
+  me.draw = function () {
+    var d = dims(), ctx = cv.getContext("2d"), W = cv.width, H = cv.height, k = d.dpr, cs = getComputedStyle(cv);
+    var bg = (cs.getPropertyValue("--bg") || "").trim() || "#fff", line = (cs.getPropertyValue("--line") || "").trim() || "#ddd", mut = (cs.getPropertyValue("--muted") || "").trim() || "#666";
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+    if (!me.chs) { ctx.fillStyle = mut; ctx.font = (13 * k) + "px sans-serif"; ctx.textAlign = "center"; ctx.fillText("Choose a file to see its waveform", W / 2, H / 2 - 8 * k); return; }
+    if (!me.pk || me.pk.length / 2 !== Math.round(d.w)) calcPeaks(d.w);
+    var bins = me.pk.length / 2, ax = me.xOf(me.a), bx = me.xOf(me.b);
+    for (var i = 0; i < bins; i++) {
+      var mn = me.pk[i * 2], mx = me.pk[i * 2 + 1], inSel = !me.sel || (i + 0.5 >= ax && i + 0.5 <= bx);
+      ctx.fillStyle = inSel ? me.color : "rgba(124,58,237,.28)";
+      var y1 = H / 2 - mx * (H / 2 - 4 * k), y2 = H / 2 - mn * (H / 2 - 4 * k);
+      ctx.fillRect(i * k * (W / k / bins), y1, Math.max(1, k * (W / k / bins)), Math.max(1, y2 - y1));
+    }
+    me.regions.forEach(function (r) { ctx.fillStyle = r.color || "rgba(220,38,38,.25)"; var x1 = me.xOf(r.a) * k, x2 = me.xOf(r.b) * k; ctx.fillRect(x1, 0, Math.max(1, x2 - x1), H); });
+    me.marks.forEach(function (t) { ctx.fillStyle = "rgba(16,185,129,.8)"; ctx.fillRect(me.xOf(t) * k, 0, Math.max(1, k), H); });
+    if (me.sel) {
+      ctx.fillStyle = "#4c1d95"; ctx.fillRect(ax * k - k, 0, 2 * k, H); ctx.fillRect(bx * k - k, 0, 2 * k, H);
+      ctx.beginPath(); ctx.arc(ax * k, 10 * k, 6 * k, 0, 7); ctx.arc(bx * k, H - 10 * k, 6 * k, 0, 7); ctx.fill();
+    }
+    if (me.cursor >= 0) { ctx.fillStyle = "#ef4444"; ctx.fillRect(me.xOf(me.cursor) * k - k, 0, 2 * k, H); }
+  };
+  me.set = function (chs, rate) { me.chs = chs; me.rate = rate; me.dur = chs ? chs[0].length / rate : 0; me.a = 0; me.b = me.dur; me.sel = false; me.cursor = -1; me.regions = []; me.marks = []; me.pk = null; me.draw(); };
+  me.setSel = function (a, b) { me.a = Math.max(0, Math.min(a, me.dur)); me.b = Math.max(me.a, Math.min(b, me.dur)); me.sel = true; me.draw(); };
+  function px(e) { var r = cv.getBoundingClientRect(); return e.clientX - r.left; }
+  if (o.select) {
+    cv.style.touchAction = "none"; cv.style.cursor = "crosshair";
+    cv.addEventListener("pointerdown", function (e) {
+      if (!me.chs) return; var x = px(e), t = me.tOf(x); try { cv.setPointerCapture(e.pointerId); } catch (er) { }
+      if (me.sel && Math.abs(x - me.xOf(me.a)) < 12) drag = { m: "a", x0: x };
+      else if (me.sel && Math.abs(x - me.xOf(me.b)) < 12) drag = { m: "b", x0: x };
+      else drag = { m: "n", x0: x, t0: t, moved: false };
+    });
+    cv.addEventListener("pointermove", function (e) {
+      if (!drag) return; var x = px(e), t = me.tOf(x), mn = 0.01;
+      if (drag.m === "a") me.a = Math.min(t, me.b - mn);
+      else if (drag.m === "b") me.b = Math.max(t, me.a + mn);
+      else { if (Math.abs(x - drag.x0) < 4 && !drag.moved) return; drag.moved = true; me.a = Math.min(drag.t0, t); me.b = Math.max(drag.t0, t); me.sel = true; }
+      if (me.a < 0) me.a = 0; if (me.b > me.dur) me.b = me.dur;
+      me.draw(); if (o.onSel) o.onSel(me.a, me.b, true);
+    });
+    function up() { if (!drag) return; var d = drag; drag = null; if (d.m === "n" && !d.moved && o.onSeek) o.onSeek(me.tOf(d.x0)); else if (o.onSel) o.onSel(me.a, me.b, false); }
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+  } else if (o.onSeek) { cv.style.cursor = "pointer"; cv.addEventListener("click", function (e) { if (me.chs) o.onSeek(me.tOf(px(e))); }); }
+  var rt = 0; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { me.pk = null; me.draw(); }, 120); });
+  me.draw();
+  return me;
+}
+/* ----- simple player ----- */
+var PL = { src: null, raf: 0, t0: 0, from: 0, to: 0, cb: null, end: null };
+function plStop(silent) {
+  if (PL.src) { try { PL.src.onended = null; PL.src.stop(); } catch (e) { } PL.src = null; }
+  cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; PL.cb = null;
+  if (e && !silent) e();
+}
+function plPlay(ab, from, to, loop, onTick, onEnd, rate) {
+  plStop(true); var ctx = actx(), s = ctx.createBufferSource(); s.buffer = ab; s.playbackRate.value = rate || 1;
+  from = Math.max(0, Math.min(from, ab.duration - 0.01)); to = Math.max(from + 0.01, Math.min(to, ab.duration));
+  if (loop) { s.loop = true; s.loopStart = from; s.loopEnd = to; }
+  s.connect(ctx.destination); s.start(0, from, loop ? undefined : (to - from)); PL.src = s; PL.t0 = ctx.currentTime; PL.from = from; PL.to = to; PL.cb = onTick; PL.end = onEnd;
+  s.onended = function () { if (PL.src === s) { PL.src = null; cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; if (e) e(); } };
+  (function tk() { if (PL.src !== s) return; var el = (ctx.currentTime - PL.t0) * (rate || 1), t = loop ? from + (el % (to - from)) : Math.min(to, from + el); if (onTick) onTick(t); PL.raf = requestAnimationFrame(tk); })();
+}
+function dlName(base, suffix, ext) { return baseName(base) + (suffix ? "-" + suffix : "") + "." + ext; }
+function kbShort(n) { return fmtSize(n); }
+
+/* ---------- BPM detector and tap tempo ---------- */
+var ST = { chs: null, rate: 44100, name: "", dur: 0, ab: null, res: null, bpm: 0, src: "", playing: false, rows: [], taps: [], met: null, metOn: false };
+var wv = null;
+/* ----- FFT ----- */
+function mkFFT(N) {
+  var lv = Math.round(Math.log2(N)), rev = new Uint16Array(N), cs = new Float64Array(N / 2), sn = new Float64Array(N / 2), i, j;
+  for (i = 0; i < N; i++) { var r = 0; for (j = 0; j < lv; j++) if (i & (1 << j)) r |= 1 << (lv - 1 - j); rev[i] = r; }
+  for (i = 0; i < N / 2; i++) { cs[i] = Math.cos(2 * Math.PI * i / N); sn[i] = -Math.sin(2 * Math.PI * i / N); }
+  return function (re, im) {
+    var n = N, k, s, h, a, b, tr, ti;
+    for (i = 0; i < n; i++) { j = rev[i]; if (j > i) { tr = re[i]; re[i] = re[j]; re[j] = tr; ti = im[i]; im[i] = im[j]; im[j] = ti; } }
+    for (s = 2; s <= n; s <<= 1) { h = s >> 1; var st = n / s; for (k = 0; k < n; k += s) for (j = 0; j < h; j++) { a = k + j; b = a + h; var wr = cs[j * st], wi = sn[j * st]; tr = re[b] * wr - im[b] * wi; ti = re[b] * wi + im[b] * wr; re[b] = re[a] - tr; im[b] = im[a] - ti; re[a] += tr; im[a] += ti; } }
+  };
+}
+/* ----- onset envelope ----- */
+function onsetEnv(x, rs, onProg) {
+  var N = 512, hop = 128, fft = mkFFT(N), re = new Float64Array(N), im = new Float64Array(N), win = new Float64Array(N), i, f, nf = Math.max(0, Math.floor((x.length - N) / hop)), env = new Float32Array(nf), low = new Float32Array(nf), prev = new Float64Array(N / 2), maxb = Math.min(N / 2 - 1, Math.round(6500 / (rs / N)));
+  for (i = 0; i < N; i++) win[i] = 0.5 - 0.5 * Math.cos(2 * Math.PI * i / N);
+  var t0 = Date.now();
+  function run(f0) {
+    var end = Math.min(nf, f0 + 800);
+    for (f = f0; f < end; f++) {
+      var o = f * hop; for (i = 0; i < N; i++) { re[i] = x[o + i] * win[i]; im[i] = 0; } fft(re, im);
+      var fl = 0, fo = 0; for (i = 1; i <= maxb; i++) { var m = Math.log(1 + 40 * Math.sqrt(re[i] * re[i] + im[i] * im[i])), d = m - prev[i]; if (d > 0) { fl += d; if (i <= 5) fo += d; } prev[i] = m; } env[f] = fl; low[f] = fo;
+    }
+    if (onProg) onProg(f / Math.max(1, nf));
+    if (f < nf) return yieldUi().then(function () { return run(f); });
+    return { e: env, l: low };
+  }
+  return Promise.resolve(run(0)).then(function (pair) {
+    function clean(e) {
+      var w = Math.round(0.5 * rs / hop), out = new Float32Array(e.length), pre = new Float64Array(e.length + 1), a, b, i;
+      for (i = 0; i < e.length; i++) pre[i + 1] = pre[i] + e[i];
+      for (i = 0; i < e.length; i++) { a = Math.max(0, i - w); b = Math.min(e.length, i + w + 1); var v = e[i] - (pre[b] - pre[a]) / (b - a); out[i] = v > 0 ? v : 0; }
+      var mx = 0; for (i = 0; i < out.length; i++) if (out[i] > mx) mx = out[i]; if (mx > 0) for (i = 0; i < out.length; i++) out[i] /= mx; return out;
+    }
+    return { env: clean(pair.e), low: clean(pair.l), hopSec: hop / rs, delay: (N / 2) / rs };
+  });
+}
+function acf(e, maxLag) {
+  var n = e.length, r = new Float64Array(maxLag + 2), l, i; maxLag = Math.min(maxLag, n - 2);
+  for (l = 0; l <= maxLag; l++) { var s = 0, c = n - l; for (i = 0; i < c; i++) s += e[i] * e[i + l]; r[l] = s / c; }
+  return r;
+}
+function ri(r, t) { var i = Math.floor(t); if (i < 0) return 0; if (i + 1 >= r.length) return 0; var f = t - i; return r[i] * (1 - f) + r[i + 1] * f; }
+function estimate(e, hopSec, minB, maxB, low) {
+  var tauMin = 60 / maxB / hopSec, tauMax = 60 / minB / hopSec, maxLag = Math.min(e.length - 3, Math.round(tauMax * 8 + 6)); if (maxLag < tauMax * 2) return null;
+  var r = acf(e, maxLag), best = -1, bB = 0, scores = [], B;
+  for (B = minB; B <= maxB + 1e-6; B += 0.25) {
+    var tau = 60 / B / hopSec, w = Math.exp(-0.5 * Math.pow(Math.log(B / 120) / Math.LN2 / 1.1, 2)), sc = (ri(r, tau) + 0.5 * ri(r, 2 * tau) + 0.25 * ri(r, 4 * tau)) * w;
+    scores.push([B, sc]); if (sc > best) { best = sc; bB = B; }
+  }
+  if (best <= 0) return null;
+  var tau0 = 60 / bB / hopSec, tauF = tau0;
+  function peakNear(t, wdw) { var lo = Math.max(1, Math.floor(t - wdw)), hi = Math.min(maxLag - 1, Math.ceil(t + wdw)), bi = lo, bv = -1, i; for (i = lo; i <= hi; i++) if (r[i] > bv) { bv = r[i]; bi = i; } var a = r[bi - 1], b = r[bi], c = r[bi + 1], d = a - 2 * b + c, off = d < 0 ? 0.5 * (a - c) / d : 0; return bi + Math.max(-0.5, Math.min(0.5, off)); }
+  tauF = peakNear(tau0, Math.max(2, tau0 * 0.04));
+  for (var m = 2; m <= 8; m++) { var t = m * tauF; if (t + 3 > maxLag) break; var pk = peakNear(t, Math.max(2.5, t * 0.02)), cand = pk / m; if (Math.abs(cand - tauF) / tauF > 0.015) break; tauF = cand; }
+  var bpm = 60 / (tauF * hopSec), second = 0;
+  scores.forEach(function (s) { var q = s[0] / bpm, near = [1, 2, 0.5, 1.5, 2 / 3, 3, 1 / 3, 4, 0.25].some(function (k) { return Math.abs(q - k) < 0.06 * k; }); if (!near && s[1] > second) second = s[1]; });
+  var conf = Math.max(0, Math.min(1, 1 - second / best));
+  /* beat phase */
+  var n = e.length, bestP = 0, bs = -1, p, k;
+  for (p = 0; p < tauF; p += 0.25) { var sum = 0; for (k = 0; p + k * tauF < n - 1; k++) { var pos = p + k * tauF; sum += 0.5 * ri(e, pos) + (low ? ri(low, pos) : 0); } if (sum > bs) { bs = sum; bestP = p; } }
+  return { bpm: bpm, conf: conf, tau: tauF, phase: bestP, hopSec: hopSec };
+}
+function analyze(chs, rate, minB, maxB, onProg) {
+  var mono = mixMono(chs), d = Math.max(1, Math.round(rate / 22050)), rs = rate / d, n = Math.floor(mono.length / d), x = new Float32Array(n), i, k;
+  for (i = 0; i < n; i++) { var s = 0; for (k = 0; k < d; k++) s += mono[i * d + k]; x[i] = s / d; }
+  var maxN = Math.round(120 * rs), start = 0; if (n > maxN) start = Math.round((n - maxN) / 2); var seg = x.subarray(start, Math.min(n, start + maxN)), t0 = start / rs;
+  return onsetEnv(seg, rs, onProg).then(function (o) {
+    var est = estimate(o.env, o.hopSec, minB, maxB, o.low); if (!est) return null;
+    var wins = [], q = Math.floor(o.env.length / 4);
+    if (o.env.length * o.hopSec >= 60) for (i = 0; i < 4; i++) { var ee = estimate(o.env.subarray(i * q, (i + 1) * q), o.hopSec, minB, maxB); if (ee) wins.push(ee.bpm); }
+    var period = est.tau * o.hopSec, base = t0 + est.phase * o.hopSec + o.delay, dur = chs[0].length / rate, beats = [], k0 = Math.ceil(-base / period - 1e-9); for (k = k0; base + k * period <= dur; k++) beats.push(base + k * period);
+    return { bpm: est.bpm, conf: est.conf, period: period, beats: beats, wins: wins, minB: minB, maxB: maxB };
+  });
+}
+/* ----- click sounds ----- */
+function click(when, accent) { var c = actx(), o = c.createOscillator(), g = c.createGain(); o.type = "square"; o.frequency.value = accent ? 1800 : 1200; g.gain.setValueAtTime(0.0001, when); g.gain.exponentialRampToValueAtTime(accent ? 0.35 : 0.25, when + 0.002); g.gain.exponentialRampToValueAtTime(0.0001, when + 0.04); o.connect(g); g.connect(c.destination); o.start(when); o.stop(when + 0.05); }
+/* ----- tap tempo ----- */
+function tapStats() {
+  var t = ST.taps, n = t.length; if (n < 2) return null; var use = t.slice(-16), m = use.length, avg = (use[m - 1] - use[0]) / (m - 1), iv = [], i; for (i = 1; i < m; i++) iv.push(use[i] - use[i - 1]);
+  var sd = Math.sqrt(iv.reduce(function (a, b) { return a + (b - avg) * (b - avg); }, 0) / iv.length); return { bpm: 60000 / avg, avg: avg, n: n, cv: sd / avg };
+}
+function doTap() {
+  var now = performance.now(), rs = parseInt($("dRst").value, 10) * 1000; if (ST.taps.length && rs > 0 && now - ST.taps[ST.taps.length - 1] > rs) ST.taps = []; ST.taps.push(now);
+  var b = $("dTap"); b.classList.remove("pulse"); void b.offsetWidth; b.classList.add("pulse"); renderTap();
+}
+function renderTap() {
+  var s = tapStats(), box = $("dTapOut");
+  if (!s) { box.innerHTML = '<div class="dt-stats">' + tile("BPM", ST.taps.length ? "Tap again" : "-", "tap at least twice") + "</div>"; if (!ST.taps.length) setBpm(0, ""); return; }
+  box.innerHTML = '<div class="dt-stats">' + tile("BPM", '<span class="au-big">' + s.bpm.toFixed(1) + "</span>", "rounded " + Math.round(s.bpm)) + tile("Taps", String(s.n), "average " + Math.round(s.avg) + " ms") + tile("Steadiness", (s.cv * 100).toFixed(1) + "%", s.cv < 0.03 ? "very steady" : s.cv < 0.06 ? "steady" : "uneven taps") + tile("Half / double", (s.bpm / 2).toFixed(1) + " / " + (s.bpm * 2).toFixed(1), "BPM") + "</div>";
+  setBpm(s.bpm, "tap");
+}
+function tapReset() { ST.taps = []; renderTap(); msg("Tap counter reset."); }
+function metToggle() {
+  if (ST.metOn) { ST.metOn = false; clearInterval(ST.met); $("dMet").textContent = "Start metronome"; return; }
+  if (!ST.bpm) { msg("Tap a tempo first, or detect one from a file.", "err"); return; }
+  var c = actx(), nxt = c.currentTime + 0.05, beat = 0; ST.metOn = true; $("dMet").textContent = "Stop metronome";
+  ST.met = setInterval(function () { var per = 60 / ST.bpm; while (nxt < c.currentTime + 0.2) { click(nxt, beat % 4 === 0); nxt += per; beat++; } }, 25);
+}
+/* ----- BPM table ----- */
+function setBpm(b, src) { ST.bpm = b; ST.src = src; table(); }
+function table() {
+  var b = ST.bpm, box = $("dTable"); if (!b) { box.innerHTML = '<p class="ck-note">Tap a tempo or analyze a file to see delay times and note lengths for that BPM.</p>'; return; }
+  var q = 60000 / b, rows = [["1/1 (whole)", 4], ["1/2 (half)", 2], ["1/4 (quarter)", 1], ["1/8 (eighth)", 0.5], ["1/16 (sixteenth)", 0.25], ["1/32", 0.125]], h = '<div class="dt-wrap"><table><tr><th>Note</th><th>Straight (ms)</th><th>Dotted (ms)</th><th>Triplet (ms)</th><th>Rate (Hz)</th></tr>';
+  rows.forEach(function (r) { var ms = q * r[1]; h += "<tr><td>" + r[0] + "</td><td>" + ms.toFixed(1) + "</td><td>" + (ms * 1.5).toFixed(1) + "</td><td>" + (ms * 2 / 3).toFixed(1) + "</td><td>" + (1000 / ms).toFixed(3) + "</td></tr>"; });
+  box.innerHTML = '<h3 style="margin:14px 0 4px">Delay times at ' + b.toFixed(1) + ' BPM (' + (ST.src === "tap" ? "from tapping" : "from the file") + ')</h3>' + h + "</table></div>";
+}
+/* ----- file analysis ----- */
+function stopPlay() { plStop(true); ST.playing = false; $("dPlay").textContent = "Play with click track"; if (wv) { wv.cursor = -1; wv.draw(); } }
+function play() {
+  if (!ST.chs || !ST.res) return; if (ST.playing) { stopPlay(); return; } if (!ST.ab) ST.ab = toAB(ST.chs, ST.rate);
+  var c = actx(), beats = ST.res.beats, idx = 0, t0 = c.currentTime + 0.12; ST.playing = true; $("dPlay").textContent = "Stop";
+  plPlay(ST.ab, 0, ST.ab.duration, false, function (t) { wv.cursor = t; wv.draw(); }, function () { stopPlay(); });
+  var startCtx = PL.t0; if (startCtx != null) t0 = startCtx;
+  (function sched() { if (!ST.playing) return; var now = c.currentTime - t0; while (idx < beats.length && beats[idx] < now + 0.3) { if (beats[idx] >= now - 0.02) click(t0 + beats[idx], idx % 4 === 0); idx++; } setTimeout(sched, 60); })();
+}
+function renderRes() {
+  var r = ST.res, box = $("dRes"); if (!r) { box.innerHTML = ""; return; }
+  var cl = r.conf > 0.5 ? "High" : r.conf > 0.2 ? "Medium" : "Low", spread = r.wins.length > 1 ? Math.max.apply(null, r.wins) - Math.min.apply(null, r.wins) : 0;
+  var alts = []; [r.bpm / 2, r.bpm * 2].forEach(function (v) { if (v >= 30 && v <= 300) alts.push(v.toFixed(1)); });
+  box.innerHTML = '<div class="dt-stats">' + tile("BPM", '<span class="au-big">' + r.bpm.toFixed(1) + "</span>", "rounded " + Math.round(r.bpm)) + tile("Confidence", cl, Math.round(r.conf * 100) + "%") + tile("Beats found", String(r.beats.length), "first at " + fmtTime(r.beats[0] || 0, 2)) + tile("Also felt as", alts.join(" or "), "half or double time") + "</div>" +
+    (r.wins.length > 1 ? '<p class="ck-note">Tempo across the file: ' + r.wins.map(function (v) { return v.toFixed(1); }).join(", ") + " BPM. " + (spread <= 1.5 ? "The tempo is steady." : "The tempo varies, so treat the main figure as an average.") + "</p>" : "") +
+    (r.conf <= 0.2 ? '<p class="au-bad">The beat is weak or unclear. Try narrowing the BPM range, or tap along to confirm.</p>' : "");
+  ST.rows = [["File", ST.name], ["BPM", r.bpm.toFixed(2) + " (rounded " + Math.round(r.bpm) + ")"], ["Confidence", cl + " (" + Math.round(r.conf * 100) + "%)"], ["Half / double time", alts.join(" / ")], ["Beats found", String(r.beats.length)], ["Search range", r.minB + " to " + r.maxB + " BPM"]];
+}
+function loadFile(files) {
+  var f = files.filter(isAud)[0]; if (!f) { msg("Please choose an audio or video file.", "err"); return; }
+  stopPlay(); ST.res = null; renderRes(); prog(0.1, "Decoding " + f.name + "..."); busy(["dPlay"], true);
+  decodeAudio(f).then(function (ab) {
+    ST.chs = bufChans(ab); ST.rate = ab.sampleRate; ST.name = f.name; ST.dur = ab.duration; ST.ab = null; wv.set(ST.chs, ST.rate);
+    $("dInfo").innerHTML = '<b>' + esc(f.name) + '</b> · ' + fmtTime(ab.duration, 1) + ' · ' + ab.sampleRate + ' Hz'; return runAnalysis();
+  }).catch(function (e) { prog(null); ST.chs = null; wv.set(null); $("dInfo").textContent = ""; msg(e.message, "err"); });
+}
+function runAnalysis() {
+  if (!ST.chs) return Promise.resolve(); var mn = numIn("dMin", 30, 250, 60), mx = numIn("dMax", 40, 300, 200); if (mx < mn * 1.5) mx = Math.min(300, mn * 1.5 + 1);
+  prog(0.15, "Analyzing the beat..."); busy(["dPlay"], true);
+  return analyze(ST.chs, ST.rate, mn, mx, function (f) { prog(0.15 + 0.85 * f, "Analyzing the beat..."); }).then(function (r) {
+    prog(null); ST.res = r; if (!r) { renderRes(); msg("Could not find a clear beat in this file. Try a longer or more rhythmic section.", "err"); return; }
+    wv.marks = r.beats; wv.draw(); busy(["dPlay"], false); renderRes(); setBpm(r.bpm, "file"); msg("Done. About " + r.bpm.toFixed(1) + " BPM. Press Play to check it against the click track.");
+  });
+}
+function csvBeats() { if (!ST.res) { msg("Analyze a file first.", "err"); return; } csvDownload([["beat", "time_seconds"]].concat(ST.res.beats.map(function (t, i) { return [i + 1, t.toFixed(3)]; })), dlName(ST.name, "beats", "csv")); }
+function fillReport() {
+  var b = repBox(); repHead(b, "BPM detector: summary", "Free online BPM detector"); var s = tapStats();
+  var rows = ST.rows.slice(); if (s) rows.push(["Tap tempo", s.bpm.toFixed(1) + " BPM from " + s.n + " taps"]); repTbl(b, ["Setting", "Value"], rows.length ? rows : [["BPM", ST.bpm ? ST.bpm.toFixed(1) : "none yet"]]);
+  if (ST.bpm) { var q = 60000 / ST.bpm; repTbl(b, ["Note", "Straight (ms)", "Dotted (ms)", "Triplet (ms)"], [["1/4", q], ["1/8", q / 2], ["1/16", q / 4]].map(function (r) { return [r[0], r[1].toFixed(1), (r[1] * 1.5).toFixed(1), (r[1] * 2 / 3).toFixed(1)]; })); }
+  repDisc(b, "BPM detection is an estimate. Check it by ear.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["tap", "file"]);
+  wv = WaveView($("dWave"), { height: 110, onSeek: function () { } }); $("dMin").value = 60; $("dMax").value = 200; $("dRst").value = "3"; busy(["dPlay"], true); renderTap(); table();
+  var tb = $("dTap"); tb.addEventListener("pointerdown", function (e) { if (e.button === 0 || e.pointerType !== "mouse") { e.preventDefault(); doTap(); } }); tb.addEventListener("keydown", function (e) { if ((e.key === " " || e.key === "Enter") && !e.repeat) { e.preventDefault(); doTap(); } }); tb.addEventListener("click", function (e) { e.preventDefault(); });
+  document.addEventListener("keydown", function (e) { if (e.code === "Space" && !e.repeat && initTabs.cur === "tap" && !/INPUT|SELECT|TEXTAREA|BUTTON/.test((e.target.tagName || ""))) { var r = $("dTap").getBoundingClientRect(); if (r.bottom > 0 && r.top < innerHeight) { e.preventDefault(); doTap(); } } });
+  $("dTapReset").addEventListener("click", tapReset); $("dMet").addEventListener("click", metToggle); bindDrop("dDrop", "dFile", loadFile);
+  ["dMin", "dMax"].forEach(function (id) { $(id).addEventListener("change", function () { if (ST.chs) runAnalysis(); }); });
+  $("dPlay").addEventListener("click", play);
+  $("dCsv").addEventListener("click", csvBeats); $("dPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("dCopy").addEventListener("click", function () { var s = tapStats(), t = []; if (ST.res) t.push("File: " + ST.name + " = " + ST.res.bpm.toFixed(1) + " BPM"); if (s) t.push("Tap tempo = " + s.bpm.toFixed(1) + " BPM"); if (ST.bpm) t.push("Quarter note = " + (60000 / ST.bpm).toFixed(1) + " ms"); copyText(t.join("\n") || "No BPM yet", $("dCopy")); });
+}
+init();
+
+})();
+</script>
+</body>
+</html>

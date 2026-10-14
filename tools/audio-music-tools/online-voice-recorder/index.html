@@ -1,0 +1,694 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Online Voice Recorder – Record Audio, No Upload</title>
+<meta name="description" content="Free online voice recorder and microphone test. Record audio in your browser, trim it, normalize it and save as MP3 or WAV. Nothing is uploaded, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Online Voice Recorder – Record Audio, No Upload">
+<meta property="og:description" content="Record your voice online free. Test your microphone, pause, trim and save MP3 or WAV. Everything stays in your browser, with no upload and no sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Online Voice Recorder – Record Audio, No Upload">
+<meta name="twitter:description" content="Record your voice online free. Test your microphone, pause, trim and save MP3 or WAV. Everything stays in your browser, with no upload and no sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#6d28d9;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#c4b5fd}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #6d28d9;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#6d28d9;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#6d28d9,#8b5cf6);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(109,40,217,.06);border-left:3px solid #6d28d9;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#6d28d9}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#6d28d9;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(185,28,28,.12);color:#991b1b;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fca5a5;background:rgba(248,113,113,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.pd-drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--bg);color:var(--muted);transition:border-color .15s}
+.pd-drop:hover,.pd-drop.on,.pd-drop:focus-visible{border-color:#6d28d9;color:inherit;outline:none}
+.pd-drop b{display:block;font-size:1.05rem;color:inherit;margin-bottom:2px}
+.pd-prog{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0 2px}
+.pd-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6d28d9,#8b5cf6);transition:width .15s}
+.pd-progtxt{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.au-wave{width:100%;display:block;border:1px solid var(--line);border-radius:10px;background:var(--bg);margin:8px 0}
+.au-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.au-bar button{padding:7px 14px}
+.au-time{font-variant-numeric:tabular-nums;font-weight:700}
+.au-file{display:grid;grid-template-columns:1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--bg)}
+.au-file .nm{font-weight:700;word-break:break-all;font-size:.9rem}.au-file .mt{font-size:.78rem;color:var(--muted)}
+.au-file .bt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.au-file .bt button{padding:4px 9px;font-size:.78rem}
+.au-ok{color:#15803d;font-weight:700}.au-bad{color:#b91c1c;font-weight:700}
+.au-meter{height:14px;border-radius:7px;background:var(--line);overflow:hidden;position:relative}
+.au-meter i{display:block;height:100%;width:0;background:linear-gradient(90deg,#16a34a,#eab308 75%,#dc2626);transition:width .06s}
+.au-chroma{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:120px;margin:8px 0}
+.au-chroma div{display:flex;flex-direction:column;justify-content:flex-end;align-items:center;font-size:.72rem;height:100%}
+.au-chroma i{display:block;width:100%;background:#8b5cf6;border-radius:4px 4px 0 0;min-height:2px}
+.au-big{font-size:2.4rem;font-weight:800;line-height:1.1;color:#6d28d9}
+@media(prefers-color-scheme:dark){.au-big{color:#c4b5fd}}
+#tool textarea{width:100%}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Online Voice Recorder","url":"https://utiliby.com/tools/audio-music-tools/online-voice-recorder/","description":"Free online voice recorder and microphone test. Record audio from your microphone in the browser with a live level meter, pause and resume, trim the recording, normalize and save it as MP3 or WAV. No upload, no sign-up.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Record from any microphone","Live level meter and microphone test","Pause, resume and trim","Echo cancellation, noise suppression and gain control","Normalize and save as MP3 or WAV","No upload, no sign-up, no watermark"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I record my voice online for free?","acceptedAnswer":{"@type":"Answer","text":"Click Start recording and allow microphone access when your browser asks. Speak, click Stop, trim the recording if you like, and save it as MP3 or WAV. Everything happens in your browser, with no account and no upload."}},{"@type":"Question","name":"Is my recording uploaded or stored anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The audio is captured and kept in your browser's memory, then saved to your device when you choose. It is not sent to any server. If you close the tab before saving, the recording is gone."}},{"@type":"Question","name":"Why does my browser ask for microphone permission?","acceptedAnswer":{"@type":"Answer","text":"Browsers always ask before a web page can use your microphone. You can allow it for this visit or always, and you can remove the permission at any time from the lock icon in the address bar."}},{"@type":"Question","name":"The tool says no microphone was found. What should I do?","acceptedAnswer":{"@type":"Answer","text":"Check that a microphone is plugged in and enabled in your system sound settings, then choose it from the Microphone list. Close any other app that might be using it, and click Start recording again."}},{"@type":"Question","name":"What does the microphone test do?","acceptedAnswer":{"@type":"Answer","text":"Test microphone turns the mic on and shows the level meter without saving anything, so you can check your setup. Aim for a meter that reaches about two thirds of the bar when you speak normally."}},{"@type":"Question","name":"What do echo cancellation, noise suppression and auto gain do?","acceptedAnswer":{"@type":"Answer","text":"Echo cancellation reduces sound from your speakers that your mic picks up. Noise suppression lowers steady background noise such as fans. Auto gain adjusts volume automatically. These are done by your browser. For music or the most natural voice, turn them off."}},{"@type":"Question","name":"How long can I record?","acceptedAnswer":{"@type":"Answer","text":"Up to one hour per recording. Recordings are held in memory, and one hour of mono audio uses roughly 640 MB, so close other tabs for long recordings."}},{"@type":"Question","name":"Can I pause and resume?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pause stops adding audio without ending the session, and Resume continues. The timer counts only the time that is actually recorded."}},{"@type":"Question","name":"What formats can I save?","acceptedAnswer":{"@type":"Answer","text":"MP3 for small files that play everywhere, and WAV for uncompressed 16-bit audio that is best for editing. Recordings are mono, which is normal for a single microphone."}},{"@type":"Question","name":"Why is my recording too quiet or distorted?","acceptedAnswer":{"@type":"Answer","text":"Too quiet: move closer, raise Input gain, or tick Normalize before you save. Distorted: lower Input gain or move back, because the signal is clipping. The recording summary warns you when the peak is too low or too high."}},{"@type":"Question","name":"Can I trim the start and end?","acceptedAnswer":{"@type":"Answer","text":"Yes. Drag on the waveform to select the part you want, or type exact start and end times. Only the selected part is saved."}},{"@type":"Question","name":"Can it record the sound of my computer or a video call?","acceptedAnswer":{"@type":"Answer","text":"No. This tool records microphone input only. Capturing the audio that plays on your computer needs screen or system audio capture, which browsers handle differently."}},{"@type":"Question","name":"Does it work on iPhone and Android?","acceptedAnswer":{"@type":"Answer","text":"Yes, in current Safari, Chrome and Firefox. Allow the microphone when asked, and keep the screen on and the page open while recording, because mobile browsers can pause pages that go to the background."}},{"@type":"Question","name":"Can I use it for podcasts, voice-overs or interviews?","acceptedAnswer":{"@type":"Answer","text":"Yes, for quick recording. Use a headset or external microphone in a quiet room, turn off echo cancellation if you wear headphones, and save as WAV if you will edit the audio afterwards."}},{"@type":"Question","name":"Does it work offline?","acceptedAnswer":{"@type":"Answer","text":"After the page has loaded, recording and saving as WAV work without an internet connection. Saving as MP3 needs a one-time download of the open-source encoder."}},{"@type":"Question","name":"Is it legal to record someone's voice?","acceptedAnswer":{"@type":"Answer","text":"Laws on recording conversations differ by country and region, and many require the consent of everyone involved. Always tell people they are being recorded and follow the rules where you live."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary prints the recording details and the waveform, and Copy summary copies them as text. The audio file is the main download."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Audio & Music Tools","item":"https://utiliby.com/tools/audio-music-tools/"},{"@type":"ListItem","position":3,"name":"Online Voice Recorder","item":"https://utiliby.com/tools/audio-music-tools/online-voice-recorder/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/audio-music-tools/">Audio &amp; Music Tools</a> › Online Voice Recorder</nav>
+<h1 class="noembed">Free Online Voice Recorder</h1>
+<p class="lead noembed">Free online voice recorder and microphone test. Record audio with your microphone, watch the live level, pause, trim and save as MP3 or WAV. It runs in your browser, so your recording is never uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/" target="_blank" rel="noopener">Online Voice Recorder by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Online voice recorder">
+<div class="dt-hero noembed">
+<h2>Free Online Voice Recorder</h2>
+<p>Record your voice with your microphone, test your input level, trim the recording, and save it as MP3 or WAV. Nothing is uploaded.</p>
+</div>
+<div class="dt-panel"><div class="dt-row"><div><label for="kDev">Microphone</label><select id="kDev"><option value="">Default microphone</option></select></div><div><label for="kGain">Input gain <b id="kGainV">100%</b></label><input type="range" id="kGain" min="0" max="200" step="5" value="100" style="width:100%"></div></div><div class="au-bar"><label style="font-weight:400;display:flex;gap:6px;align-items:center;margin:4px 12px 4px 0"><input type="checkbox" id="kEcho"> Echo cancellation</label><label style="font-weight:400;display:flex;gap:6px;align-items:center;margin:4px 12px 4px 0"><input type="checkbox" id="kNs"> Noise suppression</label><label style="font-weight:400;display:flex;gap:6px;align-items:center;margin:4px 12px 4px 0"><input type="checkbox" id="kAgc"> Auto gain</label></div><div class="au-bar"><button type="button" class="dt-btn" id="kRec">Start recording</button><button type="button" class="dt-btn ghost" id="kPause">Pause</button><button type="button" class="dt-btn ghost" id="kStop">Stop</button><button type="button" class="dt-btn ghost" id="kTest">Test microphone</button><button type="button" class="dt-btn ghost" id="kTestStop" hidden>Stop test</button></div><div class="au-bar"><b id="kState">Ready</b><span class="au-time" id="kTime" style="font-size:1.4rem">0:00.0</span></div><div class="au-meter" id="kMeter" aria-label="Input level"><i></i></div><canvas id="kLive" class="au-wave" height="70" aria-label="Live input level"></canvas><p id="kInfo" class="ck-note"></p><div id="kEdit" hidden><h3 style="margin:10px 0 0">Trim and save</h3><canvas id="kWave" class="au-wave" height="120" aria-label="Audio waveform"></canvas><div class="pd-prog" id="pdProg" hidden><i></i></div><div class="pd-progtxt" id="pdProgTxt"></div><div class="au-bar"><button type="button" class="dt-btn" id="kPlay">Play</button><button type="button" class="dt-btn ghost" id="kDiscard">Discard and record again</button><span class="ck-note">Drag on the waveform to keep only part of the recording.</span></div><div class="dt-row4"><div><label for="kA">Start</label><input type="text" id="kA" inputmode="decimal"></div><div><label for="kB">End</label><input type="text" id="kB" inputmode="decimal"></div><div><label for="kNorm">Loudness</label><label style="font-weight:400;display:flex;gap:6px;align-items:center;margin-top:6px"><input type="checkbox" id="kNorm"> Normalize to -1 dB</label></div><div></div></div><div class="dt-row"><div><label for="kFmt">Output format</label><select id="kFmt"><option value="mp3">MP3</option><option value="wav">WAV (lossless)</option></select></div><div id="kKbpsBox"><div><label for="kKbps">MP3 bitrate</label><select id="kKbps"><option value="96">96 kbps</option><option value="128">128 kbps</option><option value="160">160 kbps</option><option value="192">192 kbps</option><option value="256">256 kbps</option><option value="320">320 kbps</option></select></div></div></div><div id="kSum"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset options</button><button type="button" class="dt-btn" id="kDl">Save recording</button>
+<button type="button" class="dt-btn ghost" id="kPrint">Print / save summary</button>
+<button type="button" class="dt-btn ghost" id="kCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online voice recorder records from your microphone inside your browser, and the recording stays on your device. It is not uploaded. The page asks for microphone permission, which you can revoke at any time in your browser settings. The page downloads an open-source MP3 encoder from a public CDN the first time you save as MP3. Get the consent of everyone you record, and follow the laws on recording conversations where you live.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Online Voice Recorder. https://utiliby.com/tools/audio-music-tools/online-voice-recorder/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Online Voice Recorder by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/audio-music-tools/online-voice-recorder/"&gt;Online Voice Recorder by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online voice recorder does</a></li><li><a href="#how">How to record your voice in four steps</a></li><li><a href="#setup">Setting up for the best sound</a></li><li><a href="#options">Echo cancellation, noise suppression and auto gain</a></li><li><a href="#levels">Understanding levels and clipping</a></li><li><a href="#formats">MP3 or WAV?</a></li><li><a href="#uses">Common uses</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#legal">Recording other people</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online voice recorder does</h2>
+<p>An <b>online voice recorder</b> lets you capture sound from a microphone without installing an app. People use one to record a voice memo, an audition, a voice-over, an interview, a lecture, a message to send, or a quick test of a new microphone. Many web recorders save your audio to their servers or hide the download behind a sign-up. This free tool keeps the recording on your own device. It captures sound from your microphone in the browser, shows a live level meter, lets you trim the result, and saves it as MP3 or WAV.</p><p>It also works as a <b>microphone test</b>: turn the mic on, speak, and watch the meter without recording anything. There is no account, no watermark and no cloud copy.</p><figure class="dt-fig"><svg viewBox="0 0 640 200" width="100%" role="img" aria-label="A microphone sends sound through the browser into a live level meter, and then into a saved audio file, all on your own device"><title>Recording in the browser</title>
+<rect x="30" y="50" width="60" height="100" rx="30" fill="#6d28d9"/><rect x="20" y="104" width="80" height="34" rx="17" fill="none" stroke="#6d28d9" stroke-width="5" stroke-dasharray="0"/><rect x="56" y="150" width="8" height="26" fill="#6d28d9"/><rect x="38" y="174" width="44" height="7" rx="3" fill="#6d28d9"/>
+<path d="M120 100 H190" stroke="#6d28d9" stroke-width="3" fill="none"/><path d="M183 91 L197 100 L183 109" stroke="#6d28d9" stroke-width="3" fill="none"/>
+<rect x="210" y="40" width="220" height="120" rx="12" fill="none" stroke="#9ca3af"/><text x="320" y="62" text-anchor="middle" font-size="12" fill="currentColor">Your browser</text>
+<g fill="#dc2626"><rect class="dt-bar" x="230" y="80" width="9" height="50" rx="3"/><rect class="dt-bar" x="246" y="70" width="9" height="70" rx="3" style="animation-delay:.1s"/><rect class="dt-bar" x="262" y="88" width="9" height="34" rx="3" style="animation-delay:.2s"/><rect class="dt-bar" x="278" y="72" width="9" height="66" rx="3" style="animation-delay:.3s"/><rect class="dt-bar" x="294" y="84" width="9" height="42" rx="3" style="animation-delay:.4s"/><rect class="dt-bar" x="310" y="76" width="9" height="58" rx="3" style="animation-delay:.5s"/><rect class="dt-bar" x="326" y="90" width="9" height="30" rx="3" style="animation-delay:.2s"/><rect class="dt-bar" x="342" y="74" width="9" height="62" rx="3" style="animation-delay:.6s"/><rect class="dt-bar" x="358" y="86" width="9" height="38" rx="3" style="animation-delay:.1s"/><rect class="dt-bar" x="374" y="78" width="9" height="54" rx="3" style="animation-delay:.4s"/><rect class="dt-bar" x="390" y="92" width="9" height="26" rx="3" style="animation-delay:.3s"/></g>
+<text x="320" y="152" text-anchor="middle" font-size="12" fill="currentColor">live level and recording</text>
+<path d="M450 100 H500" stroke="#6d28d9" stroke-width="3" fill="none"/><path d="M493 91 L507 100 L493 109" stroke="#6d28d9" stroke-width="3" fill="none"/>
+<rect x="520" y="50" width="100" height="100" rx="12" fill="#6d28d9"/><text x="570" y="108" text-anchor="middle" font-size="22" font-weight="800" fill="#fff">MP3</text><text x="570" y="132" text-anchor="middle" font-size="11" fill="#ede9fe">or WAV</text></svg>
+<figcaption>Sound goes from the microphone into your browser and is saved on your own device. There is no server in the path.</figcaption></figure>
+<h2 id="how">How to record your voice in four steps</h2>
+<ol><li><b>Check the microphone.</b> Choose your microphone from the list, click Test microphone and speak. The bar should rise to about two thirds of its width on normal speech.</li><li><b>Record.</b> Click Start recording and allow microphone access when the browser asks. Use Pause if you need a break.</li><li><b>Stop and trim.</b> Click Stop. Drag on the waveform to choose the part you want, or type start and end times.</li><li><b>Save.</b> Pick MP3 or WAV, and click Save recording.</li></ol>
+<h2 id="setup">Setting up for the best sound</h2>
+<ul><li><b>Choose a quiet room.</b> Close windows, switch off fans and put your phone on silent. Soft furnishings such as curtains and sofas cut echo.</li><li><b>Keep the microphone close.</b> About a hand's width, or four to six inches, from your mouth is a good start for most microphones. Closer makes the voice fuller but exaggerates breath sounds.</li><li><b>Reduce plosives.</b> Speak slightly across the microphone rather than straight into it, and use a pop filter if you have one.</li><li><b>Use headphones.</b> They stop speaker sound from feeding back into the microphone.</li><li><b>Watch the meter.</b> Peaks around 60 to 80 percent leave room before distortion.</li></ul>
+<h2 id="options">Echo cancellation, noise suppression and auto gain</h2>
+<p>These three switches ask the browser to process your microphone signal before it reaches the page. <b>Echo cancellation</b> removes sound that comes out of your speakers and back in through the microphone, which matters if you record without headphones. <b>Noise suppression</b> lowers steady noise such as computer fans. <b>Auto gain</b> raises or lowers the volume to keep it even.</p><p>They are designed for calls, and they can make recordings sound a little processed, with a pumping volume or a thin tone. For speech in a noisy room they help. For a podcast, an instrument or a singer in a quiet room, switch them off and control the level yourself with Input gain. The settings take effect when the microphone opens, so change them before you click Start or Test.</p>
+<h2 id="levels">Understanding levels and clipping</h2>
+<p>Digital audio has a hard ceiling. If the signal goes above it, the tops of the waves are cut flat, which is called clipping and sounds harsh. The level meter shows the peak of your voice. A healthy recording peaks between about minus 12 and minus 3 dB. After you stop, the summary shows the peak in decibels and warns you if it clipped or if the signal is very quiet.</p><p>If the recording is quiet but not clipped, tick Normalize, which raises the peak to minus 1 dB. If it clipped, normalizing cannot repair it. Lower Input gain or move back and record again.</p>
+<h2 id="formats">MP3 or WAV?</h2>
+<div class="dt-wrap"><table><tr><th>Format</th><th>Size per minute</th><th>Best for</th></tr><tr><td>MP3 128 kbps</td><td>about 1 MB</td><td>Voice memos, sharing, uploads</td></tr><tr><td>MP3 192 kbps</td><td>about 1.4 MB</td><td>Higher quality speech and music</td></tr><tr><td>WAV 16-bit mono</td><td>about 5 MB at 44.1 kHz</td><td>Editing, mastering, archiving</td></tr></table></div><p>MP3 is compressed and small, which suits messages and uploads. WAV is uncompressed and is the better choice if you plan to edit the recording in an audio program, since you avoid compressing it twice.</p>
+<h2 id="uses">Common uses</h2>
+<ul><li><b>Voice memos and notes:</b> capture an idea in seconds.</li><li><b>Voice-overs and narration:</b> record a script and trim the pauses.</li><li><b>Auditions and demos:</b> send a clean file to a casting director or client.</li><li><b>Interviews and lectures:</b> record on a laptop or a phone.</li><li><b>Language practice:</b> record yourself and compare with a native speaker.</li><li><b>Microphone checks:</b> test a headset before a meeting or a stream.</li></ul>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>The browser does not ask for permission:</b> it may have been blocked earlier. Click the lock icon in the address bar and allow the microphone.</li><li><b>The meter does not move:</b> choose another microphone from the list, check the system input volume and that the microphone is not muted.</li><li><b>The sound has an echo:</b> use headphones, or turn on Echo cancellation.</li><li><b>The sound is thin or watery:</b> turn off Noise suppression and Auto gain.</li><li><b>The page stops recording on a phone:</b> keep the screen on and the browser in the foreground.</li><li><b>Save as MP3 fails:</b> the encoder could not be downloaded. Choose WAV or check your connection.</li></ul>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>When you click Start, the page asks the browser for access to your microphone and receives a stream of audio samples. It keeps those samples in memory, draws the level meter from them, and encodes them locally when you save. Nothing is sent to Utiliby or to any other server. Stopping the recording turns the microphone off, and the browser's microphone indicator disappears. The MP3 encoder library loads from a public CDN the first time you save as MP3, but your audio is not part of that request.</p>
+<h2 id="legal">Recording other people</h2>
+<p>Recording yourself is simple. Recording other people is regulated. In some places only one party in a conversation needs to know it is being recorded, and in others all parties must agree. Rules also differ for public speeches, workplaces and calls with people in other countries. Ask for consent, say clearly that you are recording, and check local law before you publish or share a recording of someone else.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I record my voice online for free?</summary><p>Click Start recording and allow microphone access when your browser asks. Speak, click Stop, trim the recording if you like, and save it as MP3 or WAV. Everything happens in your browser, with no account and no upload.</p></details><details><summary>Is my recording uploaded or stored anywhere?</summary><p>No. The audio is captured and kept in your browser's memory, then saved to your device when you choose. It is not sent to any server. If you close the tab before saving, the recording is gone.</p></details><details><summary>Why does my browser ask for microphone permission?</summary><p>Browsers always ask before a web page can use your microphone. You can allow it for this visit or always, and you can remove the permission at any time from the lock icon in the address bar.</p></details><details><summary>The tool says no microphone was found. What should I do?</summary><p>Check that a microphone is plugged in and enabled in your system sound settings, then choose it from the Microphone list. Close any other app that might be using it, and click Start recording again.</p></details><details><summary>What does the microphone test do?</summary><p>Test microphone turns the mic on and shows the level meter without saving anything, so you can check your setup. Aim for a meter that reaches about two thirds of the bar when you speak normally.</p></details><details><summary>What do echo cancellation, noise suppression and auto gain do?</summary><p>Echo cancellation reduces sound from your speakers that your mic picks up. Noise suppression lowers steady background noise such as fans. Auto gain adjusts volume automatically. These are done by your browser. For music or the most natural voice, turn them off.</p></details><details><summary>How long can I record?</summary><p>Up to one hour per recording. Recordings are held in memory, and one hour of mono audio uses roughly 640 MB, so close other tabs for long recordings.</p></details><details><summary>Can I pause and resume?</summary><p>Yes. Pause stops adding audio without ending the session, and Resume continues. The timer counts only the time that is actually recorded.</p></details><details><summary>What formats can I save?</summary><p>MP3 for small files that play everywhere, and WAV for uncompressed 16-bit audio that is best for editing. Recordings are mono, which is normal for a single microphone.</p></details><details><summary>Why is my recording too quiet or distorted?</summary><p>Too quiet: move closer, raise Input gain, or tick Normalize before you save. Distorted: lower Input gain or move back, because the signal is clipping. The recording summary warns you when the peak is too low or too high.</p></details><details><summary>Can I trim the start and end?</summary><p>Yes. Drag on the waveform to select the part you want, or type exact start and end times. Only the selected part is saved.</p></details><details><summary>Can it record the sound of my computer or a video call?</summary><p>No. This tool records microphone input only. Capturing the audio that plays on your computer needs screen or system audio capture, which browsers handle differently.</p></details><details><summary>Does it work on iPhone and Android?</summary><p>Yes, in current Safari, Chrome and Firefox. Allow the microphone when asked, and keep the screen on and the page open while recording, because mobile browsers can pause pages that go to the background.</p></details><details><summary>Can I use it for podcasts, voice-overs or interviews?</summary><p>Yes, for quick recording. Use a headset or external microphone in a quiet room, turn off echo cancellation if you wear headphones, and save as WAV if you will edit the audio afterwards.</p></details><details><summary>Does it work offline?</summary><p>After the page has loaded, recording and saving as WAV work without an internet connection. Saving as MP3 needs a one-time download of the open-source encoder.</p></details><details><summary>Is it legal to record someone's voice?</summary><p>Laws on recording conversations differ by country and region, and many require the consent of everyone involved. Always tell people they are being recorded and follow the rules where you live.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary prints the recording details and the waveform, and Copy summary copies them as text. The audio file is the main download.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>MDN Web Docs, MediaDevices.getUserMedia(), for how browsers request microphone access.</li><li>MDN Web Docs, MediaTrackConstraints: echoCancellation, noiseSuppression and autoGainControl.</li><li>MDN Web Docs, Web Audio API and AudioWorklet, for how audio samples are processed in the browser.</li><li>W3C Media Capture and Streams specification, which defines microphone access on the web.</li><li>LAME project and the lamejs encoder, the open-source MP3 encoder used for MP3 output.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online voice recorder records from your microphone inside your browser, and the recording stays on your device. It is not uploaded. The page asks for microphone permission, which you can revoke at any time in your browser settings. The page downloads an open-source MP3 encoder from a public CDN the first time you save as MP3. Get the consent of everyone you record, and follow the laws on recording conversations where you live.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+function readBuf(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsArrayBuffer(file); }); }
+function fmtSize(n) { if (n == null) return "n/a"; if (n < 1024) return n + " B"; if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + " KB"; return (n / 1048576).toFixed(n < 10485760 ? 2 : 1) + " MB"; }
+function baseName(n) { return String(n || "document").replace(/\.[^.]+$/, "").replace(/[^\w\-. ]+/g, "_").slice(0, 60) || "document"; }
+function prog(f, text) {
+  var p = $("pdProg"); if (!p) return;
+  if (f == null) { p.hidden = true; var t0 = $("pdProgTxt"); if (t0) t0.textContent = ""; return; }
+  p.hidden = false; p.firstChild.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; p.title = text || "";
+  var t = $("pdProgTxt"); if (t) t.textContent = text || "";
+}
+function tick() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function bindDrop(dropId, fileId, cb) {
+  var d = $(dropId), f = $(fileId);
+  function open() { f.value = ""; f.click(); }
+  d.addEventListener("click", open);
+  d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  ["dragenter", "dragover"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add("on"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove("on"); }); });
+  d.addEventListener("drop", function (e) { var fl = e.dataTransfer && e.dataTransfer.files; if (fl && fl.length) cb(Array.prototype.slice.call(fl)); });
+  f.addEventListener("change", function () { if (f.files && f.files.length) cb(Array.prototype.slice.call(f.files)); });
+}
+var CRCT = null;
+function crc32(u8) {
+  if (!CRCT) { CRCT = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; CRCT[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) crc = CRCT[(crc ^ u8[i]) & 255] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cen = [], off = 0, d = new Date();
+  var dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), data = f.data, crc = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cen.push(c.buffer, nm); off += 30 + nm.length + data.length;
+  });
+  var csz = 0; cen.forEach(function (x) { csz += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, csz, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cen, [e.buffer]), { type: "application/zip" });
+}
+function blobBytes(b) { return b.arrayBuffer().then(function (x) { return new Uint8Array(x); }); }
+function busy(ids, on) { ids.forEach(function (i) { var e = $(i); if (e) e.disabled = !!on; }); }
+/* ---------- audio helpers ---------- */
+var AUURL = { lame: ["https://cdn.jsdelivr.net/npm/lamejs@1.2.1/lame.min.js", "https://unpkg.com/lamejs@1.2.1/lame.min.js"] };
+var AC = null;
+function actx() { if (!AC) { var C = window.AudioContext || window.webkitAudioContext; AC = new C(); } if (AC.state === "suspended" && AC.resume) AC.resume(); return AC; }
+function loadScript(src) { return new Promise(function (res, rej) { var s = document.createElement("script"); s.src = src; s.async = true; s.onload = res; s.onerror = function () { rej(new Error("load")); }; document.head.appendChild(s); }); }
+function needLame() {
+  if (window.lamejs && window.lamejs.Mp3Encoder) return Promise.resolve(window.lamejs);
+  if (needLame.p) return needLame.p;
+  needLame.p = (function nxt(i) {
+    if (i >= AUURL.lame.length) return Promise.reject(new Error("The MP3 encoder could not be downloaded. Check your connection, or choose WAV, which needs no download."));
+    return loadScript(AUURL.lame[i]).then(function () { if (window.lamejs && window.lamejs.Mp3Encoder) return window.lamejs; throw new Error("x"); }).catch(function () { return nxt(i + 1); });
+  })(0);
+  needLame.p.catch(function () { needLame.p = null; });
+  return needLame.p;
+}
+function fmtTime(s, ms) { if (!isFinite(s) || s < 0) s = 0; var m = Math.floor(s / 60), r = s - m * 60, t = r.toFixed(ms === 0 ? 0 : (ms || 2)); if (parseFloat(t) >= 60) { m++; t = (0).toFixed(ms === 0 ? 0 : (ms || 2)); } if (r < 10 && t.indexOf(".") === 1 || (ms === 0 && parseFloat(t) < 10)) t = "0" + t; return m + ":" + t; }
+function parseTime(str, def) {
+  str = String(str == null ? "" : str).trim(); if (!str) return def;
+  var p = str.split(":"), v = 0, i;
+  if (p.length > 3) return def;
+  for (i = 0; i < p.length; i++) { var x = parseFloat(p[i]); if (isNaN(x) || x < 0) return def; v = v * 60 + x; }
+  return v;
+}
+function dB(x) { return x <= 1e-9 ? -Infinity : 20 * Math.log10(x); }
+function dbStr(x, d) { return isFinite(x) ? x.toFixed(d == null ? 1 : d) + " dB" : "-∞ dB"; }
+function yieldUi() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function decodeAudio(file) {
+  return readBuf(file).then(function (buf) {
+    return new Promise(function (res, rej) {
+      var ctx = actx(), done = false;
+      function ok(ab) { if (done) return; done = true; res(ab); }
+      function bad(e) { if (done) return; done = true; rej(new Error("This file could not be decoded by your browser. Try MP3, WAV, M4A, OGG, FLAC, or a video with a standard audio track.")); }
+      try { var pr = ctx.decodeAudioData(buf, ok, bad); if (pr && pr.then) pr.then(ok, bad); } catch (e) { bad(e); }
+    });
+  }).then(function (ab) {
+    if (!ab || !ab.length || !ab.duration) throw new Error("No audio was found in this file.");
+    return ab;
+  });
+}
+function bufChans(ab) { var a = []; for (var c = 0; c < ab.numberOfChannels; c++) a.push(new Float32Array(ab.getChannelData(c))); return a; }
+function toAB(chs, rate) { var ab = actx().createBuffer(chs.length, chs[0].length, rate); for (var c = 0; c < chs.length; c++) ab.copyToChannel(chs[c], c); return ab; }
+function peakOf(chs) { var p = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) { var v = x[i] < 0 ? -x[i] : x[i]; if (v > p) p = v; } }); return p; }
+function rmsOf(chs) { var s = 0, n = 0; chs.forEach(function (x) { for (var i = 0; i < x.length; i++) s += x[i] * x[i]; n += x.length; }); return n ? Math.sqrt(s / n) : 0; }
+function mixMono(chs) { if (chs.length === 1) return chs[0]; var n = chs[0].length, o = new Float32Array(n), k = 1 / chs.length; for (var c = 0; c < chs.length; c++) for (var i = 0; i < n; i++) o[i] += chs[c][i] * k; return o; }
+function hermite(x, pos) {
+  var i = Math.floor(pos), f = pos - i, n = x.length, a = x[i < 1 ? 0 : i - 1], b = x[i], c = x[i + 1 < n ? i + 1 : n - 1], d = x[i + 2 < n ? i + 2 : n - 1];
+  var c1 = 0.5 * (c - a), c2 = a - 2.5 * b + 2 * c - 0.5 * d, c3 = 0.5 * (d - a) + 1.5 * (b - c);
+  return ((c3 * f + c2) * f + c1) * f + b;
+}
+function resampleStep(x, step) {
+  if (Math.abs(step - 1) < 1e-9) return x;
+  var n = Math.max(1, Math.floor((x.length - 1) / step) + 1), o = new Float32Array(n);
+  for (var i = 0; i < n; i++) o[i] = hermite(x, i * step);
+  return o;
+}
+function resampleRate(chs, from, to) {
+  if (from === to) return chs;
+  var step = from / to, lp = chs;
+  if (to < from) lp = chs.map(function (x) { var o = new Float32Array(x.length), a = 0, w = Math.max(2, Math.round(from / to)); /* box prefilter */ var s = 0; for (var i = 0; i < x.length; i++) { s += x[i]; if (i >= w) s -= x[i - w]; o[i] = s / Math.min(w, i + 1); } return o; });
+  return lp.map(function (x) { return resampleStep(x, step); });
+}
+function wavBlob(chs, rate) {
+  var ch = Math.min(2, chs.length), n = chs[0].length, bytes = n * ch * 2, ab = new ArrayBuffer(44 + bytes), v = new DataView(ab);
+  function s(o, t) { for (var i = 0; i < t.length; i++) v.setUint8(o + i, t.charCodeAt(i)); }
+  s(0, "RIFF"); v.setUint32(4, 36 + bytes, true); s(8, "WAVE"); s(12, "fmt "); v.setUint32(16, 16, true); v.setUint16(20, 1, true); v.setUint16(22, ch, true); v.setUint32(24, rate, true); v.setUint32(28, rate * ch * 2, true); v.setUint16(32, ch * 2, true); v.setUint16(34, 16, true); s(36, "data"); v.setUint32(40, bytes, true);
+  var o = 44;
+  for (var i = 0; i < n; i++) for (var c = 0; c < ch; c++) { var x = chs[c][i]; x = x > 1 ? 1 : x < -1 ? -1 : x; v.setInt16(o, x < 0 ? Math.round(x * 32768) : Math.round(x * 32767), true); o += 2; }
+  return new Blob([ab], { type: "audio/wav" });
+}
+function mp3Blob(chs, rate, kbps, onProg) {
+  return needLame().then(function (L) {
+    var ok = [8000, 11025, 12000, 16000, 22050, 24000, 32000, 44100, 48000];
+    if (ok.indexOf(rate) < 0) { var to = rate > 48000 ? 48000 : 44100; chs = resampleRate(chs, rate, to); rate = to; }
+    var ch = Math.min(2, chs.length), n = chs[0].length, enc = new L.Mp3Encoder(ch, rate, kbps), parts = [], size = 1152 * 16, t0 = Date.now();
+    function conv(x, s, e) { var a = new Int16Array(e - s); for (var i = s; i < e; i++) { var v = x[i]; v = v > 1 ? 1 : v < -1 ? -1 : v; a[i - s] = v < 0 ? Math.round(v * 32768) : Math.round(v * 32767); } return a; }
+    function step(s) {
+      if (s >= n) { var tail = enc.flush(); if (tail && tail.length) parts.push(new Uint8Array(tail)); return new Blob(parts, { type: "audio/mpeg" }); }
+      var e = Math.min(n, s + size), l = conv(chs[0], s, e), c = ch > 1 ? enc.encodeBuffer(l, conv(chs[1], s, e)) : enc.encodeBuffer(l);
+      if (c && c.length) parts.push(new Uint8Array(c));
+      if (onProg) onProg(e / n);
+      if (Date.now() - t0 > 40) { t0 = Date.now(); return yieldUi().then(function () { return step(e); }); }
+      return step(e);
+    }
+    return step(0);
+  });
+}
+function exportAudio(chs, rate, fmt, kbps, onProg) {
+  if (fmt === "wav") return Promise.resolve({ blob: wavBlob(chs, rate), ext: "wav" });
+  return mp3Blob(chs, rate, kbps, onProg).then(function (b) { return { blob: b, ext: "mp3" }; });
+}
+function fmtOpts(p) { return { fmt: $(p + "Fmt").value, kbps: parseInt($(p + "Kbps").value, 10) || 192 }; }
+function bindFmt(p) { var f = $(p + "Fmt"); function u() { $(p + "KbpsBox").hidden = f.value === "wav"; } f.addEventListener("change", u); u(); }
+function estSize(sec, ch, rate, o) { return o.fmt === "wav" ? sec * rate * Math.min(2, ch) * 2 : sec * o.kbps * 125; }
+function isAud(f) { return /^(audio|video)\//.test(f.type) || /\.(mp3|wav|wave|ogg|oga|opus|m4a|aac|flac|aif|aiff|weba|webm|mp4|m4v|mov|mkv|3gp|amr|wma|mpg|mpeg|avi)$/i.test(f.name); }
+/* ----- waveform view with draggable selection ----- */
+function WaveView(cv, o) {
+  o = o || {};
+  var me = { chs: null, rate: 44100, dur: 0, a: 0, b: 0, sel: false, cursor: -1, regions: [], marks: [], pk: null, H: o.height || 130, color: o.color || "#7c3aed" };
+  var drag = null;
+  function dims() { var dpr = window.devicePixelRatio || 1, w = Math.max(200, cv.clientWidth || 640); cv.width = Math.round(w * dpr); cv.height = Math.round(me.H * dpr); cv.style.height = me.H + "px"; return { w: w, h: me.H, dpr: dpr }; }
+  function calcPeaks(w) {
+    var n = me.chs[0].length, bins = Math.round(w), pk = new Float32Array(bins * 2);
+    for (var i = 0; i < bins; i++) {
+      var s = Math.floor(i * n / bins), e = Math.max(s + 1, Math.floor((i + 1) * n / bins)), st = Math.max(1, Math.floor((e - s) / 200)), mn = 0, mx = 0;
+      for (var c = 0; c < me.chs.length; c++) { var x = me.chs[c]; for (var j = s; j < e; j += st) { var v = x[j]; if (v > mx) mx = v; if (v < mn) mn = v; } }
+      pk[i * 2] = mn; pk[i * 2 + 1] = mx;
+    }
+    me.pk = pk;
+  }
+  me.xOf = function (t) { return t / me.dur * (cv.clientWidth || 640); };
+  me.tOf = function (x) { return Math.max(0, Math.min(me.dur, x / (cv.clientWidth || 640) * me.dur)); };
+  me.draw = function () {
+    var d = dims(), ctx = cv.getContext("2d"), W = cv.width, H = cv.height, k = d.dpr, cs = getComputedStyle(cv);
+    var bg = (cs.getPropertyValue("--bg") || "").trim() || "#fff", line = (cs.getPropertyValue("--line") || "").trim() || "#ddd", mut = (cs.getPropertyValue("--muted") || "").trim() || "#666";
+    ctx.fillStyle = bg; ctx.fillRect(0, 0, W, H);
+    ctx.strokeStyle = line; ctx.lineWidth = 1; ctx.beginPath(); ctx.moveTo(0, H / 2); ctx.lineTo(W, H / 2); ctx.stroke();
+    if (!me.chs) { ctx.fillStyle = mut; ctx.font = (13 * k) + "px sans-serif"; ctx.textAlign = "center"; ctx.fillText("Choose a file to see its waveform", W / 2, H / 2 - 8 * k); return; }
+    if (!me.pk || me.pk.length / 2 !== Math.round(d.w)) calcPeaks(d.w);
+    var bins = me.pk.length / 2, ax = me.xOf(me.a), bx = me.xOf(me.b);
+    for (var i = 0; i < bins; i++) {
+      var mn = me.pk[i * 2], mx = me.pk[i * 2 + 1], inSel = !me.sel || (i + 0.5 >= ax && i + 0.5 <= bx);
+      ctx.fillStyle = inSel ? me.color : "rgba(124,58,237,.28)";
+      var y1 = H / 2 - mx * (H / 2 - 4 * k), y2 = H / 2 - mn * (H / 2 - 4 * k);
+      ctx.fillRect(i * k * (W / k / bins), y1, Math.max(1, k * (W / k / bins)), Math.max(1, y2 - y1));
+    }
+    me.regions.forEach(function (r) { ctx.fillStyle = r.color || "rgba(220,38,38,.25)"; var x1 = me.xOf(r.a) * k, x2 = me.xOf(r.b) * k; ctx.fillRect(x1, 0, Math.max(1, x2 - x1), H); });
+    me.marks.forEach(function (t) { ctx.fillStyle = "rgba(16,185,129,.8)"; ctx.fillRect(me.xOf(t) * k, 0, Math.max(1, k), H); });
+    if (me.sel) {
+      ctx.fillStyle = "#4c1d95"; ctx.fillRect(ax * k - k, 0, 2 * k, H); ctx.fillRect(bx * k - k, 0, 2 * k, H);
+      ctx.beginPath(); ctx.arc(ax * k, 10 * k, 6 * k, 0, 7); ctx.arc(bx * k, H - 10 * k, 6 * k, 0, 7); ctx.fill();
+    }
+    if (me.cursor >= 0) { ctx.fillStyle = "#ef4444"; ctx.fillRect(me.xOf(me.cursor) * k - k, 0, 2 * k, H); }
+  };
+  me.set = function (chs, rate) { me.chs = chs; me.rate = rate; me.dur = chs ? chs[0].length / rate : 0; me.a = 0; me.b = me.dur; me.sel = false; me.cursor = -1; me.regions = []; me.marks = []; me.pk = null; me.draw(); };
+  me.setSel = function (a, b) { me.a = Math.max(0, Math.min(a, me.dur)); me.b = Math.max(me.a, Math.min(b, me.dur)); me.sel = true; me.draw(); };
+  function px(e) { var r = cv.getBoundingClientRect(); return e.clientX - r.left; }
+  if (o.select) {
+    cv.style.touchAction = "none"; cv.style.cursor = "crosshair";
+    cv.addEventListener("pointerdown", function (e) {
+      if (!me.chs) return; var x = px(e), t = me.tOf(x); try { cv.setPointerCapture(e.pointerId); } catch (er) { }
+      if (me.sel && Math.abs(x - me.xOf(me.a)) < 12) drag = { m: "a", x0: x };
+      else if (me.sel && Math.abs(x - me.xOf(me.b)) < 12) drag = { m: "b", x0: x };
+      else drag = { m: "n", x0: x, t0: t, moved: false };
+    });
+    cv.addEventListener("pointermove", function (e) {
+      if (!drag) return; var x = px(e), t = me.tOf(x), mn = 0.01;
+      if (drag.m === "a") me.a = Math.min(t, me.b - mn);
+      else if (drag.m === "b") me.b = Math.max(t, me.a + mn);
+      else { if (Math.abs(x - drag.x0) < 4 && !drag.moved) return; drag.moved = true; me.a = Math.min(drag.t0, t); me.b = Math.max(drag.t0, t); me.sel = true; }
+      if (me.a < 0) me.a = 0; if (me.b > me.dur) me.b = me.dur;
+      me.draw(); if (o.onSel) o.onSel(me.a, me.b, true);
+    });
+    function up() { if (!drag) return; var d = drag; drag = null; if (d.m === "n" && !d.moved && o.onSeek) o.onSeek(me.tOf(d.x0)); else if (o.onSel) o.onSel(me.a, me.b, false); }
+    cv.addEventListener("pointerup", up); cv.addEventListener("pointercancel", up);
+  } else if (o.onSeek) { cv.style.cursor = "pointer"; cv.addEventListener("click", function (e) { if (me.chs) o.onSeek(me.tOf(px(e))); }); }
+  var rt = 0; window.addEventListener("resize", function () { clearTimeout(rt); rt = setTimeout(function () { me.pk = null; me.draw(); }, 120); });
+  me.draw();
+  return me;
+}
+/* ----- simple player ----- */
+var PL = { src: null, raf: 0, t0: 0, from: 0, to: 0, cb: null, end: null };
+function plStop(silent) {
+  if (PL.src) { try { PL.src.onended = null; PL.src.stop(); } catch (e) { } PL.src = null; }
+  cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; PL.cb = null;
+  if (e && !silent) e();
+}
+function plPlay(ab, from, to, loop, onTick, onEnd, rate) {
+  plStop(true); var ctx = actx(), s = ctx.createBufferSource(); s.buffer = ab; s.playbackRate.value = rate || 1;
+  from = Math.max(0, Math.min(from, ab.duration - 0.01)); to = Math.max(from + 0.01, Math.min(to, ab.duration));
+  if (loop) { s.loop = true; s.loopStart = from; s.loopEnd = to; }
+  s.connect(ctx.destination); s.start(0, from, loop ? undefined : (to - from)); PL.src = s; PL.t0 = ctx.currentTime; PL.from = from; PL.to = to; PL.cb = onTick; PL.end = onEnd;
+  s.onended = function () { if (PL.src === s) { PL.src = null; cancelAnimationFrame(PL.raf); var e = PL.end; PL.end = null; if (e) e(); } };
+  (function tk() { if (PL.src !== s) return; var el = (ctx.currentTime - PL.t0) * (rate || 1), t = loop ? from + (el % (to - from)) : Math.min(to, from + el); if (onTick) onTick(t); PL.raf = requestAnimationFrame(tk); })();
+}
+function dlName(base, suffix, ext) { return baseName(base) + (suffix ? "-" + suffix : "") + "." + ext; }
+function kbShort(n) { return fmtSize(n); }
+
+/* ---------- online voice recorder ---------- */
+var ST = { stream: null, src: null, gain: null, node: null, mute: null, proc: null, mode: "idle", rec: false, parts: [], blk: null, bi: 0, total: 0, rate: 44100, chs: null, name: "", level: 0, lv: [], playing: false, rows: [], raf: 0, started: "" };
+var wv = null, MAXSEC = 3600;
+var WK = "class Cap extends AudioWorkletProcessor{process(i){var c=i[0]&&i[0][0];if(c)this.port.postMessage(c.slice(0));return true}}registerProcessor('cap',Cap)";
+function setMode(m) {
+  ST.mode = m; var t = { idle: "Ready", test: "Testing the microphone (not recording)", rec: "Recording", pause: "Paused", done: "Recording stopped" }[m];
+  $("kState").textContent = t; busy(["kRec"], m === "rec" || m === "pause"); $("kRec").textContent = m === "done" || m === "idle" || m === "test" ? "Start recording" : "Recording...";
+  busy(["kPause"], !(m === "rec" || m === "pause")); $("kPause").textContent = m === "pause" ? "Resume" : "Pause"; busy(["kStop"], !(m === "rec" || m === "pause" || m === "test"));
+  busy(["kTest"], m === "rec" || m === "pause" || m === "test"); $("kTestStop").hidden = m !== "test";
+}
+function push(c) {
+  var i = 0, n = c.length;
+  while (i < n) {
+    if (!ST.blk) { ST.blk = new Float32Array(32768); ST.bi = 0; }
+    var k = Math.min(n - i, ST.blk.length - ST.bi); ST.blk.set(c.subarray(i, i + k), ST.bi); ST.bi += k; i += k;
+    if (ST.bi >= ST.blk.length) { ST.parts.push(ST.blk); ST.blk = null; }
+  }
+  ST.total += n;
+}
+function onChunk(c) {
+  var p = 0; for (var i = 0; i < c.length; i++) { var v = c[i] < 0 ? -c[i] : c[i]; if (v > p) p = v; }
+  ST.level = Math.max(p, ST.level * 0.92); ST.lv.push(p); if (ST.lv.length > 4000) ST.lv.splice(0, 2000);
+  if (ST.rec) { push(c); if (ST.total / ST.rate >= MAXSEC) { msg("Reached the one hour limit, so recording stopped.", "err"); stopRec(); } }
+}
+function ensureMic() {
+  if (ST.stream) return Promise.resolve();
+  if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) return Promise.reject(new Error("This browser cannot access a microphone on this page. Use a current browser over a secure (https) connection."));
+  var a = { echoCancellation: $("kEcho").checked, noiseSuppression: $("kNs").checked, autoGainControl: $("kAgc").checked, channelCount: 1 }, id = $("kDev").value; if (id) a.deviceId = { exact: id };
+  return navigator.mediaDevices.getUserMedia({ audio: a }).then(function (s) {
+    ST.stream = s; var ctx = actx(); ST.rate = ctx.sampleRate; ST.src = ctx.createMediaStreamSource(s); ST.gain = ctx.createGain(); ST.gain.gain.value = numIn("kGain", 0, 200, 100) / 100; ST.src.connect(ST.gain);
+    ST.mute = ctx.createGain(); ST.mute.gain.value = 0; ST.mute.connect(ctx.destination);
+    function fallback() { ST.proc = ctx.createScriptProcessor(4096, 1, 1); ST.proc.onaudioprocess = function (e) { onChunk(new Float32Array(e.inputBuffer.getChannelData(0))); }; ST.gain.connect(ST.proc); ST.proc.connect(ST.mute); }
+    if (ctx.audioWorklet && window.AudioWorkletNode) {
+      var url = URL.createObjectURL(new Blob([WK], { type: "application/javascript" }));
+      return ctx.audioWorklet.addModule(url).then(function () { ST.node = new AudioWorkletNode(ctx, "cap", { numberOfInputs: 1, numberOfOutputs: 1, channelCount: 1, channelCountMode: "explicit" }); ST.node.port.onmessage = function (e) { onChunk(e.data); }; ST.gain.connect(ST.node); ST.node.connect(ST.mute); }).catch(fallback);
+    }
+    fallback();
+  }).then(function () { return listDevices(); }, function (e) { throw new Error(micErr(e)); });
+}
+function micErr(e) {
+  var n = e && e.name; if (n === "NotAllowedError" || n === "SecurityError") return "Microphone access was blocked. Click the lock or camera icon in the address bar, allow the microphone, then try again.";
+  if (n === "NotFoundError" || n === "OverconstrainedError") return "No microphone was found. Plug one in or choose another input device, then try again.";
+  if (n === "NotReadableError") return "The microphone is in use by another app. Close it and try again.";
+  return (e && e.message) || "Could not start the microphone.";
+}
+function listDevices() {
+  if (!navigator.mediaDevices.enumerateDevices) return; var cur = $("kDev").value;
+  return navigator.mediaDevices.enumerateDevices().then(function (ds) {
+    var a = ds.filter(function (d) { return d.kind === "audioinput"; }), h = '<option value="">Default microphone</option>';
+    a.forEach(function (d, i) { h += '<option value="' + esc(d.deviceId) + '">' + esc(d.label || "Microphone " + (i + 1)) + "</option>"; }); $("kDev").innerHTML = h; $("kDev").value = cur;
+  });
+}
+function closeMic() {
+  try { if (ST.node) { ST.node.port.onmessage = null; ST.node.disconnect(); } if (ST.proc) { ST.proc.onaudioprocess = null; ST.proc.disconnect(); } if (ST.gain) ST.gain.disconnect(); if (ST.src) ST.src.disconnect(); if (ST.mute) ST.mute.disconnect(); } catch (e) { }
+  if (ST.stream) ST.stream.getTracks().forEach(function (t) { t.stop(); });
+  ST.stream = ST.src = ST.gain = ST.node = ST.proc = ST.mute = null; ST.level = 0;
+}
+function tickUi() {
+  var secs = ST.total / ST.rate; $("kTime").textContent = fmtTime(ST.rec || ST.mode === "pause" ? secs : ST.mode === "done" ? ST.total / ST.rate : 0, 1);
+  $("kMeter").firstChild.style.width = Math.min(100, Math.round(Math.sqrt(ST.level) * 100)) + "%";
+  var cv = $("kLive"), dpr = window.devicePixelRatio || 1, w = Math.max(200, cv.clientWidth || 600), h = 70; if (cv.width !== Math.round(w * dpr)) { cv.width = Math.round(w * dpr); cv.height = h * dpr; }
+  var c = cv.getContext("2d"), cs = getComputedStyle(cv), bg = (cs.getPropertyValue("--bg") || "").trim() || "#fff"; c.fillStyle = bg; c.fillRect(0, 0, cv.width, cv.height);
+  if (ST.mode === "rec" || ST.mode === "test" || ST.mode === "pause") {
+    var n = Math.floor(w / 3), a = ST.lv.slice(-n * 4), per = Math.max(1, Math.floor(a.length / n)); c.fillStyle = ST.mode === "rec" ? "#dc2626" : "#7c3aed";
+    for (var i = 0; i < n; i++) { var m = 0; for (var j = 0; j < per; j++) { var v = a[a.length - 1 - (n - 1 - i) * per - j]; if (v > m) m = v; } var bh = Math.max(2, Math.min(1, m * 1.6) * (h - 8)) * dpr; c.fillRect(i * 3 * dpr, (h * dpr - bh) / 2, 2 * dpr, bh); }
+  }
+  if (ST.mode === "rec" || ST.mode === "test" || ST.mode === "pause") ST.raf = requestAnimationFrame(tickUi);
+}
+function startRec() {
+  if (ST.mode === "rec") return; stopPlay(); busy(["kRec"], true);
+  ensureMic().then(function () {
+    if (ST.mode !== "pause") { ST.parts = []; ST.blk = null; ST.bi = 0; ST.total = 0; ST.lv = []; ST.chs = null; $("kEdit").hidden = true; }
+    ST.rec = true; setMode("rec"); ST.started = new Date().toISOString().slice(0, 19).replace(/[:T]/g, "-"); cancelAnimationFrame(ST.raf); tickUi(); msg("Recording. Speak into your microphone.");
+  }).catch(function (e) { setMode(ST.mode === "done" ? "done" : "idle"); msg(e.message, "err"); });
+}
+function startTest() { busy(["kTest"], true); ensureMic().then(function () { ST.rec = false; setMode("test"); cancelAnimationFrame(ST.raf); tickUi(); msg("Speak and watch the meter. Nothing is being recorded."); }).catch(function (e) { setMode("idle"); msg(e.message, "err"); }); }
+function togglePause() { if (ST.mode === "rec") { ST.rec = false; setMode("pause"); msg("Paused."); } else if (ST.mode === "pause") { ST.rec = true; setMode("rec"); msg("Recording."); } }
+function stopRec() {
+  var wasRec = ST.mode === "rec" || ST.mode === "pause"; ST.rec = false; closeMic(); cancelAnimationFrame(ST.raf);
+  if (!wasRec) { setMode(ST.chs ? "done" : "idle"); tickUi(); msg("Microphone test finished."); return; }
+  if (ST.blk && ST.bi) { ST.parts.push(ST.blk.subarray(0, ST.bi)); } ST.blk = null; ST.bi = 0;
+  var out = new Float32Array(ST.total), o = 0; ST.parts.forEach(function (p) { out.set(p, o); o += p.length; }); ST.parts = [];
+  if (!ST.total) { setMode("idle"); tickUi(); msg("Nothing was recorded.", "err"); return; }
+  ST.chs = [out]; ST.name = "recording-" + ST.started; setMode("done"); tickUi();
+  wv.set(ST.chs, ST.rate); wv.setSel(0, ST.total / ST.rate); syncInputs(0, ST.total / ST.rate); $("kEdit").hidden = false; busy(["kDl", "kPlay"], false);
+  var pk = peakOf(ST.chs); $("kInfo").innerHTML = '<b>' + fmtTime(ST.total / ST.rate, 1) + '</b> recorded · mono · ' + ST.rate + ' Hz · peak ' + dbStr(dB(pk), 1) + (pk >= 0.99 ? ' <span class="au-bad">(clipping: lower the input gain and record again)</span>' : pk < 0.05 ? ' <span class="au-bad">(very quiet: raise the gain or move closer)</span>' : "");
+  msg("Recording stopped. Trim it if you like, then save.");
+}
+function nums() { var d = ST.total / ST.rate, a = Math.max(0, Math.min(parseTime($("kA").value, 0), d)), b = Math.max(0, Math.min(parseTime($("kB").value, d), d)); if (b <= a) b = Math.min(d, a + 0.01); return { a: a, b: b }; }
+function opts() { var n = nums(), o = fmtOpts("k"); o.a = n.a; o.b = n.b; o.norm = $("kNorm").checked; return o; }
+function build(o) {
+  var x = ST.chs[0], r = ST.rate, s0 = Math.round(o.a * r), s1 = Math.round(o.b * r), y = new Float32Array(x.subarray(s0, s1)), i;
+  if (o.norm) { var pk = peakOf([y]); if (pk > 1e-4) { var g = 0.891 / pk; for (i = 0; i < y.length; i++) y[i] *= g; } }
+  var f = Math.min(Math.round(0.004 * r), y.length >> 1); for (i = 0; i < f; i++) { y[i] *= i / f; y[y.length - 1 - i] *= i / f; } return [y];
+}
+function syncInputs(a, b) { $("kA").value = fmtTime(a, 2); $("kB").value = fmtTime(b, 2); summary(); }
+function summary() {
+  if (!ST.chs) { ST.rows = []; $("kSum").innerHTML = ""; return; } var o = opts(), len = o.b - o.a, est = estSize(len, 1, ST.rate, o);
+  $("kSum").innerHTML = '<div class="dt-stats">' + tile("Length", fmtTime(len, 1), fmtTime(o.a, 1) + " to " + fmtTime(o.b, 1)) + tile("Estimated size", fmtSize(est), o.fmt === "mp3" ? o.kbps + " kbps MP3" : "WAV 16-bit mono") + tile("Normalize", o.norm ? "On" : "Off", o.norm ? "peak at -1 dB" : "") + "</div>";
+  ST.rows = [["Recorded", fmtTime(ST.total / ST.rate, 1)], ["Saved part", fmtTime(o.a, 1) + " to " + fmtTime(o.b, 1) + " (" + fmtTime(len, 1) + ")"], ["Format", o.fmt === "mp3" ? "MP3 " + o.kbps + " kbps" : "WAV 16-bit mono"], ["Sample rate", ST.rate + " Hz"], ["Normalize", o.norm ? "Yes" : "No"], ["Estimated size", fmtSize(est)]];
+}
+function stopPlay() { plStop(true); ST.playing = false; if ($("kPlay")) $("kPlay").textContent = "Play"; if (wv) { wv.cursor = -1; wv.draw(); } }
+function togglePlay() {
+  if (!ST.chs) return; if (ST.playing) { stopPlay(); return; } var o = opts(), ab = toAB(build(o), ST.rate); ST.playing = true; $("kPlay").textContent = "Stop";
+  plPlay(ab, 0, ab.duration, false, function (t) { wv.cursor = o.a + t; wv.draw(); }, function () { stopPlay(); });
+}
+function save() {
+  if (!ST.chs) return; stopPlay(); var o = opts(); busy(["kDl"], true); prog(0.1, "Saving...");
+  exportAudio(build(o), ST.rate, o.fmt, o.kbps, function (f) { prog(0.15 + 0.85 * f, "Encoding " + o.fmt.toUpperCase()); }).then(function (r) { saveBlob(r.blob, ST.name + "." + r.ext); prog(1, "Done"); setTimeout(function () { prog(null); }, 900); busy(["kDl"], false); msg("Saved " + fmtSize(r.blob.size) + "."); }).catch(function (e) { prog(null); busy(["kDl"], false); msg(e.message, "err"); });
+}
+function discard() { stopPlay(); ST.chs = null; ST.parts = []; ST.total = 0; ST.lv = []; $("kEdit").hidden = true; wv.set(null); setMode("idle"); tickUi(); $("kInfo").textContent = ""; busy(["kDl", "kPlay"], true); msg("Recording discarded."); }
+function fillReport() {
+  var b = repBox(); repHead(b, "Voice recording: summary", "Free online voice recorder"); repTbl(b, ["Setting", "Value"], ST.rows);
+  try { repFig(b, '<img alt="Waveform" style="max-width:100%;border:1px solid #999" src="' + $("kWave").toDataURL("image/png") + '">'); } catch (e) { }
+  repDisc(b, "The audio file is the main download. This page summarizes the recording.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport;
+  wv = WaveView($("kWave"), { select: true, height: 120, onSel: function (a, b) { syncInputs(a, b); } });
+  $("kEcho").checked = true; $("kNs").checked = true; $("kAgc").checked = false; $("kGain").value = 100; $("kNorm").checked = false; $("kFmt").value = "mp3"; $("kKbps").value = "128"; bindFmt("k");
+  setMode("idle"); busy(["kDl", "kPlay"], true); tickUi(); summary();
+  $("kRec").addEventListener("click", startRec); $("kPause").addEventListener("click", togglePause); $("kStop").addEventListener("click", stopRec); $("kTest").addEventListener("click", startTest); $("kTestStop").addEventListener("click", stopRec);
+  $("kGain").addEventListener("input", function () { $("kGainV").textContent = $("kGain").value + "%"; if (ST.gain) ST.gain.gain.value = numIn("kGain", 0, 200, 100) / 100; });
+  ["kA", "kB"].forEach(function (id) { $(id).addEventListener("change", function () { if (!ST.chs) return; var n = nums(); wv.setSel(n.a, n.b); summary(); }); });
+  ["kNorm", "kFmt", "kKbps"].forEach(function (id) { $(id).addEventListener("change", summary); });
+  $("kPlay").addEventListener("click", togglePlay); $("kDl").addEventListener("click", save); $("kDiscard").addEventListener("click", discard);
+  $("resetBtn").addEventListener("click", function () { $("kEcho").checked = true; $("kNs").checked = true; $("kAgc").checked = false; $("kGain").value = 100; $("kGainV").textContent = "100%"; $("kNorm").checked = false; msg("Options reset."); });
+  $("kPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("kCopy").addEventListener("click", function () { copyText(ST.rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n"), $("kCopy")); });
+  window.addEventListener("pagehide", closeMic);
+}
+init();
+
+})();
+</script>
+</body>
+</html>
