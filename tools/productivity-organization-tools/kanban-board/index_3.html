@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Kanban Board Online: Drag, Drop & WIP Limits</title>
+<meta name="description" content="Free online Kanban board with drag and drop cards, custom columns, labels, priorities, due dates and WIP limits. Private, saved in your browser, no sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/productivity-organization-tools/kanban-board/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Kanban Board Online: Drag, Drop & WIP Limits">
+<meta property="og:description" content="Free online Kanban board. Drag and drop cards, custom columns, labels, due dates and WIP limits. Private, no sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/productivity-organization-tools/kanban-board/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Kanban Board Online: Drag, Drop & WIP Limits">
+<meta name="twitter:description" content="Free online Kanban board. Drag and drop cards, custom columns, labels, due dates and WIP limits. Private, no sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.prow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow .ptxt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.prow .meta{display:block;font-size:.75rem;color:var(--muted);margin-top:2px}.prow button{flex:none;padding:5px 12px;font-size:.8rem}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+#kBoard{display:flex;gap:12px;overflow-x:auto;align-items:flex-start;padding:4px 2px 12px;max-width:100%}.k-col{flex:0 0 250px;border:1px solid var(--line);border-radius:12px;background:var(--bg);padding:10px;min-width:0}.k-head{display:flex;gap:6px;align-items:center}.k-name{font-weight:700;flex:1;min-width:0}.k-tools{display:flex;gap:4px;align-items:center;flex-wrap:wrap;font-size:.72rem;margin:6px 0}.k-tools label{margin:0;display:flex;align-items:center;gap:4px;font-weight:500}.k-wip{width:60px;padding:3px 6px}.k-tools button{padding:2px 8px}.k-zone{min-height:44px;border-radius:8px;padding:2px}.k-zone.over{outline:2px dashed #0369a1;background:rgba(3,105,161,.08)}.k-card{border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--card,rgba(127,127,127,.08));cursor:grab;overflow-wrap:anywhere}.k-t{font-weight:600}.k-n{font-size:.82rem;color:var(--muted);margin-top:2px;white-space:pre-wrap}.k-m{margin:4px 0}.k-btns{display:flex;gap:3px;flex-wrap:wrap}.k-btns button{padding:2px 8px;font-size:.75rem}.k-edit{cursor:default;display:grid;gap:6px}.k-add{display:flex;gap:6px;margin-top:6px}.k-add input{min-width:0;flex:1}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Kanban Board","url":"https://utiliby.com/tools/productivity-organization-tools/kanban-board/","description":"Free online Kanban board. Create custom columns and draggable cards with labels, priorities, notes, due dates and work-in-progress limits. Search and filter, see a summary chart, copy as text, download CSV or a board file and print. Runs in the browser and stores the board only on the device.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Drag and drop plus arrow buttons","Custom columns","Labels, priority, notes, due date","WIP limits","Search and filter","Summary chart","Save file, CSV, copy and print","Private, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Kanban board?","acceptedAnswer":{"@type":"Answer","text":"A visual board with columns such as To do, In progress and Done. Each task is a card that moves across the columns as work advances, so everyone can see what is happening at a glance."}},{"@type":"Question","name":"How do I use this free online Kanban board?","acceptedAnswer":{"@type":"Answer","text":"Add cards to a column, drag them to the next stage as you work, and use labels, priorities and due dates to add detail. Rename, add or remove columns to match your process."}},{"@type":"Question","name":"Do I need to sign up?","acceptedAnswer":{"@type":"Answer","text":"No. There is no account. Open the page and start building your board."}},{"@type":"Question","name":"Where is my board saved?","acceptedAnswer":{"@type":"Answer","text":"In your browser's local storage on this device. It is not uploaded. Use Save board to keep a file copy or move it to another device."}},{"@type":"Question","name":"Can I share the board with a team?","acceptedAnswer":{"@type":"Answer","text":"Not live. This is a single-user board. You can share it by copying it as text, printing it or sending the saved board file."}},{"@type":"Question","name":"What is a WIP limit?","acceptedAnswer":{"@type":"Answer","text":"A work-in-progress limit caps how many cards a column should hold. When it is exceeded the column is flagged. Limits reduce multitasking and show bottlenecks."}},{"@type":"Question","name":"How do I move cards?","acceptedAnswer":{"@type":"Answer","text":"Drag a card onto another column or onto another card to place it before that card. You can also use the left and right arrows to change column and up and down to change order."}},{"@type":"Question","name":"Can I rename columns or add new ones?","acceptedAnswer":{"@type":"Answer","text":"Yes. Edit the column name in its header, use Add column for more, and the arrows to reorder. Up to 10 columns are supported."}},{"@type":"Question","name":"What happens to cards when I delete a column?","acceptedAnswer":{"@type":"Answer","text":"They move to the neighbouring column, so nothing is lost."}},{"@type":"Question","name":"Can I add labels, priorities and due dates?","acceptedAnswer":{"@type":"Answer","text":"Yes. Press Edit on a card to set a label such as Bug or Feature, a priority, notes and a due date. Overdue cards not in the last column are flagged."}},{"@type":"Question","name":"Can I search or filter?","acceptedAnswer":{"@type":"Answer","text":"Yes. Search by title or notes and filter by label. Filtering only hides cards in view and does not delete anything."}},{"@type":"Question","name":"Can I print the board?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save board prints only a clean list of columns and cards, not the rest of the page."}},{"@type":"Question","name":"Can I export to a spreadsheet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download CSV lists every card with its column, notes, label, priority and due date for Excel or Google Sheets."}},{"@type":"Question","name":"What is the difference between Kanban and Scrum?","acceptedAnswer":{"@type":"Answer","text":"Scrum works in fixed sprints with defined roles. Kanban is continuous and focuses on visualising work and limiting work in progress. Many teams combine them."}},{"@type":"Question","name":"Can I use it for personal projects?","acceptedAnswer":{"@type":"Answer","text":"Yes. A board works for study plans, job applications, content calendars, home projects and more."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. Columns scroll sideways, and the arrow buttons let you move cards without dragging."}},{"@type":"Question","name":"Is it free and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online and your board stays in your browser."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Productivity and Organization Tools","item":"https://utiliby.com/tools/productivity-organization-tools/"},{"@type":"ListItem","position":3,"name":"Kanban Board","item":"https://utiliby.com/tools/productivity-organization-tools/kanban-board/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/productivity-organization-tools/">Productivity & Organization Tools</a> › Kanban Board</nav>
+<h1 class="noembed">Free Kanban Board</h1>
+<p class="lead noembed">Free online Kanban board with drag and drop cards, custom columns, labels, priorities, due dates and WIP limits. Save privately in your browser, export and print.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/productivity-organization-tools/kanban-board/" target="_blank" rel="noopener">Kanban Board by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Kanban board">
+<div class="dt-hero noembed">
+<h2>Free Online Kanban Board</h2>
+<p>Organise work in columns with draggable cards, labels, priorities, due dates and WIP limits. Everything is saved privately in your browser. Copy, download or print your board.</p>
+</div>
+<div class="dt-panel"><h3>Board</h3><div class="dt-row3"><div><label for="kTitle">Board name</label><input type="text" id="kTitle" placeholder="Team board" autocomplete="off" spellcheck="false"></div><div><label for="kSearch">Search cards</label><input type="search" id="kSearch" placeholder="Type to filter" autocomplete="off" spellcheck="false"></div><div><label for="kLab">Filter by label</label><select id="kLab"><option value="">All labels</option></select></div></div><div class="dt-row"><div><label for="kColName">New column name</label><input type="text" id="kColName" placeholder="Blocked" autocomplete="off" spellcheck="false"></div><div class="im-bar"><button type="button" class="dt-btn ghost" id="kAddCol">Add column</button></div></div></div><div class="dt-panel"><h3>Your board</h3><div id="kBoard" aria-label="Kanban board columns"></div><p class="ck-note">Drag cards between columns, or use the arrow buttons. Set a work-in-progress (WIP) limit on any column to keep work flowing.</p></div><div class="dt-panel"><h3>Board summary</h3><div id="kStats"></div><div id="kChart"></div><div class="im-bar"><button type="button" class="dt-btn ghost" id="kExport">Save board (JSON)</button><label class="dt-btn ghost" for="kImport" style="margin:0;cursor:pointer">Open board</label><input type="file" id="kImport" accept=".json,application/json" style="position:absolute;left:-9999px" aria-label="Open saved board file"></div><p class="ck-note">Saved automatically in this browser only.</p></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="kCopy">Copy board as text</button>
+<button type="button" class="dt-btn ghost" id="kDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="kPrint">Print / save board</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online Kanban board runs in your browser. Your board is saved only in this browser on this device, using local storage, and is never uploaded, so clearing site data, using private browsing or switching device means it will not be there. Save a board file for anything important. It is a single-user planning aid: it has no sharing, comments, accounts or reminders, so it is not a replacement for team software when several people must work on the same board. Do not store passwords or other sensitive information in cards.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/productivity-organization-tools/kanban-board/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Kanban Board. https://utiliby.com/tools/productivity-organization-tools/kanban-board/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/productivity-organization-tools/kanban-board/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Kanban Board by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/productivity-organization-tools/kanban-board/"&gt;Kanban Board by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online Kanban board does</a></li><li><a href="#how">How to use the Kanban board</a></li><li><a href="#features">Features of this Kanban board</a></li><li><a href="#principles">The core principles of Kanban</a></li><li><a href="#wip">Why work-in-progress limits matter</a></li><li><a href="#uses">Kanban board ideas for work, study and home</a></li><li><a href="#labels">Using labels, priorities and due dates well</a></li><li><a href="#share">Sharing, saving and printing</a></li><li><a href="#compare">Kanban compared with other planning methods</a></li><li><a href="#start">A simple way to start this week</a></li><li><a href="#mistakes">Common Kanban mistakes</a></li><li><a href="#privacy">Privacy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online Kanban board does</h2>
+<p>Kanban is a Japanese word meaning visual signal. It began on Toyota's production lines in the 1940s and was adapted for knowledge work in the 2000s. The idea is simple: show every piece of work as a card on a board whose columns represent stages, and limit how much can be in progress at once. A <b>free online Kanban board</b> gives you that picture without sticky notes or a subscription, so you can see what is waiting, what is being done and what is finished.</p><p>This board lets you add cards, drag them between columns, label and prioritise them, set due dates, add notes and cap the work in progress. It starts with a sample so you can see how it works, and you can rename every column. Your board saves automatically in your browser, and you can download it as a file or CSV, copy it as text or print it.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="A Kanban board moves cards from To do through In progress and Review to Done"><title>How cards flow</title><rect x="20" y="16" width="270" height="200" rx="16" fill="none" stroke="currentColor" opacity=".4" stroke-width="2"/><text x="38" y="46" font-size="11" opacity=".6" fill="currentColor">Board</text><text x="38" y="84" font-size="12.5" font-weight="700" fill="currentColor">To do: 3 cards</text><text x="38" y="106" font-size="12.5" fill="currentColor">In progress: 2 (limit 3)</text><text x="38" y="128" font-size="12.5" fill="currentColor">Review: 1 card</text><text x="38" y="150" font-size="12.5" fill="currentColor">Done: 4 cards</text><text x="38" y="172" font-size="12.5" fill="currentColor">Pull work to the right</text><text x="38" y="194" font-size="12.5" fill="currentColor">Finish before starting</text><g font-size="13" fill="#fff"><rect class="dt-bar" x="330" y="22" width="290" height="38" rx="9" fill="#0369a1" style="animation-delay:0.05s"/><text x="344" y="46">1. Add cards to To do</text><rect class="dt-bar" x="330" y="76" width="290" height="38" rx="9" fill="#16a34a" style="animation-delay:0.25s"/><text x="344" y="100">2. Pull one into progress</text><rect class="dt-bar" x="330" y="130" width="290" height="38" rx="9" fill="#d97706" style="animation-delay:0.45s"/><text x="344" y="154">3. Review the result</text><rect class="dt-bar" x="330" y="184" width="290" height="38" rx="9" fill="#9333ea" style="animation-delay:0.65s"/><text x="344" y="208">4. Move it to Done</text></g></svg><figcaption>Work moves left to right. WIP limits stop too many cards sitting in progress at once.</figcaption></figure>
+<h2 id="how">How to use the Kanban board</h2>
+<ol><li><b>Set up your columns.</b> The default To do, In progress, Review and Done fits many workflows. Rename or add columns, such as Backlog or Blocked.</li><li><b>Add cards.</b> Type a task in a column and press Enter. Keep titles short and specific.</li><li><b>Add detail.</b> Press Edit to set a label, priority, due date and notes.</li><li><b>Pull work forward.</b> Drag a card to the next column when you start it, and again when it is done.</li><li><b>Set WIP limits.</b> Enter a limit on busy columns, such as three for In progress.</li><li><b>Review.</b> Look at the summary, clear what is finished and plan what comes next.</li></ol>
+<h2 id="features">Features of this Kanban board</h2>
+<div class="dt-wrap"><table><tr><th>Feature</th><th>Benefit</th></tr><tr><td>Drag and drop plus arrow buttons</td><td>Works with a mouse, touch and keyboard</td></tr><tr><td>WIP limits</td><td>Flags overloaded columns</td></tr><tr><td>Labels and priorities</td><td>Separates bugs, features and urgent work</td></tr><tr><td>Due dates</td><td>Highlights overdue cards</td></tr><tr><td>Custom columns</td><td>Fits your own process</td></tr><tr><td>Search and filter</td><td>Finds cards in a busy board</td></tr><tr><td>Summary chart</td><td>Shows the number of cards in each column</td></tr><tr><td>Save, CSV, copy, print</td><td>Keeps and shares your work</td></tr></table></div>
+<h2 id="principles">The core principles of Kanban</h2>
+<p>Kanban rests on a few ideas. Visualise the work so that nothing is hidden. Limit work in progress, because starting many things at once slows all of them. Manage flow by watching how cards move and where they get stuck. Make the rules explicit, so everyone knows what Done means. Improve gradually by changing one thing at a time. These principles are why a plain board can change how a team works: when a column fills up, the answer is not to start more, but to help finish what is already there.</p>
+<h2 id="wip">Why work-in-progress limits matter</h2>
+<p>It is tempting to start every task as soon as it arrives, but switching between tasks has a cost, and unfinished work delivers no value. A WIP limit forces a conversation: if In progress is full, help move something to Review before pulling something new. Teams often begin with a limit of two or three per person and adjust. If a column is constantly at its limit, it may be a bottleneck; if it is often empty, the limit may be too low or earlier stages may be starved. The board flags a column in red when it holds more cards than its limit.</p>
+<h2 id="uses">Kanban board ideas for work, study and home</h2>
+<ul><li><b>Software and product teams.</b> Backlog, Ready, In progress, Review, Done.</li><li><b>Content calendars.</b> Ideas, Drafting, Editing, Scheduled, Published.</li><li><b>Job search.</b> Interested, Applied, Interview, Offer, Closed.</li><li><b>Students.</b> To read, Reading, Notes written, Revised.</li><li><b>Home projects.</b> Wishlist, Planned, Doing, Done.</li><li><b>Small business.</b> Leads, Contacted, Quoted, Won.</li></ul>
+<h2 id="labels">Using labels, priorities and due dates well</h2>
+<p>Labels answer what kind of work a card is. Priorities answer how soon it matters. Dates answer when it is due. Use all three sparingly. A board where every card is urgent communicates nothing. Try restricting high priority to a few cards and reserving due dates for genuine deadlines. A label such as Bug or Research lets you filter the board to a single type of work during planning.</p>
+<h2 id="share">Sharing, saving and printing</h2>
+<p>Copy board as text creates a plain list of columns and cards for email, chat or notes. Download CSV produces a table for spreadsheets. Print / save board prints a clean list of columns and cards, ideal for a stand-up or planning meeting. Save board creates a file you can open on another device. This tool is a personal board and does not sync, so if a team needs real-time collaboration, assignees and notifications, use shared team software and use this for planning or personal work.</p>
+<h2 id="compare">Kanban compared with other planning methods</h2>
+<p>A to-do list tells you what is left but not what stage it is at. A Gantt chart shows when tasks should happen but is less useful for day-to-day flow. Scrum organises work into fixed-length sprints with planned scope, while Kanban lets work arrive and flow continuously. The Eisenhower matrix helps decide what to do first, and a Kanban board then shows where each chosen task stands. Choose Kanban when work arrives unpredictably, priorities change often or you want to see bottlenecks quickly. Choose a Gantt chart when dates and dependencies drive the project.</p><div class="dt-wrap"><table><tr><th>Method</th><th>Best for</th><th>Main view</th></tr><tr><td>To-do list</td><td>Personal tasks</td><td>Done or not done</td></tr><tr><td>Kanban board</td><td>Continuous flow of work</td><td>Stage of each task</td></tr><tr><td>Gantt chart</td><td>Dated projects with dependencies</td><td>Time</td></tr><tr><td>Eisenhower matrix</td><td>Deciding priorities</td><td>Urgency and importance</td></tr></table></div>
+<h2 id="start">A simple way to start this week</h2>
+<p>Begin with three columns: To do, Doing and Done. Empty your head onto the board by adding every task you can think of. Move only the two or three most important cards into Doing and set the limit of that column to three. Work until a card is finished, drag it to Done, then pull the next card. At the end of the week, look at the Done column to see what you achieved, remove old cards, and move leftovers back to To do. After a week or two, add columns such as Review or Blocked only if you feel the need, because a simple board is easier to maintain.</p>
+<h2 id="mistakes">Common Kanban mistakes</h2>
+<ul><li><b>No WIP limits.</b> The board becomes a long to-do list.</li><li><b>Vague cards.</b> Write a task that can be finished.</li><li><b>Too many columns.</b> Start simple.</li><li><b>Cards that never move.</b> Break them down or remove them.</li><li><b>Unclear Done.</b> Agree what finished means.</li><li><b>Never reviewing.</b> Look at the board regularly.</li></ul>
+<h2 id="privacy">Privacy, limits and responsible use</h2>
+<p>Your board is stored in your browser's local storage on this device. Nothing is sent to a server, so it is private to you. Clearing browser data or changing device removes access, so save a board file for important work. The tool is single-user and has no sync, comments, accounts, reminders or file attachments. Please avoid storing passwords or personal data about other people in cards. It is a planning aid and does not replace professional project management software for regulated or safety-critical work.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a Kanban board?</summary><p>A visual board with columns such as To do, In progress and Done. Each task is a card that moves across the columns as work advances, so everyone can see what is happening at a glance.</p></details><details><summary>How do I use this free online Kanban board?</summary><p>Add cards to a column, drag them to the next stage as you work, and use labels, priorities and due dates to add detail. Rename, add or remove columns to match your process.</p></details><details><summary>Do I need to sign up?</summary><p>No. There is no account. Open the page and start building your board.</p></details><details><summary>Where is my board saved?</summary><p>In your browser's local storage on this device. It is not uploaded. Use Save board to keep a file copy or move it to another device.</p></details><details><summary>Can I share the board with a team?</summary><p>Not live. This is a single-user board. You can share it by copying it as text, printing it or sending the saved board file.</p></details><details><summary>What is a WIP limit?</summary><p>A work-in-progress limit caps how many cards a column should hold. When it is exceeded the column is flagged. Limits reduce multitasking and show bottlenecks.</p></details><details><summary>How do I move cards?</summary><p>Drag a card onto another column or onto another card to place it before that card. You can also use the left and right arrows to change column and up and down to change order.</p></details><details><summary>Can I rename columns or add new ones?</summary><p>Yes. Edit the column name in its header, use Add column for more, and the arrows to reorder. Up to 10 columns are supported.</p></details><details><summary>What happens to cards when I delete a column?</summary><p>They move to the neighbouring column, so nothing is lost.</p></details><details><summary>Can I add labels, priorities and due dates?</summary><p>Yes. Press Edit on a card to set a label such as Bug or Feature, a priority, notes and a due date. Overdue cards not in the last column are flagged.</p></details><details><summary>Can I search or filter?</summary><p>Yes. Search by title or notes and filter by label. Filtering only hides cards in view and does not delete anything.</p></details><details><summary>Can I print the board?</summary><p>Yes. Print / save board prints only a clean list of columns and cards, not the rest of the page.</p></details><details><summary>Can I export to a spreadsheet?</summary><p>Yes. Download CSV lists every card with its column, notes, label, priority and due date for Excel or Google Sheets.</p></details><details><summary>What is the difference between Kanban and Scrum?</summary><p>Scrum works in fixed sprints with defined roles. Kanban is continuous and focuses on visualising work and limiting work in progress. Many teams combine them.</p></details><details><summary>Can I use it for personal projects?</summary><p>Yes. A board works for study plans, job applications, content calendars, home projects and more.</p></details><details><summary>Does it work on a phone?</summary><p>Yes. Columns scroll sideways, and the arrow buttons let you move cards without dragging.</p></details><details><summary>Is it free and private?</summary><p>Yes. It is free to use online and your board stays in your browser.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>David J. Anderson, Kanban: Successful Evolutionary Change for Your Technology Business (Blue Hole Press, 2010).</li><li>Taiichi Ohno, Toyota Production System: Beyond Large-Scale Production (Productivity Press, 1988).</li><li>Kanban University, The Kanban Guide (kanban.university).</li><li>Monsell, S., Task switching (Trends in Cognitive Sciences, 2003).</li><li>MDN Web Docs, HTML Drag and Drop API and Window.localStorage (developer.mozilla.org).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online Kanban board runs in your browser. Your board is saved only in this browser on this device, using local storage, and is never uploaded, so clearing site data, using private browsing or switching device means it will not be there. Save a board file for anything important. It is a single-user planning aid: it has no sharing, comments, accounts or reminders, so it is not a replacement for team software when several people must work on the same board. Do not store passwords or other sensitive information in cards.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- social shared helpers ---------- */
+function rint(n) { n = Math.max(1, n | 0); var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; }
+function rpick(arr) { return arr[rint(arr.length)]; }
+function rshuf(arr) { var a = arr.slice(), i, j, t; for (i = a.length - 1; i > 0; i--) { j = rint(i + 1); t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function gsplit(s) {
+  s = String(s == null ? "" : s);
+  if (window.Intl && Intl.Segmenter) { var out = [], it = new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)[Symbol.iterator](), x; while (!(x = it.next()).done) out.push(x.value.segment); return out; }
+  return Array.from(s);
+}
+function gcount(s) { return gsplit(s).length; }
+function nfmt(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+/* copy rows: items is an array of strings, rendered as .prow lines with a Copy button each */
+function rowsHtml(items, metas) {
+  return items.map(function (t, i) { return '<div class="prow"><span class="ptxt">' + esc(t) + (metas && metas[i] ? '<span class="meta">' + metas[i] + "</span>" : "") + '</span><button type="button" class="dt-btn ghost" data-ci="' + i + '">Copy</button></div>'; }).join("");
+}
+function bindRows(id, getItems) {
+  $(id).addEventListener("click", function (e) { var b = e.target.closest("button[data-ci]"); if (!b) return; var it = getItems(); copyText(it[+b.getAttribute("data-ci")], b); });
+}
+function tabBar(id) { return $(id); }
+function showIf(id, on) { var e = $(id); if (e) e.hidden = !on; }
+function crc32(bytes) { var t = crc32.t; if (!t) { t = crc32.t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } var c2 = 0xFFFFFFFF; for (var i = 0; i < bytes.length; i++) c2 = t[(c2 ^ bytes[i]) & 255] ^ (c2 >>> 8); return (c2 ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) { /* files: [{name, data:Uint8Array}] -> Blob (no compression) */
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0, dt = new Date(), dd = ((dt.getFullYear() - 1980) << 9) | ((dt.getMonth() + 1) << 5) | dt.getDate(), tt = (dt.getHours() << 11) | (dt.getMinutes() << 5) | (dt.getSeconds() >> 1);
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, tt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, f.data.length, true); h.setUint32(22, f.data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, f.data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, tt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, f.data.length, true); c.setUint32(24, f.data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); off += 30 + nm.length + f.data.length;
+  });
+  var cs = 0; cd.forEach(function (x) { cs += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cd, [e.buffer]), { type: "application/zip" });
+}
+
+/* ---------- kanban board ---------- */
+var KEY = "utiliby_kanban_v1";
+var K = { cols: [], cards: [], edit: null, drag: null };
+var LAB = [["", "No label", "#64748b"], ["urgent", "Urgent", "#dc2626"], ["feature", "Feature", "#0369a1"], ["bug", "Bug", "#d97706"], ["design", "Design", "#9333ea"], ["research", "Research", "#16a34a"]];
+var PN = ["None", "Low", "Medium", "High"];
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function pad(n) { return (n < 10 ? "0" : "") + n; }
+function dkey(d) { d = d || new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+function uid() { return "k" + Date.now().toString(36) + Math.random().toString(36).slice(2, 6); }
+function labInfo(k) { for (var i = 0; i < LAB.length; i++) if (LAB[i][0] === k) return LAB[i]; return LAB[0]; }
+function sample() {
+  var a = uid(), b = uid(), c = uid(), d = uid(); K.cols = [{ id: a, n: "To do", w: 0 }, { id: b, n: "In progress", w: 3 }, { id: c, n: "Review", w: 0 }, { id: d, n: "Done", w: 0 }];
+  K.cards = [mk(a, "Plan the launch checklist", "", "feature", 2, ""), mk(a, "Fix login redirect", "Happens on mobile Safari", "bug", 3, ""), mk(a, "Draft help-centre article", "", "research", 1, ""), mk(b, "Design the pricing page", "Three plans and an FAQ", "design", 2, ""), mk(c, "Review onboarding emails", "", "", 1, ""), mk(d, "Set up analytics", "", "feature", 0, "")];
+}
+function mk(col, t, note, l, p, d) { return { id: uid(), col: col, t: t, note: note || "", l: l || "", p: p || 0, d: d || "", c: Date.now() }; }
+function save() { lsSet(KEY, JSON.stringify({ title: $("kTitle").value, cols: K.cols, cards: K.cards.slice(0, 3000) })); }
+function load() { var o; try { o = JSON.parse(lsGet(KEY) || "null"); } catch (e) {} if (o && o.cols && o.cols.length && o.cards) { K.cols = o.cols; K.cards = o.cards; $("kTitle").value = o.title || ""; return true; } return false; }
+function colOf(id) { for (var i = 0; i < K.cols.length; i++) if (K.cols[i].id === id) return i; return -1; }
+function cardIdx(id) { for (var i = 0; i < K.cards.length; i++) if (K.cards[i].id === id) return i; return -1; }
+function match(c) { var q = $("kSearch").value.trim().toLowerCase(), l = $("kLab").value; if (l && c.l !== l) return false; if (q && (c.t + " " + c.note).toLowerCase().indexOf(q) < 0) return false; return true; }
+function cardHtml(c, ci) {
+  if (K.edit === c.id) {
+    return '<div class="k-card k-edit" data-id="' + c.id + '"><input type="text" class="e-t" aria-label="Card title" value="' + esc(c.t) + '"><textarea class="e-n" rows="2" aria-label="Notes">' + esc(c.note) + '</textarea><select class="e-l" aria-label="Label">' + LAB.map(function (l) { return '<option value="' + l[0] + '"' + (l[0] === c.l ? " selected" : "") + ">" + l[1] + "</option>"; }).join("") + '</select><select class="e-p" aria-label="Priority">' + PN.map(function (n, i) { return '<option value="' + i + '"' + (i === c.p ? " selected" : "") + ">" + n + " priority</option>"; }).join("") + '</select><input type="date" class="e-d" aria-label="Due date" value="' + esc(c.d) + '"><div class="k-btns"><button type="button" class="dt-btn" data-a="save">Save</button><button type="button" class="dt-btn ghost" data-a="cancel">Cancel</button></div></div>';
+  }
+  var li = labInfo(c.l), od = c.d && c.d < dkey() && ci < K.cols.length - 1;
+  return '<div class="k-card" draggable="true" data-id="' + c.id + '" style="border-left:5px solid ' + li[2] + '"><div class="k-t">' + esc(c.t) + "</div>" + (c.note ? '<div class="k-n">' + esc(c.note) + "</div>" : "") + '<div class="k-m">' + (c.l ? '<span class="seo-b" style="background:' + li[2] + '22;color:' + li[2] + '">' + li[1] + "</span>" : "") + (c.p ? '<span class="seo-b info">' + PN[c.p] + "</span>" : "") + (c.d ? '<span class="seo-b ' + (od ? "bad" : "ok") + '">' + (od ? "Overdue " : "") + esc(c.d) + "</span>" : "") + '</div><div class="k-btns"><button type="button" class="dt-btn ghost" data-a="l" aria-label="Move left"' + (ci === 0 ? " disabled" : "") + '>&larr;</button><button type="button" class="dt-btn ghost" data-a="r" aria-label="Move right"' + (ci === K.cols.length - 1 ? " disabled" : "") + '>&rarr;</button><button type="button" class="dt-btn ghost" data-a="u" aria-label="Move up">&uarr;</button><button type="button" class="dt-btn ghost" data-a="d" aria-label="Move down">&darr;</button><button type="button" class="dt-btn ghost" data-a="edit">Edit</button><button type="button" class="dt-btn ghost" data-a="del" aria-label="Delete card">&times;</button></div></div>';
+}
+function render() {
+  var h = "";
+  K.cols.forEach(function (col, ci) {
+    var all = K.cards.filter(function (c) { return c.col === col.id; }), n = all.length, over = col.w > 0 && n > col.w;
+    h += '<section class="k-col" data-col="' + col.id + '" aria-label="' + esc(col.n) + '"><div class="k-head"><input type="text" class="k-name" aria-label="Column name" value="' + esc(col.n) + '"><span class="seo-b ' + (over ? "bad" : "info") + '" title="Cards in column">' + n + (col.w > 0 ? "/" + col.w : "") + '</span></div><div class="k-tools"><label>WIP limit <input type="number" class="k-wip" min="0" max="99" aria-label="Work in progress limit for ' + esc(col.n) + '" value="' + (col.w || "") + '" placeholder="none"></label><button type="button" class="dt-btn ghost" data-a="colL" aria-label="Move column left"' + (ci === 0 ? " disabled" : "") + '>&larr;</button><button type="button" class="dt-btn ghost" data-a="colR" aria-label="Move column right"' + (ci === K.cols.length - 1 ? " disabled" : "") + '>&rarr;</button><button type="button" class="dt-btn ghost" data-a="colDel" aria-label="Delete column">&times;</button></div>' + (over ? '<p class="ck-note" style="color:#dc2626">Over the limit of ' + col.w + " cards.</p>" : "") + '<div class="k-zone" data-zone="' + col.id + '">' + all.filter(match).map(function (c) { return cardHtml(c, ci); }).join("") + '</div><div class="k-add"><input type="text" class="k-new" aria-label="New card title for ' + esc(col.n) + '" placeholder="Add a card"><button type="button" class="dt-btn" data-a="add">Add</button></div></section>';
+  });
+  $("kBoard").innerHTML = h; stats();
+}
+function stats() {
+  var tot = K.cards.length, last = K.cols[K.cols.length - 1], dn = last ? K.cards.filter(function (c) { return c.col === last.id; }).length : 0, od = K.cards.filter(function (c) { return c.d && c.d < dkey() && (!last || c.col !== last.id); }).length, max = Math.max(1, Math.max.apply(null, K.cols.map(function (c) { return K.cards.filter(function (x) { return x.col === c.id; }).length; })));
+  $("kStats").innerHTML = '<div class="dt-stats">' + tile("Cards", tot, K.cols.length + " columns") + tile("In last column", dn, tot ? Math.round(dn / tot * 100) + "% of all cards" : "") + tile("Overdue", od, "not in last column", od ? "bad" : "") + "</div>";
+  var cols = ["#0369a1", "#d97706", "#9333ea", "#16a34a", "#dc2626", "#0891b2", "#be185d", "#4d7c0f"], s = '<svg viewBox="0 0 520 ' + (K.cols.length * 28 + 10) + '" width="100%" style="max-width:560px" role="img" aria-label="Cards per column"><title>Cards per column</title>';
+  K.cols.forEach(function (c, i) { var v = K.cards.filter(function (x) { return x.col === c.id; }).length, w = Math.max(3, v / max * 300); s += '<text x="0" y="' + (i * 28 + 19) + '" font-size="12" fill="currentColor">' + esc(c.n.slice(0, 18)) + '</text><rect class="dt-bar" x="130" y="' + (i * 28 + 5) + '" width="' + w + '" height="20" rx="5" fill="' + cols[i % 8] + '"/><text x="' + (136 + w) + '" y="' + (i * 28 + 19) + '" font-size="12" fill="currentColor">' + v + "</text>"; });
+  $("kChart").innerHTML = K.cols.length ? '<div class="dt-diagram"><h3>Cards per column</h3>' + s + "</svg></div>" : "";
+}
+function cmoves(id, to, before) {
+  var i = cardIdx(id); if (i < 0) return; var c = K.cards.splice(i, 1)[0]; c.col = to; var j = before ? cardIdx(before) : -1;
+  if (j >= 0) K.cards.splice(j, 0, c); else { var last = -1; K.cards.forEach(function (x, k) { if (x.col === to) last = k; }); if (last >= 0) K.cards.splice(last + 1, 0, c); else K.cards.push(c); }
+}
+function swapIn(id, dir) { var c = K.cards[cardIdx(id)], i, j; var same = K.cards.map(function (x, k) { return x.col === c.col ? k : -1; }).filter(function (k) { return k >= 0; }), pos = same.indexOf(cardIdx(id)); j = same[pos + dir]; i = cardIdx(id); if (j === undefined) return; var t = K.cards[i]; K.cards[i] = K.cards[j]; K.cards[j] = t; }
+function textOut() {
+  if (!K.cards.length) return ""; var L = [$("kTitle").value || "Kanban board", ""];
+  K.cols.forEach(function (col) { var cs = K.cards.filter(function (c) { return c.col === col.id; }); L.push(col.n.toUpperCase() + " (" + cs.length + (col.w ? "/" + col.w : "") + ")"); cs.forEach(function (c) { L.push("- " + c.t + (c.l ? " [" + labInfo(c.l)[1] + "]" : "") + (c.p ? " (" + PN[c.p] + ")" : "") + (c.d ? " due " + c.d : "")); }); L.push(""); }); return L.join("\n").trim();
+}
+function colName(id) { var i = colOf(id); return i < 0 ? "" : K.cols[i].n; }
+function init() {
+  initCommon(); if (!load()) { sample(); $("kTitle").value = "Team board"; } render();
+  var lb = $("kLab"); lb.innerHTML = LAB.map(function (l, i) { return '<option value="' + l[0] + '">' + (i ? l[1] : "All labels") + "</option>"; }).join("");
+  $("kTitle").addEventListener("input", save); $("kSearch").addEventListener("input", render); lb.addEventListener("change", render);
+  $("kAddCol").addEventListener("click", function () { var n = $("kColName").value.trim(); if (!n) { msg("Type a column name.", "err"); return; } if (K.cols.length >= 10) { msg("Up to 10 columns are supported.", "err"); return; } K.cols.push({ id: uid(), n: n.slice(0, 30), w: 0 }); $("kColName").value = ""; save(); render(); });
+  $("kBoard").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-a]"); if (!b) return; var a = b.getAttribute("data-a"), card = b.closest(".k-card"), colEl = b.closest(".k-col"), cid = colEl.getAttribute("data-col"), ci = colOf(cid);
+    if (a === "add") { var inp = colEl.querySelector(".k-new"), t = inp.value.trim(); if (!t) { msg("Type a card title first.", "err"); return; } if (K.cards.length >= 1500) { msg("Card limit reached.", "err"); return; } K.cards.push(mk(cid, t.slice(0, 200))); save(); render(); var ni = document.querySelector('.k-col[data-col="' + cid + '"] .k-new'); if (ni) ni.focus(); return; }
+    if (a === "colL" && ci > 0) { var x = K.cols[ci]; K.cols[ci] = K.cols[ci - 1]; K.cols[ci - 1] = x; } else if (a === "colR" && ci < K.cols.length - 1) { var y = K.cols[ci]; K.cols[ci] = K.cols[ci + 1]; K.cols[ci + 1] = y; }
+    else if (a === "colDel") { var n = K.cards.filter(function (c) { return c.col === cid; }).length; if (K.cols.length < 2) { msg("Keep at least one column.", "err"); return; } var to = K.cols[ci === 0 ? 1 : ci - 1].id; K.cards.forEach(function (c) { if (c.col === cid) c.col = to; }); K.cols.splice(ci, 1); msg(n ? "Column deleted. Its " + n + " cards moved to the neighbouring column." : "Column deleted."); }
+    else if (card) { var id = card.getAttribute("data-id"), i = cardIdx(id); if (i < 0) return;
+      if (a === "l" && ci > 0) cmoves(id, K.cols[ci - 1].id); else if (a === "r" && ci < K.cols.length - 1) cmoves(id, K.cols[ci + 1].id); else if (a === "u") swapIn(id, -1); else if (a === "d") swapIn(id, 1); else if (a === "del") K.cards.splice(i, 1); else if (a === "edit") K.edit = id; else if (a === "cancel") K.edit = null;
+      else if (a === "save") { var c = K.cards[i], t2 = card.querySelector(".e-t").value.trim(); if (!t2) { msg("A card needs a title.", "err"); return; } c.t = t2.slice(0, 200); c.note = card.querySelector(".e-n").value.slice(0, 600); c.l = card.querySelector(".e-l").value; c.p = +card.querySelector(".e-p").value; c.d = card.querySelector(".e-d").value; K.edit = null; } }
+    save(); render();
+  });
+  $("kBoard").addEventListener("keydown", function (e) { if (e.key === "Enter" && e.target.classList.contains("k-new")) { e.preventDefault(); e.target.closest(".k-col").querySelector('[data-a="add"]').click(); } });
+  $("kBoard").addEventListener("change", function (e) { var colEl = e.target.closest(".k-col"); if (!colEl) return; var ci = colOf(colEl.getAttribute("data-col")); if (ci < 0) return; if (e.target.classList.contains("k-name")) { K.cols[ci].n = e.target.value.trim().slice(0, 30) || K.cols[ci].n; save(); render(); } else if (e.target.classList.contains("k-wip")) { K.cols[ci].w = Math.max(0, Math.min(99, parseInt(e.target.value, 10) || 0)); save(); render(); } });
+  $("kBoard").addEventListener("dragstart", function (e) { var c = e.target.closest && e.target.closest(".k-card"); if (!c || c.classList.contains("k-edit")) return; K.drag = c.getAttribute("data-id"); try { e.dataTransfer.setData("text/plain", K.drag); e.dataTransfer.effectAllowed = "move"; } catch (x) {} c.style.opacity = ".5"; });
+  $("kBoard").addEventListener("dragend", function () { K.drag = null; [].forEach.call(document.querySelectorAll(".k-zone"), function (z) { z.classList.remove("over"); }); render(); });
+  $("kBoard").addEventListener("dragover", function (e) { var z = e.target.closest(".k-zone"); if (z && K.drag) { e.preventDefault(); z.classList.add("over"); } });
+  $("kBoard").addEventListener("dragleave", function (e) { var z = e.target.closest(".k-zone"); if (z && !z.contains(e.relatedTarget)) z.classList.remove("over"); });
+  $("kBoard").addEventListener("drop", function (e) { var z = e.target.closest(".k-zone"); if (!z || !K.drag) return; e.preventDefault(); var over = e.target.closest(".k-card"), before = over && over.getAttribute("data-id") !== K.drag ? over.getAttribute("data-id") : null, id = K.drag; K.drag = null; cmoves(id, z.getAttribute("data-zone"), before); save(); render(); });
+  $("kExport").addEventListener("click", function () { saveBlob(new Blob([JSON.stringify({ app: "utiliby-kanban", title: $("kTitle").value, cols: K.cols, cards: K.cards }, null, 2)], { type: "application/json" }), "kanban-board.json"); msg("Board file downloaded."); });
+  $("kImport").addEventListener("change", function () { var f = this.files && this.files[0]; if (!f) return; var rd = new FileReader(); rd.onload = function () { try { var o = JSON.parse(rd.result); if (!o.cols || !o.cols.length || !o.cards) throw 0; var ids = {}; K.cols = o.cols.slice(0, 10).map(function (c) { var id = String(c.id || uid()); ids[id] = 1; return { id: id, n: String(c.n || "Column").slice(0, 30), w: Math.max(0, Math.min(99, +c.w || 0)) }; }); K.cards = o.cards.filter(function (c) { return c && c.t && ids[c.col]; }).slice(0, 3000).map(function (c) { return { id: uid(), col: c.col, t: String(c.t).slice(0, 200), note: String(c.note || "").slice(0, 600), l: labInfo(c.l)[0], p: Math.max(0, Math.min(3, +c.p || 0)), d: /^\d{4}-\d{2}-\d{2}$/.test(c.d || "") ? c.d : "", c: Date.now() }; }); $("kTitle").value = String(o.title || "").slice(0, 80); save(); render(); msg("Board loaded."); } catch (e) { msg("That file is not a valid board file.", "err"); } }; rd.readAsText(f); this.value = ""; });
+  $("resetBtn").addEventListener("click", function () { sample(); $("kTitle").value = "Team board"; $("kSearch").value = ""; lb.value = ""; K.edit = null; save(); render(); msg("Board reset to the sample."); });
+  bindAct("k", { code: textOut, file: function () { return "kanban-board.txt"; }, mime: "text/plain", title: "Kanban board", site: "Free online Kanban board", note: "Your board is saved only in this browser on this device. Clearing site data removes it, so save a board file for anything important.",
+    dlClick: function () { if (!K.cards.length) { msg("Nothing to download yet.", "err"); return; } csvDownload([["Column", "Card", "Notes", "Label", "Priority", "Due"]].concat(K.cards.map(function (c) { return [colName(c.col), c.t, c.note, labInfo(c.l)[1], PN[c.p], c.d]; })), "kanban-board.csv"); }, rows: function () { return []; } });
+  window.fillReport = function () { var b = repBox(); repHead(b, $("kTitle").value || "Kanban board", "Free online Kanban board"); K.cols.forEach(function (col) { var cs = K.cards.filter(function (c) { return c.col === col.id; }); var h = document.createElement("h3"); h.textContent = col.n + " (" + cs.length + (col.w ? " of " + col.w : "") + ")"; b.appendChild(h); repTbl(b, ["Card", "Label", "Priority", "Due"], cs.length ? cs.map(function (c) { return [c.t + (c.note ? " - " + c.note : ""), labInfo(c.l)[1], PN[c.p], c.d]; }) : [["(empty)", "", "", ""]]); }); repDisc(b, "Your board is saved only in this browser on this device."); };
+}
+init();
+
+})();
+</script>
+</body>
+</html>

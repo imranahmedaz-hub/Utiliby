@@ -1,0 +1,448 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Decision Matrix Calculator Online: Weighted Scoring</title>
+<meta name="description" content="Free online decision matrix calculator with weighted criteria, ranked results, stacked chart and robustness check. Download CSV or print. No sign-up, private.">
+<link rel="canonical" href="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Decision Matrix Calculator Online: Weighted Scoring">
+<meta property="og:description" content="Free online decision matrix calculator. Weighted criteria, ranked options, stacked chart and robustness check. CSV and print.">
+<meta property="og:url" content="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Decision Matrix Calculator Online: Weighted Scoring">
+<meta name="twitter:description" content="Free online decision matrix calculator. Weighted criteria, ranked options, stacked chart and robustness check. CSV and print.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.prow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow .ptxt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.prow .meta{display:block;font-size:.75rem;color:var(--muted);margin-top:2px}.prow button{flex:none;padding:5px 12px;font-size:.8rem}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+.h-scroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:10px;margin:8px 0}.d-tbl{border-collapse:collapse;width:max-content;min-width:100%;font-size:.85rem}.d-tbl th,.d-tbl td{padding:4px 6px;text-align:center;border:0;border-bottom:1px solid var(--line)}.d-tbl input[type=text]{min-width:110px}.d-tbl input[type=number]{width:70px}.d-tbl input[type=checkbox]{width:auto}.d-tbl th.d-c{text-align:left;min-width:150px;position:sticky;left:0;background:var(--bg);z-index:1}.d-tbl thead th{vertical-align:bottom;font-size:.78rem}.d-tbl button{padding:2px 9px}.d-tot td{font-size:.9rem}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Decision Matrix Calculator","url":"https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/","description":"Free online weighted decision matrix calculator (Pugh matrix, weighted scoring model). Compare up to 8 options against 12 weighted criteria, flip lower-is-better criteria, see a ranked table, a stacked contribution chart and a robustness check. Examples for jobs, laptops, suppliers, cities and projects. Copy, download CSV, save the matrix and print. Runs in the browser and stores data only on the device.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Weighted scoring","Up to 8 options, 12 criteria","Lower-is-better flip","Ranked table and stacked chart","Winner robustness check","5 ready examples","Copy, CSV, save and print","Private, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a decision matrix?","acceptedAnswer":{"@type":"Answer","text":"A table that compares options against several criteria. Each criterion has a weight for its importance, each option gets a score for each criterion, and the weighted scores are added to rank the options."}},{"@type":"Question","name":"How do I use this free online decision matrix calculator?","acceptedAnswer":{"@type":"Answer","text":"Enter your options and criteria, give each criterion a weight, score every option and read the ranking. Change any number to see the result update instantly."}},{"@type":"Question","name":"What is a weighted decision matrix?","acceptedAnswer":{"@type":"Answer","text":"A decision matrix in which criteria have different weights. A criterion with weight 10 counts twice as much as one with weight 5."}},{"@type":"Question","name":"How is the total score calculated?","acceptedAnswer":{"@type":"Answer","text":"For each option, multiply the score for each criterion by that criterion's weight and add the results. The percent of maximum shows the total as a share of the best possible score."}},{"@type":"Question","name":"Other names for a decision matrix?","acceptedAnswer":{"@type":"Answer","text":"It is also called a Pugh matrix, a weighted scoring model, a multi-criteria decision analysis tool, a decision grid, a prioritisation matrix or a selection matrix."}},{"@type":"Question","name":"How do I choose weights?","acceptedAnswer":{"@type":"Answer","text":"Rate how important each criterion is from 1 to 10. A useful method is to rank the criteria first and then assign weights that reflect the order. Use Set all weights equal to see the result without weighting."}},{"@type":"Question","name":"What score scale should I use?","acceptedAnswer":{"@type":"Answer","text":"A 0 to 10 scale gives more detail and 0 to 5 is quicker. Keep it consistent across options."}},{"@type":"Question","name":"How do I handle costs, risks or effort?","acceptedAnswer":{"@type":"Answer","text":"Tick Lower is better for those criteria. The scale is flipped so that a low cost scores well, which avoids the common error of rewarding the most expensive option."}},{"@type":"Question","name":"How many options and criteria can I add?","acceptedAnswer":{"@type":"Answer","text":"Up to 8 options and 12 criteria, which suits most decisions. Too many criteria dilute the important ones."}},{"@type":"Question","name":"What does the robustness check do?","acceptedAnswer":{"@type":"Answer","text":"It removes each criterion in turn and checks whether the winner changes. If it does, that criterion decides the outcome and deserves a second look."}},{"@type":"Question","name":"What if two options tie?","acceptedAnswer":{"@type":"Answer","text":"The tool tells you they are tied. Review your weights, add a criterion that separates them or choose with your intuition."}},{"@type":"Question","name":"Is a decision matrix always right?","acceptedAnswer":{"@type":"Answer","text":"No. It makes your reasoning explicit and consistent, but it relies on your judgement of weights and scores. If the result feels wrong, find out why. A missing criterion or a mis-scored option is often the cause."}},{"@type":"Question","name":"Can I download or print the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download CSV for a spreadsheet, copy a text summary or print a clean sheet with the ranking and the full matrix."}},{"@type":"Question","name":"Is my data saved?","acceptedAnswer":{"@type":"Answer","text":"Yes, in this browser on this device. Save the matrix file to keep a copy."}},{"@type":"Question","name":"Can I use it for group decisions?","acceptedAnswer":{"@type":"Answer","text":"Yes. Agree on the criteria and weights together and let each person score the options, then compare results and discuss differences."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The table scrolls sideways on small screens."}},{"@type":"Question","name":"Is it free and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online and your data stays in your browser."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Productivity and Organization Tools","item":"https://utiliby.com/tools/productivity-organization-tools/"},{"@type":"ListItem","position":3,"name":"Decision Matrix Calculator","item":"https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/productivity-organization-tools/">Productivity & Organization Tools</a> › Decision Matrix Calculator</nav>
+<h1 class="noembed">Free Decision Matrix Calculator</h1>
+<p class="lead noembed">Free online decision matrix calculator. Weighted criteria, lower-is-better flip, ranked options, stacked chart and robustness check. Copy, CSV and print.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/" target="_blank" rel="noopener">Decision Matrix Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Decision matrix calculator">
+<div class="dt-hero noembed">
+<h2>Free Decision Matrix Calculator</h2>
+<p>Compare options against weighted criteria and see a ranked result, a stacked score chart and a check on how robust the winner is. Download CSV, save the matrix or print it.</p>
+</div>
+<div class="dt-panel"><h3>Your decision</h3><div class="dt-row3"><div><label for="dQ">What are you deciding?</label><input type="text" id="dQ" placeholder="Which job offer should I take?" autocomplete="off" spellcheck="false"></div><div><label for="dTpl">Start from an example</label><select id="dTpl"><option value="">Choose an example...</option><option value="job">Job offer</option><option value="laptop">Buy a laptop</option><option value="vendor">Choose a supplier</option><option value="city">City to move to</option><option value="project">Prioritise a project</option></select></div><div><label for="dScale">Score scale</label><select id="dScale"><option value="10">0 to 10</option><option value="5">0 to 5</option></select></div></div></div><div class="dt-panel"><h3>Options, criteria, weights and scores</h3><div id="dGrid"></div><div class="im-bar"><button type="button" class="dt-btn" id="dAddCrit">Add criterion</button><button type="button" class="dt-btn ghost" id="dAddOpt">Add option</button><button type="button" class="dt-btn ghost" id="dEqual">Set all weights equal</button></div><p class="ck-note">Weight shows how much a criterion matters (10 is most). Score each option from 0 (worst) to the maximum (best). Tick Lower is better for costs, risks or effort, and the scale is flipped for you.</p></div><div class="dt-panel"><h3>Result</h3><div id="dRes"></div><div id="dChart"></div><div class="im-bar"><button type="button" class="dt-btn ghost" id="dJson">Save matrix (JSON)</button><label class="dt-btn ghost" for="dImport" style="margin:0;cursor:pointer">Open matrix</label><input type="file" id="dImport" accept=".json,application/json" style="position:absolute;left:-9999px" aria-label="Open saved matrix file"></div><p class="ck-note">Saved automatically in this browser only.</p></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="dCopy">Copy results</button>
+<button type="button" class="dt-btn ghost" id="dDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="dPrint">Print / save matrix</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online decision matrix calculator runs in your browser. Your matrix is saved only in this browser on this device, using local storage, and is never uploaded. The calculation multiplies each score by the weight of its criterion and adds the results. The weights and scores are your own judgements, so the output is only as good as the inputs, and it is a decision aid, not a guarantee or a prediction. For important financial, legal, medical, safety or employment decisions, take professional advice and do not rely on this tool alone.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Decision Matrix Calculator. https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Decision Matrix Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/productivity-organization-tools/decision-matrix-calculator/"&gt;Decision Matrix Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free decision matrix calculator does</a></li><li><a href="#how">How to make a decision with a weighted matrix</a></li><li><a href="#formula">The formula behind the weighted score</a></li><li><a href="#weights">How to set good weights and scores</a></li><li><a href="#examples">Decision matrix examples</a></li><li><a href="#limits">Strengths and limits of the method</a></li><li><a href="#group">Using the matrix for team decisions</a></li><li><a href="#proscons">Decision matrix compared with a pros and cons list</a></li><li><a href="#steps2">A worked example: choosing a job offer</a></li><li><a href="#mistakes">Common decision matrix mistakes</a></li><li><a href="#privacy">Privacy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free decision matrix calculator does</h2>
+<p>Big decisions are hard because they involve many factors that pull in different directions. A job pays more but has a longer commute, a laptop is fast but heavy, a supplier is cheap but slow. When you weigh these in your head, the most vivid factor tends to win. A <b>decision matrix</b>, also known as a weighted scoring model or Pugh matrix, brings order to the problem: you list the options, list the criteria that matter, say how much each criterion matters and score every option against each one. The arithmetic then shows which option best matches your priorities.</p><p>This free online decision matrix calculator does the arithmetic and adds extras: a ranked table, a stacked bar chart that shows what each criterion contributes to each option, a flip for criteria where lower is better, and a robustness check that reveals if one criterion alone decides the winner. Everything updates as you type, and your work is saved in your browser.</p><figure class="dt-fig"><svg viewBox="0 0 640 144" width="100%" role="img" aria-label="A decision matrix multiplies each score by its weight and adds them up to rank the options"><title>Weighted totals</title><text x="20" y="38" font-size="12" fill="currentColor">Option A</text><rect class="dt-bar" x="190" y="16" width="360" height="34" rx="6" fill="#0369a1" style="animation-delay:0.05s"/><text x="556" y="38" font-size="12" fill="currentColor">7.4 pts</text><text x="20" y="78" font-size="12" fill="currentColor">Option B</text><rect class="dt-bar" x="190" y="56" width="330" height="34" rx="6" fill="#16a34a" style="animation-delay:0.17s"/><text x="526" y="78" font-size="12" fill="currentColor">6.8 pts</text><text x="20" y="118" font-size="12" fill="currentColor">Option C</text><rect class="dt-bar" x="190" y="96" width="287" height="34" rx="6" fill="#d97706" style="animation-delay:0.29s"/><text x="483" y="118" font-size="12" fill="currentColor">5.9 pts</text></svg><figcaption>The option with the highest weighted total ranks first. Each bar adds up the weight times the score for every criterion.</figcaption></figure>
+<h2 id="how">How to make a decision with a weighted matrix</h2>
+<ol><li><b>State the decision.</b> Write the question clearly, such as which laptop should I buy?</li><li><b>List your options.</b> Two to five serious ones are enough. Add or remove columns as needed.</li><li><b>List the criteria.</b> Note what matters: cost, quality, risk, speed, fit. Aim for five to eight, and avoid overlap.</li><li><b>Weight the criteria.</b> Give each a weight from 1 to 10 for its importance.</li><li><b>Score each option.</b> Rate each option against each criterion. Use evidence, not feelings, where possible.</li><li><b>Read the result.</b> Check the ranking, the chart and the robustness note.</li><li><b>Sense-check.</b> If the answer feels wrong, ask what the matrix is missing.</li></ol>
+<h2 id="formula">The formula behind the weighted score</h2>
+<p>The calculation is simple. For each option, the weighted score is the sum, across all criteria, of the weight times the score. If a criterion has weight 8 and an option scores 7, it contributes 56 points. The maximum possible score is the total of all weights multiplied by the top score on the scale, which is how the percentage of maximum is found. For criteria where lower is better, such as price, risk or effort, the score is flipped by subtracting it from the top of the scale plus one, so that a low raw figure becomes a high score. The ranking is the order of the totals.</p><div class="dt-wrap"><table><tr><th>Criterion</th><th>Weight</th><th>Option A score</th><th>Contribution</th></tr><tr><td>Salary</td><td>9</td><td>8</td><td>72</td></tr><tr><td>Growth</td><td>8</td><td>6</td><td>48</td></tr><tr><td>Balance</td><td>7</td><td>5</td><td>35</td></tr><tr><td><b>Total</b></td><td></td><td></td><td><b>155</b></td></tr></table></div>
+<h2 id="weights">How to set good weights and scores</h2>
+<p>Weights express priorities, so set them before you score the options, to avoid bending the weights to favour the option you secretly prefer. Rank the criteria from most to least important and then assign weights in that order. Give a single criterion a weight of 10 only if it is truly the most important. For scores, use a consistent rule for each criterion, such as the cheapest option gets 10 and others are scaled, or use measurable data like price, hours or ratings. If you are unsure, test the sensitivity by changing a weight by two points and see whether the winner changes. If it does, the decision is close and other factors may decide.</p>
+<h2 id="examples">Decision matrix examples</h2>
+<ul><li><b>Job offers.</b> Salary, growth, balance, commute and stability.</li><li><b>Buying a product.</b> Performance, battery life, price, weight and warranty.</li><li><b>Choosing a supplier.</b> Quality, cost, delivery, support and flexibility.</li><li><b>Where to live.</b> Jobs, cost of living, safety, climate and family.</li><li><b>Prioritising projects.</b> Customer value, revenue, effort, risk and strategic fit.</li><li><b>Choosing software.</b> Features, price, ease of use, integrations and security.</li></ul><p>Load any of the examples from the menu and replace the names and scores with your own.</p>
+<h2 id="limits">Strengths and limits of the method</h2>
+<p>A decision matrix makes assumptions visible, reduces the pull of one dramatic factor, helps groups discuss criteria instead of personalities, and leaves a record of why a choice was made. It also has limits. It treats criteria as independent, though they often interact. It turns qualitative judgements into numbers that look more precise than they are. It can be gamed by weighting the criteria to favour a preferred answer. And it cannot capture factors you forgot to include. Use it to structure your thinking, not to replace it. When the result surprises you, treat the surprise as information and ask what you know that the matrix does not.</p>
+<h2 id="group">Using the matrix for team decisions</h2>
+<p>In a team, agree on the criteria and their weights before anyone scores the options. Let each person score independently, then compare, since large differences point to disagreements about facts or priorities worth discussing. Average the scores or agree on a final set. Because the matrix is transparent, anyone who disagrees with the outcome can see exactly which weight or score to challenge. Save the matrix file and share it so that the reasoning behind the decision is recorded.</p>
+<h2 id="proscons">Decision matrix compared with a pros and cons list</h2>
+<p>A pros and cons list is fast and good for simple yes or no questions, but it treats every point as equal and handles only one option at a time. A decision matrix compares several options side by side, gives each factor a weight and ends in a number you can examine. Use a pros and cons list when you are deciding whether to do something, and a decision matrix when you are choosing between several alternatives or when stakeholders must see why one option won. For prioritising a long list of tasks rather than choosing between a few options, an Eisenhower matrix may be a better first step. Other tools such as cost-benefit analysis add money values for each factor, which suits business cases where costs and benefits can be measured in the same currency.</p>
+<h2 id="steps2">A worked example: choosing a job offer</h2>
+<p>Suppose you have three offers. Salary matters most to you, so it gets weight 9, followed by career growth at 8, work-life balance at 7, company stability at 6 and commute at 5. Commute is a lower-is-better criterion, so a short journey scores well. You score each offer from 0 to 10 for each criterion using facts where you can, such as pay figures and travel times. The calculator multiplies, adds and ranks the offers. In the built-in example, Offer A wins narrowly with 244 of a possible 350 points, but removing almost any single criterion changes the winner, so the robustness note warns that the choice is close. That tells you the numbers cannot settle it alone, and that it is worth talking to people, asking more questions or finding a criterion that separates the offers.</p>
+<h2 id="mistakes">Common decision matrix mistakes</h2>
+<ul><li><b>Too many criteria.</b> Keep to the ones that really matter.</li><li><b>Overlapping criteria.</b> Quality and reliability may count the same thing twice.</li><li><b>Forgetting to flip cost-like criteria.</b> Use Lower is better.</li><li><b>Weighting after scoring.</b> Set weights first.</li><li><b>Ignoring a close result.</b> If the top two are close, look at other factors.</li><li><b>Scoring from feelings.</b> Use data where possible.</li></ul>
+<h2 id="privacy">Privacy, limits and responsible use</h2>
+<p>Your matrix is stored in your browser's local storage on this device. Nothing is sent to a server. Clearing browser data or switching device removes access, so save a matrix file for anything important. The calculator performs a standard weighted sum. It does not collect data, check your inputs for accuracy or recommend what to choose. Weights and scores are your own judgements and the result is only as reliable as they are. For major financial, legal, medical, employment or safety decisions, get qualified advice and do not rely on any calculator alone.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a decision matrix?</summary><p>A table that compares options against several criteria. Each criterion has a weight for its importance, each option gets a score for each criterion, and the weighted scores are added to rank the options.</p></details><details><summary>How do I use this free online decision matrix calculator?</summary><p>Enter your options and criteria, give each criterion a weight, score every option and read the ranking. Change any number to see the result update instantly.</p></details><details><summary>What is a weighted decision matrix?</summary><p>A decision matrix in which criteria have different weights. A criterion with weight 10 counts twice as much as one with weight 5.</p></details><details><summary>How is the total score calculated?</summary><p>For each option, multiply the score for each criterion by that criterion's weight and add the results. The percent of maximum shows the total as a share of the best possible score.</p></details><details><summary>Other names for a decision matrix?</summary><p>It is also called a Pugh matrix, a weighted scoring model, a multi-criteria decision analysis tool, a decision grid, a prioritisation matrix or a selection matrix.</p></details><details><summary>How do I choose weights?</summary><p>Rate how important each criterion is from 1 to 10. A useful method is to rank the criteria first and then assign weights that reflect the order. Use Set all weights equal to see the result without weighting.</p></details><details><summary>What score scale should I use?</summary><p>A 0 to 10 scale gives more detail and 0 to 5 is quicker. Keep it consistent across options.</p></details><details><summary>How do I handle costs, risks or effort?</summary><p>Tick Lower is better for those criteria. The scale is flipped so that a low cost scores well, which avoids the common error of rewarding the most expensive option.</p></details><details><summary>How many options and criteria can I add?</summary><p>Up to 8 options and 12 criteria, which suits most decisions. Too many criteria dilute the important ones.</p></details><details><summary>What does the robustness check do?</summary><p>It removes each criterion in turn and checks whether the winner changes. If it does, that criterion decides the outcome and deserves a second look.</p></details><details><summary>What if two options tie?</summary><p>The tool tells you they are tied. Review your weights, add a criterion that separates them or choose with your intuition.</p></details><details><summary>Is a decision matrix always right?</summary><p>No. It makes your reasoning explicit and consistent, but it relies on your judgement of weights and scores. If the result feels wrong, find out why. A missing criterion or a mis-scored option is often the cause.</p></details><details><summary>Can I download or print the result?</summary><p>Yes. Download CSV for a spreadsheet, copy a text summary or print a clean sheet with the ranking and the full matrix.</p></details><details><summary>Is my data saved?</summary><p>Yes, in this browser on this device. Save the matrix file to keep a copy.</p></details><details><summary>Can I use it for group decisions?</summary><p>Yes. Agree on the criteria and weights together and let each person score the options, then compare results and discuss differences.</p></details><details><summary>Does it work on a phone?</summary><p>Yes. The table scrolls sideways on small screens.</p></details><details><summary>Is it free and private?</summary><p>Yes. It is free to use online and your data stays in your browser.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Pugh, S., Total Design: Integrated Methods for Successful Product Engineering (Addison-Wesley, 1991).</li><li>Belton, V. and Stewart, T. J., Multiple Criteria Decision Analysis: An Integrated Approach (Kluwer, 2002).</li><li>Keeney, R. L. and Raiffa, H., Decisions with Multiple Objectives: Preferences and Value Trade-Offs (Cambridge University Press, 1993).</li><li>Project Management Institute, A Guide to the Project Management Body of Knowledge (PMBOK Guide), on weighted scoring models.</li><li>MDN Web Docs, Window.localStorage (developer.mozilla.org).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online decision matrix calculator runs in your browser. Your matrix is saved only in this browser on this device, using local storage, and is never uploaded. The calculation multiplies each score by the weight of its criterion and adds the results. The weights and scores are your own judgements, so the output is only as good as the inputs, and it is a decision aid, not a guarantee or a prediction. For important financial, legal, medical, safety or employment decisions, take professional advice and do not rely on this tool alone.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- social shared helpers ---------- */
+function rint(n) { n = Math.max(1, n | 0); var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; }
+function rpick(arr) { return arr[rint(arr.length)]; }
+function rshuf(arr) { var a = arr.slice(), i, j, t; for (i = a.length - 1; i > 0; i--) { j = rint(i + 1); t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function gsplit(s) {
+  s = String(s == null ? "" : s);
+  if (window.Intl && Intl.Segmenter) { var out = [], it = new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)[Symbol.iterator](), x; while (!(x = it.next()).done) out.push(x.value.segment); return out; }
+  return Array.from(s);
+}
+function gcount(s) { return gsplit(s).length; }
+function nfmt(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+/* copy rows: items is an array of strings, rendered as .prow lines with a Copy button each */
+function rowsHtml(items, metas) {
+  return items.map(function (t, i) { return '<div class="prow"><span class="ptxt">' + esc(t) + (metas && metas[i] ? '<span class="meta">' + metas[i] + "</span>" : "") + '</span><button type="button" class="dt-btn ghost" data-ci="' + i + '">Copy</button></div>'; }).join("");
+}
+function bindRows(id, getItems) {
+  $(id).addEventListener("click", function (e) { var b = e.target.closest("button[data-ci]"); if (!b) return; var it = getItems(); copyText(it[+b.getAttribute("data-ci")], b); });
+}
+function tabBar(id) { return $(id); }
+function showIf(id, on) { var e = $(id); if (e) e.hidden = !on; }
+function crc32(bytes) { var t = crc32.t; if (!t) { t = crc32.t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } var c2 = 0xFFFFFFFF; for (var i = 0; i < bytes.length; i++) c2 = t[(c2 ^ bytes[i]) & 255] ^ (c2 >>> 8); return (c2 ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) { /* files: [{name, data:Uint8Array}] -> Blob (no compression) */
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0, dt = new Date(), dd = ((dt.getFullYear() - 1980) << 9) | ((dt.getMonth() + 1) << 5) | dt.getDate(), tt = (dt.getHours() << 11) | (dt.getMinutes() << 5) | (dt.getSeconds() >> 1);
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, tt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, f.data.length, true); h.setUint32(22, f.data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, f.data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, tt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, f.data.length, true); c.setUint32(24, f.data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); off += 30 + nm.length + f.data.length;
+  });
+  var cs = 0; cd.forEach(function (x) { cs += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cd, [e.buffer]), { type: "application/zip" });
+}
+
+/* ---------- decision matrix calculator ---------- */
+var KEY = "utiliby_decision_v1";
+var M = { opts: [], crit: [], res: null };
+var PAL = ["#0369a1", "#16a34a", "#d97706", "#9333ea", "#dc2626", "#0891b2", "#be185d", "#4d7c0f", "#475569", "#b45309"];
+var TPL = {
+  job: ["Which job offer should I take?", ["Offer A", "Offer B", "Offer C"], [["Salary", 9, [8, 6, 9]], ["Career growth", 8, [6, 9, 5]], ["Work-life balance", 7, [5, 7, 9]], ["Commute (shorter is better)", 5, [4, 6, 8], 1], ["Company stability", 6, [9, 5, 7]]]],
+  laptop: ["Which laptop should I buy?", ["Laptop 1", "Laptop 2", "Laptop 3"], [["Performance", 9, [9, 7, 6]], ["Battery life", 7, [6, 9, 8]], ["Price (lower is better)", 8, [9, 5, 4], 1], ["Weight (lower is better)", 5, [6, 4, 3], 1], ["Screen quality", 6, [8, 9, 7]]]],
+  vendor: ["Which supplier should we choose?", ["Supplier A", "Supplier B", "Supplier C", "Supplier D"], [["Quality", 9, [8, 9, 6, 7]], ["Cost (lower is better)", 8, [6, 8, 4, 5], 1], ["Delivery reliability", 7, [7, 6, 9, 8]], ["Support", 5, [6, 8, 5, 7]], ["Flexibility", 4, [5, 6, 8, 6]]]],
+  city: ["Which city should I move to?", ["City 1", "City 2", "City 3"], [["Job opportunities", 9, [9, 6, 7]], ["Cost of living (lower is better)", 8, [9, 4, 6], 1], ["Safety", 7, [5, 8, 7]], ["Climate", 5, [4, 7, 8]], ["Close to family", 6, [3, 9, 6]]]],
+  project: ["Which project should we prioritise?", ["Project A", "Project B", "Project C", "Project D"], [["Value to customers", 9, [8, 6, 9, 5]], ["Revenue potential", 8, [7, 8, 6, 4]], ["Effort (lower is better)", 7, [6, 3, 8, 2], 1], ["Risk (lower is better)", 6, [5, 4, 7, 3], 1], ["Strategic fit", 5, [8, 7, 5, 6]]]]
+};
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function mx() { return +$("dScale").value === 5 ? 5 : 10; }
+function save() { lsSet(KEY, JSON.stringify({ q: $("dQ").value, scale: $("dScale").value, opts: M.opts, crit: M.crit })); }
+function load() { var o; try { o = JSON.parse(lsGet(KEY) || "null"); } catch (e) {} if (o && o.opts && o.crit && o.opts.length >= 2) { $("dQ").value = o.q || ""; $("dScale").value = o.scale || "10"; M.opts = o.opts; M.crit = o.crit; return true; } return false; }
+function loadTpl(k) { var t = TPL[k]; if (!t) return; $("dQ").value = t[0]; $("dScale").value = "10"; M.opts = t[1].slice(); M.crit = t[2].map(function (c) { return { n: c[0], w: c[1], low: !!c[3], s: c[2].slice() }; }); save(); build(); calc(); }
+function build() {
+  var h = '<div class="h-scroll"><table class="d-tbl"><thead><tr><th class="d-c">Criterion</th><th>Weight (1-10)</th><th>Lower is better</th>';
+  M.opts.forEach(function (o, j) { h += '<th><input type="text" data-o="' + j + '" aria-label="Option ' + (j + 1) + ' name" value="' + esc(o) + '"><button type="button" class="dt-btn ghost" data-a="delopt" data-j="' + j + '" aria-label="Delete option ' + esc(o) + '">&times;</button></th>'; });
+  h += "<th></th></tr></thead><tbody>";
+  M.crit.forEach(function (c, i) {
+    h += '<tr data-i="' + i + '"><th class="d-c"><input type="text" data-k="n" aria-label="Criterion ' + (i + 1) + ' name" value="' + esc(c.n) + '"></th><td><input type="number" data-k="w" min="0" max="10" step="1" aria-label="Weight of criterion ' + (i + 1) + '" value="' + esc(c.w) + '"></td><td><input type="checkbox" data-k="low" aria-label="Lower is better for criterion ' + (i + 1) + '"' + (c.low ? " checked" : "") + ">" + "</td>";
+    M.opts.forEach(function (o, j) { h += '<td><input type="number" data-j="' + j + '" min="0" max="' + mx() + '" step="0.5" aria-label="' + esc(c.n || "Criterion " + (i + 1)) + " score for " + esc(o) + '" value="' + esc(c.s[j] === undefined ? "" : c.s[j]) + '"></td>'; });
+    h += '<td><button type="button" class="dt-btn ghost" data-a="delcrit" aria-label="Delete criterion ' + (i + 1) + '">&times;</button></td></tr>';
+  });
+  $("dGrid").innerHTML = h + '<tr class="d-tot"><th class="d-c">Weighted score</th><td></td><td></td>' + M.opts.map(function (o, j) { return '<td data-t="' + j + '"></td>'; }).join("") + "<td></td></tr></tbody></table></div>";
+}
+function score(excl) {
+  var sc = mx(), tw = 0, tot = M.opts.map(function () { return 0; }), parts = M.opts.map(function () { return []; });
+  M.crit.forEach(function (c, i) { if (i === excl) return; var w = Math.max(0, +c.w || 0); tw += w; M.opts.forEach(function (o, j) { var s = Math.max(0, Math.min(sc, +c.s[j] || 0)); if (c.low) s = sc + 1 - s; if (!(+c.s[j] > 0) && c.low) s = 0; var v = w * s; tot[j] += v; parts[j].push(v); }); });
+  var max = tw * sc; return { tot: tot, pct: tot.map(function (t) { return max ? t / max * 100 : 0; }), tw: tw, parts: parts };
+}
+function rank(r) { return r.tot.map(function (t, j) { return j; }).sort(function (a, b) { return r.tot[b] - r.tot[a] || a - b; }); }
+function calc() {
+  var r = score(-1), ord = rank(r); M.res = r;
+  M.opts.forEach(function (o, j) { var td = document.querySelector('td[data-t="' + j + '"]'); if (td) td.innerHTML = "<b>" + nfmt(r.tot[j], 1) + "</b><br><span class='ck-note'>" + nfmt(r.pct[j], 0) + "%</span>"; });
+  if (!r.tw) { $("dRes").innerHTML = '<p class="ck-note">Give at least one criterion a weight above zero.</p>'; $("dChart").innerHTML = ""; return; }
+  var top = ord[0], second = ord[1], tie = r.tot[top] === r.tot[second], gap = r.tot[top] - r.tot[second];
+  var dep = []; M.crit.forEach(function (c, i) { if (M.crit.length < 2) return; var r2 = score(i), o2 = rank(r2); if (o2[0] !== top && r2.tot[o2[0]] !== r2.tot[top]) dep.push(c.n || "Criterion " + (i + 1)); });
+  var rob = tie ? "The top two options are tied." : dep.length ? "The winner changes if you remove: " + dep.join(", ") + ". Review the weights and scores of these criteria." : (r.pct[top] - r.pct[second] < 5 ? "It is a close call: the top two are within 5 points. Re-check the scores." : "The winner stays the same when any single criterion is removed, so the result is fairly robust.");
+  $("dRes").innerHTML = '<div class="dt-stats">' + tile("Best option", esc(M.opts[top]), tie ? "tied with " + esc(M.opts[second]) : nfmt(r.pct[top], 0) + "% of the maximum score") + tile("Runner-up", esc(M.opts[second]), nfmt(r.pct[second], 0) + "%") + tile("Lead", nfmt(gap, 1) + " pts", nfmt(r.pct[top] - r.pct[second], 1) + " percentage points") + tile("Total weight", r.tw, M.crit.length + " criteria") + '</div><p class="ck-note"><b>Robustness:</b> ' + esc(rob) + "</p>";
+  var rows = '<div class="h-scroll"><table class="d-tbl"><tr><th>Rank</th><th>Option</th><th>Score</th><th>% of max</th></tr>' + ord.map(function (j, k) { return "<tr><td>" + (k + 1) + "</td><td>" + esc(M.opts[j]) + "</td><td>" + nfmt(r.tot[j], 1) + "</td><td>" + nfmt(r.pct[j], 1) + "%</td></tr>"; }).join("") + "</table></div>";
+  var W = 640, bh = 30, H = ord.length * (bh + 10) + 34, maxv = Math.max.apply(null, r.tot) || 1, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Stacked bar chart of weighted scores"><title>Weighted score by option, stacked by criterion</title>';
+  ord.forEach(function (j, k) { var y = 6 + k * (bh + 10), x = 150; s += '<text x="0" y="' + (y + 20) + '" font-size="12.5" font-weight="' + (k === 0 ? 700 : 400) + '" fill="currentColor">' + xe(M.opts[j].slice(0, 20)) + "</text>"; r.parts[j].forEach(function (v, i) { var w = v / maxv * 400; if (w <= 0) return; s += '<rect class="dt-bar" x="' + x + '" y="' + y + '" width="' + w + '" height="' + bh + '" fill="' + PAL[i % 10] + '"><title>' + xe(M.crit[i].n) + ": " + nfmt(v, 1) + "</title></rect>"; x += w; }); s += '<text x="' + (x + 6) + '" y="' + (y + 20) + '" font-size="12" fill="currentColor">' + nfmt(r.tot[j], 1) + "</text>"; });
+  var lx = 0, ly = H - 14; M.crit.forEach(function (c, i) { s += '<rect x="' + (150 + lx) + '" y="' + (ly - 9) + '" width="10" height="10" fill="' + PAL[i % 10] + '"/>'; var lab = (c.n || "Criterion").slice(0, 16); s += '<text x="' + (164 + lx) + '" y="' + ly + '" font-size="10.5" fill="currentColor">' + xe(lab) + "</text>"; lx += 26 + lab.length * 6; if (lx > 420) { lx = 0; } });
+  $("dChart").innerHTML = rows + '<div class="dt-diagram"><h3>Score by option, split by criterion</h3>' + s + "</svg></div>";
+}
+function textOut() {
+  if (!M.res || !M.res.tw) return ""; var r = M.res, ord = rank(r), L = [($("dQ").value || "Decision matrix"), "", "Scale: 0-" + mx() + " | Criteria: " + M.crit.length + " | Options: " + M.opts.length, "", "RANKING"];
+  ord.forEach(function (j, k) { L.push((k + 1) + ". " + M.opts[j] + " - " + nfmt(r.tot[j], 1) + " (" + nfmt(r.pct[j], 0) + "%)"); }); L.push("", "CRITERIA AND WEIGHTS"); M.crit.forEach(function (c) { L.push("- " + c.n + ": weight " + c.w + (c.low ? " (lower is better)" : "")); }); return L.join("\n");
+}
+function csvRows() { var r = M.res, rows = [["Criterion", "Weight", "Lower is better"].concat(M.opts)]; M.crit.forEach(function (c) { rows.push([c.n, c.w, c.low ? "Yes" : "No"].concat(M.opts.map(function (o, j) { return c.s[j] === undefined ? "" : c.s[j]; }))); }); rows.push(["Weighted score", "", ""].concat(r.tot.map(function (t) { return Math.round(t * 10) / 10; }))); rows.push(["Percent of maximum", "", ""].concat(r.pct.map(function (t) { return Math.round(t * 10) / 10; }))); return rows; }
+function init() {
+  initCommon(); if (!load()) loadTpl("job"); else { build(); calc(); }
+  $("dTpl").addEventListener("change", function () { if ($("dTpl").value) { loadTpl($("dTpl").value); $("dTpl").value = ""; msg("Template loaded. Replace the names and scores with your own."); } });
+  $("dQ").addEventListener("input", save); $("dScale").addEventListener("change", function () { save(); build(); calc(); });
+  $("dGrid").addEventListener("input", function (e) { var t = e.target, tr = t.closest("tr[data-i]"); if (t.hasAttribute("data-o")) { M.opts[+t.getAttribute("data-o")] = t.value; } else if (tr) { var c = M.crit[+tr.getAttribute("data-i")], k = t.getAttribute("data-k"); if (k === "n") c.n = t.value; else if (k === "w") c.w = t.value; else if (k === "low") c.low = t.checked; else if (t.hasAttribute("data-j")) c.s[+t.getAttribute("data-j")] = t.value; } else return; save(); calc(); });
+  $("dGrid").addEventListener("change", function (e) { if (e.target.getAttribute("data-k") === "low") { M.crit[+e.target.closest("tr[data-i]").getAttribute("data-i")].low = e.target.checked; save(); calc(); } });
+  $("dGrid").addEventListener("click", function (e) { var b = e.target.closest("button[data-a]"); if (!b) return; var a = b.getAttribute("data-a"); if (a === "delopt") { if (M.opts.length <= 2) { msg("Keep at least two options.", "err"); return; } var j = +b.getAttribute("data-j"); M.opts.splice(j, 1); M.crit.forEach(function (c) { c.s.splice(j, 1); }); } else if (a === "delcrit") { if (M.crit.length <= 1) { msg("Keep at least one criterion.", "err"); return; } M.crit.splice(+b.closest("tr").getAttribute("data-i"), 1); } save(); build(); calc(); });
+  $("dAddOpt").addEventListener("click", function () { if (M.opts.length >= 8) { msg("Up to 8 options are supported.", "err"); return; } M.opts.push("Option " + (M.opts.length + 1)); M.crit.forEach(function (c) { c.s.push(""); }); save(); build(); calc(); });
+  $("dAddCrit").addEventListener("click", function () { if (M.crit.length >= 12) { msg("Up to 12 criteria are supported.", "err"); return; } M.crit.push({ n: "", w: 5, low: false, s: M.opts.map(function () { return ""; }) }); save(); build(); calc(); var ins = $("dGrid").querySelectorAll('input[data-k="n"]'); if (ins.length) ins[ins.length - 1].focus(); });
+  $("dEqual").addEventListener("click", function () { M.crit.forEach(function (c) { c.w = 5; }); save(); build(); calc(); msg("All weights set to 5."); });
+  $("dJson").addEventListener("click", function () { saveBlob(new Blob([JSON.stringify({ app: "utiliby-decision", q: $("dQ").value, scale: $("dScale").value, opts: M.opts, crit: M.crit }, null, 2)], { type: "application/json" }), "decision-matrix.json"); msg("Matrix file downloaded."); });
+  $("dImport").addEventListener("change", function () { var f = this.files && this.files[0]; if (!f) return; var rd = new FileReader(); rd.onload = function () { try { var o = JSON.parse(rd.result); if (!Array.isArray(o.opts) || o.opts.length < 2 || !Array.isArray(o.crit) || !o.crit.length) throw 0; M.opts = o.opts.slice(0, 8).map(function (s) { return String(s).slice(0, 40); }); M.crit = o.crit.slice(0, 12).map(function (c) { return { n: String(c.n || "").slice(0, 60), w: Math.max(0, Math.min(10, +c.w || 0)), low: !!c.low, s: M.opts.map(function (x, j) { return (c.s && c.s[j] !== undefined && c.s[j] !== "") ? Math.max(0, Math.min(10, +c.s[j] || 0)) : ""; }) }; }); $("dQ").value = String(o.q || "").slice(0, 100); $("dScale").value = +o.scale === 5 ? "5" : "10"; save(); build(); calc(); msg("Matrix loaded."); } catch (e) { msg("That file is not a valid matrix file.", "err"); } }; rd.readAsText(f); this.value = ""; });
+  $("resetBtn").addEventListener("click", function () { loadTpl("job"); msg("Reset to the job offer example."); });
+  bindAct("d", { code: textOut, file: function () { return "decision-matrix.txt"; }, mime: "text/plain", title: "Decision matrix", site: "Free decision matrix calculator", note: "Scores and weights are your own judgements. The result is a decision aid, not a guarantee. Your matrix is saved only in this browser.",
+    dlClick: function () { if (!M.res || !M.res.tw) { msg("Add weights and scores first.", "err"); return; } csvDownload(csvRows(), "decision-matrix.csv"); }, rows: function () { return []; } });
+  window.fillReport = function () { var b = repBox(); repHead(b, $("dQ").value || "Decision matrix", "Free decision matrix calculator"); var r = M.res, ord = rank(r); repTbl(b, ["Rank", "Option", "Score", "% of max"], ord.map(function (j, k) { return [String(k + 1), M.opts[j], nfmt(r.tot[j], 1), nfmt(r.pct[j], 1) + "%"]; })); repTbl(b, ["Criterion", "Weight", "Lower is better"].concat(M.opts), M.crit.map(function (c) { return [c.n, String(c.w), c.low ? "Yes" : "No"].concat(M.opts.map(function (o, j) { return String(c.s[j] === undefined ? "" : c.s[j]); })); })); repDisc(b, "Weights and scores are the author's own judgements. A decision matrix supports a decision but does not replace careful thought or professional advice."); };
+}
+init();
+
+})();
+</script>
+</body>
+</html>
