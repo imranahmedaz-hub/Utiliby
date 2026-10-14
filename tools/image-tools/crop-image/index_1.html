@@ -1,0 +1,686 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Image Cropper – Crop Photos, Circle Crop Online</title>
+<meta name="description" content="Free online image cropper. Crop a photo to any ratio or exact pixels, make a circle crop for profile pictures, rotate and flip, and save PNG, JPG or WebP. No upload.">
+<link rel="canonical" href="https://utiliby.com/tools/image-tools/crop-image/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Image Cropper – Crop Photos, Circle Crop Online">
+<meta property="og:description" content="Crop images free in your browser. Choose a ratio or exact size, make circle and rounded crops, rotate, flip and download PNG, JPG or WebP. No upload, no sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/image-tools/crop-image/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Image Cropper – Crop Photos, Circle Crop Online">
+<meta name="twitter:description" content="Crop images free in your browser. Choose a ratio or exact size, make circle and rounded crops, rotate, flip and download PNG, JPG or WebP. No upload, no sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0f766e;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#5eead4}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0f766e;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0f766e;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(15,118,110,.06);border-left:3px solid #0f766e;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0f766e}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0f766e;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(185,28,28,.12);color:#991b1b;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fca5a5;background:rgba(248,113,113,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.pd-drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--bg);color:var(--muted);transition:border-color .15s}
+.pd-drop:hover,.pd-drop.on,.pd-drop:focus-visible{border-color:#0f766e;color:inherit;outline:none}
+.pd-drop b{display:block;font-size:1.05rem;color:inherit;margin-bottom:2px}
+.pd-prog{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0 2px}
+.pd-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0f766e,#14b8a6);transition:width .15s}
+.pd-progtxt{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.im-cv{display:block;max-width:100%;height:auto;margin:8px auto;border:1px solid var(--line);border-radius:8px;background-color:#fff;background-image:linear-gradient(45deg,#d1d5db 25%,transparent 25%,transparent 75%,#d1d5db 75%),linear-gradient(45deg,#d1d5db 25%,transparent 25%,transparent 75%,#d1d5db 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.im-stage{position:relative;max-width:100%;text-align:center}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.im-bar button{padding:7px 14px}
+.im-file{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--bg)}
+.im-file img{width:56px;height:56px;object-fit:cover;border-radius:6px;background:var(--card)}
+.im-file .nm{font-weight:700;word-break:break-all;font-size:.9rem}.im-file .mt{font-size:.78rem;color:var(--muted)}
+.im-file .bt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.im-file .bt button{padding:4px 9px;font-size:.78rem}
+@media(max-width:480px){.im-file{grid-template-columns:48px 1fr}.im-file img{width:48px;height:48px}.im-file .bt{grid-column:1/-1;justify-content:flex-start}}
+.au-ok{color:#15803d;font-weight:700}.au-bad{color:#b91c1c;font-weight:700}
+.im-cmp{position:relative;max-width:100%;margin:8px auto;border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:#fff}
+.im-cmp canvas,.im-cmp img{display:block;width:100%;height:auto}
+.im-cmp .top{position:absolute;inset:0;overflow:hidden}
+.im-cmp .top img{position:absolute;left:0;top:0;max-width:none}
+.im-cmp .bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.4);cursor:ew-resize}
+.im-cmp .lbl{position:absolute;top:8px;padding:2px 8px;border-radius:99px;background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;line-height:1.5}
+#tool textarea{width:100%}
+#tool input[type=range]{padding:0}
+#tool input[type=color]{padding:2px;height:38px;width:100%}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+
+#cCv{cursor:crosshair;width:100%;max-width:900px;height:auto;display:block;margin:8px auto;border:1px solid var(--line);border-radius:8px;background:var(--bg)}#cCv:focus-visible{outline:3px solid #0f766e}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Image Cropper","url":"https://utiliby.com/tools/image-tools/crop-image/","description":"Free online image cropper. Crop a photo to a free box, a fixed aspect ratio or exact pixel values, crop to a circle, oval or rounded shape with transparency, rotate and flip, scale the output and save as PNG, JPG or WebP. Runs in the browser with no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Free crop box or fixed aspect ratios","Circle, oval and rounded crops","Exact X, Y, width and height in pixels","Rotate and flip","Output width scaling","PNG, JPG and WebP export","No upload, no sign-up, no watermark"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I crop an image online for free?","acceptedAnswer":{"@type":"Answer","text":"Load your image above, drag the box over the part you want to keep, and drag the corner or edge handles to resize it. Choose a ratio if you need one, then press Download cropped image. Everything runs in your browser."}},{"@type":"Question","name":"How do I crop a photo into a circle?","acceptedAnswer":{"@type":"Answer","text":"Set Shape to Circle. The box locks to a square so the circle is perfect. Move and size it over the face or subject, then save as PNG or WebP so the corners stay transparent. Profile pictures on most sites are shown inside a circle anyway."}},{"@type":"Question","name":"Is my image uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The image is opened and cropped on your own device with your browser. Nothing is sent to Utiliby or any other server."}},{"@type":"Question","name":"Which aspect ratio should I use for Instagram?","acceptedAnswer":{"@type":"Answer","text":"Instagram feed posts are usually 1:1 or 4:5 portrait, and Stories and Reels use 9:16. Platforms change their recommendations from time to time, so check the current guidance, but these presets cover the common cases."}},{"@type":"Question","name":"Can I crop to an exact size in pixels?","acceptedAnswer":{"@type":"Answer","text":"Yes. Type the X, Y, Width and Height fields to set the box exactly. With a ratio selected, changing the width changes the height to match. You can also type an Output width to scale the crop to a final size."}},{"@type":"Question","name":"What is the difference between cropping and resizing?","acceptedAnswer":{"@type":"Answer","text":"Cropping cuts away part of the picture and keeps the remaining pixels as they are. Resizing keeps the whole picture and changes how many pixels it has. You can crop first, then set an output width to do both in one step."}},{"@type":"Question","name":"Does cropping reduce the image quality?","acceptedAnswer":{"@type":"Answer","text":"Cropping itself does not change the pixels you keep. Saving as JPG or WebP applies lossy compression, so use the Quality slider at 90 or above, or save PNG, if you need the best result."}},{"@type":"Question","name":"How do I crop an image to a 16:9 or 4:3 ratio?","acceptedAnswer":{"@type":"Answer","text":"Choose 16:9 or 4:3 from the Aspect ratio list. The box locks to that ratio, and you can still move and resize it. Use Custom ratio for any other combination, such as 5:7."}},{"@type":"Question","name":"Can I rotate or flip the image?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Rotate left, Rotate right, Flip horizontal or Flip vertical. The crop box resets after each change, and the saved file uses the rotated image."}},{"@type":"Question","name":"Why are the corners of my circle crop white or black?","acceptedAnswer":{"@type":"Answer","text":"That happens when you save as JPG, which cannot be transparent. Choose PNG or WebP to keep the corners transparent, or pick a JPG background color that matches where you will use the image."}},{"@type":"Question","name":"Can I crop on my phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The crop box works with touch: drag inside it to move, and drag the handles to resize. Very large photos may need more memory than some phones have. If an image will not open, try a smaller one."}},{"@type":"Question","name":"What file formats can I open and save?","acceptedAnswer":{"@type":"Answer","text":"You can open JPG, PNG, WebP, GIF, BMP, AVIF and SVG images that your browser supports. You can save the crop as PNG, JPG or WebP. HEIC photos open only in Safari."}},{"@type":"Question","name":"Does it keep the transparent background of a PNG?","acceptedAnswer":{"@type":"Answer","text":"Yes, if you save as PNG or WebP. For JPG, transparent areas are filled with the background color you choose."}},{"@type":"Question","name":"Can I move the crop box with the keyboard?","acceptedAnswer":{"@type":"Answer","text":"Yes. Click the picture to focus it, then press the arrow keys to move the box one pixel at a time, or hold Shift to move ten pixels."}},{"@type":"Question","name":"Is there a limit on image size?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed limit, but the image is held in memory while you work. Browsers on phones may fail above about 16 megapixels. If that happens, resize the photo first."}},{"@type":"Question","name":"Does the cropped file keep my camera and GPS data?","acceptedAnswer":{"@type":"Answer","text":"No. The cropped image is drawn fresh and saved without EXIF data, so camera details and GPS location are not included. Photos are shown the right way up."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary gives a page with the crop settings and a picture of the result. Copy summary copies the settings as text. The cropped image file is the main download."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://utiliby.com/tools/image-tools/"},{"@type":"ListItem","position":3,"name":"Image Cropper","item":"https://utiliby.com/tools/image-tools/crop-image/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/image-tools/">Image Tools</a> › Image Cropper</nav>
+<h1 class="noembed">Free Image Cropper with Circle Crop</h1>
+<p class="lead noembed">Free online image cropper. Crop a photo to any ratio or exact size, make a circle crop for a profile picture, rotate or flip it and download PNG, JPG or WebP. It runs in your browser, so your image is never uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/image-tools/crop-image/" target="_blank" rel="noopener">Image Cropper by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Image cropper">
+<div class="dt-hero noembed">
+<h2>Free Image Cropper with Circle Crop</h2>
+<p>Crop a photo to any size or ratio, or to a circle for a profile picture. Drag the box, set exact pixels, rotate or flip, and download PNG, JPG or WebP. No upload.</p>
+</div>
+<div class="dt-panel"><div class="pd-drop" id="cDrop" tabindex="0" role="button" aria-label="Choose images"><b>Drop an image here, or click to choose</b>Your images stay on your device. Nothing is uploaded.</div><input type="file" id="cFile" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.avif,.svg,.ico,.heic,.heif" hidden><div class="pd-prog" id="pdProg" hidden><i></i></div><div class="pd-progtxt" id="pdProgTxt"></div><p id="cInfo" class="ck-note"></p><div id="cStage" hidden><canvas id="cCv" tabindex="0" aria-label="Crop area. Drag to move or resize. Arrow keys nudge the box."></canvas><div class="im-bar"><button type="button" class="dt-btn ghost" id="cRotL">Rotate left</button><button type="button" class="dt-btn ghost" id="cRotR">Rotate right</button><button type="button" class="dt-btn ghost" id="cFlipH">Flip horizontal</button><button type="button" class="dt-btn ghost" id="cFlipV">Flip vertical</button><button type="button" class="dt-btn ghost" id="cCenter">Center</button><button type="button" class="dt-btn ghost" id="cAll">Largest box</button></div><div class="dt-row4"><div><label for="cAsp">Aspect ratio</label><select id="cAsp"><option value="free">Free</option><option value="1:1">Square 1:1</option><option value="4:5">4:5 Instagram portrait</option><option value="9:16">9:16 Stories and Reels</option><option value="16:9">16:9 YouTube</option><option value="4:3">4:3</option><option value="3:4">3:4</option><option value="3:2">3:2 Photo</option><option value="2:3">2:3 Pinterest</option><option value="1.91:1">1.91:1 Link preview</option><option value="3:1">3:1 X header</option><option value="210:297">A4 portrait</option><option value="297:210">A4 landscape</option><option value="custom">Custom ratio</option></select></div><div><label for="cShape">Shape</label><select id="cShape"><option value="rect">Rectangle</option><option value="round">Rounded corners</option><option value="circle">Circle</option><option value="oval">Oval</option></select></div><div id="cRadBox"><div><label for="cRad">Corner radius</label><input type="range" id="cRad" min="0" max="50" step="1" value="20"></div></div><div><label for="cOw">Output width (px, optional)</label><input type="number" id="cOw" min="1" max="16000" step="1" placeholder="as cropped"></div></div><div id="cCust" class="dt-row" hidden><div><label for="cRw">Ratio width</label><input type="number" id="cRw" min="0.01" max="1000" step="any" value="3"></div><div><label for="cRh">Ratio height</label><input type="number" id="cRh" min="0.01" max="1000" step="any" value="2"></div></div><div class="dt-row4"><div><label for="cX">X (px)</label><input type="number" id="cX" min="0" max="100000" step="1"></div><div><label for="cY">Y (px)</label><input type="number" id="cY" min="0" max="100000" step="1"></div><div><label for="cW">Width (px)</label><input type="number" id="cW" min="1" max="100000" step="1"></div><div><label for="cH">Height (px)</label><input type="number" id="cH" min="1" max="100000" step="1"></div></div><div class="dt-row4"><div><label for="cFmt">Save as</label><select id="cFmt"><option value="png">PNG</option><option value="jpg">JPG</option><option value="webp">WebP</option></select></div><div id="cQBox"><div><label for="cQ">Quality</label><input type="range" id="cQ" min="10" max="100" step="1" value="92"></div></div><div id="cBgBox"><label for="cBg">JPG background</label><input type="color" id="cBg" value="#ffffff"></div></div><canvas id="cPrev" class="im-cv" aria-label="Preview of the cropped image"></canvas><div id="cSum"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="cDl">Download cropped image</button>
+<button type="button" class="dt-btn ghost" id="cPrint">Print / save summary</button>
+<button type="button" class="dt-btn ghost" id="cCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online image cropper works in your browser, so your image is not uploaded. Cropping permanently removes the parts outside the box from the saved copy, so keep your original file. Rounded, circular and oval crops are saved with transparent corners, which need PNG or WebP. A JPG has no transparency, so the corners are filled with the background color you choose. The saved file has no EXIF metadata.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/image-tools/crop-image/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Image Cropper. https://utiliby.com/tools/image-tools/crop-image/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/image-tools/crop-image/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Image Cropper by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/image-tools/crop-image/"&gt;Image Cropper by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free image cropper does</a></li><li><a href="#how">How to crop an image in four steps</a></li><li><a href="#ratios">Aspect ratios for social media, video and print</a></li><li><a href="#circle">Circle, oval and rounded crops</a></li><li><a href="#rule">Cropping for a better picture</a></li><li><a href="#size">Crop size, output size and quality</a></li><li><a href="#uses">Common uses</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#compare">Online cropper or photo editor?</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free image cropper does</h2>
+<p>Cropping is the quickest way to improve a photo: cut away distracting edges, remove a person from the side, fit a picture into a square or widescreen frame, or turn a portrait into a round profile picture. This free online <b>image cropper</b> lets you do that in your browser with a box you drag over the picture.</p><p>You can lock the box to a ratio such as 1:1, 4:5, 16:9 or A4, set exact pixel values, crop to a circle, oval or rounded shape, rotate or flip the picture, and scale the result to a width you choose. The picture is never uploaded, there is no sign-up and the saved file has no watermark.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="A wide photo with a dashed crop box, an arrow, and the resulting square crop and circle crop"><title>Crop to a ratio or a circle</title>
+<rect x="20" y="40" width="250" height="150" rx="8" fill="#cbd5e1"/><rect x="20" y="40" width="250" height="150" rx="8" fill="none" stroke="currentColor" stroke-opacity=".4"/>
+<circle cx="90" cy="95" r="22" fill="#fbbf24"/><path d="M20 190 L110 110 L170 165 L215 125 L270 190 Z" fill="#0f766e"/>
+<rect x="95" y="50" width="130" height="130" fill="none" stroke="#0f766e" stroke-width="3" stroke-dasharray="7 5"/>
+<text x="20" y="28" font-size="13" fill="currentColor">Original photo and crop box</text>
+<path d="M290 115 H340" stroke="#0f766e" stroke-width="3"/><path d="M330 105 L343 115 L330 125" stroke="#0f766e" stroke-width="3" fill="none"/>
+<rect class="dt-bar" x="365" y="70" width="110" height="110" rx="6" fill="#0f766e" style="animation-delay:.1s"/><text x="420" y="205" text-anchor="middle" font-size="12" fill="currentColor">Square 1:1</text>
+<circle cx="560" cy="125" r="55" fill="#14b8a6"/><text x="560" y="205" text-anchor="middle" font-size="12" fill="currentColor">Circle for avatars</text></svg>
+<figcaption>Drag the box over the part you want. Pick a ratio such as 1:1 or 16:9, or choose a circle for a profile picture saved with a transparent background.</figcaption></figure>
+<h2 id="how">How to crop an image in four steps</h2>
+<ol><li><b>Add your image.</b> Drop a JPG, PNG, WebP or other image onto the drop area, or click it to choose a file.</li><li><b>Set the shape and ratio.</b> Pick a ratio from the list, or leave it on Free to draw any box. Choose Circle for a round crop.</li><li><b>Position the box.</b> Drag inside the box to move it. Drag a corner or an edge to resize it. Use the arrow keys for fine moves.</li><li><b>Save.</b> Choose PNG, JPG or WebP and press Download cropped image.</li></ol>
+<h2 id="ratios">Aspect ratios for social media, video and print</h2>
+<div class="dt-wrap"><table><tr><th>Use</th><th>Ratio</th><th>Common size</th></tr><tr><td>Instagram square post</td><td>1:1</td><td>1080 x 1080 px</td></tr><tr><td>Instagram portrait post</td><td>4:5</td><td>1080 x 1350 px</td></tr><tr><td>Stories, Reels, TikTok</td><td>9:16</td><td>1080 x 1920 px</td></tr><tr><td>YouTube thumbnail</td><td>16:9</td><td>1280 x 720 px</td></tr><tr><td>Link preview (Open Graph)</td><td>1.91:1</td><td>1200 x 630 px</td></tr><tr><td>Pinterest pin</td><td>2:3</td><td>1000 x 1500 px</td></tr><tr><td>X (Twitter) header</td><td>3:1</td><td>1500 x 500 px</td></tr><tr><td>Standard photo print</td><td>3:2 or 4:3</td><td>6 x 4 in, 8 x 6 in</td></tr><tr><td>A4 paper</td><td>210:297</td><td>2480 x 3508 px at 300 dpi</td></tr></table></div><p>These are widely used sizes, but every platform updates its recommendations from time to time, so check the current guide before you design something important.</p>
+<h2 id="circle">Circle, oval and rounded crops</h2>
+<p>Profile pictures on most sites and apps are displayed in a circle, so cropping to a circle yourself lets you choose exactly which part of the face or logo stays inside. Choose <b>Circle</b> and the box locks to a square. Choose <b>Oval</b> for an ellipse of any proportions, or <b>Rounded corners</b> and set the radius for app icons and cards.</p><p>Round crops need transparent corners. PNG and WebP support transparency. JPG does not, so if you choose JPG the corners are filled with the background color you pick.</p>
+<h2 id="rule">Cropping for a better picture</h2>
+<ul><li><b>Rule of thirds:</b> the faint grid lines divide the box into nine parts. Placing the subject on a line or intersection usually looks more balanced than dead center.</li><li><b>Cut distractions:</b> trim bright objects and busy edges that pull the eye away.</li><li><b>Leave breathing room:</b> do not crop right at the edge of a head or a limb.</li><li><b>Keep the straight horizon:</b> use Rotate and a fresh crop if a scan or photo is turned.</li><li><b>Crop first, then resize:</b> start from the largest version so you keep detail.</li></ul>
+<h2 id="size">Crop size, output size and quality</h2>
+<p>The X, Y, Width and Height fields describe the box in the pixels of your picture. If your photo is 4000 pixels wide, a box 2000 wide keeps half the width. The <b>Output width</b> field scales the result to the final size, for example 1080 for Instagram, while keeping the shape. Scaling down keeps a picture sharp. Scaling a small crop up makes it look soft, so avoid enlarging small crops beyond their natural size.</p><p>PNG saves every pixel exactly, which gives larger files. JPG and WebP are smaller and have a quality slider. At 90 to 95 the loss is hard to see.</p>
+<h2 id="uses">Common uses</h2>
+<ul><li><b>Profile pictures:</b> a clean circle or square for social and work accounts.</li><li><b>Social posts and covers:</b> exact ratios for feeds, stories and banners.</li><li><b>Product photos:</b> square crops for online shops and marketplaces.</li><li><b>Documents and IDs:</b> trim scans to the edges of the page or card.</li><li><b>Thumbnails:</b> 16:9 crops for videos and articles.</li><li><b>Printing:</b> match the ratio of a 6 x 4 or A4 print so nothing is cut off at the lab.</li></ul>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>The box will not follow the ratio:</b> a ratio is set in the list. Choose Free to draw any shape.</li><li><b>The corners are not transparent:</b> save as PNG or WebP, not JPG.</li><li><b>The image will not open:</b> HEIC opens only in Safari. Try another format or a smaller file.</li><li><b>The result looks soft:</b> your crop was scaled up. Leave the Output width empty or lower than the crop width.</li><li><b>It is slow on a phone:</b> very large photos use a lot of memory. Resize the photo first.</li></ul>
+<h2 id="compare">Online cropper or photo editor?</h2>
+<p>Photo editors offer layers, straightening, perspective correction and content-aware tools. They are the right choice for complex edits. A browser cropper is faster for simple jobs: you open it, drag a box and save. It also keeps the picture on your device, which matters for personal photos and documents.</p>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>Your browser opens the image and draws it onto a canvas. Cropping copies the pixels inside the box to a new canvas, applies the shape mask if you chose one, and saves the result. Nothing is uploaded, stored or logged. The saved file has no EXIF metadata, so camera details and GPS location are not included.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I crop an image online for free?</summary><p>Load your image above, drag the box over the part you want to keep, and drag the corner or edge handles to resize it. Choose a ratio if you need one, then press Download cropped image. Everything runs in your browser.</p></details><details><summary>How do I crop a photo into a circle?</summary><p>Set Shape to Circle. The box locks to a square so the circle is perfect. Move and size it over the face or subject, then save as PNG or WebP so the corners stay transparent. Profile pictures on most sites are shown inside a circle anyway.</p></details><details><summary>Is my image uploaded anywhere?</summary><p>No. The image is opened and cropped on your own device with your browser. Nothing is sent to Utiliby or any other server.</p></details><details><summary>Which aspect ratio should I use for Instagram?</summary><p>Instagram feed posts are usually 1:1 or 4:5 portrait, and Stories and Reels use 9:16. Platforms change their recommendations from time to time, so check the current guidance, but these presets cover the common cases.</p></details><details><summary>Can I crop to an exact size in pixels?</summary><p>Yes. Type the X, Y, Width and Height fields to set the box exactly. With a ratio selected, changing the width changes the height to match. You can also type an Output width to scale the crop to a final size.</p></details><details><summary>What is the difference between cropping and resizing?</summary><p>Cropping cuts away part of the picture and keeps the remaining pixels as they are. Resizing keeps the whole picture and changes how many pixels it has. You can crop first, then set an output width to do both in one step.</p></details><details><summary>Does cropping reduce the image quality?</summary><p>Cropping itself does not change the pixels you keep. Saving as JPG or WebP applies lossy compression, so use the Quality slider at 90 or above, or save PNG, if you need the best result.</p></details><details><summary>How do I crop an image to a 16:9 or 4:3 ratio?</summary><p>Choose 16:9 or 4:3 from the Aspect ratio list. The box locks to that ratio, and you can still move and resize it. Use Custom ratio for any other combination, such as 5:7.</p></details><details><summary>Can I rotate or flip the image?</summary><p>Yes. Use Rotate left, Rotate right, Flip horizontal or Flip vertical. The crop box resets after each change, and the saved file uses the rotated image.</p></details><details><summary>Why are the corners of my circle crop white or black?</summary><p>That happens when you save as JPG, which cannot be transparent. Choose PNG or WebP to keep the corners transparent, or pick a JPG background color that matches where you will use the image.</p></details><details><summary>Can I crop on my phone?</summary><p>Yes. The crop box works with touch: drag inside it to move, and drag the handles to resize. Very large photos may need more memory than some phones have. If an image will not open, try a smaller one.</p></details><details><summary>What file formats can I open and save?</summary><p>You can open JPG, PNG, WebP, GIF, BMP, AVIF and SVG images that your browser supports. You can save the crop as PNG, JPG or WebP. HEIC photos open only in Safari.</p></details><details><summary>Does it keep the transparent background of a PNG?</summary><p>Yes, if you save as PNG or WebP. For JPG, transparent areas are filled with the background color you choose.</p></details><details><summary>Can I move the crop box with the keyboard?</summary><p>Yes. Click the picture to focus it, then press the arrow keys to move the box one pixel at a time, or hold Shift to move ten pixels.</p></details><details><summary>Is there a limit on image size?</summary><p>There is no fixed limit, but the image is held in memory while you work. Browsers on phones may fail above about 16 megapixels. If that happens, resize the photo first.</p></details><details><summary>Does the cropped file keep my camera and GPS data?</summary><p>No. The cropped image is drawn fresh and saved without EXIF data, so camera details and GPS location are not included. Photos are shown the right way up.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary gives a page with the crop settings and a picture of the result. Copy summary copies the settings as text. The cropped image file is the main download.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>MDN Web Docs, Canvas API and the drawImage method, for how browsers crop and scale images.</li><li>MDN Web Docs, Image file type and format guide, for the differences between JPEG, PNG and WebP and transparency support.</li><li>Instagram Help Center and Meta Business Help Center, current image size and aspect ratio guidance for posts, Stories and Reels.</li><li>YouTube Help, custom thumbnail guidelines, for the recommended 16:9 thumbnail size.</li><li>Open Graph protocol (ogp.me), for the image used when a link is shared.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online image cropper works in your browser, so your image is not uploaded. Cropping permanently removes the parts outside the box from the saved copy, so keep your original file. Rounded, circular and oval crops are saved with transparent corners, which need PNG or WebP. A JPG has no transparency, so the corners are filled with the background color you choose. The saved file has no EXIF metadata.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+function readBuf(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsArrayBuffer(file); }); }
+function fmtSize(n) { if (n == null) return "n/a"; if (n < 1024) return n + " B"; if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + " KB"; return (n / 1048576).toFixed(n < 10485760 ? 2 : 1) + " MB"; }
+function baseName(n) { return String(n || "document").replace(/\.[^.]+$/, "").replace(/[^\w\-. ]+/g, "_").slice(0, 60) || "document"; }
+function prog(f, text) {
+  var p = $("pdProg"); if (!p) return;
+  if (f == null) { p.hidden = true; var t0 = $("pdProgTxt"); if (t0) t0.textContent = ""; return; }
+  p.hidden = false; p.firstChild.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; p.title = text || "";
+  var t = $("pdProgTxt"); if (t) t.textContent = text || "";
+}
+function tick() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function bindDrop(dropId, fileId, cb) {
+  var d = $(dropId), f = $(fileId);
+  function open() { f.value = ""; f.click(); }
+  d.addEventListener("click", open);
+  d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  ["dragenter", "dragover"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add("on"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove("on"); }); });
+  d.addEventListener("drop", function (e) { var fl = e.dataTransfer && e.dataTransfer.files; if (fl && fl.length) cb(Array.prototype.slice.call(fl)); });
+  f.addEventListener("change", function () { if (f.files && f.files.length) cb(Array.prototype.slice.call(f.files)); });
+}
+var CRCT = null;
+function crc32(u8) {
+  if (!CRCT) { CRCT = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; CRCT[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) crc = CRCT[(crc ^ u8[i]) & 255] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cen = [], off = 0, d = new Date();
+  var dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), data = f.data, crc = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cen.push(c.buffer, nm); off += 30 + nm.length + data.length;
+  });
+  var csz = 0; cen.forEach(function (x) { csz += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, csz, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cen, [e.buffer]), { type: "application/zip" });
+}
+function blobBytes(b) { return b.arrayBuffer().then(function (x) { return new Uint8Array(x); }); }
+function busy(ids, on) { ids.forEach(function (i) { var e = $(i); if (e) e.disabled = !!on; }); }
+/* ---------- image core ---------- */
+var IMG_RE = /\.(jpe?g|png|webp|gif|bmp|avif|svg|ico|heic|heif|tiff?)$/i;
+function isImg(f) { return /^image\//.test(f.type || "") || IMG_RE.test(f.name || ""); }
+function cvMake(w, h) { var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h)); return c; }
+function loadImg(file) {
+  return new Promise(function (res, rej) {
+    var url = URL.createObjectURL(file), im = new Image();
+    im.onload = function () {
+      var w = im.naturalWidth, h = im.naturalHeight;
+      if (!w || !h) { if (/svg/i.test(file.type) || /\.svg$/i.test(file.name)) { w = 1024; h = 1024; } else { URL.revokeObjectURL(url); rej(new Error("This image has no size, so it cannot be used.")); return; } }
+      res({ src: im, w: w, h: h, name: file.name, size: file.size, type: file.type || "", url: url });
+    };
+    im.onerror = function () { URL.revokeObjectURL(url); rej(new Error("Your browser could not open \"" + file.name + "\". It may be damaged or in a format this browser does not support (HEIC opens only in Safari).")); };
+    im.src = url;
+  });
+}
+function imgToCanvas(o, w, h, bg) {
+  w = w || o.w; h = h || o.h; var c = cvMake(w, h), x = c.getContext("2d"); if (bg) { x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height); } x.imageSmoothingQuality = "high"; x.drawImage(o.src, 0, 0, c.width, c.height); return c;
+}
+/* high-quality resize in halving steps. src: canvas or image, sw/sh source size */
+function resizeTo(src, sw, sh, dw, dh, sx, sy, sWidth, sHeight) {
+  dw = Math.max(1, Math.round(dw)); dh = Math.max(1, Math.round(dh));
+  sx = sx || 0; sy = sy || 0; sWidth = sWidth || sw; sHeight = sHeight || sh;
+  var cur = src, cx = sx, cy = sy, cw = sWidth, ch = sHeight;
+  while (cw / 2 >= dw && ch / 2 >= dh) {
+    var nw = Math.max(dw, Math.floor(cw / 2)), nh = Math.max(dh, Math.floor(ch / 2)), t = cvMake(nw, nh), tx = t.getContext("2d"); tx.imageSmoothingQuality = "high";
+    tx.drawImage(cur, cx, cy, cw, ch, 0, 0, nw, nh); cur = t; cx = 0; cy = 0; cw = nw; ch = nh;
+  }
+  var f = cvMake(dw, dh), fx = f.getContext("2d"); fx.imageSmoothingQuality = "high"; fx.drawImage(cur, cx, cy, cw, ch, 0, 0, dw, dh); return f;
+}
+function flatten(c, bg) { var t = cvMake(c.width, c.height), x = t.getContext("2d"); x.fillStyle = bg || "#ffffff"; x.fillRect(0, 0, t.width, t.height); x.drawImage(c, 0, 0); return t; }
+function cvBlob(c, type, q) {
+  return new Promise(function (res, rej) { try { c.toBlob(function (b) { b && b.type === type ? res(b) : (b && type === "image/png" ? res(b) : rej(new Error("Your browser could not save this image as " + type.replace("image/", "").toUpperCase() + ". Try another format, or a smaller size."))); }, type, q); } catch (e) { rej(new Error("The image is too large for your browser to save. Try a smaller size.")); } });
+}
+var FMT_OK = {};
+function fmtSupported(type) {
+  if (type in FMT_OK) return Promise.resolve(FMT_OK[type]);
+  return new Promise(function (res) { var c = cvMake(2, 2); try { c.toBlob(function (b) { FMT_OK[type] = !!b && b.type === type; res(FMT_OK[type]); }, type, 0.8); } catch (e) { FMT_OK[type] = false; res(false); } });
+}
+var EXT = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/avif": "avif", "image/bmp": "bmp", "image/x-icon": "ico" };
+function hasAlpha(c) {
+  try { var d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; for (var i = 3; i < d.length; i += 4) if (d[i] < 255) return true; } catch (e) { }
+  return false;
+}
+function dlNameI(name, tag, ext) { return baseName(name) + (tag ? "-" + tag : "") + "." + ext; }
+function u8cat(parts) { var n = 0, i; parts.forEach(function (p) { n += p.length; }); var o = new Uint8Array(n), k = 0; parts.forEach(function (p) { o.set(p, k); k += p.length; }); return o; }
+function be32(n) { return new Uint8Array([(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255]); }
+function u8str(s) { var o = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) o[i] = s.charCodeAt(i); return o; }
+function pngChunk(type, data) { var t = u8str(type), c = crc32(u8cat([t, data])); return u8cat([be32(data.length), t, data, be32(c)]); }
+/* PNG: write DPI (pHYs) / JPEG: write DPI in JFIF */
+function setDpi(blob, dpi) {
+  return blobBytes(blob).then(function (u) {
+    if (blob.type === "image/jpeg" && u[0] === 0xFF && u[1] === 0xD8 && u[2] === 0xFF && u[3] === 0xE0 && u[6] === 0x4A) { u[13] = 1; u[14] = dpi >> 8; u[15] = dpi & 255; u[16] = dpi >> 8; u[17] = dpi & 255; return new Blob([u], { type: blob.type }); }
+    if (blob.type === "image/png" && u[1] === 0x50) {
+      var ppm = Math.round(dpi / 0.0254), d = u8cat([be32(ppm), be32(ppm), new Uint8Array([1])]), ihdrEnd = 33;
+      var clean = [u.subarray(0, ihdrEnd)], p = ihdrEnd;
+      while (p < u.length) { var l2 = (u[p] << 24 | u[p + 1] << 16 | u[p + 2] << 8 | u[p + 3]) >>> 0, t2 = String.fromCharCode(u[p + 4], u[p + 5], u[p + 6], u[p + 7]); if (t2 !== "pHYs") clean.push(u.subarray(p, p + 12 + l2)); p += 12 + l2; }
+      clean.splice(1, 0, pngChunk("pHYs", d)); return new Blob(clean, { type: blob.type });
+    }
+    return blob;
+  });
+}
+/* ---- PNG encoder with optional palette quantisation ---- */
+function deflateZ(u8) {
+  if (typeof CompressionStream === "undefined") return Promise.reject(new Error("nocs"));
+  var cs = new CompressionStream("deflate"), w = cs.writable.getWriter(); w.write(u8); w.close();
+  return new Response(cs.readable).arrayBuffer().then(function (b) { return new Uint8Array(b); });
+}
+function filterRows(px, w, h, bpp) { /* px: raw rows without filter byte; row length = w (bytes). adaptive filter by min abs sum */
+  var rl = w, out = new Uint8Array((rl + 1) * h), prev = new Uint8Array(rl), cand = [new Uint8Array(rl), new Uint8Array(rl), new Uint8Array(rl), new Uint8Array(rl)], y, i, f;
+  for (y = 0; y < h; y++) {
+    var cur = px.subarray(y * rl, (y + 1) * rl), best = 0, bs = Infinity;
+    for (i = 0; i < rl; i++) { var a = i >= bpp ? cur[i - bpp] : 0, b = prev[i], c = i >= bpp ? prev[i - bpp] : 0, p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c), pr = pa <= pb && pa <= pc ? a : (pb <= pc ? b : c); cand[0][i] = cur[i]; cand[1][i] = (cur[i] - a) & 255; cand[2][i] = (cur[i] - b) & 255; cand[3][i] = (cur[i] - pr) & 255; }
+    for (f = 0; f < 4; f++) { var s = 0, cf = cand[f]; for (i = 0; i < rl; i++) { var v = cf[i]; s += v < 128 ? v : 256 - v; } if (s < bs) { bs = s; best = f; } }
+    out[y * (rl + 1)] = best; out.set(cand[best], y * (rl + 1) + 1); prev = cur;
+  }
+  return out;
+}
+function pngAssemble(w, h, depth, ctype, rows, pal, trns) {
+  var ihdr = u8cat([be32(w), be32(h), new Uint8Array([depth, ctype, 0, 0, 0])]), parts = [new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]), pngChunk("IHDR", ihdr)];
+  if (pal) parts.push(pngChunk("PLTE", pal)); if (trns) parts.push(pngChunk("tRNS", trns));
+  return deflateZ(rows).then(function (z) { parts.push(pngChunk("IDAT", z), pngChunk("IEND", new Uint8Array(0))); return new Blob(parts, { type: "image/png" }); });
+}
+function pngLossless(c) {
+  var d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data, opaque = true, i;
+  for (i = 3; i < d.length; i += 4) if (d[i] < 255) { opaque = false; break; }
+  var w = c.width, h = c.height, bpp = opaque ? 3 : 4, raw = new Uint8Array(w * h * bpp), k = 0;
+  if (opaque) for (i = 0; i < d.length; i += 4) { raw[k++] = d[i]; raw[k++] = d[i + 1]; raw[k++] = d[i + 2]; } else raw.set(d);
+  return pngAssemble(w, h, 8, opaque ? 2 : 6, filterRows(raw, w * bpp, h, bpp), null, null);
+}
+function quantize(c, K, dither) {
+  var w = c.width, h = c.height, d = c.getContext("2d").getImageData(0, 0, w, h).data, n = w * h, i;
+  var cnt = new Uint32Array(262144), sr = new Float64Array(262144), sg = new Float64Array(262144), sb = new Float64Array(262144), sa = new Float64Array(262144), step = Math.max(1, Math.floor(n / 300000)), hasA = false;
+  for (i = 3; i < d.length; i += 4) if (d[i] < 255) { hasA = true; break; }
+  for (i = 0; i < n; i += step) { var o = i * 4, a = d[o + 3], key = ((d[o] >> 3) << 13) | ((d[o + 1] >> 3) << 8) | ((d[o + 2] >> 3) << 3) | (hasA ? a >> 5 : 0); cnt[key]++; sr[key] += d[o]; sg[key] += d[o + 1]; sb[key] += d[o + 2]; sa[key] += a; }
+  var bins = []; for (i = 0; i < 262144; i++) if (cnt[i]) bins.push(i);
+  function avg(key) { var q = cnt[key]; return [sr[key] / q, sg[key] / q, sb[key] / q, sa[key] / q]; }
+  var boxes = [{ b: bins }];
+  function stat(bx) { var mn = [255, 255, 255, 255], mx = [0, 0, 0, 0], tot = 0; bx.b.forEach(function (k) { var v = avg(k); for (var j = 0; j < 4; j++) { if (v[j] < mn[j]) mn[j] = v[j]; if (v[j] > mx[j]) mx[j] = v[j]; } tot += cnt[k]; }); var rg = [mx[0] - mn[0], (mx[1] - mn[1]) * 1.2, (mx[2] - mn[2]) * 0.8, hasA ? (mx[3] - mn[3]) : 0], ch = 0; for (var j = 1; j < 4; j++) if (rg[j] > rg[ch]) ch = j; bx.ch = ch; bx.range = rg[ch]; bx.tot = tot; }
+  boxes.forEach(stat);
+  while (boxes.length < K) {
+    var bi = -1, bs = 0; boxes.forEach(function (bx, j) { var sc = bx.range * Math.sqrt(bx.tot); if (bx.b.length > 1 && sc > bs) { bs = sc; bi = j; } });
+    if (bi < 0) break; var bx = boxes[bi], ch = bx.ch; bx.b.sort(function (p, q) { return avg(p)[ch] - avg(q)[ch]; });
+    var half = bx.tot / 2, acc = 0, cut = 1; for (i = 0; i < bx.b.length; i++) { acc += cnt[bx.b[i]]; if (acc >= half) { cut = Math.min(bx.b.length - 1, Math.max(1, i + 1)); break; } }
+    var A = { b: bx.b.slice(0, cut) }, B = { b: bx.b.slice(cut) }; stat(A); stat(B); boxes.splice(bi, 1, A, B);
+  }
+  var pal = boxes.map(function (bx) { var r = 0, g = 0, b = 0, a = 0, t = 0; bx.b.forEach(function (k) { r += sr[k]; g += sg[k]; b += sb[k]; a += sa[k]; t += cnt[k]; }); return [Math.round(r / t), Math.round(g / t), Math.round(b / t), hasA ? Math.round(a / t) : 255]; });
+  if (hasA) pal.sort(function (p, q) { return p[3] - q[3]; });
+  var np = pal.length, cache = new Int16Array(262144).fill(-1), idx = new Uint8Array(n);
+  function nearest(r, g, b, a) { var best = 0, bd = Infinity; for (var j = 0; j < np; j++) { var p = pal[j], dr = r - p[0], dg = g - p[1], db = b - p[2], da = a - p[3], dd = dr * dr * 0.9 + dg * dg * 1.2 + db * db * 0.8 + (hasA ? da * da * 1.5 : 0); if (dd < bd) { bd = dd; best = j; } } return best; }
+  var er = null, eg = null, eb = null, ea = null;
+  if (dither) { er = new Float32Array(w + 2); eg = new Float32Array(w + 2); eb = new Float32Array(w + 2); ea = new Float32Array(w + 2); }
+  var ner = dither ? new Float32Array(w + 2) : null, neg = dither ? new Float32Array(w + 2) : null, neb = dither ? new Float32Array(w + 2) : null, nea = dither ? new Float32Array(w + 2) : null;
+  for (var y = 0; y < h; y++) {
+    if (dither) { ner.fill(0); neg.fill(0); neb.fill(0); nea.fill(0); }
+    for (var x = 0; x < w; x++) {
+      var o2 = (y * w + x) * 4, r = d[o2], g = d[o2 + 1], b = d[o2 + 2], a2 = d[o2 + 3], pi;
+      if (dither) { r = Math.max(0, Math.min(255, r + er[x + 1])); g = Math.max(0, Math.min(255, g + eg[x + 1])); b = Math.max(0, Math.min(255, b + eb[x + 1])); a2 = hasA ? Math.max(0, Math.min(255, a2 + ea[x + 1])) : 255; }
+      var key = ((Math.round(r) >> 3) << 13) | ((Math.round(g) >> 3) << 8) | ((Math.round(b) >> 3) << 3) | (hasA ? Math.round(a2) >> 5 : 0);
+      if (dither) pi = nearest(r, g, b, a2); else { pi = cache[key]; if (pi < 0) { pi = nearest(r, g, b, a2); cache[key] = pi; } }
+      idx[y * w + x] = pi;
+      if (dither) { var p = pal[pi], dr = r - p[0], dg = g - p[1], db = b - p[2], da = hasA ? a2 - p[3] : 0; er[x + 2] += dr * 7 / 16; eg[x + 2] += dg * 7 / 16; eb[x + 2] += db * 7 / 16; ea[x + 2] += da * 7 / 16; ner[x] += dr * 3 / 16; neg[x] += dg * 3 / 16; neb[x] += db * 3 / 16; nea[x] += da * 3 / 16; ner[x + 1] += dr * 5 / 16; neg[x + 1] += dg * 5 / 16; neb[x + 1] += db * 5 / 16; nea[x + 1] += da * 5 / 16; ner[x + 2] += dr / 16; neg[x + 2] += dg / 16; neb[x + 2] += db / 16; nea[x + 2] += da / 16; }
+    }
+    if (dither) { var t1 = er; er = ner; ner = t1; var t2 = eg; eg = neg; neg = t2; var t3 = eb; eb = neb; neb = t3; var t4 = ea; ea = nea; nea = t4; ner.fill(0); neg.fill(0); neb.fill(0); nea.fill(0); }
+  }
+  return { w: w, h: h, pal: pal, idx: idx, hasA: hasA };
+}
+function pngIndexed(q) {
+  var np = q.pal.length, depth = np <= 2 ? 1 : np <= 4 ? 2 : np <= 16 ? 4 : 8, w = q.w, h = q.h, rl = Math.ceil(w * depth / 8), raw = new Uint8Array(rl * h), x, y;
+  if (depth === 8) raw.set(q.idx); else { var per = 8 / depth; for (y = 0; y < h; y++) for (x = 0; x < w; x++) raw[y * rl + (x / per | 0)] |= q.idx[y * w + x] << (8 - depth * ((x % per) + 1)); }
+  var pal = new Uint8Array(np * 3), tr = q.hasA ? new Uint8Array(np) : null; q.pal.forEach(function (p, i) { pal[i * 3] = p[0]; pal[i * 3 + 1] = p[1]; pal[i * 3 + 2] = p[2]; if (tr) tr[i] = p[3]; });
+  return pngAssemble(w, h, depth, 3, filterRows(raw, rl, h, 1), pal, tr);
+}
+function pngQuant(c, K, dither) { return pngIndexed(quantize(c, K, dither)); }
+/* ---- BMP and ICO ---- */
+function bmpBlob(c) {
+  var w = c.width, h = c.height, d = c.getContext("2d").getImageData(0, 0, w, h).data, rl = (w * 3 + 3) & ~3, sz = rl * h, buf = new Uint8Array(54 + sz), v = new DataView(buf.buffer), x, y;
+  buf[0] = 66; buf[1] = 77; v.setUint32(2, 54 + sz, true); v.setUint32(10, 54, true); v.setUint32(14, 40, true); v.setInt32(18, w, true); v.setInt32(22, h, true); v.setUint16(26, 1, true); v.setUint16(28, 24, true); v.setUint32(34, sz, true); v.setInt32(38, 2835, true); v.setInt32(42, 2835, true);
+  for (y = 0; y < h; y++) for (x = 0; x < w; x++) { var s = ((h - 1 - y) * w + x) * 4, o = 54 + y * rl + x * 3, a = d[s + 3] / 255; buf[o] = Math.round(d[s + 2] * a + 255 * (1 - a)); buf[o + 1] = Math.round(d[s + 1] * a + 255 * (1 - a)); buf[o + 2] = Math.round(d[s] * a + 255 * (1 - a)); }
+  return new Blob([buf], { type: "image/bmp" });
+}
+function icoBlob(c, sizes) {
+  return Promise.all(sizes.map(function (s) { return cvBlob(resizeTo(c, c.width, c.height, s, s), "image/png").then(blobBytes); })).then(function (pngs) {
+    var n = pngs.length, head = new Uint8Array(6 + 16 * n), v = new DataView(head.buffer), off = 6 + 16 * n; v.setUint16(2, 1, true); v.setUint16(4, n, true);
+    pngs.forEach(function (p, i) { var o = 6 + 16 * i, s = sizes[i]; head[o] = s >= 256 ? 0 : s; head[o + 1] = s >= 256 ? 0 : s; v.setUint16(o + 4, 1, true); v.setUint16(o + 6, 32, true); v.setUint32(o + 8, p.length, true); v.setUint32(o + 12, off, true); off += p.length; });
+    return new Blob([head].concat(pngs), { type: "image/x-icon" });
+  });
+}
+/* pointer helper: handlers receive canvas-space coordinates */
+function bindPtr(el, h) {
+  function pos(e) { var r = el.getBoundingClientRect(); return { x: (e.clientX - r.left) * (el.width / r.width), y: (e.clientY - r.top) * (el.height / r.height), px: e.clientX - r.left, py: e.clientY - r.top, scale: el.width / r.width }; }
+  var down = false;
+  el.style.touchAction = "none";
+  el.addEventListener("pointerdown", function (e) { if (e.button > 0) return; down = true; try { el.setPointerCapture(e.pointerId); } catch (x) { } if (h.down) h.down(pos(e), e); });
+  el.addEventListener("pointermove", function (e) { var p = pos(e); if (down) { if (h.move) h.move(p, e); } else if (h.hover) h.hover(p, e); });
+  function up(e) { if (!down) return; down = false; if (h.up) h.up(pos(e), e); }
+  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
+}
+function dlBlobs(items, zipName) { /* items: [{name, blob}] */
+  return Promise.all(items.map(function (it) { return blobBytes(it.blob).then(function (u) { return { name: it.name, data: u }; }); })).then(function (fs) { var seen = {}; fs.forEach(function (f) { var n = f.name, k = 1; while (seen[n]) { k++; n = f.name.replace(/(\.[^.]+)$/, "-" + k + "$1"); } seen[n] = 1; f.name = n; }); saveBlob(makeZip(fs), zipName); });
+}
+function pctSaved(a, b) { return a > 0 ? Math.round((1 - b / a) * 1000) / 10 : 0; }
+
+/* ---------- image cropper ---------- */
+var ST = { o: null, base: null, view: null, sc: 1, crop: null, drag: null, rows: [], tm: 0, last: null };
+var cv, cx, MIN = 4;
+function shape() { return $("cShape").value; }
+function ratio() {
+  if (shape() === "circle") return 1; var v = $("cAsp").value; if (v === "free") return 0;
+  if (v === "custom") { var a = nv("cRw", 1, 0.01, 1000), b = nv("cRh", 1, 0.01, 1000); return a / b; }
+  var p = v.split(":"); return parseFloat(p[0]) / parseFloat(p[1]);
+}
+function W() { return ST.base.width; } function H() { return ST.base.height; }
+function setBase(c) {
+  ST.base = c; var sc = Math.min(1, 900 / c.width, 560 / c.height); ST.sc = sc; cv.width = Math.max(1, Math.round(c.width * sc)); cv.height = Math.max(1, Math.round(c.height * sc));
+  ST.view = sc === 1 ? c : resizeTo(c, c.width, c.height, cv.width, cv.height);
+}
+function fullCrop() { var r = ratio(), w = W(), h = H(); if (r) { if (w / h > r) w = h * r; else h = w / r; } var f = 0.8; w *= f; h *= f; return { x: (W() - w) / 2, y: (H() - h) / 2, w: w, h: h }; }
+function clampRect(c) { c.w = Math.max(MIN, Math.min(W(), c.w)); c.h = Math.max(MIN, Math.min(H(), c.h)); c.x = Math.max(0, Math.min(W() - c.w, c.x)); c.y = Math.max(0, Math.min(H() - c.h, c.y)); return c; }
+function shapePath(x, y, w, h, c, rad) {
+  if (shape() === "circle" || shape() === "oval") { c.ellipse(x + w / 2, y + h / 2, w / 2, h / 2, 0, 0, Math.PI * 2); return; }
+  if (shape() === "round") { var r = Math.min(w, h) * rad; c.moveTo(x + r, y); c.arcTo(x + w, y, x + w, y + h, r); c.arcTo(x + w, y + h, x, y + h, r); c.arcTo(x, y + h, x, y, r); c.arcTo(x, y, x + w, y, r); c.closePath(); return; }
+  c.rect(x, y, w, h);
+}
+function draw() {
+  if (!ST.base) return; var sc = ST.sc, c = ST.crop, x = c.x * sc, y = c.y * sc, w = c.w * sc, h = c.h * sc, rad = numIn("cRad", 0, 50, 20) / 100;
+  cx.clearRect(0, 0, cv.width, cv.height); cx.drawImage(ST.view, 0, 0, cv.width, cv.height);
+  cx.save(); cx.beginPath(); cx.rect(0, 0, cv.width, cv.height); shapePath(x, y, w, h, cx, rad); cx.fillStyle = "rgba(0,0,0,.55)"; cx.fill("evenodd"); cx.restore();
+  cx.strokeStyle = "#fff"; cx.lineWidth = 2; cx.strokeRect(x, y, w, h); cx.strokeStyle = "rgba(0,0,0,.5)"; cx.lineWidth = 1; cx.strokeRect(x - 1, y - 1, w + 2, h + 2);
+  cx.strokeStyle = "rgba(255,255,255,.55)"; cx.beginPath(); for (var i = 1; i < 3; i++) { cx.moveTo(x + w * i / 3, y); cx.lineTo(x + w * i / 3, y + h); cx.moveTo(x, y + h * i / 3); cx.lineTo(x + w, y + h * i / 3); } cx.stroke();
+  if (shape() !== "rect") { cx.strokeStyle = "#14b8a6"; cx.lineWidth = 2; cx.beginPath(); shapePath(x, y, w, h, cx, rad); cx.stroke(); }
+  cx.fillStyle = "#fff"; cx.strokeStyle = "#0f766e"; cx.lineWidth = 2; handles().forEach(function (p) { cx.beginPath(); cx.rect(p.x - 5, p.y - 5, 10, 10); cx.fill(); cx.stroke(); });
+}
+function handles() {
+  var sc = ST.sc, c = ST.crop, x = c.x * sc, y = c.y * sc, w = c.w * sc, h = c.h * sc;
+  return [{ n: "nw", x: x, y: y }, { n: "n", x: x + w / 2, y: y }, { n: "ne", x: x + w, y: y }, { n: "e", x: x + w, y: y + h / 2 }, { n: "se", x: x + w, y: y + h }, { n: "s", x: x + w / 2, y: y + h }, { n: "sw", x: x, y: y + h }, { n: "w", x: x, y: y + h / 2 }];
+}
+function hit(p) {
+  var tol = 12 * p.scale, hs = handles(), i; for (i = 0; i < hs.length; i++) if (Math.abs(p.x - hs[i].x) <= tol && Math.abs(p.y - hs[i].y) <= tol) return hs[i].n;
+  var c = ST.crop, sc = ST.sc; if (p.x >= c.x * sc && p.x <= (c.x + c.w) * sc && p.y >= c.y * sc && p.y <= (c.y + c.h) * sc) return "move"; return "new";
+}
+var CUR = { nw: "nwse-resize", se: "nwse-resize", ne: "nesw-resize", sw: "nesw-resize", n: "ns-resize", s: "ns-resize", e: "ew-resize", w: "ew-resize", move: "move", "new": "crosshair" };
+function corner(ax, ay, mx, my) {
+  var r = ratio(), sx = mx >= ax ? 1 : -1, sy = my >= ay ? 1 : -1, w = Math.abs(mx - ax), h = Math.abs(my - ay);
+  if (r) { w = Math.max(w, h * r); h = w / r; }
+  var aw = sx > 0 ? W() - ax : ax, ah = sy > 0 ? H() - ay : ay, f = Math.min(1, aw / Math.max(w, 1e-6), ah / Math.max(h, 1e-6)); w *= f; h *= f;
+  return { x: sx > 0 ? ax : ax - w, y: sy > 0 ? ay : ay - h, w: Math.max(w, 1), h: Math.max(h, 1) };
+}
+function edge(R0, hn, mx, my) {
+  var r = ratio(), x1 = R0.x, x2 = R0.x + R0.w, y1 = R0.y, y2 = R0.y + R0.h;
+  if (hn === "w") x1 = Math.min(mx, x2 - MIN); if (hn === "e") x2 = Math.max(mx, x1 + MIN); if (hn === "n") y1 = Math.min(my, y2 - MIN); if (hn === "s") y2 = Math.max(my, y1 + MIN);
+  if (r) {
+    if (hn === "w" || hn === "e") { var w = x2 - x1, h = w / r; if (h > H()) { h = H(); w = h * r; if (hn === "w") x1 = x2 - w; else x2 = x1 + w; } var cy = R0.y + R0.h / 2; y1 = cy - h / 2; y2 = cy + h / 2; if (y1 < 0) { y1 = 0; y2 = h; } if (y2 > H()) { y2 = H(); y1 = H() - h; } }
+    else { var h2 = y2 - y1, w2 = h2 * r; if (w2 > W()) { w2 = W(); h2 = w2 / r; if (hn === "n") y1 = y2 - h2; else y2 = y1 + h2; } var cx0 = R0.x + R0.w / 2; x1 = cx0 - w2 / 2; x2 = cx0 + w2 / 2; if (x1 < 0) { x1 = 0; x2 = w2; } if (x2 > W()) { x2 = W(); x1 = W() - w2; } }
+  }
+  return { x: x1, y: y1, w: x2 - x1, h: y2 - y1 };
+}
+function onDown(p) {
+  if (!ST.base) return; var hn = hit(p), mx = p.x / ST.sc, my = p.y / ST.sc, c = ST.crop; ST.drag = { hn: hn, R0: { x: c.x, y: c.y, w: c.w, h: c.h }, mx0: mx, my0: my };
+  if (hn === "new") ST.drag.anchor = { x: Math.max(0, Math.min(W(), mx)), y: Math.max(0, Math.min(H(), my)) };
+  if (hn.length === 2) { var R = ST.drag.R0; ST.drag.anchor = { x: hn[1] === "w" ? R.x + R.w : R.x, y: hn[0] === "n" ? R.y + R.h : R.y }; }
+}
+function onMove(p) {
+  var d = ST.drag; if (!d) return; var mx = Math.max(0, Math.min(W(), p.x / ST.sc)), my = Math.max(0, Math.min(H(), p.y / ST.sc)), R;
+  if (d.hn === "move") { R = { x: d.R0.x + (p.x / ST.sc - d.mx0), y: d.R0.y + (p.y / ST.sc - d.my0), w: d.R0.w, h: d.R0.h }; ST.crop = clampRect(R); }
+  else if (d.hn === "new" || d.hn.length === 2) { R = corner(d.anchor.x, d.anchor.y, mx, my); if (R.w >= 1 && R.h >= 1) ST.crop = R; }
+  else ST.crop = edge(d.R0, d.hn, mx, my);
+  fields(); draw(); later();
+}
+function onUp() { if (ST.drag && ST.crop.w < MIN) ST.crop = clampRect(ST.crop); ST.drag = null; fields(); draw(); later(); }
+function fields() { var c = ST.crop; $("cX").value = Math.round(c.x); $("cY").value = Math.round(c.y); $("cW").value = Math.round(c.w); $("cH").value = Math.round(c.h); }
+function fromFields(which) {
+  if (!ST.base) return; var c = ST.crop, r = ratio(), v = function (id, d) { return nv(id, d, 0, 100000); };
+  var n = { x: v("cX", c.x), y: v("cY", c.y), w: Math.max(MIN, v("cW", c.w)), h: Math.max(MIN, v("cH", c.h)) };
+  if (r && which === "w") n.h = n.w / r; else if (r && which === "h") n.w = n.h * r;
+  if (r && (n.w > W() || n.h > H())) { var f = Math.min(W() / n.w, H() / n.h); n.w *= f; n.h *= f; }
+  ST.crop = clampRect(n); fields(); draw(); later();
+}
+function cropOut(rounding) {
+  var c = ST.crop, sx = Math.round(c.x), sy = Math.round(c.y), sw = Math.max(1, Math.round(c.w)), sh = Math.max(1, Math.round(c.h)), ow = nv("cOw", 0, 0, 16000), oh = ow ? Math.max(1, Math.round(ow * sh / sw)) : sh, o = ow ? ow : sw;
+  var out = (o === sw && oh === sh) ? (function () { var t = cvMake(sw, sh); t.getContext("2d").drawImage(ST.base, sx, sy, sw, sh, 0, 0, sw, sh); return t; })() : resizeTo(ST.base, W(), H(), o, oh, sx, sy, sw, sh);
+  if (shape() !== "rect") { var t2 = cvMake(out.width, out.height), x2 = t2.getContext("2d"); x2.beginPath(); shapePath(0, 0, t2.width, t2.height, x2, numIn("cRad", 0, 50, 20) / 100); x2.clip(); x2.drawImage(out, 0, 0); out = t2; }
+  return out;
+}
+function fmtMime() { var f = $("cFmt").value; return { png: "image/png", jpg: "image/jpeg", webp: "image/webp" }[f]; }
+function preview() {
+  if (!ST.base) return; var out = cropOut(), s = Math.min(1, 360 / out.width, 280 / out.height), p = $("cPrev"); p.width = Math.max(1, Math.round(out.width * s)); p.height = Math.max(1, Math.round(out.height * s)); p.getContext("2d").clearRect(0, 0, p.width, p.height); p.getContext("2d").drawImage(out, 0, 0, p.width, p.height);
+  ST.last = { w: out.width, h: out.height };
+  $("cSum").innerHTML = '<div class="dt-stats">' + tile("Original", ST.o.w + " × " + ST.o.h, fmtSize(ST.o.size)) + tile("Crop area", Math.round(ST.crop.w) + " × " + Math.round(ST.crop.h), "starts at " + Math.round(ST.crop.x) + ", " + Math.round(ST.crop.y)) + tile("Output", out.width + " × " + out.height, "px") + tile("Ratio", ratioTxt(out.width, out.height), "") + "</div>";
+  ST.rows = [["File", ST.o.name], ["Original size", ST.o.w + " x " + ST.o.h + " px"], ["Crop area", Math.round(ST.crop.w) + " x " + Math.round(ST.crop.h) + " px at " + Math.round(ST.crop.x) + ", " + Math.round(ST.crop.y)], ["Shape", { rect: "Rectangle", round: "Rounded corners", circle: "Circle", oval: "Oval" }[shape()]], ["Output size", out.width + " x " + out.height + " px"], ["Format", $("cFmt").value.toUpperCase()]];
+}
+function ratioTxt(w, h) { function g(a, b) { return b ? g(b, a % b) : a; } var d = g(w, h); if (w / d <= 50 && h / d <= 50) return w / d + ":" + h / d; return (w / h).toFixed(3) + ":1"; }
+function later() { clearTimeout(ST.tm); ST.tm = setTimeout(preview, 80); }
+function transform(kind) {
+  if (!ST.base) return; var b = ST.base, t, x;
+  if (kind === "l" || kind === "r") { t = cvMake(b.height, b.width); x = t.getContext("2d"); x.translate(t.width / 2, t.height / 2); x.rotate(kind === "r" ? Math.PI / 2 : -Math.PI / 2); x.drawImage(b, -b.width / 2, -b.height / 2); }
+  else { t = cvMake(b.width, b.height); x = t.getContext("2d"); if (kind === "h") { x.translate(t.width, 0); x.scale(-1, 1); } else { x.translate(0, t.height); x.scale(1, -1); } x.drawImage(b, 0, 0); }
+  setBase(t); ST.crop = fullCrop(); fields(); draw(); preview();
+}
+function download() {
+  if (!ST.base) return; var mime = fmtMime(), out = cropOut(), q = numIn("cQ", 10, 100, 92) / 100; busy(["cDl"], true);
+  fmtSupported(mime).then(function (ok) { if (!ok) mime = "image/png"; if (mime === "image/jpeg") out = flatten(out, $("cBg").value); return cvBlob(out, mime, q); }).then(function (b) { saveBlob(b, dlNameI(ST.o.name, "cropped", EXT[mime])); msg("Saved " + out.width + " × " + out.height + " px (" + fmtSize(b.size) + ")."); busy(["cDl"], false); }).catch(function (e) { busy(["cDl"], false); msg(e.message, "err"); });
+}
+function loadFile(files) {
+  var f = files.filter(isImg)[0]; if (!f) { msg("Please choose an image file.", "err"); return; }
+  prog(0.3, "Opening " + f.name + "..."); loadImg(f).then(function (o) {
+    if (ST.o) URL.revokeObjectURL(ST.o.url); ST.o = o; prog(null); setBase(imgToCanvas(o)); ST.crop = fullCrop(); $("cStage").hidden = false; busy(["cDl", "cRotL", "cRotR", "cFlipH", "cFlipV", "cCenter", "cAll"], false);
+    $("cInfo").innerHTML = "<b>" + esc(f.name) + "</b> · " + o.w + " × " + o.h + " px · " + fmtSize(f.size); fields(); draw(); preview(); msg("Image loaded. Drag the box to move it and drag the handles to resize.");
+  }).catch(function (e) { prog(null); msg(e.message, "err"); });
+}
+function ui() { var a = $("cAsp").value === "custom" && shape() !== "circle"; $("cCust").hidden = !a; $("cRadBox").hidden = shape() !== "round"; $("cBgBox").hidden = $("cFmt").value !== "jpg"; $("cQBox").hidden = $("cFmt").value === "png"; }
+function setDef() { $("cAsp").value = "free"; $("cShape").value = "rect"; $("cRad").value = 20; $("cOw").value = ""; $("cFmt").value = "png"; $("cQ").value = 92; $("cBg").value = "#ffffff"; ui(); }
+function reset() { setDef(); if (ST.o) { setBase(imgToCanvas(ST.o)); ST.crop = fullCrop(); fields(); draw(); preview(); } }
+function fillReport() {
+  var b = repBox(); repHead(b, "Image cropper: summary", "Free online image cropper"); repTbl(b, ["Setting", "Value"], ST.rows);
+  try { var out = cropOut(), s = Math.min(1, 520 / out.width, 400 / out.height), t = resizeTo(out, out.width, out.height, Math.max(1, Math.round(out.width * s)), Math.max(1, Math.round(out.height * s))); repFig(b, '<img alt="Cropped result" style="max-width:100%;border:1px solid #999" src="' + flatten(t, "#ffffff").toDataURL("image/png") + '">'); } catch (e) { }
+  repDisc(b, "The cropped image file is the main download. This page is only a summary of the settings.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; cv = $("cCv"); cx = cv.getContext("2d"); setDef(); busy(["cDl", "cRotL", "cRotR", "cFlipH", "cFlipV", "cCenter", "cAll"], true); bindDrop("cDrop", "cFile", loadFile);
+  bindPtr(cv, { down: onDown, move: onMove, up: onUp, hover: function (p) { if (ST.base && !ST.drag) cv.style.cursor = CUR[hit(p)]; } });
+  cv.addEventListener("keydown", function (e) { if (!ST.base) return; var d = e.shiftKey ? 10 : 1, k = e.key, c = ST.crop; if (k === "ArrowLeft") c.x -= d; else if (k === "ArrowRight") c.x += d; else if (k === "ArrowUp") c.y -= d; else if (k === "ArrowDown") c.y += d; else return; e.preventDefault(); ST.crop = clampRect(c); fields(); draw(); later(); });
+  $("cAsp").addEventListener("change", function () { ui(); if (ST.base) { var r = ratio(); if (r) { var c = ST.crop, w = Math.min(c.w, c.h * r), h = w / r; ST.crop = clampRect({ x: c.x + (c.w - w) / 2, y: c.y + (c.h - h) / 2, w: w, h: h }); } fields(); draw(); preview(); } });
+  ["cRw", "cRh"].forEach(function (id) { $(id).addEventListener("input", function () { if (ST.base) { var r = ratio(), c = ST.crop, w = Math.min(c.w, c.h * r), h = w / r; ST.crop = clampRect({ x: c.x + (c.w - w) / 2, y: c.y + (c.h - h) / 2, w: w, h: h }); fields(); draw(); later(); } }); });
+  $("cShape").addEventListener("change", function () { ui(); if (shape() === "circle") $("cFmt").value === "jpg" && ($("cFmt").value = "png"); if (ST.base) { var r = ratio(); if (r) { var c = ST.crop, w = Math.min(c.w, c.h * r), h = w / r; ST.crop = clampRect({ x: c.x + (c.w - w) / 2, y: c.y + (c.h - h) / 2, w: w, h: h }); } fields(); draw(); preview(); } ui(); });
+  ["cRad", "cOw", "cFmt", "cQ", "cBg"].forEach(function (id) { $(id).addEventListener("input", function () { ui(); draw(); later(); }); $(id).addEventListener("change", function () { ui(); draw(); later(); }); });
+  ["cX", "cY"].forEach(function (id) { $(id).addEventListener("change", function () { fromFields(); }); }); $("cW").addEventListener("change", function () { fromFields("w"); }); $("cH").addEventListener("change", function () { fromFields("h"); });
+  $("cRotL").addEventListener("click", function () { transform("l"); }); $("cRotR").addEventListener("click", function () { transform("r"); }); $("cFlipH").addEventListener("click", function () { transform("h"); }); $("cFlipV").addEventListener("click", function () { transform("v"); });
+  $("cCenter").addEventListener("click", function () { var c = ST.crop; c.x = (W() - c.w) / 2; c.y = (H() - c.h) / 2; fields(); draw(); later(); });
+  $("cAll").addEventListener("click", function () { var r = ratio(), w = W(), h = H(); if (r) { if (w / h > r) w = h * r; else h = w / r; } ST.crop = { x: (W() - w) / 2, y: (H() - h) / 2, w: w, h: h }; fields(); draw(); later(); });
+  $("cDl").addEventListener("click", download); $("resetBtn").addEventListener("click", function () { reset(); msg("Reset."); });
+  $("cPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  $("cCopy").addEventListener("click", function () { copyText(ST.rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n"), $("cCopy")); });
+}
+init();
+
+})();
+</script>
+</body>
+</html>
