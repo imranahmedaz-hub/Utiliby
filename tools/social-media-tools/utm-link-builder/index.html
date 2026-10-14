@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free UTM Link Builder: Campaign URL Builder and Checker</title>
+<meta name="description" content="Free online UTM link builder. Add campaign tracking to any URL, build links for 12 channels at once, tag up to 200 pages in bulk and check naming errors.">
+<link rel="canonical" href="https://utiliby.com/tools/social-media-tools/utm-link-builder/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free UTM Link Builder: Campaign URL Builder and Checker">
+<meta property="og:description" content="Free UTM link builder. Tag links with source, medium and campaign, build 12 channels at once, process URLs in bulk and check naming.">
+<meta property="og:url" content="https://utiliby.com/tools/social-media-tools/utm-link-builder/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free UTM Link Builder: Campaign URL Builder and Checker">
+<meta name="twitter:description" content="Free UTM link builder. Tag links with source, medium and campaign, build 12 channels at once, process URLs in bulk and check naming.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.prow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow .ptxt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.prow .meta{display:block;font-size:.75rem;color:var(--muted);margin-top:2px}.prow button{flex:none;padding:5px 12px;font-size:.8rem}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+.u-anat{margin:8px 0;padding:10px;border:1px solid var(--line);border-radius:10px;background:var(--bg);overflow-wrap:anywhere;line-height:2;font-size:.82rem}.u-p{display:inline-block;color:#fff;border-radius:6px;padding:1px 8px;margin:0 2px}.u-b{color:var(--muted)}.u-s{margin:0 1px;color:var(--muted)}.u-pre{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}.u-pre button{padding:4px 11px;font-size:.8rem}.c-plat{display:flex;flex-wrap:wrap;gap:4px 16px}.c-plat .im-chk{margin:4px 0}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"UTM Link Builder","url":"https://utiliby.com/tools/social-media-tools/utm-link-builder/","description":"Free online UTM link builder and campaign URL builder. Adds utm_source, utm_medium, utm_campaign, utm_id, utm_term and utm_content to any link, keeps existing parameters, checks naming problems, builds links for twelve channels at once, tags up to 200 URLs in bulk and exports CSV. Runs in the browser.","applicationCategory":"SocialNetworkingApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["All 6 UTM parameters","12 channel presets","Naming checks","Colored link anatomy","Many channels from one page","Bulk tagging up to 200 links","CSV, copy and print","No upload, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a UTM link builder?","acceptedAnswer":{"@type":"Answer","text":"A tool that adds tracking parameters to a web address so analytics software can report where visitors came from. This free one builds single links, sets for many channels and bulk lists."}},{"@type":"Question","name":"How do I use this free UTM link builder online?","acceptedAnswer":{"@type":"Answer","text":"Enter your page address, a source such as instagram, a medium such as social and a campaign name. The tagged link appears, ready to copy. Use the other tabs for many channels or many pages."}},{"@type":"Question","name":"What does UTM stand for?","acceptedAnswer":{"@type":"Answer","text":"Urchin Tracking Module, named after Urchin, the company whose software became Google Analytics. The name stuck even though the parameters work with many analytics tools."}},{"@type":"Question","name":"What are the five UTM parameters?","acceptedAnswer":{"@type":"Answer","text":"utm_source, utm_medium, utm_campaign, utm_term and utm_content. This tool also supports utm_id. Source, medium and campaign are the most important."}},{"@type":"Question","name":"Which parameters are required?","acceptedAnswer":{"@type":"Answer","text":"Source and medium are needed for sensible reports, and a campaign name is strongly recommended. Term and content are optional and help with paid keywords and A/B tests."}},{"@type":"Question","name":"What should I use for source and medium?","acceptedAnswer":{"@type":"Answer","text":"Source is the place, such as facebook, newsletter or google. Medium is the type, such as social, email or cpc. Use the common mediums so analytics can place traffic in the right channel group."}},{"@type":"Question","name":"Should UTM values be lowercase?","acceptedAnswer":{"@type":"Answer","text":"Yes. Analytics tools treat Facebook and facebook as different values, which splits your reports. The option Make values lowercase is on by default."}},{"@type":"Question","name":"What happens to spaces?","acceptedAnswer":{"@type":"Answer","text":"You can replace them with underscores or hyphens, or keep them and let them be encoded as %20. Underscores and hyphens are easier to read in reports."}},{"@type":"Question","name":"Can I add UTM tags to a link that already has parameters?","acceptedAnswer":{"@type":"Answer","text":"Yes. Existing parameters and any # section are kept, and old utm_ values are replaced by the new ones."}},{"@type":"Question","name":"Do UTM links affect SEO?","acceptedAnswer":{"@type":"Answer","text":"Not directly, but tagged URLs create duplicate addresses. A canonical tag on the page tells search engines which one to index. Do not use UTM tags on internal links, because they can overwrite the visitor's original source."}},{"@type":"Question","name":"Should I use UTM tags on internal links?","acceptedAnswer":{"@type":"Answer","text":"No. On your own site they can start a new session and replace the real source of the visit. Use events for internal tracking."}},{"@type":"Question","name":"Can I put personal data in a UTM?","acceptedAnswer":{"@type":"Answer","text":"No. The values are visible in the link and in reports. Never include names, email addresses or other personal information."}},{"@type":"Question","name":"How do I shorten a long tagged link?","acceptedAnswer":{"@type":"Answer","text":"Use a link shortener you trust or your own redirect. The tag stays in the destination, so reports remain correct. This tool does not shorten links."}},{"@type":"Question","name":"Where do I see the results?","acceptedAnswer":{"@type":"Answer","text":"In Google Analytics, open the acquisition reports and look at session source and medium or campaign. Other analytics tools have similar reports."}},{"@type":"Question","name":"Is my data uploaded?","acceptedAnswer":{"@type":"Answer","text":"No. Links are built in your browser."}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no account."}},{"@type":"Question","name":"Is there a naming convention I can follow?","acceptedAnswer":{"@type":"Answer","text":"Use lowercase, no spaces, a clear campaign name with the month or product, such as spring_sale_2026, and the same values every time. Write the rules down for your team."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Social Media Tools","item":"https://utiliby.com/tools/social-media-tools/"},{"@type":"ListItem","position":3,"name":"UTM Link Builder","item":"https://utiliby.com/tools/social-media-tools/utm-link-builder/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/social-media-tools/">Social Media Tools</a> › UTM Link Builder</nav>
+<h1 class="noembed">Free UTM Link Builder</h1>
+<p class="lead noembed">Free online UTM link builder. Add campaign tracking to a link, build tagged links for 12 channels, process 200 URLs in bulk and see warnings about naming errors.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/social-media-tools/utm-link-builder/" target="_blank" rel="noopener">UTM Link Builder by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="UTM link builder">
+<div class="dt-hero noembed">
+<h2>Free UTM Link Builder</h2>
+<p>Add UTM tracking to any link, check naming problems, build links for twelve channels at once, process up to 200 URLs in bulk and see how each part of the link is built.</p>
+</div>
+<div class="seo-tabs" id="uTabs" role="group"><button type="button" class="dt-btn" data-tab="s">Single link</button><button type="button" class="dt-btn ghost" data-tab="m">One page, many channels</button><button type="button" class="dt-btn ghost" data-tab="b">Bulk links</button></div><div id="uPaneS"><div class="dt-panel"><div><label for="uUrl">Website page address (required)</label><input type="text" id="uUrl" placeholder="https://example.com/spring-sale" autocomplete="off" spellcheck="false"></div><p class="ck-note">Quick fill source and medium:</p><div class="u-pre" id="uPre" aria-label="Quick presets"><button type="button" class="dt-btn ghost" data-pre="facebook">Facebook</button><button type="button" class="dt-btn ghost" data-pre="instagram">Instagram</button><button type="button" class="dt-btn ghost" data-pre="linkedin">LinkedIn</button><button type="button" class="dt-btn ghost" data-pre="x">X (Twitter)</button><button type="button" class="dt-btn ghost" data-pre="tiktok">TikTok</button><button type="button" class="dt-btn ghost" data-pre="youtube">YouTube</button><button type="button" class="dt-btn ghost" data-pre="pinterest">Pinterest</button><button type="button" class="dt-btn ghost" data-pre="reddit">Reddit</button><button type="button" class="dt-btn ghost" data-pre="whatsapp">WhatsApp</button><button type="button" class="dt-btn ghost" data-pre="newsletter">Email newsletter</button><button type="button" class="dt-btn ghost" data-pre="gads">Google Ads</button><button type="button" class="dt-btn ghost" data-pre="sms">SMS</button></div><div class="dt-row3"><div><label for="uSource">Campaign source (required)</label><input type="text" id="uSource" placeholder="instagram" autocomplete="off" spellcheck="false"></div><div><label for="uMedium">Campaign medium (required)</label><input type="text" id="uMedium" placeholder="social" autocomplete="off" spellcheck="false"></div><div><label for="uCamp">Campaign name</label><input type="text" id="uCamp" placeholder="spring_sale" autocomplete="off" spellcheck="false"></div></div><div class="dt-row3"><div><label for="uId">Campaign ID (optional)</label><input type="text" id="uId" placeholder="abc123" autocomplete="off" spellcheck="false"></div><div><label for="uTerm">Campaign term (optional)</label><input type="text" id="uTerm" placeholder="running shoes" autocomplete="off" spellcheck="false"></div><div><label for="uContent">Campaign content (optional)</label><input type="text" id="uContent" placeholder="story_link" autocomplete="off" spellcheck="false"></div></div><div class="dt-row"><div class="im-chk"><input type="checkbox" id="uLower" checked><label for="uLower">Make values lowercase</label></div><div><label for="uSp">Spaces become</label><select id="uSp"><option value="underscore">underscore _</option><option value="hyphen">hyphen -</option><option value="keep">keep (encoded as %20)</option></select></div></div><div id="uOut" aria-live="polite"></div></div></div><div id="uPaneM" hidden><div class="dt-panel"><div class="dt-row"><div><label for="mUrl">Website page address</label><input type="text" id="mUrl" placeholder="https://example.com/spring-sale" autocomplete="off" spellcheck="false"></div><div><label for="mCamp">Campaign name</label><input type="text" id="mCamp" placeholder="spring_sale" autocomplete="off" spellcheck="false"></div></div><div class="dt-row"><div><label for="mTerm">Campaign term (optional)</label><input type="text" id="mTerm" placeholder="" autocomplete="off" spellcheck="false"></div><div><label for="mContent">Campaign content (optional)</label><input type="text" id="mContent" placeholder="bio_link" autocomplete="off" spellcheck="false"></div></div><div><label>Channels</label><div class="c-plat"><div class="im-chk"><input type="checkbox" id="m_facebook"><label for="m_facebook">Facebook</label></div><div class="im-chk"><input type="checkbox" id="m_instagram"><label for="m_instagram">Instagram</label></div><div class="im-chk"><input type="checkbox" id="m_linkedin"><label for="m_linkedin">LinkedIn</label></div><div class="im-chk"><input type="checkbox" id="m_x"><label for="m_x">X (Twitter)</label></div><div class="im-chk"><input type="checkbox" id="m_tiktok"><label for="m_tiktok">TikTok</label></div><div class="im-chk"><input type="checkbox" id="m_youtube"><label for="m_youtube">YouTube</label></div><div class="im-chk"><input type="checkbox" id="m_pinterest"><label for="m_pinterest">Pinterest</label></div><div class="im-chk"><input type="checkbox" id="m_reddit"><label for="m_reddit">Reddit</label></div><div class="im-chk"><input type="checkbox" id="m_whatsapp"><label for="m_whatsapp">WhatsApp</label></div><div class="im-chk"><input type="checkbox" id="m_newsletter"><label for="m_newsletter">Email newsletter</label></div><div class="im-chk"><input type="checkbox" id="m_gads"><label for="m_gads">Google Ads</label></div><div class="im-chk"><input type="checkbox" id="m_sms"><label for="m_sms">SMS</label></div></div></div><div id="mOut" aria-live="polite"></div></div></div><div id="uPaneB" hidden><div class="dt-panel"><div><label for="bUrls">Page addresses, one per line (up to 200)</label><textarea id="bUrls" rows="5" placeholder="https://example.com/page-1
+https://example.com/page-2" spellcheck="false"></textarea></div><div class="dt-row3"><div><label for="bSource">Source</label><input type="text" id="bSource" placeholder="newsletter" autocomplete="off" spellcheck="false"></div><div><label for="bMedium">Medium</label><input type="text" id="bMedium" placeholder="email" autocomplete="off" spellcheck="false"></div><div><label for="bCamp">Campaign name</label><input type="text" id="bCamp" placeholder="october_news" autocomplete="off" spellcheck="false"></div></div><div class="dt-row"><div><label for="bTerm">Term (optional)</label><input type="text" id="bTerm" placeholder="" autocomplete="off" spellcheck="false"></div><div><label for="bContent">Content (optional)</label><input type="text" id="bContent" placeholder="" autocomplete="off" spellcheck="false"></div></div><div id="bOut" aria-live="polite"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="uCopy">Copy links</button>
+<button type="button" class="dt-btn ghost" id="uDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="uPrint">Print / save summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free UTM link builder runs in your browser and sends nothing anywhere. It adds standard utm_ parameters to the web addresses you enter and applies naming rules that you choose. Tagged links are visible to anyone who sees them, so never put personal data, names or email addresses in the values. Analytics tools such as Google Analytics may group traffic differently from the names you pick, and the rules for channel groups change, so check your reports. Use consistent lowercase names and keep a record of them.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/social-media-tools/utm-link-builder/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). UTM Link Builder. https://utiliby.com/tools/social-media-tools/utm-link-builder/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/social-media-tools/utm-link-builder/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="UTM Link Builder by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/social-media-tools/utm-link-builder/"&gt;UTM Link Builder by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free UTM link builder does</a></li><li><a href="#how">How to build a tagged link</a></li><li><a href="#params">The UTM parameters explained</a></li><li><a href="#naming">A naming convention that keeps reports clean</a></li><li><a href="#channels">Using many channels at once</a></li><li><a href="#bulk">Bulk tagging</a></li><li><a href="#analytics">Reading the results</a></li><li><a href="#seo">UTM tags, SEO and privacy</a></li><li><a href="#mistakes">Common UTM mistakes</a></li><li><a href="#privacy">Privacy, accuracy and responsible use</a></li><li><a href="#plan">An example naming plan for a product launch</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free UTM link builder does</h2>
+<p>When someone clicks a link on social media, in an email or in an advert, your analytics tool needs a clue about where they came from. Often it can guess, but many apps hide their source, and a link in a bio or a newsletter may be reported as direct traffic. <b>UTM parameters</b> solve this by adding labels to the end of the link. This free online <b>UTM link builder</b> adds those labels correctly, and it goes further than a simple form: it checks your naming for common problems, builds a set of links for twelve channels at once, processes up to 200 addresses in bulk and shows each part of the link in color.</p><p>All work happens in your browser, so the addresses and campaign names you enter are not uploaded. Download the result as a CSV for your spreadsheet or print a summary for your records.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="A UTM link is a normal page address followed by tagged parameters that name the source, medium and campaign"><title>Anatomy of a UTM link</title><rect x="20" y="16" width="270" height="200" rx="16" fill="none" stroke="currentColor" opacity=".4" stroke-width="2"/><text x="38" y="46" font-size="11" opacity=".6" fill="currentColor">Tagged link</text><text x="38" y="84" font-size="12.5" font-weight="700" fill="currentColor">example.com/spring-sale</text><text x="38" y="106" font-size="12.5" fill="currentColor">?utm_source=instagram</text><text x="38" y="128" font-size="12.5" fill="currentColor">&utm_medium=social</text><text x="38" y="150" font-size="12.5" fill="currentColor">&utm_campaign=spring_sale</text><text x="38" y="172" font-size="12.5" fill="currentColor"></text><text x="38" y="194" font-size="12.5" fill="currentColor"></text><g font-size="13" fill="#fff"><rect class="dt-bar" x="330" y="22" width="290" height="38" rx="9" fill="#0369a1" style="animation-delay:0.05s"/><text x="344" y="46">1. Page address</text><rect class="dt-bar" x="330" y="76" width="290" height="38" rx="9" fill="#16a34a" style="animation-delay:0.25s"/><text x="344" y="100">2. Source: where from</text><rect class="dt-bar" x="330" y="130" width="290" height="38" rx="9" fill="#d97706" style="animation-delay:0.45s"/><text x="344" y="154">3. Medium: how</text><rect class="dt-bar" x="330" y="184" width="290" height="38" rx="9" fill="#9333ea" style="animation-delay:0.65s"/><text x="344" y="208">4. Campaign: why</text></g></svg><figcaption>UTM parameters are added after a question mark. Source says where the visitor came from, medium says the type of channel and campaign names the effort.</figcaption></figure>
+<h2 id="how">How to build a tagged link</h2>
+<ol><li><b>Enter the page address.</b> Use the full address of the page you want to send people to, such as https://example.com/spring-sale.</li><li><b>Add source and medium.</b> Click a preset such as Instagram or Email newsletter to fill both at once.</li><li><b>Name the campaign.</b> Use a short name that includes the offer or month.</li><li><b>Add optional details.</b> Term for paid keywords, content to tell links apart.</li><li><b>Read the checks.</b> The tool warns about missing fields, capital letters and unusual mediums.</li><li><b>Copy the link.</b> Paste it where you share the page.</li></ol>
+<h2 id="params">The UTM parameters explained</h2>
+<div class="dt-wrap"><table><tr><th>Parameter</th><th>Question it answers</th><th>Example</th></tr><tr><td>utm_source</td><td>Where did the visitor come from?</td><td>instagram, newsletter, google</td></tr><tr><td>utm_medium</td><td>What type of channel is it?</td><td>social, email, cpc</td></tr><tr><td>utm_campaign</td><td>Which campaign is it part of?</td><td>spring_sale</td></tr><tr><td>utm_id</td><td>What is the campaign ID?</td><td>abc123</td></tr><tr><td>utm_term</td><td>Which keyword was targeted?</td><td>running shoes</td></tr><tr><td>utm_content</td><td>Which link or ad version?</td><td>story_link, blue_button</td></tr></table></div><p>Source, medium and campaign form the core. Term is used mainly in paid search, and content separates two links to the same page, such as a link in the bio and a link in a story.</p>
+<h2 id="naming">A naming convention that keeps reports clean</h2>
+<p>Reports are only as good as the names you put in. Pick a convention and keep to it. Use lowercase letters, because analytics tools are case sensitive. Use underscores or hyphens instead of spaces. Choose a fixed list of sources and mediums, and write it down for the team. Name campaigns so that they sort well, such as 2026_spring_sale or spring_sale_2026, and reuse the same name across channels so that you can compare them. Avoid vague names such as test and promo that mean nothing a month later.</p><ul><li>Lowercase only.</li><li>One word for each channel: facebook, not fb and Facebook.</li><li>Common mediums: social, email, cpc, display, affiliate, referral.</li><li>Include the year or month in campaign names.</li><li>No personal data.</li></ul>
+<h2 id="channels">Using many channels at once</h2>
+<p>The second tab builds one link for each channel you tick, with the same page and campaign but the right source and medium for each. Use it when you plan a launch that goes out on several networks and in email, so that every link follows the same rules. Compare the results later by source to see which channel brought the most visits and which brought visitors who took action. If two links go to the same channel, such as the bio and a story on Instagram, add a different content value to separate them.</p>
+<h2 id="bulk">Bulk tagging</h2>
+<p>The third tab takes up to 200 page addresses, one per line, and applies the same source, medium and campaign to each. It suits a newsletter with many links or a partner who needs a list of pages. Lines that are not valid web addresses are skipped, and the number skipped is shown. Download the result as a CSV with the original and the tagged address side by side.</p>
+<h2 id="analytics">Reading the results</h2>
+<p>In Google Analytics 4, UTM values appear in the traffic acquisition and campaign reports as session source, session medium and session campaign. The medium decides which default channel group the traffic joins, for example Organic Social, Email or Paid Search. A medium that is not on the list of known values may be reported as Unassigned, which is why the checker warns about unusual mediums. Channel rules change, so confirm them in the documentation for your analytics tool.</p>
+<h2 id="seo">UTM tags, SEO and privacy</h2>
+<p>Tagged links create a second address for the same page. Search engines usually treat the version without parameters as the main one, especially when the page has a canonical tag, so UTM links rarely harm SEO. Do not use UTM tags on internal links, because they can end a visit and start a new one with a false source. Remember too that the tag is visible to everyone who sees the link, so keep the values neutral and free of personal data. Some browsers and apps remove tracking parameters, so counts may be lower than the real clicks.</p>
+<h2 id="mistakes">Common UTM mistakes</h2>
+<ul><li><b>Mixed case.</b> Facebook and facebook split your report.</li><li><b>Using UTM on internal links.</b> It overwrites the true source.</li><li><b>Inventing mediums.</b> Stick to standard values so traffic is grouped correctly.</li><li><b>Reusing one campaign name for everything.</b> You lose the ability to compare.</li><li><b>Forgetting a record.</b> Keep a sheet of every tagged link.</li><li><b>Putting emails in the link.</b> This exposes personal data.</li></ul>
+<h2 id="privacy">Privacy, accuracy and responsible use</h2>
+<p>The builder runs in your browser and does not store or send your links. It follows the standard utm_ parameter names, but your analytics tool decides how to report them. Check that tagging complies with your privacy policy and local law, tell visitors how you use analytics and avoid placing any personal or sensitive information in the link.</p>
+<h2 id="plan">An example naming plan for a product launch</h2>
+<p>Suppose you are launching a new course on 1 November and will promote it on Instagram, in an email and with paid search. A tidy plan uses one campaign name for everything, so that you can compare channels, and different sources and mediums for each. The content value separates links within one channel.</p><div class="dt-wrap"><table><tr><th>Where</th><th>Source</th><th>Medium</th><th>Campaign</th><th>Content</th></tr><tr><td>Instagram bio</td><td>instagram</td><td>social</td><td>course_launch_2026</td><td>bio_link</td></tr><tr><td>Instagram story</td><td>instagram</td><td>social</td><td>course_launch_2026</td><td>story_link</td></tr><tr><td>Launch email</td><td>newsletter</td><td>email</td><td>course_launch_2026</td><td>main_button</td></tr><tr><td>Paid search</td><td>google</td><td>cpc</td><td>course_launch_2026</td><td>ad_headline_a</td></tr></table></div><p>After the launch, open your analytics report for the campaign and compare sessions, sign-ups and sales by source and content. You will see which channel brought the most visits, which brought the most buyers and which button inside the email worked best. Record the plan in a shared sheet before you create links, so that nobody invents a new spelling halfway through the campaign.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a UTM link builder?</summary><p>A tool that adds tracking parameters to a web address so analytics software can report where visitors came from. This free one builds single links, sets for many channels and bulk lists.</p></details><details><summary>How do I use this free UTM link builder online?</summary><p>Enter your page address, a source such as instagram, a medium such as social and a campaign name. The tagged link appears, ready to copy. Use the other tabs for many channels or many pages.</p></details><details><summary>What does UTM stand for?</summary><p>Urchin Tracking Module, named after Urchin, the company whose software became Google Analytics. The name stuck even though the parameters work with many analytics tools.</p></details><details><summary>What are the five UTM parameters?</summary><p>utm_source, utm_medium, utm_campaign, utm_term and utm_content. This tool also supports utm_id. Source, medium and campaign are the most important.</p></details><details><summary>Which parameters are required?</summary><p>Source and medium are needed for sensible reports, and a campaign name is strongly recommended. Term and content are optional and help with paid keywords and A/B tests.</p></details><details><summary>What should I use for source and medium?</summary><p>Source is the place, such as facebook, newsletter or google. Medium is the type, such as social, email or cpc. Use the common mediums so analytics can place traffic in the right channel group.</p></details><details><summary>Should UTM values be lowercase?</summary><p>Yes. Analytics tools treat Facebook and facebook as different values, which splits your reports. The option Make values lowercase is on by default.</p></details><details><summary>What happens to spaces?</summary><p>You can replace them with underscores or hyphens, or keep them and let them be encoded as %20. Underscores and hyphens are easier to read in reports.</p></details><details><summary>Can I add UTM tags to a link that already has parameters?</summary><p>Yes. Existing parameters and any # section are kept, and old utm_ values are replaced by the new ones.</p></details><details><summary>Do UTM links affect SEO?</summary><p>Not directly, but tagged URLs create duplicate addresses. A canonical tag on the page tells search engines which one to index. Do not use UTM tags on internal links, because they can overwrite the visitor's original source.</p></details><details><summary>Should I use UTM tags on internal links?</summary><p>No. On your own site they can start a new session and replace the real source of the visit. Use events for internal tracking.</p></details><details><summary>Can I put personal data in a UTM?</summary><p>No. The values are visible in the link and in reports. Never include names, email addresses or other personal information.</p></details><details><summary>How do I shorten a long tagged link?</summary><p>Use a link shortener you trust or your own redirect. The tag stays in the destination, so reports remain correct. This tool does not shorten links.</p></details><details><summary>Where do I see the results?</summary><p>In Google Analytics, open the acquisition reports and look at session source and medium or campaign. Other analytics tools have similar reports.</p></details><details><summary>Is my data uploaded?</summary><p>No. Links are built in your browser.</p></details><details><summary>Is it free?</summary><p>Yes. It is free to use online with no account.</p></details><details><summary>Is there a naming convention I can follow?</summary><p>Use lowercase, no spaces, a clear campaign name with the month or product, such as spring_sale_2026, and the same values every time. Write the rules down for your team.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Google Analytics Help, Collect campaign data with custom URLs (support.google.com/analytics).</li><li>Google Analytics Help, Default channel group definitions (support.google.com/analytics).</li><li>Google Search Central, Consolidate duplicate URLs with canonical tags (developers.google.com/search).</li><li>WHATWG URL Standard, URL parsing and query strings (url.spec.whatwg.org).</li><li>U.S. Federal Trade Commission, Protecting personal information online (ftc.gov).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free UTM link builder runs in your browser and sends nothing anywhere. It adds standard utm_ parameters to the web addresses you enter and applies naming rules that you choose. Tagged links are visible to anyone who sees them, so never put personal data, names or email addresses in the values. Analytics tools such as Google Analytics may group traffic differently from the names you pick, and the rules for channel groups change, so check your reports. Use consistent lowercase names and keep a record of them.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- social shared helpers ---------- */
+function rint(n) { n = Math.max(1, n | 0); var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; }
+function rpick(arr) { return arr[rint(arr.length)]; }
+function rshuf(arr) { var a = arr.slice(), i, j, t; for (i = a.length - 1; i > 0; i--) { j = rint(i + 1); t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function gsplit(s) {
+  s = String(s == null ? "" : s);
+  if (window.Intl && Intl.Segmenter) { var out = [], it = new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)[Symbol.iterator](), x; while (!(x = it.next()).done) out.push(x.value.segment); return out; }
+  return Array.from(s);
+}
+function gcount(s) { return gsplit(s).length; }
+function nfmt(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+/* copy rows: items is an array of strings, rendered as .prow lines with a Copy button each */
+function rowsHtml(items, metas) {
+  return items.map(function (t, i) { return '<div class="prow"><span class="ptxt">' + esc(t) + (metas && metas[i] ? '<span class="meta">' + metas[i] + "</span>" : "") + '</span><button type="button" class="dt-btn ghost" data-ci="' + i + '">Copy</button></div>'; }).join("");
+}
+function bindRows(id, getItems) {
+  $(id).addEventListener("click", function (e) { var b = e.target.closest("button[data-ci]"); if (!b) return; var it = getItems(); copyText(it[+b.getAttribute("data-ci")], b); });
+}
+function tabBar(id) { return $(id); }
+function showIf(id, on) { var e = $(id); if (e) e.hidden = !on; }
+function crc32(bytes) { var t = crc32.t; if (!t) { t = crc32.t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } var c2 = 0xFFFFFFFF; for (var i = 0; i < bytes.length; i++) c2 = t[(c2 ^ bytes[i]) & 255] ^ (c2 >>> 8); return (c2 ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) { /* files: [{name, data:Uint8Array}] -> Blob (no compression) */
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0, dt = new Date(), dd = ((dt.getFullYear() - 1980) << 9) | ((dt.getMonth() + 1) << 5) | dt.getDate(), tt = (dt.getHours() << 11) | (dt.getMinutes() << 5) | (dt.getSeconds() >> 1);
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, tt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, f.data.length, true); h.setUint32(22, f.data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, f.data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, tt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, f.data.length, true); c.setUint32(24, f.data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); off += 30 + nm.length + f.data.length;
+  });
+  var cs = 0; cd.forEach(function (x) { cs += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cd, [e.buffer]), { type: "application/zip" });
+}
+
+/* ---------- utm link builder ---------- */
+var ST = { single: null, multi: [], bulk: [], saved: [] };
+var PRE = { facebook: ["Facebook", "facebook", "social"], instagram: ["Instagram", "instagram", "social"], linkedin: ["LinkedIn", "linkedin", "social"], x: ["X (Twitter)", "twitter", "social"], tiktok: ["TikTok", "tiktok", "social"], youtube: ["YouTube", "youtube", "social"], pinterest: ["Pinterest", "pinterest", "social"], reddit: ["Reddit", "reddit", "social"], whatsapp: ["WhatsApp", "whatsapp", "social"], newsletter: ["Email newsletter", "newsletter", "email"], gads: ["Google Ads", "google", "cpc"], sms: ["SMS", "sms", "sms"] };
+var MEDIUMS = ["social", "email", "cpc", "organic", "referral", "display", "affiliate", "video", "paid_social", "sms", "audio", "push", "qr", "banner", "podcast", "ppc"];
+var KEYS = [["source", "utm_source", "#0369a1"], ["medium", "utm_medium", "#16a34a"], ["campaign", "utm_campaign", "#d97706"], ["id", "utm_id", "#0891b2"], ["term", "utm_term", "#9333ea"], ["content", "utm_content", "#dc2626"]];
+function clean(v, o) {
+  v = String(v || "").trim(); if (!v) return ""; if (o.lower) v = v.toLowerCase();
+  if (o.sp !== "keep") v = v.replace(/\s+/g, o.sp === "hyphen" ? "-" : "_");
+  return v;
+}
+function normUrl(s) {
+  s = String(s || "").trim(); if (!s) return null; if (!/^[a-z][a-z0-9+.-]*:\/\//i.test(s)) s = "https://" + s;
+  try { var u = new URL(s); if (!/^https?:$/.test(u.protocol) || !u.hostname.includes(".")) return null; return u; } catch (e) { return null; }
+}
+function build(base, vals, o) {
+  var u = normUrl(base); if (!u) return null;
+  var kept = u.search.replace(/^\?/, "").split("&").filter(function (p) { return p && !/^utm_(source|medium|campaign|id|term|content)(=|$)/i.test(p); }), parts = [], msgs = [];
+  KEYS.forEach(function (k) { var v = clean(vals[k[0]], o); if (v) parts.push([k[1], v, k[2], encodeURIComponent(v)]); });
+  var q = kept.concat(parts.map(function (p) { return p[1 - 1] + "=" + p[3]; }));
+  var full = u.origin + (u.pathname === "/" && !/\/$/.test(base.split("?")[0].split("#")[0].replace(/^https?:\/\/[^/]+/i, "") || "x") ? "/" : u.pathname) + (q.length ? "?" + q.join("&") : "") + u.hash;
+  return { url: full, base: u.origin + u.pathname, kept: kept, parts: parts, hash: u.hash, replaced: u.search.split("&").length - kept.length - (u.search ? 0 : 1) };
+}
+function checks(vals, o, r) {
+  var L = [], s = clean(vals.source, o), m = clean(vals.medium, o), c = clean(vals.campaign, o);
+  if (!s) L.push(["bad", "utm_source is missing. It is required."]); if (!m) L.push(["bad", "utm_medium is missing. It is required."]); if (!c) L.push(["warn", "utm_campaign is empty. Add a name so you can group results."]);
+  if (m && MEDIUMS.indexOf(m.toLowerCase()) < 0) L.push(["warn", "The medium “" + m + "” is not a common value, so Google Analytics may place it in the Unassigned channel group."]);
+  KEYS.forEach(function (k) { var v = String(vals[k[0]] || "").trim(); if (v && /[A-Z]/.test(v) && !o.lower) L.push(["warn", k[1] + " has capital letters. Analytics treats Summer and summer as different values."]); if (v && /\s/.test(v) && o.sp === "keep") L.push(["warn", k[1] + " has spaces, which are encoded as %20. Hyphens or underscores are easier to read in reports."]); });
+  if (r && r.url.length > 2000) L.push(["warn", "The link is " + r.url.length + " characters long. Very long links may break in some apps."]);
+  if (r && r.hash) L.push(["info", "The # part of the address is kept at the end of the link."]);
+  if (r && r.replaced > 0) L.push(["info", "Existing utm_ parameters in the original link were replaced."]);
+  if (!L.length) L.push(["ok", "Looks good. Source, medium and campaign are set."]);
+  return L;
+}
+function opts() { return { lower: $("uLower").checked, sp: $("uSp").value }; }
+function anat(r) {
+  if (!r) return ""; var h = '<div class="u-anat" aria-label="Link anatomy"><span class="u-b">' + esc(r.base) + "</span>";
+  var all = r.kept.map(function (k) { return { t: k, c: "#6b7280" }; }).concat(r.parts.map(function (p) { return { t: p[0] + "=" + p[3], c: p[2] }; }));
+  all.forEach(function (x, i) { h += '<span class="u-s">' + (i ? "&amp;" : "?") + '</span><span class="u-p" style="background:' + x.c + '">' + esc(x.t) + "</span>"; });
+  return h + (r.hash ? '<span class="u-b">' + esc(r.hash) + "</span>" : "") + "</div>";
+}
+function vals1() { return { source: $("uSource").value, medium: $("uMedium").value, campaign: $("uCamp").value, id: $("uId").value, term: $("uTerm").value, content: $("uContent").value }; }
+function showSingle() {
+  var v = vals1(), o = opts(), r = build($("uUrl").value, v, o), el = $("uOut");
+  if (!r) { ST.single = null; el.innerHTML = '<p class="dt-hint">' + ($("uUrl").value.trim() ? "Enter a valid web address such as https://example.com/page." : "Enter your page address, and the tagged link appears here.") + "</p>"; return; }
+  ST.single = r;
+  el.innerHTML = '<label>Your tagged link</label><div class="prow"><span class="ptxt"><code>' + esc(r.url) + '</code></span><button type="button" class="dt-btn ghost" id="uCopyOne">Copy</button></div>' + anat(r) + '<p class="ck-note">' + r.url.length + " characters</p><ul class=\"seo-issues\">" + checks(v, o, r).map(function (x) { return "<li>" + badge(x[0], x[0] === "ok" ? "Good" : x[0] === "bad" ? "Fix" : x[0] === "warn" ? "Check" : "Note") + esc(x[1]) + "</li>"; }).join("") + "</ul>";
+  $("uCopyOne").addEventListener("click", function () { copyText(r.url, $("uCopyOne")); });
+}
+function showMulti() {
+  var o = opts(), el = $("mOut"), keys = Object.keys(PRE).filter(function (k) { return $("m_" + k).checked; }); ST.multi = [];
+  keys.forEach(function (k) { var r = build($("mUrl").value, { source: PRE[k][1], medium: PRE[k][2], campaign: $("mCamp").value, term: $("mTerm").value, content: $("mContent").value }, o); if (r) ST.multi.push({ name: PRE[k][0], url: r.url }); });
+  if (!normUrl($("mUrl").value)) { el.innerHTML = '<p class="dt-hint">Enter your page address and a campaign name to create one link for each channel.</p>'; return; }
+  if (!$("mCamp").value.trim()) { el.innerHTML = '<p class="dt-hint">Add a campaign name, then the links appear.</p>'; ST.multi = []; return; }
+  if (!ST.multi.length) { el.innerHTML = '<p class="dt-hint">Tick at least one channel.</p>'; return; }
+  el.innerHTML = rowsHtml(ST.multi.map(function (x) { return x.url; }), ST.multi.map(function (x) { return esc(x.name); }));
+}
+function showBulk() {
+  var o = opts(), el = $("bOut"), lines = $("bUrls").value.split(/\n/).map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 200); ST.bulk = []; var bad = 0;
+  lines.forEach(function (l) { var r = build(l, { source: $("bSource").value, medium: $("bMedium").value, campaign: $("bCamp").value, term: $("bTerm").value, content: $("bContent").value }, o); if (r) ST.bulk.push({ from: l, url: r.url }); else bad++; });
+  if (!lines.length) { el.innerHTML = '<p class="dt-hint">Paste one page address per line (up to 200).</p>'; return; }
+  if (!clean($("bSource").value, o) || !clean($("bMedium").value, o)) { el.innerHTML = '<p class="dt-hint">Enter a source and a medium to tag these links.</p>'; ST.bulk = []; return; }
+  el.innerHTML = (bad ? '<p>' + badge("warn", bad + " line(s) skipped: not a valid web address") + "</p>" : "") + rowsHtml(ST.bulk.map(function (x) { return x.url; }));
+}
+function tab() { return !$("uPaneS").hidden ? "s" : !$("uPaneM").hidden ? "m" : "b"; }
+function lines() { var t = tab(); return t === "s" ? (ST.single ? [ST.single.url] : []) : t === "m" ? ST.multi.map(function (x) { return x.url; }) : ST.bulk.map(function (x) { return x.url; }); }
+function saveRows() {
+  var t = tab(), r = [["Name or page", "Tagged link"]];
+  if (t === "m") ST.multi.forEach(function (x) { r.push([x.name, x.url]); }); else if (t === "b") ST.bulk.forEach(function (x) { r.push([x.from, x.url]); }); else if (ST.single) r.push([$("uUrl").value.trim(), ST.single.url]); return r;
+}
+function setDef() {
+  ["uUrl", "uSource", "uMedium", "uCamp", "uId", "uTerm", "uContent", "mUrl", "mCamp", "mTerm", "mContent", "bUrls", "bSource", "bMedium", "bCamp", "bTerm", "bContent"].forEach(function (id) { $(id).value = ""; });
+  $("uUrl").value = "https://example.com/spring-sale"; $("uSource").value = "instagram"; $("uMedium").value = "social"; $("uCamp").value = "spring_sale"; $("uLower").checked = true; $("uSp").value = "underscore";
+  Object.keys(PRE).forEach(function (k) { $("m_" + k).checked = ["facebook", "instagram", "linkedin", "x"].indexOf(k) > -1; });
+}
+function init() {
+  initCommon(); setDef(); showSingle(); showMulti(); showBulk();
+  ["uUrl", "uSource", "uMedium", "uCamp", "uId", "uTerm", "uContent"].forEach(function (id) { $(id).addEventListener("input", showSingle); });
+  ["mUrl", "mCamp", "mTerm", "mContent"].forEach(function (id) { $(id).addEventListener("input", showMulti); }); Object.keys(PRE).forEach(function (k) { $("m_" + k).addEventListener("change", showMulti); });
+  ["bUrls", "bSource", "bMedium", "bCamp", "bTerm", "bContent"].forEach(function (id) { $(id).addEventListener("input", showBulk); });
+  ["uLower", "uSp"].forEach(function (id) { $(id).addEventListener("change", function () { showSingle(); showMulti(); showBulk(); }); });
+  $("uPre").addEventListener("click", function (e) { var b = e.target.closest("button[data-pre]"); if (!b) return; var p = PRE[b.getAttribute("data-pre")]; $("uSource").value = p[1]; $("uMedium").value = p[2]; showSingle(); });
+  bindRows("mOut", function () { return ST.multi.map(function (x) { return x.url; }); }); bindRows("bOut", function () { return ST.bulk.map(function (x) { return x.url; }); });
+  bindTabs("uTabs", function (t) { $("uPaneS").hidden = t !== "s"; $("uPaneM").hidden = t !== "m"; $("uPaneB").hidden = t !== "b"; });
+  $("resetBtn").addEventListener("click", function () { setDef(); showSingle(); showMulti(); showBulk(); msg("Reset."); });
+  bindAct("u", { code: function () { return lines().join("\n"); }, file: function () { return "utm-links.csv"; }, mime: "text/csv", title: "UTM tagged links", site: "Free UTM link builder", note: "Tagged links add utm_ parameters to the address so analytics tools can report where visitors came from. Anyone who can see the link can see the values, so do not put personal data in them. Use consistent lowercase names and keep a record of your naming rules.",
+    dlClick: function () { if (!lines().length) { msg("Nothing to download yet.", "err"); return; } csvDownload(saveRows(), "utm-links.csv"); },
+    rows: function () { var t = tab(); return t === "s" ? [["Page", $("uUrl").value], ["Source", $("uSource").value], ["Medium", $("uMedium").value], ["Campaign", $("uCamp").value], ["Links", String(lines().length)]] : t === "m" ? [["Page", $("mUrl").value], ["Campaign", $("mCamp").value], ["Links", String(lines().length)]] : [["Source", $("bSource").value], ["Medium", $("bMedium").value], ["Campaign", $("bCamp").value], ["Links", String(lines().length)]]; } });
+}
+init();
+
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Passphrase Generator: Strong, Memorable Passwords</title>
+<meta name="description" content="Free online passphrase generator. Make secure random word passphrases with exact strength in bits, crack times and your own word list. Runs in your browser.">
+<link rel="canonical" href="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Passphrase Generator: Strong, Memorable Passwords">
+<meta property="og:description" content="Generate strong, memorable passphrases free online. Exact entropy in bits and crack times. Made in your browser, never stored.">
+<meta property="og:url" content="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Passphrase Generator: Strong, Memorable Passwords">
+<meta name="twitter:description" content="Generate strong, memorable passphrases free online. Exact entropy in bits and crack times. Made in your browser, never stored.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+.pmeter{height:12px;background:rgba(127,127,127,.25);border-radius:8px;overflow:hidden;margin:10px 0}.pbar{height:100%;border-radius:8px;transition:width .3s;background:#16a34a}.pbar.s1{background:#dc2626}.pbar.s2{background:#d97706}.pbar.s3{background:#16a34a}.pbar.s4{background:#0f766e}.prow{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow code{font-size:1.05rem;overflow-wrap:anywhere;word-break:break-word;background:transparent}#pTimes td,#pTimes th{overflow-wrap:anywhere}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Passphrase Generator","url":"https://utiliby.com/tools/security-privacy-tools/passphrase-generator/","description":"Free online passphrase generator. Creates random word passphrases using the browser's secure random generator, with custom word count, separators, capitals, digits, symbols and your own word list, and shows exact entropy in bits and crack times. Runs in the browser with no upload and no storage.","applicationCategory":"SecurityApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Secure random, bias-free","Exact entropy in bits","Crack-time table","Separators, capitals, digits, symbols","Use your own word list","Report hides passphrases by default","No upload, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a passphrase?","acceptedAnswer":{"@type":"Answer","text":"A passphrase is a password made of several words, such as four to seven random words. It is easier to remember and type than a string of symbols, and can be just as strong."}},{"@type":"Question","name":"How do I generate a passphrase for free?","acceptedAnswer":{"@type":"Answer","text":"Choose the number of words and options and press Make new passphrases. Copy the one you like. Each press creates a fresh set."}},{"@type":"Question","name":"Are passphrases more secure than passwords?","acceptedAnswer":{"@type":"Answer","text":"A random passphrase of seven words from this list is about as strong as a random 10-character password with letters, numbers and symbols, and is much easier to remember. Both must be random and unique."}},{"@type":"Question","name":"How many words should I use?","acceptedAnswer":{"@type":"Answer","text":"Seven or more with the built-in list, which gives about 65 bits. Use eight or nine for a password manager master password or an encrypted file. Five words give only about 46 bits, which a fast offline attack can crack, unless you paste a larger word list."}},{"@type":"Question","name":"Are the passphrases truly random?","acceptedAnswer":{"@type":"Answer","text":"Yes. They use your browser's cryptographically secure random generator, with a method that avoids bias, and nothing is sent or stored."}},{"@type":"Question","name":"Is it safe to use a generated passphrase?","acceptedAnswer":{"@type":"Answer","text":"Yes, as long as you use it for one account and keep it private. Do not change it into something more familiar, because that removes randomness."}},{"@type":"Question","name":"What does entropy in bits mean?","acceptedAnswer":{"@type":"Answer","text":"It measures how many guesses an attacker needs. Each bit doubles it. 46 bits is about 70 trillion possibilities, and 65 bits is about 37 quintillion."}},{"@type":"Question","name":"Does adding numbers or symbols help?","acceptedAnswer":{"@type":"Answer","text":"A little. Each digit adds about 3.3 bits, and a symbol about 3.8. Adding another word adds more, about 9.3 bits with the built-in list."}},{"@type":"Question","name":"Why does capitalization add little?","acceptedAnswer":{"@type":"Answer","text":"If every word is capitalized the same way, an attacker can do the same. Only random capitalization adds a bit per word."}},{"@type":"Question","name":"Can I use my own word list?","acceptedAnswer":{"@type":"Answer","text":"Yes. Paste at least 100 words and tick Use my own list. The strength is calculated from the size of your list. Longer lists give more strength per word."}},{"@type":"Question","name":"How big is the built-in list?","acceptedAnswer":{"@type":"Answer","text":"It has 610 common, easy-to-spell words of four to eight letters, so each word adds about 9.25 bits. Bigger lists such as the EFF diceware list give more, so add words if you need more strength."}},{"@type":"Question","name":"Does the attacker know my word list?","acceptedAnswer":{"@type":"Answer","text":"Strength figures assume they do. Real security should not depend on keeping the list secret."}},{"@type":"Question","name":"Can I remember a passphrase?","acceptedAnswer":{"@type":"Answer","text":"Usually yes. Picture the words as a short story, say them aloud a few times and type them on first use and a day later."}},{"@type":"Question","name":"Can I reuse a passphrase?","acceptedAnswer":{"@type":"Answer","text":"No. Reuse is the main way breaches spread. Use a different one for every important account."}},{"@type":"Question","name":"What is the crack time based on?","acceptedAnswer":{"@type":"Answer","text":"On the average number of guesses for the entropy, at three attack speeds. Real attacks vary, so use it as a guide."}},{"@type":"Question","name":"What does the print option include?","acceptedAnswer":{"@type":"Answer","text":"Your settings and strength. The passphrases are included only if you tick the box."}},{"@type":"Question","name":"Is it free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no sign-up."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Security and Privacy Tools","item":"https://utiliby.com/tools/security-privacy-tools/"},{"@type":"ListItem","position":3,"name":"Passphrase Generator","item":"https://utiliby.com/tools/security-privacy-tools/passphrase-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/security-privacy-tools/">Security & Privacy Tools</a> › Passphrase Generator</nav>
+<h1 class="noembed">Free Passphrase Generator</h1>
+<p class="lead noembed">Free online passphrase generator. Make strong, memorable passphrases from random words, see the exact strength in bits and use your own word list. It runs in your browser and nothing is stored.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/" target="_blank" rel="noopener">Passphrase Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Passphrase generator">
+<div class="dt-hero noembed">
+<h2>Free Passphrase Generator</h2>
+<p>Create secure, memorable passphrases from random words, with exact strength in bits and crack times. Made in your browser.</p>
+</div>
+<div class="dt-panel"><div class="dt-row3"><div><label for="pN">Number of words</label><input min="2" max="16" type="number" id="pN" placeholder="7" autocomplete="off" spellcheck="false"></div><div><label for="pSep">Separator</label><select id="pSep"><option value="dash">Hyphen -</option><option value="space">Space</option><option value="dot">Dot .</option><option value="under">Underscore _</option><option value="none">None</option><option value="digit">Random digit between words</option><option value="symbol">Random symbol between words</option></select></div><div><label for="pCap">Capital letters</label><select id="pCap"><option value="none">None</option><option value="first">First letter of each word</option><option value="all">ALL CAPS</option><option value="random">Random words</option></select></div></div><div class="dt-row3"><div><label for="pNum">Digits at the end</label><select id="pNum"><option value="0">None</option><option value="1">1 digit</option><option value="2">2 digits</option><option value="3">3 digits</option><option value="4">4 digits</option></select></div><div><label for="pCount">How many to make</label><input min="1" max="20" type="number" id="pCount" placeholder="5" autocomplete="off" spellcheck="false"></div><div class="im-chk"><input type="checkbox" id="pSym"><label for="pSym">Add one random symbol at the end</label></div></div><details><summary><b>Use my own word list</b></summary><p class="ck-note">Paste words separated by spaces, commas or new lines. A longer list gives more strength per word. Use at least 100 words. Entropy is calculated from your list size.</p><div><label for="pCustom">Your word list</label><textarea id="pCustom" rows="4" placeholder="apple river ..." spellcheck="false"></textarea></div><div class="im-chk"><input type="checkbox" id="pUseCustom"><label for="pUseCustom">Use my own list</label></div></details><div class="im-bar"><button type="button" class="dt-btn" id="pGo">Make new passphrases</button></div><p class="dt-err" id="pErr" role="alert" style="color:#dc2626"></p><div id="pList" aria-live="polite"></div><p id="pBits"></p><div class="pmeter" aria-hidden="true"><div class="pbar" id="pBar"></div></div><p class="ck-note" id="pEq"></p><h3 style="margin:14px 0 4px;font-size:1.05rem">Time to crack</h3><div id="pTimes"></div><div class="im-chk"><input type="checkbox" id="pIncl"><label for="pIncl">Include the passphrases in the printed report</label></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="pCopy">Copy all</button>
+<button type="button" class="dt-btn ghost" id="pDl">Download list</button>
+<button type="button" class="dt-btn ghost" id="pPrint">Print / save summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free passphrase generator runs in your browser and uses the browser's secure random number generator. Passphrases are not sent, stored or logged. Strength is calculated from the size of the word list and the options you pick, and assumes an attacker knows how it was made. Use each passphrase for one account only, store it in a password manager if you can, and turn on two-factor authentication. Printing a passphrase on paper is risky if others can see the printout.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Passphrase Generator. https://utiliby.com/tools/security-privacy-tools/passphrase-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Passphrase Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/security-privacy-tools/passphrase-generator/"&gt;Passphrase Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free passphrase generator does</a></li><li><a href="#how">How to use the passphrase generator</a></li><li><a href="#entropy">How passphrase strength is calculated</a></li><li><a href="#rules">Rules for a strong passphrase</a></li><li><a href="#memory">How to remember a passphrase</a></li><li><a href="#where">Where passphrases work best</a></li><li><a href="#own">Using your own word list</a></li><li><a href="#vs">Passphrase, random password or password manager?</a></li><li><a href="#budgets">How many words for which attacker</a></li><li><a href="#privacy">Privacy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free passphrase generator does</h2>
+<p>Complex passwords such as <b>T7#kp9Lm</b> are hard to remember and easy to mistype, so people reuse them or write them in unsafe places. A <b>passphrase</b> solves this. It joins several random words, for example <b>Maple-Falcon-Lantern-River-Quilt</b>, into something you can remember and type, yet its strength comes from the number of words and how randomly they were chosen.</p><p>This free online passphrase generator creates random passphrases in your browser using a secure random generator. You choose the number of words, the separator, capitals, digits and symbols, and it shows the exact strength in bits and the time it would take to crack. You can also use your own word list, and the strength is calculated from its size.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Five random words joined by hyphens form a passphrase whose strength grows with each added word"><title>Each word adds strength</title>
+<g font-size="15" fill="#fff"><rect class="dt-bar" x="15" y="30" width="105" height="40" rx="10" fill="#0369a1" style="animation-delay:.05s"/><text x="67" y="56" text-anchor="middle">Maple</text><rect class="dt-bar" x="130" y="30" width="105" height="40" rx="10" fill="#16a34a" style="animation-delay:.2s"/><text x="182" y="56" text-anchor="middle">Falcon</text><rect class="dt-bar" x="245" y="30" width="105" height="40" rx="10" fill="#9333ea" style="animation-delay:.35s"/><text x="297" y="56" text-anchor="middle">Lantern</text><rect class="dt-bar" x="360" y="30" width="105" height="40" rx="10" fill="#d97706" style="animation-delay:.5s"/><text x="412" y="56" text-anchor="middle">River</text><rect class="dt-bar" x="475" y="30" width="105" height="40" rx="10" fill="#dc2626" style="animation-delay:.65s"/><text x="527" y="56" text-anchor="middle">Quilt</text></g>
+<text x="20" y="115" font-size="13" fill="currentColor">3 words</text><rect x="100" y="102" width="440" height="14" rx="7" fill="#94a3b8" opacity=".3"/><rect class="dt-bar" x="100" y="102" width="130" height="14" rx="7" fill="#d97706" style="animation-delay:.2s"/><text x="550" y="115" font-size="12" fill="currentColor">28 bits</text>
+<text x="20" y="150" font-size="13" fill="currentColor">5 words</text><rect x="100" y="137" width="440" height="14" rx="7" fill="#94a3b8" opacity=".3"/><rect class="dt-bar" x="100" y="137" width="230" height="14" rx="7" fill="#16a34a" style="animation-delay:.4s"/><text x="550" y="150" font-size="12" fill="currentColor">46 bits</text>
+<text x="20" y="185" font-size="13" fill="currentColor">7 words</text><rect x="100" y="172" width="440" height="14" rx="7" fill="#94a3b8" opacity=".3"/><rect class="dt-bar" x="100" y="172" width="330" height="14" rx="7" fill="#0f766e" style="animation-delay:.6s"/><text x="550" y="185" font-size="12" fill="currentColor">65 bits</text></svg>
+<figcaption>Every extra random word multiplies the number of possibilities by the size of the word list.</figcaption></figure>
+<h2 id="how">How to use the passphrase generator</h2>
+<ol><li><b>Choose the length.</b> Seven words for most accounts with the built-in list, eight or nine for a master password.</li><li><b>Pick a style.</b> A hyphen or space separator is easy to type. Random digits or symbols between words add strength.</li><li><b>Make passphrases.</b> Press the button to get a new set. Copy one with its button.</li><li><b>Check the strength.</b> The bar and the bits show how strong it is, and the table gives crack times.</li><li><b>Memorize and store.</b> Say it aloud, picture the words, and save it in a password manager.</li></ol>
+<h2 id="entropy">How passphrase strength is calculated</h2>
+<p>The strength of a passphrase comes from choice. If a list has 610 words and you pick 5 at random, there are 610 × 610 × 610 × 610 × 610 possible results, about 84 trillion. That is log base 2 of the total, about 46 bits. Every added word multiplies the possibilities again. The tool also adds the bits from any random digits, random symbols, random capitals and random separators you choose.</p><div class="dt-wrap"><table><tr><th>Words (610-word list)</th><th>Entropy</th><th>Comparable random password</th></tr><tr><td>4</td><td>37 bits</td><td>6 characters</td></tr><tr><td>5</td><td>46 bits</td><td>7 characters</td></tr><tr><td>6</td><td>55 bits</td><td>9 characters</td></tr><tr><td>7</td><td>65 bits</td><td>10 characters</td></tr><tr><td>8</td><td>74 bits</td><td>12 characters</td></tr><tr><td>10</td><td>92 bits</td><td>15 characters</td></tr></table></div><p>This calculation assumes the attacker knows the word list and the style. That is the safe assumption, since real security should not depend on secrecy of the method.</p>
+<h2 id="rules">Rules for a strong passphrase</h2>
+<ul><li><b>Let the tool choose.</b> People pick words they like, in familiar patterns. Random choice is what gives strength.</li><li><b>Do not edit the result.</b> Swapping a word for a favorite one lowers the strength.</li><li><b>Never use quotes, lyrics or sayings.</b> They are in attackers' lists.</li><li><b>Use at least seven words</b> with the built-in list, and more for master passwords. A bigger word list lets you use fewer.</li><li><b>One passphrase per account.</b> Never reuse.</li><li><b>Turn on two-factor authentication.</b></li></ul>
+<h2 id="memory">How to remember a passphrase</h2>
+<p>Make a mental picture in which each word appears in order, such as a maple tree with a falcon carrying a lantern across a river to a quilt. Say it aloud, then type it. Repeat the next day and the day after. The effort pays off quickly, because the same phrase is used often when it protects a password manager or a device. For the other passwords, let a password manager create and remember long random strings.</p>
+<h2 id="where">Where passphrases work best</h2>
+<ul><li><b>The master password</b> of a password manager.</li><li><b>Device and disk encryption</b> that you type often.</li><li><b>Encrypted files and archives.</b> The Text Encryption and File Encryption tools on this site work well with a passphrase.</li><li><b>Wi-Fi networks</b> that others type in.</li><li><b>Key and wallet recovery phrases</b> that you must write down.</li></ul><p>Some websites limit length or reject spaces. Choose the hyphen or no separator when that happens, and add digits or a symbol if a rule demands them.</p>
+<h2 id="own">Using your own word list</h2>
+<p>A bigger list makes each word stronger. The well-known diceware lists have 7,776 words and add about 12.9 bits per word. If you paste a list of 2,000 words, each word adds about 11 bits. Use words that are easy to spell and distinct from each other, avoid offensive words, and remove duplicates. The tool removes duplicates for you and refuses lists shorter than 100 words, since small lists give little strength.</p>
+<h2 id="vs">Passphrase, random password or password manager?</h2>
+<p>These are not rivals. A password manager is the tool that makes it practical to have a different long random password for every account. A passphrase is the right choice for the few secrets you must remember without help: the manager's master password, your device login and an encryption password. A short random password is a poor choice for either job, because it is hard to remember and weaker per second of typing than a passphrase. Use the manager for the many, use a passphrase for the few, and add two-factor authentication to both.</p>
+<h2 id="budgets">How many words for which attacker</h2>
+<p>The right length depends on how the secret is stored. If a site locks you out after a few wrong tries, even a modest passphrase is hard to attack online. If a stolen database uses a slow password hash, an attacker can try thousands of guesses a second, and 50 to 60 bits is strong. If the hash is fast, as with old MD5 or SHA-1 storage, or if the secret protects an encrypted file that an attacker can copy, plan for trillions of guesses per second and aim for 70 bits or more. With the built-in list that means seven to eight words. Using a larger word list lets you reach the same strength with fewer words.</p>
+<h2 id="privacy">Privacy, limits and responsible use</h2>
+<p>Passphrases are created in your browser with its secure random generator. They are not sent, saved or logged, and they disappear when you close the page. The printed report leaves the passphrases out unless you tick the box. Paper copies can be seen by others, so handle them with care. This tool gives a guide to strength, but cannot guard against malware on your device or phishing, so keep your system updated and be careful where you type your passphrase.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a passphrase?</summary><p>A passphrase is a password made of several words, such as four to seven random words. It is easier to remember and type than a string of symbols, and can be just as strong.</p></details><details><summary>How do I generate a passphrase for free?</summary><p>Choose the number of words and options and press Make new passphrases. Copy the one you like. Each press creates a fresh set.</p></details><details><summary>Are passphrases more secure than passwords?</summary><p>A random passphrase of seven words from this list is about as strong as a random 10-character password with letters, numbers and symbols, and is much easier to remember. Both must be random and unique.</p></details><details><summary>How many words should I use?</summary><p>Seven or more with the built-in list, which gives about 65 bits. Use eight or nine for a password manager master password or an encrypted file. Five words give only about 46 bits, which a fast offline attack can crack, unless you paste a larger word list.</p></details><details><summary>Are the passphrases truly random?</summary><p>Yes. They use your browser's cryptographically secure random generator, with a method that avoids bias, and nothing is sent or stored.</p></details><details><summary>Is it safe to use a generated passphrase?</summary><p>Yes, as long as you use it for one account and keep it private. Do not change it into something more familiar, because that removes randomness.</p></details><details><summary>What does entropy in bits mean?</summary><p>It measures how many guesses an attacker needs. Each bit doubles it. 46 bits is about 70 trillion possibilities, and 65 bits is about 37 quintillion.</p></details><details><summary>Does adding numbers or symbols help?</summary><p>A little. Each digit adds about 3.3 bits, and a symbol about 3.8. Adding another word adds more, about 9.3 bits with the built-in list.</p></details><details><summary>Why does capitalization add little?</summary><p>If every word is capitalized the same way, an attacker can do the same. Only random capitalization adds a bit per word.</p></details><details><summary>Can I use my own word list?</summary><p>Yes. Paste at least 100 words and tick Use my own list. The strength is calculated from the size of your list. Longer lists give more strength per word.</p></details><details><summary>How big is the built-in list?</summary><p>It has 610 common, easy-to-spell words of four to eight letters, so each word adds about 9.25 bits. Bigger lists such as the EFF diceware list give more, so add words if you need more strength.</p></details><details><summary>Does the attacker know my word list?</summary><p>Strength figures assume they do. Real security should not depend on keeping the list secret.</p></details><details><summary>Can I remember a passphrase?</summary><p>Usually yes. Picture the words as a short story, say them aloud a few times and type them on first use and a day later.</p></details><details><summary>Can I reuse a passphrase?</summary><p>No. Reuse is the main way breaches spread. Use a different one for every important account.</p></details><details><summary>What is the crack time based on?</summary><p>On the average number of guesses for the entropy, at three attack speeds. Real attacks vary, so use it as a guide.</p></details><details><summary>What does the print option include?</summary><p>Your settings and strength. The passphrases are included only if you tick the box.</p></details><details><summary>Is it free?</summary><p>Yes. It is free to use online with no sign-up.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>EFF, Dice-Generated Passphrases and the Long Wordlist (eff.org).</li><li>Reinhold, The Diceware Passphrase Home Page.</li><li>UK National Cyber Security Centre, Three random words guidance (ncsc.gov.uk).</li><li>NIST SP 800-63B, Digital Identity Guidelines (nist.gov).</li><li>MDN Web Docs, Crypto.getRandomValues() (developer.mozilla.org).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free passphrase generator runs in your browser and uses the browser's secure random number generator. Passphrases are not sent, stored or logged. Strength is calculated from the size of the word list and the options you pick, and assumes an attacker knows how it was made. Use each passphrase for one account only, store it in a password manager if you can, and turn on two-factor authentication. Printing a passphrase on paper is risky if others can see the printout.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+
+/* ---------- passphrase generator ---------- */
+var ST = { list: [], rows: [], bits: 0, N: 0 };
+var BUILTIN = "able acid acorn acre actor adapt admit adult agent agree ahead aim alarm album alert alien alley allow alone alpha amber ample anchor angle ankle apple april apron arch arena argue arm army arrow ash aside atlas atom attic audio avoid awake award axis bacon badge bagel baker balsa bamboo banana banjo barn basil basin basket beach beacon beam bean beard beaver bell belt bench berry bike bingo birch bison blade blank blast blaze bless blimp bloom blue boat bonus book boot bottle bounce bowl brain brave bread breeze brick bridge bright brisk broom brush bubble bucket budget buffalo bunch burrow butter button cabin cable cactus camel camp candle candy canoe canvas canyon cape captain carbon cargo carpet carrot castle cattle cedar cellar cement chair chalk charm cheese cherry chess chief child chill chime chip choir circle city civic clam clay clerk cliff clock cloud clover clown coach coast cobalt cocoa coconut comet compass copper coral corn cotton couch crane crater crayon cream creek crest crisp crowd crown crumb crystal cube curtain curve cycle daisy dance dawn decade delta denim desert detail diary diesel dinner diver dock doctor dolphin donkey door dove dozen draft dragon drama dream drift drum duck dune dusk eagle earth easel echo edge elbow elder elf elm ember emerald empty engine entry envoy epic equal error essay ether event exact exit fabric falcon family fancy farm fawn feast feather fence fern ferry fiber field fig film finch finger fire fiscal flag flame flask fleet flint flock floor flour flute foam fog forest fork fort fossil fox frame frost fruit fudge funnel galaxy garden garlic gate gear gecko gem ghost giant ginger glacier glass glide globe glove glow goat gold golf gorilla grain grape grass gravel green grid grove guide guitar gull habit hammer hand harbor harp harvest hawk hazel heart hedge helmet herb heron hill hobby holly honey hood horizon horn horse hotel house hover human humor hunter hush hut icon igloo image indigo ink insect iron island ivory ivy jacket jade jaguar jam jar jelly jet jewel jigsaw jolly judge juice jumbo jungle junior kayak kettle key kiosk kite kitten kiwi knee knight knot koala label lace ladder lagoon lake lamp lantern laser latch laurel lava lawn leaf lemon lens leopard lesson lever light lily limit linen lion liquid lizard llama lobby lock locust lodge lotus lunar lunch lynx magnet maple marble marsh mask meadow melon mentor metal meteor mill mint mirror mist mitten model moment monkey moon moose moss motor mount mouse muffin mural museum music nacho napkin navy nectar needle nest night noble noodle north novel nugget nutmeg oak oasis ocean olive onion opal opera orbit orchid otter outer oval oven owl oxygen oyster paddle pagoda paint palace palm panda panel paper parade parrot pasta patrol peach pearl pebble pecan pelican pencil penguin pepper piano picnic pigeon pilot pine pixel pizza planet plaza plum pocket poem polar pond poppy porch prism pudding puffin pulse pumpkin puppy puzzle quartz queen quest quiet quilt rabbit radar radio rain ranch raven reef relay ribbon ridge river robin rocket rose round ruby saddle safari sail salad salmon sand satin scarf school scout seal shadow shell shore signal silk silver skate sketch sky slate sled slope smile snail snow soap solar sonic sound spark spice spider spiral spoon spring spruce square squid stable star steam stone storm stream summit sun swan swift table tacos talent tango tiger timber tulip tunnel turtle twig umbrella unit valley vapor velvet venture vessel viola violet vista voice volcano wagon walnut walrus water wave whale wheat willow window winter wizard wolf wonder wool yacht yard yarn yellow yogurt zebra zenith zero zinc zone".split(" ");
+var SEPS = { dash: "-", space: " ", dot: ".", under: "_", none: "", digit: "#d", symbol: "#s" };
+var SYM = "-_.,!?@#$%&*+=";
+var RATES = [["Offline, slow hash (bcrypt, Argon2)", 1e4], ["Offline, fast hash (MD5, SHA-1)", 1e10], ["Large GPU cluster", 1e12]];
+function rnd(n) { var b = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(b); } while (b[0] >= lim); return b[0] % n; }
+function fmtTime(sec) {
+  if (sec < 1) return "instantly"; if (sec < 60) return Math.round(sec) + " seconds"; var m = sec / 60; if (m < 60) return Math.round(m) + " minutes"; var h = m / 60; if (h < 24) return Math.round(h) + " hours"; var d = h / 24; if (d < 31) return Math.round(d) + " days"; if (d < 365) return Math.round(d / 30.4) + " months"; var y = d / 365.25;
+  if (y < 1000) return Math.round(y) + " years"; if (y < 1e6) return (y / 1e3).toFixed(y < 1e4 ? 1 : 0) + " thousand years"; if (y < 1e9) return (y / 1e6).toFixed(y < 1e7 ? 1 : 0) + " million years"; if (y < 1.4e10) return (y / 1e9).toFixed(1) + " billion years"; return "longer than the age of the universe";
+}
+function words() {
+  var c = $("pCustom").value.trim();
+  if ($("pUseCustom").checked && c) { var l = Array.from(new Set(c.split(/[\s,;]+/).map(function (x) { return x.trim(); }).filter(Boolean))); return l; }
+  return BUILTIN;
+}
+function gen1(o) {
+  var W = o.W, n = o.n, parts = [], bits = 0, lb = Math.log2(W.length);
+  for (var i = 0; i < n; i++) {
+    var w = W[rnd(W.length)]; bits += lb;
+    if (o.cap === "first") w = w.charAt(0).toUpperCase() + w.slice(1); else if (o.cap === "all") w = w.toUpperCase(); else if (o.cap === "random") { if (rnd(2)) w = w.charAt(0).toUpperCase() + w.slice(1); bits += 1; }
+    parts.push(w);
+  }
+  var out = "";
+  for (var j = 0; j < parts.length; j++) {
+    out += parts[j];
+    if (j < parts.length - 1) { var s = SEPS[o.sep]; if (s === "#d") { out += rnd(10); bits += Math.log2(10); } else if (s === "#s") { out += SYM[rnd(SYM.length)]; bits += Math.log2(SYM.length); } else out += s; }
+  }
+  if (o.num > 0) { var d = ""; for (var k = 0; k < o.num; k++) d += rnd(10); out += d; bits += o.num * Math.log2(10); }
+  if (o.sym) { out += SYM[rnd(SYM.length)]; bits += Math.log2(SYM.length); }
+  return { text: out, bits: bits };
+}
+function opts() { return { W: words(), n: Math.max(2, Math.min(16, +$("pN").value || 5)), sep: $("pSep").value, cap: $("pCap").value, num: +$("pNum").value, sym: $("pSym").checked }; }
+function make() {
+  var o = opts(), cnt = Math.max(1, Math.min(20, +$("pCount").value || 5)); $("pErr").textContent = "";
+  if (o.W.length < 100) { $("pErr").textContent = "Your word list has only " + o.W.length + " words. Use at least 100 (2,000 or more is better) or untick Use my own list."; return; }
+  ST.rows = []; for (var i = 0; i < cnt; i++) ST.rows.push(gen1(o)); ST.N = o.W.length; ST.bits = ST.rows[0].bits; show();
+}
+function show() {
+  if (!ST.rows.length) return; var bits = ST.bits, o = opts();
+  $("pList").innerHTML = ST.rows.map(function (r, i) { return '<div class="prow"><code>' + esc(r.text) + '</code><button type="button" class="dt-btn ghost" data-copy="' + i + '">Copy</button></div>'; }).join("");
+  var verdict = bits < 40 ? ["bad", "Weak"] : bits < 60 ? ["warn", "Fair"] : bits < 80 ? ["ok", "Strong"] : ["ok", "Very strong"];
+  $("pBits").innerHTML = badge(verdict[0], verdict[1]) + " <b>" + bits.toFixed(1) + " bits</b> of entropy · " + o.W.length.toLocaleString("en-US") + " words in the list · " + (Math.pow(2, bits) >= 1e15 ? Math.pow(2, bits).toExponential(1).replace("e+", " × 10^") : Math.round(Math.pow(2, bits)).toLocaleString("en-US")) + " possible results";
+  $("pBar").style.width = Math.min(100, bits / 100 * 100) + "%"; $("pBar").className = "pbar s" + (bits < 40 ? 1 : bits < 60 ? 2 : bits < 80 ? 3 : 4);
+  $("pTimes").innerHTML = '<div class="dt-wrap"><table><thead><tr><th>If an attacker guesses at</th><th>Average time to crack</th></tr></thead><tbody>' + RATES.map(function (r) { return "<tr><td>" + esc(r[0]) + " (" + r[1].toExponential(0).replace("e+", " × 10^") + " per second)</td><td><b>" + esc(fmtTime(Math.pow(2, bits) / 2 / r[1])) + "</b></td></tr>"; }).join("") + "</tbody></table></div>";
+  var eq = Math.ceil(bits / Math.log2(94)); $("pEq").textContent = "That is as strong as a fully random password of about " + eq + " characters (letters, numbers and symbols), but made of " + o.n + " words you can remember.";
+  var L = ST.rows.map(function (r) { return r.text; }); ST.sum = L.join("\n");
+}
+function sumRows() { var o = opts(); return [["Words per passphrase", String(o.n)], ["Word list size", ST.N.toLocaleString("en-US") + (($("pUseCustom").checked && $("pCustom").value.trim()) ? " (your own list)" : " (built in)")], ["Separator", $("pSep").selectedOptions[0].textContent], ["Capitalization", $("pCap").selectedOptions[0].textContent], ["Digits added", String(o.num)], ["Symbol added", o.sym ? "yes" : "no"], ["Entropy", ST.bits.toFixed(1) + " bits"]].concat(RATES.map(function (r) { return ["Crack time: " + r[0], fmtTime(Math.pow(2, ST.bits) / 2 / r[1])]; })); }
+function setDef() { $("pN").value = "7"; $("pSep").value = "dash"; $("pCap").value = "first"; $("pNum").value = "0"; $("pSym").checked = false; $("pCount").value = "5"; $("pCustom").value = ""; $("pUseCustom").checked = false; $("pIncl").checked = false; }
+function init() {
+  initCommon(); setDef(); make();
+  var P = document.querySelector(".dt-panel"); P.addEventListener("change", function (e) { if (e.target.id === "pCustom" || e.target.id === "pIncl") return; make(); });
+  $("pCustom").addEventListener("change", make); $("pGo").addEventListener("click", make);
+  P.addEventListener("click", function (e) { var c = e.target.closest("[data-copy]"); if (c) copyText(ST.rows[+c.getAttribute("data-copy")].text, c); });
+  $("resetBtn").addEventListener("click", function () { setDef(); make(); msg("Reset."); });
+  bindAct("p", { code: function () { return ST.sum; }, file: function () { return "passphrases.txt"; }, mime: "text/plain", title: "Passphrase generator: summary", site: "Free passphrase generator", note: "Passphrases were made in your browser with a secure random number generator and are not stored. Use each one for a single account. Entropy counts the word list and options you chose, and assumes an attacker knows them.", rows: function () { var r = sumRows(); return r; } });
+  var _f = window.fillReport; window.fillReport = function () { if (!$("pIncl").checked) { var keep = ST.sum; ST.sum = "(Passphrases are hidden. Tick the box to include them.)"; _f(); ST.sum = keep; } else _f(); };
+}
+init();
+
+})();
+</script>
+</body>
+</html>
