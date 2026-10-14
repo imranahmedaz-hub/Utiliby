@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free .htaccess Redirect Generator – 301, HTTPS, www</title>
+<meta name="description" content="Free online .htaccess redirect generator. Create 301 redirects, force HTTPS, set www or non-www, move a domain, get Nginx rules and test URLs for chains and loops.">
+<link rel="canonical" href="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free .htaccess Redirect Generator – 301, HTTPS, www">
+<meta property="og:description" content="Generate .htaccess and Nginx redirects free in your browser. Add 301 rules, force HTTPS, fix www and trailing slashes, and test URLs for chains and loops.">
+<meta property="og:url" content="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free .htaccess Redirect Generator – 301, HTTPS, www">
+<meta name="twitter:description" content="Generate .htaccess and Nginx redirects free in your browser. Add 301 rules, force HTTPS, fix www and trailing slashes, and test URLs for chains and loops.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+#hSim td,#hSim th{overflow-wrap:anywhere;word-break:break-word}#hSim .dt-wrap{overflow-x:auto}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Htaccess Redirect Generator","url":"https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/","description":"Free online .htaccess redirect generator for Apache with Nginx output. Creates 301, 302, 307, 308 and 410 page redirects, folder redirects, domain moves, HTTPS and www rules, trailing slash and index file handling, warns about loops and chains and simulates the redirect path of any URL. Runs in the browser with no upload.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["301, 302, 307, 308 and 410 redirects","HTTPS, www and trailing slash rules","Domain move","Folder redirects with wildcards","Apache and Nginx output","Redirect path test with chain and loop warnings","No upload, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an .htaccess redirect generator?","acceptedAnswer":{"@type":"Answer","text":"It is a tool that writes redirect rules for the .htaccess file used by Apache web servers. You enter the old and new addresses and settings such as HTTPS and www, and the tool produces rules you can paste into your file."}},{"@type":"Question","name":"How do I create a 301 redirect in .htaccess?","acceptedAnswer":{"@type":"Answer","text":"Add a line like RewriteRule ^old-page/?$ /new-page [R=301,L] after RewriteEngine On. Enter your old and new paths in the box above and the tool writes the rule for you."}},{"@type":"Question","name":"What is the difference between 301 and 302 redirects?","acceptedAnswer":{"@type":"Answer","text":"A 301 is permanent and tells search engines to pass the old address to the new one. A 302 is temporary and tells them to keep the old address. Use 301 for moves that will stay, such as a new URL or a new domain."}},{"@type":"Question","name":"What are 307 and 308 redirects?","acceptedAnswer":{"@type":"Answer","text":"They are the modern equivalents of 302 and 301 that also keep the request method, such as POST. For ordinary pages, 301 and 302 work fine."}},{"@type":"Question","name":"How do I force HTTPS with .htaccess?","acceptedAnswer":{"@type":"Answer","text":"Tick Force HTTPS and enter your domain. The tool writes a rule that sends every HTTP request to the HTTPS address. If your site is behind Cloudflare, tick the proxy option so the rule uses the forwarded protocol and avoids a loop."}},{"@type":"Question","name":"How do I redirect non-www to www?","acceptedAnswer":{"@type":"Answer","text":"Choose Always use www as the main address. The tool adds a rule that sends the bare domain to the www version in a single step, together with HTTPS if you chose it."}},{"@type":"Question","name":"What is a redirect chain and why is it bad?","acceptedAnswer":{"@type":"Answer","text":"A chain is when one redirect leads to another before the final page. Each step adds delay, and some crawlers stop after a few steps. The test box shows every step so you can fix them."}},{"@type":"Question","name":"What is a redirect loop?","acceptedAnswer":{"@type":"Answer","text":"A loop is when redirects send a visitor back and forth forever, and the browser shows an error such as too many redirects. The tool warns when a rule points to itself and when it finds a loop in the test."}},{"@type":"Question","name":"How do I redirect a whole folder?","acceptedAnswer":{"@type":"Answer","text":"End the old path with /* and give a destination, for example /blog/2019/* /blog/. Everything under the old folder is sent to the new one, and the rest of the path is kept."}},{"@type":"Question","name":"How do I redirect an old domain to a new domain?","acceptedAnswer":{"@type":"Answer","text":"Enter your new domain at the top and the old domain in the move field. The tool keeps the path, so old-site.com/page goes to new-site.com/page. Keep the old domain registered and the redirect in place for at least a year."}},{"@type":"Question","name":"What does 410 mean?","acceptedAnswer":{"@type":"Answer","text":"A 410 status says a page is gone on purpose. Search engines may drop it from results faster than a 404. Use it for removed pages that have no replacement."}},{"@type":"Question","name":"Does the tool support Nginx?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Nginx and you get server blocks and location rules instead of .htaccess lines. Nginx does not use .htaccess files, so paste the rules into your server configuration and reload Nginx."}},{"@type":"Question","name":"Where is the .htaccess file?","acceptedAnswer":{"@type":"Answer","text":"It sits in the root folder of your site, often called public_html or www. It is a hidden file because its name starts with a dot, so turn on hidden files in your file manager."}},{"@type":"Question","name":"Will redirects hurt my SEO?","acceptedAnswer":{"@type":"Answer","text":"Redirects done correctly pass most of the value of the old page to the new one. Problems come from chains, loops, redirecting many pages to the home page and leaving internal links pointing at old addresses."}},{"@type":"Question","name":"How do I remove index.php or index.html from URLs?","acceptedAnswer":{"@type":"Answer","text":"Tick the option. The tool writes a rule that redirects /index.php and /index.html to the clean folder address, which prevents duplicate versions of the same page."}},{"@type":"Question","name":"Is my data uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The tool runs in your browser. The paths and domains you enter are not sent to Utiliby or to any other server."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary gives a short report with your settings and test results. Download file saves the rules as .htaccess or an Nginx file. Copy code puts them on your clipboard."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"SEO and Web Tools","item":"https://utiliby.com/tools/seo-web-tools/"},{"@type":"ListItem","position":3,"name":"Htaccess Redirect Generator","item":"https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/seo-web-tools/">SEO & Web Tools</a> › Htaccess Redirect Generator</nav>
+<h1 class="noembed">Free .htaccess Redirect Generator (301, HTTPS, www)</h1>
+<p class="lead noembed">Free online .htaccess redirect generator. Create 301 redirects, force HTTPS, choose www or non-www, move a domain and get Apache or Nginx rules, then test any URL for chains and loops. It runs in your browser, so nothing is uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/" target="_blank" rel="noopener">Htaccess Redirect Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Htaccess redirect generator">
+<div class="dt-hero noembed">
+<h2>Free .htaccess Redirect Generator (301 and HTTPS)</h2>
+<p>Create 301 redirects, force HTTPS, set www or non-www, fix trailing slashes and move a domain. Get Apache .htaccess or Nginx rules and test each URL for redirect chains. No upload.</p>
+</div>
+<div class="dt-panel"><div class="dt-row"><div><label for="hDom">Your domain</label><input type="text" id="hDom" placeholder="example.com" autocomplete="off" spellcheck="false"></div><div><label for="hHost">Main address</label><select id="hHost"><option value="keep">Keep as it is</option><option value="www">Always use www</option><option value="non">Remove www</option></select></div><div><label for="hSlash">Trailing slash</label><select id="hSlash"><option value="none">Leave as it is</option><option value="add">Add a trailing slash</option><option value="remove">Remove the trailing slash</option></select></div><div><label for="hSrv">Server</label><select id="hSrv"><option value="apache">Apache (.htaccess)</option><option value="nginx">Nginx</option></select></div></div><div class="im-bar"><div class="im-chk"><input type="checkbox" id="hHttps" checked><label for="hHttps">Force HTTPS</label></div><div class="im-chk"><input type="checkbox" id="hIndex"><label for="hIndex">Remove index.php and index.html</label></div><span id="hProxyBox"><div class="im-chk"><input type="checkbox" id="hProxy"><label for="hProxy">My site is behind Cloudflare or a proxy</label></div></span></div><div><label for="hOld">Old domain to move to this one (optional)</label><input type="text" id="hOld" placeholder="old-site.com" autocomplete="off" spellcheck="false"></div><div><label for="hPages">Page redirects, one per line: old-path new-path [301, 302, 307, 308 or 410]</label><textarea id="hPages" rows="6" placeholder="/old-page /new-page
+/blog/* /articles/
+/removed 410" spellcheck="false"></textarea></div><p class="ck-note">End a path with /* to redirect a whole folder. Put a query string in the old path to match it. Use 410 for pages you removed on purpose.</p><div id="hIssues"></div><div><label for="hOut"><span id="hOutLab">Your rules</span></label><pre class="seo-code" id="hOut" tabindex="0" aria-live="polite"></pre></div><h3 style="margin:14px 0 4px;font-size:1.05rem">Test a URL</h3><p class="ck-note">See every redirect a visitor would go through with the rules above.</p><div><label for="hTest">URL to test</label><input type="text" id="hTest" placeholder="http://www.example.com/old-page" autocomplete="off" spellcheck="false"></div><div id="hSim"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="hCopy">Copy code</button>
+<button type="button" class="dt-btn ghost" id="hDl">Download file</button>
+<button type="button" class="dt-btn ghost" id="hPrint">Print / save summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free redirect generator works in your browser, so nothing you type is uploaded. The rules assume a standard Apache server with mod_rewrite enabled, or a standard Nginx setup. Hosts differ, and a wrong rule can take a site offline, create a redirect loop or lose search traffic. Back up your current .htaccess or server configuration before you change it, test on a staging copy first and check important URLs after you publish. The URL test is a simplified simulation and assumes each address is a normal page rather than a real file or folder.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Htaccess Redirect Generator. https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Htaccess Redirect Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/seo-web-tools/htaccess-redirect-generator/"&gt;Htaccess Redirect Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free .htaccess redirect generator does</a></li><li><a href="#how">How to create redirect rules in five steps</a></li><li><a href="#codes">Which redirect code should you use?</a></li><li><a href="#canonical">HTTPS, www and one main address</a></li><li><a href="#moves">Moving to a new domain</a></li><li><a href="#mistakes">Common redirect mistakes</a></li><li><a href="#test">Testing your redirects</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free .htaccess redirect generator does</h2>
+<p>Moving a page, changing a domain, switching to HTTPS or choosing between www and non-www all lead to the same job: telling the server to send visitors, and search engines, from an old address to a new one. On an Apache server that means writing rules in a file called <b>.htaccess</b>. The syntax is easy to get wrong, and one misplaced character can cause a loop or take the site down.</p><p>This free online redirect generator writes the rules for you. Choose HTTPS and www settings, trailing slash handling and index file removal, move an old domain, and paste a list of page redirects with 301, 302, 307, 308 or 410 codes. Switch to Nginx for server rules. A built-in test follows any URL through your rules and shows every step, so you can find chains and loops before you go live. It is free, private and needs no sign-up.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Without a plan an address takes three redirects to reach the final page. With a plan it takes one"><title>Redirect chain compared with a single redirect</title>
+<text x="20" y="28" font-size="13" font-weight="700" fill="currentColor">A chain: three redirects</text>
+<g font-size="11" fill="#fff" text-anchor="middle"><rect x="20" y="40" width="110" height="34" rx="8" fill="#94a3b8"/><text x="75" y="61">http://www</text><rect x="190" y="40" width="110" height="34" rx="8" fill="#94a3b8"/><text x="245" y="61">https://www</text><rect x="360" y="40" width="110" height="34" rx="8" fill="#94a3b8"/><text x="415" y="61">https://site</text><rect x="520" y="40" width="100" height="34" rx="8" fill="#16a34a"/><text x="570" y="61">/new-page</text></g>
+<g stroke="#dc2626" stroke-width="2.5" fill="none"><path d="M135 57 H185"/><path d="M305 57 H355"/><path d="M475 57 H515"/></g>
+<text x="20" y="128" font-size="13" font-weight="700" fill="currentColor">One redirect: faster and keeps more link value</text>
+<g font-size="11" fill="#fff" text-anchor="middle"><rect x="20" y="140" width="110" height="34" rx="8" fill="#94a3b8"/><text x="75" y="161">http://www</text><rect class="dt-bar" x="520" y="140" width="100" height="34" rx="8" fill="#16a34a" style="animation-delay:.2s"/><text x="570" y="161">/new-page</text></g>
+<path d="M135 157 H515" stroke="#0369a1" stroke-width="3"/><path d="M505 147 L518 157 L505 167" stroke="#0369a1" stroke-width="3" fill="none"/></svg>
+<figcaption>Every extra step slows the visitor and adds risk. Write rules so each old address goes straight to the final one.</figcaption></figure>
+<h2 id="how">How to create redirect rules in five steps</h2>
+<ol><li><b>Enter your domain.</b> Use the bare domain, such as example.com.</li><li><b>Choose the main address.</b> Pick www or non-www, and tick Force HTTPS.</li><li><b>List page redirects.</b> Write each old path, a space and the new path. Add a code at the end when you need something other than 301.</li><li><b>Test it.</b> Enter a few old URLs in the test box and check that each takes one step.</li><li><b>Add it to your server.</b> Back up your current file, paste the rules into .htaccess or your Nginx configuration, and check the result in a browser.</li></ol>
+<h2 id="codes">Which redirect code should you use?</h2>
+<div class="dt-wrap"><table><tr><th>Code</th><th>Meaning</th><th>Use it when</th></tr><tr><td>301</td><td>Moved permanently</td><td>A page or site has a new home for good</td></tr><tr><td>302</td><td>Found, temporary</td><td>A short-term move, such as a test or a sale page</td></tr><tr><td>307</td><td>Temporary, keeps the method</td><td>A temporary move for forms and APIs</td></tr><tr><td>308</td><td>Permanent, keeps the method</td><td>A permanent move for forms and APIs</td></tr><tr><td>410</td><td>Gone</td><td>A page was removed on purpose with no replacement</td></tr></table></div><p>For nearly all website moves, 301 is correct. Use a temporary code only when the original address will come back.</p>
+<h2 id="canonical">HTTPS, www and one main address</h2>
+<p>Search engines treat http://example.com, https://example.com, http://www.example.com and https://www.example.com as four separate addresses. If all four open your site, you have four copies and your links and signals are split between them. Pick one main address, send the others to it with a permanent redirect, and use the same address in your sitemap, canonical tags and internal links. This tool writes one combined rule so that any wrong version goes to the main one in a single step, instead of passing through two redirects.</p><p>If your site is behind Cloudflare or another proxy, the server may see every request as plain HTTP even though visitors use HTTPS. In that case a normal HTTPS rule creates a loop, so tick the proxy option to test the forwarded protocol instead.</p>
+<h2 id="moves">Moving to a new domain</h2>
+<ul><li><b>Map every page.</b> Redirect each old URL to its equivalent on the new domain, not just to the home page.</li><li><b>Use 301.</b> Keep the path so old-site.com/page goes to new-site.com/page.</li><li><b>Keep the old domain.</b> Renew it and keep the redirects for at least a year.</li><li><b>Update your signals.</b> Use the change of address tool in Search Console, update your sitemap and internal links.</li><li><b>Watch the results.</b> Check crawl errors and traffic for several weeks.</li></ul>
+<h2 id="mistakes">Common redirect mistakes</h2>
+<ul><li><b>Chains:</b> A to B to C. Point A straight to C.</li><li><b>Loops:</b> a rule that sends a page back to itself or two rules that point at each other.</li><li><b>Sending everything to the home page,</b> which search engines may treat as a soft 404.</li><li><b>Using 302 for permanent moves,</b> so signals may not pass.</li><li><b>Forgetting the query string,</b> or keeping one you meant to drop.</li><li><b>Editing the live file without a backup.</b></li><li><b>Leaving internal links on old URLs,</b> which forces every visit through a redirect.</li></ul>
+<h2 id="test">Testing your redirects</h2>
+<p>The test box takes a URL and applies your rules in the order the server would: old domain, page redirects, then the main host and HTTPS, index files and trailing slashes. It repeats until no rule matches and lists each step with its code. A good result is zero or one step. Two or more steps are shown as a chain, and a repeating address is flagged as a loop. The simulation cannot see files on your server, so it treats every address as a normal page. After you upload the rules, check real URLs in a browser or with a header checker.</p>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>Too many redirects:</b> remove the last rules you added, and tick the proxy option if you use Cloudflare.</li><li><b>500 internal server error:</b> a rule has a syntax problem, or mod_rewrite is off. Restore your backup and ask your host.</li><li><b>Nothing happens:</b> check that .htaccess is in the site root and that your host allows overrides.</li><li><b>Old URLs still show in search:</b> Google needs time to recrawl. Submit the new sitemap.</li><li><b>WordPress rules clash:</b> place custom redirects above the lines between # BEGIN WordPress and # END WordPress.</li></ul>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>Your browser turns the settings you choose into rewrite rules and runs a small simulation of them on the URL you test. Nothing is uploaded, stored or logged. Print / save summary creates a short report from your entries, and the rest of the page is not included in the print.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is an .htaccess redirect generator?</summary><p>It is a tool that writes redirect rules for the .htaccess file used by Apache web servers. You enter the old and new addresses and settings such as HTTPS and www, and the tool produces rules you can paste into your file.</p></details><details><summary>How do I create a 301 redirect in .htaccess?</summary><p>Add a line like RewriteRule ^old-page/?$ /new-page [R=301,L] after RewriteEngine On. Enter your old and new paths in the box above and the tool writes the rule for you.</p></details><details><summary>What is the difference between 301 and 302 redirects?</summary><p>A 301 is permanent and tells search engines to pass the old address to the new one. A 302 is temporary and tells them to keep the old address. Use 301 for moves that will stay, such as a new URL or a new domain.</p></details><details><summary>What are 307 and 308 redirects?</summary><p>They are the modern equivalents of 302 and 301 that also keep the request method, such as POST. For ordinary pages, 301 and 302 work fine.</p></details><details><summary>How do I force HTTPS with .htaccess?</summary><p>Tick Force HTTPS and enter your domain. The tool writes a rule that sends every HTTP request to the HTTPS address. If your site is behind Cloudflare, tick the proxy option so the rule uses the forwarded protocol and avoids a loop.</p></details><details><summary>How do I redirect non-www to www?</summary><p>Choose Always use www as the main address. The tool adds a rule that sends the bare domain to the www version in a single step, together with HTTPS if you chose it.</p></details><details><summary>What is a redirect chain and why is it bad?</summary><p>A chain is when one redirect leads to another before the final page. Each step adds delay, and some crawlers stop after a few steps. The test box shows every step so you can fix them.</p></details><details><summary>What is a redirect loop?</summary><p>A loop is when redirects send a visitor back and forth forever, and the browser shows an error such as too many redirects. The tool warns when a rule points to itself and when it finds a loop in the test.</p></details><details><summary>How do I redirect a whole folder?</summary><p>End the old path with /* and give a destination, for example /blog/2019/* /blog/. Everything under the old folder is sent to the new one, and the rest of the path is kept.</p></details><details><summary>How do I redirect an old domain to a new domain?</summary><p>Enter your new domain at the top and the old domain in the move field. The tool keeps the path, so old-site.com/page goes to new-site.com/page. Keep the old domain registered and the redirect in place for at least a year.</p></details><details><summary>What does 410 mean?</summary><p>A 410 status says a page is gone on purpose. Search engines may drop it from results faster than a 404. Use it for removed pages that have no replacement.</p></details><details><summary>Does the tool support Nginx?</summary><p>Yes. Choose Nginx and you get server blocks and location rules instead of .htaccess lines. Nginx does not use .htaccess files, so paste the rules into your server configuration and reload Nginx.</p></details><details><summary>Where is the .htaccess file?</summary><p>It sits in the root folder of your site, often called public_html or www. It is a hidden file because its name starts with a dot, so turn on hidden files in your file manager.</p></details><details><summary>Will redirects hurt my SEO?</summary><p>Redirects done correctly pass most of the value of the old page to the new one. Problems come from chains, loops, redirecting many pages to the home page and leaving internal links pointing at old addresses.</p></details><details><summary>How do I remove index.php or index.html from URLs?</summary><p>Tick the option. The tool writes a rule that redirects /index.php and /index.html to the clean folder address, which prevents duplicate versions of the same page.</p></details><details><summary>Is my data uploaded anywhere?</summary><p>No. The tool runs in your browser. The paths and domains you enter are not sent to Utiliby or to any other server.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary gives a short report with your settings and test results. Download file saves the rules as .htaccess or an Nginx file. Copy code puts them on your clipboard.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Apache HTTP Server Documentation, mod_rewrite and Redirect directives (httpd.apache.org), for RewriteRule syntax and flags.</li><li>Nginx documentation, the return and rewrite directives (nginx.org).</li><li>RFC 9110, HTTP Semantics (rfc-editor.org), for the meaning of 301, 302, 307, 308 and 410.</li><li>Google Search Central, Redirects and Google Search, for how redirects affect indexing.</li><li>Google Search Central, Site move with URL changes, for domain move steps.</li><li>Cloudflare Docs, Redirect loops and SSL modes, for proxy behavior.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free redirect generator works in your browser, so nothing you type is uploaded. The rules assume a standard Apache server with mod_rewrite enabled, or a standard Nginx setup. Hosts differ, and a wrong rule can take a site offline, create a redirect loop or lose search traffic. Back up your current .htaccess or server configuration before you change it, test on a staging copy first and check important URLs after you publish. The URL test is a simplified simulation and assumes each address is a normal page rather than a real file or folder.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+
+/* ---------- htaccess redirect generator ---------- */
+var ST = { code: "", is: [], hops: [] };
+function g(id) { return $(id).value.trim(); }
+function cfg() {
+  return { dom: g("hDom").toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, ""), host: $("hHost").value, https: $("hHttps").checked, proxy: $("hProxy").checked, slash: $("hSlash").value, index: $("hIndex").checked, old: g("hOld").toLowerCase().replace(/^https?:\/\//, "").replace(/\/.*$/, "").replace(/^www\./, ""), srv: $("hSrv").value };
+}
+function desired(c) { return c.host === "www" ? "www." + c.dom : c.dom; }
+function parsePages(t, c) {
+  var out = [], warns = [];
+  t.split(/\r?\n/).forEach(function (ln, i) {
+    ln = ln.trim(); if (!ln || ln.charAt(0) === "#") return; var p = ln.split(/\s+/), code = 301;
+    if (/^(301|302|307|308|410)$/.test(p[p.length - 1])) { code = +p.pop(); } var from = p[0], to = p[1] || "";
+    if (/^https?:\/\//i.test(from)) { try { var u = new URL(from); from = u.pathname + u.search; } catch (e) { } }
+    if (!from) return; if (from.charAt(0) !== "/") from = "/" + from;
+    if (code !== 410 && !to) { warns.push(["bad", "Line " + (i + 1) + ": add a destination, or use 410 for a removed page."]); return; }
+    var wild = /\/\*$/.test(from); if (wild) from = from.replace(/\*$/, "");
+    out.push({ from: from, to: to, code: code, wild: wild, line: i + 1 });
+  }); return { rules: out, warns: warns };
+}
+function absTarget(to, c) { if (!to || /^https?:\/\//i.test(to)) return to; if (c.dom) return (c.https ? "https://" : "http://") + desired(c) + (to.charAt(0) === "/" ? to : "/" + to); return to.charAt(0) === "/" ? to : "/" + to; }
+function reEsc(s) { return s.replace(/[.+^${}()|[\]\\?*]/g, "\\$&"); }
+function apache(c, pr) {
+  var L = ["# BEGIN redirects (generated at utiliby.com)", "RewriteEngine On", ""], d = desired(c);
+  if (c.old && c.dom) { L.push("# Old domain to new domain"); L.push("RewriteCond %{HTTP_HOST} ^(www\\.)?" + reEsc(c.old) + "$ [NC]"); L.push("RewriteRule ^(.*)$ " + (c.https ? "https" : "http") + "://" + d + "/$1 [R=301,L]"); L.push(""); }
+  if (pr.rules.length) { L.push("# Page redirects"); pr.rules.forEach(function (r) {
+    var path = r.from.slice(1), q = "", qi = path.indexOf("?"); if (qi >= 0) { q = path.slice(qi + 1); path = path.slice(0, qi); }
+    if (q) L.push("RewriteCond %{QUERY_STRING} ^" + reEsc(q) + "$");
+    var pat = r.wild ? "^" + reEsc(path) + "(.*)$" : "^" + reEsc(path.replace(/\/$/, "")) + "/?$";
+    if (r.code === 410) { L.push("RewriteRule " + pat + " - [G,L]"); return; }
+    var to = absTarget(r.to, c); if (r.wild) to = to + (/\/$/.test(to) ? "" : "/") + "$1"; if (q) to += "?";
+    L.push("RewriteRule " + pat + " " + to + " [R=" + r.code + ",L]");
+  }); L.push(""); }
+  if ((c.https || c.host !== "keep") && c.dom) {
+    L.push("# Canonical " + [c.https ? "HTTPS" : "", c.host === "www" ? "www" : (c.host === "non" ? "non-www" : "")].filter(Boolean).join(" and ") + " address");
+    var scheme = c.https ? "https" : "%{REQUEST_SCHEME}", httpsCond = c.proxy ? "RewriteCond %{HTTP:X-Forwarded-Proto} !https" : "RewriteCond %{HTTPS} !=on";
+    if (c.https && c.host !== "keep") { L.push(httpsCond + " [OR]"); L.push("RewriteCond %{HTTP_HOST} !^" + reEsc(d) + "$ [NC]"); L.push("RewriteRule ^ https://" + d + "%{REQUEST_URI} [L,R=301]"); }
+    else if (c.https) { L.push(httpsCond); L.push("RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]"); }
+    else { L.push("RewriteCond %{HTTP_HOST} !^" + reEsc(d) + "$ [NC]"); L.push("RewriteRule ^ " + scheme + "://" + d + "%{REQUEST_URI} [L,R=301]"); }
+    L.push("");
+  }
+  if (c.index) { L.push("# Remove index.php and index.html from URLs"); L.push("RewriteCond %{THE_REQUEST} ^[A-Z]{3,}\\s/(.*/)?index\\.(php|html?)[\\s?] [NC]"); L.push("RewriteRule ^(.*/)?index\\.(php|html?)$ /$1 [R=301,L]"); L.push(""); }
+  if (c.slash === "remove") { L.push("# Remove trailing slash"); L.push("RewriteCond %{REQUEST_FILENAME} !-d"); L.push("RewriteRule ^(.+)/$ /$1 [R=301,L]"); L.push(""); }
+  if (c.slash === "add") { L.push("# Add trailing slash"); L.push("RewriteCond %{REQUEST_FILENAME} !-f"); L.push("RewriteCond %{REQUEST_URI} !\\.[a-zA-Z0-9]{1,5}$"); L.push("RewriteCond %{REQUEST_URI} !/$"); L.push("RewriteRule ^(.*)$ /$1/ [R=301,L]"); L.push(""); }
+  L.push("# END redirects"); return L.join("\n") + "\n";
+}
+function nginx(c, pr) {
+  var L = [], d = desired(c), alt = c.host === "www" ? c.dom : "www." + c.dom, scheme = c.https ? "https" : "$scheme";
+  if (c.dom && (c.https || c.host !== "keep")) {
+    L.push("# 1. Redirect other hosts and plain HTTP to the main address"); var names = c.host === "keep" ? c.dom + " www." + c.dom : c.dom + " www." + c.dom;
+    L.push("server {"); L.push("    listen 80;"); L.push("    listen [::]:80;"); L.push("    server_name " + names + ";"); L.push("    return 301 " + (c.https ? "https" : "$scheme") + "://" + (c.host === "keep" ? "$host" : d) + "$request_uri;"); L.push("}");
+    if (c.host !== "keep" && c.https) { L.push(""); L.push("server {"); L.push("    listen 443 ssl;"); L.push("    listen [::]:443 ssl;"); L.push("    server_name " + alt + ";"); L.push("    # ssl_certificate and ssl_certificate_key for this host go here"); L.push("    return 301 https://" + d + "$request_uri;"); L.push("}"); }
+    L.push("");
+  }
+  if (c.old && c.dom) { L.push("# 2. Old domain to new domain"); L.push("server {"); L.push("    listen 80;"); L.push("    listen 443 ssl;"); L.push("    server_name " + c.old + " www." + c.old + ";"); L.push("    # ssl_certificate and ssl_certificate_key for the old domain go here"); L.push("    return 301 " + (c.https ? "https" : "$scheme") + "://" + d + "$request_uri;"); L.push("}"); L.push(""); }
+  L.push("# 3. Put the rules below inside your main server { } block");
+  pr.rules.forEach(function (r) {
+    var path = r.from, q = "", qi = path.indexOf("?"); if (qi >= 0) { q = path.slice(qi + 1); path = path.slice(0, qi); }
+    if (r.code === 410) { L.push("location = " + path.replace(/\/$/, "") + " { return 410; }"); return; }
+    var to = absTarget(r.to, c);
+    if (r.wild) { L.push("rewrite ^" + reEsc(path) + "(.*)$ " + to + (/\/$/.test(to) ? "" : "/") + "$1 " + (r.code === 301 ? "permanent" : r.code === 302 ? "redirect" : "") + ";" + (r.code > 302 ? " # nginx rewrite supports only 301 and 302 flags, use a location block for " + r.code : "")); return; }
+    if (q) { L.push("location = " + path.replace(/\/$/, "") + " { if ($args = \"" + q + "\") { return " + r.code + " " + to + "?; } }"); return; }
+    L.push("location = " + path.replace(/\/$/, "") + " { return " + r.code + " " + to + "; }");
+  });
+  if (c.index) L.push("rewrite ^(.*/)index\\.(php|html?)$ $1 permanent;");
+  if (c.slash === "remove") L.push("rewrite ^/(.+)/$ /$1 permanent;"); if (c.slash === "add") L.push("rewrite ^([^.]*[^/])$ $1/ permanent;");
+  return L.join("\n") + "\n";
+}
+function step(url, c, pr) {
+  var u; try { u = new URL(url); } catch (e) { return null; } var host = u.hostname.toLowerCase(), path = u.pathname, q = u.search, d = desired(c), sch = u.protocol.replace(":", "");
+  if (c.old && c.dom && (host === c.old || host === "www." + c.old)) return { to: (c.https ? "https" : sch) + "://" + d + path + q, code: 301, why: "Old domain moves to the new domain" };
+  for (var i = 0; i < pr.rules.length; i++) { var r = pr.rules[i], fp = r.from.split("?")[0], fq = r.from.indexOf("?") >= 0 ? r.from.split("?").slice(1).join("?") : "", m = false;
+    if (r.wild) m = path.indexOf(fp) === 0; else m = path.replace(/\/$/, "") === fp.replace(/\/$/, "") || (path === "/" && fp === "/"); if (fq && q.replace(/^\?/, "") !== fq) m = false;
+    if (m) { if (r.code === 410) return { stop: "410 Gone", why: "Page removed (rule on line " + r.line + ")" }; var to = absTarget(r.to, c); if (r.wild) to = to + (/\/$/.test(to) ? "" : "/") + path.slice(fp.length); if (!/^https?:\/\//i.test(to)) to = sch + "://" + u.host + to; return { to: to + (fq ? "" : q), code: r.code, why: "Page redirect (line " + r.line + ")" }; } }
+  if (c.dom && (c.https || c.host !== "keep")) { var needS = c.https && sch !== "https", needH = c.host !== "keep" && host !== d; if (needS || needH) return { to: (c.https ? "https" : sch) + "://" + (needH ? d : u.host) + path + q, code: 301, why: needS && needH ? "HTTPS and main host" : (needS ? "Force HTTPS" : "Main host") }; }
+  if (c.index && /\/index\.(php|html?)$/i.test(path)) return { to: u.origin + path.replace(/index\.(php|html?)$/i, "") + q, code: 301, why: "Remove index file" };
+  if (c.slash === "remove" && path.length > 1 && /\/$/.test(path)) return { to: u.origin + path.replace(/\/+$/, "") + q, code: 301, why: "Remove trailing slash" };
+  if (c.slash === "add" && !/\/$/.test(path) && !/\.[a-z0-9]{1,5}$/i.test(path)) return { to: u.origin + path + "/" + q, code: 301, why: "Add trailing slash" };
+  return null;
+}
+function simulate(url, c, pr) { var hops = [], cur = url, i, seen = {}; for (i = 0; i < 10; i++) { var s = step(cur, c, pr); if (!s) break; if (s.stop) { hops.push({ from: cur, stop: s.stop, why: s.why }); return { hops: hops, final: null, loop: false }; } if (seen[s.to]) return { hops: hops.concat([{ from: cur, to: s.to, code: s.code, why: s.why }]), final: null, loop: true }; seen[cur] = 1; hops.push({ from: cur, to: s.to, code: s.code, why: s.why }); cur = s.to; } return { hops: hops, final: cur, loop: i === 10 }; }
+function lint(c, pr) {
+  var a = pr.warns.slice(), froms = {}, tos = {};
+  pr.rules.forEach(function (r) { var k = r.from.replace(/\/$/, ""); if (froms[k]) a.push(["warn", "Line " + r.line + ": " + r.from + " is already redirected on line " + froms[k] + ". Only the first rule is used."]); else froms[k] = r.line; });
+  pr.rules.forEach(function (r) { var t = r.to.replace(/^https?:\/\/[^\/]+/, "").replace(/\/$/, ""); if (r.code !== 410 && t === r.from.replace(/\/$/, "") && !r.wild) a.push(["bad", "Line " + r.line + ": " + r.from + " redirects to itself, which causes a redirect loop."]); else if (froms[t] && froms[t] !== r.line && r.code !== 410) a.push(["warn", "Line " + r.line + ": the destination " + r.to + " is redirected again on line " + froms[t] + ". Point to the final page to avoid a redirect chain."]); });
+  if ((c.https || c.host !== "keep" || c.old) && !c.dom) a.push(["bad", "Enter your domain, for example example.com, so host and HTTPS rules can be written."]);
+  if (c.old && c.old === c.dom) a.push(["bad", "The old domain and the main domain are the same."]);
+  if (c.https && !c.proxy && c.srv === "apache") a.push(["info", "If your site is behind Cloudflare or another proxy and you see a redirect loop, tick the proxy option."]);
+  if (c.slash !== "none" && c.index) a.push(["info", "Index removal and trailing slash rules can create two steps for some URLs. Check them in the test box."]);
+  if (!a.length) a.push(["ok", "No problems found."]); return a;
+}
+function render() {
+  var c = cfg(), pr = parsePages($("hPages").value, c); $("hProxyBox").hidden = !c.https || c.srv !== "apache";
+  ST.code = c.srv === "nginx" ? nginx(c, pr) : apache(c, pr); $("hOut").textContent = ST.code; $("hOutLab").textContent = c.srv === "nginx" ? "Your Nginx rules" : "Your .htaccess rules (Apache)";
+  ST.is = lint(c, pr); $("hIssues").innerHTML = '<ul class="seo-issues">' + ST.is.map(function (x) { return "<li>" + badge(x[0], { bad: "Fix", warn: "Tip", info: "Note", ok: "Good" }[x[0]]) + esc(x[1]) + "</li>"; }).join("") + "</ul>";
+  var tu = g("hTest"), box = $("hSim"); ST.hops = [];
+  if (!tu) { box.innerHTML = ""; return; } if (!/^https?:\/\//i.test(tu)) tu = "http://" + tu; var s = simulate(tu, c, pr); if (!s.hops.length && !isUrl(tu)) { box.innerHTML = "<p>" + badge("bad", "Fix") + "Enter a full URL to test.</p>"; return; }
+  ST.hops = s.hops; ST.final = s.final;
+  box.innerHTML = '<div class="dt-wrap"><table><thead><tr><th>#</th><th>Request</th><th>Result</th></tr></thead><tbody>' + (s.hops.length ? s.hops.map(function (h, i) { return "<tr><td>" + (i + 1) + "</td><td>" + esc(h.from) + "</td><td>" + (h.stop ? badge("bad", h.stop) : badge("info", h.code) + esc(h.to)) + " <span class=\"ck-note\">" + esc(h.why) + "</span></td></tr>"; }).join("") : "<tr><td>0</td><td>" + esc(tu) + "</td><td>" + badge("ok", "200") + " No redirect</td></tr>") + "</tbody></table></div><p>" + (s.loop ? badge("bad", "Redirect loop") : (s.hops.length > 1 && !s.hops[s.hops.length - 1].stop ? badge("warn", s.hops.length + " redirects in a chain") : badge("ok", s.hops.length + " redirect" + (s.hops.length === 1 ? "" : "s")))) + (s.final ? " Final address: <b>" + esc(s.final) + "</b>" : "") + '</p><p class="ck-note">The test assumes the address is a normal page, not a real folder or file on disk.</p>';
+}
+function setDef() { $("hDom").value = "example.com"; $("hHost").value = "keep"; $("hHttps").checked = true; $("hProxy").checked = false; $("hSlash").value = "none"; $("hIndex").checked = false; $("hOld").value = ""; $("hSrv").value = "apache"; $("hPages").value = "/old-page /new-page\n/blog/2019/* /blog/\n/discontinued 410"; $("hTest").value = "http://www.example.com/old-page"; }
+function init() {
+  initCommon(); setDef(); render(); var P = document.querySelector(".dt-panel"); P.addEventListener("input", render); P.addEventListener("change", render);
+  $("resetBtn").addEventListener("click", function () { setDef(); render(); msg("Reset to the example."); });
+  bindAct("h", { code: function () { return ST.code; }, file: function () { return $("hSrv").value === "nginx" ? "nginx-redirects.conf" : ".htaccess"; }, mime: "text/plain", title: "Redirect rules: summary", site: "Free .htaccess redirect generator", note: "Back up your current .htaccess or server config before you change it, and test on a staging copy first. A wrong rule can take a site offline or create a redirect loop. These rules assume a standard Apache with mod_rewrite or a standard Nginx setup, and your host may differ.", rows: function () { var c = cfg(); var r = [["Server", c.srv === "nginx" ? "Nginx" : "Apache"], ["Domain", c.dom || "not set"], ["Host", c.host === "www" ? "Use www" : (c.host === "non" ? "Remove www" : "Keep as is")], ["Force HTTPS", c.https ? "yes" : "no"], ["Trailing slash", c.slash], ["Remove index files", c.index ? "yes" : "no"], ["Checks", ST.is.map(function (x) { return x[1]; }).join(" ")]]; ST.hops.forEach(function (h, i) { r.push(["Test step " + (i + 1), h.stop ? h.from + " -> " + h.stop : h.from + " -> " + h.code + " " + h.to]); }); return r; } });
+}
+init();
+
+})();
+</script>
+</body>
+</html>
