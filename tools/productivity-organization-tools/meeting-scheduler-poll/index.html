@@ -1,0 +1,828 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Meeting Scheduler Poll Online – Find the Best Meeting Time</title>
+<meta name="description" content="Free meeting scheduler poll online. Create a shareable availability poll, collect yes/maybe/no votes and find the best meeting time. No sign-up, 100% browser-based.">
+<link rel="canonical" href="https://utiliby.com/tools/productivity-organization-tools/meeting-scheduler-poll/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Meeting Scheduler Poll Online – Find the Best Meeting Time">
+<meta property="og:description" content="Free meeting scheduler poll online. Availability grid, yes/maybe/no voting, ICS export and shareable URL.">
+<meta property="og:url" content="https://utiliby.com/tools/productivity-organization-tools/meeting-scheduler-poll/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.ms-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.ms-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.88rem;cursor:pointer}
+.ms-tab.on{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+
+.ms-hero{background:var(--card);border:1px solid var(--line);border-radius:var(--r);padding:20px;margin:16px 0}
+.ms-hero h2{margin:0 0 6px;font-size:1.4rem}
+.ms-hero-meta{display:flex;gap:12px;flex-wrap:wrap;font-size:.85rem;color:var(--muted);margin-bottom:14px}
+.ms-hero-meta span{display:flex;align-items:center;gap:4px}
+.ms-hero-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+
+.ms-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:8px;margin:12px 0}
+.ms-slot{background:var(--card);border:2px solid var(--line);border-radius:10px;padding:12px;text-align:center;cursor:pointer;transition:border-color .15s,background .15s;user-select:none}
+.ms-slot:hover{border-color:var(--brand)}
+.ms-slot.selected{border-color:var(--brand);background:rgba(79,70,229,.06)}
+.ms-slot-date{font-weight:700;font-size:.9rem;color:var(--fg)}
+.ms-slot-time{font-size:.82rem;color:var(--muted);margin-top:3px}
+
+.ms-table-wrap{overflow-x:auto;margin:16px 0;border:1px solid var(--line);border-radius:12px}
+.ms-table{width:100%;border-collapse:collapse;min-width:500px}
+.ms-table th,.ms-table td{padding:8px 10px;text-align:center;border-bottom:1px solid var(--line);font-size:.85rem}
+.ms-table th{background:var(--card);font-weight:700;position:sticky;top:0;z-index:2}
+.ms-table th:first-child{text-align:left;position:sticky;left:0;background:var(--card);z-index:3}
+.ms-table td:first-child{text-align:left;font-weight:600;background:var(--card);position:sticky;left:0;z-index:1}
+.ms-vote{display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;font-size:1rem;cursor:pointer;border:2px solid transparent;transition:all .15s;user-select:none;font-weight:700}
+.ms-vote.yes{background:#dcfce7;color:#166534}
+.ms-vote.maybe{background:#fef3c7;color:#92400e}
+.ms-vote.no{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .ms-vote.yes{background:#14532d;color:#bbf7d0}
+  .ms-vote.maybe{background:#78350f;color:#fde68a}
+  .ms-vote.no{background:#7f1d1d;color:#fecaca}
+}
+.ms-vote.empty{background:transparent;border-color:var(--line)}
+.ms-vote:hover{transform:scale(1.1)}
+
+.ms-best{display:flex;flex-direction:column;gap:8px;margin:12px 0}
+.ms-best-item{background:linear-gradient(135deg,var(--card),var(--bg));border:1px solid var(--line);border-radius:10px;padding:12px 14px;display:flex;align-items:center;gap:12px}
+.ms-best-rank{width:32px;height:32px;border-radius:50%;background:var(--brand);color:#fff;display:flex;align-items:center;justify-content:center;font-weight:800;flex-shrink:0}
+.ms-best-rank.gold{background:linear-gradient(135deg,#f59e0b,#fbbf24)}
+.ms-best-info{flex:1;min-width:0}
+.ms-best-date{font-weight:700;font-size:.95rem;color:var(--fg)}
+.ms-best-stats{font-size:.8rem;color:var(--muted);margin-top:2px}
+
+.ms-status{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:10px 14px;font-size:.85rem;margin:8px 0}
+.ms-status.ok{border-color:#16a34a;color:#16a34a}
+.ms-status.err{border-color:#dc2626;color:#dc2626}
+.ms-status.info{border-color:var(--brand);color:var(--brand)}
+
+.ms-toolbar{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.ms-toolbar button{padding:8px 14px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg)}
+.ms-toolbar button:hover{border-color:var(--brand);color:var(--brand)}
+.ms-toolbar button.primary{background:linear-gradient(135deg,var(--brand),var(--brand2));color:#fff;border-color:transparent}
+.ms-toolbar button:disabled{opacity:.45;cursor:not-allowed}
+
+.ms-share{display:flex;gap:6px;margin:10px 0;flex-wrap:wrap}
+.ms-share input{flex:1;min-width:200px;padding:8px 12px;font-size:.85rem;font-family:ui-monospace,monospace;background:var(--bg);border:1px solid var(--line);border-radius:8px;color:var(--fg)}
+.ms-share button{padding:8px 14px;font-size:.85rem;border-radius:8px;cursor:pointer;font-weight:600;border:1px solid var(--line);background:var(--card);color:var(--fg);white-space:nowrap}
+.ms-share button:hover{border-color:var(--brand);color:var(--brand)}
+
+.ms-empty{text-align:center;padding:40px 20px;color:var(--muted)}
+.ms-empty h3{color:var(--fg);margin:0 0 8px}
+.ms-empty p{margin:6px 0}
+
+.ms-mode-toggle{display:flex;gap:6px;margin:12px 0;flex-wrap:wrap;padding:8px;background:var(--card);border:1px solid var(--line);border-radius:10px}
+.ms-mode-toggle button{padding:6px 14px;font-size:.82rem;border-radius:6px;cursor:pointer;font-weight:600;border:1px solid transparent;background:transparent;color:var(--muted)}
+.ms-mode-toggle button.on{background:var(--brand);color:#fff}
+.ms-mode-toggle button:hover:not(.on){color:var(--brand)}
+
+.ms-participant{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;font-size:.85rem;margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+.ms-participant .name{font-weight:600;color:var(--fg)}
+.ms-participant .votes-count{color:var(--muted);font-size:.8rem}
+.ms-participant .remove-btn{background:transparent;border:0;color:#dc2626;cursor:pointer;font-size:1rem;padding:2px 6px;border-radius:4px}
+.ms-participant .remove-btn:hover{background:#fee2e2}
+
+@media(max-width:560px){.ms-toolbar button{font-size:.78rem;padding:6px 10px}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Meeting Scheduler Poll","url":"https://utiliby.com/tools/productivity-organization-tools/meeting-scheduler-poll/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free meeting scheduler poll online?","acceptedAnswer":{"@type":"Answer","text":"A free meeting scheduler poll online is a tool that helps a group find the best time to meet by letting each participant mark their availability. This meeting scheduler poll runs entirely in your browser and shares polls via URL, so no account, server or email is required."}},{"@type":"Question","name":"How does a meeting scheduler poll work?","acceptedAnswer":{"@type":"Answer","text":"The organizer proposes candidate dates and times. Participants open a shareable link, mark each slot as yes, maybe or no, and the tool highlights the best times based on total availability. No sign-up is needed for the creator or participants."}},{"@type":"Question","name":"Does this tool require an account?","acceptedAnswer":{"@type":"Answer","text":"No. There is no account, no email, no password, no credit card. Create a poll, share the link and collect votes. Everything runs in your browser."}},{"@type":"Question","name":"How is the poll shared without a server?","acceptedAnswer":{"@type":"Answer","text":"The poll data is encoded directly into the URL as a hash parameter. When you share the link, recipients receive the full poll definition in the URL itself. No server is involved at any point."}},{"@type":"Question","name":"Can participants vote without signing up?","acceptedAnswer":{"@type":"Answer","text":"Yes. Participants just open the shared link and mark their availability. No account, no email, no personal information required."}},{"@type":"Question","name":"Can I export the agreed time to my calendar?","acceptedAnswer":{"@type":"Answer","text":"Yes. Once a time is chosen, use the Export ICS button to download a calendar file (.ics) that works with Google Calendar, Apple Calendar, Outlook and any other calendar app."}},{"@type":"Question","name":"What is the difference between yes, maybe and no?","acceptedAnswer":{"@type":"Answer","text":"Yes means the participant is available. Maybe means they could make it work. No means they are unavailable. The tool ranks slots by weighting yes as 2 points and maybe as 1 point."}},{"@type":"Question","name":"Does this tool work on mobile?","acceptedAnswer":{"@type":"Answer","text":"Yes. The availability grid and voting interface are designed for both desktop and mobile. Participants can vote on the go."}},{"@type":"Question","name":"Is this meeting scheduler poll free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits."}},{"@type":"Question","name":"How many time slots can I add?","acceptedAnswer":{"@type":"Answer","text":"There is no hard limit, but practical polls work best with 5 to 20 time slots. Very long polls become cumbersome to vote on."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/productivity-organization-tools/">Productivity &amp; Organization Tools</a> › Meeting Scheduler Poll</nav>
+<h1>Meeting Scheduler Poll</h1>
+<p class="lead">Find the best meeting time with a shareable poll. Availability grid, yes/maybe/no voting and ICS export. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Meeting scheduler poll">
+
+<div class="ms-tabs" role="group" aria-label="Mode">
+<button type="button" class="ms-tab on" data-tab="create" id="tabCreate">Create poll</button>
+<button type="button" class="ms-tab" data-tab="poll" id="tabPoll" hidden>Vote on poll</button>
+</div>
+
+<!-- CREATE PANEL -->
+<div id="createPanel">
+<div class="ms-status info">Set up your poll below. Add a title, pick candidate dates and times, then share the link with participants.</div>
+
+<label for="pollTitle">Poll title</label>
+<input type="text" id="pollTitle" placeholder="e.g., Team standup - week of Oct 6" value="Team meeting">
+
+<label for="pollDesc">Description (optional)</label>
+<input type="text" id="pollDesc" placeholder="e.g., 30-minute sync to review Q4 priorities" value="">
+
+<div class="row" style="margin-top:14px">
+<div><label for="slotDate">Date</label><input type="date" id="slotDate"></div>
+<div><label for="slotStart">Start time</label><input type="time" id="slotStart" value="09:00"></div>
+</div>
+<div class="row">
+<div><label for="slotDuration">Duration (minutes)</label>
+<select id="slotDuration">
+<option value="15">15 min</option>
+<option value="30" selected>30 min</option>
+<option value="45">45 min</option>
+<option value="60">60 min</option>
+<option value="90">90 min</option>
+<option value="120">2 hours</option>
+</select></div>
+<div><label for="slotTz">Your timezone (optional)</label>
+<input type="text" id="slotTz" placeholder="e.g., UTC-5" value=""></div>
+</div>
+
+<div class="ms-toolbar">
+<button type="button" id="addSlotBtn" class="primary">+ Add this slot</button>
+<button type="button" id="bulkAddBtn">Bulk add 5 slots</button>
+<button type="button" id="clearSlotsBtn">Clear all</button>
+</div>
+
+<h3 style="margin-top:18px">Candidate slots</h3>
+<div id="slotList" class="ms-grid"></div>
+
+<div class="ms-toolbar" style="margin-top:20px">
+<button type="button" id="createPollBtn" class="primary">Create poll and get shareable link</button>
+</div>
+</div>
+
+<!-- POLL PANEL -->
+<div id="pollPanel" hidden>
+<div id="pollHeader"></div>
+
+<div class="ms-mode-toggle">
+<button type="button" class="on" data-mode="vote" id="modeVote">Vote</button>
+<button type="button" data-mode="results" id="modeResults">Results</button>
+</div>
+
+<label for="voterName" id="voterNameLabel">Your name (optional)</label>
+<input type="text" id="voterName" placeholder="e.g., Alex" value="">
+
+<div id="voteView">
+<p class="meta">Click a cell to cycle through <b>Yes → Maybe → No</b>. Everything updates instantly.</p>
+<div class="ms-table-wrap">
+<table class="ms-table" id="voteTable"></table>
+</div>
+<div class="ms-toolbar">
+<button type="button" id="submitVoteBtn" class="primary">Submit my votes</button>
+<button type="button" id="clearVoteBtn">Clear my votes</button>
+</div>
+</div>
+
+<div id="resultsView" hidden>
+<h3>Best meeting times</h3>
+<div class="ms-best" id="bestList"></div>
+<h3 style="margin-top:18px">Participants</h3>
+<div id="participantsList"></div>
+<div class="ms-toolbar">
+<button type="button" id="exportIcsBtn" class="primary">Export best time as .ics</button>
+<button type="button" id="exportCsvBtn">Export votes as CSV</button>
+<button type="button" id="copyResultsBtn">Copy results</button>
+<button type="button" id="resetPollBtn" style="margin-left:auto;color:#dc2626">Reset poll (clear votes)</button>
+</div>
+</div>
+
+<div class="ms-status info" id="shareBox" style="margin-top:14px">
+<b>Share this link with participants:</b>
+<div class="ms-share">
+<input type="text" id="shareUrl" readonly>
+<button type="button" id="copyUrlBtn">Copy</button>
+</div>
+<p class="meta" style="margin:8px 0 0">Anyone with this link can view and vote. The poll data is encoded in the URL — no server, no account.</p>
+</div>
+</div>
+
+</section>
+
+<h2>What is a free meeting scheduler poll online?</h2>
+<p>A free meeting scheduler poll online is a tool that helps a group find the best time to meet by letting each participant mark their availability. Instead of endless back-and-forth emails or chat messages, the organizer proposes a set of candidate times, sends a single link and collects everyone's availability in one place. Doodle popularised this format in 2007, and it is now the standard way to coordinate meetings across teams, clients, volunteers and friend groups.</p>
+<p>This meeting scheduler poll online goes further than most tools. It runs entirely in your browser — no account, no server, no database. Polls are shared via URL, so the entire poll definition travels in the link. Participants just open it and vote. Results update live as votes are added, with automatic ranking of best times, per-participant view, CSV export and ICS calendar download.</p>
+
+<h2>How to use this free meeting scheduler poll</h2>
+<ol>
+<li>Click <b>Create poll</b>. Enter a title and optional description.</li>
+<li>Add candidate time slots — one at a time or in bulk. Use the date picker and time inputs to define each slot.</li>
+<li>Click <b>Create poll and get shareable link</b>. A URL is generated with the entire poll encoded in it.</li>
+<li>Send the link to participants via email, chat or messaging.</li>
+<li>Participants open the link and mark each slot as <b>Yes</b>, <b>Maybe</b> or <b>No</b>.</li>
+<li>The <b>Results</b> tab shows the best times ranked by total availability, the participant list and per-slot totals.</li>
+<li>Export the agreed time as an <code>.ics</code> calendar file, or download the full vote data as CSV.</li>
+</ol>
+
+<h2>Yes / Maybe / No — how voting works</h2>
+<p>The poll uses the classic availability model:</p>
+<ul>
+<li><b>Yes</b> — the participant is fully available at that time.</li>
+<li><b>Maybe</b> — the participant could make it work if needed.</li>
+<li><b>No</b> — the participant is unavailable.</li>
+<li><b>No vote</b> — the participant has not yet responded.</li>
+</ul>
+<p>Each slot is scored by weighting <b>Yes as 2 points</b> and <b>Maybe as 1 point</b>. This gives a clear, intuitive ranking: a slot where everyone says Yes beats a slot where half the group says Yes and half says Maybe. The tool also shows how many people have not yet voted, so you can see whether the results are still incomplete.</p>
+
+<h2>Why browser-based polling matters</h2>
+<p>Most online scheduling tools store your poll on their server, require you to create an account, and send your data through their systems. This tool takes a different approach:</p>
+<ul>
+<li><b>No account needed.</b> You and your participants can all use the tool without signing up, giving an email or creating a password.</li>
+<li><b>No server.</b> The entire poll — title, slots, participants, votes — is encoded into the URL. When you share the link, the poll goes with it.</li>
+<li><b>No tracking.</b> There is no analytics, no log, no cookie and no data collection of any kind.</li>
+<li><b>No retention.</b> Because there is no server, nothing is stored anywhere. The poll exists only in the URL and in your browser's memory.</li>
+</ul>
+<p>This makes the tool ideal for privacy-conscious groups, for one-off coordination, and for situations where you do not want your meeting details sitting in a third-party database.</p>
+
+<h2>Meeting poll vs booking link: what's the difference?</h2>
+<p>There are two distinct models for scheduling meetings online:</p>
+<h3>Meeting poll (this tool)</h3>
+<p>The organizer proposes several candidate times. Each participant votes on availability. The group decides together. Best when you have multiple participants and no one's calendar is authoritative.</p>
+<h3>Booking link (Calendly, Cal.com)</h3>
+<p>One party publishes their available slots and the other party picks one. No voting, no group decision. Best for one-on-one meetings where one side controls the calendar.</p>
+<p>Meeting polls are superior for team meetings, recurring standups, volunteer coordination, family gatherings and any situation where you need to satisfy several people's schedules at once.</p>
+
+## The most common scheduling problems this solves
+
+- **"Reply-all chaos."** Instead of 15 emails each saying "I can do Tuesday but not Wednesday morning", everyone votes on the same grid.
+- **"Who hasn't replied?"** The participant list shows exactly who has voted and who hasn't.
+- **"What time really works?"** Automatic scoring removes the guesswork from reading the grid.
+- **"Where's the meeting time written down?"** The ICS export puts the agreed time directly in every participant's calendar.
+- **"I don't want another account."** No account, no email, no signup — for anyone.
+
+<h2>Timezone handling</h2>
+<p>Meeting polls are most useful when participants are in different timezones. This tool lets you add an optional timezone label to each slot. Participants see the slot times as you entered them, plus the timezone label if you provided one. For groups spanning several timezones, enter times in a common reference timezone (for example UTC) and label the poll accordingly.</p>
+
+<h2>Export options</h2>
+<ul>
+<li><b>ICS (iCalendar).</b> Standard calendar format accepted by Google Calendar, Apple Calendar, Outlook, Thunderbird and every other calendar app. The downloaded file adds the agreed meeting to the participant's calendar when opened.</li>
+<li><b>CSV.</b> Comma-separated values, ready for Excel, Google Sheets or any spreadsheet. Useful for record-keeping, invoicing or compliance.</li>
+<li><b>Copy results.</b> Plain-text summary of the best times and vote totals, ready to paste into a chat, email or document.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<details><summary>What is a free meeting scheduler poll online?</summary><p>A free meeting scheduler poll online is a tool that helps a group find the best time to meet by letting each participant mark their availability. This meeting scheduler poll runs entirely in your browser and shares polls via URL, so no account, server or email is required.</p></details>
+<details><summary>How does a meeting scheduler poll work?</summary><p>The organizer proposes candidate dates and times. Participants open a shareable link, mark each slot as yes, maybe or no, and the tool highlights the best times based on total availability. No sign-up is needed for the creator or participants.</p></details>
+<details><summary>Does this tool require an account?</summary><p>No. There is no account, no email, no password, no credit card. Create a poll, share the link and collect votes. Everything runs in your browser.</p></details>
+<details><summary>How is the poll shared without a server?</summary><p>The poll data is encoded directly into the URL as a hash parameter. When you share the link, recipients receive the full poll definition in the URL itself. No server is involved at any point.</p></details>
+<details><summary>Can participants vote without signing up?</summary><p>Yes. Participants just open the shared link and mark their availability. No account, no email, no personal information required.</p></details>
+<details><summary>Can I export the agreed time to my calendar?</summary><p>Yes. Once a time is chosen, use the Export ICS button to download a calendar file (.ics) that works with Google Calendar, Apple Calendar, Outlook and any other calendar app.</p></details>
+<details><summary>What is the difference between yes, maybe and no?</summary><p>Yes means the participant is available. Maybe means they could make it work. No means they are unavailable. The tool ranks slots by weighting yes as 2 points and maybe as 1 point.</p></details>
+<details><summary>Does this tool work on mobile?</summary><p>Yes. The availability grid and voting interface are designed for both desktop and mobile. Participants can vote on the go.</p></details>
+<details><summary>Is this meeting scheduler poll free?</summary><p>Yes. It is completely free, requires no sign-up, no account, no email and no credit card. There are no ads and no rate limits.</p></details>
+<details><summary>How many time slots can I add?</summary><p>There is no hard limit, but practical polls work best with 5 to 20 time slots. Very long polls become cumbersome to vote on.</p></details>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function pad(n){ return n < 10 ? "0" + n : "" + n; }
+
+/* ---------- STATE ---------- */
+var poll = {
+  title: "Team meeting",
+  desc: "",
+  slots: [],   // [{id, date, start, duration, tz}]
+  votes: {},   // {voterName: {slotId: 1|2|3}}  1=yes 2=maybe 3=no
+  createdAt: null
+};
+
+var currentVoter = "";
+var mode = "vote";
+
+/* ---------- TIME HELPERS ---------- */
+function fmtDate(d){
+  if(!d) return "—";
+  var dt = new Date(d + "T00:00:00");
+  return dt.toLocaleDateString(undefined, { weekday:"short", day:"numeric", month:"short", year:"numeric" });
+}
+function fmtTime(t){
+  if(!t) return "—";
+  var p = t.split(":");
+  var h = parseInt(p[0], 10);
+  var m = pad(parseInt(p[1] || 0, 10));
+  var ampm = h >= 12 ? "PM" : "AM";
+  var h12 = h % 12; if(h12 === 0) h12 = 12;
+  return h12 + ":" + m + " " + ampm;
+}
+function slotLabel(s){
+  var label = fmtDate(s.date) + " · " + fmtTime(s.start);
+  if(s.tz) label += " " + s.tz;
+  return label;
+}
+function slotEnd(s){
+  var p = s.start.split(":");
+  var h = parseInt(p[0], 10);
+  var m = parseInt(p[1] || 0, 10);
+  m += parseInt(s.duration, 10);
+  h += Math.floor(m / 60);
+  m = m % 60;
+  return pad(h) + ":" + pad(m);
+}
+function isoDateTime(s){
+  return s.date + "T" + s.start + ":00";
+}
+function isoEndDateTime(s){
+  return s.date + "T" + slotEnd(s) + ":00";
+}
+
+/* ---------- URL ENCODING ---------- */
+function encodePoll(){
+  var data = {
+    t: poll.title,
+    d: poll.desc,
+    s: poll.slots.map(function(s){ return [s.id, s.date, s.start, s.duration, s.tz || ""]; }),
+    v: poll.votes,
+    c: poll.createdAt
+  };
+  return btoa(unescape(encodeURIComponent(JSON.stringify(data)))).replace(/=+$/,'');
+}
+function decodePoll(hash){
+  try {
+    var b64 = hash.replace(/-/g,'+').replace(/_/g,'/');
+    while(b64.length % 4) b64 += "=";
+    var data = JSON.parse(decodeURIComponent(escape(atob(b64))));
+    poll.title = data.t || "";
+    poll.desc = data.d || "";
+    poll.slots = (data.s || []).map(function(a){
+      return { id: a[0], date: a[1], start: a[2], duration: a[3], tz: a[4] || "" };
+    });
+    poll.votes = data.v || {};
+    poll.createdAt = data.c || null;
+    return true;
+  } catch(e){ return false; }
+}
+
+/* ---------- CREATE PANEL ---------- */
+function renderSlotList(){
+  var el = $("slotList");
+  if(poll.slots.length === 0){
+    el.innerHTML = '<p class="meta" style="grid-column:1/-1;text-align:center;padding:16px">No slots yet. Add one above.</p>';
+    return;
+  }
+  var h = "";
+  for(var i = 0; i < poll.slots.length; i++){
+    var s = poll.slots[i];
+    h += '<div class="ms-slot" data-id="' + s.id + '">';
+    h += '<div class="ms-slot-date">' + fmtDate(s.date) + '</div>';
+    h += '<div class="ms-slot-time">' + fmtTime(s.start) + ' · ' + s.duration + 'm' + (s.tz ? ' ' + s.tz : '') + '</div>';
+    h += '<button type="button" data-remove="' + s.id + '" style="margin-top:8px;background:transparent;border:0;color:#dc2626;cursor:pointer;font-size:.8rem">Remove</button>';
+    h += '</div>';
+  }
+  el.innerHTML = h;
+}
+
+function addSlot(){
+  var date = $("slotDate").value;
+  var start = $("slotStart").value;
+  if(!date || !start){ alert("Please pick a date and time."); return; }
+  poll.slots.push({
+    id: "s" + Date.now() + Math.floor(Math.random() * 1000),
+    date: date,
+    start: start,
+    duration: $("slotDuration").value,
+    tz: $("slotTz").value.trim()
+  });
+  renderSlotList();
+  // Advance the date field by one day for convenience
+  var d = new Date(date + "T00:00:00");
+  d.setDate(d.getDate() + 1);
+  $("slotDate").value = d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate());
+}
+
+function bulkAdd(){
+  var baseDate = $("slotDate").value;
+  var start = $("slotStart").value || "09:00";
+  if(!baseDate){ alert("Please pick a starting date."); return; }
+  var tz = $("slotTz").value.trim();
+  var dur = $("slotDuration").value;
+  var d = new Date(baseDate + "T00:00:00");
+  for(var i = 0; i < 5; i++){
+    poll.slots.push({
+      id: "s" + Date.now() + i + Math.floor(Math.random() * 1000),
+      date: d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()),
+      start: start,
+      duration: dur,
+      tz: tz
+    });
+    d.setDate(d.getDate() + 1);
+  }
+  renderSlotList();
+}
+
+/* ---------- POLL CREATION ---------- */
+function createPoll(){
+  if(poll.slots.length === 0){
+    alert("Add at least one slot before creating the poll.");
+    return;
+  }
+  poll.title = $("pollTitle").value.trim() || "Meeting";
+  poll.desc = $("pollDesc").value.trim();
+  poll.createdAt = new Date().toISOString();
+
+  // Sort slots chronologically
+  poll.slots.sort(function(a, b){
+    return (a.date + a.start).localeCompare(b.date + b.start);
+  });
+
+  // Switch to poll view
+  $("createPanel").hidden = true;
+  $("pollPanel").hidden = false;
+  $("tabPoll").hidden = false;
+  $("tabPoll").classList.add("on");
+  $("tabCreate").classList.remove("on");
+  $("tabPoll").click();
+
+  updateShareUrl();
+  renderPoll();
+}
+
+/* ---------- POLL RENDER ---------- */
+function renderPoll(){
+  // Header
+  var h = '<div class="ms-hero">';
+  h += '<h2>' + escHtml(poll.title) + '</h2>';
+  if(poll.desc) h += '<p class="meta" style="margin:0 0 10px">' + escHtml(poll.desc) + '</p>';
+  h += '<div class="ms-hero-meta">';
+  h += '<span>' + poll.slots.length + ' slot(s)</span>';
+  h += '<span>' + Object.keys(poll.votes).length + ' participant(s)</span>';
+  if(poll.createdAt) h += '<span>Created ' + new Date(poll.createdAt).toLocaleDateString() + '</span>';
+  h += '</div>';
+  h += '</div>';
+  $("pollHeader").innerHTML = h;
+
+  // If we know the voter's name, prefill
+  $("voterName").value = currentVoter || "";
+
+  renderVoteTable();
+  renderResults();
+  updateShareUrl();
+
+  if(mode === "results"){
+    $("voteView").hidden = true;
+    $("resultsView").hidden = false;
+    $("modeVote").classList.remove("on");
+    $("modeResults").classList.add("on");
+  } else {
+    $("voteView").hidden = false;
+    $("resultsView").hidden = true;
+    $("modeVote").classList.add("on");
+    $("modeResults").classList.remove("on");
+  }
+}
+
+function renderVoteTable(){
+  var el = $("voteTable");
+  if(poll.slots.length === 0){
+    el.innerHTML = '<tr><td>No slots.</td></tr>';
+    return;
+  }
+  var voterKey = currentVoter || $("voterName").value.trim() || "";
+  var myVotes = poll.votes[voterKey] || {};
+
+  var h = '<thead><tr><th>Time slot</th>';
+  for(var i = 0; i < poll.slots.length; i++){
+    h += '<th>' + (i + 1) + '</th>';
+  }
+  h += '</tr></thead><tbody>';
+
+  // Row: date/time labels
+  h += '<tr><td>Date</td>';
+  for(var i = 0; i < poll.slots.length; i++){
+    h += '<td>' + fmtDate(poll.slots[i].date) + '</td>';
+  }
+  h += '</tr>';
+
+  h += '<tr><td>Time</td>';
+  for(var i = 0; i < poll.slots.length; i++){
+    h += '<td>' + fmtTime(poll.slots[i].start) + '</td>';
+  }
+  h += '</tr>';
+
+  h += '<tr><td>Duration</td>';
+  for(var i = 0; i < poll.slots.length; i++){
+    h += '<td>' + poll.slots[i].duration + ' min</td>';
+  }
+  h += '</tr>';
+
+  // Row: your vote
+  h += '<tr><td>Your vote</td>';
+  for(var i = 0; i < poll.slots.length; i++){
+    var sid = poll.slots[i].id;
+    var v = myVotes[sid] || 0;
+    var cls = v === 1 ? "yes" : v === 2 ? "maybe" : v === 3 ? "no" : "empty";
+    var sym = v === 1 ? "✓" : v === 2 ? "~" : v === 3 ? "✕" : "·";
+    h += '<td><div class="ms-vote ' + cls + '" data-slot="' + sid + '">' + sym + '</div></td>';
+  }
+  h += '</tr>';
+
+  h += '</tbody>';
+  el.innerHTML = h;
+}
+
+function cycleVote(slotId){
+  var voterKey = $("voterName").value.trim() || "Anonymous";
+  currentVoter = voterKey;
+  if(!poll.votes[voterKey]) poll.votes[voterKey] = {};
+  var cur = poll.votes[voterKey][slotId] || 0;
+  var next = (cur % 3) + 1;
+  poll.votes[voterKey][slotId] = next;
+  renderVoteTable();
+  renderResults();
+}
+
+/* ---------- RESULTS ---------- */
+function computeScores(){
+  var scores = [];
+  for(var i = 0; i < poll.slots.length; i++){
+    var s = poll.slots[i];
+    var yes = 0, maybe = 0, no = 0;
+    for(var voter in poll.votes){
+      var v = poll.votes[voter][s.id] || 0;
+      if(v === 1) yes++;
+      else if(v === 2) maybe++;
+      else if(v === 3) no++;
+    }
+    scores.push({
+      slot: s,
+      yes: yes,
+      maybe: maybe,
+      no: no,
+      score: yes * 2 + maybe * 1,
+      totalVoters: Object.keys(poll.votes).length
+    });
+  }
+  scores.sort(function(a, b){ return b.score - a.score; });
+  return scores;
+}
+
+function renderResults(){
+  var scores = computeScores();
+  var el = $("bestList");
+  if(scores.length === 0 || scores[0].totalVoters === 0){
+    el.innerHTML = '<p class="meta" style="padding:12px">No votes yet. Votes will appear here as participants respond.</p>';
+  } else {
+    var h = "";
+    var maxScore = scores[0].score || 1;
+    for(var i = 0; i < Math.min(scores.length, 5); i++){
+      var sc = scores[i];
+      var rankCls = i === 0 ? "gold" : "";
+      var pct = maxScore > 0 ? Math.round(sc.score / maxScore * 100) : 0;
+      h += '<div class="ms-best-item">';
+      h += '<div class="ms-best-rank ' + rankCls + '">' + (i + 1) + '</div>';
+      h += '<div class="ms-best-info">';
+      h += '<div class="ms-best-date">' + slotLabel(sc.slot) + '</div>';
+      h += '<div class="ms-best-stats">✓ ' + sc.yes + ' yes · ~ ' + sc.maybe + ' maybe · ✕ ' + sc.no + ' no · Score ' + sc.score + ' (' + pct + '%)</div>';
+      h += '</div>';
+      h += '</div>';
+    }
+    el.innerHTML = h;
+  }
+
+  // Participants list
+  var pl = $("participantsList");
+  var voters = Object.keys(poll.votes);
+  if(voters.length === 0){
+    pl.innerHTML = '<p class="meta">No participants have voted yet.</p>';
+  } else {
+    var ph = "";
+    for(var i = 0; i < voters.length; i++){
+      var name = voters[i];
+      var votes = poll.votes[name];
+      var count = 0;
+      for(var k in votes){ if(votes[k] > 0) count++; }
+      ph += '<div class="ms-participant">';
+      ph += '<span class="name">' + escHtml(name) + '</span>';
+      ph += '<span class="votes-count">' + count + ' / ' + poll.slots.length + ' votes</span>';
+      ph += '</div>';
+    }
+    pl.innerHTML = ph;
+  }
+}
+
+/* ---------- SHARE URL ---------- */
+function updateShareUrl(){
+  var encoded = encodePoll();
+  var base = location.origin + location.pathname;
+  var url = base + "#p=" + encoded;
+  $("shareUrl").value = url;
+}
+
+/* ---------- EXPORTS ---------- */
+function exportIcs(){
+  var scores = computeScores();
+  if(scores.length === 0){ alert("No slots to export."); return; }
+  var best = scores[0].slot;
+
+  var dtStart = isoDateTime(best).replace(/[-:]/g, "");
+  var dtEnd = isoEndDateTime(best).replace(/[-:]/g, "");
+  var stamp = new Date().toISOString().replace(/[-:.]/g, "").slice(0, 15) + "Z";
+
+  var ics = "BEGIN:VCALENDAR\r\n";
+  ics += "VERSION:2.0\r\n";
+  ics += "PRODID:-//Utiliby//Meeting Scheduler Poll//EN\r\n";
+  ics += "BEGIN:VEVENT\r\n";
+  ics += "UID:" + Date.now() + "@utiliby.com\r\n";
+  ics += "DTSTAMP:" + stamp + "\r\n";
+  ics += "DTSTART:" + dtStart + "\r\n";
+  ics += "DTEND:" + dtEnd + "\r\n";
+  ics += "SUMMARY:" + escIcs(poll.title) + "\r\n";
+  if(poll.desc) ics += "DESCRIPTION:" + escIcs(poll.desc) + "\r\n";
+  ics += "END:VEVENT\r\n";
+  ics += "END:VCALENDAR\r\n";
+
+  downloadFile("utiliby-meeting.ics", ics, "text/calendar");
+}
+
+function exportCsv(){
+  if(poll.slots.length === 0){ alert("No slots to export."); return; }
+  var voters = Object.keys(poll.votes);
+  var header = ["Slot #", "Date", "Time", "Duration (min)", "Timezone"].concat(voters);
+  var rows = [header.map(csvEscape).join(",")];
+  for(var i = 0; i < poll.slots.length; i++){
+    var s = poll.slots[i];
+    var row = [(i+1), s.date, s.start, s.duration, s.tz || ""];
+    for(var j = 0; j < voters.length; j++){
+      var v = poll.votes[voters[j]][s.id] || 0;
+      row.push(v === 1 ? "Yes" : v === 2 ? "Maybe" : v === 3 ? "No" : "");
+    }
+    rows.push(row.map(csvEscape).join(","));
+  }
+  downloadFile("utiliby-meeting-votes.csv", rows.join("\n"), "text/csv");
+}
+
+function copyResults(){
+  var scores = computeScores();
+  var lines = [];
+  lines.push("Poll: " + poll.title);
+  if(poll.desc) lines.push(poll.desc);
+  lines.push("Slots: " + poll.slots.length);
+  lines.push("Participants: " + Object.keys(poll.votes).length);
+  lines.push("");
+  lines.push("Best times:");
+  for(var i = 0; i < Math.min(scores.length, 5); i++){
+    var sc = scores[i];
+    lines.push((i+1) + ". " + slotLabel(sc.slot) + " — " + sc.yes + " yes, " + sc.maybe + " maybe, " + sc.no + " no (score " + sc.score + ")");
+  }
+  var txt = lines.join("\n");
+  if(navigator.clipboard){
+    navigator.clipboard.writeText(txt);
+    var btn = $("copyResultsBtn");
+    var old = btn.textContent;
+    btn.textContent = "Copied!";
+    setTimeout(function(){ btn.textContent = old; }, 1500);
+  }
+}
+
+/* ---------- UTILS ---------- */
+function escHtml(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function escIcs(s){ return String(s).replace(/\\/g,"\\\\").replace(/\n/g,"\\n").replace(/,/g,"\\,").replace(/;/g,"\\;"); }
+function csvEscape(v){ var s = String(v == null ? "" : v); if(/[",\n]/.test(s)) return '"' + s.replace(/"/g,'""') + '"'; return s; }
+function downloadFile(name, content, mime){
+  var blob = new Blob([content], {type: mime + ";charset=utf-8"});
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement("a");
+  a.href = url;
+  a.download = name;
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Set default date to tomorrow
+  var tomorrow = new Date();
+  tomorrow.setDate(tomorrow.getDate() + 1);
+  $("slotDate").value = tomorrow.getFullYear() + "-" + pad(tomorrow.getMonth() + 1) + "-" + pad(tomorrow.getDate());
+
+  // Check for existing poll in URL
+  var m = location.hash.match(/^#p=(.+)$/);
+  if(m && decodePoll(m[1])){
+    $("createPanel").hidden = true;
+    $("pollPanel").hidden = false;
+    $("tabPoll").hidden = false;
+    $("tabPoll").classList.add("on");
+    $("tabCreate").classList.remove("on");
+    renderPoll();
+  } else {
+    renderSlotList();
+  }
+
+  // Tabs
+  $("tabCreate").addEventListener("click", function(){
+    $("createPanel").hidden = false;
+    $("pollPanel").hidden = true;
+    this.classList.add("on");
+    $("tabPoll").classList.remove("on");
+  });
+  $("tabPoll").addEventListener("click", function(){
+    $("createPanel").hidden = true;
+    $("pollPanel").hidden = false;
+    this.classList.add("on");
+    $("tabCreate").classList.remove("on");
+  });
+
+  // Create panel buttons
+  $("addSlotBtn").addEventListener("click", addSlot);
+  $("bulkAddBtn").addEventListener("click", bulkAdd);
+  $("clearSlotsBtn").addEventListener("click", function(){
+    if(confirm("Remove all slots?")){ poll.slots = []; renderSlotList(); }
+  });
+  $("createPollBtn").addEventListener("click", createPoll);
+
+  // Slot removal
+  $("slotList").addEventListener("click", function(e){
+    var rm = e.target.closest("[data-remove]");
+    if(rm){
+      var id = rm.dataset.remove;
+      poll.slots = poll.slots.filter(function(s){ return s.id !== id; });
+      renderSlotList();
+    }
+  });
+
+  // Vote table clicks
+  $("voteTable").addEventListener("click", function(e){
+    var el = e.target.closest(".ms-vote");
+    if(!el) return;
+    cycleVote(el.dataset.slot);
+  });
+
+  // Mode toggle
+  $("modeVote").addEventListener("click", function(){
+    mode = "vote";
+    $("voteView").hidden = false;
+    $("resultsView").hidden = true;
+    this.classList.add("on");
+    $("modeResults").classList.remove("on");
+  });
+  $("modeResults").addEventListener("click", function(){
+    mode = "results";
+    $("voteView").hidden = true;
+    $("resultsView").hidden = false;
+    this.classList.add("on");
+    $("modeVote").classList.remove("on");
+    renderResults();
+  });
+
+  // Voter name change
+  $("voterName").addEventListener("input", function(){
+    currentVoter = this.value.trim();
+  });
+
+  // Submit / clear votes
+  $("submitVoteBtn").addEventListener("click", function(){
+    if(!currentVoter){
+      currentVoter = $("voterName").value.trim() || "Anonymous";
+    }
+    if(!poll.votes[currentVoter]) poll.votes[currentVoter] = {};
+    updateShareUrl();
+    renderResults();
+    var btn = this;
+    var old = btn.textContent;
+    btn.textContent = "Saved!";
+    setTimeout(function(){ btn.textContent = old; }, 1200);
+  });
+  $("clearVoteBtn").addEventListener("click", function(){
+    if(!currentVoter) currentVoter = $("voterName").value.trim() || "Anonymous";
+    if(poll.votes[currentVoter]){ delete poll.votes[currentVoter]; }
+    renderVoteTable();
+    renderResults();
+  });
+
+  // Exports
+  $("exportIcsBtn").addEventListener("click", exportIcs);
+  $("exportCsvBtn").addEventListener("click", exportCsv);
+  $("copyResultsBtn").addEventListener("click", copyResults);
+
+  // Copy share URL
+  $("copyUrlBtn").addEventListener("click", function(){
+    if(navigator.clipboard){
+      navigator.clipboard.writeText($("shareUrl").value);
+      var btn = this;
+      var old = btn.textContent;
+      btn.textContent = "Copied!";
+      setTimeout(function(){ btn.textContent = old; }, 1500);
+    }
+  });
+
+  // Reset poll
+  $("resetPollBtn").addEventListener("click", function(){
+    if(confirm("Clear all votes? This cannot be undone.")){
+      poll.votes = {};
+      renderVoteTable();
+      renderResults();
+      updateShareUrl();
+    }
+  });
+});
+})();
+</script>
+</body>
+</html>

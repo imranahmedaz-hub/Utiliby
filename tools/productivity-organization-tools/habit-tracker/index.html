@@ -1,0 +1,452 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Habit Tracker Online: Monthly Grid, Streaks & Goals</title>
+<meta name="description" content="Free online habit tracker with a monthly grid, streaks, weekly goals and completion charts. Saved in your browser, export CSV or print. No sign-up needed.">
+<link rel="canonical" href="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Habit Tracker Online: Monthly Grid, Streaks & Goals">
+<meta property="og:description" content="Free online habit tracker. Monthly grid, streaks, weekly goals and progress charts. Private, export CSV or print. No sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Habit Tracker Online: Monthly Grid, Streaks & Goals">
+<meta name="twitter:description" content="Free online habit tracker. Monthly grid, streaks, weekly goals and progress charts. Private, export CSV or print. No sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.prow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow .ptxt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.prow .meta{display:block;font-size:.75rem;color:var(--muted);margin-top:2px}.prow button{flex:none;padding:5px 12px;font-size:.8rem}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+.h-scroll{overflow-x:auto;max-width:100%;border:1px solid var(--line);border-radius:10px}.h-tbl{border-collapse:collapse;font-size:.75rem;width:max-content;min-width:100%}.h-tbl th,.h-tbl td{padding:2px;text-align:center;border:0;min-width:28px}.h-tbl th.h-name{text-align:left;position:sticky;left:0;background:var(--bg);min-width:130px;max-width:170px;padding:4px 8px;z-index:1;font-size:.8rem}.h-tbl .we{background:rgba(127,127,127,.12)}.h-tbl .td{outline:2px solid #dc2626;outline-offset:-2px}.h-tbl th span{opacity:.6}.h-dot{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:6px}.h-cell{width:24px;height:24px;padding:0;border-radius:6px;border:1px solid var(--line);background:transparent;color:#fff;font-size:.8rem;line-height:1;cursor:pointer}.h-cell:focus-visible{outline:2px solid #0369a1}#hMonthLbl{font-weight:700;min-width:140px;text-align:center}.h-nav{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:6px 0}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Habit Tracker","url":"https://utiliby.com/tools/productivity-organization-tools/habit-tracker/","description":"Free online habit tracker. Track daily habits in a monthly grid with current and best streaks, weekly goals, completion percentages and a comparison chart. Quick-add habit ideas, backfill past months, copy a summary, download CSV or a backup and print the month. Runs in the browser and stores data only on the device.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Monthly habit grid","Current and best streaks","Weekly goals","Completion chart","Quick-add ideas","Any month, back-fill days","CSV, backup and print","Private, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a habit tracker?","acceptedAnswer":{"@type":"Answer","text":"A tool for recording whether you did a habit each day. Seeing a row of ticks makes progress visible, which can help you stay consistent."}},{"@type":"Question","name":"How do I use this free online habit tracker?","acceptedAnswer":{"@type":"Answer","text":"Add a habit, then tap the square for each day you complete it. The tracker updates your monthly percentage, current streak, best streak and weekly goal."}},{"@type":"Question","name":"Do I need an account?","acceptedAnswer":{"@type":"Answer","text":"No. There is no sign-up. Your data stays in this browser."}},{"@type":"Question","name":"Where is my data saved?","acceptedAnswer":{"@type":"Answer","text":"In your browser's local storage on this device. It is not uploaded. Download a backup to keep a copy or move it to another device."}},{"@type":"Question","name":"What is a streak?","acceptedAnswer":{"@type":"Answer","text":"The number of consecutive days you completed a habit. The current streak counts back from today, or from yesterday if you have not ticked today yet."}},{"@type":"Question","name":"Does missing one day break my streak?","acceptedAnswer":{"@type":"Answer","text":"Yes, a missed day ends the current streak, but your best streak is kept. Many people follow a never miss twice rule to recover quickly."}},{"@type":"Question","name":"Can I set a weekly goal instead of every day?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose every day or any number from one to six days a week. The chart shows how many days you have done this week against your goal."}},{"@type":"Question","name":"Can I look at past or future months?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use Previous and Next to move between months and This month to return. You can fill in missed days for earlier dates."}},{"@type":"Question","name":"How many habits should I track?","acceptedAnswer":{"@type":"Answer","text":"Start with one to three. Tracking too many at once makes it harder to keep them all going."}},{"@type":"Question","name":"What are good habits to start with?","acceptedAnswer":{"@type":"Answer","text":"Small, specific ones such as drinking a glass of water after waking, reading ten pages, a ten-minute walk or writing one line in a journal."}},{"@type":"Question","name":"How long does it take to form a habit?","acceptedAnswer":{"@type":"Answer","text":"It varies. A study in the European Journal of Social Psychology found an average of about 66 days, with a range from 18 to 254 days depending on the person and the habit."}},{"@type":"Question","name":"Can I print the tracker?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print / save month prints only the month grid and a summary table, not the rest of the page. Landscape orientation fits best."}},{"@type":"Question","name":"Can I export to a spreadsheet?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download CSV gives one row per habit and one column per day of the month."}},{"@type":"Question","name":"Can I reorder or delete habits?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the arrow to move a habit up and Delete to remove it and its history."}},{"@type":"Question","name":"Does it send reminders?","acceptedAnswer":{"@type":"Answer","text":"No. Pair each habit with an existing routine or a phone alarm, and use the tracker to record progress."}},{"@type":"Question","name":"Does it work on a phone?","acceptedAnswer":{"@type":"Answer","text":"Yes. The grid scrolls sideways and squares are easy to tap."}},{"@type":"Question","name":"Is it free and private?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online and your habit data stays in your browser."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Productivity and Organization Tools","item":"https://utiliby.com/tools/productivity-organization-tools/"},{"@type":"ListItem","position":3,"name":"Habit Tracker","item":"https://utiliby.com/tools/productivity-organization-tools/habit-tracker/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/productivity-organization-tools/">Productivity & Organization Tools</a> › Habit Tracker</nav>
+<h1 class="noembed">Free Habit Tracker</h1>
+<p class="lead noembed">Free online habit tracker with a monthly grid, streaks, weekly goals and completion charts. Saved privately in your browser, with CSV, backup and print.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/" target="_blank" rel="noopener">Habit Tracker by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Habit tracker">
+<div class="dt-hero noembed">
+<h2>Free Online Habit Tracker</h2>
+<p>Track daily habits in a monthly grid with weekly goals, streaks and completion charts. Saved privately in your browser. Download CSV, back up or print the month.</p>
+</div>
+<div class="dt-panel"><h3>Add a habit</h3><div class="dt-row3"><div><label for="hNew">Habit name</label><input type="text" id="hNew" placeholder="Drink 2 litres of water" autocomplete="off" spellcheck="false"></div><div><label for="hGoal">Weekly goal</label><select id="hGoal"><option value="7">Every day</option><option value="6">6 days a week</option><option value="5">5 days a week</option><option value="4">4 days a week</option><option value="3">3 days a week</option><option value="2">2 days a week</option><option value="1">Once a week</option></select></div><div class="im-bar"><button type="button" class="dt-btn" id="hAdd">Add habit</button></div></div><p class="ck-note">Quick add:</p><div class="seo-chips" id="hSug"></div></div><div class="dt-panel"><h3>Monthly habit tracker</h3><div class="h-nav"><button type="button" class="dt-btn ghost" id="hPrev" aria-label="Previous month">&larr; Previous</button><span id="hMonthLbl" aria-live="polite"></span><button type="button" class="dt-btn ghost" id="hNext" aria-label="Next month">Next &rarr;</button><button type="button" class="dt-btn ghost" id="hToday">This month</button></div><div id="hGrid"></div><p class="ck-note">Tap a square to mark a habit done for that day. Today is outlined in red.</p></div><div class="dt-panel"><h3>Progress and streaks</h3><div id="hStats"></div><div id="hChart"></div><div id="hList"></div><div class="im-bar"><button type="button" class="dt-btn ghost" id="hExport">Download backup (JSON)</button><label class="dt-btn ghost" for="hImport" style="margin:0;cursor:pointer">Import backup</label><input type="file" id="hImport" accept=".json,application/json" style="position:absolute;left:-9999px" aria-label="Import JSON backup"></div><p class="ck-note">Saved automatically in this browser only.</p></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="hCopy">Copy summary</button>
+<button type="button" class="dt-btn ghost" id="hDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="hPrint">Print / save month</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online habit tracker runs in your browser. Your habits and check-ins are saved only in this browser on this device, using local storage, and are never uploaded, so clearing site data, using private browsing or switching device means they will not be there. Download a backup for anything important. It is a self-tracking aid and does not send reminders. It is not medical, psychological or fitness advice, and habits that involve health, diet or exercise should be chosen with a qualified professional where appropriate.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Habit Tracker. https://utiliby.com/tools/productivity-organization-tools/habit-tracker/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Habit Tracker by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/productivity-organization-tools/habit-tracker/"&gt;Habit Tracker by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 14, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online habit tracker does</a></li><li><a href="#how">How to use the habit tracker</a></li><li><a href="#features">Features of this habit tracker</a></li><li><a href="#science">What research says about forming habits</a></li><li><a href="#tips">How to build a habit that lasts</a></li><li><a href="#ideas">Habit ideas by area of life</a></li><li><a href="#streaks">Using streaks without being controlled by them</a></li><li><a href="#review">Reviewing your month</a></li><li><a href="#compare">Habit tracker, to-do list and journal: what is the difference?</a></li><li><a href="#mistakes">Common habit tracking mistakes</a></li><li><a href="#privacy">Privacy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online habit tracker does</h2>
+<p>Most good intentions fail quietly. You mean to exercise, read or drink more water, and a few weeks later you cannot say whether you have done it twice or twenty times. A <b>habit tracker</b> fixes that by making the behaviour visible. Every day you mark a square, and over time the squares form a picture of your consistency. That picture is motivating when it is full of ticks and informative when it is not, because it shows exactly which days and habits slip.</p><p>This free online habit tracker shows one month at a time, with a row for each habit and a column for each day. It calculates your completion rate, current and best streaks and progress against a weekly goal, and draws a chart that compares your habits. It saves automatically in your browser, so there is nothing to install and no account to create. Download a CSV, back up your data, or print the month.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="A habit tracker records a daily check, builds a streak and shows monthly completion"><title>Habit loop</title><rect x="20" y="16" width="270" height="200" rx="16" fill="none" stroke="currentColor" opacity=".4" stroke-width="2"/><text x="38" y="46" font-size="11" opacity=".6" fill="currentColor">Tracker</text><text x="38" y="84" font-size="12.5" font-weight="700" fill="currentColor">Habit: Read 20 minutes</text><text x="38" y="106" font-size="12.5" fill="currentColor">Mon  x  Tue  x  Wed  x</text><text x="38" y="128" font-size="12.5" fill="currentColor">Thu  .  Fri  x  Sat  x</text><text x="38" y="150" font-size="12.5" fill="currentColor">Streak: 3 days</text><text x="38" y="172" font-size="12.5" fill="currentColor">Month: 78%</text><text x="38" y="194" font-size="12.5" fill="currentColor">Weekly goal 5/5</text><g font-size="13" fill="#fff"><rect class="dt-bar" x="330" y="22" width="290" height="38" rx="9" fill="#0369a1" style="animation-delay:0.05s"/><text x="344" y="46">1. Pick a tiny habit</text><rect class="dt-bar" x="330" y="76" width="290" height="38" rx="9" fill="#16a34a" style="animation-delay:0.25s"/><text x="344" y="100">2. Tick it daily</text><rect class="dt-bar" x="330" y="130" width="290" height="38" rx="9" fill="#d97706" style="animation-delay:0.45s"/><text x="344" y="154">3. Protect the streak</text><rect class="dt-bar" x="330" y="184" width="290" height="38" rx="9" fill="#9333ea" style="animation-delay:0.65s"/><text x="344" y="208">4. Review each month</text></g></svg><figcaption>Tick each day, watch the streak grow and review completion by habit every month.</figcaption></figure>
+<h2 id="how">How to use the habit tracker</h2>
+<ol><li><b>Add a habit.</b> Type it or tap a suggestion. Make it specific and small, such as read two pages.</li><li><b>Choose a weekly goal.</b> Daily suits tiny habits. Three or four days a week suits exercise.</li><li><b>Tick each day.</b> Tap the square for the day you did it. Tap again to undo.</li><li><b>Check progress.</b> The summary shows your monthly percentage, streaks and this week's count.</li><li><b>Review monthly.</b> Move to the next month, keep what works and change or drop what does not.</li></ol>
+<h2 id="features">Features of this habit tracker</h2>
+<div class="dt-wrap"><table><tr><th>Feature</th><th>What it gives you</th></tr><tr><td>Monthly grid</td><td>See every habit across the whole month at once</td></tr><tr><td>Current and best streaks</td><td>Motivation from an unbroken chain</td></tr><tr><td>Weekly goals</td><td>Flexible targets for habits that are not daily</td></tr><tr><td>Completion chart</td><td>Compare habits by percentage done</td></tr><tr><td>Quick-add ideas</td><td>Start with common healthy habits</td></tr><tr><td>Past and future months</td><td>Back-fill missed days and plan ahead</td></tr><tr><td>CSV, backup, print</td><td>Take your data with you</td></tr></table></div>
+<h2 id="science">What research says about forming habits</h2>
+<p>Habits form when a behaviour is repeated in a stable context until it becomes more automatic. A well-known study by Phillippa Lally and colleagues at University College London followed volunteers who chose a new daily behaviour. On average it took about 66 days for the behaviour to reach its automaticity plateau, but the range was wide, from 18 to 254 days, and missing a single day did not significantly harm the process. This is useful: perfection is not required, and a long timeline is normal. Research on implementation intentions by Peter Gollwitzer shows that specific plans of the form when X happens, I will do Y make people more likely to follow through than general goals.</p>
+<h2 id="tips">How to build a habit that lasts</h2>
+<ul><li><b>Start tiny.</b> Two minutes of reading is better than a plan for an hour that you skip.</li><li><b>Anchor it.</b> Attach the habit to something you already do, such as after I brush my teeth, I will stretch.</li><li><b>Make it obvious and easy.</b> Put the book on the pillow, the trainers by the door.</li><li><b>Never miss twice.</b> One missed day is normal. Two starts a new pattern.</li><li><b>Celebrate briefly.</b> A small reward helps the brain link the behaviour with satisfaction.</li><li><b>Track one to three habits.</b> More dilutes your attention.</li></ul>
+<h2 id="ideas">Habit ideas by area of life</h2>
+<p>For health, try drinking water, a ten-minute walk, stretching, going to bed at a set time or eating a portion of vegetables. For learning, read ten pages, practise a language for fifteen minutes or review flashcards. For focus and calm, meditate for five minutes, write three lines in a journal or take a phone-free hour. For home and money, make the bed, tidy for ten minutes or record your spending. For relationships, send one message to a friend or family member. For work, plan tomorrow before you finish or clear your inbox once a day. Pick the ones that matter to you, not the ones that look good on a list.</p>
+<h2 id="streaks">Using streaks without being controlled by them</h2>
+<p>Streaks motivate because breaking the chain feels costly. They can also backfire: when a streak snaps, some people feel they have failed and quit entirely. Treat the best streak as a record to beat rather than a test of worth, and use the monthly percentage as a more forgiving measure. A person who completes a habit 80 per cent of days is doing very well. For habits that are not daily, the weekly goal shows whether you are on track without demanding perfection.</p>
+<h2 id="review">Reviewing your month</h2>
+<p>At the end of each month, look at the chart. Habits at or above 80 per cent are working, so keep them. Habits at 30 to 60 per cent may be too ambitious or tied to a poor trigger, so make them smaller or change when you do them. Habits near zero were probably wishes rather than commitments, so replace them. Look for patterns by weekday in the grid: if weekends are always empty, build a weekend version of the routine. Then save a backup before starting the next month.</p>
+<h2 id="compare">Habit tracker, to-do list and journal: what is the difference?</h2>
+<p>A to-do list holds one-off tasks that you finish and cross out. A habit tracker holds behaviours you want to repeat, so the same item returns every day and success is measured by consistency instead of completion. A journal records how you feel and what happened, which can explain why a habit slipped. Many people use all three: the to-do list for projects, the habit tracker for routines and a short journal entry for reflection. If you keep a Pomodoro log, you can also add a daily focus habit here, such as complete two focus sessions, and tick it when you do.</p><p>Whatever you choose, keep the system simple enough to use on your worst day. A tracker that takes ten seconds to update will still be in use in six months. One that needs a ritual will not.</p>
+<h2 id="mistakes">Common habit tracking mistakes</h2>
+<ul><li><b>Too many habits at once.</b></li><li><b>Vague habits.</b> Be specific about what counts as done.</li><li><b>Habits that are too big.</b> Shrink them until they feel easy.</li><li><b>Judging yourself for a bad week.</b> Return the next day.</li><li><b>Ticking in advance.</b> Only tick what you have done.</li></ul>
+<h2 id="privacy">Privacy, limits and responsible use</h2>
+<p>Your habits and check-ins are stored in your browser's local storage on this device. Nothing is sent to a server. Clearing browser data or switching device removes access, so download a backup for important records. The tool does not send reminders, sync between devices or provide coaching. It is not medical, psychological or fitness advice. If a habit involves diet, exercise, sleep, medication or mental health, choose goals that are safe for you and consider speaking to a qualified professional. Habit tracking should support wellbeing, so stop or change any habit that causes distress.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a habit tracker?</summary><p>A tool for recording whether you did a habit each day. Seeing a row of ticks makes progress visible, which can help you stay consistent.</p></details><details><summary>How do I use this free online habit tracker?</summary><p>Add a habit, then tap the square for each day you complete it. The tracker updates your monthly percentage, current streak, best streak and weekly goal.</p></details><details><summary>Do I need an account?</summary><p>No. There is no sign-up. Your data stays in this browser.</p></details><details><summary>Where is my data saved?</summary><p>In your browser's local storage on this device. It is not uploaded. Download a backup to keep a copy or move it to another device.</p></details><details><summary>What is a streak?</summary><p>The number of consecutive days you completed a habit. The current streak counts back from today, or from yesterday if you have not ticked today yet.</p></details><details><summary>Does missing one day break my streak?</summary><p>Yes, a missed day ends the current streak, but your best streak is kept. Many people follow a never miss twice rule to recover quickly.</p></details><details><summary>Can I set a weekly goal instead of every day?</summary><p>Yes. Choose every day or any number from one to six days a week. The chart shows how many days you have done this week against your goal.</p></details><details><summary>Can I look at past or future months?</summary><p>Yes. Use Previous and Next to move between months and This month to return. You can fill in missed days for earlier dates.</p></details><details><summary>How many habits should I track?</summary><p>Start with one to three. Tracking too many at once makes it harder to keep them all going.</p></details><details><summary>What are good habits to start with?</summary><p>Small, specific ones such as drinking a glass of water after waking, reading ten pages, a ten-minute walk or writing one line in a journal.</p></details><details><summary>How long does it take to form a habit?</summary><p>It varies. A study in the European Journal of Social Psychology found an average of about 66 days, with a range from 18 to 254 days depending on the person and the habit.</p></details><details><summary>Can I print the tracker?</summary><p>Yes. Print / save month prints only the month grid and a summary table, not the rest of the page. Landscape orientation fits best.</p></details><details><summary>Can I export to a spreadsheet?</summary><p>Yes. Download CSV gives one row per habit and one column per day of the month.</p></details><details><summary>Can I reorder or delete habits?</summary><p>Yes. Use the arrow to move a habit up and Delete to remove it and its history.</p></details><details><summary>Does it send reminders?</summary><p>No. Pair each habit with an existing routine or a phone alarm, and use the tracker to record progress.</p></details><details><summary>Does it work on a phone?</summary><p>Yes. The grid scrolls sideways and squares are easy to tap.</p></details><details><summary>Is it free and private?</summary><p>Yes. It is free to use online and your habit data stays in your browser.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Lally, P., van Jaarsveld, C., Potts, H., Wardle, J., How are habits formed: Modelling habit formation in the real world (European Journal of Social Psychology, 2010).</li><li>Gollwitzer, P. M., Implementation intentions: Strong effects of simple plans (American Psychologist, 1999).</li><li>Wood, W. and Neal, D., A new look at habits and the habit-goal interface (Psychological Review, 2007).</li><li>Fogg, B. J., Tiny Habits: The Small Changes That Change Everything (Houghton Mifflin Harcourt, 2020).</li><li>MDN Web Docs, Window.localStorage (developer.mozilla.org).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online habit tracker runs in your browser. Your habits and check-ins are saved only in this browser on this device, using local storage, and are never uploaded, so clearing site data, using private browsing or switching device means they will not be there. Download a backup for anything important. It is a self-tracking aid and does not send reminders. It is not medical, psychological or fitness advice, and habits that involve health, diet or exercise should be chosen with a qualified professional where appropriate.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- social shared helpers ---------- */
+function rint(n) { n = Math.max(1, n | 0); var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; }
+function rpick(arr) { return arr[rint(arr.length)]; }
+function rshuf(arr) { var a = arr.slice(), i, j, t; for (i = a.length - 1; i > 0; i--) { j = rint(i + 1); t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function gsplit(s) {
+  s = String(s == null ? "" : s);
+  if (window.Intl && Intl.Segmenter) { var out = [], it = new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)[Symbol.iterator](), x; while (!(x = it.next()).done) out.push(x.value.segment); return out; }
+  return Array.from(s);
+}
+function gcount(s) { return gsplit(s).length; }
+function nfmt(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+/* copy rows: items is an array of strings, rendered as .prow lines with a Copy button each */
+function rowsHtml(items, metas) {
+  return items.map(function (t, i) { return '<div class="prow"><span class="ptxt">' + esc(t) + (metas && metas[i] ? '<span class="meta">' + metas[i] + "</span>" : "") + '</span><button type="button" class="dt-btn ghost" data-ci="' + i + '">Copy</button></div>'; }).join("");
+}
+function bindRows(id, getItems) {
+  $(id).addEventListener("click", function (e) { var b = e.target.closest("button[data-ci]"); if (!b) return; var it = getItems(); copyText(it[+b.getAttribute("data-ci")], b); });
+}
+function tabBar(id) { return $(id); }
+function showIf(id, on) { var e = $(id); if (e) e.hidden = !on; }
+function crc32(bytes) { var t = crc32.t; if (!t) { t = crc32.t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } var c2 = 0xFFFFFFFF; for (var i = 0; i < bytes.length; i++) c2 = t[(c2 ^ bytes[i]) & 255] ^ (c2 >>> 8); return (c2 ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) { /* files: [{name, data:Uint8Array}] -> Blob (no compression) */
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0, dt = new Date(), dd = ((dt.getFullYear() - 1980) << 9) | ((dt.getMonth() + 1) << 5) | dt.getDate(), tt = (dt.getHours() << 11) | (dt.getMinutes() << 5) | (dt.getSeconds() >> 1);
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, tt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, f.data.length, true); h.setUint32(22, f.data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, f.data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, tt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, f.data.length, true); c.setUint32(24, f.data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); off += 30 + nm.length + f.data.length;
+  });
+  var cs = 0; cd.forEach(function (x) { cs += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cd, [e.buffer]), { type: "application/zip" });
+}
+
+/* ---------- habit tracker ---------- */
+var KEY = "utiliby_habits_v1";
+var H = { habits: [], log: {}, ym: "" };
+var PAL = ["#0369a1", "#16a34a", "#d97706", "#9333ea", "#dc2626", "#0891b2", "#be185d", "#4d7c0f"];
+var SUG = ["Drink water", "Exercise", "Read 20 minutes", "Meditate", "Sleep before 11 pm", "Write in journal", "Walk 8,000 steps", "No sugary drinks"];
+var MN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"], DN = ["S", "M", "T", "W", "T", "F", "S"];
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function pad(n) { return (n < 10 ? "0" : "") + n; }
+function dkey(d) { d = d || new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+function pk(s) { return new Date(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10), 12); }
+function uid() { return "h" + Date.now().toString(36) + Math.random().toString(36).slice(2, 5); }
+function save() { lsSet(KEY, JSON.stringify({ habits: H.habits, log: H.log })); }
+function load() { var o; try { o = JSON.parse(lsGet(KEY) || "null"); } catch (e) {} if (o && o.habits) { H.habits = o.habits; H.log = o.log || {}; return true; } return false; }
+function has(id, k) { return !!(H.log[id] && H.log[id][k]); }
+function dim() { var y = +H.ym.slice(0, 4), m = +H.ym.slice(5, 7); return new Date(y, m, 0).getDate(); }
+function dayKey(d) { return H.ym + "-" + pad(d); }
+function streaks(id) {
+  var set = H.log[id] || {}, keys = Object.keys(set).filter(function (k) { return set[k]; }).sort(), best = 0, run = 0, prev = null, i;
+  keys.forEach(function (k) { var d = pk(k); if (prev && Math.round((d - prev) / 86400000) === 1) run++; else run = 1; if (run > best) best = run; prev = d; });
+  var cur = 0, d = new Date(); d.setHours(12, 0, 0, 0); if (!set[dkey(d)]) d.setDate(d.getDate() - 1); while (set[dkey(d)]) { cur++; d.setDate(d.getDate() - 1); }
+  return { cur: cur, best: best, total: keys.length };
+}
+function weekCount(id) { var d = new Date(); d.setHours(12, 0, 0, 0); var dow = (d.getDay() + 6) % 7, n = 0, i; for (i = 0; i <= dow; i++) { var x = new Date(d.getTime()); x.setDate(d.getDate() - i); if (has(id, dkey(x))) n++; } return n; }
+function monthStats(h) {
+  var n = dim(), done = 0, d, today = dkey(), cap = 0; for (d = 1; d <= n; d++) { var k = dayKey(d); if (k <= today) cap++; if (has(h.id, k)) done++; }
+  return { done: done, cap: cap, pct: cap ? Math.round(done / cap * 100) : 0 };
+}
+function render() {
+  var n = dim(), today = dkey(), y = +H.ym.slice(0, 4), m = +H.ym.slice(5, 7) - 1;
+  $("hMonthLbl").textContent = MN[m] + " " + y;
+  if (!H.habits.length) { $("hGrid").innerHTML = '<p class="ck-note">No habits yet. Add one above or tap a suggestion.</p>'; $("hStats").innerHTML = ""; $("hChart").innerHTML = ""; return; }
+  var t = '<div class="h-scroll"><table class="h-tbl"><thead><tr><th class="h-name">Habit</th>';
+  for (var d = 1; d <= n; d++) { var dt = new Date(y, m, d, 12); t += '<th class="' + (dt.getDay() === 0 || dt.getDay() === 6 ? "we " : "") + (dayKey(d) === today ? "td" : "") + '"><span>' + DN[dt.getDay()] + "</span><br>" + d + "</th>"; }
+  t += '<th>Total</th></tr></thead><tbody>';
+  H.habits.forEach(function (h, i) {
+    var ms = monthStats(h); t += '<tr><th class="h-name" scope="row"><span class="h-dot" style="background:' + h.c + '"></span>' + esc(h.n) + "</th>";
+    for (var d = 1; d <= n; d++) { var k = dayKey(d), on = has(h.id, k); t += '<td class="' + (dayKey(d) === today ? "td" : "") + '"><button type="button" class="h-cell' + (on ? " on" : "") + '" style="' + (on ? "background:" + h.c + ";border-color:" + h.c : "") + '" data-h="' + h.id + '" data-d="' + k + '" aria-pressed="' + on + '" aria-label="' + esc(h.n) + ", " + k + (on ? ", done" : ", not done") + '">' + (on ? "&#10003;" : "") + "</button></td>"; }
+    t += "<td><b>" + ms.done + "</b></td></tr>";
+  });
+  $("hGrid").innerHTML = t + "</tbody></table></div>";
+  var tot = 0, cap = 0, rows = ""; H.habits.forEach(function (h) { var ms = monthStats(h); tot += ms.done; cap += ms.cap; });
+  var best = 0; H.habits.forEach(function (h) { best = Math.max(best, streaks(h.id).cur); });
+  $("hStats").innerHTML = '<div class="dt-stats">' + tile("Habits", H.habits.length, "tracked") + tile("This month", cap ? Math.round(tot / cap * 100) + "%" : "0%", tot + " of " + cap + " possible check-ins") + tile("Best current streak", best + (best === 1 ? " day" : " days"), "across all habits") + tile("Checked today", H.habits.filter(function (h) { return has(h.id, today); }).length + "/" + H.habits.length, "habits") + "</div>";
+  var s = '<svg viewBox="0 0 560 ' + (H.habits.length * 34 + 8) + '" width="100%" style="max-width:640px" role="img" aria-label="Completion by habit this month"><title>Completion by habit this month</title>';
+  H.habits.forEach(function (h, i) { var ms = monthStats(h), st = streaks(h.id), w = Math.max(2, ms.pct / 100 * 260), wc = weekCount(h.id); s += '<text x="0" y="' + (i * 34 + 21) + '" font-size="12" fill="currentColor">' + esc(h.n.slice(0, 20)) + '</text><rect x="150" y="' + (i * 34 + 6) + '" width="260" height="20" rx="6" fill="currentColor" opacity=".12"/><rect class="dt-bar" x="150" y="' + (i * 34 + 6) + '" width="' + w + '" height="20" rx="6" fill="' + h.c + '"/><text x="418" y="' + (i * 34 + 21) + '" font-size="12" fill="currentColor">' + ms.pct + "% · streak " + st.cur + " · wk " + wc + "/" + h.g + "</text>"; });
+  $("hChart").innerHTML = '<div class="dt-diagram"><h3>Completion, streak and weekly goal</h3>' + s + "</svg></div>";
+  var l = ""; H.habits.forEach(function (h, i) { l += '<div class="prow"><span class="ptxt">' + esc(h.n) + '<span class="meta">Goal ' + h.g + " days a week · best streak " + streaks(h.id).best + " · all-time " + streaks(h.id).total + ' check-ins</span></span><span style="display:flex;gap:4px;flex:none"><button type="button" class="dt-btn ghost" data-a="up" data-h="' + h.id + '" aria-label="Move habit up"' + (i === 0 ? " disabled" : "") + '>&uarr;</button><button type="button" class="dt-btn ghost" data-a="del" data-h="' + h.id + '" aria-label="Delete habit ' + esc(h.n) + '">Delete</button></span></div>'; });
+  $("hList").innerHTML = l;
+}
+function addHabit(name, g) { name = (name || "").trim(); if (!name) { msg("Type a habit name.", "err"); return false; } if (H.habits.length >= 20) { msg("Up to 20 habits are supported.", "err"); return false; } H.habits.push({ id: uid(), n: name.slice(0, 40), c: PAL[H.habits.length % 8], g: g || 7 }); save(); render(); return true; }
+function textOut() {
+  if (!H.habits.length) return ""; var L = ["Habit tracker - " + MN[+H.ym.slice(5, 7) - 1] + " " + H.ym.slice(0, 4), ""];
+  H.habits.forEach(function (h) { var ms = monthStats(h), st = streaks(h.id); L.push(h.n + ": " + ms.done + "/" + ms.cap + " days (" + ms.pct + "%), current streak " + st.cur + ", best streak " + st.best + ", goal " + h.g + " days a week"); }); return L.join("\n");
+}
+function gridRows() { var n = dim(); return H.habits.map(function (h) { var r = [h.n], d; for (d = 1; d <= n; d++) r.push(has(h.id, dayKey(d)) ? "x" : ""); r.push(String(monthStats(h).done)); return r; }); }
+function init() {
+  initCommon(); var now = new Date(); H.ym = now.getFullYear() + "-" + pad(now.getMonth() + 1);
+  if (!load()) { [["Drink water", 7], ["Exercise", 4], ["Read 20 minutes", 5]].forEach(function (a, i) { H.habits.push({ id: uid(), n: a[0], c: PAL[i], g: a[1] }); }); }
+  $("hSug").innerHTML = SUG.map(function (s) { return '<button type="button" class="dt-btn ghost" data-s="' + esc(s) + '">+ ' + esc(s) + "</button>"; }).join(""); render();
+  $("hSug").addEventListener("click", function (e) { var b = e.target.closest("button[data-s]"); if (b) addHabit(b.getAttribute("data-s"), 7); });
+  $("hAdd").addEventListener("click", function () { if (addHabit($("hNew").value, +$("hGoal").value)) $("hNew").value = ""; });
+  $("hNew").addEventListener("keydown", function (e) { if (e.key === "Enter") { e.preventDefault(); $("hAdd").click(); } });
+  $("hPrev").addEventListener("click", function () { var y = +H.ym.slice(0, 4), m = +H.ym.slice(5, 7) - 1; var d = new Date(y, m - 1, 1); H.ym = d.getFullYear() + "-" + pad(d.getMonth() + 1); render(); });
+  $("hNext").addEventListener("click", function () { var y = +H.ym.slice(0, 4), m = +H.ym.slice(5, 7) - 1; var d = new Date(y, m + 1, 1); H.ym = d.getFullYear() + "-" + pad(d.getMonth() + 1); render(); });
+  $("hToday").addEventListener("click", function () { H.ym = now.getFullYear() + "-" + pad(now.getMonth() + 1); render(); });
+  $("hGrid").addEventListener("click", function (e) { var b = e.target.closest("button.h-cell"); if (!b) return; var id = b.getAttribute("data-h"), k = b.getAttribute("data-d"); H.log[id] = H.log[id] || {}; if (H.log[id][k]) delete H.log[id][k]; else H.log[id][k] = 1; save(); render(); var nb = document.querySelector('button.h-cell[data-h="' + id + '"][data-d="' + k + '"]'); if (nb) nb.focus(); });
+  $("hList").addEventListener("click", function (e) { var b = e.target.closest("button[data-a]"); if (!b) return; var id = b.getAttribute("data-h"), i = H.habits.map(function (h) { return h.id; }).indexOf(id); if (i < 0) return; if (b.getAttribute("data-a") === "del") { H.habits.splice(i, 1); delete H.log[id]; } else if (i > 0) { var t = H.habits[i]; H.habits[i] = H.habits[i - 1]; H.habits[i - 1] = t; } save(); render(); });
+  $("hExport").addEventListener("click", function () { saveBlob(new Blob([JSON.stringify({ app: "utiliby-habits", habits: H.habits, log: H.log }, null, 2)], { type: "application/json" }), "habit-tracker-backup.json"); msg("Backup downloaded."); });
+  $("hImport").addEventListener("change", function () { var f = this.files && this.files[0]; if (!f) return; var rd = new FileReader(); rd.onload = function () { try { var o = JSON.parse(rd.result); if (!Array.isArray(o.habits)) throw 0; H.habits = o.habits.slice(0, 20).map(function (h, i) { return { id: String(h.id || uid()), n: String(h.n || "Habit").slice(0, 40), c: PAL[i % 8], g: Math.max(1, Math.min(7, +h.g || 7)) }; }); H.log = {}; var ids = {}; H.habits.forEach(function (h) { ids[h.id] = 1; }); Object.keys(o.log || {}).forEach(function (id) { if (!ids[id]) return; H.log[id] = {}; Object.keys(o.log[id]).forEach(function (k) { if (/^\d{4}-\d{2}-\d{2}$/.test(k) && o.log[id][k]) H.log[id][k] = 1; }); }); save(); render(); msg("Backup loaded."); } catch (e) { msg("That file is not a valid backup.", "err"); } }; rd.readAsText(f); this.value = ""; });
+  $("resetBtn").addEventListener("click", function () { H.habits = []; H.log = {}; [["Drink water", 7], ["Exercise", 4], ["Read 20 minutes", 5]].forEach(function (a, i) { H.habits.push({ id: uid(), n: a[0], c: PAL[i], g: a[1] }); }); H.ym = now.getFullYear() + "-" + pad(now.getMonth() + 1); save(); render(); msg("Reset to three sample habits."); });
+  bindAct("h", { code: textOut, file: function () { return "habit-summary.txt"; }, mime: "text/plain", title: "Habit tracker", site: "Free online habit tracker", note: "Your habits are saved only in this browser on this device. Clearing site data removes them, so download a backup for anything important.",
+    dlClick: function () { if (!H.habits.length) { msg("Add a habit first.", "err"); return; } var hd = ["Habit"], d; for (d = 1; d <= dim(); d++) hd.push(String(d)); hd.push("Total"); csvDownload([hd].concat(gridRows()), "habit-tracker-" + H.ym + ".csv"); }, rows: function () { return []; } });
+  window.fillReport = function () { var b = repBox(); repHead(b, "Habit tracker, " + MN[+H.ym.slice(5, 7) - 1] + " " + H.ym.slice(0, 4), "Free online habit tracker"); var hd = ["Habit"], d; for (d = 1; d <= dim(); d++) hd.push(String(d)); hd.push("Total"); var t = repTbl(b, hd, gridRows()); t.style.fontSize = "7pt"; repTbl(b, ["Habit", "This month", "Current streak", "Best streak", "Weekly goal"], H.habits.map(function (h) { var ms = monthStats(h), st = streaks(h.id); return [h.n, ms.done + "/" + ms.cap + " (" + ms.pct + "%)", String(st.cur), String(st.best), h.g + " days"]; })); repDisc(b, "Your habits are saved only in this browser on this device."); };
+}
+init();
+
+})();
+</script>
+</body>
+</html>
