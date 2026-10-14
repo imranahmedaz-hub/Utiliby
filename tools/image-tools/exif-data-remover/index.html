@@ -1,0 +1,721 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free EXIF Data Remover – Remove Photo Metadata Online</title>
+<meta name="description" content="Free online EXIF data remover. View and strip GPS location, camera details and other metadata from JPG, PNG and WebP photos with no quality loss. No upload.">
+<link rel="canonical" href="https://utiliby.com/tools/image-tools/exif-data-remover/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free EXIF Data Remover – Remove Photo Metadata Online">
+<meta property="og:description" content="Remove EXIF data and GPS location from photos free in your browser. See hidden metadata, strip it without recompressing and download clean JPG, PNG or WebP. No upload.">
+<meta property="og:url" content="https://utiliby.com/tools/image-tools/exif-data-remover/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free EXIF Data Remover – Remove Photo Metadata Online">
+<meta name="twitter:description" content="Remove EXIF data and GPS location from photos free in your browser. See hidden metadata, strip it without recompressing and download clean JPG, PNG or WebP. No upload.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0f766e;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#5eead4}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0f766e;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0f766e;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0f766e,#14b8a6);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(15,118,110,.06);border-left:3px solid #0f766e;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0f766e}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0f766e;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.ck-fine{font-size:.78rem}
+.dt-table input,.dt-table select{padding:6px 8px;font-size:.85rem}
+.ck-ing{display:grid;gap:8px;align-items:end;margin:6px 0}
+.ck-scroll{overflow-x:auto}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.ck-tag{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;background:rgba(185,28,28,.12);color:#991b1b;margin:2px 4px 2px 0}
+@media(prefers-color-scheme:dark){.ck-tag{color:#fca5a5;background:rgba(248,113,113,.18)}}
+.ck-rowx{display:grid;gap:8px;align-items:center;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.ck-label-box{background:#fff;color:#000;border:1px solid var(--line);border-radius:10px;padding:10px;display:inline-block;max-width:100%;overflow-x:auto}
+.ck-label-box svg{display:block;color:#000}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+
+.pd-drop{border:2px dashed var(--line);border-radius:14px;padding:26px 16px;text-align:center;cursor:pointer;background:var(--bg);color:var(--muted);transition:border-color .15s}
+.pd-drop:hover,.pd-drop.on,.pd-drop:focus-visible{border-color:#0f766e;color:inherit;outline:none}
+.pd-drop b{display:block;font-size:1.05rem;color:inherit;margin-bottom:2px}
+.pd-prog{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:10px 0 2px}
+.pd-prog i{display:block;height:100%;width:0;background:linear-gradient(90deg,#0f766e,#14b8a6);transition:width .15s}
+.pd-progtxt{font-size:.8rem;color:var(--muted);min-height:1.2em}
+.im-cv{display:block;max-width:100%;height:auto;margin:8px auto;border:1px solid var(--line);border-radius:8px;background-color:#fff;background-image:linear-gradient(45deg,#d1d5db 25%,transparent 25%,transparent 75%,#d1d5db 75%),linear-gradient(45deg,#d1d5db 25%,transparent 25%,transparent 75%,#d1d5db 75%);background-size:16px 16px;background-position:0 0,8px 8px}
+.im-stage{position:relative;max-width:100%;text-align:center}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}
+.im-bar button{padding:7px 14px}
+.im-file{display:grid;grid-template-columns:56px 1fr auto;gap:10px;align-items:center;border:1px solid var(--line);border-radius:10px;padding:8px 10px;margin:6px 0;background:var(--bg)}
+.im-file img{width:56px;height:56px;object-fit:cover;border-radius:6px;background:var(--card)}
+.im-file .nm{font-weight:700;word-break:break-all;font-size:.9rem}.im-file .mt{font-size:.78rem;color:var(--muted)}
+.im-file .bt{display:flex;gap:4px;flex-wrap:wrap;justify-content:flex-end}.im-file .bt button{padding:4px 9px;font-size:.78rem}
+@media(max-width:480px){.im-file{grid-template-columns:48px 1fr}.im-file img{width:48px;height:48px}.im-file .bt{grid-column:1/-1;justify-content:flex-start}}
+.au-ok{color:#15803d;font-weight:700}.au-bad{color:#b91c1c;font-weight:700}
+.im-cmp{position:relative;max-width:100%;margin:8px auto;border:1px solid var(--line);border-radius:8px;overflow:hidden;line-height:0;background:#fff}
+.im-cmp canvas,.im-cmp img{display:block;width:100%;height:auto}
+.im-cmp .top{position:absolute;inset:0;overflow:hidden}
+.im-cmp .top img{position:absolute;left:0;top:0;max-width:none}
+.im-cmp .bar{position:absolute;top:0;bottom:0;width:3px;background:#fff;box-shadow:0 0 0 1px rgba(0,0,0,.4);cursor:ew-resize}
+.im-cmp .lbl{position:absolute;top:8px;padding:2px 8px;border-radius:99px;background:rgba(0,0,0,.6);color:#fff;font-size:.72rem;line-height:1.5}
+#tool textarea{width:100%}
+#tool input[type=range]{padding:0}
+#tool input[type=color]{padding:2px;height:38px;width:100%}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"EXIF Data Remover","url":"https://utiliby.com/tools/image-tools/exif-data-remover/","description":"Free online EXIF data remover and metadata viewer. Shows hidden EXIF, GPS, camera, date, IPTC and XMP data in photos and removes it from JPG, PNG and WebP files without re-encoding, with an option to keep the orientation tag. Works in bulk with a ZIP download and runs in the browser with no upload.","applicationCategory":"MultimediaApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["View EXIF, GPS and other hidden fields","Strip metadata without recompressing","JPG, PNG and WebP","Optional orientation and color profile keep","Batch cleaning with ZIP","No upload, no sign-up, no watermark"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I remove EXIF data from a photo for free?","acceptedAnswer":{"@type":"Answer","text":"Drop your photos onto the box above. The tool reads the hidden data, shows you what it found, and creates a clean copy. Press Download clean for one image, or Download clean images for a ZIP of several. It all happens in your browser."}},{"@type":"Question","name":"What is EXIF data?","acceptedAnswer":{"@type":"Answer","text":"EXIF is information that cameras and phones store inside photo files. It can include the camera make and model, lens, exposure settings, the date and time, the orientation and, if location is on, GPS coordinates. Editing software may add its own name and notes."}},{"@type":"Question","name":"Does the photo lose quality when metadata is removed?","acceptedAnswer":{"@type":"Answer","text":"No. For JPG, PNG and WebP the tool cuts out the metadata blocks and copies the picture data unchanged. The image is not decoded or re-saved, so the pixels stay identical and there is no recompression."}},{"@type":"Question","name":"Can photos reveal where I live?","acceptedAnswer":{"@type":"Answer","text":"Yes, if location was on when the photo was taken. The GPS tags in a phone photo can point to your home, school or workplace. Removing metadata deletes those tags, but also check the picture itself for street names or landmarks."}},{"@type":"Question","name":"Is my photo uploaded anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Your browser reads the file and builds the clean copy on your own device. Nothing is sent to Utiliby or to any other server."}},{"@type":"Question","name":"What does Keep orientation mean?","acceptedAnswer":{"@type":"Answer","text":"Phones often store a photo sideways and set an orientation tag so viewers rotate it. If all EXIF data is deleted, some photos appear sideways. Keep orientation writes a tiny tag with only that number and nothing else. Untick it to remove everything."}},{"@type":"Question","name":"What is the difference between EXIF, IPTC and XMP?","acceptedAnswer":{"@type":"Answer","text":"They are three kinds of metadata. EXIF comes from the camera. IPTC holds captions, keywords and credits, often added by editors. XMP is a flexible XML format used by Adobe and other programs. This tool removes all three."}},{"@type":"Question","name":"Does it remove the color profile?","acceptedAnswer":{"@type":"Answer","text":"Only if you untick Keep the color profile. A color profile is not personal data, and removing it can make colors look different. Leave it on unless you want the smallest possible file."}},{"@type":"Question","name":"Which file types are supported?","acceptedAnswer":{"@type":"Answer","text":"JPG, PNG and WebP are cleaned without re-encoding. Other formats, such as GIF, BMP, AVIF or SVG that your browser can open, are redrawn and saved as PNG with no metadata. HEIC opens only in Safari."}},{"@type":"Question","name":"Do social networks remove EXIF data?","acceptedAnswer":{"@type":"Answer","text":"Many large platforms remove or hide location data when you post a picture, but this differs between services and changes over time. Email, messaging apps, cloud links and your own website often keep the file as it is, so clean photos before you share them."}},{"@type":"Question","name":"How can I see the EXIF data of a photo?","acceptedAnswer":{"@type":"Answer","text":"Add the photo and press View metadata. You will see the camera, dates, settings and GPS position found in the file, with risky fields marked. The tool shows the most useful fields and counts the rest."}},{"@type":"Question","name":"Can I remove EXIF data from many photos at once?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add as many photos as your device can handle. Each file is cleaned in turn, and you can download them one by one or as a single ZIP."}},{"@type":"Question","name":"Will the file name change?","acceptedAnswer":{"@type":"Answer","text":"The cleaned file is saved with \"-clean\" added to its name, so it will not replace your original. The original file on your device is never changed."}},{"@type":"Question","name":"Does removing metadata make the file smaller?","acceptedAnswer":{"@type":"Answer","text":"Slightly. Metadata is usually between a few kilobytes and a few hundred kilobytes, mostly from embedded thumbnails and editor data. The tool shows how many bytes were saved."}},{"@type":"Question","name":"Can this remove a hidden thumbnail?","acceptedAnswer":{"@type":"Answer","text":"Yes. Many JPG files carry a small preview image inside the EXIF block. That preview can show the original picture even after an edit, and it is deleted with the rest of the EXIF data."}},{"@type":"Question","name":"What can it not remove?","acceptedAnswer":{"@type":"Answer","text":"It cannot remove anything visible in the image, such as a face, a car license plate, a house number or a reflection. For that, use the Blur Image tool. It also cannot remove a watermark that has been drawn onto the pixels."}},{"@type":"Question","name":"What can I print or save from the page?","acceptedAnswer":{"@type":"Answer","text":"Print / save summary gives a table of the files, what was found and what was removed. Copy summary copies the same table as text. The cleaned images are the main download."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Image Tools","item":"https://utiliby.com/tools/image-tools/"},{"@type":"ListItem","position":3,"name":"EXIF Data Remover","item":"https://utiliby.com/tools/image-tools/exif-data-remover/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/image-tools/">Image Tools</a> › EXIF Data Remover</nav>
+<h1 class="noembed">Free EXIF Data Remover</h1>
+<p class="lead noembed">Free online EXIF data remover and metadata viewer. See what is hidden in your photos, then strip GPS location, camera details and more from JPG, PNG and WebP files with no quality loss. It runs in your browser, so nothing is uploaded.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/image-tools/exif-data-remover/" target="_blank" rel="noopener">EXIF Data Remover by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="EXIF data remover">
+<div class="dt-hero noembed">
+<h2>Free EXIF Data Remover</h2>
+<p>See what is hidden inside your photos, then remove it. Strip EXIF, GPS location, camera details and other metadata from JPG, PNG and WebP images without re-compressing them. No upload.</p>
+</div>
+<div class="dt-panel"><div class="pd-drop" id="eDrop" tabindex="0" role="button" aria-label="Choose images"><b>Drop photos here, or click to choose (JPG, PNG, WebP)</b>Your images stay on your device. Nothing is uploaded.</div><input type="file" id="eFile" accept="image/*,.jpg,.jpeg,.png,.webp,.gif,.bmp,.avif,.svg,.ico,.heic,.heif" multiple hidden><div class="pd-prog" id="pdProg" hidden><i></i></div><div class="pd-progtxt" id="pdProgTxt"></div><p id="eInfo" class="ck-note"></p><div class="im-bar"><div class="im-chk"><input type="checkbox" id="eOri" checked><label for="eOri">Keep the photo orientation so it is not turned sideways</label></div><div class="im-chk"><input type="checkbox" id="eIcc" checked><label for="eIcc">Keep the color profile (ICC)</label></div></div><div id="eList"></div><div id="eSum"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset options</button><button type="button" class="dt-btn" id="eZip">Download clean images</button>
+<button type="button" class="dt-btn ghost" id="ePrint">Print / save summary</button>
+<button type="button" class="dt-btn ghost" id="eCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free EXIF data remover works in your browser, so your photos are not uploaded. It removes metadata from JPG, PNG and WebP files without re-encoding them, so the picture is unchanged. It cannot remove information that is visible in the picture itself, such as faces, street signs, house numbers, reflections or shadows. Metadata is also removed by many social networks when you post, but not by email, chat apps or file sharing in every case, so clean photos before you share them if privacy matters. Always check a cleaned file before you share it, and keep your original.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/image-tools/exif-data-remover/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). EXIF Data Remover. https://utiliby.com/tools/image-tools/exif-data-remover/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/image-tools/exif-data-remover/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="EXIF Data Remover by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/image-tools/exif-data-remover/"&gt;EXIF Data Remover by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free EXIF data remover does</a></li><li><a href="#how">How to remove EXIF data in four steps</a></li><li><a href="#risk">What a photo can reveal</a></li><li><a href="#types">How each file type is cleaned</a></li><li><a href="#orient">Why orientation is special</a></li><li><a href="#when">When to remove metadata</a></li><li><a href="#phone">Turning off location in the camera</a></li><li><a href="#limits">What metadata removal does not fix</a></li><li><a href="#fix">Troubleshooting</a></li><li><a href="#privacy">Privacy and how it works</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free EXIF data remover does</h2>
+<p>Every photo from a phone or camera carries a hidden label. It can say which device took the picture, when, with what settings, and, if location services were on, exactly where. Share the original file and you share all of that. This free online <b>EXIF data remover</b> shows what is hidden in your photos and creates a clean copy without it.</p><p>Unlike tools that redraw the picture and recompress it, this one cuts the metadata out of the file and leaves the picture data untouched. A JPG stays a JPG with the same pixels, and the file only gets smaller. It works on many files at once, never uploads anything and has no sign-up.</p><figure class="dt-fig"><svg viewBox="0 0 640 220" width="100%" role="img" aria-label="A photo with hidden tags such as GPS, camera model and date, followed by a clean photo with the tags removed"><title>Removing hidden photo data</title>
+<rect x="30" y="40" width="170" height="130" rx="8" fill="#cbd5e1"/><circle cx="85" cy="85" r="18" fill="#fbbf24"/><path d="M30 170 L100 105 L145 145 L175 120 L200 170 Z" fill="#0f766e"/>
+<g font-size="12" fill="currentColor"><rect x="215" y="40" width="130" height="24" rx="12" fill="#fecaca"/><text x="280" y="57" text-anchor="middle" fill="#7f1d1d">GPS 51.50, -0.12</text><rect x="215" y="74" width="130" height="24" rx="12" fill="#fde68a"/><text x="280" y="91" text-anchor="middle" fill="#78350f">Camera model</text><rect x="215" y="108" width="130" height="24" rx="12" fill="#bfdbfe"/><text x="280" y="125" text-anchor="middle" fill="#1e3a8a">Date and time</text><rect x="215" y="142" width="130" height="24" rx="12" fill="#e9d5ff"/><text x="280" y="159" text-anchor="middle" fill="#581c87">Owner name</text></g>
+<path d="M365 105 H420" stroke="#0f766e" stroke-width="3"/><path d="M410 95 L423 105 L410 115" stroke="#0f766e" stroke-width="3" fill="none"/>
+<rect class="dt-bar" x="440" y="40" width="170" height="130" rx="8" fill="#cbd5e1" style="animation-delay:.1s"/><text x="525" y="198" text-anchor="middle" font-size="13" fill="currentColor">Same picture, no hidden data</text></svg>
+<figcaption>A photo carries hidden tags for place, device, time and sometimes the owner. The tool lists them and writes a copy without them, with identical pixels.</figcaption></figure>
+<h2 id="how">How to remove EXIF data in four steps</h2>
+<ol><li><b>Add your photos.</b> Drop JPG, PNG or WebP files onto the drop area, or click to choose them.</li><li><b>Check what was found.</b> Each file shows what was removed. Press View metadata to see the fields, with location and name fields marked.</li><li><b>Choose the options.</b> Keep orientation is on by default so photos do not turn sideways. Untick it to strip everything.</li><li><b>Download.</b> Press Download clean on one file, or Download clean images for a ZIP.</li></ol>
+<h2 id="risk">What a photo can reveal</h2>
+<div class="dt-wrap"><table><tr><th>Hidden data</th><th>Example</th><th>Privacy risk</th></tr><tr><td>GPS location</td><td>Latitude, longitude, altitude</td><td>High: can show a home, school or workplace</td></tr><tr><td>Date and time</td><td>2026:03:14 18:42:10</td><td>Medium: shows when you were away or at a place</td></tr><tr><td>Camera and phone model</td><td>Make, model, lens</td><td>Low to medium: identifies the device</td></tr><tr><td>Serial numbers</td><td>Body or lens serial</td><td>High: can link photos to one camera or owner</td></tr><tr><td>Owner and copyright</td><td>Artist, copyright text</td><td>Medium: names a person</td></tr><tr><td>Editing software</td><td>Software name and history</td><td>Low</td></tr><tr><td>Embedded thumbnail</td><td>Small preview image</td><td>Medium: may show the uncropped original</td></tr><tr><td>Comments and captions</td><td>IPTC, XMP, text notes</td><td>Varies: may contain names and places</td></tr></table></div>
+<h2 id="types">How each file type is cleaned</h2>
+<p>In a <b>JPEG</b>, metadata sits in marker segments before the picture data: APP1 for EXIF and XMP, APP13 for IPTC and Photoshop data, and comment segments. The tool drops these segments and any data appended after the end of the image, and copies everything else as it is. In a <b>PNG</b>, it removes text chunks, the EXIF chunk and the timestamp chunk. In a <b>WebP</b>, it removes the EXIF and XMP chunks and updates the file header so that it stays valid.</p><p>Because the compressed picture is never decoded, there is no quality loss and the result is byte for byte the same image. Formats that this method does not cover are redrawn on a canvas and saved as PNG, which also drops their metadata but changes the file.</p>
+<h2 id="orient">Why orientation is special</h2>
+<p>Cameras do not rotate the pixels when you hold the phone sideways. They store the picture in one fixed direction and add an orientation number to the EXIF data. If you remove all EXIF data, programs no longer know the number and some show the photo on its side. That is why the tool keeps a tiny orientation tag by default. It contains just that one number, with no camera, time or place. If you prefer a file with no EXIF block at all, untick the option, and rotate the photo first.</p>
+<h2 id="when">When to remove metadata</h2>
+<ul><li><b>Selling online:</b> photos of items taken at home can include your address.</li><li><b>Social posts and forums:</b> not every site removes location data.</li><li><b>Sending files to strangers:</b> clients, landlords, buyers and marketplaces.</li><li><b>Journalism and activism:</b> protect sources and places.</li><li><b>Photos of children:</b> avoid revealing a school or a regular location.</li><li><b>Publishing on your own site:</b> metadata makes files larger and public.</li></ul><p>You may want to keep metadata for your own archive, or for photography work where the camera settings and copyright notice matter. In that case share the cleaned copy and keep the original.</p>
+<h2 id="phone">Turning off location in the camera</h2>
+<p>The best fix is not to record location in the first place. On iPhone and Android you can switch location access off for the camera app in the settings. Some phones also let you remove location when you share a photo. These options change over time and between versions, so look in your device settings. Photos you took earlier still carry their location until you clean them.</p>
+<h2 id="limits">What metadata removal does not fix</h2>
+<ul><li><b>Visible clues:</b> street signs, license plates, house numbers, school logos and views from a window can reveal a place.</li><li><b>Faces:</b> use the Blur Image tool to hide them.</li><li><b>Filenames:</b> a file name like "home-address-front.jpg" is also information. The tool keeps your name and adds "-clean".</li><li><b>Pixel watermarks:</b> invisible or visible marks inside the picture stay in place.</li><li><b>Sharing context:</b> an email or chat message has its own details.</li></ul>
+<h2 id="fix">Troubleshooting</h2>
+<ul><li><b>The photo appears sideways after cleaning:</b> keep Keep orientation ticked.</li><li><b>No metadata found:</b> the file may already have been cleaned, for example by a messaging app.</li><li><b>The colors look different:</b> you removed the color profile. Tick Keep the color profile.</li><li><b>HEIC photos do not open:</b> HEIC opens only in Safari. Convert them to JPG first.</li><li><b>A GIF lost its animation:</b> GIF files are redrawn as a single PNG. Use a dedicated tool for animated files.</li></ul>
+<h2 id="privacy">Privacy and how it works</h2>
+<p>Your browser reads each file into memory, finds the metadata blocks, and builds a new file from the parts that stay. Nothing is uploaded, stored or logged. The downloaded file is a normal image that opens in any viewer.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I remove EXIF data from a photo for free?</summary><p>Drop your photos onto the box above. The tool reads the hidden data, shows you what it found, and creates a clean copy. Press Download clean for one image, or Download clean images for a ZIP of several. It all happens in your browser.</p></details><details><summary>What is EXIF data?</summary><p>EXIF is information that cameras and phones store inside photo files. It can include the camera make and model, lens, exposure settings, the date and time, the orientation and, if location is on, GPS coordinates. Editing software may add its own name and notes.</p></details><details><summary>Does the photo lose quality when metadata is removed?</summary><p>No. For JPG, PNG and WebP the tool cuts out the metadata blocks and copies the picture data unchanged. The image is not decoded or re-saved, so the pixels stay identical and there is no recompression.</p></details><details><summary>Can photos reveal where I live?</summary><p>Yes, if location was on when the photo was taken. The GPS tags in a phone photo can point to your home, school or workplace. Removing metadata deletes those tags, but also check the picture itself for street names or landmarks.</p></details><details><summary>Is my photo uploaded anywhere?</summary><p>No. Your browser reads the file and builds the clean copy on your own device. Nothing is sent to Utiliby or to any other server.</p></details><details><summary>What does Keep orientation mean?</summary><p>Phones often store a photo sideways and set an orientation tag so viewers rotate it. If all EXIF data is deleted, some photos appear sideways. Keep orientation writes a tiny tag with only that number and nothing else. Untick it to remove everything.</p></details><details><summary>What is the difference between EXIF, IPTC and XMP?</summary><p>They are three kinds of metadata. EXIF comes from the camera. IPTC holds captions, keywords and credits, often added by editors. XMP is a flexible XML format used by Adobe and other programs. This tool removes all three.</p></details><details><summary>Does it remove the color profile?</summary><p>Only if you untick Keep the color profile. A color profile is not personal data, and removing it can make colors look different. Leave it on unless you want the smallest possible file.</p></details><details><summary>Which file types are supported?</summary><p>JPG, PNG and WebP are cleaned without re-encoding. Other formats, such as GIF, BMP, AVIF or SVG that your browser can open, are redrawn and saved as PNG with no metadata. HEIC opens only in Safari.</p></details><details><summary>Do social networks remove EXIF data?</summary><p>Many large platforms remove or hide location data when you post a picture, but this differs between services and changes over time. Email, messaging apps, cloud links and your own website often keep the file as it is, so clean photos before you share them.</p></details><details><summary>How can I see the EXIF data of a photo?</summary><p>Add the photo and press View metadata. You will see the camera, dates, settings and GPS position found in the file, with risky fields marked. The tool shows the most useful fields and counts the rest.</p></details><details><summary>Can I remove EXIF data from many photos at once?</summary><p>Yes. Add as many photos as your device can handle. Each file is cleaned in turn, and you can download them one by one or as a single ZIP.</p></details><details><summary>Will the file name change?</summary><p>The cleaned file is saved with "-clean" added to its name, so it will not replace your original. The original file on your device is never changed.</p></details><details><summary>Does removing metadata make the file smaller?</summary><p>Slightly. Metadata is usually between a few kilobytes and a few hundred kilobytes, mostly from embedded thumbnails and editor data. The tool shows how many bytes were saved.</p></details><details><summary>Can this remove a hidden thumbnail?</summary><p>Yes. Many JPG files carry a small preview image inside the EXIF block. That preview can show the original picture even after an edit, and it is deleted with the rest of the EXIF data.</p></details><details><summary>What can it not remove?</summary><p>It cannot remove anything visible in the image, such as a face, a car license plate, a house number or a reflection. For that, use the Blur Image tool. It also cannot remove a watermark that has been drawn onto the pixels.</p></details><details><summary>What can I print or save from the page?</summary><p>Print / save summary gives a table of the files, what was found and what was removed. Copy summary copies the same table as text. The cleaned images are the main download.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>CIPA (Camera and Imaging Products Association), Exchangeable image file format for digital still cameras: Exif Version 2.32, for the structure of EXIF tags.</li><li>ITU-T Recommendation T.81 / ISO/IEC 10918-1 (JPEG), for marker segments and the end-of-image marker.</li><li>W3C Portable Network Graphics (PNG) Specification, third edition, for text, EXIF and time chunks.</li><li>Google Developers, WebP Container Specification, for the RIFF chunks and the VP8X flags.</li><li>IPTC Photo Metadata Standard and Adobe XMP specification, for caption and rights fields.</li><li>Electronic Frontier Foundation, guidance on removing location data from photos before sharing.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free EXIF data remover works in your browser, so your photos are not uploaded. It removes metadata from JPG, PNG and WebP files without re-encoding them, so the picture is unchanged. It cannot remove information that is visible in the picture itself, such as faces, street signs, house numbers, reflections or shadows. Metadata is also removed by many social networks when you post, but not by email, chat apps or file sharing in every case, so clean photos before you share them if privacy matters. Always check a cleaned file before you share it, and keep your original.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+function readBuf(file) { return new Promise(function (res, rej) { var r = new FileReader(); r.onload = function () { res(r.result); }; r.onerror = function () { rej(r.error); }; r.readAsArrayBuffer(file); }); }
+function fmtSize(n) { if (n == null) return "n/a"; if (n < 1024) return n + " B"; if (n < 1048576) return (n / 1024).toFixed(n < 10240 ? 1 : 0) + " KB"; return (n / 1048576).toFixed(n < 10485760 ? 2 : 1) + " MB"; }
+function baseName(n) { return String(n || "document").replace(/\.[^.]+$/, "").replace(/[^\w\-. ]+/g, "_").slice(0, 60) || "document"; }
+function prog(f, text) {
+  var p = $("pdProg"); if (!p) return;
+  if (f == null) { p.hidden = true; var t0 = $("pdProgTxt"); if (t0) t0.textContent = ""; return; }
+  p.hidden = false; p.firstChild.style.width = Math.round(Math.max(0, Math.min(1, f)) * 100) + "%"; p.title = text || "";
+  var t = $("pdProgTxt"); if (t) t.textContent = text || "";
+}
+function tick() { return new Promise(function (r) { setTimeout(r, 0); }); }
+function bindDrop(dropId, fileId, cb) {
+  var d = $(dropId), f = $(fileId);
+  function open() { f.value = ""; f.click(); }
+  d.addEventListener("click", open);
+  d.addEventListener("keydown", function (e) { if (e.key === "Enter" || e.key === " ") { e.preventDefault(); open(); } });
+  ["dragenter", "dragover"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.add("on"); }); });
+  ["dragleave", "drop"].forEach(function (ev) { d.addEventListener(ev, function (e) { e.preventDefault(); d.classList.remove("on"); }); });
+  d.addEventListener("drop", function (e) { var fl = e.dataTransfer && e.dataTransfer.files; if (fl && fl.length) cb(Array.prototype.slice.call(fl)); });
+  f.addEventListener("change", function () { if (f.files && f.files.length) cb(Array.prototype.slice.call(f.files)); });
+}
+var CRCT = null;
+function crc32(u8) {
+  if (!CRCT) { CRCT = []; for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; CRCT[n] = c >>> 0; } }
+  var crc = 0xFFFFFFFF; for (var i = 0; i < u8.length; i++) crc = CRCT[(crc ^ u8[i]) & 255] ^ (crc >>> 8); return (crc ^ 0xFFFFFFFF) >>> 0;
+}
+function makeZip(files) {
+  var enc = new TextEncoder(), parts = [], cen = [], off = 0, d = new Date();
+  var dt = ((d.getHours() << 11) | (d.getMinutes() << 5) | (d.getSeconds() >> 1)) & 0xFFFF, dd = (((d.getFullYear() - 1980) << 9) | ((d.getMonth() + 1) << 5) | d.getDate()) & 0xFFFF;
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), data = f.data, crc = crc32(data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, dt, true); h.setUint16(12, dd, true);
+    h.setUint32(14, crc, true); h.setUint32(18, data.length, true); h.setUint32(22, data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, dt, true); c.setUint16(14, dd, true);
+    c.setUint32(16, crc, true); c.setUint32(20, data.length, true); c.setUint32(24, data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cen.push(c.buffer, nm); off += 30 + nm.length + data.length;
+  });
+  var csz = 0; cen.forEach(function (x) { csz += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, csz, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cen, [e.buffer]), { type: "application/zip" });
+}
+function blobBytes(b) { return b.arrayBuffer().then(function (x) { return new Uint8Array(x); }); }
+function busy(ids, on) { ids.forEach(function (i) { var e = $(i); if (e) e.disabled = !!on; }); }
+/* ---------- image core ---------- */
+var IMG_RE = /\.(jpe?g|png|webp|gif|bmp|avif|svg|ico|heic|heif|tiff?)$/i;
+function isImg(f) { return /^image\//.test(f.type || "") || IMG_RE.test(f.name || ""); }
+function cvMake(w, h) { var c = document.createElement("canvas"); c.width = Math.max(1, Math.round(w)); c.height = Math.max(1, Math.round(h)); return c; }
+function loadImg(file) {
+  return new Promise(function (res, rej) {
+    var url = URL.createObjectURL(file), im = new Image();
+    im.onload = function () {
+      var w = im.naturalWidth, h = im.naturalHeight;
+      if (!w || !h) { if (/svg/i.test(file.type) || /\.svg$/i.test(file.name)) { w = 1024; h = 1024; } else { URL.revokeObjectURL(url); rej(new Error("This image has no size, so it cannot be used.")); return; } }
+      res({ src: im, w: w, h: h, name: file.name, size: file.size, type: file.type || "", url: url });
+    };
+    im.onerror = function () { URL.revokeObjectURL(url); rej(new Error("Your browser could not open \"" + file.name + "\". It may be damaged or in a format this browser does not support (HEIC opens only in Safari).")); };
+    im.src = url;
+  });
+}
+function imgToCanvas(o, w, h, bg) {
+  w = w || o.w; h = h || o.h; var c = cvMake(w, h), x = c.getContext("2d"); if (bg) { x.fillStyle = bg; x.fillRect(0, 0, c.width, c.height); } x.imageSmoothingQuality = "high"; x.drawImage(o.src, 0, 0, c.width, c.height); return c;
+}
+/* high-quality resize in halving steps. src: canvas or image, sw/sh source size */
+function resizeTo(src, sw, sh, dw, dh, sx, sy, sWidth, sHeight) {
+  dw = Math.max(1, Math.round(dw)); dh = Math.max(1, Math.round(dh));
+  sx = sx || 0; sy = sy || 0; sWidth = sWidth || sw; sHeight = sHeight || sh;
+  var cur = src, cx = sx, cy = sy, cw = sWidth, ch = sHeight;
+  while (cw / 2 >= dw && ch / 2 >= dh) {
+    var nw = Math.max(dw, Math.floor(cw / 2)), nh = Math.max(dh, Math.floor(ch / 2)), t = cvMake(nw, nh), tx = t.getContext("2d"); tx.imageSmoothingQuality = "high";
+    tx.drawImage(cur, cx, cy, cw, ch, 0, 0, nw, nh); cur = t; cx = 0; cy = 0; cw = nw; ch = nh;
+  }
+  var f = cvMake(dw, dh), fx = f.getContext("2d"); fx.imageSmoothingQuality = "high"; fx.drawImage(cur, cx, cy, cw, ch, 0, 0, dw, dh); return f;
+}
+function flatten(c, bg) { var t = cvMake(c.width, c.height), x = t.getContext("2d"); x.fillStyle = bg || "#ffffff"; x.fillRect(0, 0, t.width, t.height); x.drawImage(c, 0, 0); return t; }
+function cvBlob(c, type, q) {
+  return new Promise(function (res, rej) { try { c.toBlob(function (b) { b && b.type === type ? res(b) : (b && type === "image/png" ? res(b) : rej(new Error("Your browser could not save this image as " + type.replace("image/", "").toUpperCase() + ". Try another format, or a smaller size."))); }, type, q); } catch (e) { rej(new Error("The image is too large for your browser to save. Try a smaller size.")); } });
+}
+var FMT_OK = {};
+function fmtSupported(type) {
+  if (type in FMT_OK) return Promise.resolve(FMT_OK[type]);
+  return new Promise(function (res) { var c = cvMake(2, 2); try { c.toBlob(function (b) { FMT_OK[type] = !!b && b.type === type; res(FMT_OK[type]); }, type, 0.8); } catch (e) { FMT_OK[type] = false; res(false); } });
+}
+var EXT = { "image/jpeg": "jpg", "image/png": "png", "image/webp": "webp", "image/avif": "avif", "image/bmp": "bmp", "image/x-icon": "ico" };
+function hasAlpha(c) {
+  try { var d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data; for (var i = 3; i < d.length; i += 4) if (d[i] < 255) return true; } catch (e) { }
+  return false;
+}
+function dlNameI(name, tag, ext) { return baseName(name) + (tag ? "-" + tag : "") + "." + ext; }
+function u8cat(parts) { var n = 0, i; parts.forEach(function (p) { n += p.length; }); var o = new Uint8Array(n), k = 0; parts.forEach(function (p) { o.set(p, k); k += p.length; }); return o; }
+function be32(n) { return new Uint8Array([(n >>> 24) & 255, (n >>> 16) & 255, (n >>> 8) & 255, n & 255]); }
+function u8str(s) { var o = new Uint8Array(s.length); for (var i = 0; i < s.length; i++) o[i] = s.charCodeAt(i); return o; }
+function pngChunk(type, data) { var t = u8str(type), c = crc32(u8cat([t, data])); return u8cat([be32(data.length), t, data, be32(c)]); }
+/* PNG: write DPI (pHYs) / JPEG: write DPI in JFIF */
+function setDpi(blob, dpi) {
+  return blobBytes(blob).then(function (u) {
+    if (blob.type === "image/jpeg" && u[0] === 0xFF && u[1] === 0xD8 && u[2] === 0xFF && u[3] === 0xE0 && u[6] === 0x4A) { u[13] = 1; u[14] = dpi >> 8; u[15] = dpi & 255; u[16] = dpi >> 8; u[17] = dpi & 255; return new Blob([u], { type: blob.type }); }
+    if (blob.type === "image/png" && u[1] === 0x50) {
+      var ppm = Math.round(dpi / 0.0254), d = u8cat([be32(ppm), be32(ppm), new Uint8Array([1])]), ihdrEnd = 33;
+      var clean = [u.subarray(0, ihdrEnd)], p = ihdrEnd;
+      while (p < u.length) { var l2 = (u[p] << 24 | u[p + 1] << 16 | u[p + 2] << 8 | u[p + 3]) >>> 0, t2 = String.fromCharCode(u[p + 4], u[p + 5], u[p + 6], u[p + 7]); if (t2 !== "pHYs") clean.push(u.subarray(p, p + 12 + l2)); p += 12 + l2; }
+      clean.splice(1, 0, pngChunk("pHYs", d)); return new Blob(clean, { type: blob.type });
+    }
+    return blob;
+  });
+}
+/* ---- PNG encoder with optional palette quantisation ---- */
+function deflateZ(u8) {
+  if (typeof CompressionStream === "undefined") return Promise.reject(new Error("nocs"));
+  var cs = new CompressionStream("deflate"), w = cs.writable.getWriter(); w.write(u8); w.close();
+  return new Response(cs.readable).arrayBuffer().then(function (b) { return new Uint8Array(b); });
+}
+function filterRows(px, w, h, bpp) { /* px: raw rows without filter byte; row length = w (bytes). adaptive filter by min abs sum */
+  var rl = w, out = new Uint8Array((rl + 1) * h), prev = new Uint8Array(rl), cand = [new Uint8Array(rl), new Uint8Array(rl), new Uint8Array(rl), new Uint8Array(rl)], y, i, f;
+  for (y = 0; y < h; y++) {
+    var cur = px.subarray(y * rl, (y + 1) * rl), best = 0, bs = Infinity;
+    for (i = 0; i < rl; i++) { var a = i >= bpp ? cur[i - bpp] : 0, b = prev[i], c = i >= bpp ? prev[i - bpp] : 0, p = a + b - c, pa = Math.abs(p - a), pb = Math.abs(p - b), pc = Math.abs(p - c), pr = pa <= pb && pa <= pc ? a : (pb <= pc ? b : c); cand[0][i] = cur[i]; cand[1][i] = (cur[i] - a) & 255; cand[2][i] = (cur[i] - b) & 255; cand[3][i] = (cur[i] - pr) & 255; }
+    for (f = 0; f < 4; f++) { var s = 0, cf = cand[f]; for (i = 0; i < rl; i++) { var v = cf[i]; s += v < 128 ? v : 256 - v; } if (s < bs) { bs = s; best = f; } }
+    out[y * (rl + 1)] = best; out.set(cand[best], y * (rl + 1) + 1); prev = cur;
+  }
+  return out;
+}
+function pngAssemble(w, h, depth, ctype, rows, pal, trns) {
+  var ihdr = u8cat([be32(w), be32(h), new Uint8Array([depth, ctype, 0, 0, 0])]), parts = [new Uint8Array([137, 80, 78, 71, 13, 10, 26, 10]), pngChunk("IHDR", ihdr)];
+  if (pal) parts.push(pngChunk("PLTE", pal)); if (trns) parts.push(pngChunk("tRNS", trns));
+  return deflateZ(rows).then(function (z) { parts.push(pngChunk("IDAT", z), pngChunk("IEND", new Uint8Array(0))); return new Blob(parts, { type: "image/png" }); });
+}
+function pngLossless(c) {
+  var d = c.getContext("2d").getImageData(0, 0, c.width, c.height).data, opaque = true, i;
+  for (i = 3; i < d.length; i += 4) if (d[i] < 255) { opaque = false; break; }
+  var w = c.width, h = c.height, bpp = opaque ? 3 : 4, raw = new Uint8Array(w * h * bpp), k = 0;
+  if (opaque) for (i = 0; i < d.length; i += 4) { raw[k++] = d[i]; raw[k++] = d[i + 1]; raw[k++] = d[i + 2]; } else raw.set(d);
+  return pngAssemble(w, h, 8, opaque ? 2 : 6, filterRows(raw, w * bpp, h, bpp), null, null);
+}
+function quantize(c, K, dither) {
+  var w = c.width, h = c.height, d = c.getContext("2d").getImageData(0, 0, w, h).data, n = w * h, i;
+  var cnt = new Uint32Array(262144), sr = new Float64Array(262144), sg = new Float64Array(262144), sb = new Float64Array(262144), sa = new Float64Array(262144), step = Math.max(1, Math.floor(n / 300000)), hasA = false;
+  for (i = 3; i < d.length; i += 4) if (d[i] < 255) { hasA = true; break; }
+  for (i = 0; i < n; i += step) { var o = i * 4, a = d[o + 3], key = ((d[o] >> 3) << 13) | ((d[o + 1] >> 3) << 8) | ((d[o + 2] >> 3) << 3) | (hasA ? a >> 5 : 0); cnt[key]++; sr[key] += d[o]; sg[key] += d[o + 1]; sb[key] += d[o + 2]; sa[key] += a; }
+  var bins = []; for (i = 0; i < 262144; i++) if (cnt[i]) bins.push(i);
+  function avg(key) { var q = cnt[key]; return [sr[key] / q, sg[key] / q, sb[key] / q, sa[key] / q]; }
+  var boxes = [{ b: bins }];
+  function stat(bx) { var mn = [255, 255, 255, 255], mx = [0, 0, 0, 0], tot = 0; bx.b.forEach(function (k) { var v = avg(k); for (var j = 0; j < 4; j++) { if (v[j] < mn[j]) mn[j] = v[j]; if (v[j] > mx[j]) mx[j] = v[j]; } tot += cnt[k]; }); var rg = [mx[0] - mn[0], (mx[1] - mn[1]) * 1.2, (mx[2] - mn[2]) * 0.8, hasA ? (mx[3] - mn[3]) : 0], ch = 0; for (var j = 1; j < 4; j++) if (rg[j] > rg[ch]) ch = j; bx.ch = ch; bx.range = rg[ch]; bx.tot = tot; }
+  boxes.forEach(stat);
+  while (boxes.length < K) {
+    var bi = -1, bs = 0; boxes.forEach(function (bx, j) { var sc = bx.range * Math.sqrt(bx.tot); if (bx.b.length > 1 && sc > bs) { bs = sc; bi = j; } });
+    if (bi < 0) break; var bx = boxes[bi], ch = bx.ch; bx.b.sort(function (p, q) { return avg(p)[ch] - avg(q)[ch]; });
+    var half = bx.tot / 2, acc = 0, cut = 1; for (i = 0; i < bx.b.length; i++) { acc += cnt[bx.b[i]]; if (acc >= half) { cut = Math.min(bx.b.length - 1, Math.max(1, i + 1)); break; } }
+    var A = { b: bx.b.slice(0, cut) }, B = { b: bx.b.slice(cut) }; stat(A); stat(B); boxes.splice(bi, 1, A, B);
+  }
+  var pal = boxes.map(function (bx) { var r = 0, g = 0, b = 0, a = 0, t = 0; bx.b.forEach(function (k) { r += sr[k]; g += sg[k]; b += sb[k]; a += sa[k]; t += cnt[k]; }); return [Math.round(r / t), Math.round(g / t), Math.round(b / t), hasA ? Math.round(a / t) : 255]; });
+  if (hasA) pal.sort(function (p, q) { return p[3] - q[3]; });
+  var np = pal.length, cache = new Int16Array(262144).fill(-1), idx = new Uint8Array(n);
+  function nearest(r, g, b, a) { var best = 0, bd = Infinity; for (var j = 0; j < np; j++) { var p = pal[j], dr = r - p[0], dg = g - p[1], db = b - p[2], da = a - p[3], dd = dr * dr * 0.9 + dg * dg * 1.2 + db * db * 0.8 + (hasA ? da * da * 1.5 : 0); if (dd < bd) { bd = dd; best = j; } } return best; }
+  var er = null, eg = null, eb = null, ea = null;
+  if (dither) { er = new Float32Array(w + 2); eg = new Float32Array(w + 2); eb = new Float32Array(w + 2); ea = new Float32Array(w + 2); }
+  var ner = dither ? new Float32Array(w + 2) : null, neg = dither ? new Float32Array(w + 2) : null, neb = dither ? new Float32Array(w + 2) : null, nea = dither ? new Float32Array(w + 2) : null;
+  for (var y = 0; y < h; y++) {
+    if (dither) { ner.fill(0); neg.fill(0); neb.fill(0); nea.fill(0); }
+    for (var x = 0; x < w; x++) {
+      var o2 = (y * w + x) * 4, r = d[o2], g = d[o2 + 1], b = d[o2 + 2], a2 = d[o2 + 3], pi;
+      if (dither) { r = Math.max(0, Math.min(255, r + er[x + 1])); g = Math.max(0, Math.min(255, g + eg[x + 1])); b = Math.max(0, Math.min(255, b + eb[x + 1])); a2 = hasA ? Math.max(0, Math.min(255, a2 + ea[x + 1])) : 255; }
+      var key = ((Math.round(r) >> 3) << 13) | ((Math.round(g) >> 3) << 8) | ((Math.round(b) >> 3) << 3) | (hasA ? Math.round(a2) >> 5 : 0);
+      if (dither) pi = nearest(r, g, b, a2); else { pi = cache[key]; if (pi < 0) { pi = nearest(r, g, b, a2); cache[key] = pi; } }
+      idx[y * w + x] = pi;
+      if (dither) { var p = pal[pi], dr = r - p[0], dg = g - p[1], db = b - p[2], da = hasA ? a2 - p[3] : 0; er[x + 2] += dr * 7 / 16; eg[x + 2] += dg * 7 / 16; eb[x + 2] += db * 7 / 16; ea[x + 2] += da * 7 / 16; ner[x] += dr * 3 / 16; neg[x] += dg * 3 / 16; neb[x] += db * 3 / 16; nea[x] += da * 3 / 16; ner[x + 1] += dr * 5 / 16; neg[x + 1] += dg * 5 / 16; neb[x + 1] += db * 5 / 16; nea[x + 1] += da * 5 / 16; ner[x + 2] += dr / 16; neg[x + 2] += dg / 16; neb[x + 2] += db / 16; nea[x + 2] += da / 16; }
+    }
+    if (dither) { var t1 = er; er = ner; ner = t1; var t2 = eg; eg = neg; neg = t2; var t3 = eb; eb = neb; neb = t3; var t4 = ea; ea = nea; nea = t4; ner.fill(0); neg.fill(0); neb.fill(0); nea.fill(0); }
+  }
+  return { w: w, h: h, pal: pal, idx: idx, hasA: hasA };
+}
+function pngIndexed(q) {
+  var np = q.pal.length, depth = np <= 2 ? 1 : np <= 4 ? 2 : np <= 16 ? 4 : 8, w = q.w, h = q.h, rl = Math.ceil(w * depth / 8), raw = new Uint8Array(rl * h), x, y;
+  if (depth === 8) raw.set(q.idx); else { var per = 8 / depth; for (y = 0; y < h; y++) for (x = 0; x < w; x++) raw[y * rl + (x / per | 0)] |= q.idx[y * w + x] << (8 - depth * ((x % per) + 1)); }
+  var pal = new Uint8Array(np * 3), tr = q.hasA ? new Uint8Array(np) : null; q.pal.forEach(function (p, i) { pal[i * 3] = p[0]; pal[i * 3 + 1] = p[1]; pal[i * 3 + 2] = p[2]; if (tr) tr[i] = p[3]; });
+  return pngAssemble(w, h, depth, 3, filterRows(raw, rl, h, 1), pal, tr);
+}
+function pngQuant(c, K, dither) { return pngIndexed(quantize(c, K, dither)); }
+/* ---- BMP and ICO ---- */
+function bmpBlob(c) {
+  var w = c.width, h = c.height, d = c.getContext("2d").getImageData(0, 0, w, h).data, rl = (w * 3 + 3) & ~3, sz = rl * h, buf = new Uint8Array(54 + sz), v = new DataView(buf.buffer), x, y;
+  buf[0] = 66; buf[1] = 77; v.setUint32(2, 54 + sz, true); v.setUint32(10, 54, true); v.setUint32(14, 40, true); v.setInt32(18, w, true); v.setInt32(22, h, true); v.setUint16(26, 1, true); v.setUint16(28, 24, true); v.setUint32(34, sz, true); v.setInt32(38, 2835, true); v.setInt32(42, 2835, true);
+  for (y = 0; y < h; y++) for (x = 0; x < w; x++) { var s = ((h - 1 - y) * w + x) * 4, o = 54 + y * rl + x * 3, a = d[s + 3] / 255; buf[o] = Math.round(d[s + 2] * a + 255 * (1 - a)); buf[o + 1] = Math.round(d[s + 1] * a + 255 * (1 - a)); buf[o + 2] = Math.round(d[s] * a + 255 * (1 - a)); }
+  return new Blob([buf], { type: "image/bmp" });
+}
+function icoBlob(c, sizes) {
+  return Promise.all(sizes.map(function (s) { return cvBlob(resizeTo(c, c.width, c.height, s, s), "image/png").then(blobBytes); })).then(function (pngs) {
+    var n = pngs.length, head = new Uint8Array(6 + 16 * n), v = new DataView(head.buffer), off = 6 + 16 * n; v.setUint16(2, 1, true); v.setUint16(4, n, true);
+    pngs.forEach(function (p, i) { var o = 6 + 16 * i, s = sizes[i]; head[o] = s >= 256 ? 0 : s; head[o + 1] = s >= 256 ? 0 : s; v.setUint16(o + 4, 1, true); v.setUint16(o + 6, 32, true); v.setUint32(o + 8, p.length, true); v.setUint32(o + 12, off, true); off += p.length; });
+    return new Blob([head].concat(pngs), { type: "image/x-icon" });
+  });
+}
+/* pointer helper: handlers receive canvas-space coordinates */
+function bindPtr(el, h) {
+  function pos(e) { var r = el.getBoundingClientRect(); return { x: (e.clientX - r.left) * (el.width / r.width), y: (e.clientY - r.top) * (el.height / r.height), px: e.clientX - r.left, py: e.clientY - r.top, scale: el.width / r.width }; }
+  var down = false;
+  el.style.touchAction = "none";
+  el.addEventListener("pointerdown", function (e) { if (e.button > 0) return; down = true; try { el.setPointerCapture(e.pointerId); } catch (x) { } if (h.down) h.down(pos(e), e); });
+  el.addEventListener("pointermove", function (e) { var p = pos(e); if (down) { if (h.move) h.move(p, e); } else if (h.hover) h.hover(p, e); });
+  function up(e) { if (!down) return; down = false; if (h.up) h.up(pos(e), e); }
+  el.addEventListener("pointerup", up); el.addEventListener("pointercancel", up);
+}
+function dlBlobs(items, zipName) { /* items: [{name, blob}] */
+  return Promise.all(items.map(function (it) { return blobBytes(it.blob).then(function (u) { return { name: it.name, data: u }; }); })).then(function (fs) { var seen = {}; fs.forEach(function (f) { var n = f.name, k = 1; while (seen[n]) { k++; n = f.name.replace(/(\.[^.]+)$/, "-" + k + "$1"); } seen[n] = 1; f.name = n; }); saveBlob(makeZip(fs), zipName); });
+}
+function pctSaved(a, b) { return a > 0 ? Math.round((1 - b / a) * 1000) / 10 : 0; }
+
+/* ---------- exif data remover ---------- */
+var ST = { items: [], rows: [], tm: 0 };
+var T0 = { 0x010E: "Image description", 0x010F: "Camera make", 0x0110: "Camera model", 0x0112: "Orientation", 0x0131: "Software", 0x0132: "Date modified", 0x013B: "Artist", 0x8298: "Copyright" };
+var TE = { 0x829A: "Exposure time", 0x829D: "F-number", 0x8827: "ISO", 0x9003: "Date taken", 0x9004: "Date digitized", 0x920A: "Focal length", 0xA434: "Lens model", 0xA433: "Lens make", 0xA430: "Camera owner name", 0xA431: "Body serial number", 0xA435: "Lens serial number", 0x9286: "User comment" };
+var RISK = { "Artist": "Name", "Camera owner name": "Name", "Body serial number": "Serial number", "Lens serial number": "Serial number", "GPS latitude": "Location", "GPS longitude": "Location", "GPS altitude": "Location", "Copyright": "Name" };
+function u16(b, o, le) { return le ? (b[o] | b[o + 1] << 8) : (b[o] << 8 | b[o + 1]); }
+function u32(b, o, le) { return (le ? (b[o] | b[o + 1] << 8 | b[o + 2] << 16 | b[o + 3] << 24) : (b[o] << 24 | b[o + 1] << 16 | b[o + 2] << 8 | b[o + 3])) >>> 0; }
+function s32(b, o, le) { return u32(b, o, le) | 0; }
+var TSZ = { 1: 1, 2: 1, 3: 2, 4: 4, 5: 8, 7: 1, 9: 4, 10: 8 };
+function tval(t, e, typ, cnt, le) {
+  var sz = TSZ[typ]; if (!sz || cnt > 100000) return null; var tot = sz * cnt, off = tot <= 4 ? e + 8 : u32(t, e + 8, le), i, out = [];
+  if (off + tot > t.length) return null;
+  if (typ === 2) { var s = ""; for (i = 0; i < cnt && t[off + i]; i++) s += String.fromCharCode(t[off + i]); return s.replace(/[^\x20-\x7E -ÿ]/g, "").trim(); }
+  if (typ === 7 || typ === 1) { if (cnt > 8) return "(" + cnt + " bytes)"; for (i = 0; i < cnt; i++) out.push(t[off + i]); return out.join(" "); }
+  for (i = 0; i < Math.min(cnt, 6); i++) {
+    if (typ === 3) out.push(u16(t, off + i * 2, le)); else if (typ === 4) out.push(u32(t, off + i * 4, le)); else if (typ === 9) out.push(s32(t, off + i * 4, le));
+    else out.push([typ === 5 ? u32(t, off + i * 8, le) : s32(t, off + i * 8, le), typ === 5 ? u32(t, off + i * 8 + 4, le) : s32(t, off + i * 8 + 4, le)]);
+  }
+  return out;
+}
+function rat(r) { return r[1] ? r[0] / r[1] : 0; }
+function fmtVal(tag, v, grp) {
+  if (typeof v === "string") return v; if (v === null) return "";
+  if (grp === "ifd0" && tag === 0x0112) return "Rotated, code " + v[0];
+  if (grp === "exif" && tag === 0x829A) { var r = v[0]; return r[0] && r[1] >= r[0] ? "1/" + Math.round(r[1] / r[0]) + " s" : rat(r).toFixed(3) + " s"; }
+  if (grp === "exif" && tag === 0x829D) return "f/" + rat(v[0]).toFixed(1);
+  if (grp === "exif" && tag === 0x920A) return rat(v[0]).toFixed(1) + " mm";
+  return v.map(function (x) { return Array.isArray(x) ? (x[1] === 1 ? x[0] : x[0] + "/" + x[1]) : x; }).join(", ");
+}
+function parseTiff(t) {
+  var res = { fields: [], gps: null, orient: 1, other: 0, thumb: false, tags: 0 };
+  if (t.length < 8 || !(t[0] === t[1] && (t[0] === 0x49 || t[0] === 0x4D))) return res; var le = t[0] === 0x49, sub = 0, gpsO = 0, g = {};
+  function ifd(off, grp, names) {
+    if (!off || off + 2 > t.length) return 0; var n = u16(t, off, le), i; if (n > 500) return 0;
+    for (i = 0; i < n; i++) {
+      var e = off + 2 + i * 12; if (e + 12 > t.length) break; var tag = u16(t, e, le), typ = u16(t, e + 2, le), cnt = u32(t, e + 4, le);
+      if (grp === "ifd0" && tag === 0x8769) { sub = u32(t, e + 8, le); res.tags++; continue; } if (grp === "ifd0" && tag === 0x8825) { gpsO = u32(t, e + 8, le); res.tags++; continue; }
+      if (grp === "exif" && tag === 0xA005) { res.tags++; continue; }
+      var v = tval(t, e, typ, cnt, le); res.tags++;
+      if (grp === "gps") { g[tag] = v; continue; }
+      if (grp === "ifd0" && tag === 0x0112 && v) res.orient = v[0];
+      if (names[tag]) { var s = fmtVal(tag, v, grp); if (s !== "") res.fields.push([names[tag], s, RISK[names[tag]] || ""]); } else res.other++;
+    }
+    return u32(t, off + 2 + n * 12, le);
+  }
+  var nx = ifd(u32(t, 4, le), "ifd0", T0); if (sub) ifd(sub, "exif", TE); if (gpsO) ifd(gpsO, "gps", {}); if (nx && nx < t.length) res.thumb = true;
+  function dms(a) { return a && a.length >= 3 && typeof a[0] === "object" ? rat(a[0]) + rat(a[1]) / 60 + rat(a[2]) / 3600 : null; }
+  var la = dms(g[2]), lo = dms(g[4]);
+  if (la !== null && lo !== null) { la = (g[1] === "S" ? -1 : 1) * la; lo = (g[3] === "W" ? -1 : 1) * lo; res.gps = [la, lo]; res.fields.push(["GPS latitude", la.toFixed(5), "Location"]); res.fields.push(["GPS longitude", lo.toFixed(5), "Location"]); if (g[6] && typeof g[6][0] === "object") res.fields.push(["GPS altitude", rat(g[6][0]).toFixed(0) + " m", "Location"]); }
+  else if (Object.keys(g).length) res.fields.push(["GPS data", "present", "Location"]);
+  return res;
+}
+function miniTiff(o) { return new Uint8Array([0x4D, 0x4D, 0, 42, 0, 0, 0, 8, 0, 1, 0x01, 0x12, 0, 3, 0, 0, 0, 1, 0, o, 0, 0, 0, 0, 0, 0]); }
+function kind(u) {
+  if (u[0] === 0xFF && u[1] === 0xD8) return "jpeg"; if (u[0] === 0x89 && u[1] === 0x50 && u[2] === 0x4E && u[3] === 0x47) return "png";
+  if (u[0] === 0x52 && u[1] === 0x49 && u[8] === 0x57 && u[9] === 0x45 && u[10] === 0x42 && u[11] === 0x50) return "webp"; return "";
+}
+function asc(u, a, n) { var s = "", i; for (i = 0; i < n; i++) s += String.fromCharCode(u[a + i]); return s; }
+function keep() { return { icc: $("eIcc").checked, ori: $("eOri").checked }; }
+function procJpeg(u, k) {
+  var p = 2, segs = [], info = { tags: 0, fields: [], gps: null, orient: 1, xmp: false, iptc: false, com: false, thumb: false, other: 0, icc: false, extra: 0 }, sos = -1;
+  while (p < u.length - 3) {
+    if (u[p] !== 0xFF) { p++; continue; } var m = u[p + 1]; if (m === 0xFF) { p++; continue; } if (m === 0xD8 || m === 0x01 || (m >= 0xD0 && m <= 0xD7) || m === 0) { p += 2; continue; } if (m === 0xD9) break;
+    var len = u[p + 2] << 8 | u[p + 3]; if (len < 2 || p + 2 + len > u.length) break; segs.push({ m: m, s: p, e: p + 2 + len }); if (m === 0xDA) { sos = segs.length - 1; break; } p += 2 + len;
+  }
+  if (sos < 0) throw new Error("This JPEG looks damaged, so it was not changed.");
+  var out = [u.subarray(0, 2)], exifT = null, ins = 0, removedBytes = 0;
+  segs.forEach(function (sg, i) {
+    if (i === sos) return; var d = u.subarray(sg.s + 4, sg.e), drop = false, m = sg.m;
+    if (m === 0xE1) { if (asc(d, 0, 6) === "Exif\0\0") { exifT = d.subarray(6); } else if (asc(d, 0, 28).indexOf("http://ns.adobe.com/xap") === 0 || asc(d, 0, 4) === "http") info.xmp = true; else info.extra++; drop = true; }
+    else if (m === 0xE2) { if (asc(d, 0, 12) === "ICC_PROFILE\0") { info.icc = true; drop = !k.icc; } else { drop = true; info.extra++; } }
+    else if (m === 0xED) { info.iptc = true; drop = true; } else if (m === 0xFE) { info.com = true; drop = true; }
+    else if ((m >= 0xE3 && m <= 0xEF && m !== 0xEE) || (m === 0xEE && asc(d, 0, 5) !== "Adobe")) { drop = true; info.extra++; }
+    if (!drop) { out.push(u.subarray(sg.s, sg.e)); if (m === 0xE0 && !ins) ins = out.length; }
+  });
+  if (exifT) { var r = parseTiff(exifT); info.tags = r.tags; info.fields = r.fields; info.gps = r.gps; info.orient = r.orient; info.other = r.other; info.thumb = r.thumb; }
+  if (k.ori && info.orient > 1 && info.orient <= 8) { var tf = miniTiff(info.orient), hdr = new Uint8Array(10); hdr.set([0xFF, 0xE1, 0, 2 + 6 + tf.length, 0x45, 0x78, 0x69, 0x66, 0, 0]); out.splice(ins || 1, 0, u8cat([hdr, tf])); info.kept = "orientation"; }
+  var s = segs[sos], end = u.length, i; for (i = s.e; i < u.length - 1; i++) if (u[i] === 0xFF && u[i + 1] === 0xD9) { end = i + 2; break; }
+  info.trailing = u.length - end; out.push(u.subarray(s.s, end)); info.blob = new Blob(out, { type: "image/jpeg" }); return info;
+}
+function procPng(u, k) {
+  var p = 8, out = [u.subarray(0, 8)], info = { tags: 0, fields: [], gps: null, orient: 1, xmp: false, iptc: false, com: false, thumb: false, other: 0, icc: false, text: 0, extra: 0, time: false }, KEEP = { IHDR: 1, PLTE: 1, IDAT: 1, IEND: 1, tRNS: 1, gAMA: 1, cHRM: 1, sRGB: 1, sBIT: 1, bKGD: 1, hIST: 1, pHYs: 1, acTL: 1, fcTL: 1, fdAT: 1, cICP: 1, mDCV: 1, cLLI: 1 }, exifT = null, ihdr = 0;
+  while (p + 12 <= u.length) {
+    var len = u32(u, p, false), t = asc(u, p + 4, 4), e = p + 12 + len; if (e > u.length) break; var d = u.subarray(p + 8, p + 8 + len);
+    if (t === "eXIf") exifT = d;
+    else if (t === "tEXt" || t === "zTXt" || t === "iTXt") {
+      var z = 0; while (z < d.length && d[z]) z++; var key = asc(d, 0, z), val = "";
+      if (t === "tEXt") val = asc(d, z + 1, d.length - z - 1); else if (t === "zTXt") val = "(compressed text)"; else { var q = z + 3; if (d[z + 1] === 0) { while (q < d.length && d[q]) q++; q++; while (q < d.length && d[q]) q++; q++; try { val = new TextDecoder().decode(d.subarray(q)); } catch (x) { } } else val = "(compressed text)"; }
+      if (/^(XML:com\.adobe\.xmp)$/.test(key)) info.xmp = true; else { info.text++; info.fields.push(["Text: " + key, val.slice(0, 200), /author|artist|owner|name|copyright|location|gps/i.test(key) ? "Name" : ""]); }
+    } else if (t === "tIME") { info.time = true; } else if (t === "iCCP") { info.icc = true; if (k.icc) out.push(u.subarray(p, e)); } else if (KEEP[t]) { out.push(u.subarray(p, e)); if (t === "IHDR") ihdr = out.length; } else if (!(t[0] >= "A" && t[0] <= "Z")) { info.extra++; } else if (t !== "IDAT") { out.push(u.subarray(p, e)); }
+    p = e;
+  }
+  if (exifT) { var r = parseTiff(exifT.length > 6 && asc(exifT, 0, 4) === "Exif" ? exifT.subarray(6) : exifT); info.tags = r.tags; r.fields.forEach(function (f) { info.fields.push(f); }); info.gps = r.gps; info.orient = r.orient; info.other = r.other; info.exif = true; }
+  if (k.ori && info.orient > 1 && info.orient <= 8) { out.splice(ihdr || 1, 0, pngChunk("eXIf", miniTiff(info.orient))); info.kept = "orientation"; }
+  info.blob = new Blob(out, { type: "image/png" }); return info;
+}
+function le32(n) { return new Uint8Array([n & 255, (n >>> 8) & 255, (n >>> 16) & 255, (n >>> 24) & 255]); }
+function procWebp(u, k) {
+  var p = 12, chunks = [], info = { tags: 0, fields: [], gps: null, orient: 1, xmp: false, iptc: false, com: false, thumb: false, other: 0, icc: false, extra: 0 }, exifT = null, vp8x = -1, i;
+  while (p + 8 <= u.length) { var t = asc(u, p, 4), len = u[p + 4] | u[p + 5] << 8 | u[p + 6] << 16 | u[p + 7] << 24, e = Math.min(u.length, p + 8 + len + (len & 1)); chunks.push({ t: t, s: p, e: e, d: u.subarray(p + 8, Math.min(u.length, p + 8 + len)) }); p = e; }
+  var out = [];
+  chunks.forEach(function (c, idx) {
+    if (c.t === "EXIF") { exifT = c.d; return; } if (c.t === "XMP ") { info.xmp = true; return; } if (c.t === "ICCP") { info.icc = true; if (!k.icc) return; }
+    if (c.t === "VP8X") { vp8x = out.length; var cp = new Uint8Array(u.subarray(c.s, c.e)); cp[8] &= ~(0x08 | 0x04); if (!k.icc) cp[8] &= ~0x20; out.push(cp); return; }
+    out.push(u.subarray(c.s, c.e));
+  });
+  if (exifT) { var r = parseTiff(exifT.length > 6 && asc(exifT, 0, 4) === "Exif" ? exifT.subarray(6) : exifT); info.tags = r.tags; info.fields = r.fields; info.gps = r.gps; info.orient = r.orient; info.other = r.other; info.thumb = r.thumb; info.exif = true; }
+  if (k.ori && info.orient > 1 && info.orient <= 8 && vp8x >= 0) { var tf = miniTiff(info.orient), ch = u8cat([u8str("EXIF"), le32(tf.length), tf]); out.push(ch); out[vp8x][8] |= 0x08; info.kept = "orientation"; }
+  var body = u8cat(out), hd = u8cat([u8str("RIFF"), le32(body.length + 4), u8str("WEBP")]); info.blob = new Blob([hd, body], { type: "image/webp" }); return info;
+}
+function analyse(it) {
+  var k = keep(), u = it.u, kd = kind(u), r;
+  it.err = ""; it.info = null; it.res = null;
+  try {
+    if (kd === "jpeg") r = procJpeg(u, k); else if (kd === "png") r = procPng(u, k); else if (kd === "webp") r = procWebp(u, k);
+    else { it.pending = true; return Promise.resolve(); }
+  } catch (e) { it.err = e.message; return Promise.resolve(); }
+  it.kd = kd; it.info = r; it.res = { blob: r.blob, ext: kd === "jpeg" ? "jpg" : kd }; return Promise.resolve();
+}
+function viaCanvas(it) {
+  return loadImg(it.file).then(function (o) { var c = imgToCanvas(o); URL.revokeObjectURL(o.url); return pngLossless(c); }).then(function (b) { it.kd = "png"; it.res = { blob: b, ext: "png", conv: true }; it.info = { tags: 0, fields: [], gps: null, orient: 1, xmp: false, iptc: false, com: false, thumb: false, other: 0, conv: true, extra: 0 }; it.pending = false; }).catch(function (e) { it.err = e.message; it.pending = false; });
+}
+function removedList(it) {
+  var i = it.info, a = []; if (!i) return a; if (i.conv) return ["all metadata (image redrawn as PNG)"];
+  if (i.tags) a.push("EXIF (" + i.tags + " tags)"); if (i.gps) a.push("GPS location"); if (i.thumb) a.push("embedded thumbnail"); if (i.xmp) a.push("XMP"); if (i.iptc) a.push("IPTC / Photoshop data"); if (i.com) a.push("comment"); if (i.text) a.push(i.text + " text note" + (i.text > 1 ? "s" : "")); if (i.time) a.push("timestamp"); if (i.extra) a.push(i.extra + " other block" + (i.extra > 1 ? "s" : "")); if (i.trailing > 0) a.push("trailing data (" + fmtSize(i.trailing) + ")");
+  return a;
+}
+function render() {
+  var box = $("eList"), tot = { n: 0, gps: 0, fields: 0, bytes: 0 };
+  box.innerHTML = ST.items.map(function (it, i) {
+    var mt, r = it.res, inf = it.info;
+    if (it.err) mt = '<span class="au-bad">' + esc(it.err) + "</span>"; else if (!r) mt = "Reading...";
+    else {
+      tot.n++; if (inf.gps) tot.gps++; tot.fields += inf.fields.length; tot.bytes += Math.max(0, it.file.size - r.blob.size); var rm = removedList(it);
+      mt = it.kd.toUpperCase() + " &middot; " + fmtSize(it.file.size) + " &rarr; <b>" + fmtSize(r.blob.size) + "</b>" + (inf.gps ? ' <span class="ck-tag">Has GPS location</span>' : "") + "<br>" + (rm.length ? "Removed: " + esc(rm.join(", ")) : "No metadata was found. The file is already clean.") + (inf.kept ? " Kept: orientation only." : "");
+    }
+    var det = "";
+    if (it.show && inf) det = '<div class="ck-scroll">' + (inf.fields.length ? '<table class="dt-table"><thead><tr><th>Field</th><th>Value</th><th>Risk</th></tr></thead><tbody>' + inf.fields.map(function (f) { return "<tr><td>" + esc(f[0]) + "</td><td>" + esc(f[1]) + "</td><td>" + (f[2] ? '<span class="ck-tag">' + f[2] + "</span>" : "") + "</td></tr>"; }).join("") + "</tbody></table>" + (inf.other ? '<p class="ck-note">Plus ' + inf.other + " more technical tags.</p>" : "") : '<p class="ck-note">No readable camera, date or location fields were found.</p>') + "</div>";
+    return '<div class="im-file"><img alt="" src="' + it.url + '"><div><div class="nm">' + esc(it.file.name) + '</div><div class="mt">' + mt + '</div></div><div class="bt">' + (r ? '<button type="button" class="dt-btn ghost" data-act="det" data-i="' + i + '">' + (it.show ? "Hide" : "View") + ' metadata</button><button type="button" class="dt-btn" data-act="dl" data-i="' + i + '">Download clean</button>' : "") + '<button type="button" class="dt-btn ghost" data-act="rm" data-i="' + i + '" aria-label="Remove">&times;</button></div></div>' + (det ? '<div style="margin:-2px 0 8px">' + det + "</div>" : "");
+  }).join("");
+  $("eSum").innerHTML = tot.n ? '<div class="dt-stats">' + tile("Files cleaned", String(tot.n), "") + tile("With GPS", String(tot.gps), "location found") + tile("Fields found", String(tot.fields), "readable") + tile("Bytes saved", fmtSize(tot.bytes), "") + "</div>" : "";
+  busy(["eZip"], !tot.n);
+  ST.rows = ST.items.filter(function (it) { return it.res; }).map(function (it) { var rm = removedList(it); return [it.file.name, it.kd.toUpperCase(), it.info.gps ? "Yes" : "No", fmtSize(it.file.size), fmtSize(it.res.blob.size), rm.join("; ") || "nothing found"]; });
+}
+function runAll() {
+  var chain = Promise.resolve(); ST.items.forEach(function (it) { chain = chain.then(function () { return analyse(it); }).then(function () { return it.pending ? viaCanvas(it) : null; }); }); chain.then(function () { render(); prog(null); });
+}
+function addFiles(files) {
+  var imgs = files.filter(isImg); if (!imgs.length) { msg("Please choose image files.", "err"); return; } prog(0.2, "Reading images...");
+  Promise.all(imgs.map(function (f) { return readBuf(f).then(function (b) { return { file: f, u: new Uint8Array(b), url: URL.createObjectURL(f), show: false }; }).catch(function () { return null; }); })).then(function (list) {
+    list.forEach(function (x) { if (x) { ST.items.push(x); } }); $("eInfo").textContent = ST.items.length + " image" + (ST.items.length > 1 ? "s" : "") + " loaded."; runAll();
+  });
+}
+function nameOf(it) { return dlNameI(it.file.name, "clean", it.res.ext); }
+function zipAll() {
+  var items = ST.items.filter(function (it) { return it.res; }); if (!items.length) return;
+  if (items.length === 1) { saveBlob(items[0].res.blob, nameOf(items[0])); msg("Downloaded."); return; }
+  dlBlobs(items.map(function (it) { return { name: nameOf(it), blob: it.res.blob }; }), "clean-images.zip").then(function () { msg("ZIP downloaded with " + items.length + " cleaned images."); });
+}
+function setDef() { $("eIcc").checked = true; $("eOri").checked = true; }
+function fillReport() {
+  var b = repBox(); repHead(b, "EXIF data remover: summary", "Free EXIF data remover"); repTbl(b, ["File", "Type", "GPS found", "Before", "After", "Removed"], ST.rows);
+  repDisc(b, "Metadata was removed without re-encoding JPEG, PNG and WebP files, so the picture itself is unchanged. This report lists file names only. Check the cleaned files before sharing them.");
+}
+function init() {
+  initCommon(); window.fillReport = fillReport; setDef(); busy(["eZip"], true); bindDrop("eDrop", "eFile", addFiles);
+  ["eIcc", "eOri"].forEach(function (id) { $(id).addEventListener("change", function () { runAll(); }); });
+  $("eList").addEventListener("click", function (e) { var b = e.target.closest("button"); if (!b) return; var i = +b.getAttribute("data-i"), it = ST.items[i], a = b.getAttribute("data-act"); if (!it) return; if (a === "dl" && it.res) saveBlob(it.res.blob, nameOf(it)); else if (a === "det") { it.show = !it.show; render(); } else if (a === "rm") { URL.revokeObjectURL(it.url); ST.items.splice(i, 1); $("eInfo").textContent = ST.items.length ? ST.items.length + " image(s) loaded." : ""; render(); } });
+  $("eZip").addEventListener("click", zipAll); $("resetBtn").addEventListener("click", function () { setDef(); runAll(); msg("Options reset."); });
+  $("ePrint").addEventListener("click", function () { if (!ST.rows.length) { msg("Add an image first.", "err"); return; } fillReport(); window.print(); }); $("eCopy").addEventListener("click", function () { copyText(ST.rows.map(function (r) { return r.join(" | "); }).join("\n"), $("eCopy")); });
+}
+init();
+
+})();
+</script>
+</body>
+</html>
