@@ -85,6 +85,27 @@ button.rm{background:transparent;color:var(--muted);border:1px solid var(--line)
 .card b{display:block}
 .card span{color:var(--muted);font-size:.9rem}
 
+/* ---------- CATEGORY TOOL LIST ----------
+   One layout for every category index page: a plain two-column list of
+   "tool name + short description" rows. Applies to the tool grid that sits directly
+   inside <main> on any page except the home page (which has the #q search box).
+   Related-tool blocks on tool pages and the home page keep the card look.
+   To force it elsewhere, add class "tool-list" to a .grid. */
+main.wrap:not(:has(#q)) > .grid,
+.grid.tool-list{grid-template-columns:repeat(auto-fill,minmax(min(340px,100%),1fr));gap:0 32px;border-top:1px solid var(--line);margin-top:10px}
+main.wrap:not(:has(#q)) > .grid > .card,
+.grid.tool-list > .card{padding:12px 8px;min-height:44px;border:0;border-bottom:1px solid var(--line);border-radius:0;background:none}
+main.wrap:not(:has(#q)) > .grid > .card:hover,
+.grid.tool-list > .card:hover{background:var(--card)}
+main.wrap:not(:has(#q)) > .grid > .card:hover b,
+.grid.tool-list > .card:hover b{color:var(--brand);text-decoration:underline}
+main.wrap:not(:has(#q)) > .grid > .card:focus-visible,
+.grid.tool-list > .card:focus-visible{outline:3px solid var(--brand);outline-offset:-3px}
+main.wrap:not(:has(#q)) > .grid > .card b,
+.grid.tool-list > .card b{font-size:1rem;font-weight:600}
+main.wrap:not(:has(#q)) > .grid > .card span,
+.grid.tool-list > .card span{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;line-clamp:2;overflow:hidden;font-size:.88rem;line-height:1.45}
+
 /* ---------- TOC ---------- */
 .toc{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:12px 18px}
 .toc ul{margin:6px 0;padding-left:18px}
