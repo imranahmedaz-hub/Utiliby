@@ -1,0 +1,584 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Planetary Hours Calculator Online (Day and Night)</title>
+<meta name="description" content="Free online planetary hours calculator. Get the day ruler, sunrise, sunset and all 24 Chaldean planetary hours for any date and place, day and night. Print or save.">
+<link rel="canonical" href="https://utiliby.com/tools/astrology/planetary-hours-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Planetary Hours Calculator Online (Day and Night)">
+<meta property="og:description" content="Free online planetary hours calculator. Day ruler, sunrise, sunset and all 24 Chaldean hours for any place. Print or download. No sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/astrology/planetary-hours-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Planetary Hours Calculator Online (Day and Night)">
+<meta name="twitter:description" content="Free online planetary hours calculator. Day ruler, sunrise, sunset and all 24 Chaldean hours for any place. Print or download. No sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.as-row{display:grid;grid-template-columns:104px minmax(0,1fr) 64px 64px;gap:8px;align-items:center;margin:6px 0}.as-row select,.as-row input{margin:0;min-width:0}.as-n{font-weight:600;font-size:.9rem}
+.as-hd{display:grid;grid-template-columns:104px minmax(0,1fr) 64px 64px;gap:8px;font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em}
+@media(max-width:480px){.as-row,.as-hd{grid-template-columns:78px minmax(0,1fr) 54px 54px;gap:5px}.as-n{font-size:.8rem}}
+.as-t{width:100%;border-collapse:collapse;font-size:.85rem}.as-t th,.as-t td{border:1px solid var(--line);padding:5px 7px;text-align:left;vertical-align:top}.as-t th{background:rgba(127,127,127,.12);font-size:.75rem}
+.as-t td.on{outline:3px solid #0369a1;outline-offset:-3px;font-weight:700}
+.as-w{display:flex;flex-wrap:wrap;gap:14px;align-items:flex-start}.as-w>div{flex:1 1 280px;min-width:0}
+.as-w>.as-full{flex-basis:100%}.as-fig svg{max-width:100%;height:auto}
+#tool .as-t th,#tool .as-t td{text-transform:none;letter-spacing:0}
+.as-pl{display:inline-block;padding:1px 8px;border-radius:999px;color:#fff;font-size:.75rem;font-weight:700}
+.ck-note{font-size:.8rem;color:var(--muted)}
+.cn-article code{white-space:normal;overflow-wrap:anywhere}
+.ck-scroll{overflow-x:auto}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool textarea{width:100%;min-height:90px;font-family:inherit}
+#tool input[type=range]{padding:0}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500}
+.im-bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:8px 0}.im-bar button{padding:7px 14px}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:440px;max-width:100%;tab-size:2}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0 0}.seo-tabs button{padding:5px 12px;font-size:.8rem}
+.seo-list{margin:8px 0}.seo-row{display:grid;gap:8px;align-items:end;margin:6px 0;padding:8px;border:1px solid var(--line);border-radius:10px;background:var(--bg)}
+.seo-row .rm{padding:5px 11px}
+.seo-chips{display:flex;flex-wrap:wrap;gap:6px;margin:8px 0}.seo-chips button{padding:5px 12px;font-size:.8rem}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.seo-meter{height:8px;border-radius:999px;background:var(--line);overflow:hidden;margin:4px 0 2px}.seo-meter i{display:block;height:100%;background:#16a34a;transition:width .15s}
+.seo-meter.warn i{background:#d97706}.seo-meter.bad i{background:#dc2626}
+.prow{display:flex;gap:10px;align-items:flex-start;justify-content:space-between;padding:8px 10px;margin:6px 0;border-radius:8px;background:rgba(127,127,127,.12)}.prow .ptxt{flex:1;min-width:0;white-space:pre-wrap;overflow-wrap:anywhere;word-break:break-word}.prow .meta{display:block;font-size:.75rem;color:var(--muted);margin-top:2px}.prow button{flex:none;padding:5px 12px;font-size:.8rem}
+.seo-issues{margin:8px 0;padding:0;list-style:none}.seo-issues li{margin:4px 0;font-size:.88rem}
+#hRing svg{max-width:440px;display:block;margin:0 auto}.as-t td.n,.as-t th.n{text-align:right}.as-t tr.now td{background:rgba(3,105,161,.16);font-weight:700}.as-t tr.nt td:nth-child(2){opacity:.85}</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Planetary Hours Calculator","url":"https://utiliby.com/tools/astrology/planetary-hours-calculator/","description":"Free online planetary hours calculator and Chaldean planetary hour tracker. Choose a date and place to get the day ruler, sunrise and sunset, the 12 day hours and 12 night hours with their planets, a planetary clock, the current hour, CSV download and print. Runs in the browser and never uploads your location.","applicationCategory":"LifestyleApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Day and night planetary hours","Chaldean order","Sunrise and sunset from latitude and longitude","Current hour highlight","Planetary clock","CSV download and print","Location stays on device","Private, no sign-up"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What are planetary hours?","acceptedAnswer":{"@type":"Answer","text":"Planetary hours are a traditional system that divides the time from sunrise to sunset into 12 equal parts, and the time from sunset to the next sunrise into 12 more. Each hour is ruled by one of the seven classical planets in a fixed order."}},{"@type":"Question","name":"How do I use this free online planetary hours calculator?","acceptedAnswer":{"@type":"Answer","text":"Pick a date and a place, or enter your latitude, longitude and UTC offset. The tool shows the day ruler, sunrise, sunset, the length of day and night hours and a table of all 24 hours with their planets. The current hour is highlighted."}},{"@type":"Question","name":"What is the Chaldean order of the planets?","acceptedAnswer":{"@type":"Answer","text":"Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, then it repeats. It runs from the slowest planet to the fastest as seen from Earth."}},{"@type":"Question","name":"Which planet rules the first hour of each day?","acceptedAnswer":{"@type":"Answer","text":"The ruler of the day: the Sun on Sunday, the Moon on Monday, Mars on Tuesday, Mercury on Wednesday, Jupiter on Thursday, Venus on Friday and Saturn on Saturday. The day names reflect this."}},{"@type":"Question","name":"Why are planetary hours not 60 minutes long?","acceptedAnswer":{"@type":"Answer","text":"Because they are one twelfth of the actual daylight or night. In summer the day hours are longer than 60 minutes and the night hours shorter, and the reverse in winter. Only at the equinoxes are they close to an hour each."}},{"@type":"Question","name":"How do I find the night planetary hours?","acceptedAnswer":{"@type":"Answer","text":"The night hours start at sunset and end at the next sunrise. The calculator uses the following sunrise to split the night into 12 equal hours, and continues the planetary order from the 12th day hour."}},{"@type":"Question","name":"How are sunrise and sunset calculated?","acceptedAnswer":{"@type":"Answer","text":"With a standard low-precision solar position formula, using the date, your latitude and longitude, and a solar altitude of 0.833 degrees below the horizon to allow for the Sun's radius and atmospheric refraction. It is usually within a minute or two of published tables."}},{"@type":"Question","name":"Why does the tool need my UTC offset?","acceptedAnswer":{"@type":"Answer","text":"So that the times are shown in your clock time. Choosing a city fills in the offset for that date. Enter it yourself for a place that is not listed."}},{"@type":"Question","name":"Does it handle daylight saving time?","acceptedAnswer":{"@type":"Answer","text":"It uses the offset you give for the chosen date. A clock change inside the same day is not applied, which is rare."}},{"@type":"Question","name":"What if the sun does not rise or set?","acceptedAnswer":{"@type":"Answer","text":"Near the polar circles there are days with no sunrise or sunset, so planetary hours cannot be worked out in the usual way and the tool says so."}},{"@type":"Question","name":"Can I see the planetary hour right now?","acceptedAnswer":{"@type":"Answer","text":"Yes. Leave the time box empty and the current hour is highlighted and refreshed every half minute. Type a time to check another moment."}},{"@type":"Question","name":"What is the planetary hour of the night before sunrise?","acceptedAnswer":{"@type":"Answer","text":"Before sunrise, the moment still belongs to the night of the previous day, so the ruling day is the previous day. The tool handles this for you."}},{"@type":"Question","name":"What are the planets said to be good for?","acceptedAnswer":{"@type":"Answer","text":"Traditional lists link the Sun with leadership and recognition, the Moon with home and family, Mercury with study and communication, Venus with relationships and art, Mars with courage and effort, Jupiter with learning and growth, and Saturn with discipline and endings. These are traditions, not facts."}},{"@type":"Question","name":"Can I download or print the hours?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download gives a CSV of the 24 hours. Print or save outputs only the summary, clock and table for your place and date."}},{"@type":"Question","name":"Is my location stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. If you use the location button your browser asks permission and the coordinates stay in this page and in local storage on your device. Nothing is sent to a server."}},{"@type":"Question","name":"Is it accurate enough for ritual timing?","acceptedAnswer":{"@type":"Answer","text":"It is intended for study and planning. For timekeeping that matters, check against a local almanac or an official sunrise and sunset table."}},{"@type":"Question","name":"Is the tool free?","acceptedAnswer":{"@type":"Answer","text":"Yes, it is a free online calculator with no sign-up."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Astrology","item":"https://utiliby.com/tools/astrology/"},{"@type":"ListItem","position":3,"name":"Planetary Hours Calculator","item":"https://utiliby.com/tools/astrology/planetary-hours-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/astrology/">Astrology</a> › Planetary Hours Calculator</nav>
+<h1 class="noembed">Free Planetary Hours Calculator</h1>
+<p class="lead noembed">Free online planetary hours calculator. See the day ruler, sunrise, sunset and all 24 Chaldean planetary hours for any date and place, with a clock, CSV and print.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/astrology/planetary-hours-calculator/" target="_blank" rel="noopener">Planetary Hours Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Planetary hours calculator">
+<div class="dt-hero noembed">
+<h2>Free Online Planetary Hours Calculator</h2>
+<p>Find the planetary hour for any date and place: the day ruler, sunrise and sunset, and all 12 day hours and 12 night hours with the Chaldean order.</p>
+</div>
+<div class="dt-panel"><h3>Date and place</h3><div class="dt-row4"><div><label for="hDate">Date</label><input type="date" id="hDate"></div><div><label for="hCity">Place</label><select id="hCity"><option value="-1">Custom (type below)</option><option value="0">Tashkent</option><option value="1">London</option><option value="2">New York</option><option value="3">Los Angeles</option><option value="4">Chicago</option><option value="5">Toronto</option><option value="6">Mexico City</option><option value="7">Sao Paulo</option><option value="8">Buenos Aires</option><option value="9">Paris</option><option value="10">Berlin</option><option value="11">Madrid</option><option value="12">Rome</option><option value="13">Istanbul</option><option value="14">Moscow</option><option value="15">Cairo</option><option value="16">Lagos</option><option value="17">Nairobi</option><option value="18">Johannesburg</option><option value="19">Dubai</option><option value="20">Tehran</option><option value="21">Karachi</option><option value="22">Delhi</option><option value="23">Dhaka</option><option value="24">Bangkok</option><option value="25">Jakarta</option><option value="26">Singapore</option><option value="27">Hong Kong</option><option value="28">Shanghai</option><option value="29">Seoul</option><option value="30">Tokyo</option><option value="31">Manila</option><option value="32">Sydney</option><option value="33">Auckland</option><option value="34">Honolulu</option><option value="35">Reykjavik</option></select></div><div><label for="hTime">Time to highlight (blank = now)</label><input type="time" id="hTime"></div><div><label>&nbsp;</label><button type="button" class="dt-btn ghost" id="hGeo">Use my location</button></div></div><div class="dt-row3"><div><label for="hLat">Latitude (north +)</label><input type="number" id="hLat" min="-90" max="90" step="0.0001"></div><div><label for="hLon">Longitude (east +)</label><input type="number" id="hLon" min="-180" max="180" step="0.0001"></div><div><label for="hOff">UTC offset (hours)</label><input type="number" id="hOff" min="-12" max="14" step="0.25"></div></div><p class="ck-note" id="hNote" aria-live="polite"></p><p class="ck-note">Choosing a place fills in its latitude, longitude and the UTC offset on that date. For a place not listed, type your own values or use your location. Your location is used only in this page and is never sent anywhere.</p></div><div class="dt-panel"><h3>Planetary hours</h3><div id="hTiles" class="dt-stats"></div><div class="as-w"><div class="as-fig"><b>Planetary clock for the day</b><div id="hRing"></div></div><div class="as-fig as-full"><b>The 24 hours</b><div class="ck-scroll"><table class="as-t" id="hTable"></table></div></div></div><div class="im-bar"><button type="button" class="dt-btn ghost" id="hJson">Save place (JSON)</button><label class="dt-btn ghost" for="hImport" style="margin:0;cursor:pointer">Open place</label><input type="file" id="hImport" accept=".json,application/json" style="position:absolute;left:-9999px" aria-label="Open saved place file"></div><p class="ck-note">Your last place is remembered in this browser only.</p></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="hCopy">Copy hours</button>
+<button type="button" class="dt-btn ghost" id="hDl">Download hours (CSV)</button>
+<button type="button" class="dt-btn ghost" id="hPrint">Print / save hours</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online planetary hours calculator is for education and entertainment. It works out sunrise and sunset from the date, latitude and longitude with a standard low-precision solar formula, which is normally accurate to a minute or two but not suitable for navigation or religious timekeeping. Planetary hours are a traditional astrological and magical convention, and the associations shown are traditional, not scientific. Daylight saving changes during the day are not applied, and near the polar circles sunrise or sunset may not exist. Your location, if you choose to share it, stays in your browser. Astrology is not a substitute for medical, legal, financial or psychological advice.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/astrology/planetary-hours-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Planetary Hours Calculator. https://utiliby.com/tools/astrology/planetary-hours-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/astrology/planetary-hours-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Planetary Hours Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/astrology/planetary-hours-calculator/"&gt;Planetary Hours Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online planetary hours calculator does</a></li><li><a href="#how">How to use the calculator</a></li><li><a href="#order">The order of the planets and the day rulers</a></li><li><a href="#unequal">Why the hours are unequal</a></li><li><a href="#table">Traditional associations</a></li><li><a href="#use">How people use planetary hours</a></li><li><a href="#example">Worked example</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#privacy">Privacy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online planetary hours calculator does</h2>
+<p>Planetary hours are one of the oldest ways of connecting time with the seven classical planets. The idea is simple: each day belongs to a planet, each hour belongs to a planet, and the two follow a fixed pattern. This <b>free online planetary hours calculator</b> turns the pattern into a table for any date and place. It finds sunrise and sunset, divides the day and the night into twelve hours each, names the ruling planet of every hour and highlights the hour you are in.</p><p>It also works as a <b>Chaldean planetary hour tracker</b> and shows <b>planetary hours for the night</b> as clearly as the daytime ones. Everything runs in your browser, and your location is never uploaded.</p><figure class="dt-fig"><svg viewBox="0 0 640 230" width="100%" role="img" aria-label="Planetary hours divide daylight and night into 12 unequal hours each"><title>Planetary hours</title><rect x="20" y="16" width="270" height="200" rx="16" fill="none" stroke="currentColor" opacity=".4" stroke-width="2"/><text x="38" y="46" font-size="11" opacity=".6" fill="currentColor">Sunday</text><text x="38" y="84" font-size="12.5" font-weight="700" fill="currentColor">Sunday: Sun rules hour 1</text><text x="38" y="106" font-size="12.5" fill="currentColor">Hour 2: Venus</text><text x="38" y="128" font-size="12.5" fill="currentColor">Hour 3: Mercury</text><text x="38" y="150" font-size="12.5" fill="currentColor">Hour 4: Moon</text><text x="38" y="172" font-size="12.5" fill="currentColor">Hour 5: Saturn</text><g font-size="13" fill="#fff"><rect class="dt-bar" x="330" y="22" width="290" height="38" rx="9" fill="#0369a1" style="animation-delay:0.05s"/><text x="344" y="46">1. Sun (day ruler)</text><rect class="dt-bar" x="330" y="76" width="290" height="38" rx="9" fill="#16a34a" style="animation-delay:0.25s"/><text x="344" y="100">2. Venus</text><rect class="dt-bar" x="330" y="130" width="290" height="38" rx="9" fill="#d97706" style="animation-delay:0.45s"/><text x="344" y="154">3. Mercury</text><rect class="dt-bar" x="330" y="184" width="290" height="38" rx="9" fill="#9333ea" style="animation-delay:0.65s"/><text x="344" y="208">4. Moon</text></g></svg><figcaption>The first hour after sunrise belongs to the planet of the day. The next hours follow the Chaldean order: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon.</figcaption></figure>
+<h2 id="how">How to use the calculator</h2>
+<ol><li>Choose a date, or leave today's date.</li><li>Pick a city from the list. Its latitude, longitude and UTC offset are filled in for that date. For another place, choose Custom and type the values, or press Use my location.</li><li>Read the tiles: day ruler, sunrise, sunset, the length of a day hour and a night hour, and the hour now in effect.</li><li>Look at the clock. Sunrise is at the left, the 12 day hours run over the top to sunset, and the 12 night hours run back underneath in slightly lighter colours. Each hour is coloured by its planet, and a line marks the selected time.</li><li>Use the table for exact start and end times.</li><li>Copy, download or print the hours.</li></ol>
+<h2 id="order">The order of the planets and the day rulers</h2>
+<p>Planetary hours rely on two sequences. The <b>Chaldean order</b> lists the planets by how slowly they move through the sky: Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon. The <b>day rulers</b> are the planets that rule the first hour of each weekday: Sun for Sunday, Moon for Monday, Mars for Tuesday, Mercury for Wednesday, Jupiter for Thursday, Venus for Friday and Saturn for Saturday.</p><p>To find the planet of any hour, start with the day ruler for hour 1 and step through the Chaldean order, one planet per hour, wrapping round after the Moon. On Sunday the first hours are Sun, Venus, Mercury, Moon, Saturn, Jupiter, Mars, then Sun again. By the end of the 24th hour you have moved 23 places, which lands you exactly one planet before the ruler of the next day, so the rhythm continues without a break.</p>
+<h2 id="unequal">Why the hours are unequal</h2>
+<p>Planetary hours are <i>temporal</i> or seasonal hours. A day hour is one twelfth of the time between sunrise and sunset, and a night hour one twelfth of the time between sunset and the next sunrise. In midsummer at a high latitude a day hour may be 80 minutes and a night hour 40. At the equinoxes they are close to 60 minutes. Near the equator the difference is small all year.</p><p>Sunrise here is the moment the top edge of the Sun appears at the horizon, using the usual correction for refraction. Real sunrise also depends on altitude and the local skyline, so a few minutes' difference from your window is normal.</p>
+<h2 id="table">Traditional associations</h2>
+<div class="dt-wrap"><table><tr><th>Planet</th><th>Day</th><th>Traditionally linked with</th></tr><tr><td>Sun</td><td>Sunday</td><td>Vitality, leadership, recognition</td></tr><tr><td>Moon</td><td>Monday</td><td>Home, family, the public, rest</td></tr><tr><td>Mars</td><td>Tuesday</td><td>Courage, effort, competition</td></tr><tr><td>Mercury</td><td>Wednesday</td><td>Study, communication, trade</td></tr><tr><td>Jupiter</td><td>Thursday</td><td>Learning, growth, generosity</td></tr><tr><td>Venus</td><td>Friday</td><td>Relationships, art, pleasure</td></tr><tr><td>Saturn</td><td>Saturday</td><td>Discipline, structure, endings</td></tr></table></div><p>Treat these as part of a cultural tradition. They are used for planning and reflection by people who follow astrology or ceremonial practice, and they do not predict how any hour will go.</p>
+<h2 id="use">How people use planetary hours</h2>
+<p>In the Hellenistic and medieval traditions, the planetary hour was used mainly in electional astrology, where a start time is chosen for a task so that the ruling planet suits it. Later ceremonial and magical writers adopted the system for the timing of rituals, and some modern readers use it simply as a daily rhythm: a Mercury hour for writing and study, a Venus hour for a social call, a Saturn hour for tidying and planning. None of this needs belief in astrology to be useful as a habit, since choosing a time for each type of task is an old and sensible way to organise a day. The calculator gives you the times so that you can decide how, or whether, to use them.</p>
+<h2 id="example">Worked example</h2>
+<p>Suppose sunrise is at 06:30 and sunset at 18:30 on a Sunday. The day is 12 hours long, so each day hour is exactly 60 minutes. Hour 1 runs 06:30 to 07:30 and belongs to the Sun, hour 2 to Venus, hour 3 to Mercury and hour 4 to the Moon. The night starts at 18:30 with hour 13. Counting on from the Sun, hour 13 is Jupiter (hour 8 is the Sun again, then Venus, Mercury, Moon, Saturn, Jupiter).</p>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li><b>Using clock hours.</b> Planetary hours do not start on the hour.</li><li><b>Using midnight as the start of the day.</b> The planetary day starts at sunrise, so before sunrise the day ruler is still the previous day's.</li><li><b>Using the wrong offset.</b> Check the UTC offset when you enter a place by hand, especially in daylight saving seasons.</li><li><b>Expecting precision beyond the method.</b> A minute or two either way is normal.</li></ul>
+<h2 id="privacy">Privacy, limits and responsible use</h2>
+<p>The calculator runs in your browser. If you press Use my location, your browser asks permission and the coordinates stay on your device. Your last place is saved in local storage so the page reopens where you left it, and it is never sent to a server. Sunrise and sunset come from a standard approximate formula. The tool is meant for study and entertainment and is not a substitute for official timekeeping. Astrology is an interpretive tradition, not a validated predictive science, and nothing here replaces advice from a doctor, lawyer, financial adviser or mental-health professional.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What are planetary hours?</summary><p>Planetary hours are a traditional system that divides the time from sunrise to sunset into 12 equal parts, and the time from sunset to the next sunrise into 12 more. Each hour is ruled by one of the seven classical planets in a fixed order.</p></details><details><summary>How do I use this free online planetary hours calculator?</summary><p>Pick a date and a place, or enter your latitude, longitude and UTC offset. The tool shows the day ruler, sunrise, sunset, the length of day and night hours and a table of all 24 hours with their planets. The current hour is highlighted.</p></details><details><summary>What is the Chaldean order of the planets?</summary><p>Saturn, Jupiter, Mars, Sun, Venus, Mercury, Moon, then it repeats. It runs from the slowest planet to the fastest as seen from Earth.</p></details><details><summary>Which planet rules the first hour of each day?</summary><p>The ruler of the day: the Sun on Sunday, the Moon on Monday, Mars on Tuesday, Mercury on Wednesday, Jupiter on Thursday, Venus on Friday and Saturn on Saturday. The day names reflect this.</p></details><details><summary>Why are planetary hours not 60 minutes long?</summary><p>Because they are one twelfth of the actual daylight or night. In summer the day hours are longer than 60 minutes and the night hours shorter, and the reverse in winter. Only at the equinoxes are they close to an hour each.</p></details><details><summary>How do I find the night planetary hours?</summary><p>The night hours start at sunset and end at the next sunrise. The calculator uses the following sunrise to split the night into 12 equal hours, and continues the planetary order from the 12th day hour.</p></details><details><summary>How are sunrise and sunset calculated?</summary><p>With a standard low-precision solar position formula, using the date, your latitude and longitude, and a solar altitude of 0.833 degrees below the horizon to allow for the Sun's radius and atmospheric refraction. It is usually within a minute or two of published tables.</p></details><details><summary>Why does the tool need my UTC offset?</summary><p>So that the times are shown in your clock time. Choosing a city fills in the offset for that date. Enter it yourself for a place that is not listed.</p></details><details><summary>Does it handle daylight saving time?</summary><p>It uses the offset you give for the chosen date. A clock change inside the same day is not applied, which is rare.</p></details><details><summary>What if the sun does not rise or set?</summary><p>Near the polar circles there are days with no sunrise or sunset, so planetary hours cannot be worked out in the usual way and the tool says so.</p></details><details><summary>Can I see the planetary hour right now?</summary><p>Yes. Leave the time box empty and the current hour is highlighted and refreshed every half minute. Type a time to check another moment.</p></details><details><summary>What is the planetary hour of the night before sunrise?</summary><p>Before sunrise, the moment still belongs to the night of the previous day, so the ruling day is the previous day. The tool handles this for you.</p></details><details><summary>What are the planets said to be good for?</summary><p>Traditional lists link the Sun with leadership and recognition, the Moon with home and family, Mercury with study and communication, Venus with relationships and art, Mars with courage and effort, Jupiter with learning and growth, and Saturn with discipline and endings. These are traditions, not facts.</p></details><details><summary>Can I download or print the hours?</summary><p>Yes. Download gives a CSV of the 24 hours. Print or save outputs only the summary, clock and table for your place and date.</p></details><details><summary>Is my location stored or sent anywhere?</summary><p>No. If you use the location button your browser asks permission and the coordinates stay in this page and in local storage on your device. Nothing is sent to a server.</p></details><details><summary>Is it accurate enough for ritual timing?</summary><p>It is intended for study and planning. For timekeeping that matters, check against a local almanac or an official sunrise and sunset table.</p></details><details><summary>Is the tool free?</summary><p>Yes, it is a free online calculator with no sign-up.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>NOAA Global Monitoring Laboratory, Solar Calculation Details and the Sunrise and Sunset Calculator (gml.noaa.gov), for the solar position and sunrise equations.</li><li>Jean Meeus, Astronomical Algorithms, 2nd edition (Willmann-Bell, 1998), chapters on the Sun and the equation of time.</li><li>Vettius Valens, Anthology, translated by Mark Riley (2010), on the planetary hours and the ruler of the day.</li><li>Ptolemy, Tetrabiblos, translated by F. E. Robbins (Loeb Classical Library, 1940), on the order of the planets.</li><li>Dorotheus of Sidon, Carmen Astrologicum, translated by Benjamin Dykes (Cazimi Press, 2017), on the hours of the planets.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online planetary hours calculator is for education and entertainment. It works out sunrise and sunset from the date, latitude and longitude with a standard low-precision solar formula, which is normally accurate to a minute or two but not suitable for navigation or religious timekeeping. Planetary hours are a traditional astrological and magical convention, and the associations shown are traditional, not scientific. Daylight saving changes during the day are not applied, and near the polar circles sunrise or sunset may not exist. Your location, if you choose to share it, stays in your browser. Astrology is not a substitute for medical, legal, financial or psychological advice.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+
+/* ---------- cooking helpers ---------- */
+function curSym() { var e = $("ckCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; var s = Math.abs(v).toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; return (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function n1(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 1 : d; var s = (Math.round(v * Math.pow(10, d)) / Math.pow(10, d)).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/\.?0+$/, "") : s; }
+var VULG = { "½": 0.5, "⅓": 1 / 3, "⅔": 2 / 3, "¼": 0.25, "¾": 0.75, "⅛": 0.125, "⅜": 0.375, "⅝": 0.625, "⅞": 0.875 };
+function parseQty(s) {
+  s = String(s == null ? "" : s).trim().toLowerCase(); if (!s) return NaN;
+  s = s.replace(/[½⅓⅔¼¾⅛⅜⅝⅞]/g, function (c) { return " " + VULG[c] + " "; }).replace(/–|—/g, "-");
+  s = s.split(/\s*-\s*|\s+to\s+/)[0].trim(); var parts = s.split(/\s+/), t = 0, ok = false;
+  for (var i = 0; i < parts.length; i++) { var p = parts[i], m; if ((m = p.match(/^(\d+)\/(\d+)$/))) { if (+m[2] === 0) return NaN; t += +m[1] / +m[2]; ok = true; } else if (/^\d*\.?\d+$/.test(p) || /^\d+\.$/.test(p)) { t += parseFloat(p); ok = true; } else if (/^\d+,\d+$/.test(p) && i === 0 && parts.length === 1) { t += parseFloat(p.replace(",", ".")); ok = true; } else return NaN; }
+  return ok ? t : NaN;
+}
+function fracStr(x, maxDen) {
+  if (!isFinite(x)) return "n/a"; if (x <= 0) return "0"; maxDen = maxDen || 8;
+  var w = Math.floor(x), f = x - w, best = 0, bd = 1, bn = 0, err = 9, d, nn;
+  for (d = 1; d <= maxDen; d++) { if (d !== 1 && d !== 2 && d !== 3 && d !== 4 && d !== 8 && d !== 16) continue; nn = Math.round(f * d); var e2 = Math.abs(f - nn / d) - d * 1e-4; if (e2 < err - 1e-9) { err = e2; bn = nn; bd = d; } }
+  if (bn === bd) { w += 1; bn = 0; }
+  var g = function (a, b) { return b ? g(b, a % b) : a; }, gg = bn ? g(bn, bd) : 1; bn /= gg; bd /= gg;
+  if (w === 0 && bn === 0) return x < 0.0625 ? "a pinch" : "1/16";
+  return (w ? w + (bn ? " " : "") : "") + (bn ? bn + "/" + bd : "");
+}
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); return true; } catch (e) { return false; } }
+function lsDel(k) { try { window.localStorage.removeItem(k); } catch (e) { } }
+function donut(parts, top, bot) {
+  var tot = 0; parts.forEach(function (p) { tot += Math.max(0, p.v); }); if (tot <= 0) return '<p class="dt-hint">Nothing to chart yet.</p>';
+  var R = 70, C = 2 * Math.PI * R, off = 0, s = '<svg viewBox="0 0 460 190" width="100%" style="max-width:460px" role="img" aria-label="Share chart"><title>Share chart</title><g transform="translate(100,95) rotate(-90)"><circle r="' + R + '" fill="none" stroke="currentColor" stroke-opacity=".1" stroke-width="26"/>';
+  parts.forEach(function (p) { if (p.v <= 0) return; var len = p.v / tot * C; s += '<circle class="dt-pop" r="' + R + '" fill="none" stroke="' + p.c + '" stroke-width="26" stroke-dasharray="' + len.toFixed(2) + " " + (C - len).toFixed(2) + '" stroke-dashoffset="' + (-off).toFixed(2) + '"/>'; off += len; });
+  s += '</g><text x="100" y="92" text-anchor="middle" font-size="22" font-weight="800" fill="currentColor">' + esc(top) + '</text><text x="100" y="110" text-anchor="middle" font-size="11" fill="currentColor" opacity=".7">' + esc(bot) + "</text>";
+  var y = 40; parts.forEach(function (p) { s += '<rect x="215" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + p.c + '"/><text x="236" y="' + y + '" font-size="12.5" fill="currentColor">' + esc(p.l) + '</text><text x="450" y="' + y + '" text-anchor="end" font-size="12.5" font-weight="700" fill="currentColor">' + esc(p.t || pc(p.v / tot * 100, 0)) + "</text>"; y += 26; });
+  return s + "</svg>";
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- social shared helpers ---------- */
+function rint(n) { n = Math.max(1, n | 0); var a = new Uint32Array(1), lim = Math.floor(4294967296 / n) * n; do { crypto.getRandomValues(a); } while (a[0] >= lim); return a[0] % n; }
+function rpick(arr) { return arr[rint(arr.length)]; }
+function rshuf(arr) { var a = arr.slice(), i, j, t; for (i = a.length - 1; i > 0; i--) { j = rint(i + 1); t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
+function gsplit(s) {
+  s = String(s == null ? "" : s);
+  if (window.Intl && Intl.Segmenter) { var out = [], it = new Intl.Segmenter(undefined, { granularity: "grapheme" }).segment(s)[Symbol.iterator](), x; while (!(x = it.next()).done) out.push(x.value.segment); return out; }
+  return Array.from(s);
+}
+function gcount(s) { return gsplit(s).length; }
+function nfmt(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString(undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function cap1(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function slugify(s) { return String(s).toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
+/* copy rows: items is an array of strings, rendered as .prow lines with a Copy button each */
+function rowsHtml(items, metas) {
+  return items.map(function (t, i) { return '<div class="prow"><span class="ptxt">' + esc(t) + (metas && metas[i] ? '<span class="meta">' + metas[i] + "</span>" : "") + '</span><button type="button" class="dt-btn ghost" data-ci="' + i + '">Copy</button></div>'; }).join("");
+}
+function bindRows(id, getItems) {
+  $(id).addEventListener("click", function (e) { var b = e.target.closest("button[data-ci]"); if (!b) return; var it = getItems(); copyText(it[+b.getAttribute("data-ci")], b); });
+}
+function tabBar(id) { return $(id); }
+function showIf(id, on) { var e = $(id); if (e) e.hidden = !on; }
+function crc32(bytes) { var t = crc32.t; if (!t) { t = crc32.t = new Uint32Array(256); for (var n = 0; n < 256; n++) { var c = n; for (var k = 0; k < 8; k++) c = c & 1 ? 0xEDB88320 ^ (c >>> 1) : c >>> 1; t[n] = c >>> 0; } } var c2 = 0xFFFFFFFF; for (var i = 0; i < bytes.length; i++) c2 = t[(c2 ^ bytes[i]) & 255] ^ (c2 >>> 8); return (c2 ^ 0xFFFFFFFF) >>> 0; }
+function zipStore(files) { /* files: [{name, data:Uint8Array}] -> Blob (no compression) */
+  var enc = new TextEncoder(), parts = [], cd = [], off = 0, dt = new Date(), dd = ((dt.getFullYear() - 1980) << 9) | ((dt.getMonth() + 1) << 5) | dt.getDate(), tt = (dt.getHours() << 11) | (dt.getMinutes() << 5) | (dt.getSeconds() >> 1);
+  files.forEach(function (f) {
+    var nm = enc.encode(f.name), crc = crc32(f.data), h = new DataView(new ArrayBuffer(30));
+    h.setUint32(0, 0x04034b50, true); h.setUint16(4, 20, true); h.setUint16(6, 0x0800, true); h.setUint16(8, 0, true); h.setUint16(10, tt, true); h.setUint16(12, dd, true); h.setUint32(14, crc, true); h.setUint32(18, f.data.length, true); h.setUint32(22, f.data.length, true); h.setUint16(26, nm.length, true); h.setUint16(28, 0, true);
+    parts.push(h.buffer, nm, f.data);
+    var c = new DataView(new ArrayBuffer(46));
+    c.setUint32(0, 0x02014b50, true); c.setUint16(4, 20, true); c.setUint16(6, 20, true); c.setUint16(8, 0x0800, true); c.setUint16(10, 0, true); c.setUint16(12, tt, true); c.setUint16(14, dd, true); c.setUint32(16, crc, true); c.setUint32(20, f.data.length, true); c.setUint32(24, f.data.length, true); c.setUint16(28, nm.length, true); c.setUint32(42, off, true);
+    cd.push(c.buffer, nm); off += 30 + nm.length + f.data.length;
+  });
+  var cs = 0; cd.forEach(function (x) { cs += x.byteLength; });
+  var e = new DataView(new ArrayBuffer(22)); e.setUint32(0, 0x06054b50, true); e.setUint16(8, files.length, true); e.setUint16(10, files.length, true); e.setUint32(12, cs, true); e.setUint32(16, off, true);
+  return new Blob(parts.concat(cd, [e.buffer]), { type: "application/zip" });
+}
+/* ---------- astrology shared helpers ---------- */
+var SG = ["Aries", "Taurus", "Gemini", "Cancer", "Leo", "Virgo", "Libra", "Scorpio", "Sagittarius", "Capricorn", "Aquarius", "Pisces"];
+var SG3 = ["Ari", "Tau", "Gem", "Can", "Leo", "Vir", "Lib", "Sco", "Sag", "Cap", "Aqu", "Pis"];
+var PLN = ["Sun", "Moon", "Mercury", "Venus", "Mars", "Jupiter", "Saturn"];
+var PCOL = { Sun: "#d97706", Moon: "#64748b", Mercury: "#0891b2", Venus: "#be185d", Mars: "#dc2626", Jupiter: "#9333ea", Saturn: "#4d7c0f", ASC: "#0f172a", Fortune: "#0369a1", Spirit: "#b45309" };
+var ECOL = ["#fecaca", "#bbf7d0", "#fef08a", "#bfdbfe"];
+var DOM = ["Mars", "Venus", "Mercury", "Moon", "Sun", "Mercury", "Venus", "Mars", "Jupiter", "Saturn", "Saturn", "Jupiter"];
+var EXALT = { Sun: [0, 19], Moon: [1, 3], Mercury: [5, 15], Venus: [11, 27], Mars: [9, 28], Jupiter: [3, 15], Saturn: [6, 21] };
+var TRIP = [{ d: "Sun", n: "Jupiter", p: "Saturn" }, { d: "Venus", n: "Moon", p: "Mars" }, { d: "Saturn", n: "Mercury", p: "Jupiter" }, { d: "Venus", n: "Mars", p: "Moon" }];
+var BND = [
+  [["Jupiter", 6], ["Venus", 12], ["Mercury", 20], ["Mars", 25], ["Saturn", 30]],
+  [["Venus", 8], ["Mercury", 14], ["Jupiter", 22], ["Saturn", 27], ["Mars", 30]],
+  [["Mercury", 6], ["Jupiter", 12], ["Venus", 17], ["Mars", 24], ["Saturn", 30]],
+  [["Mars", 7], ["Venus", 13], ["Mercury", 19], ["Jupiter", 26], ["Saturn", 30]],
+  [["Jupiter", 6], ["Venus", 11], ["Saturn", 18], ["Mercury", 24], ["Mars", 30]],
+  [["Mercury", 7], ["Venus", 17], ["Jupiter", 21], ["Mars", 28], ["Saturn", 30]],
+  [["Saturn", 6], ["Mercury", 14], ["Jupiter", 21], ["Venus", 28], ["Mars", 30]],
+  [["Mars", 7], ["Venus", 11], ["Mercury", 19], ["Jupiter", 24], ["Saturn", 30]],
+  [["Jupiter", 12], ["Venus", 17], ["Mercury", 21], ["Saturn", 26], ["Mars", 30]],
+  [["Mercury", 7], ["Jupiter", 14], ["Venus", 22], ["Saturn", 26], ["Mars", 30]],
+  [["Mercury", 7], ["Venus", 13], ["Jupiter", 20], ["Mars", 25], ["Saturn", 30]],
+  [["Venus", 12], ["Jupiter", 16], ["Mercury", 19], ["Mars", 28], ["Saturn", 30]]
+];
+var FACE_ORD = ["Mars", "Sun", "Venus", "Mercury", "Moon", "Saturn", "Jupiter"];
+function mod(a, n) { return ((a % n) + n) % n; }
+function signOf(l) { return Math.floor(mod(l, 360) / 30); }
+function degIn(l) { return mod(l, 30); }
+function fmtDeg(l, noSign) { l = mod(Math.round(mod(l, 360) * 60) / 60, 360); var s = Math.floor(l / 30), d = l - s * 30, dd = Math.floor(d + 1e-9), mm = Math.floor((d - dd) * 60 + 1e-6); if (mm >= 60) { mm = 0; dd++; } return dd + "°" + (mm < 10 ? "0" : "") + mm + "′" + (noSign ? "" : " " + SG[s]); }
+function boundOf(l) { l = mod(l, 360); var s = Math.floor(l / 30), d = l - s * 30, t = BND[s], prev = 0; for (var i = 0; i < 5; i++) { if (d < t[i][1] - 1e-9) return { p: t[i][0], from: prev, to: t[i][1], i: i, s: s }; prev = t[i][1]; } return { p: t[4][0], from: t[3][1], to: 30, i: 4, s: s }; }
+function faceOf(l) { l = mod(l, 360); return FACE_ORD[Math.floor(l / 10) % 7]; }
+function tripOf(s, day) { var t = TRIP[s % 4]; return day ? t.d : t.n; }
+function dignity(p, l, day) {
+  var s = signOf(l), r = { dom: DOM[s] === p, exa: EXALT[p][0] === s, tri: tripOf(s, day) === p, trm: boundOf(l).p === p, fac: faceOf(l) === p, det: false, fal: false };
+  r.det = DOM[mod(s + 6, 12)] === p; r.fal = mod(EXALT[p][0] + 6, 12) === s;
+  r.plus = (r.dom ? 5 : 0) + (r.exa ? 4 : 0) + (r.tri ? 3 : 0) + (r.trm ? 2 : 0) + (r.fac ? 1 : 0);
+  r.per = r.plus === 0; r.score = r.plus + (r.det ? -5 : 0) + (r.fal ? -4 : 0) + (r.per ? -5 : 0);
+  return r;
+}
+function rulerPts(l, day) { var o = {}; PLN.forEach(function (p) { if (p === "Sun" || p === "Moon" || true) { var d = dignity(p, l, day); o[p] = d.plus; } }); return o; }
+function pos2lon(sign, deg, min) { return sign * 30 + deg + (min || 0) / 60; }
+function isDayChart(ascLon, sunLon) { return mod(sunLon - ascLon, 360) >= 180; }
+function ang(l, rot) { return Math.PI + (mod(l - rot, 360)) * Math.PI / 180; }
+function pxy(cx, cy, r, l, rot) { var a = ang(l, rot); return [cx + r * Math.cos(a), cy - r * Math.sin(a)]; }
+function arcPath(cx, cy, r1, r2, l1, l2, rot) {
+  var a = pxy(cx, cy, r2, l1, rot), b = pxy(cx, cy, r2, l2, rot), c = pxy(cx, cy, r1, l2, rot), d = pxy(cx, cy, r1, l1, rot), lg = (l2 - l1) > 180 ? 1 : 0;
+  return "M" + a[0].toFixed(1) + " " + a[1].toFixed(1) + "A" + r2 + " " + r2 + " 0 " + lg + " 0 " + b[0].toFixed(1) + " " + b[1].toFixed(1) + "L" + c[0].toFixed(1) + " " + c[1].toFixed(1) + "A" + r1 + " " + r1 + " 0 " + lg + " 1 " + d[0].toFixed(1) + " " + d[1].toFixed(1) + "Z";
+}
+/* zodiac wheel. items: [{l, t, c, big}], hl: [{from, to, c}] highlighted arcs */
+function wheelSvg(o) {
+  var W = o.size || 420, cx = W / 2, cy = W / 2, R = W / 2 - 6, r1 = R - 30, r0 = r1 - 16, rot = o.rot || 0, s = "";
+  s += '<svg viewBox="0 0 ' + W + " " + W + '" width="' + (o.width || "100%") + '" role="img" aria-label="' + esc(o.aria || "Zodiac wheel") + '" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,Arial,sans-serif"><title>' + esc(o.aria || "Zodiac wheel") + "</title>";
+  for (var i = 0; i < 12; i++) {
+    s += '<path d="' + arcPath(cx, cy, r1, R, i * 30, i * 30 + 30, rot) + '" fill="' + ECOL[i % 4] + '" stroke="#475569" stroke-width="1"/>';
+    var m = pxy(cx, cy, (R + r1) / 2, i * 30 + 15, rot);
+    s += '<text x="' + m[0].toFixed(1) + '" y="' + (m[1] + 4).toFixed(1) + '" font-size="11" font-weight="700" text-anchor="middle" fill="#0f172a">' + SG3[i] + "</text>";
+  }
+  (o.hl || []).forEach(function (h) { s += '<path d="' + arcPath(cx, cy, r0, r1, h.from, h.to, rot) + '" fill="' + h.c + '" opacity="' + (h.op || 0.55) + '"/>'; });
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r0 + '" fill="none" stroke="#94a3b8" stroke-width="1"/>';
+  if (o.cusps) for (var k = 0; k < 12; k++) { var a = pxy(cx, cy, r0, k * 30, rot), b = pxy(cx, cy, 24, k * 30, rot); s += '<line x1="' + a[0].toFixed(1) + '" y1="' + a[1].toFixed(1) + '" x2="' + b[0].toFixed(1) + '" y2="' + b[1].toFixed(1) + '" stroke="#94a3b8" stroke-width=".8"/>'; }
+  if (o.house0 !== undefined) for (var hh = 0; hh < 12; hh++) { var hp = pxy(cx, cy, 44, hh * 30 + 15, rot); s += '<text x="' + hp[0].toFixed(1) + '" y="' + (hp[1] + 4).toFixed(1) + '" font-size="11" text-anchor="middle" fill="#64748b">' + (mod(hh - o.house0, 12) + 1) + "</text>"; }
+  var it = (o.items || []).slice().sort(function (a, b) { return mod(a.l, 360) - mod(b.l, 360); }), ls = it.map(function (x) { return mod(x.l, 360); });
+  for (var pass = 0; pass < 60; pass++) { var mv = false; for (var j = 0; j < it.length; j++) { var n = (j + 1) % it.length; if (it.length < 2) break; var gap = mod(ls[n] - ls[j], 360); if (it.length > 1 && gap < 9 && !(n === 0 && j === it.length - 1 && it.length < 3)) { ls[j] -= (9 - gap) / 2; ls[n] += (9 - gap) / 2; mv = true; } } if (!mv) break; }
+  it.forEach(function (x, j) {
+    var rp = o.pr || (r0 - 26), p = pxy(cx, cy, rp, ls[j], rot), q = pxy(cx, cy, r0, x.l, rot), q2 = pxy(cx, cy, r0 - 6, x.l, rot);
+    s += '<line x1="' + q[0].toFixed(1) + '" y1="' + q[1].toFixed(1) + '" x2="' + q2[0].toFixed(1) + '" y2="' + q2[1].toFixed(1) + '" stroke="' + x.c + '" stroke-width="2"/>';
+    s += '<circle cx="' + p[0].toFixed(1) + '" cy="' + p[1].toFixed(1) + '" r="' + (x.big ? 17 : 14) + '" fill="#fff" stroke="' + x.c + '" stroke-width="2.2"/><text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 3.5).toFixed(1) + '" font-size="' + (x.t.length > 3 ? 8.5 : 10) + '" font-weight="700" text-anchor="middle" fill="#0f172a">' + esc(x.t) + "</text>";
+    if (x.sub) s += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 26).toFixed(1) + '" font-size="9" text-anchor="middle" fill="' + (x.sc || "#0f172a") + '" font-weight="700">' + esc(x.sub) + "</text>";
+  });
+  if (o.center) s += '<text x="' + cx + '" y="' + (cy + 4) + '" font-size="12" font-weight="700" text-anchor="middle" fill="#334155">' + esc(o.center) + "</text>";
+  return s + "</svg>";
+}
+/* position rows: builds sign/degree/minute inputs into container */
+function posRowsHtml(prefix, names) {
+  return names.map(function (n) {
+    return '<div class="as-row" data-pos="' + n.id + '"><span class="as-n">' + esc(n.label) + '</span><select id="' + prefix + n.id + 'S" aria-label="' + esc(n.label) + ' sign">' + SG.map(function (g, i) { return '<option value="' + i + '">' + g + "</option>"; }).join("") + '</select><input type="number" id="' + prefix + n.id + 'D" min="0" max="29" step="1" value="0" aria-label="' + esc(n.label) + ' degrees"><input type="number" id="' + prefix + n.id + 'M" min="0" max="59" step="1" value="0" aria-label="' + esc(n.label) + ' minutes"></div>';
+  }).join("");
+}
+function getPos(prefix, id) {
+  var s = +$(prefix + id + "S").value, d = Math.max(0, Math.min(29, parseInt($(prefix + id + "D").value, 10) || 0)), m = Math.max(0, Math.min(59, parseInt($(prefix + id + "M").value, 10) || 0));
+  return pos2lon(s, d, m);
+}
+function setPos(prefix, id, lon) { lon = mod(lon, 360); var s = Math.floor(lon / 30), d = lon - s * 30, dd = Math.floor(d + 1e-9), mm = Math.round((d - dd) * 60); if (mm >= 60) { mm = 0; dd++; if (dd > 29) { dd = 0; s = (s + 1) % 12; } } $(prefix + id + "S").value = s; $(prefix + id + "D").value = dd; $(prefix + id + "M").value = mm; }
+function svgToPng(svg, w, h, cb, bg) {
+  var img = new Image(), u = "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  img.onload = function () { var c = document.createElement("canvas"); c.width = w; c.height = h; var x = c.getContext("2d"); x.fillStyle = bg || "#fff"; x.fillRect(0, 0, w, h); x.drawImage(img, 0, 0, w, h); c.toBlob(cb, "image/png"); };
+  img.onerror = function () { msg("Could not create the image.", "err"); }; img.src = u;
+}
+function ymd(d) { return d.getUTCFullYear() + "-" + p2(d.getUTCMonth() + 1) + "-" + p2(d.getUTCDate()); }
+function fmtDate(ms) { var d = new Date(ms); return ymd(d); }
+function parseYmd(s) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(s || ""); return m ? Date.UTC(+m[1], +m[2] - 1, +m[3]) : NaN; }
+function todayMs() { var d = new Date(); return Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()); }
+
+/* ---------- planetary hours calculator ---------- */
+var KEY = "utiliby_hours_v1", MIN = 60000, DAYMS = 86400000;
+var CITIES = [["Tashkent", 41.3111, 69.2797, "Asia/Tashkent"], ["London", 51.5072, -0.1276, "Europe/London"], ["New York", 40.7128, -74.006, "America/New_York"], ["Los Angeles", 34.0522, -118.2437, "America/Los_Angeles"], ["Chicago", 41.8781, -87.6298, "America/Chicago"], ["Toronto", 43.6532, -79.3832, "America/Toronto"], ["Mexico City", 19.4326, -99.1332, "America/Mexico_City"], ["Sao Paulo", -23.5505, -46.6333, "America/Sao_Paulo"], ["Buenos Aires", -34.6037, -58.3816, "America/Argentina/Buenos_Aires"], ["Paris", 48.8566, 2.3522, "Europe/Paris"], ["Berlin", 52.52, 13.405, "Europe/Berlin"], ["Madrid", 40.4168, -3.7038, "Europe/Madrid"], ["Rome", 41.9028, 12.4964, "Europe/Rome"], ["Istanbul", 41.0082, 28.9784, "Europe/Istanbul"], ["Moscow", 55.7558, 37.6173, "Europe/Moscow"], ["Cairo", 30.0444, 31.2357, "Africa/Cairo"], ["Lagos", 6.5244, 3.3792, "Africa/Lagos"], ["Nairobi", -1.2921, 36.8219, "Africa/Nairobi"], ["Johannesburg", -26.2041, 28.0473, "Africa/Johannesburg"], ["Dubai", 25.2048, 55.2708, "Asia/Dubai"], ["Tehran", 35.6892, 51.389, "Asia/Tehran"], ["Karachi", 24.8607, 67.0011, "Asia/Karachi"], ["Delhi", 28.6139, 77.209, "Asia/Kolkata"], ["Dhaka", 23.8103, 90.4125, "Asia/Dhaka"], ["Bangkok", 13.7563, 100.5018, "Asia/Bangkok"], ["Jakarta", -6.2088, 106.8456, "Asia/Jakarta"], ["Singapore", 1.3521, 103.8198, "Asia/Singapore"], ["Hong Kong", 22.3193, 114.1694, "Asia/Hong_Kong"], ["Shanghai", 31.2304, 121.4737, "Asia/Shanghai"], ["Seoul", 37.5665, 126.978, "Asia/Seoul"], ["Tokyo", 35.6762, 139.6503, "Asia/Tokyo"], ["Manila", 14.5995, 120.9842, "Asia/Manila"], ["Sydney", -33.8688, 151.2093, "Australia/Sydney"], ["Auckland", -36.8509, 174.7645, "Pacific/Auckland"], ["Honolulu", 21.3069, -157.8583, "Pacific/Honolulu"], ["Reykjavik", 64.1466, -21.9426, "Atlantic/Reykjavik"]];
+var CH = ["Saturn", "Jupiter", "Mars", "Sun", "Venus", "Mercury", "Moon"];
+var WD = ["Sun", "Moon", "Mars", "Mercury", "Jupiter", "Venus", "Saturn"];
+var WN = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+var ASSOC = { Sun: "Vitality, leadership", Moon: "Home, family, rest", Mercury: "Study, communication", Venus: "Relationships, art", Mars: "Courage, effort", Jupiter: "Learning, growth", Saturn: "Discipline, structure" };
+var timer = null;
+function lsGet(k) { try { return localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { localStorage.setItem(k, v); } catch (e) {} }
+function rad(x) { return x * Math.PI / 180; } function deg(x) { return x * 180 / Math.PI; }
+function jd(y, m, d) { if (m <= 2) { y--; m += 12; } var A = Math.floor(y / 100), B = 2 - A + Math.floor(A / 4); return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5; }
+function solar(t) {
+  var L0 = mod(280.46646 + t * (36000.76983 + t * 0.0003032), 360), M = 357.52911 + t * (35999.05029 - 0.0001537 * t), e = 0.016708634 - t * (0.000042037 + 0.0000001267 * t), m = rad(M);
+  var C = Math.sin(m) * (1.914602 - t * (0.004817 + 0.000014 * t)) + Math.sin(2 * m) * (0.019993 - 0.000101 * t) + Math.sin(3 * m) * 0.000289, tl = L0 + C, om = 125.04 - 1934.136 * t, lam = tl - 0.00569 - 0.00478 * Math.sin(rad(om));
+  var sec = 21.448 - t * (46.815 + t * (0.00059 - t * 0.001813)), e0 = 23 + (26 + sec / 60) / 60, eps = e0 + 0.00256 * Math.cos(rad(om)), decl = Math.asin(Math.sin(rad(eps)) * Math.sin(rad(lam)));
+  var yy = Math.pow(Math.tan(rad(eps) / 2), 2), l0 = rad(L0), et = yy * Math.sin(2 * l0) - 2 * e * Math.sin(m) + 4 * e * yy * Math.sin(m) * Math.cos(2 * l0) - 0.5 * yy * yy * Math.sin(4 * l0) - 1.25 * e * e * Math.sin(2 * m);
+  return { decl: decl, eq: deg(et) * 4 };
+}
+function ha(lat, decl) { var v = Math.cos(rad(90.833)) / (Math.cos(rad(lat)) * Math.cos(decl)) - Math.tan(rad(lat)) * Math.tan(decl); if (v > 1) return -1; if (v < -1) return -2; return deg(Math.acos(v)); }
+/* minutes after 00:00 UTC of the given civil date; null when no sunrise/sunset */
+function sunEv(dayMs, lat, lon) {
+  var d = new Date(dayMs), j0 = jd(d.getUTCFullYear(), d.getUTCMonth() + 1, d.getUTCDate()), tm = 720 - 4 * lon, s, i;
+  for (i = 0; i < 3; i++) { s = solar((j0 + tm / 1440 - 2451545) / 36525); tm = 720 - 4 * lon - s.eq; }
+  var h = ha(lat, s.decl); if (h < 0) return { none: h === -1 ? "no sunrise (the Sun stays below the horizon)" : "no sunset (the Sun stays above the horizon)" };
+  var r = tm - 4 * h, st = tm + 4 * h;
+  var s1 = solar((j0 + r / 1440 - 2451545) / 36525), h1 = ha(lat, s1.decl), s2 = solar((j0 + st / 1440 - 2451545) / 36525), h2 = ha(lat, s2.decl);
+  if (h1 < 0 || h2 < 0) return { none: "no sunrise or sunset" };
+  return { rise: dayMs + (720 - 4 * lon - s1.eq - 4 * h1) * MIN, set: dayMs + (720 - 4 * lon - s2.eq + 4 * h2) * MIN };
+}
+function tzOff(tz, y, m, d) { try { var f = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "numeric", day: "numeric", hour: "numeric", minute: "numeric", second: "numeric" }), p = {}; f.formatToParts(new Date(Date.UTC(y, m - 1, d, 12))).forEach(function (x) { p[x.type] = +x.value; }); return (Date.UTC(p.year, p.month - 1, p.day, p.hour % 24, p.minute, p.second) - Date.UTC(y, m - 1, d, 12)) / 3600000; } catch (e) { return 0; } }
+function inputs() { return { date: parseYmd($("hDate").value), lat: Math.max(-90, Math.min(90, parseFloat($("hLat").value))), lon: Math.max(-180, Math.min(180, parseFloat($("hLon").value))), off: Math.max(-12, Math.min(14, parseFloat($("hOff").value))) }; }
+function buildDay(dayMs, lat, lon) {
+  var a = sunEv(dayMs, lat, lon), b = sunEv(dayMs + DAYMS, lat, lon); if (a.none || b.none) return { none: a.none || b.none };
+  var rise = a.rise, set = a.set, nrise = b.rise, dl = (set - rise) / 12, nl = (nrise - set) / 12, wd = new Date(dayMs).getUTCDay(), r0 = CH.indexOf(WD[wd]), hrs = [];
+  for (var k = 0; k < 24; k++) { var day = k < 12, st = day ? rise + k * dl : set + (k - 12) * nl, en = day ? st + dl : st + nl; hrs.push({ n: k + 1, day: day, p: CH[(r0 + k) % 7], st: st, en: en }); }
+  return { rise: rise, set: set, nrise: nrise, dl: dl, nl: nl, wd: wd, ruler: WD[wd], hrs: hrs };
+}
+function pad(n) { return (n < 10 ? "0" : "") + n; }
+function T(ms, off) { var d = new Date(ms + off * 3600000); return pad(d.getUTCHours()) + ":" + pad(d.getUTCMinutes()); }
+function nowMs(I) { var t = $("hTime").value; if (t && !isNaN(I.date)) { var m = /^(\d{2}):(\d{2})/.exec(t); return I.date + (+m[1] * 60 + +m[2]) * MIN - I.off * 3600000; } return Date.now(); }
+function calc() {
+  var I = inputs(); if (isNaN(I.date) || isNaN(I.lat) || isNaN(I.lon) || isNaN(I.off)) return { ok: false };
+  var dayMs = I.date, B = buildDay(dayMs, I.lat, I.lon), n = nowMs(I), cur = null;
+  [dayMs - DAYMS, dayMs, dayMs + DAYMS].forEach(function (dm) { var x = dm === dayMs ? B : buildDay(dm, I.lat, I.lon); if (x.none) return; x.hrs.forEach(function (h) { if (n >= h.st && n < h.en) cur = { h: h, d: x }; }); });
+  return { ok: true, I: I, B: B, n: n, cur: cur };
+}
+function arcP(cx, cy, r1, r2, a1, a2) { function P(r, a) { return [cx + r * Math.sin(rad(a)), cy - r * Math.cos(rad(a))]; } var p1 = P(r2, a1), p2 = P(r2, a2), p3 = P(r1, a2), p4 = P(r1, a1), lg = (a2 - a1) > 180 ? 1 : 0; return "M" + p1[0].toFixed(1) + " " + p1[1].toFixed(1) + "A" + r2 + " " + r2 + " 0 " + lg + " 1 " + p2[0].toFixed(1) + " " + p2[1].toFixed(1) + "L" + p3[0].toFixed(1) + " " + p3[1].toFixed(1) + "A" + r1 + " " + r1 + " 0 " + lg + " 0 " + p4[0].toFixed(1) + " " + p4[1].toFixed(1) + "Z"; }
+function ring(C, w) {
+  var B = C.B, off = C.I.off, W = 420, cx = 210, cy = 210, R = 196, r1 = 118, s = '<svg viewBox="0 0 ' + W + " " + W + '" width="' + (w || "100%") + '" role="img" aria-label="Planetary clock showing the 24 planetary hours" xmlns="http://www.w3.org/2000/svg" font-family="system-ui,Arial,sans-serif"><title>Planetary clock showing the 24 planetary hours</title>';
+  function A(ms) { return 270 + (ms - B.rise) / (B.nrise - B.rise) * 360; }
+  s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + R + '" fill="#fff"/>';
+  B.hrs.forEach(function (h) {
+    var a1 = A(h.st), a2 = A(h.en), mid = (a1 + a2) / 2, p = [cx + (R + r1) / 2 * Math.sin(rad(mid)), cy - (R + r1) / 2 * Math.cos(rad(mid))];
+    s += '<path d="' + arcP(cx, cy, r1, R, a1, a2) + '" fill="' + PCOL[h.p] + '" opacity="' + (h.day ? 1 : 0.72) + '" stroke="#fff" stroke-width="1.5"/>';
+    s += '<text x="' + p[0].toFixed(1) + '" y="' + (p[1] + 4).toFixed(1) + '" font-size="12" font-weight="700" text-anchor="middle" fill="#fff">' + h.p.slice(0, 2) + "</text>";
+  });
+  var ss = A(B.set), q1 = [cx + (r1 - 22) * Math.sin(rad(270)), cy - (r1 - 22) * Math.cos(rad(270))], q2 = [cx + (r1 - 22) * Math.sin(rad(ss)), cy - (r1 - 22) * Math.cos(rad(ss))]; s += '<text x="' + q1[0].toFixed(1) + '" y="' + (q1[1] + 4).toFixed(1) + '" font-size="10" text-anchor="middle" fill="#334155">sunrise</text><text x="' + q2[0].toFixed(1) + '" y="' + (q2[1] + 4).toFixed(1) + '" font-size="10" text-anchor="middle" fill="#334155">sunset</text>';
+  s += '<text x="' + cx + '" y="' + (cy - 14) + '" font-size="14" font-weight="700" text-anchor="middle" fill="#0f172a">' + B.ruler + " day</text><text x=\"" + cx + '" y="' + (cy + 6) + '" font-size="11" text-anchor="middle" fill="#334155">' + WN[B.wd] + '</text><text x="' + cx + '" y="' + (cy + 26) + '" font-size="11" text-anchor="middle" fill="#334155">↑ ' + T(B.rise, off) + "  ↓ " + T(B.set, off) + "</text>";
+  var n = C.n; if (C.cur && C.cur.d === B || (n >= B.rise && n < B.nrise)) { var an = A(n), x2 = cx + (R + 2) * Math.sin(rad(an)), y2 = cy - (R + 2) * Math.cos(rad(an)); s += '<line x1="' + cx + '" y1="' + cy + '" x2="' + x2.toFixed(1) + '" y2="' + y2.toFixed(1) + '" stroke="#0f172a" stroke-width="3" stroke-linecap="round"/><circle cx="' + cx + '" cy="' + cy + '" r="5" fill="#0f172a"/>'; }
+  return s + "</svg>";
+}
+function table(C) {
+  var B = C.B, off = C.I.off, h = "<tr><th class=\"n\">#</th><th>Period</th><th>Planet</th><th>Starts</th><th>Ends</th><th class=\"n\">Min</th><th>Traditionally</th></tr>";
+  B.hrs.forEach(function (x) { var cur = C.cur && C.cur.d === B && C.cur.h.n === x.n; h += '<tr class="' + (cur ? "now " : "") + (x.day ? "" : "nt") + '"><td class="n">' + x.n + "</td><td>" + (x.day ? "Day" : "Night") + "</td><td><span class=\"as-pl\" style=\"background:" + PCOL[x.p] + "\">" + x.p + "</span></td><td>" + T(x.st, off) + "</td><td>" + T(x.en, off) + '</td><td class="n">' + Math.round((x.en - x.st) / MIN * 10) / 10 + "</td><td>" + ASSOC[x.p] + (cur ? " <b>now</b>" : "") + "</td></tr>"; });
+  return h;
+}
+function render() {
+  var C = calc();
+  if (!C.ok) { $("hTiles").innerHTML = ""; $("hRing").innerHTML = ""; $("hTable").innerHTML = ""; $("hNote").textContent = "Enter a date, latitude, longitude and UTC offset."; return null; }
+  if (C.B.none) { $("hTiles").innerHTML = ""; $("hRing").innerHTML = ""; $("hTable").innerHTML = ""; $("hNote").textContent = "At this place on this date there is " + C.B.none + ", so planetary hours cannot be worked out. Try another date or place."; return C; }
+  $("hNote").textContent = "Times are shown at UTC" + (C.I.off >= 0 ? "+" : "") + C.I.off + ".";
+  var B = C.B, off = C.I.off, cur = C.cur;
+  $("hTiles").innerHTML = tile("Day ruler", B.ruler, WN[B.wd]) + tile("Sunrise", T(B.rise, off), "Sunset " + T(B.set, off)) + tile("Day hour", Math.round(B.dl / MIN * 10) / 10 + " min", "Night hour " + Math.round(B.nl / MIN * 10) / 10 + " min") + tile("Hour now", cur ? cur.h.p : "n/a", cur ? (cur.h.day ? "Day" : "Night") + " hour " + cur.h.n + " until " + T(cur.h.en, off) : "Not in this day's hours");
+  $("hRing").innerHTML = ring(C); $("hTable").innerHTML = table(C); return C;
+}
+function textOut() {
+  var C = calc(); if (!C.ok || C.B.none) return ""; var B = C.B, off = C.I.off, L = ["Planetary hours for " + $("hDate").value + " (UTC" + (off >= 0 ? "+" : "") + off + ", lat " + C.I.lat + ", lon " + C.I.lon + ")", "Day ruler: " + B.ruler + " (" + WN[B.wd] + "). Sunrise " + T(B.rise, off) + ", sunset " + T(B.set, off)];
+  B.hrs.forEach(function (x) { L.push((x.day ? "Day " : "Night ") + x.n + ": " + x.p + " " + T(x.st, off) + "-" + T(x.en, off)); }); L.push("Free online planetary hours calculator, utiliby.com"); return L.join("\n");
+}
+function csvOut() { var C = calc(); if (!C.ok || C.B.none) return ""; var rows = [["Hour", "Period", "Planet", "Starts", "Ends", "Minutes"]]; C.B.hrs.forEach(function (x) { rows.push([x.n, x.day ? "Day" : "Night", x.p, T(x.st, C.I.off), T(x.en, C.I.off), Math.round((x.en - x.st) / MIN * 10) / 10]); }); return "﻿" + csvText(rows); }
+function setCity(i, keepOff) {
+  if (i < 0) return; var c = CITIES[i], d = parseYmd($("hDate").value); $("hLat").value = c[1]; $("hLon").value = c[2];
+  if (!isNaN(d)) { var D = new Date(d); $("hOff").value = tzOff(c[3], D.getUTCFullYear(), D.getUTCMonth() + 1, D.getUTCDate()); }
+}
+function save() { lsSet(KEY, JSON.stringify({ c: $("hCity").value, lat: $("hLat").value, lon: $("hLon").value, off: $("hOff").value })); }
+function today() { var d = new Date(); return d.getFullYear() + "-" + pad(d.getMonth() + 1) + "-" + pad(d.getDate()); }
+function tick() { clearInterval(timer); timer = setInterval(function () { if (!$("hTime").value) render(); }, 30000); }
+function init() {
+  initCommon(); $("hDate").value = today(); var o; try { o = JSON.parse(lsGet(KEY) || "null"); } catch (e) {}
+  if (o && o.lat !== undefined) { $("hCity").value = o.c; $("hLat").value = o.lat; $("hLon").value = o.lon; $("hOff").value = o.off; } else { $("hCity").value = "0"; setCity(0); }
+  $("hCity").addEventListener("change", function () { setCity(+$("hCity").value); save(); render(); });
+  $("hDate").addEventListener("change", function () { var i = +$("hCity").value; if (i >= 0) setCity(i); save(); render(); });
+  ["hLat", "hLon", "hOff"].forEach(function (id) { $(id).addEventListener("input", function () { $("hCity").value = "-1"; save(); render(); }); });
+  $("hTime").addEventListener("input", render); $("hTime").addEventListener("change", render);
+  $("hGeo").addEventListener("click", function () {
+    if (!navigator.geolocation) { msg("Your browser cannot share a location. Type latitude and longitude instead.", "err"); return; }
+    navigator.geolocation.getCurrentPosition(function (p) { var d = parseYmd($("hDate").value), D = new Date(isNaN(d) ? Date.now() : d + 12 * 3600000); $("hLat").value = Math.round(p.coords.latitude * 10000) / 10000; $("hLon").value = Math.round(p.coords.longitude * 10000) / 10000; $("hOff").value = -new Date(D.getUTCFullYear(), D.getUTCMonth(), D.getUTCDate(), 12).getTimezoneOffset() / 60; $("hCity").value = "-1"; save(); render(); msg("Location set."); }, function () { msg("Location was not shared. Pick a city or type your coordinates.", "err"); }, { timeout: 10000 });
+  });
+  $("resetBtn").addEventListener("click", function () { $("hDate").value = today(); $("hTime").value = ""; $("hCity").value = "0"; setCity(0); save(); render(); msg("Reset to Tashkent and today."); });
+  $("hJson").addEventListener("click", function () { saveBlob(new Blob([JSON.stringify({ app: "utiliby-hours", lat: $("hLat").value, lon: $("hLon").value, off: $("hOff").value }, null, 2)], { type: "application/json" }), "planetary-hours-place.json"); msg("Place file downloaded."); });
+  $("hImport").addEventListener("change", function () { var f = this.files && this.files[0]; if (!f) return; var rd = new FileReader(); rd.onload = function () { try { var d = JSON.parse(rd.result); if (isNaN(parseFloat(d.lat)) || isNaN(parseFloat(d.lon))) throw 0; $("hLat").value = d.lat; $("hLon").value = d.lon; $("hOff").value = d.off; $("hCity").value = "-1"; save(); render(); msg("Place loaded."); } catch (e) { msg("That file is not a saved place.", "err"); } }; rd.readAsText(f); this.value = ""; });
+  bindAct("h", { code: textOut, file: function () { return "planetary-hours.csv"; }, mime: "text/csv", title: "Planetary hours", site: "Free online planetary hours calculator", note: "x", dl: csvOut, rows: function () { return []; } });
+  window.fillReport = function () {
+    var C = calc(), b = repBox(); if (!C.ok || C.B.none) return; var B = C.B, off = C.I.off; repHead(b, "Planetary hours for " + $("hDate").value, "Free online planetary hours calculator");
+    repAdd(b, "p", "Place: latitude " + C.I.lat + ", longitude " + C.I.lon + ", UTC" + (off >= 0 ? "+" : "") + off + ". Day ruler " + B.ruler + " (" + WN[B.wd] + "). Sunrise " + T(B.rise, off) + ", sunset " + T(B.set, off) + ".");
+    repFig(b, ring(C, "340")); repTbl(b, ["#", "Period", "Planet", "Starts", "Ends"], B.hrs.map(function (x) { return [String(x.n), x.day ? "Day" : "Night", x.p, T(x.st, off), T(x.en, off)]; }));
+    repDisc(b, "Sunrise and sunset use an approximate solar formula. Planetary hours are a traditional convention, for education and entertainment.");
+  };
+  tick(); render();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
