@@ -1,0 +1,615 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free CSS Gradient Generator: Linear, Radial & Conic</title>
+<meta name="description" content="Free online CSS gradient generator. Build linear, radial and conic gradients with presets, OKLab blending and a live preview, then copy CSS, Tailwind or SVG.">
+<link rel="canonical" href="https://utiliby.com/tools/design-color-tools/css-gradient-generator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free CSS Gradient Generator: Linear, Radial & Conic">
+<meta property="og:description" content="Free online CSS gradient generator with linear, radial, conic and repeating gradients, OKLab blending, presets and CSS, Tailwind, SVG and PNG export.">
+<meta property="og:url" content="https://utiliby.com/tools/design-color-tools/css-gradient-generator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free CSS Gradient Generator: Linear, Radial & Conic">
+<meta name="twitter:description" content="Free online CSS gradient generator with linear, radial, conic and repeating gradients, OKLab blending, presets and CSS, Tailwind, SVG and PNG export.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.dc-sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid rgba(128,128,128,.5);vertical-align:middle}
+.dc-note{font-size:.8rem;color:var(--muted)}
+.cn-article code,.cn-article li,.cn-article p,.cn-article td{overflow-wrap:anywhere}
+.cn-article code{white-space:normal}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool input[type=range]{padding:0;width:100%}
+#tool input[type=color]{padding:2px;height:40px;cursor:pointer}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500;text-transform:none;letter-spacing:0}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:340px;max-width:100%;tab-size:2;user-select:all}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.seo-tabs button{padding:6px 14px;font-size:.82rem;margin:0}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.dc-big{height:84px;border-radius:12px;border:1px solid var(--line);margin:8px 0;transition:background .12s}
+.dc-vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0}
+.dc-val{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);min-width:0}
+.dc-val b{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);min-width:64px;white-space:nowrap}
+.dc-val code{flex:1 1 130px;font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.dc-val button{padding:3px 9px;font-size:.72rem;border-radius:6px;border:1px solid var(--line);background:transparent;color:#0369a1;cursor:pointer;font-family:inherit;font-weight:700}
+@media(prefers-color-scheme:dark){.dc-val button{color:#7dd3fc}}
+.dc-strip{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:8px 0}
+.dc-strip>div{flex:1;min-height:56px;display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;font-weight:700;padding:3px 1px;min-width:0;overflow:hidden}
+.dc-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.dc-card{flex:1 1 110px;min-width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-align:center;font-size:.76rem}
+.dc-card i{display:block;height:54px}.dc-card span{display:block;padding:4px 2px;overflow-wrap:anywhere}
+.dc-card button{border:0;background:transparent;color:#0369a1;cursor:pointer;font-weight:700;font-size:.72rem;padding:2px 6px 5px;font-family:inherit}
+@media(prefers-color-scheme:dark){.dc-card button{color:#7dd3fc}}
+.dc-tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}.dc-tbl th,.dc-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}.dc-tbl th{background:var(--card)}
+.dc-scroll{overflow-x:auto;max-width:100%}
+
+.gg-prev{position:relative;width:100%;aspect-ratio:16/9;border:1px solid var(--line);border-radius:12px;overflow:hidden;margin:10px 0;display:flex;align-items:center;justify-content:center;background:conic-gradient(#ccc 25%,#fff 0 50%,#ccc 0 75%,#fff 0) 0 0/16px 16px}
+.gg-box{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1.6rem}
+.gg-box.gg-card{inset:8%;border-radius:24px;box-shadow:0 10px 30px #0004}
+.gg-box.gg-circle{inset:auto;height:86%;aspect-ratio:1;border-radius:50%}
+.gg-box.gg-button{inset:auto;padding:16px 38px;border-radius:999px;font-size:1.2rem;position:static}
+.gg-box.gg-text{background-clip:text;-webkit-background-clip:text;color:transparent;font-size:clamp(2.4rem,12vw,5.5rem);letter-spacing:-.02em;inset:0}
+.gg-stop{display:grid;grid-template-columns:44px minmax(0,1fr) 64px 64px auto auto auto;gap:6px;align-items:center;margin:6px 0}
+.gg-stop input{width:100%}.gg-stop input[type=color]{padding:2px;height:38px}
+.gg-stop button,.gg-presets button{margin:0}
+.gg-stop button{padding:7px 10px;border-radius:8px;border:1px solid var(--line);background:transparent;color:inherit;cursor:pointer;font-family:inherit}
+.gg-presets{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:8px;margin:8px 0}
+.gg-preset{height:64px;border-radius:10px;border:1px solid var(--line);cursor:pointer;position:relative;overflow:hidden;padding:0;background-color:#888}
+.gg-preset span{position:absolute;left:0;right:0;bottom:0;font:700 .68rem system-ui;color:#fff;background:rgba(0,0,0,.45);padding:2px 4px;text-align:left}
+.gg-dirs{display:flex;gap:6px;flex-wrap:wrap;margin:4px 0}.gg-dirs button{padding:6px 12px;font-size:.9rem;margin:0}
+@media(max-width:560px){.gg-stop{grid-template-columns:44px minmax(0,1fr) 56px 56px;}.gg-stop button{padding:5px 8px}}
+#ggPngCv{max-width:100%;border:1px solid var(--line);border-radius:10px}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"CSS Gradient Generator","url":"https://utiliby.com/tools/design-color-tools/css-gradient-generator/","description":"Free online CSS gradient generator. Create linear, radial, conic and repeating gradients with up to ten colour stops, opacity, sixteen presets and OKLab, OKLCH, Lab, HSL or linear sRGB blending, preview as a box, card, button or gradient text, and export CSS with fallback, Tailwind classes, SVG or PNG.","applicationCategory":"DesignApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Linear, radial, conic and repeating gradients","Up to ten stops with opacity and position","OKLab, OKLCH, Lab, HSL blending","Sixteen presets and random gradient","Preview as box, card, button or text","CSS with fallback, Tailwind, SVG, PNG","Printable gradient sheet"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a CSS gradient generator?","acceptedAnswer":{"@type":"Answer","text":"It is a tool that builds the CSS code for a colour gradient from settings you choose, such as the type, angle, colours and positions, and shows a live preview so you can copy the finished code."}},{"@type":"Question","name":"How do I make a gradient background in CSS?","acceptedAnswer":{"@type":"Answer","text":"Choose two or more colours, set the angle or centre, then copy the CSS. Paste it into a rule such as .hero { background: linear-gradient(90deg, #0369a1 0%, #38bdf8 100%); }."}},{"@type":"Question","name":"What is the difference between linear, radial and conic gradients?","acceptedAnswer":{"@type":"Answer","text":"A linear gradient changes colour along a straight line, a radial gradient spreads outward from a centre point, and a conic gradient sweeps around a centre point like the hands of a clock."}},{"@type":"Question","name":"How do I change the direction of a linear gradient?","acceptedAnswer":{"@type":"Answer","text":"Use the angle slider or the arrow buttons. 0 degrees points up, 90 degrees points right, 180 degrees points down and 270 degrees points left."}},{"@type":"Question","name":"How many colours can I add?","acceptedAnswer":{"@type":"Answer","text":"Up to ten colour stops. You can set the position of each stop, so colours can bunch together or spread out."}},{"@type":"Question","name":"How do I create a hard edge or stripes?","acceptedAnswer":{"@type":"Answer","text":"Give two neighbouring stops the same position, for example red at 50 percent and blue at 50 percent. The Candy stripes preset uses repeating linear gradients with hard stops."}},{"@type":"Question","name":"Can I make a gradient with transparency?","acceptedAnswer":{"@type":"Answer","text":"Yes. Set the opacity percentage on any stop. The code uses rgba() for those stops, which is useful for fading images or overlays."}},{"@type":"Question","name":"What does the colour blending space do?","acceptedAnswer":{"@type":"Answer","text":"It controls how colours are mixed between stops. The default sRGB can look grey or dull in the middle. OKLab and OKLCH mix in a way that matches human vision and often look smoother and brighter."}},{"@type":"Question","name":"Will OKLab and OKLCH gradients work in every browser?","acceptedAnswer":{"@type":"Answer","text":"They work in current versions of Chrome, Edge, Safari and Firefox. The generated CSS includes a standard fallback line so older browsers still show a gradient."}},{"@type":"Question","name":"What is the hue path option?","acceptedAnswer":{"@type":"Answer","text":"For HSL, HWB, LCH and OKLCH blending, the hue path decides which way round the colour wheel the blend travels: shorter, longer, increasing or decreasing."}},{"@type":"Question","name":"How do I use the gradient in Tailwind CSS?","acceptedAnswer":{"@type":"Answer","text":"Open the Tailwind tab. It gives an arbitrary value class such as bg-[linear-gradient(...)] and, for simple two or three colour gradients, the from, via and to utility classes."}},{"@type":"Question","name":"Can I export a gradient as an image or SVG?","acceptedAnswer":{"@type":"Answer","text":"Yes. Download a PNG at any size up to 4000 pixels or copy an SVG for linear and radial gradients. SVG has no conic gradient, so use CSS or PNG for those."}},{"@type":"Question","name":"How do I make gradient text?","acceptedAnswer":{"@type":"Answer","text":"Choose Preview as Gradient text to see the effect. In CSS, set the gradient as background-image and add background-clip: text with a transparent text colour."}},{"@type":"Question","name":"How can I keep text readable on a gradient?","acceptedAnswer":{"@type":"Answer","text":"Check contrast against the lightest and darkest part of the gradient under the text, and add a semi-transparent overlay or a text shadow if needed."}},{"@type":"Question","name":"Why does my gradient show banding?","acceptedAnswer":{"@type":"Answer","text":"Banding appears when a gradient covers a large area with small colour differences. Using more colour difference, adding a very subtle noise image or using OKLab blending can reduce it."}},{"@type":"Question","name":"Can I animate a gradient?","acceptedAnswer":{"@type":"Answer","text":"The preview animation rotates the angle to show the effect. In your own CSS you can animate background-position or use the @property rule to animate an angle variable."}},{"@type":"Question","name":"Is this gradient generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is a free online tool with no sign-up and no watermark, and everything runs in your browser."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Design and Color Tools","item":"https://utiliby.com/tools/design-color-tools/"},{"@type":"ListItem","position":3,"name":"CSS Gradient Generator","item":"https://utiliby.com/tools/design-color-tools/css-gradient-generator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/design-color-tools/">Design &amp; Color</a> › CSS Gradient Generator</nav>
+<h1 class="noembed">Free CSS Gradient Generator: Linear, Radial &amp; Conic Gradients Online</h1>
+<p class="lead noembed">Free online CSS gradient generator. Build linear, radial and conic gradients with presets, colour stops and OKLab blending, preview them live, then copy CSS, Tailwind or SVG, or download a PNG.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/design-color-tools/css-gradient-generator/" target="_blank" rel="noopener">CSS Gradient Generator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="CSS gradient generator">
+<div class="dt-hero noembed">
+<h2>Free CSS Gradient Generator: Linear, Radial &amp; Conic</h2>
+<p>Design a gradient with presets, up to ten colour stops, opacity and colour-space blending, preview it as a box, card, button or text, then copy CSS, Tailwind or SVG or download a PNG.</p>
+</div>
+<div class="dt-panel"><h3 style="margin:0 0 4px;font-size:1.05rem">Start from a preset</h3><div class="gg-presets" id="ggPresets"></div><div class="dt-row3"><div><label for="ggType">Gradient type</label><select id="ggType"><option value="linear">Linear</option><option value="radial">Radial</option><option value="conic">Conic</option><option value="repeating-linear">Repeating linear</option><option value="repeating-radial">Repeating radial</option><option value="repeating-conic">Repeating conic</option></select></div><div><label for="ggSpace">Colour blending space</label><select id="ggSpace"><option value="srgb">sRGB (default)</option><option value="oklab">OKLab (smoother)</option><option value="oklch">OKLCH (vivid)</option><option value="lab">Lab</option><option value="hsl">HSL</option><option value="srgb-linear">Linear sRGB</option></select></div><div id="ggHueRow"><div><label for="ggHue">Hue path</label><select id="ggHue"><option value="shorter">Shorter</option><option value="longer">Longer</option><option value="increasing">Increasing</option><option value="decreasing">Decreasing</option></select></div></div></div><div id="ggRowLin"><div><label for="ggAngle">Angle <span id="ggAngleV"></span></label><input type="range" id="ggAngle" min="0" max="360" step="1" value="90"></div><div class="gg-dirs" id="ggDirs"><button type="button" class="dt-btn ghost small" data-a="0" aria-label="Angle 0 degrees">&uarr;</button><button type="button" class="dt-btn ghost small" data-a="45" aria-label="Angle 45 degrees">&nearr;</button><button type="button" class="dt-btn ghost small" data-a="90" aria-label="Angle 90 degrees">&rarr;</button><button type="button" class="dt-btn ghost small" data-a="135" aria-label="Angle 135 degrees">&searr;</button><button type="button" class="dt-btn ghost small" data-a="180" aria-label="Angle 180 degrees">&darr;</button><button type="button" class="dt-btn ghost small" data-a="225" aria-label="Angle 225 degrees">&swarr;</button><button type="button" class="dt-btn ghost small" data-a="270" aria-label="Angle 270 degrees">&larr;</button><button type="button" class="dt-btn ghost small" data-a="315" aria-label="Angle 315 degrees">&nwarr;</button></div></div><div id="ggRowRad"><div class="dt-row"><div><label for="ggShape">Shape</label><select id="ggShape"><option value="circle">Circle</option><option value="ellipse">Ellipse</option></select></div><div><label for="ggSize">Size</label><select id="ggSize"><option value="farthest-corner">Farthest corner</option><option value="closest-corner">Closest corner</option><option value="farthest-side">Farthest side</option><option value="closest-side">Closest side</option></select></div></div></div><div id="ggRowCon"><div><label for="ggFrom">Start angle <span id="ggFromV"></span></label><input type="range" id="ggFrom" min="0" max="360" step="1" value="0"></div></div><div id="ggRowPos"><div class="dt-row"><div><label for="ggPx">Centre X <span id="ggPxV"></span></label><input type="range" id="ggPx" min="0" max="100" step="1" value="50"></div><div><label for="ggPy">Centre Y <span id="ggPyV"></span></label><input type="range" id="ggPy" min="0" max="100" step="1" value="50"></div></div></div><h3 style="margin:14px 0 2px;font-size:1.05rem">Colour stops</h3><p class="dc-note" style="margin:0">Colour, HEX, opacity %, position %. Use the same position twice for a hard edge.</p><div id="ggStops"></div><div class="seo-tabs"><button type="button" class="dt-btn small" id="ggAdd">Add stop</button><button type="button" class="dt-btn small ghost" id="ggRev">Reverse</button><button type="button" class="dt-btn small ghost" id="ggDist">Distribute evenly</button><button type="button" class="dt-btn small ghost" id="ggRand">Random gradient</button></div><div class="dt-row3"><div><label for="ggView">Preview as</label><select id="ggView"><option value="box">Full box</option><option value="card">Card</option><option value="circle">Circle</option><option value="button">Button</option><option value="text">Gradient text</option></select></div><div><label for="ggRatio">Preview shape</label><select id="ggRatio"><option value="16/9">16:9</option><option value="1/1">Square</option><option value="4/3">4:3</option><option value="3/1">Wide banner</option><option value="9/16">Phone</option></select></div><div class="im-chk"><input type="checkbox" id="ggAnim"><label for="ggAnim">Animate the preview (does not change the code)</label></div></div><div class="gg-prev" id="ggPrev"><div class="gg-box" id="ggBox"><span id="ggBoxTxt">Gradient</span></div></div><p class="dc-note" id="ggSupport"></p><div class="seo-tabs" id="ggTabs" role="group" aria-label="Output formats"><button type="button" class="dt-btn" data-tab="css">CSS</button><button type="button" class="dt-btn ghost" data-tab="tw">Tailwind</button><button type="button" class="dt-btn ghost" data-tab="svg">SVG</button><button type="button" class="dt-btn ghost" data-tab="png">PNG image</button></div><div id="gg-css"><div><label for="ggCss">CSS code (with fallback)</label><pre class="seo-code" id="ggCss" tabindex="0" aria-live="polite"></pre></div></div><div id="gg-tw" hidden><div><label for="ggTw">Tailwind CSS</label><pre class="seo-code" id="ggTw" tabindex="0" aria-live="polite"></pre></div></div><div id="gg-svg" hidden><div><label for="ggSvg">SVG gradient</label><pre class="seo-code" id="ggSvg" tabindex="0" aria-live="polite"></pre></div></div><div id="gg-png" hidden><div class="dt-row3"><div><label for="ggPw">Width (px)</label><input type="number" id="ggPw" min="16" max="4000" step="1"></div><div><label for="ggPh">Height (px)</label><input type="number" id="ggPh" min="16" max="4000" step="1"></div><div><label>Download</label><button type="button" class="dt-btn small" id="ggPngBtn">Download PNG</button></div></div><canvas id="ggPngCv" width="560" height="315"></canvas><p class="dc-note">PNG and SVG use standard sRGB blending. Repeating conic and colour-space options are fully supported in the CSS output.</p></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="ggCopy">Copy code</button>
+<button type="button" class="dt-btn ghost" id="ggDl">Download file</button>
+<button type="button" class="dt-btn ghost" id="ggPrint">Print / save gradient sheet</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online CSS gradient generator builds code in your browser and uploads nothing. Colour-space blending such as OKLab and OKLCH needs a current browser, so the tool also writes a standard fallback line, and you should test the result in the browsers your visitors use. Gradients can reduce text contrast, so check readability over every part of a gradient background. Exported PNG and SVG files use sRGB blending and may differ slightly from the CSS preview.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/design-color-tools/css-gradient-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). CSS Gradient Generator. https://utiliby.com/tools/design-color-tools/css-gradient-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/design-color-tools/css-gradient-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="CSS Gradient Generator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/design-color-tools/css-gradient-generator/"&gt;CSS Gradient Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free CSS gradient generator does</a></li><li><a href="#how">How to create a CSS gradient step by step</a></li><li><a href="#types">Linear, radial and conic gradients explained</a></li><li><a href="#space">Colour blending spaces: why gradients can look dull</a></li><li><a href="#css">Reading and using the generated CSS</a></li><li><a href="#design">Design tips for gradients that look professional</a></li><li><a href="#contrast">Accessibility and text contrast on gradients</a></li><li><a href="#export">Exporting: CSS, Tailwind, SVG and PNG</a></li><li><a href="#perf">Performance, browser support and limits</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free CSS gradient generator does</h2>
+<p>Gradients turn flat colour into depth: a hero banner that glows, a button that feels pressed, a chart that fades out. Writing the CSS by hand means guessing angles and percentages, so this free online CSS gradient generator gives you a live preview and writes the code for you. It supports <b>linear, radial and conic gradients</b> and their <b>repeating</b> versions, up to ten colour stops with individual opacity and position, and sixteen ready-made presets.</p><p>Unlike simple generators, it can blend colours in <b>OKLab, OKLCH, Lab, HSL or linear sRGB</b>, which avoids the muddy middle that plain sRGB gradients often have, and it always writes a standard fallback for older browsers. You can preview the gradient as a box, card, circle, button or gradient text, then copy CSS, Tailwind classes or SVG, or download a PNG of any size.</p><figure class="dt-fig"><svg viewBox="0 0 640 210" width="100%" role="img" aria-label="The three gradient types: linear changes along a line, radial spreads from a centre, conic sweeps around a point"><title>Linear, radial and conic gradients</title>
+<defs><linearGradient id="gdL" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0ea5e9"/><stop offset="1" stop-color="#9333ea"/></linearGradient><radialGradient id="gdR"><stop offset="0" stop-color="#fde047"/><stop offset="1" stop-color="#ea580c"/></radialGradient></defs>
+<rect class="dt-pop" x="20" y="20" width="180" height="130" rx="12" fill="url(#gdL)"/><rect class="dt-pop" x="230" y="20" width="180" height="130" rx="12" fill="url(#gdR)" style="animation-delay:.15s"/>
+<g class="dt-pop" style="animation-delay:.3s"><circle cx="530" cy="85" r="65" fill="#ef4444"/><path d="M530 85 L530 20 A65 65 0 0 1 595 85Z" fill="#f59e0b"/><path d="M530 85 L595 85 A65 65 0 0 1 530 150Z" fill="#22c55e"/><path d="M530 85 L530 150 A65 65 0 0 1 465 85Z" fill="#3b82f6"/><path d="M530 85 L465 85 A65 65 0 0 1 530 20Z" fill="#a855f7"/></g>
+<text x="110" y="176" text-anchor="middle" font-size="12" fill="currentColor">linear-gradient()</text><text x="320" y="176" text-anchor="middle" font-size="12" fill="currentColor">radial-gradient()</text><text x="530" y="176" text-anchor="middle" font-size="12" fill="currentColor">conic-gradient()</text>
+<text x="320" y="200" text-anchor="middle" font-size="11" fill="currentColor">along a line · from a centre · around a point</text></svg>
+<figcaption>Three gradient functions cover almost every background, button, hero image and chart effect on the web.</figcaption></figure>
+<h2 id="how">How to create a CSS gradient step by step</h2>
+<ol><li><b>Pick a type.</b> Linear is the most common. Radial suits spotlights and glows. Conic suits pie charts and colour wheels.</li><li><b>Choose colours.</b> Click a swatch, type a HEX code or start from a preset.</li><li><b>Shape the gradient.</b> Set the angle, or the centre and shape for radial and conic.</li><li><b>Fine tune stops.</b> Drag positions with the number boxes, add stops, reverse the order or distribute them evenly.</li><li><b>Choose a blending space.</b> Try OKLab if the middle of the gradient looks dull.</li><li><b>Copy the code.</b> Use the CSS, Tailwind or SVG tab, or download a PNG.</li></ol><p>If you want inspiration, press Random gradient, or build a set of harmonious colours first with the <a href="/tools/design-color-tools/color-palette-generator/">Color Palette Generator</a> and paste the HEX codes in.</p>
+<h2 id="types">Linear, radial and conic gradients explained</h2>
+<div class="dt-wrap"><table><tr><th>Type</th><th>CSS function</th><th>How it works</th><th>Typical uses</th></tr><tr><td>Linear</td><td>linear-gradient()</td><td>Colours change along a straight line at an angle</td><td>Backgrounds, buttons, headers</td></tr><tr><td>Radial</td><td>radial-gradient()</td><td>Colours spread from a centre as a circle or ellipse</td><td>Glows, spotlights, vignettes, orbs</td></tr><tr><td>Conic</td><td>conic-gradient()</td><td>Colours sweep around a centre point</td><td>Pie charts, colour wheels, loaders</td></tr><tr><td>Repeating</td><td>repeating-*-gradient()</td><td>The stop pattern repeats to fill the shape</td><td>Stripes, checks, patterns</td></tr></table></div><p>Angles in CSS start at the top and turn clockwise, so 0 degrees points up and 90 degrees points right. For radial gradients the <b>size</b> option decides where the final colour lands: farthest-corner is the default and fills the box, while closest-side stops at the nearest edge.</p>
+<h2 id="space">Colour blending spaces: why gradients can look dull</h2>
+<p>When a browser blends two colours it must decide how to calculate the colours in between. By default it mixes the red, green and blue values directly in sRGB. That is simple, but blending opposite colours, such as blue and yellow, passes through a grey zone. Modern CSS lets you choose the colour space with the <code>in</code> keyword: <code>linear-gradient(90deg in oklab, blue, yellow)</code>.</p><ul><li><b>OKLab</b> mixes according to perceived lightness and keeps midpoints neat and even.</li><li><b>OKLCH</b> travels around the hue wheel, so blue to yellow passes through green rather than grey, giving vivid results.</li><li><b>Lab</b> is an older perceptual space with similar benefits.</li><li><b>HSL</b> blends hue, saturation and lightness and is easy to reason about.</li><li><b>Linear sRGB</b> mixes light physically, which can look brighter.</li></ul><p>For hue-based spaces, the <b>hue path</b> option picks the direction around the wheel. The CSS output always includes a standard line first and the modern one after it, so unsupported browsers fall back safely.</p>
+<h2 id="css">Reading and using the generated CSS</h2>
+<p>A typical result looks like this:</p><p><code>.gradient { background: #0369a1; background: linear-gradient(90deg, #0369a1 0%, #38bdf8 100%); }</code></p><p>The first line is a solid fallback colour. The second is the gradient, with each stop written as a colour and a position. A stop with opacity is written in <code>rgba()</code>. Apply the class to any element, or use the same value with <code>background-image</code> if you layer it over a photo. To lay a gradient on top of an image, list both: <code>background: linear-gradient(rgba(0,0,0,.4), transparent), url(photo.jpg);</code>. The first value sits on top.</p><p>Use <code>background-size</code> and <code>background-position</code> to control tiling and offset, and set <code>min-height</code> so the element is tall enough to show the gradient.</p>
+<h2 id="design">Design tips for gradients that look professional</h2>
+<ul><li><b>Keep hues close.</b> Neighbouring hues, such as blue to purple, look smoother than opposites.</li><li><b>Vary lightness a little.</b> A gentle lightness change gives depth.</li><li><b>Use two or three stops.</b> More colours need more care.</li><li><b>Mind the angle.</b> Diagonal gradients at 135 degrees feel dynamic, vertical ones feel natural like sky.</li><li><b>Avoid text on busy areas.</b> Put text on the calm part of the gradient.</li><li><b>Test dark mode.</b> A gradient that glows on white can overwhelm on black.</li><li><b>Add a subtle overlay.</b> A low opacity dark layer improves contrast behind white text.</li></ul><p>Soft gradients also pair well with frosted panels, so try the <a href="/tools/design-color-tools/glassmorphism-generator/">Glassmorphism CSS Generator</a> over your finished background.</p>
+<h2 id="contrast">Accessibility and text contrast on gradients</h2>
+<p>Contrast is measured between a text colour and the background directly behind it. On a gradient, the background changes across the text, so you must check the worst point. WCAG 2 asks for at least 4.5:1 for normal text and 3:1 for large text. Sample the lightest and darkest colours under the text with the <a href="/tools/accessibility-tools/color-contrast-checker/">Color Contrast Checker</a>. If the range fails, shift the gradient, move the text, or add a solid or semi-transparent panel behind it. Remember too that moving or animated backgrounds can distract, so respect the reduced-motion setting if you animate.</p>
+<h2 id="export">Exporting: CSS, Tailwind, SVG and PNG</h2>
+<div class="dt-wrap"><table><tr><th>Output</th><th>Best for</th><th>Notes</th></tr><tr><td>CSS</td><td>Websites and apps</td><td>Includes fallback and modern colour space line</td></tr><tr><td>Tailwind</td><td>Tailwind projects</td><td>Arbitrary value class, plus from, via and to classes for simple cases</td></tr><tr><td>SVG</td><td>Vector graphics, logos</td><td>Linear and radial only, sRGB blending</td></tr><tr><td>PNG</td><td>Slides, social posts, wallpapers</td><td>Any size up to 4000 pixels, all gradient types</td></tr></table></div><p>The print button creates a one-page sheet with a preview, the settings and the CSS, which suits handoff to a developer or client.</p>
+<h2 id="perf">Performance, browser support and limits</h2>
+<p>CSS gradients are drawn by the browser, so they have no download cost and scale to any screen size without blur, which makes them lighter than gradient images. Linear and radial gradients work everywhere, conic gradients work in all current browsers, and colour-space interpolation works in current Chrome, Edge, Safari and Firefox. Very large gradients with tiny colour changes can show banding. Always test on real devices, and treat PNG and SVG exports as sRGB approximations of the CSS.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a CSS gradient generator?</summary><p>It is a tool that builds the CSS code for a colour gradient from settings you choose, such as the type, angle, colours and positions, and shows a live preview so you can copy the finished code.</p></details><details><summary>How do I make a gradient background in CSS?</summary><p>Choose two or more colours, set the angle or centre, then copy the CSS. Paste it into a rule such as .hero { background: linear-gradient(90deg, #0369a1 0%, #38bdf8 100%); }.</p></details><details><summary>What is the difference between linear, radial and conic gradients?</summary><p>A linear gradient changes colour along a straight line, a radial gradient spreads outward from a centre point, and a conic gradient sweeps around a centre point like the hands of a clock.</p></details><details><summary>How do I change the direction of a linear gradient?</summary><p>Use the angle slider or the arrow buttons. 0 degrees points up, 90 degrees points right, 180 degrees points down and 270 degrees points left.</p></details><details><summary>How many colours can I add?</summary><p>Up to ten colour stops. You can set the position of each stop, so colours can bunch together or spread out.</p></details><details><summary>How do I create a hard edge or stripes?</summary><p>Give two neighbouring stops the same position, for example red at 50 percent and blue at 50 percent. The Candy stripes preset uses repeating linear gradients with hard stops.</p></details><details><summary>Can I make a gradient with transparency?</summary><p>Yes. Set the opacity percentage on any stop. The code uses rgba() for those stops, which is useful for fading images or overlays.</p></details><details><summary>What does the colour blending space do?</summary><p>It controls how colours are mixed between stops. The default sRGB can look grey or dull in the middle. OKLab and OKLCH mix in a way that matches human vision and often look smoother and brighter.</p></details><details><summary>Will OKLab and OKLCH gradients work in every browser?</summary><p>They work in current versions of Chrome, Edge, Safari and Firefox. The generated CSS includes a standard fallback line so older browsers still show a gradient.</p></details><details><summary>What is the hue path option?</summary><p>For HSL, HWB, LCH and OKLCH blending, the hue path decides which way round the colour wheel the blend travels: shorter, longer, increasing or decreasing.</p></details><details><summary>How do I use the gradient in Tailwind CSS?</summary><p>Open the Tailwind tab. It gives an arbitrary value class such as bg-[linear-gradient(...)] and, for simple two or three colour gradients, the from, via and to utility classes.</p></details><details><summary>Can I export a gradient as an image or SVG?</summary><p>Yes. Download a PNG at any size up to 4000 pixels or copy an SVG for linear and radial gradients. SVG has no conic gradient, so use CSS or PNG for those.</p></details><details><summary>How do I make gradient text?</summary><p>Choose Preview as Gradient text to see the effect. In CSS, set the gradient as background-image and add background-clip: text with a transparent text colour.</p></details><details><summary>How can I keep text readable on a gradient?</summary><p>Check contrast against the lightest and darkest part of the gradient under the text, and add a semi-transparent overlay or a text shadow if needed.</p></details><details><summary>Why does my gradient show banding?</summary><p>Banding appears when a gradient covers a large area with small colour differences. Using more colour difference, adding a very subtle noise image or using OKLab blending can reduce it.</p></details><details><summary>Can I animate a gradient?</summary><p>The preview animation rotates the angle to show the effect. In your own CSS you can animate background-position or use the @property rule to animate an angle variable.</p></details><details><summary>Is this gradient generator free?</summary><p>Yes. It is a free online tool with no sign-up and no watermark, and everything runs in your browser.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>MDN Web Docs, <a href="https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_images/Using_CSS_gradients" rel="noopener">Using CSS gradients</a>.</li><li>W3C, <a href="https://www.w3.org/TR/css-images-4/" rel="noopener">CSS Images Module Level 4</a>, gradient functions and interpolation.</li><li>W3C, <a href="https://www.w3.org/TR/css-color-4/" rel="noopener">CSS Color Module Level 4</a>, colour interpolation.</li><li>Björn Ottosson, <a href="https://bottosson.github.io/posts/oklab/" rel="noopener">A perceptual color space for image processing</a>.</li><li>Tailwind CSS documentation, <a href="https://tailwindcss.com/docs/background-image" rel="noopener">Background image and gradient color stops</a>.</li><li>W3C, <a href="https://www.w3.org/TR/WCAG22/" rel="noopener">WCAG 2.2</a>, contrast requirements.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online CSS gradient generator builds code in your browser and uploads nothing. Colour-space blending such as OKLab and OKLCH needs a current browser, so the tool also writes a standard fallback line, and you should test the result in the browsers your visitors use. Gradients can reduce text contrast, so check readability over every part of a gradient background. Exported PNG and SVG files use sRGB blending and may differ slightly from the CSS preview.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- design & color shared library ---------- */
+var CSSNAMES = "aliceblue:f0f8ff,antiquewhite:faebd7,aqua:00ffff,aquamarine:7fffd4,azure:f0ffff,beige:f5f5dc,bisque:ffe4c4,black:000000,blanchedalmond:ffebcd,blue:0000ff,blueviolet:8a2be2,brown:a52a2a,burlywood:deb887,cadetblue:5f9ea0,chartreuse:7fff00,chocolate:d2691e,coral:ff7f50,cornflowerblue:6495ed,cornsilk:fff8dc,crimson:dc143c,cyan:00ffff,darkblue:00008b,darkcyan:008b8b,darkgoldenrod:b8860b,darkgray:a9a9a9,darkgreen:006400,darkgrey:a9a9a9,darkkhaki:bdb76b,darkmagenta:8b008b,darkolivegreen:556b2f,darkorange:ff8c00,darkorchid:9932cc,darkred:8b0000,darksalmon:e9967a,darkseagreen:8fbc8f,darkslateblue:483d8b,darkslategray:2f4f4f,darkslategrey:2f4f4f,darkturquoise:00ced1,darkviolet:9400d3,deeppink:ff1493,deepskyblue:00bfff,dimgray:696969,dimgrey:696969,dodgerblue:1e90ff,firebrick:b22222,floralwhite:fffaf0,forestgreen:228b22,fuchsia:ff00ff,gainsboro:dcdcdc,ghostwhite:f8f8ff,gold:ffd700,goldenrod:daa520,gray:808080,green:008000,greenyellow:adff2f,grey:808080,honeydew:f0fff0,hotpink:ff69b4,indianred:cd5c5c,indigo:4b0082,ivory:fffff0,khaki:f0e68c,lavender:e6e6fa,lavenderblush:fff0f5,lawngreen:7cfc00,lemonchiffon:fffacd,lightblue:add8e6,lightcoral:f08080,lightcyan:e0ffff,lightgoldenrodyellow:fafad2,lightgray:d3d3d3,lightgreen:90ee90,lightgrey:d3d3d3,lightpink:ffb6c1,lightsalmon:ffa07a,lightseagreen:20b2aa,lightskyblue:87cefa,lightslategray:778899,lightslategrey:778899,lightsteelblue:b0c4de,lightyellow:ffffe0,lime:00ff00,limegreen:32cd32,linen:faf0e6,magenta:ff00ff,maroon:800000,mediumaquamarine:66cdaa,mediumblue:0000cd,mediumorchid:ba55d3,mediumpurple:9370db,mediumseagreen:3cb371,mediumslateblue:7b68ee,mediumspringgreen:00fa9a,mediumturquoise:48d1cc,mediumvioletred:c71585,midnightblue:191970,mintcream:f5fffa,mistyrose:ffe4e1,moccasin:ffe4b5,navajowhite:ffdead,navy:000080,oldlace:fdf5e6,olive:808000,olivedrab:6b8e23,orange:ffa500,orangered:ff4500,orchid:da70d6,palegoldenrod:eee8aa,palegreen:98fb98,paleturquoise:afeeee,palevioletred:db7093,papayawhip:ffefd5,peachpuff:ffdab9,peru:cd853f,pink:ffc0cb,plum:dda0dd,powderblue:b0e0e6,purple:800080,rebeccapurple:663399,red:ff0000,rosybrown:bc8f8f,royalblue:4169e1,saddlebrown:8b4513,salmon:fa8072,sandybrown:f4a460,seagreen:2e8b57,seashell:fff5ee,sienna:a0522d,silver:c0c0c0,skyblue:87ceeb,slateblue:6a5acd,slategray:708090,slategrey:708090,snow:fffafa,springgreen:00ff7f,steelblue:4682b4,tan:d2b48c,teal:008080,thistle:d8bfd8,tomato:ff6347,turquoise:40e0d0,violet:ee82ee,wheat:f5deb3,white:ffffff,whitesmoke:f5f5f5,yellow:ffff00,yellowgreen:9acd32";
+var NAMEMAP = null;
+function nameMap() { if (NAMEMAP) return NAMEMAP; NAMEMAP = []; CSSNAMES.split(",").forEach(function (p) { var k = p.split(":"); if (k[0].indexOf("grey") > -1) return; var v = parseInt(k[1], 16); NAMEMAP.push({ n: k[0], r: v >> 16, g: (v >> 8) & 255, b: v & 255 }); }); NAMEMAP.forEach(function (c) { c.lab = rgb2oklab(c.r, c.g, c.b); }); return NAMEMAP; }
+function clamp(v, a, b) { return v < a ? a : (v > b ? b : v); }
+function rnd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+function nz(v) { return v === 0 ? 0 : v; }
+function trim(v, d) { var s = rnd(nz(v), d).toFixed(d); return s.indexOf(".") > -1 ? s.replace(/0+$/, "").replace(/\.$/, "") : s; }
+function h2(n) { n = clamp(Math.round(n), 0, 255); return (n < 16 ? "0" : "") + n.toString(16); }
+function rgb2hex(r, g, b) { return "#" + h2(r) + h2(g) + h2(b); }
+function hexA(r, g, b, a) { return rgb2hex(r, g, b) + (a < 1 ? h2(a * 255) : ""); }
+function norm360(h) { h = h % 360; return h < 0 ? h + 360 : h; }
+/* --- HSL / HSV / HWB / CMYK --- */
+function rgb2hsl(r, g, b) {
+  r /= 255; g /= 255; b /= 255; var mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn, h = 0, s = 0, l = (mx + mn) / 2;
+  if (d > 0) { s = d / (1 - Math.abs(2 * l - 1)); if (mx === r) h = ((g - b) / d) % 6; else if (mx === g) h = (b - r) / d + 2; else h = (r - g) / d + 4; h *= 60; if (h < 0) h += 360; }
+  return [h, s * 100, l * 100];
+}
+function hsl2rgb(h, s, l) {
+  h = norm360(h); s = clamp(s, 0, 100) / 100; l = clamp(l, 0, 100) / 100; var c = (1 - Math.abs(2 * l - 1)) * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = l - c / 2, r = 0, g = 0, b = 0;
+  if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; } else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; }
+  return [(r + m) * 255, (g + m) * 255, (b + m) * 255];
+}
+function rgb2hsv(r, g, b) { r /= 255; g /= 255; b /= 255; var mx = Math.max(r, g, b), mn = Math.min(r, g, b), d = mx - mn, h = rgb2hsl(r * 255, g * 255, b * 255)[0]; return [h, mx === 0 ? 0 : d / mx * 100, mx * 100]; }
+function hsv2rgb(h, s, v) { h = norm360(h); s = clamp(s, 0, 100) / 100; v = clamp(v, 0, 100) / 100; var c = v * s, x = c * (1 - Math.abs((h / 60) % 2 - 1)), m = v - c, r = 0, g = 0, b = 0; if (h < 60) { r = c; g = x; } else if (h < 120) { r = x; g = c; } else if (h < 180) { g = c; b = x; } else if (h < 240) { g = x; b = c; } else if (h < 300) { r = x; b = c; } else { r = c; b = x; } return [(r + m) * 255, (g + m) * 255, (b + m) * 255]; }
+function rgb2hwb(r, g, b) { var h = rgb2hsl(r, g, b)[0]; return [h, Math.min(r, g, b) / 255 * 100, (1 - Math.max(r, g, b) / 255) * 100]; }
+function hwb2rgb(h, w, bk) { w = clamp(w, 0, 100) / 100; bk = clamp(bk, 0, 100) / 100; if (w + bk >= 1) { var g = w / (w + bk) * 255; return [g, g, g]; } var c = hsl2rgb(h, 100, 50); return c.map(function (v) { return v / 255 * (1 - w - bk) * 255 + w * 255; }); }
+function rgb2cmyk(r, g, b) { r /= 255; g /= 255; b /= 255; var k = 1 - Math.max(r, g, b); if (k >= 1) return [0, 0, 0, 100]; return [(1 - r - k) / (1 - k) * 100, (1 - g - k) / (1 - k) * 100, (1 - b - k) / (1 - k) * 100, k * 100]; }
+function cmyk2rgb(c, m, y, k) { c /= 100; m /= 100; y /= 100; k /= 100; return [255 * (1 - c) * (1 - k), 255 * (1 - m) * (1 - k), 255 * (1 - y) * (1 - k)]; }
+/* --- linear light, XYZ, Lab (D50), Oklab --- */
+function lin(c) { c /= 255; return c <= 0.04045 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4); }
+function delin(v) { v = v <= 0.0031308 ? v * 12.92 : 1.055 * Math.pow(v, 1 / 2.4) - 0.055; return v * 255; }
+function rgb2xyz50(r, g, b) { r = lin(r); g = lin(g); b = lin(b); return [0.4360747 * r + 0.3850649 * g + 0.1430804 * b, 0.2225045 * r + 0.7168786 * g + 0.0606169 * b, 0.0139322 * r + 0.0971045 * g + 0.7141733 * b]; }
+function xyz502rgb(x, y, z) { var r = 3.1338561 * x - 1.6168667 * y - 0.4906146 * z, g = -0.9787684 * x + 1.9161415 * y + 0.0334540 * z, b = 0.0719453 * x - 0.2289914 * y + 1.4052427 * z; return [delin(r), delin(g), delin(b)]; }
+var WH50 = [0.96422, 1, 0.82521];
+function rgb2lab(r, g, b) { var q = rgb2xyz50(r, g, b); var f = function (t) { return t > 216 / 24389 ? Math.cbrt(t) : (24389 / 27 * t + 16) / 116; }; var fx = f(q[0] / WH50[0]), fy = f(q[1] / WH50[1]), fz = f(q[2] / WH50[2]); return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)]; }
+function lab2rgb(L, a, b) { var fy = (L + 16) / 116, fx = a / 500 + fy, fz = fy - b / 200; var fi = function (t) { return t * t * t > 216 / 24389 ? t * t * t : (116 * t - 16) / (24389 / 27); }; return xyz502rgb(fi(fx) * WH50[0], (L > 8 ? Math.pow((L + 16) / 116, 3) : L / (24389 / 27)) * WH50[1], fi(fz) * WH50[2]); }
+function rgb2oklab(r, g, b) { r = lin(r); g = lin(g); b = lin(b); var l = Math.cbrt(0.4122214708 * r + 0.5363325363 * g + 0.0514459929 * b), m = Math.cbrt(0.2119034982 * r + 0.6806995451 * g + 0.1073969566 * b), s = Math.cbrt(0.0883024619 * r + 0.2817188376 * g + 0.6299787005 * b); return [0.2104542553 * l + 0.7936177850 * m - 0.0040720468 * s, 1.9779984951 * l - 2.4285922050 * m + 0.4505937099 * s, 0.0259040371 * l + 0.7827717662 * m - 0.8086757660 * s]; }
+function oklab2lin(L, a, b) { var l = L + 0.3963377774 * a + 0.2158037573 * b, m = L - 0.1055613458 * a - 0.0638541728 * b, s = L - 0.0894841775 * a - 1.2914855480 * b; l = l * l * l; m = m * m * m; s = s * s * s; return [4.0767416621 * l - 3.3077115913 * m + 0.2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - 0.3413193965 * s, -0.0041960863 * l - 0.7034186147 * m + 1.7076147010 * s]; }
+function oklab2rgb(L, a, b) { var q = oklab2lin(L, a, b); return [delin(q[0]), delin(q[1]), delin(q[2])]; }
+function oklab2oklch(L, a, b) { var c = Math.sqrt(a * a + b * b), h = c < 1e-6 ? 0 : norm360(Math.atan2(b, a) * 180 / Math.PI); return [L, c, h]; }
+function oklch2oklab(L, c, h) { var r = h * Math.PI / 180; return [L, c * Math.cos(r), c * Math.sin(r)]; }
+function rgb2oklch(r, g, b) { var o = rgb2oklab(r, g, b); return oklab2oklch(o[0], o[1], o[2]); }
+function inGamut(q) { var e = 0.00005; return q[0] >= -e && q[0] <= 1 + e && q[1] >= -e && q[1] <= 1 + e && q[2] >= -e && q[2] <= 1 + e; }
+function oklch2rgb(L, c, h, gamut) { /* gamut: reduce chroma until the colour fits sRGB */
+  var o = oklch2oklab(L, c, h), q = oklab2lin(o[0], o[1], o[2]);
+  if (gamut && !inGamut(q)) { var lo = 0, hi = c; for (var i = 0; i < 24; i++) { var mid = (lo + hi) / 2, oo = oklch2oklab(L, mid, h); if (inGamut(oklab2lin(oo[0], oo[1], oo[2]))) lo = mid; else hi = mid; } o = oklch2oklab(L, lo, h); }
+  var v = oklab2rgb(o[0], o[1], o[2]); return v.map(function (x) { return clamp(x, 0, 255); });
+}
+/* --- WCAG --- */
+function relLum(r, g, b) { return 0.2126 * lin(r) + 0.7152 * lin(g) + 0.0722 * lin(b); }
+function contrast(a, b) { var la = relLum(a[0], a[1], a[2]), lb = relLum(b[0], b[1], b[2]); return (Math.max(la, lb) + 0.05) / (Math.min(la, lb) + 0.05); }
+function onColor(r, g, b) { return contrast([r, g, b], [255, 255, 255]) >= contrast([r, g, b], [0, 0, 0]) ? "#ffffff" : "#000000"; }
+function wcagRows(ratio) { return [["AA normal text (4.5:1)", ratio >= 4.5], ["AA large text (3:1)", ratio >= 3], ["AAA normal text (7:1)", ratio >= 7], ["AAA large text (4.5:1)", ratio >= 4.5], ["UI components (3:1)", ratio >= 3]]; }
+/* --- naming --- */
+function nearestName(r, g, b) { var o = rgb2oklab(r, g, b), best = null, bd = 1e9; nameMap().forEach(function (c) { var d = (c.lab[0] - o[0]) * (c.lab[0] - o[0]) + (c.lab[1] - o[1]) * (c.lab[1] - o[1]) + (c.lab[2] - o[2]) * (c.lab[2] - o[2]); if (d < bd) { bd = d; best = c; } }); return { name: best.n, exact: best.r === Math.round(r) && best.g === Math.round(g) && best.b === Math.round(b), hex: rgb2hex(best.r, best.g, best.b), dist: Math.sqrt(bd) }; }
+/* --- parsing --- */
+function numTok(s) { s = String(s).trim(); var m = s.match(/^([+-]?(?:\d+\.?\d*|\.\d+)(?:e[+-]?\d+)?)(%|deg|grad|rad|turn)?$/i); if (!m) return null; var v = parseFloat(m[1]), u = (m[2] || "").toLowerCase(); return { v: v, u: u }; }
+function pctOr(t, full) { if (!t) return NaN; return t.u === "%" ? t.v / 100 * full : t.v; }
+function hueTok(t) { if (!t) return NaN; var u = t.u; return u === "turn" ? t.v * 360 : u === "rad" ? t.v * 180 / Math.PI : u === "grad" ? t.v * 0.9 : t.v; }
+function parseColor(str) {
+  if (str == null) return null; var s = String(str).trim().toLowerCase(); if (!s) return null;
+  var m, a = 1;
+  if ((m = s.match(/^#?([0-9a-f]{3,8})$/)) && [3, 4, 6, 8].indexOf(m[1].length) > -1 && (s[0] === "#" || /[a-f]/.test(m[1]) || m[1].length === 6 || m[1].length === 8)) {
+    var h = m[1]; if (h.length <= 4) h = h.replace(/./g, function (c) { return c + c; });
+    var r = parseInt(h.substr(0, 2), 16), g = parseInt(h.substr(2, 2), 16), b = parseInt(h.substr(4, 2), 16); a = h.length === 8 ? parseInt(h.substr(6, 2), 16) / 255 : 1; return { r: r, g: g, b: b, a: a, fmt: "hex" };
+  }
+  if (s === "transparent") return { r: 0, g: 0, b: 0, a: 0, fmt: "name" };
+  var nm = nameMap(), i; var s2 = s.replace("grey", "gray"); for (i = 0; i < nm.length; i++) if (nm[i].n === s2) return { r: nm[i].r, g: nm[i].g, b: nm[i].b, a: 1, fmt: "name" };
+  m = s.match(/^(device-cmyk|cmyk|rgba?|hsla?|hwb|hsv|hsb|lab|lch|oklab|oklch)\s*\(\s*(.*?)\s*\)$/);
+  var fn, body;
+  if (m) { fn = m[1]; body = m[2]; } else if (/^[-+\d.%\s,\/]+$/.test(s) && /[\d]/.test(s)) { fn = "rgb"; body = s; } else return null;
+  var alpha = null, sl = body.split("/"); if (sl.length === 2) { body = sl[0].trim(); var at = numTok(sl[1]); if (!at) return null; alpha = clamp(at.u === "%" ? at.v / 100 : at.v, 0, 1); } else if (sl.length > 2) return null;
+  var parts = body.indexOf(",") > -1 ? body.split(",").map(function (x) { return x.trim(); }) : body.split(/\s+/);
+  if (alpha === null && parts.length === 4 && (fn === "rgba" || fn === "hsla" || ((fn === "rgb" || fn === "hsl" || fn === "hwb" || fn === "hsv" || fn === "hsb") && body.indexOf(",") > -1))) { var a4 = numTok(parts[3]); if (!a4) return null; alpha = clamp(a4.u === "%" ? a4.v / 100 : a4.v, 0, 1); parts = parts.slice(0, 3); }
+  var t = parts.map(numTok); if (t.some(function (x) { return !x; })) return null;
+  var o = null, mk = function (rgb, f) { return { r: clamp(rgb[0], 0, 255), g: clamp(rgb[1], 0, 255), b: clamp(rgb[2], 0, 255), a: alpha === null ? 1 : alpha, fmt: f }; };
+  if (fn === "cmyk" || fn === "device-cmyk") { if (t.length !== 4) return null; var cm = t.map(function (x) { return x.u === "%" || x.v > 1 || fn === "cmyk" ? (x.u === "%" ? x.v : (x.v <= 1 && fn === "device-cmyk" ? x.v * 100 : x.v)) : x.v * 100; }); return mk(cmyk2rgb(cm[0], cm[1], cm[2], cm[3]), "cmyk"); }
+  if (t.length !== 3) return null;
+  if (fn === "rgb" || fn === "rgba") { var all = t.every(function (x) { return x.u === "%"; }); var rg = t.map(function (x) { return x.u === "%" ? x.v / 100 * 255 : x.v; }); if (!all && t.some(function (x) { return x.u === "%"; })) return null; return mk(rg, "rgb"); }
+  if (fn === "hsl" || fn === "hsla") return mk(hsl2rgb(hueTok(t[0]), t[1].v, t[2].v), "hsl");
+  if (fn === "hsv" || fn === "hsb") return mk(hsv2rgb(hueTok(t[0]), t[1].v, t[2].v), "hsv");
+  if (fn === "hwb") return mk(hwb2rgb(hueTok(t[0]), t[1].v, t[2].v), "hwb");
+  if (fn === "lab") { var L = pctOr(t[0], 100), A = pctOr(t[1], 125), B = pctOr(t[2], 125); return mk(lab2rgb(L, A, B), "lab"); }
+  if (fn === "lch") { var L2 = pctOr(t[0], 100), C2 = pctOr(t[1], 150), H2 = hueTok(t[2]) * Math.PI / 180; return mk(lab2rgb(L2, C2 * Math.cos(H2), C2 * Math.sin(H2)), "lch"); }
+  if (fn === "oklab") { var L3 = pctOr(t[0], 1), A3 = pctOr(t[1], 0.4), B3 = pctOr(t[2], 0.4); return mk(oklab2rgb(L3, A3, B3), "oklab"); }
+  if (fn === "oklch") { var L4 = pctOr(t[0], 1), C4 = pctOr(t[1], 0.4), H4 = hueTok(t[2]); return mk(oklch2rgb(L4, C4, H4, true), "oklch"); }
+  return o;
+}
+/* --- formatting --- */
+function fHex(c) { return ("#" + h2(c.r) + h2(c.g) + h2(c.b)).toUpperCase(); }
+function fHexA(c) { return (hexA(c.r, c.g, c.b, c.a)).toUpperCase(); }
+function fRgb(c) { var R = Math.round(c.r), G = Math.round(c.g), B = Math.round(c.b); return c.a < 1 ? "rgba(" + R + ", " + G + ", " + B + ", " + trim(c.a, 3) + ")" : "rgb(" + R + ", " + G + ", " + B + ")"; }
+function fHsl(c) { var q = rgb2hsl(c.r, c.g, c.b); var H = Math.round(q[0]) % 360, S = Math.round(q[1]), L = Math.round(q[2]); return c.a < 1 ? "hsla(" + H + ", " + S + "%, " + L + "%, " + trim(c.a, 3) + ")" : "hsl(" + H + ", " + S + "%, " + L + "%)"; }
+function fHsv(c) { var q = rgb2hsv(c.r, c.g, c.b); return "hsv(" + (Math.round(q[0]) % 360) + ", " + Math.round(q[1]) + "%, " + Math.round(q[2]) + "%)"; }
+function fHwb(c) { var q = rgb2hwb(c.r, c.g, c.b); return "hwb(" + (Math.round(q[0]) % 360) + " " + Math.round(q[1]) + "% " + Math.round(q[2]) + "%" + (c.a < 1 ? " / " + trim(c.a, 3) : "") + ")"; }
+function fCmyk(c) { var q = rgb2cmyk(c.r, c.g, c.b); return "cmyk(" + q.map(function (v) { return Math.round(v) + "%"; }).join(", ") + ")"; }
+function fLab(c) { var q = rgb2lab(c.r, c.g, c.b); return "lab(" + trim(q[0], 2) + "% " + trim(q[1], 2) + " " + trim(q[2], 2) + (c.a < 1 ? " / " + trim(c.a, 3) : "") + ")"; }
+function fLch(c) { var q = rgb2lab(c.r, c.g, c.b), ch = Math.sqrt(q[1] * q[1] + q[2] * q[2]), hh = ch < 0.005 ? 0 : norm360(Math.atan2(q[2], q[1]) * 180 / Math.PI); return "lch(" + trim(q[0], 2) + "% " + trim(ch, 2) + " " + trim(hh, 2) + (c.a < 1 ? " / " + trim(c.a, 3) : "") + ")"; }
+function fOklab(c) { var q = rgb2oklab(c.r, c.g, c.b); return "oklab(" + trim(q[0] * 100, 2) + "% " + trim(q[1], 4) + " " + trim(q[2], 4) + (c.a < 1 ? " / " + trim(c.a, 3) : "") + ")"; }
+function fOklch(c) { var q = rgb2oklch(c.r, c.g, c.b); return "oklch(" + trim(q[0] * 100, 2) + "% " + trim(q[1], 4) + " " + trim(q[2], 2) + (c.a < 1 ? " / " + trim(c.a, 3) : "") + ")"; }
+function fCss(c) { return c.a < 1 ? fHexA(c).toLowerCase() : fHex(c).toLowerCase(); }
+function colorRows(c) {
+  var nn = nearestName(c.r, c.g, c.b);
+  return [["HEX", fHex(c)], ["HEX with alpha", fHexA(c).length === 9 ? fHexA(c) : fHex(c) + "FF"], ["RGB", fRgb(c)], ["HSL", fHsl(c)], ["HSV / HSB", fHsv(c)], ["HWB", fHwb(c)], ["CMYK", fCmyk(c)], ["CIE Lab", fLab(c)], ["LCH", fLch(c)], ["OKLab", fOklab(c)], ["OKLCH", fOklch(c)], ["Nearest CSS name", nn.name + (nn.exact ? "" : " (closest)")]];
+}
+function mkc(rgb, a) { return { r: clamp(rgb[0], 0, 255), g: clamp(rgb[1], 0, 255), b: clamp(rgb[2], 0, 255), a: a == null ? 1 : a }; }
+function swatchHtml(hex, size, label) { return '<span class="dc-sw" style="background:' + hex + ';' + (size ? "width:" + size + "px;height:" + size + "px;" : "") + '"' + (label ? ' title="' + esc(label) + '"' : "") + "></span>"; }
+function rgbaCss(c) { return "rgba(" + Math.round(c.r) + "," + Math.round(c.g) + "," + Math.round(c.b) + "," + trim(c.a, 3) + ")"; }
+function mulberry(seed) { var a = seed >>> 0; return function () { a = (a + 0x6D2B79F5) >>> 0; var t = a; t = Math.imul(t ^ (t >>> 15), t | 1); t ^= t + Math.imul(t ^ (t >>> 7), t | 61); return ((t ^ (t >>> 14)) >>> 0) / 4294967296; }; }
+function repSw(box, items) { /* items: [[hex,label,sub]] printed swatch row */ var w = document.createElement("div"); w.className = "dt-rep-fig"; w.style.cssText = "display:flex;flex-wrap:wrap;gap:6px"; items.forEach(function (it) { var d = document.createElement("div"); d.style.cssText = "width:92px;border:1px solid #999;break-inside:avoid;font-size:8.5pt;text-align:center"; var s = document.createElement("div"); s.style.cssText = "height:46px;-webkit-print-color-adjust:exact;print-color-adjust:exact;background:" + it[0]; d.appendChild(s); var t = document.createElement("div"); t.style.padding = "2px"; t.textContent = it[1] + (it[2] ? " · " + it[2] : ""); d.appendChild(t); w.appendChild(d); }); box.appendChild(w); }
+
+/* ---------- css gradient generator ---------- */
+var ST = { type: "linear", angle: 90, space: "srgb", hue: "shorter", shape: "circle", size: "farthest-corner", px: 50, py: 50, from: 0, stops: [], view: "box", ratio: "16/9", anim: false, tab: "css", pw: 1920, ph: 1080 };
+var PRESETS = [
+ ["Ocean", "linear", 135, [["#2193b0", 0], ["#6dd5ed", 100]]], ["Sunset", "linear", 135, [["#ff512f", 0], ["#dd2476", 100]]], ["Mango", "linear", 90, [["#ffe259", 0], ["#ffa751", 100]]], ["Emerald", "linear", 135, [["#43cea2", 0], ["#185a9d", 100]]],
+ ["Purple love", "linear", 90, [["#cc2b5e", 0], ["#753a88", 100]]], ["Cotton candy", "linear", 135, [["#ff9a9e", 0], ["#fad0c4", 100]]], ["Midnight", "linear", 180, [["#232526", 0], ["#414345", 100]]], ["Lush", "linear", 90, [["#56ab2f", 0], ["#a8e063", 100]]],
+ ["Aurora", "linear", 120, [["#0f2027", 0], ["#203a43", 40], ["#2c5364", 100]]], ["Neon", "linear", 90, [["#f953c6", 0], ["#b91d73", 50], ["#7f00ff", 100]]], ["Warm flame", "linear", 45, [["#ff9a9e", 0], ["#fecfef", 99], ["#fecfef", 100]]], ["Fresh mint", "linear", 160, [["#0093e9", 0], ["#80d0c7", 100]]],
+ ["Sunrise glow", "radial", 0, [["#fff1c1", 0], ["#ffb347", 55], ["#ff5f6d", 100]]], ["Spotlight", "radial", 0, [["#ffffff", 0], ["#94a3b8", 60], ["#0f172a", 100]]], ["Colour wheel", "conic", 0, [["#ff0000", 0], ["#ffff00", 17], ["#00ff00", 33], ["#00ffff", 50], ["#0000ff", 67], ["#ff00ff", 83], ["#ff0000", 100]]], ["Candy stripes", "repeating-linear", 45, [["#f43f5e", 0], ["#f43f5e", 10], ["#fda4af", 10], ["#fda4af", 20]]]
+];
+var HUESP = ["hsl", "hwb", "lch", "oklch"];
+function stopColor(s) { var c = parseColor(s.hex) || { r: 0, g: 0, b: 0 }, a = clamp(s.a, 0, 100) / 100; return a < 1 ? "rgba(" + Math.round(c.r) + ", " + Math.round(c.g) + ", " + Math.round(c.b) + ", " + trim(a, 2) + ")" : fHex(c).toLowerCase(); }
+function sortedStops() { return ST.stops.map(function (s, i) { return { s: s, i: i }; }).sort(function (a, b) { return a.s.pos - b.s.pos || a.i - b.i; }).map(function (x) { return x.s; }); }
+function stopsCss() { return sortedStops().map(function (s) { return stopColor(s) + " " + trim(s.pos, 1) + "%"; }).join(", "); }
+function interp(force) { if (force || ST.space === "srgb") return ""; return " in " + ST.space + (HUESP.indexOf(ST.space) > -1 && ST.hue !== "shorter" ? " " + ST.hue + " hue" : ""); }
+function gradCss(force) {
+  var t = ST.type, ip = interp(force), st = stopsCss();
+  if (t === "linear" || t === "repeating-linear") return t + "-gradient(" + trim(ST.angle, 1) + "deg" + ip + ", " + st + ")";
+  if (t === "radial" || t === "repeating-radial") return t + "-gradient(" + ST.shape + " " + ST.size + " at " + trim(ST.px, 1) + "% " + trim(ST.py, 1) + "%" + ip + ", " + st + ")";
+  return t + "-gradient(from " + trim(ST.from, 1) + "deg at " + trim(ST.px, 1) + "% " + trim(ST.py, 1) + "%" + ip + ", " + st + ")";
+}
+function cssBlock() {
+  var s = sortedStops(), first = stopColor(s[0]), g0 = gradCss(true), g1 = gradCss(false);
+  var o = ".gradient {\n  background: " + first + "; /* fallback */\n  background: " + g0 + ";\n"; if (g1 !== g0) o += "  background: " + g1 + "; /* modern browsers */\n"; return o + "}\n";
+}
+function isRep() { return ST.type.indexOf("repeating") === 0; }
+function baseType() { return ST.type.replace("repeating-", ""); }
+function radGeom(W, H, cx, cy, shape, size) {
+  var dl = cx, dr = W - cx, dt = cy, db = H - cy, mdx = Math.min(dl, dr), mdy = Math.min(dt, db), fx = Math.max(dl, dr), fy = Math.max(dt, db), r2 = Math.SQRT2;
+  if (shape === "circle") { var r = size === "closest-side" ? Math.min(mdx, mdy) : size === "farthest-side" ? Math.max(fx, fy) : size === "closest-corner" ? Math.hypot(mdx, mdy) : Math.hypot(fx, fy); return { rx: r, ry: r }; }
+  if (size === "closest-side") return { rx: mdx, ry: mdy }; if (size === "farthest-side") return { rx: fx, ry: fy };
+  if (size === "closest-corner") return { rx: mdx * r2, ry: mdy * r2 }; return { rx: fx * r2, ry: fy * r2 };
+}
+function expandStops(list, rep) { /* list: [{c:"#hex or rgba", a, p(0-1)}] -> stops over 0..1, repeating if needed */
+  if (!rep) return list; var p0 = list[0].p, p1 = list[list.length - 1].p, per = p1 - p0; if (per <= 0.0001) return list; var out = [], k, i;
+  for (k = Math.floor(-p0 / per) ; k * per + p0 < 1; k++) for (i = 0; i < list.length; i++) out.push({ r: list[i].r, g: list[i].g, b: list[i].b, a: list[i].a, p: list[i].p + k * per });
+  return out;
+}
+function stopObjs() { return sortedStops().map(function (s) { var c = parseColor(s.hex) || { r: 0, g: 0, b: 0 }; return { r: c.r, g: c.g, b: c.b, a: clamp(s.a, 0, 100) / 100, p: s.pos / 100 }; }); }
+function lerpC(a, b, t, p) { var A = a.a, B = b.a, al = A + (B - A) * t; if (al <= 0) return { r: a.r, g: a.g, b: a.b, a: 0, p: p }; return { r: (a.r * A + (b.r * B - a.r * A) * t) / al, g: (a.g * A + (b.g * B - a.g * A) * t) / al, b: (a.b * A + (b.b * B - a.b * A) * t) / al, a: al, p: p }; }
+function prepStops(rep) {
+  var list = stopObjs(), out = [], i, k; if (rep) list = expandStops(list, true); var any = list.some(function (x) { return x.a < 1; });
+  for (i = 0; i < list.length - 1; i++) {
+    var a = list[i], b = list[i + 1]; if (b.p < 0 || a.p > 1) continue; var span = b.p - a.p, lo = Math.max(a.p, 0), hi = Math.min(b.p, 1), ta = span > 0 ? (lo - a.p) / span : 0, tb = span > 0 ? (hi - a.p) / span : 1;
+    if (any && span > 0) { for (k = 0; k <= 24; k++) { var t = ta + (tb - ta) * k / 24; out.push(lerpC(a, b, t, a.p + span * t)); } }
+    else { out.push(ta === 0 ? { r: a.r, g: a.g, b: a.b, a: a.a, p: lo } : lerpC(a, b, ta, lo)); out.push(tb === 1 ? { r: b.r, g: b.g, b: b.b, a: b.a, p: hi } : lerpC(a, b, tb, hi)); }
+  }
+  return out.length ? out : list;
+}
+function rgbaOf(o) { return "rgba(" + trim(o.r, 2) + "," + trim(o.g, 2) + "," + trim(o.b, 2) + "," + trim(o.a, 4) + ")"; }
+function svgText() {
+  var W = 1200, H = 630, st = sortedStops(), cx = W * ST.px / 100, cy = H * ST.py / 100, t = baseType(), defs = "";
+  if (t === "conic") return "<!-- SVG has no conic gradient. Use the CSS or PNG output for conic gradients. -->\n";
+  var nat = isRep() && stopObjs()[0].p === 0, so = nat ? stopObjs() : prepStops(isRep()), per = nat ? stopObjs()[stopObjs().length - 1].p : 1;
+  var stops = so.map(function (o) { return '<stop offset="' + trim(clamp(nat ? o.p / per : o.p, 0, 1), 5) + '" stop-color="' + rgb2hex(o.r, o.g, o.b) + '"' + (o.a < 1 ? ' stop-opacity="' + trim(o.a, 4) + '"' : "") + "/>"; }).join("");
+  var sp = nat ? ' spreadMethod="repeat"' : "";
+  if (t === "linear") { var th = ST.angle * Math.PI / 180, len = Math.abs(W * Math.sin(th)) + Math.abs(H * Math.cos(th)), dx = Math.sin(th) * len / 2, dy = -Math.cos(th) * len / 2, f = nat ? per : 1; defs = '<linearGradient id="g" gradientUnits="userSpaceOnUse" x1="' + trim(W / 2 - dx, 2) + '" y1="' + trim(H / 2 - dy, 2) + '" x2="' + trim(W / 2 - dx + 2 * dx * f, 2) + '" y2="' + trim(H / 2 - dy + 2 * dy * f, 2) + '"' + sp + ">" + stops + "</linearGradient>"; }
+  else { var g = radGeom(W, H, cx, cy, ST.shape, ST.size); var f2 = nat ? per : 1; defs = '<radialGradient id="g" gradientUnits="userSpaceOnUse" cx="0" cy="0" r="1" gradientTransform="translate(' + trim(cx, 2) + " " + trim(cy, 2) + ") scale(" + trim(g.rx * f2, 2) + " " + trim(g.ry * f2, 2) + ')"' + sp + ">" + stops + "</radialGradient>"; }
+  return '<svg xmlns="http://www.w3.org/2000/svg" width="' + W + '" height="' + H + '" viewBox="0 0 ' + W + " " + H + '">\n  <defs>' + defs + '</defs>\n  <rect width="' + W + '" height="' + H + '" fill="url(#g)"/>\n</svg>\n';
+}
+function twText() {
+  var g = gradCss(false).replace(/, /g, ",").replace(/ /g, "_"), s = sortedStops(), o = "/* Tailwind arbitrary value (v3 and v4) */\nbg-[" + g + "]\n";
+  var dirs = { 0: "t", 45: "tr", 90: "r", 135: "br", 180: "b", 225: "bl", 270: "l", 315: "tl" };
+  if (ST.type === "linear" && ST.space === "srgb" && dirs[ST.angle] && s.length <= 3 && s.every(function (x) { return x.a === 100; }) && s[0].pos === 0 && s[s.length - 1].pos === 100 && (s.length === 2 || s[1].pos === 50)) {
+    o += "\n/* Tailwind v3 utility classes */\nbg-gradient-to-" + dirs[ST.angle] + " from-[" + stopColor(s[0]) + "]" + (s.length === 3 ? " via-[" + stopColor(s[1]) + "]" : "") + " to-[" + stopColor(s[s.length - 1]) + "]\n";
+    o += "\n/* Tailwind v4 utility classes */\nbg-linear-to-" + dirs[ST.angle] + " from-[" + stopColor(s[0]) + "]" + (s.length === 3 ? " via-[" + stopColor(s[1]) + "]" : "") + " to-[" + stopColor(s[s.length - 1]) + "]\n";
+  }
+  return o;
+}
+function drawCanvas(cvs, W, H) {
+  var x = cvs.getContext("2d"), t = baseType(), cx = W * ST.px / 100, cy = H * ST.py / 100, g, list = prepStops(isRep());
+  function add(gr) { list.forEach(function (o) { try { gr.addColorStop(clamp(o.p, 0, 1), rgbaOf(o)); } catch (e) { } }); }
+  x.clearRect(0, 0, W, H);
+  if (t === "linear") { var th = ST.angle * Math.PI / 180, len = Math.abs(W * Math.sin(th)) + Math.abs(H * Math.cos(th)), dx = Math.sin(th) * len / 2, dy = -Math.cos(th) * len / 2; g = x.createLinearGradient(W / 2 - dx, H / 2 - dy, W / 2 + dx, H / 2 + dy); add(g); x.fillStyle = g; x.fillRect(0, 0, W, H); }
+  else if (t === "radial") { var q = radGeom(W, H, cx, cy, ST.shape, ST.size); x.save(); x.translate(cx, cy); x.scale(Math.max(q.rx, 0.01), Math.max(q.ry, 0.01)); g = x.createRadialGradient(0, 0, 0, 0, 0, 1); add(g); x.fillStyle = g; x.fillRect(-cx / Math.max(q.rx, 0.01), -cy / Math.max(q.ry, 0.01), W / Math.max(q.rx, 0.01), H / Math.max(q.ry, 0.01)); x.restore(); }
+  else { if (x.createConicGradient) { g = x.createConicGradient((ST.from - 90) * Math.PI / 180, cx, cy); add(g); x.fillStyle = g; x.fillRect(0, 0, W, H); } }
+}
+function setTab(n) { ST.tab = n; ["css", "tw", "svg", "png"].forEach(function (k) { $("gg-" + k).hidden = k !== n; }); [].forEach.call($("ggTabs").querySelectorAll("button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== n); }); if (n === "png") drawPng(); }
+function drawPng() { var c = $("ggPngCv"), W = clamp(ST.pw, 16, 4000), H = clamp(ST.ph, 16, 4000), s = Math.min(1, 560 / W); c.width = W; c.height = H; drawCanvas(c, W, H); c.style.width = Math.round(W * s) + "px"; c.style.height = "auto"; }
+function renderStops() {
+  var h = ""; ST.stops.forEach(function (s, i) {
+    h += '<div class="gg-stop" data-i="' + i + '"><input type="color" data-f="hexc" value="' + (parseColor(s.hex) ? fHex(parseColor(s.hex)).toLowerCase() : "#000000") + '" aria-label="Stop ' + (i + 1) + ' colour"><input type="text" data-f="hex" value="' + esc(s.hex) + '" aria-label="Stop ' + (i + 1) + ' HEX" spellcheck="false"><input type="number" data-f="a" min="0" max="100" value="' + trim(s.a, 0) + '" aria-label="Stop ' + (i + 1) + ' opacity percent" title="Opacity %"><input type="number" data-f="pos" min="0" max="100" step="0.5" value="' + trim(s.pos, 1) + '" aria-label="Stop ' + (i + 1) + ' position percent" title="Position %"><button type="button" data-act="up" aria-label="Move stop up">&uarr;</button><button type="button" data-act="down" aria-label="Move stop down">&darr;</button><button type="button" data-act="del" aria-label="Remove stop">&times;</button></div>';
+  });
+  $("ggStops").innerHTML = h;
+}
+function viewCss(g) {
+  var v = ST.view; $("ggPrev").style.aspectRatio = ST.ratio;
+  var b = $("ggBox"); b.removeAttribute("style"); b.className = "gg-box gg-" + v; b.style.backgroundImage = g;
+  if (v === "text") { b.style.backgroundImage = g; }
+}
+function render(skipStops) {
+  ["ggAngleV", "ggFromV"].forEach(function () { }); $("ggAngleV").textContent = ST.angle + "°"; $("ggFromV").textContent = ST.from + "°"; $("ggPxV").textContent = ST.px + "%"; $("ggPyV").textContent = ST.py + "%";
+  var t = baseType(); $("ggRowLin").hidden = t !== "linear"; $("ggRowRad").hidden = t !== "radial"; $("ggRowCon").hidden = t !== "conic"; $("ggRowPos").hidden = t === "linear"; $("ggHueRow").hidden = HUESP.indexOf(ST.space) < 0;
+  if (!skipStops) renderStops();
+  var g = gradCss(false); viewCss(g);
+  $("ggCss").textContent = cssBlock(); $("ggTw").textContent = twText(); $("ggSvg").textContent = svgText();
+  var ok = true; try { ok = CSS.supports("background-image", g); } catch (e) { } $("ggSupport").textContent = ok ? "" : "Your browser does not support this colour-space syntax yet, so the preview shows the standard gradient.";
+  if (!ok) $("ggBox").style.backgroundImage = gradCss(true);
+  if (ST.tab === "png") drawPng();
+  var s0 = sortedStops(); $("ggBoxTxt").style.color = ""; if (ST.view !== "text") { var m = parseColor(s0[0].hex); $("ggBoxTxt").style.color = m ? onColor(m.r, m.g, m.b) : "#fff"; }
+}
+function applyPreset(i) { var p = PRESETS[i]; ST.type = p[1]; if (p[1].indexOf("linear") > -1) ST.angle = p[2]; ST.stops = p[3].map(function (s) { return { hex: s[0], a: 100, pos: s[1] }; }); $("ggType").value = ST.type; $("ggAngle").value = ST.angle; if (p[1].indexOf("radial") > -1) { ST.shape = "ellipse"; ST.size = "farthest-corner"; $("ggShape").value = "ellipse"; $("ggSize").value = "farthest-corner"; ST.px = 50; ST.py = 50; $("ggPx").value = 50; $("ggPy").value = 50; } if (p[1] === "conic") { ST.from = 0; $("ggFrom").value = 0; ST.px = 50; ST.py = 50; $("ggPx").value = 50; $("ggPy").value = 50; } render(); }
+function randomize() { var n = 2 + Math.floor(Math.random() * 3), h = Math.random() * 360; ST.stops = []; for (var i = 0; i < n; i++) { var q = hsl2rgb(h + i * (40 + Math.random() * 50), 65 + Math.random() * 30, 45 + Math.random() * 20); ST.stops.push({ hex: rgb2hex(q[0], q[1], q[2]), a: 100, pos: Math.round(i / (n - 1) * 100) }); } ST.angle = Math.floor(Math.random() * 12) * 30; $("ggAngle").value = ST.angle; render(); }
+function distribute() { var s = sortedStops(); s.forEach(function (x, i) { x.pos = Math.round(s.length === 1 ? 0 : i / (s.length - 1) * 1000) / 10; }); render(); }
+var raf = 0, t0 = 0;
+function animate(ts) { if (!ST.anim) return; if (!t0) t0 = ts; var d = ((ts - t0) / 40) % 360; var save = ST.angle, saveF = ST.from; if (baseType() === "linear") ST.angle = Math.round((save + d) % 360); else if (baseType() === "conic") ST.from = Math.round((saveF + d) % 360); var g = gradCss(true); ST.angle = save; ST.from = saveF; $("ggBox").style.backgroundImage = g; raf = requestAnimationFrame(animate); }
+function setDef() { ST.type = "linear"; ST.angle = 90; ST.space = "srgb"; ST.hue = "shorter"; ST.shape = "circle"; ST.size = "farthest-corner"; ST.px = 50; ST.py = 50; ST.from = 0; ST.view = "box"; ST.ratio = "16/9"; ST.anim = false; ST.pw = 1920; ST.ph = 1080; ST.stops = [{ hex: "#0369a1", a: 100, pos: 0 }, { hex: "#38bdf8", a: 100, pos: 100 }];
+  $("ggType").value = "linear"; $("ggAngle").value = 90; $("ggSpace").value = "srgb"; $("ggHue").value = "shorter"; $("ggShape").value = "circle"; $("ggSize").value = "farthest-corner"; $("ggPx").value = 50; $("ggPy").value = 50; $("ggFrom").value = 0; $("ggView").value = "box"; $("ggRatio").value = "16/9"; $("ggAnim").checked = false; $("ggPw").value = 1920; $("ggPh").value = 1080; }
+function cur() { return ST.tab === "tw" ? twText() : ST.tab === "svg" ? svgText() : cssBlock(); }
+function init() {
+  initCommon(); setDef();
+  var map = { ggType: ["type", String], ggAngle: ["angle", Number], ggSpace: ["space", String], ggHue: ["hue", String], ggShape: ["shape", String], ggSize: ["size", String], ggPx: ["px", Number], ggPy: ["py", Number], ggFrom: ["from", Number], ggView: ["view", String], ggRatio: ["ratio", String] };
+  Object.keys(map).forEach(function (id) { $(id).addEventListener("input", function () { ST[map[id][0]] = map[id][1](this.value); render(true); }); });
+  $("ggPw").addEventListener("input", function () { ST.pw = +this.value || 1920; if (ST.tab === "png") drawPng(); }); $("ggPh").addEventListener("input", function () { ST.ph = +this.value || 1080; if (ST.tab === "png") drawPng(); });
+  $("ggAnim").addEventListener("change", function () { ST.anim = this.checked; if (ST.anim) { t0 = 0; raf = requestAnimationFrame(animate); } else { cancelAnimationFrame(raf); render(true); } });
+  $("ggDirs").addEventListener("click", function (e) { var b = e.target.closest("button[data-a]"); if (b) { ST.angle = +b.getAttribute("data-a"); $("ggAngle").value = ST.angle; render(true); } });
+  $("ggStops").addEventListener("input", function (e) {
+    var row = e.target.closest(".gg-stop"); if (!row) return; var s = ST.stops[+row.getAttribute("data-i")], f = e.target.getAttribute("data-f");
+    if (f === "hexc") { s.hex = e.target.value; row.querySelector('[data-f="hex"]').value = s.hex; } else if (f === "hex") { var c = parseColor(e.target.value); if (c) { s.hex = fHex(c).toLowerCase(); row.querySelector('[data-f="hexc"]').value = s.hex; } else return; }
+    else if (f === "a") s.a = clamp(parseFloat(e.target.value) || 0, 0, 100); else if (f === "pos") s.pos = clamp(parseFloat(e.target.value) || 0, 0, 100);
+    render(true);
+  });
+  $("ggStops").addEventListener("click", function (e) {
+    var b = e.target.closest("button[data-act]"); if (!b) return; var i = +b.closest(".gg-stop").getAttribute("data-i"), a = b.getAttribute("data-act");
+    if (a === "del") { if (ST.stops.length > 2) ST.stops.splice(i, 1); } else if (a === "up" && i > 0) { var t = ST.stops[i]; ST.stops[i] = ST.stops[i - 1]; ST.stops[i - 1] = t; } else if (a === "down" && i < ST.stops.length - 1) { var t2 = ST.stops[i]; ST.stops[i] = ST.stops[i + 1]; ST.stops[i + 1] = t2; }
+    render();
+  });
+  $("ggAdd").addEventListener("click", function () { if (ST.stops.length >= 10) { msg("Up to 10 colour stops.", "err"); return; } var s = sortedStops(), best = 0, bi = 0; for (var i = 0; i < s.length - 1; i++) { var gap = s[i + 1].pos - s[i].pos; if (gap > best) { best = gap; bi = i; } } var a = parseColor(s[bi].hex), b2 = parseColor(s[bi + 1].hex), m = { hex: rgb2hex((a.r + b2.r) / 2, (a.g + b2.g) / 2, (a.b + b2.b) / 2), a: 100, pos: Math.round((s[bi].pos + s[bi + 1].pos) / 2 * 10) / 10 }; ST.stops.push(m); render(); });
+  $("ggRev").addEventListener("click", function () { ST.stops.forEach(function (s) { s.pos = Math.round((100 - s.pos) * 10) / 10; }); ST.stops.reverse(); render(); });
+  $("ggDist").addEventListener("click", distribute); $("ggRand").addEventListener("click", randomize);
+  $("ggPresets").addEventListener("click", function (e) { var b = e.target.closest("button[data-p]"); if (b) applyPreset(+b.getAttribute("data-p")); });
+  var ph = ""; PRESETS.forEach(function (p, i) { var save = [ST.type, ST.angle]; var bg; var stops = p[3].map(function (s) { return s[0] + " " + s[1] + "%"; }).join(", "); if (p[1] === "conic") bg = "conic-gradient(" + stops + ")"; else if (p[1].indexOf("radial") > -1) bg = p[1] + "-gradient(ellipse at center, " + stops + ")"; else bg = p[1] + "-gradient(" + p[2] + "deg, " + stops + ")"; ph += '<button type="button" class="gg-preset" data-p="' + i + '" style="background-image:' + bg + '" title="' + esc(p[0]) + '"><span>' + esc(p[0]) + "</span></button>"; }); $("ggPresets").innerHTML = ph;
+  $("ggTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) setTab(b.getAttribute("data-tab")); });
+  $("ggPngBtn").addEventListener("click", function () { var c = document.createElement("canvas"), W = clamp(ST.pw, 16, 4000), H = clamp(ST.ph, 16, 4000); c.width = W; c.height = H; drawCanvas(c, W, H); c.toBlob(function (b) { saveBlob(b, "gradient-" + W + "x" + H + ".png"); msg("PNG saved."); }, "image/png"); });
+  $("resetBtn").addEventListener("click", function () { cancelAnimationFrame(raf); setDef(); render(); msg("Reset."); });
+  $("ggCopy").addEventListener("click", function () { copyText(cur(), $("ggCopy")); });
+  $("ggDl").addEventListener("click", function () { if (ST.tab === "png") { $("ggPngBtn").click(); return; } var f = ST.tab === "svg" ? ["gradient.svg", "image/svg+xml"] : ST.tab === "tw" ? ["gradient-tailwind.txt", "text/plain"] : ["gradient.css", "text/css"]; dlText(f[0], cur(), f[1]); });
+  $("ggPrint").addEventListener("click", function () { fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, "CSS gradient", "Free online CSS gradient generator");
+    var pc = document.createElement("canvas"); pc.width = 900; pc.height = 360; drawCanvas(pc, 900, 360); var du = ""; try { du = pc.toDataURL("image/png"); } catch (e) { }
+    if (du) repFig(b, '<img src="' + du + '" alt="Gradient preview" style="max-width:100%;border:1px solid #999;-webkit-print-color-adjust:exact;print-color-adjust:exact">');
+    repTbl(b, ["Setting", "Value"], [["Type", ST.type], ["Angle / centre", baseType() === "linear" ? ST.angle + "°" : (baseType() === "radial" ? ST.shape + " " + ST.size + " at " + ST.px + "% " + ST.py + "%" : "from " + ST.from + "° at " + ST.px + "% " + ST.py + "%")], ["Colour space", ST.space === "srgb" ? "sRGB (default)" : ST.space], ["Stops", sortedStops().map(function (s) { return stopColor(s) + " at " + trim(s.pos, 1) + "%"; }).join("; ")]]);
+    repAdd(b, "h3", "CSS"); repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px">' + esc(cssBlock()) + "</pre>");
+    repDisc(b, "The image above is drawn with standard sRGB blending. Browsers that support the chosen colour space blend differently, so check the final result in your target browsers. Test text contrast over gradients before publishing.");
+  };
+  render(); setTab("css");
+}
+init();
+
+})();
+</script>
+</body>
+</html>
