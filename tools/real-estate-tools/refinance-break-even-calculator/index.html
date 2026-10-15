@@ -1,0 +1,505 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Refinance Break-Even Calculator Online</title>
+<meta name="description" content="Free online refinance break-even calculator. Find the month your savings repay closing costs and decide whether refinancing is worth it.">
+<link rel="canonical" href="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Refinance Break-Even Calculator Online">
+<meta property="og:description" content="Free online refinance break-even calculator: break-even month, net saving for your stay, rate needed and a break-even grid.">
+<meta property="og:url" content="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Refinance Break-Even Calculator Online">
+<meta name="twitter:description" content="Free online refinance break-even calculator: break-even month, net saving for your stay, rate needed and a break-even grid.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+.rf-cmp td.n,.rf-cmp th.n{text-align:right}
+.rf-note{font-size:.82rem;opacity:.8;margin:6px 0}
+.be-g td.g{background:rgba(22,163,74,.18)}.be-g td.b{background:rgba(220,38,38,.14)}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Refinance Break-Even Calculator","url":"https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/","description":"Free online refinance break-even calculator. Find the month your savings repay closing costs and points, on a payment and an interest basis, with the net saving for the years you plan to stay, the rate needed, a break-even grid and a savings chart.","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Break-even month on payments and on interest","Verdict against the years you plan to stay","Highest rate that still breaks even","Closing costs, points, fixed fees and rolled-in costs","Net saving by years stayed","Break-even grid of rates and fees","Savings chart and timeline","CSV, copy and print","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a refinance break-even calculator?","acceptedAnswer":{"@type":"Answer","text":"It finds how many months it takes for the money you save on your monthly payment to equal the closing costs and points you pay to refinance. That month is the break-even point. Keep the loan longer than that and the refinance saves you money."}},{"@type":"Question","name":"How do I calculate my refinance break-even point?","acceptedAnswer":{"@type":"Answer","text":"Divide the total costs by the monthly saving. With 7,500 in costs and a 200 monthly saving, you break even after about 38 months. This calculator does the same maths month by month, so it also handles extra payments, rolled-in costs and different terms."}},{"@type":"Question","name":"Is refinancing worth it?","acceptedAnswer":{"@type":"Answer","text":"It is worth it when you will keep the loan well past the break-even month and the new terms suit your goals. The verdict compares your break-even with the years you plan to stay. If you may move sooner than the break-even, refinancing usually loses money."}},{"@type":"Question","name":"What is a good break-even period for a refinance?","acceptedAnswer":{"@type":"Answer","text":"There is no single rule. Many people want to break even within two to three years, and a longer stay can justify a longer period. The right answer is the one that is shorter than the time you expect to keep the loan."}},{"@type":"Question","name":"What is the difference between the two break-even months?","acceptedAnswer":{"@type":"Answer","text":"One counts payments saved, which is cash in your pocket. The other counts interest saved, which is the true cost of borrowing. They differ when the term changes or when the new loan pays down principal faster. Look at both before deciding."}},{"@type":"Question","name":"Do closing costs include discount points?","acceptedAnswer":{"@type":"Answer","text":"Points are a separate cost in the calculator, and both are added together as your total cost. Enter closing costs and points as a percentage of the loan, then add fixed fees such as an appraisal or a penalty on the old loan."}},{"@type":"Question","name":"What happens if I roll closing costs into the loan?","acceptedAnswer":{"@type":"Answer","text":"You pay nothing at closing, but the loan is larger, so the payment saving is smaller and you pay interest on the costs. The break-even then measures the payment saving against the extra cost. Choose Roll into the new loan to compare."}},{"@type":"Question","name":"Why is my break-even never reached?","acceptedAnswer":{"@type":"Answer","text":"The monthly saving is zero or negative, or it is too small to repay the costs before the old loan would have ended. Try lower costs, a lower rate or a shorter stay in the grid to see what would work."}},{"@type":"Question","name":"What new rate do I need to break even in time?","acceptedAnswer":{"@type":"Answer","text":"The calculator works out the highest new rate that still repays your costs within the years you plan to stay. If your quote is higher than that, the refinance probably does not pay off for you."}},{"@type":"Question","name":"How does extending the loan term affect break-even?","acceptedAnswer":{"@type":"Answer","text":"A longer term lowers the payment, which can make the payment break-even look quick, but you borrow for more years and may pay more total interest. Compare the two break-even figures and the lifetime interest saved."}},{"@type":"Question","name":"Does a lower payment always mean I save money?","acceptedAnswer":{"@type":"Answer","text":"No. A lower payment can come from a longer term, which raises total interest. That is why this tool shows the interest break-even and the net interest saved, not just the payment."}},{"@type":"Question","name":"How many years should I plan to stay?","acceptedAnswer":{"@type":"Answer","text":"Enter your honest estimate of how long you will keep the loan, not the longest it could last. People move, sell or refinance again sooner than they expect, so also check shorter stays in the By years stayed tab."}},{"@type":"Question","name":"What is the break-even grid?","acceptedAnswer":{"@type":"Answer","text":"It is a table of break-even months for different new rates and different closing cost levels. Green cells break even within your planned stay. It shows how much a lower rate or lower fees would help."}},{"@type":"Question","name":"Does the break-even include taxes and insurance?","acceptedAnswer":{"@type":"Answer","text":"No. Taxes and insurance normally stay the same after a refinance, so they do not change the saving. Mortgage insurance can change, so check your Loan Estimate for it."}},{"@type":"Question","name":"Can I use it for a cash-out refinance?","acceptedAnswer":{"@type":"Answer","text":"This tool compares rate and term. If you take cash out, the cash is not a saving, so use the cash-out refinance calculator, which shows the cash available, the new payment and the cost of the extra borrowing."}},{"@type":"Question","name":"Is my information private?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator runs in your browser. Nothing you enter is sent to a server, saved or shared, and reloading the page resets it."}},{"@type":"Question","name":"Is this refinance break-even calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is a free online calculator with no sign-up, trial or limit. You can print or download the results."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Real Estate Tools","item":"https://utiliby.com/tools/real-estate-tools/"},{"@type":"ListItem","position":3,"name":"Refinance Break-Even Calculator","item":"https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/real-estate-tools/">Real Estate Tools</a> › Refinance Break-Even Calculator</nav>
+<h1 class="noembed">Free Refinance Break-Even Calculator Online</h1>
+<p class="lead noembed">Free online refinance break-even calculator: see the month your savings repay your closing costs, whether refinancing is worth it for the years you will stay, and the highest rate that still pays off. Payment and interest break-even, a grid of rates and fees, a savings chart and print. Private, with no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/" target="_blank" rel="noopener">Refinance Break-Even Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Refinance break-even calculator">
+<div class="dt-hero noembed">
+<h2>Free Refinance Break-Even Calculator Online</h2>
+<p>Find the month your refinance savings repay the closing costs, and see whether refinancing is worth it for the years you will stay. Free, private, no sign-up.</p>
+</div>
+<div class="dt-panel">
+<h3>1. Your current mortgage</h3>
+<div class="dt-row4"><div><label for="beBal">Current loan balance</label><input type="number" id="beBal" min="0" step="1000"></div><div><label for="beRate">Current interest rate (%)</label><input type="number" id="beRate" min="0" step="0.125"></div><div><label for="beYears">Years left on the loan</label><input type="number" id="beYears" min="1" max="40" step="0.5"></div><div><label for="bePay">Current monthly P&amp;I (optional, blank = calculate)</label><input type="number" id="bePay" min="0" step="1"></div></div>
+<h3>2. The refinance offer</h3>
+<div class="dt-row4"><div><label for="beNRate">New interest rate (%)</label><input type="number" id="beNRate" min="0" step="0.125"></div><div><label for="beNYears">New loan term</label><select id="beNYears"><option value="30">30 years</option><option value="25">25 years</option><option value="20">20 years</option><option value="15">15 years</option><option value="10">10 years</option><option value="rem">Same as years left</option></select></div><div><label for="beClose">Closing costs (% of loan)</label><input type="number" id="beClose" min="0" step="0.1"></div><div><label for="bePts">Discount points (% of loan)</label><input type="number" id="bePts" min="0" step="0.125"></div></div>
+<div class="dt-row4"><div><label for="beFixed">Other fixed fees (incl. any penalty)</label><input type="number" id="beFixed" min="0" step="50"></div><div><label for="beRoll">Pay costs</label><select id="beRoll"><option value="no">Pay at closing</option><option value="yes">Roll into the new loan</option></select></div><div><label for="beStay">Years you plan to stay</label><input type="number" id="beStay" min="0.5" max="40" step="0.5"></div><div><label for="reCur">Currency</label><select id="reCur"><option value="$">$ Dollar</option><option value="£">£ Pound</option><option value="€">€ Euro</option><option value="C$">C$ Canadian dollar</option><option value="A$">A$ Australian dollar</option><option value="₹">₹ Rupee</option><option value="AED ">AED Dirham</option><option value="R ">R Rand</option></select></div></div>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-res" aria-pressed="true">Results</button>
+<button type="button" class="dt-tab" id="dtTabBtn-stay" aria-pressed="false">By years stayed</button>
+<button type="button" class="dt-tab" id="dtTabBtn-grid" aria-pressed="false">Break-even grid</button>
+</div>
+<div id="dtTab-res"><div id="beRes"></div></div>
+<div id="dtTab-stay" hidden><div id="beStay2"></div></div>
+<div id="dtTab-grid" hidden><div id="beGrid"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="bePrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="beCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="beCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online refinance break-even calculator gives estimates for education and planning. It is not financial, tax, legal or lending advice, and it is not a loan offer. Check every figure against a Loan Estimate from your lender.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Refinance Break-Even Calculator. https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Refinance Break-Even Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/real-estate-tools/refinance-break-even-calculator/"&gt;Refinance Break-Even Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online refinance break-even calculator does</a></li><li><a href="#how">How to use the refinance break-even calculator</a></li><li><a href="#formula">How the break-even is calculated</a></li><li><a href="#example">Worked example</a></li><li><a href="#stay">How long you plan to stay changes everything</a></li><li><a href="#costs">Closing costs, points and fees to include</a></li><li><a href="#rate">The rate you need to break even</a></li><li><a href="#when">When the break-even test is not enough</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#related">Related refinance tools and guides</a></li><li><a href="#privacy">Privacy, accuracy and limits</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online refinance break-even calculator does</h2>
+<p>Every refinance has a price. You pay closing costs, and sometimes discount points, before you see any benefit. The <b>break-even point</b> is the moment the benefit catches up with the price. It is the single most useful number for deciding whether a refinance is worth it, because it turns a vague hope of "saving money" into a date you can compare with your plans.</p><p>This <b>free online refinance break-even calculator</b> finds that date for you. It compares your current mortgage with a new offer, counts the savings month by month, and tells you in which month you have recovered your costs. It also shows the break-even on an interest basis, the net saving for the years you plan to stay, the highest new rate that would still pay off, a break-even grid for different rates and fees, and a chart of your savings over time. Everything runs in your browser, so your numbers stay private.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Break-even timeline: months repaying costs, then months of pure savings"><title>Refinance break-even timeline</title>
+<rect class="dt-bar" x="20" y="64" width="250" height="46" rx="10" fill="#dc2626"/><rect class="dt-bar" x="270" y="64" width="350" height="46" rx="10" fill="#16a34a" style="animation-delay:.3s"/>
+<g font-size="13" font-weight="700" fill="#fff" text-anchor="middle"><text x="145" y="92">Repaying the costs</text><text x="445" y="92">Pure savings</text></g>
+<line x1="270" x2="270" y1="46" y2="128" stroke="currentColor" stroke-width="2.5" stroke-dasharray="5 4"/>
+<g font-size="12" fill="currentColor" text-anchor="middle"><text x="270" y="38" font-weight="700">Break-even</text><text x="20" y="150" text-anchor="start">Closing day</text><text x="620" y="150" text-anchor="end">The day you sell or refinance again</text><text x="320" y="176" opacity=".8">Costs ÷ monthly saving = months to break even (7,500 ÷ 200 ≈ 38)</text></g>
+</svg><figcaption>Before the break-even month the costs are not yet repaid. After it, each month's lower payment is a real saving. Example: 250,000 balance, 7.0% down to 6.0%, 3% costs.</figcaption></figure>
+<h2 id="how">How to use the refinance break-even calculator</h2>
+<ol><li><b>Enter the current loan.</b> Use today's balance, your rate and the years left. If you know your real principal and interest payment, enter it in the optional box.</li><li><b>Enter the offer.</b> Put in the quoted rate and choose a term. Add closing costs and points as percentages, and any fixed fees, including a prepayment penalty on the old loan.</li><li><b>Choose how you pay the costs.</b> Pay at closing, or roll them into the new loan.</li><li><b>Set how long you will stay.</b> This is the most important input after the rate. Be honest and conservative.</li><li><b>Read the verdict and the timeline.</b> The headline says whether the refinance is worth it for your stay, and the bar shows the months spent repaying costs against the months of pure savings.</li><li><b>Explore.</b> The By years stayed tab shows the net saving at each length of stay, and the grid shows how rates and fees move the break-even.</li></ol>
+<h2 id="formula">How the break-even is calculated</h2>
+<p>The quick formula is <b>closing costs ÷ monthly saving = months to break even</b>. It works well when the new loan has a similar term to the old one, and many articles stop there. This calculator goes further, because the quick formula can be wrong in three common cases: when you extend the term, when you roll in costs, and when you make extra payments. Instead it adds up your payments month by month on both loans and finds the first month in which the total saved, less any costs paid at closing, reaches zero.</p><table><tr><th>Measure</th><th>What it counts</th></tr><tr><td>Payment break-even</td><td>Cash you keep: old payment minus new payment, month by month, against the costs paid at closing</td></tr><tr><td>Interest break-even</td><td>Interest avoided on the old loan minus interest on the new loan, against all costs</td></tr><tr><td>Net after your stay</td><td>The saving in each basis at the end of the years you plan to stay</td></tr><tr><td>Rate needed</td><td>The highest new rate that still breaks even within your stay</td></tr></table><p><b>Why two break-evens?</b> The payment view tells you when your wallet is ahead. The interest view tells you when the loan has become cheaper. They can differ. When the new term is the same as the time you have left, the new loan pays down principal faster than the old one, so interest is saved sooner than the payment drops. When the new term is longer, the payment saving is partly just spread-out repayment, so the interest view is the more cautious test.</p>
+<h2 id="example">Worked example</h2>
+<p>Suppose you owe 250,000 at 7.0% with 28 years left, and you are offered 6.0% on a new 30-year loan with costs of 3%, or 7,500. Your current payment is about 1,699 and the new one about 1,499, so you save about 200 a month. The quick formula gives 7,500 ÷ 200 = 37.5, so you break even in about 38 months, a little over three years. If you plan to stay five years, you come out about 4,500 ahead after costs. If you move in two years, you are about 2,700 behind.</p><p>Now suppose the new loan is 28 years, the same as you have left. The payment saving shrinks to about 161 a month, so the payment break-even moves to month 47. But the interest break-even is month 36, and the lifetime saving rises to roughly 46,700, because you are not restarting the clock. This is why checking both measures, and the term, matters.</p>
+<h2 id="stay">How long you plan to stay changes everything</h2>
+<p>The break-even only means something compared with your own timeline. If you break even in 38 months and expect to stay ten years, the refinance is very likely worth it. If you expect to move in two years, it is not, however big the monthly saving looks. The <b>By years stayed</b> tab shows the net saving after 1, 2, 3, 5, 7, 10, 15 and 30 years, so you can read the answer for several possible futures at once.</p><p>People are often too optimistic about how long they will stay. Jobs change, families grow and markets move. A cautious approach is to test a stay shorter than your guess. If the refinance still works at three years, it is a robust choice. If it works only at ten, you are betting on staying put.</p>
+<h2 id="costs">Closing costs, points and fees to include</h2>
+<p>The break-even is only as good as the cost figure. Refinance costs commonly fall in a range of around 2% to 6% of the loan, and they include lender fees, appraisal, title and recording charges, and prepaid items. Your Loan Estimate lists them. Add discount points, which cost 1% of the loan per point, and any prepayment penalty on the current loan. Do not include costs you would pay anyway, such as the ongoing escrow for taxes and insurance, because they do not change the saving.</p><p>If a lender advertises "no closing costs", the costs are still there. They are either rolled into the loan or paid through a higher rate. Enter the quoted rate and choose Roll into the new loan to see the true result.</p>
+<h2 id="rate">The rate you need to break even</h2>
+<p>Many borrowers ask how far rates must fall before a refinance makes sense. The old advice of one full percentage point is only a rough guide, because it ignores the loan size, the costs and your stay. The calculator replaces the guess with a number. It tests lower and higher rates and reports the highest new rate that still repays your costs within the years you plan to stay. If the best rate you can find is above it, wait or negotiate fees. If it is well below it, you have margin.</p>
+<h2 id="when">When the break-even test is not enough</h2>
+<ul><li><b>You want to shorten the loan.</b> A shorter term can have a longer break-even on payments but a large interest saving.</li><li><b>You are removing mortgage insurance.</b> The saving may include insurance that this tool does not model.</li><li><b>You are moving from an adjustable rate.</b> The value of certainty can matter more than the payment.</li><li><b>You are taking cash out.</b> The cash is not a saving, so use a cash-out calculator.</li></ul><p>In these cases the break-even is still a useful guide, but it should not be the only test. Combine it with your goals and a Loan Estimate from your lender.</p>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li><b>Using the original loan amount</b> instead of today's balance.</li><li><b>Leaving out points or a prepayment penalty.</b></li><li><b>Counting the payment saving only</b> when the term is longer.</li><li><b>Assuming you will stay for decades.</b></li><li><b>Ignoring the cost of repeated refinancing.</b> If you refinance again, you start the clock over, so keep the loan longer than the break-even.</li></ul>
+<h2 id="related">Related refinance tools and guides</h2>
+<p>This calculator is one of a set of free refinance tools on Utiliby. Depending on what you are deciding, these may help next.</p><ul><li><a href="/tools/real-estate-tools/mortgage-refinance-calculator/">Mortgage Refinance Calculator</a>: see the full savings and total interest.</li><li><a href="/tools/real-estate-tools/refinance-closing-costs-calculator/">Refinance Closing Costs Calculator</a>: build an accurate cost figure.</li><li><a href="/tools/real-estate-tools/refinance-loan-term-calculator/">Refinance Loan Term Calculator</a>: compare terms.</li></ul><p>For background reading:</p><ul><li><a href="/guides/how-to-calculate-mortgage-refinance-savings/">How to Calculate Mortgage Refinance Savings</a></li><li><a href="/guides/refinance-with-bad-credit-self-employed-or-underwater/">Refinancing with Bad Credit, Self-Employed Income or Negative Equity</a></li></ul>
+<h2 id="privacy">Privacy, accuracy and limits</h2>
+<p>The calculator runs entirely in your browser. The figures you enter are not sent to a server and are not stored, and reloading the page returns the example. Files you download are created on your device. The model assumes fixed rates and level payments and does not cover adjustable-rate loans, interest-only periods or balloon payments. Taxes, insurance and mortgage insurance are not modelled. Real fees, rates and rules vary, so confirm every figure with a Loan Estimate.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a refinance break-even calculator?</summary><p>It finds how many months it takes for the money you save on your monthly payment to equal the closing costs and points you pay to refinance. That month is the break-even point. Keep the loan longer than that and the refinance saves you money.</p></details><details><summary>How do I calculate my refinance break-even point?</summary><p>Divide the total costs by the monthly saving. With 7,500 in costs and a 200 monthly saving, you break even after about 38 months. This calculator does the same maths month by month, so it also handles extra payments, rolled-in costs and different terms.</p></details><details><summary>Is refinancing worth it?</summary><p>It is worth it when you will keep the loan well past the break-even month and the new terms suit your goals. The verdict compares your break-even with the years you plan to stay. If you may move sooner than the break-even, refinancing usually loses money.</p></details><details><summary>What is a good break-even period for a refinance?</summary><p>There is no single rule. Many people want to break even within two to three years, and a longer stay can justify a longer period. The right answer is the one that is shorter than the time you expect to keep the loan.</p></details><details><summary>What is the difference between the two break-even months?</summary><p>One counts payments saved, which is cash in your pocket. The other counts interest saved, which is the true cost of borrowing. They differ when the term changes or when the new loan pays down principal faster. Look at both before deciding.</p></details><details><summary>Do closing costs include discount points?</summary><p>Points are a separate cost in the calculator, and both are added together as your total cost. Enter closing costs and points as a percentage of the loan, then add fixed fees such as an appraisal or a penalty on the old loan.</p></details><details><summary>What happens if I roll closing costs into the loan?</summary><p>You pay nothing at closing, but the loan is larger, so the payment saving is smaller and you pay interest on the costs. The break-even then measures the payment saving against the extra cost. Choose Roll into the new loan to compare.</p></details><details><summary>Why is my break-even never reached?</summary><p>The monthly saving is zero or negative, or it is too small to repay the costs before the old loan would have ended. Try lower costs, a lower rate or a shorter stay in the grid to see what would work.</p></details><details><summary>What new rate do I need to break even in time?</summary><p>The calculator works out the highest new rate that still repays your costs within the years you plan to stay. If your quote is higher than that, the refinance probably does not pay off for you.</p></details><details><summary>How does extending the loan term affect break-even?</summary><p>A longer term lowers the payment, which can make the payment break-even look quick, but you borrow for more years and may pay more total interest. Compare the two break-even figures and the lifetime interest saved.</p></details><details><summary>Does a lower payment always mean I save money?</summary><p>No. A lower payment can come from a longer term, which raises total interest. That is why this tool shows the interest break-even and the net interest saved, not just the payment.</p></details><details><summary>How many years should I plan to stay?</summary><p>Enter your honest estimate of how long you will keep the loan, not the longest it could last. People move, sell or refinance again sooner than they expect, so also check shorter stays in the By years stayed tab.</p></details><details><summary>What is the break-even grid?</summary><p>It is a table of break-even months for different new rates and different closing cost levels. Green cells break even within your planned stay. It shows how much a lower rate or lower fees would help.</p></details><details><summary>Does the break-even include taxes and insurance?</summary><p>No. Taxes and insurance normally stay the same after a refinance, so they do not change the saving. Mortgage insurance can change, so check your Loan Estimate for it.</p></details><details><summary>Can I use it for a cash-out refinance?</summary><p>This tool compares rate and term. If you take cash out, the cash is not a saving, so use the cash-out refinance calculator, which shows the cash available, the new payment and the cost of the extra borrowing.</p></details><details><summary>Is my information private?</summary><p>Yes. The calculator runs in your browser. Nothing you enter is sent to a server, saved or shared, and reloading the page resets it.</p></details><details><summary>Is this refinance break-even calculator free?</summary><p>Yes. It is a free online calculator with no sign-up, trial or limit. You can print or download the results.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Consumer Financial Protection Bureau, "When should I refinance my mortgage?" and "What is a mortgage refinance?" (consumerfinance.gov/ask-cfpb).</li><li>Consumer Financial Protection Bureau, Loan Estimate and Closing Disclosure explainers (consumerfinance.gov).</li><li>Freddie Mac, Primary Mortgage Market Survey, for average US mortgage rates (freddiemac.com/pmms).</li><li>Internal Revenue Service, Publication 936, Home Mortgage Interest Deduction, on points paid on a refinance (irs.gov).</li><li>Standard loan amortization formulas for fixed-rate mortgages, as used in lender disclosures under the Truth in Lending Act.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online refinance break-even calculator is provided for general education and planning only. It is not financial, investment, tax, legal or lending advice, and it is not a loan offer, quote or credit decision. Results depend entirely on the numbers you enter and on simplifications: fixed rates and level payments on both loans, costs known in advance, no change in taxes or insurance, no mortgage insurance changes, and no value placed on the time or risk of refinancing. Real loans, fees and rules differ and change. Compare official Loan Estimates from several lenders, check for prepayment penalties and ask a qualified adviser, especially about tax, before you refinance.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(curSym() === "₹" ? "en-IN" : undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+
+/* ---------- refinance engine (shared) ---------- */
+var RF_CAP = 720;
+function loanSim(P, ratePct, pay, cap) {
+  var r = ratePct / 1200, bal = P, B = [P], I = [0], PD = [0], CI = [0], ti = 0, tp = 0, m = 0; cap = cap || RF_CAP;
+  while (bal > 0.005 && m < cap) {
+    var i = bal * r, p = Math.min(pay, bal + i); bal = bal + i - p; if (bal < 0.005) bal = 0; m++;
+    B.push(bal); I.push(i); PD.push(p); ti += i; tp += p; CI.push(ti);
+  }
+  return { n: m, bal: B, intr: I, paid: PD, cumInt: CI, totalInt: ti, totalPaid: tp, never: bal > 0.005 };
+}
+function addMonths(n) { var d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + n); return d.toLocaleString("en-US", { month: "short", year: "numeric" }); }
+function yrs(m) { return m == null ? "n/a" : (m >= 12 ? Math.floor(m / 12) + " yr " + (m % 12) + " mo" : m + " mo"); }
+function refi(o) {
+  var r = {}, base = o.bal + o.cashOut, pct = (o.closePct + o.pts) / 100, fx = o.closeFixed, L, costs;
+  if (o.roll) { L = (base + fx) / (1 - pct); costs = L * pct + fx; } else { L = base; costs = L * pct + fx; }
+  r.newLoan = L; r.points = L * o.pts / 100; r.closing = costs - r.points; r.costs = costs; r.upfront = o.roll ? 0 : costs;
+  r.curPay = o.curPay > 0 ? o.curPay : pmt(o.bal, o.rate, o.remYears);
+  r.newPmt = pmt(L, o.newRate, o.newYears); r.newPay = r.newPmt + o.extra;
+  r.old = o.oldSim || loanSim(o.bal, o.rate, r.curPay); r.nw = loanSim(L, o.newRate, r.newPay);
+  if (o.oldSim) r.curPay = o.oldSim.paid[1] || 0;
+  var aO = o.addOld || 0, aOn = o.addOldMonths == null ? 1e9 : o.addOldMonths, aN = o.addNew || 0, aNn = o.addNewMonths == null ? 1e9 : o.addNewMonths;
+  r.addOld = aO; r.addNew = aN;
+  var N = Math.max(r.old.n, r.nw.n), cc = [-r.upfront], ci = [-costs], a = -r.upfront, b = -costs, be = null, bi = null;
+  for (var m = 1; m <= N; m++) {
+    var op = m <= r.old.n ? r.old.paid[m] + (m <= aOn ? aO : 0) : 0, np = m <= r.nw.n ? r.nw.paid[m] + (m <= aNn ? aN : 0) : 0, oi = m <= r.old.n ? r.old.intr[m] : 0, ni = m <= r.nw.n ? r.nw.intr[m] : 0;
+    a += op - np; b += oi - ni; cc.push(a); ci.push(b);
+    if (be == null && a >= 0 && m <= r.old.n) be = m; if (bi == null && b >= 0) bi = m;
+  }
+  if (costs <= 0) { be = 0; bi = 0; }
+  r.N = N; r.cumCash = cc; r.cumInt = ci; r.be = be; r.beInt = bi; r.monthly = r.curPay + aO - r.newPay - aN;
+  r.lifeCash = cc[N]; r.lifeInt = ci[N]; r.stayM = Math.round(o.stay * 12);
+  var sm = Math.min(r.stayM, N); r.netStay = cc[sm]; r.netStayInt = ci[sm];
+  r.ltvOld = o.val > 0 ? o.bal / o.val * 100 : null; r.ltvNew = o.val > 0 ? L / o.val * 100 : null;
+  return r;
+}
+function beFor(o, rate) { var q = {}; for (var k in o) q[k] = o[k]; q.newRate = rate; return refi(q); }
+function rateNeeded(o, target) {
+  /* highest new rate (to 0.01%) that still recovers the costs within `target` months */
+  var ok = function (rt) { var q = beFor(o, rt); return q.be != null && q.be <= target; };
+  if (!ok(0)) return null; var x = 0, y = Math.max(o.rate, o.newRate);
+  if (ok(y)) return y;
+  for (var j = 0; j < 40; j++) { var md = (x + y) / 2; if (ok(md)) x = md; else y = md; }
+  return Math.floor(x * 100) / 100;
+}
+function yearly(r) {
+  var rows = [], N = r.nw.n;
+  for (var y = 1; y * 12 - 12 < N; y++) {
+    var a = (y - 1) * 12 + 1, z = Math.min(y * 12, N), it = 0, pd = 0;
+    for (var m = a; m <= z; m++) { it += r.nw.intr[m]; pd += r.nw.paid[m]; }
+    rows.push({ y: y, intr: it, prin: pd - it, bal: r.nw.bal[z], old: r.old.bal[Math.min(y * 12, r.old.n)] || 0 });
+  }
+  return rows;
+}
+function saveChart(r, W) {
+  W = W || 620; var H = 270, L = 66, R = 16, T = 26, B = 40, N = Math.min(r.N, 480), pts = r.cumCash.slice(0, N + 1), mx = 0, mn = 0, i;
+  for (i = 0; i <= N; i++) { mx = Math.max(mx, pts[i]); mn = Math.min(mn, pts[i]); } if (mx === mn) mx = mn + 1;
+  var sx = function (m) { return L + m / N * (W - L - R); }, sy = function (v) { return T + (mx - v) / (mx - mn) * (H - T - B); };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Cumulative savings from refinancing by month"><title>Cumulative savings from refinancing</title>';
+  [mn, 0, mx].forEach(function (v) { var y = sy(v); s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity="' + (v === 0 ? ".45" : ".12") + '"/><text x="' + (L - 6) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".7">' + esc(fm(v)) + "</text>"; });
+  var step = N > 240 ? 60 : N > 120 ? 36 : N > 60 ? 24 : 12;
+  for (var m = 0; m <= N; m += step) s += '<text x="' + sx(m).toFixed(1) + '" y="' + (H - 18) + '" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + (m / 12 % 1 === 0 ? m / 12 + "y" : m + "m") + "</text>";
+  var d = ""; for (i = 0; i <= N; i += (N > 240 ? 2 : 1)) d += (i ? "L" : "M") + sx(i).toFixed(1) + " " + sy(pts[i]).toFixed(1);
+  var y0 = sy(0); s += '<path d="' + d + "L" + sx(N).toFixed(1) + " " + y0.toFixed(1) + "L" + sx(0).toFixed(1) + " " + y0.toFixed(1) + 'Z" fill="#0369a1" opacity=".12"/>';
+  s += '<path d="' + d + '" fill="none" stroke="#0369a1" stroke-width="2.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="1s" fill="freeze"/></path>';
+  if (r.stayM > 0 && r.stayM <= N) { var xs = sx(r.stayM); s += '<line x1="' + xs.toFixed(1) + '" x2="' + xs.toFixed(1) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="#7c3aed" stroke-dasharray="5 4" stroke-width="2"/><text x="' + xs.toFixed(1) + '" y="' + (T - 8) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">you stay (' + (Math.round(r.stayM / 12 * 10) / 10) + "y)</text>"; }
+  if (r.be != null && r.be > 0 && r.be <= N) { var xb = sx(r.be); s += '<circle class="dt-pop" cx="' + xb.toFixed(1) + '" cy="' + y0.toFixed(1) + '" r="6.5" fill="#16a34a" stroke="#fff" stroke-width="2"/><text x="' + Math.min(W - 70, xb + 10).toFixed(1) + '" y="' + (y0 + 17).toFixed(1) + '" font-size="11.5" font-weight="700" fill="#16a34a">break-even: month ' + r.be + "</text>"; }
+  return s + "</svg>";
+}
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+
+/* ---------- refinance break-even calculator UI ---------- */
+var ST = { o: null, r: null };
+var DEF = { beBal: 250000, beRate: 7, beYears: 28, bePay: "", beNRate: 6, beNYears: "30", beClose: 3, bePts: 0, beFixed: 0, beRoll: "no", beStay: 5 };
+function readO() {
+  var rem = nv("beYears", 28, 1, 40), ny = $("beNYears").value;
+  return { bal: nv("beBal", 0, 0), rate: nv("beRate", 0, 0, 30), remYears: rem, val: 0, curPay: nv("bePay", 0, 0), esc: 0, newRate: nv("beNRate", 0, 0, 30), newYears: ny === "rem" ? rem : parseFloat(ny),
+    closePct: nv("beClose", 0, 0, 20), pts: nv("bePts", 0, 0, 10), closeFixed: nv("beFixed", 0, 0), roll: $("beRoll").value === "yes", cashOut: 0, extra: 0, stay: nv("beStay", 5, 0.5, 40) };
+}
+function sy(o) { return (Math.round(o.stay * 10) / 10) + " years"; }
+function bm(m) { return m == null ? "never" : m === 0 ? "now" : m + " mo"; }
+function timeline(r, W) {
+  W = W || 620; var stayM = r.stayM, be = r.be, T = Math.max(stayM, be == null ? stayM : be) * 1.12 + 6, H = 150, L = 16, w = W - 2 * L, x = function (m) { return L + m / T * w; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Months repaying costs against months of savings"><title>Break-even timeline</title>';
+  var bx = be == null ? x(stayM) : x(Math.min(be, T));
+  s += '<rect class="dt-bar" x="' + L + '" y="50" width="' + Math.max(2, bx - L).toFixed(1) + '" height="38" rx="8" fill="#dc2626"/>';
+  if (be != null && be < stayM) s += '<rect class="dt-bar" x="' + bx.toFixed(1) + '" y="50" width="' + Math.max(2, x(stayM) - bx).toFixed(1) + '" height="38" rx="8" fill="#16a34a" style="animation-delay:.3s"/>';
+  s += '<text x="' + (L + 8) + '" y="74" font-size="12" font-weight="700" fill="#fff">' + (be == null ? "costs never repaid" : "repaying costs") + "</text>";
+  if (be != null && be < stayM && x(stayM) - bx > 90) s += '<text x="' + (bx + 8).toFixed(1) + '" y="74" font-size="12" font-weight="700" fill="#fff">savings</text>';
+  if (be != null) s += '<line x1="' + bx.toFixed(1) + '" x2="' + bx.toFixed(1) + '" y1="38" y2="100" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/><text x="' + bx.toFixed(1) + '" y="30" text-anchor="middle" font-size="11.5" font-weight="700" fill="currentColor">break-even: month ' + be + "</text>";
+  s += '<line x1="' + x(stayM).toFixed(1) + '" x2="' + x(stayM).toFixed(1) + '" y1="38" y2="100" stroke="#7c3aed" stroke-width="2.5"/><text x="' + x(stayM).toFixed(1) + '" y="118" text-anchor="' + (x(stayM) > W - 90 ? "end" : "middle") + '" font-size="11.5" font-weight="700" fill="#7c3aed">you move: month ' + stayM + "</text>";
+  return s + "</svg>";
+}
+function calc() {
+  var o = readO();
+  if (o.bal <= 0) { $("beRes").innerHTML = '<div class="dt-result"><div class="dt-big">Enter your current loan balance to start.</div></div>'; $("beStay2").innerHTML = ""; $("beGrid").innerHTML = ""; ST.r = null; return; }
+  var r = refi(o); ST.o = o; ST.r = r;
+  if (r.old.never || r.nw.never) { $("beRes").innerHTML = '<div class="dt-result"><div class="dt-label">Check your numbers</div><div class="dt-big">A payment is too low to repay the loan.</div><p class="dt-sum">Enter a payment that covers at least the monthly interest, or leave the payment box blank.</p></div>'; $("beStay2").innerHTML = ""; $("beGrid").innerHTML = ""; ST.r = null; return; }
+  var st = r.stayM, head, cls, sub;
+  if (r.monthly <= 0.5 && r.be == null) { head = "Not worth it: your payment does not fall"; cls = "err"; sub = "The new payment is " + (r.monthly < -0.5 ? fm(-r.monthly) + " higher" : "about the same") + ", so there is no payment saving to repay " + fm(r.costs) + " of costs. Over the life of the loans you would " + (r.lifeInt >= 0 ? "save " + fm(r.lifeInt) + " in interest" : "pay " + fm(-r.lifeInt) + " more in interest") + " after costs."; }
+  else if (r.be == null) { head = "Not worth it: the costs are never repaid"; cls = "err"; sub = "You save " + fm(r.monthly) + " a month, but that does not repay " + fm(r.costs) + " before the old loan would have ended."; }
+  else if (r.be > st && r.beInt != null && r.beInt <= st) { head = "Borderline: interest repays the costs, payments do not"; cls = "warn"; sub = "On an interest basis you break even in month " + r.beInt + ", before you move in month " + st + ". On payments you break even in month " + r.be + ", so your cash is still " + fm(-r.netStay) + " behind when you leave. Part of the benefit arrives as lower interest and faster equity rather than as cash in hand."; }
+  else if (r.be > st) { head = "Not worth it if you stay " + sy(o); cls = "err"; sub = "You break even in month " + r.be + " (" + yrs(r.be) + "), but you plan to leave in month " + st + ". By then you are " + fm(-r.netStay) + " behind. You need to stay at least " + yrs(r.be) + "."; }
+  else if (r.beInt == null || r.beInt > st) { head = "Borderline: payments break even in month " + r.be + ", interest much later"; cls = "warn"; sub = "Your cash saving repays the costs in " + yrs(r.be) + ", before you move, but the interest saved does not repay them within " + sy(o) + ". A longer term is lowering the payment more than the cost of borrowing."; }
+  else { head = "Worth it: you break even in month " + r.be + " (" + yrs(r.be) + ")"; cls = "ok"; sub = "That is " + yrs(st - r.be) + " before you plan to move. Over " + sy(o) + " you come out about " + fm(r.netStay) + " ahead after costs (" + fm(r.netStayInt) + " on an interest basis)."; }
+  var need = rateNeeded(o, st), simple = r.monthly > 0.5 ? r.costs / r.monthly : null;
+  var h = '<div class="dt-result"><div class="dt-label">Break-even verdict</div><div class="dt-big">' + head + '</div><p class="dt-sum">' + sub + "</p></div>";
+  h += '<div class="dt-stats">' + tile("Break-even (payments)", r.be == null ? "Never" : r.be === 0 ? "Now" : r.be + " mo", r.be ? yrs(r.be) : "", r.be != null && r.be <= st ? "ok" : "err") + tile("Break-even (interest)", r.beInt == null ? "Never" : r.beInt === 0 ? "Now" : r.beInt + " mo", r.beInt ? yrs(r.beInt) : "", r.beInt != null && r.beInt <= st ? "ok" : "warn") +
+    tile("Monthly saving", (r.monthly >= 0 ? "" : "-") + fm(Math.abs(r.monthly)), fm(r.curPay) + " to " + fm(r.newPay), r.monthly > 0.5 ? "ok" : "err") + tile("Total costs", fm(r.costs), o.roll ? "rolled into the loan" : "paid at closing") +
+    tile("Quick formula", simple == null ? "n/a" : (Math.round(simple * 10) / 10) + " mo", "costs ÷ monthly saving") + tile("Net after " + sy(o), fm(r.netStay), "payments basis", r.netStay >= 0 ? "ok" : "err") +
+    tile("Net after " + sy(o), fm(r.netStayInt), "interest basis", r.netStayInt >= 0 ? "ok" : "err") + tile("Highest rate that breaks even", need == null ? "None" : pc(need, 2), "within " + sy(o), need != null && o.newRate <= need ? "ok" : "warn") + "</div>";
+  h += '<h3 class="dt-lbl">Costs against savings timeline</h3><div class="dt-diagram">' + timeline(r) + '</div><h3 class="dt-lbl">Savings month by month</h3><div class="dt-diagram">' + saveChart(r) + '</div><p class="rf-note">The line shows payments saved so far minus costs paid at closing. It crosses zero at the break-even month. If the new loan runs longer than the old one, the line falls once the old payment would have ended.</p>';
+  $("beRes").innerHTML = h; stayTab(o, r); gridTab(o, r);
+}
+function stayTab(o, r) {
+  var h = '<div class="dt-scroll"><table class="dt-table"><tr><th>If you stay</th><th>Net saving (payments)</th><th>Net saving (interest)</th><th>Verdict</th></tr>';
+  [1, 2, 3, 5, 7, 10, 15, 30].forEach(function (y) { var m = Math.min(y * 12, r.N), a = r.cumCash[m], b = r.cumInt[m]; h += "<tr><td>" + y + " year" + (y > 1 ? "s" : "") + "</td><td>" + fm(a) + "</td><td>" + fm(b) + "</td><td>" + (a >= 0 && b >= 0 ? "Worth it" : a >= 0 ? "Payments only" : "Not yet") + "</td></tr>"; });
+  h += '</table></div><p class="rf-note">Net saving is the payments (or interest) saved by that point, minus all costs. A positive number means the refinance has paid for itself by then.</p>';
+  $("beStay2").innerHTML = h;
+}
+function gridTab(o, r) {
+  var costs = [0, 1, 2, 3, 4, 5], drops = [-1.5, -1, -0.5, 0, 0.5, 1], st = r.stayM;
+  var h = '<p class="rf-note">Break-even month for different new rates (rows) and closing costs as a percentage of the loan (columns). Green means you break even within your plan of ' + sy(o) + ".</p><div class=\"dt-scroll\"><table class=\"dt-table be-g\"><tr><th>New rate \\ costs</th>" + costs.map(function (c) { return "<th>" + c + "%</th>"; }).join("") + "</tr>";
+  drops.forEach(function (d) {
+    var rt = Math.max(0, o.newRate + d); h += "<tr><th>" + pc(rt, 2) + "</th>";
+    costs.forEach(function (c) { var q = {}; for (var k in o) q[k] = o[k]; q.closePct = c; q.pts = 0; q.closeFixed = 0; var x = beFor(q, rt), ok = x.be != null && x.be <= st; h += '<td class="' + (ok ? "g" : "b") + '">' + (x.be == null ? "never" : x.be === 0 ? "0" : x.be) + "</td>"; });
+    h += "</tr>";
+  });
+  h += '</table></div><p class="rf-note">The grid uses your other inputs (balance, current rate, terms, years to stay) but replaces your costs, points and fixed fees with the percentage in each column.</p>';
+  $("beGrid").innerHTML = h;
+}
+function summaryRows() {
+  var o = ST.o, r = ST.r;
+  return [["Current balance", fm(o.bal)], ["Current rate", pc(o.rate, 3)], ["Current monthly P&I", fm(r.curPay)], ["New rate", pc(o.newRate, 3)], ["New term", yrs(r.nw.n)], ["New monthly P&I", fm(r.newPay)], ["Monthly saving", fm(r.monthly)], ["Total costs", fm(r.costs)], ["Costs rolled into loan", o.roll ? "Yes" : "No"], ["Break-even (payments)", r.be == null ? "Never" : "Month " + r.be], ["Break-even (interest)", r.beInt == null ? "Never" : "Month " + r.beInt], ["Years you plan to stay", String(Math.round(o.stay * 10) / 10)], ["Net after stay (payments)", fm(r.netStay)], ["Net after stay (interest)", fm(r.netStayInt)]];
+}
+function fillReport() {
+  var b = repBox(); if (!ST.r) return; repHead(b, "Refinance break-even analysis", "Free online Refinance Break-Even Calculator"); repTbl(b, ["Item", "Value"], summaryRows());
+  repFig(b, timeline(ST.r, 600)); repFig(b, saveChart(ST.r, 600));
+  repDisc(b, "Estimates for education only. Not financial, tax or lending advice. Compare official Loan Estimates before you refinance.");
+}
+function setDef() { for (var k in DEF) $(k).value = DEF[k]; }
+function init() {
+  initCommon(); window.fillReport = fillReport; initTabs(["res", "stay", "grid"]); setDef();
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", calc); e.addEventListener("change", calc); });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); msg("Reset to the example."); });
+  $("beCsv").addEventListener("click", function () { if (!ST.r) { msg("Nothing to download yet.", "err"); return; } csvDownload([["Item", "Value"]].concat(summaryRows()), "refinance-break-even.csv"); });
+  $("beCopy").addEventListener("click", function () { if (!ST.r) { msg("Nothing to copy yet.", "err"); return; } copyText("Refinance break-even analysis\n" + summaryRows().map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online Refinance Break-Even Calculator at utiliby.com", $("beCopy")); });
+  $("bePrint").addEventListener("click", function () { if (!ST.r) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>

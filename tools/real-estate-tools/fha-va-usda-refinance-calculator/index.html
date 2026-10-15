@@ -1,0 +1,491 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free FHA, VA & USDA Streamline Refinance Calculator</title>
+<meta name="description" content="Free online FHA, VA and USDA streamline refinance calculator. Check fees, net tangible benefit, new payment and break-even, or FHA to conventional.">
+<link rel="canonical" href="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free FHA, VA & USDA Streamline Refinance Calculator">
+<meta property="og:description" content="Free online FHA, VA IRRRL and USDA streamline refinance calculator: fees, insurance, benefit tests, break-even and FHA to conventional.">
+<meta property="og:url" content="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free FHA, VA & USDA Streamline Refinance Calculator">
+<meta name="twitter:description" content="Free online FHA, VA IRRRL and USDA streamline refinance calculator: fees, insurance, benefit tests, break-even and FHA to conventional.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.re-fine{font-size:.78rem}
+.rf-cmp td.n,.rf-cmp th.n{text-align:right}
+.rf-note{font-size:.82rem;opacity:.8;margin:6px 0}
+.be-g td.g{background:rgba(22,163,74,.18)}.be-g td.b{background:rgba(220,38,38,.14)}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"FHA, VA and USDA Refinance Calculator","url":"https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/","description":"Free online FHA streamline, VA IRRRL and USDA streamlined-assist refinance calculator. Adds the upfront fee and annual mortgage insurance, checks the commonly applied net tangible benefit tests, finds the break-even and compares refinancing an FHA loan into a conventional loan.","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["FHA, VA IRRRL and USDA presets","Upfront fee and annual insurance included","Net tangible benefit checklist","Break-even and net saving","Rate what-if table","FHA to conventional comparison","CSV, copy and print","Private: runs in your browser"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a streamline refinance?","acceptedAnswer":{"@type":"Answer","text":"A streamline refinance is a simplified refinance of an existing government-backed loan: FHA, VA or USDA. It usually needs less paperwork than a standard refinance, often no appraisal, and it must give you a clear benefit such as a lower payment or rate."}},{"@type":"Question","name":"What is the FHA streamline refinance?","acceptedAnswer":{"@type":"Answer","text":"It lets a borrower with an FHA loan refinance into a new FHA loan with limited documentation. It is meant to lower your payment, and it generally cannot be used to take cash out."}},{"@type":"Question","name":"What is a VA IRRRL?","acceptedAnswer":{"@type":"Answer","text":"The Interest Rate Reduction Refinance Loan, often called a VA streamline, lets a borrower with a VA loan refinance into a lower rate with limited paperwork. It carries a funding fee that is lower than on a purchase loan."}},{"@type":"Question","name":"What is the USDA streamlined-assist refinance?","acceptedAnswer":{"@type":"Answer","text":"It is a refinance for borrowers with a USDA Single Family Housing Guaranteed loan. It usually needs a lower payment to qualify, and it does not require an appraisal in many cases."}},{"@type":"Question","name":"What is the net tangible benefit?","acceptedAnswer":{"@type":"Answer","text":"It is a requirement that the refinance must clearly benefit the borrower. The tests differ by program, for example a minimum rate reduction, a lower payment, or recouping fees within a set number of months. The tool shows the tests that are commonly applied."}},{"@type":"Question","name":"What is the typical net tangible benefit test for VA IRRRL?","acceptedAnswer":{"@type":"Answer","text":"Commonly cited tests are a rate at least half a point lower for a fixed-to-fixed refinance and recouping the fees through lower payments within about three years. Confirm the current rules with a VA lender."}},{"@type":"Question","name":"What is the FHA streamline benefit test?","acceptedAnswer":{"@type":"Answer","text":"It is commonly applied as a reduction in the combined rate, meaning the interest rate plus the annual mortgage insurance, of at least half a point for a fixed-to-fixed refinance. Check the current HUD guidance with your lender."}},{"@type":"Question","name":"What is the USDA streamlined test?","acceptedAnswer":{"@type":"Answer","text":"The new payment is commonly required to be at least 50 a month lower than the current one. The tool checks this using principal, interest and the annual fee."}},{"@type":"Question","name":"What are the upfront fees?","acceptedAnswer":{"@type":"Answer","text":"FHA charges an upfront mortgage insurance premium, VA charges a funding fee and USDA charges an upfront guarantee fee. The defaults here are typical illustrations. Replace them with the amounts on your Loan Estimate."}},{"@type":"Question","name":"Can I take cash out in a streamline refinance?","acceptedAnswer":{"@type":"Answer","text":"Generally no. Streamline programs are designed for rate and payment reductions, and any cash back is limited to a small amount. For cash, see a cash-out refinance."}},{"@type":"Question","name":"Can I roll the fees into the loan?","acceptedAnswer":{"@type":"Answer","text":"Often yes for the upfront program fee, and sometimes for other costs, which keeps cash at closing low. Rolling in raises the balance, so choose Roll into the new loan to see the effect."}},{"@type":"Question","name":"How soon can I use a streamline?","acceptedAnswer":{"@type":"Answer","text":"Programs usually require that your current loan is a certain age and that you have made a number of on-time payments. Rules differ by program and lender, so ask your lender."}},{"@type":"Question","name":"Why does the tool include mortgage insurance?","acceptedAnswer":{"@type":"Answer","text":"FHA and USDA loans carry annual mortgage insurance or fees that change the true payment. The tool adds the annual rate to each monthly payment so the saving is realistic. It uses a flat amount on the starting balance, which is a simplification."}},{"@type":"Question","name":"What does the FHA to conventional tab do?","acceptedAnswer":{"@type":"Answer","text":"It compares refinancing out of an FHA loan into a conventional loan. If your loan-to-value is 80% or less, conventional mortgage insurance may not apply, which can remove FHA insurance for good. You enter the conventional rate, costs and PMI."}},{"@type":"Question","name":"Can I remove FHA mortgage insurance?","acceptedAnswer":{"@type":"Answer","text":"On many FHA loans the insurance lasts for the life of the loan, depending on the original loan-to-value and date. Refinancing into a conventional loan with enough equity is one way to end it."}},{"@type":"Question","name":"Is my information private?","acceptedAnswer":{"@type":"Answer","text":"Yes. The calculator runs in your browser. Nothing you enter is sent to a server, saved or shared, and reloading the page resets it."}},{"@type":"Question","name":"Is this streamline refinance calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is a free online calculator with no sign-up, trial or limit. You can print or download the results."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Real Estate Tools","item":"https://utiliby.com/tools/real-estate-tools/"},{"@type":"ListItem","position":3,"name":"FHA, VA and USDA Refinance Calculator","item":"https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/real-estate-tools/">Real Estate Tools</a> › FHA, VA and USDA Refinance Calculator</nav>
+<h1 class="noembed">Free FHA, VA and USDA Streamline Refinance Calculator</h1>
+<p class="lead noembed">Free online FHA streamline, VA IRRRL and USDA streamlined refinance calculator: add the upfront fee and annual insurance, check the net tangible benefit, see your new payment and break-even, test other rates and compare FHA to conventional. Print or download. Private, with no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/" target="_blank" rel="noopener">FHA, VA and USDA Refinance Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="FHA, VA and USDA streamline refinance calculator">
+<div class="dt-hero noembed">
+<h2>Free FHA, VA and USDA Streamline Refinance Calculator</h2>
+<p>Check the savings, fees and net tangible benefit of an FHA streamline, VA IRRRL or USDA streamlined refinance, and compare refinancing an FHA loan into a conventional one. Free, private, no sign-up.</p>
+</div>
+<div class="dt-panel">
+<div class="dt-row4"><div><label for="fvProg">Loan program</label><select id="fvProg"><option value="fha">FHA streamline refinance</option><option value="va">VA IRRRL</option><option value="usda">USDA streamlined-assist</option></select></div><div><label for="fvBal">Current loan balance</label><input type="number" id="fvBal" min="0" step="1000"></div><div><label for="fvRate">Current interest rate (%)</label><input type="number" id="fvRate" min="0" step="0.125"></div><div><label for="fvYears">Years left on the loan</label><input type="number" id="fvYears" min="1" max="40" step="0.5"></div></div>
+<div class="dt-row4"><div><label for="fvCurMI">Current annual MI or fee (% of balance)</label><input type="number" id="fvCurMI" min="0" step="0.05"></div><div><label for="fvNRate">New interest rate (%)</label><input type="number" id="fvNRate" min="0" step="0.125"></div><div><label for="fvNYears">New loan term</label><select id="fvNYears"><option value="30">30 years</option><option value="25">25 years</option><option value="20">20 years</option><option value="15">15 years</option></select></div><div><label for="fvStay">Years you plan to stay</label><input type="number" id="fvStay" min="0.5" max="40" step="0.5"></div></div>
+<div class="dt-row4"><div><label for="fvFee">Upfront program fee (% of loan)</label><input type="number" id="fvFee" min="0" step="0.05"></div><div><label for="fvNMI">New annual MI or fee (% of loan)</label><input type="number" id="fvNMI" min="0" step="0.05"></div><div><label for="fvClose">Other closing costs (% of loan)</label><input type="number" id="fvClose" min="0" step="0.1"></div><div><label for="fvRoll">Pay costs</label><select id="fvRoll"><option value="no">Pay at closing</option><option value="yes">Roll into the new loan</option></select></div></div>
+<h3>Optional: compare refinancing into a conventional loan</h3>
+<div class="dt-row4"><div><label for="fvVal">Home value</label><input type="number" id="fvVal" min="0" step="1000"></div><div><label for="fvCvRate">Conventional rate (%)</label><input type="number" id="fvCvRate" min="0" step="0.125"></div><div><label for="fvCvClose">Conventional closing costs (% of loan)</label><input type="number" id="fvCvClose" min="0" step="0.1"></div><div><label for="fvCvPmi">Conventional PMI if LTV is above 80% (% a year)</label><input type="number" id="fvCvPmi" min="0" step="0.05"></div></div>
+<div class="dt-row4"><div><label for="reCur">Currency</label><select id="reCur"><option value="$">$ Dollar</option><option value="£">£ Pound</option><option value="€">€ Euro</option><option value="C$">C$ Canadian dollar</option><option value="A$">A$ Australian dollar</option><option value="₹">₹ Rupee</option><option value="AED ">AED Dirham</option><option value="R ">R Rand</option></select></div></div>
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset to example</button>
+</div>
+<div class="dt-tabs" role="group" aria-label="Views">
+<button type="button" class="dt-tab on" id="dtTabBtn-res" aria-pressed="true">Results</button>
+<button type="button" class="dt-tab" id="dtTabBtn-rate" aria-pressed="false">Rate what-if</button>
+<button type="button" class="dt-tab" id="dtTabBtn-conv" aria-pressed="false">FHA to conventional</button>
+</div>
+<div id="dtTab-res"><div id="fvRes"></div></div>
+<div id="dtTab-rate" hidden><div id="fvRate2"></div></div>
+<div id="dtTab-conv" hidden><div id="fvConv"></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn" id="fvPrint">Print / save as PDF</button>
+<button type="button" class="dt-btn ghost" id="fvCsv">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="fvCopy">Copy summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online FHA, VA and USDA streamline refinance calculator gives estimates for education and planning. Program rules, fees and eligibility change and vary by lender. It is not financial, tax, legal or lending advice and not a loan offer. Confirm every figure and requirement with your lender and the program's current guidance.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). FHA, VA and USDA Refinance Calculator. https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="FHA, VA and USDA Refinance Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/real-estate-tools/fha-va-usda-refinance-calculator/"&gt;FHA, VA and USDA Refinance Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online streamline refinance calculator does</a></li><li><a href="#how">How to use the streamline refinance calculator</a></li><li><a href="#programs">The three streamline programs compared</a></li><li><a href="#math">How the calculator works</a></li><li><a href="#ntb">Net tangible benefit tests</a></li><li><a href="#mi">Mortgage insurance and why it matters</a></li><li><a href="#conv">FHA to conventional: when it can win</a></li><li><a href="#tips">Tips for a streamline refinance</a></li><li><a href="#mistakes">Common mistakes</a></li><li><a href="#related">Related refinance tools and guides</a></li><li><a href="#privacy">Privacy, accuracy and limits</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online streamline refinance calculator does</h2>
+<p>If you have a loan backed by the Federal Housing Administration, the Department of Veterans Affairs or the US Department of Agriculture, you can often refinance with a streamline program that asks for less than a standard refinance. The paperwork is lighter, many lenders do not require an appraisal, and the loan only needs to give you a clear benefit. That benefit has to be real, so these programs come with tests, and they come with their own fees and insurance.</p><p>This <b>free online FHA, VA and USDA streamline refinance calculator</b> puts it together. It adds the program's upfront fee and annual mortgage insurance or fee to the payment, works out your true saving and break-even, and checks the commonly applied net tangible benefit tests. A rate what-if tab shows how the result changes with the rate you are offered, and a third tab compares refinancing an FHA loan into a conventional loan, where removing mortgage insurance can matter more than the rate. Everything runs in your browser, so your numbers stay private.</p><figure class="dt-fig"><svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Monthly payment before and after a streamline refinance, split into principal and interest and mortgage insurance"><title>Streamline refinance payment before and after</title>
+<g font-size="12" fill="currentColor"><text x="20" y="40">Current payment</text><text x="20" y="108">After streamline</text></g>
+<rect class="dt-bar" x="130" y="22" width="330" height="26" rx="5" fill="#0369a1"/><rect class="dt-bar" x="460" y="22" width="60" height="26" fill="#d97706" style="animation-delay:.2s"/>
+<rect class="dt-bar" x="130" y="90" width="270" height="26" rx="5" fill="#0369a1" style="animation-delay:.4s"/><rect class="dt-bar" x="400" y="90" width="60" height="26" fill="#d97706" style="animation-delay:.6s"/>
+<g font-size="11.5" font-weight="700" fill="#fff" text-anchor="middle"><text x="295" y="40">principal and interest</text><text x="490" y="40">MI</text><text x="265" y="108">principal and interest</text><text x="430" y="108">MI</text></g>
+<g font-size="12" fill="currentColor" text-anchor="middle"><text x="320" y="160">Lower rate and lower payment: the net tangible benefit</text><text x="320" y="182" opacity=".8">Add the fee you pay to get there, then find the break-even month</text></g>
+</svg><figcaption>A streamline refinance usually needs a clear benefit to you: a lower payment or rate. The tool tests the commonly applied rules and the break-even.</figcaption></figure>
+<h2 id="how">How to use the streamline refinance calculator</h2>
+<ol><li><b>Choose the program.</b> FHA, VA or USDA. The fee and insurance fields are filled with typical figures.</li><li><b>Enter the current loan.</b> Use your balance, rate and years left, and your current annual mortgage insurance or fee.</li><li><b>Enter the new loan.</b> Add the rate, term, the upfront program fee, the new annual insurance and any other closing costs. Replace the typical figures with your quote.</li><li><b>Choose how costs are paid.</b> At closing or rolled into the loan.</li><li><b>Read the tests.</b> The verdict and checklist show whether the commonly applied benefit tests are met and when you break even.</li><li><b>Try other rates and a conventional loan.</b> Use the other two tabs. Add your home value to compare an FHA to conventional refinance.</li></ol>
+<h2 id="programs">The three streamline programs compared</h2>
+<table><tr><th></th><th>FHA streamline</th><th>VA IRRRL</th><th>USDA streamlined-assist</th></tr><tr><td>Who it is for</td><td>Existing FHA loans</td><td>Existing VA loans</td><td>Existing USDA guaranteed loans</td></tr><tr><td>Upfront fee</td><td>Upfront mortgage insurance premium</td><td>VA funding fee, lower than on a purchase</td><td>Upfront guarantee fee</td></tr><tr><td>Ongoing charge</td><td>Annual mortgage insurance premium</td><td>None</td><td>Annual fee</td></tr><tr><td>Commonly applied test</td><td>Combined rate lower by about half a point</td><td>Rate lower by about half a point and fees recouped in about three years</td><td>Payment lower by about 50 a month</td></tr><tr><td>Appraisal</td><td>Often not required</td><td>Often not required</td><td>Often not required</td></tr></table><p>These are general patterns, not guarantees. The exact fees, tests and waiting periods are set by each program and lender and change, so use the table as a guide and confirm the details with your lender.</p>
+<h2 id="math">How the calculator works</h2>
+<p>The tool starts from the same refinance maths as a conventional loan: the payment on the new balance, the closing costs and fees and the month your monthly savings repay them. It then adds the annual mortgage insurance or fee, divided by twelve, to the payment of both loans, so the saving reflects what you actually pay. If you roll the fees into the loan, the loan is grown so that the percentage costs are a share of the final loan. The break-even is the first month in which the total saved reaches the costs. When the costs are rolled in, the savings must also cover the extra interest on the larger balance.</p><p><b>Worked example.</b> An FHA borrower owes 250,000 at 7.0% with 27 years left and pays 0.55% a year in mortgage insurance. A new 30-year loan at 6.0% with a 1.75% upfront premium and 1.0% other costs is rolled into the balance. The new loan is about 257,000, the new principal and interest is about 1,541 against about 1,720 now, and with insurance the monthly total falls by about 175. The combined rate falls by a full point. The 7,069 of costs are repaid in about 44 months, a little under four years, because they were added to the loan and the savings have to cover that extra balance.</p>
+<h2 id="ntb">Net tangible benefit tests</h2>
+<p>A streamline refinance must leave you better off, so each program has a test. The tool shows the commonly applied ones as a checklist: a minimum reduction in the rate or combined rate, a lower payment, a minimum monthly payment drop for USDA and recouping fees within a set time for VA. These tests change, can differ by lender and by whether the loan is fixed or adjustable, so treat a pass as a good sign and a fail as a reason to ask your lender, not as a final answer.</p>
+<h2 id="mi">Mortgage insurance and why it matters</h2>
+<p>Government-backed loans replace a large down payment with insurance or a fee. FHA loans carry an upfront premium and an annual premium, and on many loans the annual premium lasts for the life of the loan. USDA loans carry an upfront and an annual fee. VA loans have a funding fee and no monthly insurance. Because the annual charge is a percentage of the balance, it is a large part of the payment and a lower rate does not always lower it much. That is why the calculator includes it, and why the FHA to conventional tab can show a bigger saving than a streamline.</p>
+<h2 id="conv">FHA to conventional: when it can win</h2>
+<p>If your home has gained value or you have paid the loan down, your loan-to-value may now be 80% or lower. A conventional loan at that level generally needs no private mortgage insurance, so refinancing from FHA can end the insurance for good. The conventional route needs a standard application and usually an appraisal and higher closing costs, and the rate may be higher or lower than the FHA streamline. The FHA to conventional tab compares the two with your home value, rate, costs and the PMI you would pay if your loan-to-value is above 80%.</p>
+<h2 id="tips">Tips for a streamline refinance</h2>
+<ul><li>Ask your current servicer and at least two other lenders for quotes. Streamline rates and fees differ.</li><li>Ask for the net tangible benefit test in writing.</li><li>Check any seasoning period, so you do not apply too early.</li><li>Compare rolling in fees with paying them, using the break-even.</li><li>Do not skip payments before closing. Streamlines usually need a clean recent payment history.</li><li>Be careful with offers that promise "no cost". Check the rate and the balance.</li></ul>
+<h2 id="mistakes">Common mistakes</h2>
+<ul><li><b>Ignoring the annual insurance.</b> It changes the saving and the test.</li><li><b>Using the typical fee figures</b> instead of your quote.</li><li><b>Expecting cash out.</b></li><li><b>Extending the term</b> and assuming the lower payment is all savings.</li><li><b>Refinancing again too soon,</b> before the break-even.</li></ul>
+<h2 id="related">Related refinance tools and guides</h2>
+<p>This calculator is one of a set of free refinance tools on Utiliby. Depending on what you are deciding, these may help next.</p><ul><li><a href="/tools/real-estate-tools/mortgage-refinance-calculator/">Mortgage Refinance Calculator</a>: compare with a conventional refinance.</li><li><a href="/tools/real-estate-tools/remove-pmi-refinance-calculator/">Remove PMI Refinance Calculator</a>: if the goal is to end mortgage insurance.</li><li><a href="/tools/real-estate-tools/refinance-closing-costs-calculator/">Refinance Closing Costs Calculator</a>: itemise the other costs.</li></ul><p>For background reading:</p><ul><li><a href="/guides/refinance-with-bad-credit-self-employed-or-underwater/">Refinancing with Bad Credit, Self-Employed Income or Negative Equity</a></li><li><a href="/guides/how-to-calculate-mortgage-refinance-savings/">How to Calculate Mortgage Refinance Savings</a></li></ul>
+<h2 id="privacy">Privacy, accuracy and limits</h2>
+<p>The calculator runs entirely in your browser. The figures you enter are not sent to a server and are not stored, and reloading the page returns the example. Mortgage insurance is modelled as a flat amount on the starting balance, and program rules, fees and eligibility change often. This is a first check, not an approval or a quote. Confirm every figure with your lender and the program's current guidance.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a streamline refinance?</summary><p>A streamline refinance is a simplified refinance of an existing government-backed loan: FHA, VA or USDA. It usually needs less paperwork than a standard refinance, often no appraisal, and it must give you a clear benefit such as a lower payment or rate.</p></details><details><summary>What is the FHA streamline refinance?</summary><p>It lets a borrower with an FHA loan refinance into a new FHA loan with limited documentation. It is meant to lower your payment, and it generally cannot be used to take cash out.</p></details><details><summary>What is a VA IRRRL?</summary><p>The Interest Rate Reduction Refinance Loan, often called a VA streamline, lets a borrower with a VA loan refinance into a lower rate with limited paperwork. It carries a funding fee that is lower than on a purchase loan.</p></details><details><summary>What is the USDA streamlined-assist refinance?</summary><p>It is a refinance for borrowers with a USDA Single Family Housing Guaranteed loan. It usually needs a lower payment to qualify, and it does not require an appraisal in many cases.</p></details><details><summary>What is the net tangible benefit?</summary><p>It is a requirement that the refinance must clearly benefit the borrower. The tests differ by program, for example a minimum rate reduction, a lower payment, or recouping fees within a set number of months. The tool shows the tests that are commonly applied.</p></details><details><summary>What is the typical net tangible benefit test for VA IRRRL?</summary><p>Commonly cited tests are a rate at least half a point lower for a fixed-to-fixed refinance and recouping the fees through lower payments within about three years. Confirm the current rules with a VA lender.</p></details><details><summary>What is the FHA streamline benefit test?</summary><p>It is commonly applied as a reduction in the combined rate, meaning the interest rate plus the annual mortgage insurance, of at least half a point for a fixed-to-fixed refinance. Check the current HUD guidance with your lender.</p></details><details><summary>What is the USDA streamlined test?</summary><p>The new payment is commonly required to be at least 50 a month lower than the current one. The tool checks this using principal, interest and the annual fee.</p></details><details><summary>What are the upfront fees?</summary><p>FHA charges an upfront mortgage insurance premium, VA charges a funding fee and USDA charges an upfront guarantee fee. The defaults here are typical illustrations. Replace them with the amounts on your Loan Estimate.</p></details><details><summary>Can I take cash out in a streamline refinance?</summary><p>Generally no. Streamline programs are designed for rate and payment reductions, and any cash back is limited to a small amount. For cash, see a cash-out refinance.</p></details><details><summary>Can I roll the fees into the loan?</summary><p>Often yes for the upfront program fee, and sometimes for other costs, which keeps cash at closing low. Rolling in raises the balance, so choose Roll into the new loan to see the effect.</p></details><details><summary>How soon can I use a streamline?</summary><p>Programs usually require that your current loan is a certain age and that you have made a number of on-time payments. Rules differ by program and lender, so ask your lender.</p></details><details><summary>Why does the tool include mortgage insurance?</summary><p>FHA and USDA loans carry annual mortgage insurance or fees that change the true payment. The tool adds the annual rate to each monthly payment so the saving is realistic. It uses a flat amount on the starting balance, which is a simplification.</p></details><details><summary>What does the FHA to conventional tab do?</summary><p>It compares refinancing out of an FHA loan into a conventional loan. If your loan-to-value is 80% or less, conventional mortgage insurance may not apply, which can remove FHA insurance for good. You enter the conventional rate, costs and PMI.</p></details><details><summary>Can I remove FHA mortgage insurance?</summary><p>On many FHA loans the insurance lasts for the life of the loan, depending on the original loan-to-value and date. Refinancing into a conventional loan with enough equity is one way to end it.</p></details><details><summary>Is my information private?</summary><p>Yes. The calculator runs in your browser. Nothing you enter is sent to a server, saved or shared, and reloading the page resets it.</p></details><details><summary>Is this streamline refinance calculator free?</summary><p>Yes. It is a free online calculator with no sign-up, trial or limit. You can print or download the results.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>U.S. Department of Housing and Urban Development, HUD Handbook 4000.1, FHA Single Family Housing Policy Handbook, streamline refinance and mortgage insurance premium sections (hud.gov).</li><li>U.S. Department of Veterans Affairs, Interest Rate Reduction Refinance Loan (IRRRL) and VA funding fee information (va.gov/housing-assistance/home-loans).</li><li>U.S. Department of Agriculture Rural Development, Single Family Housing Guaranteed Loan Program, streamlined-assist refinance (rd.usda.gov).</li><li>Consumer Financial Protection Bureau, "What is a refinance?" and "What is private mortgage insurance?" (consumerfinance.gov/ask-cfpb).</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online FHA, VA and USDA streamline refinance calculator is provided for general education and planning only. It is not financial, investment, tax, legal or lending advice, and it is not a loan offer, quote or credit decision. Program fees, mortgage insurance rates, net tangible benefit tests, seasoning periods and eligibility are set by HUD, the Department of Veterans Affairs, USDA and each lender, change over time and vary by loan. The defaults are typical illustrations, not quotes, and the tests shown are commonly applied rules that you must confirm. Mortgage insurance is modelled as a flat amount on the starting balance, which overstates it on programs that reduce the charge as the balance falls. Always confirm every figure with your lender before you refinance.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+
+/* ---------- real estate helpers ---------- */
+function curSym() { var e = $("reCur"); return e ? e.value.slice(0, 3) : "$"; }
+function fm(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d || 0; var s = Math.abs(v).toLocaleString(curSym() === "₹" ? "en-IN" : undefined, { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 && Math.round(Math.abs(v) * Math.pow(10, d)) > 0 ? "-" : "") + curSym() + s; }
+function pc(v, d) { if (v == null || !isFinite(v)) return "n/a"; return (Math.round(v * Math.pow(10, d == null ? 1 : d)) / Math.pow(10, d == null ? 1 : d)).toFixed(d == null ? 1 : d) + "%"; }
+function nv(id, def, lo, hi) { var v = parseFloat($(id).value); if (isNaN(v)) return def; if (lo != null) v = Math.max(lo, v); if (hi != null) v = Math.min(hi, v); return v; }
+function pmt(P, ratePct, years) { var n = Math.round(years * 12), r = ratePct / 1200; if (n <= 0) return 0; if (r === 0) return P / n; return P * r / (1 - Math.pow(1 + r, -n)); }
+function balAfter(P, ratePct, years, months) { var n = Math.round(years * 12), r = ratePct / 1200, m = pmt(P, ratePct, years); if (months >= n) return 0; if (r === 0) return P - m * months; return P * Math.pow(1 + r, months) - m * (Math.pow(1 + r, months) - 1) / r; }
+function irr(cf) { var lo = -0.99, hi = 5, f = function (r) { var s = 0; for (var i = 0; i < cf.length; i++) s += cf[i] / Math.pow(1 + r, i); return s; }; if (f(lo) * f(hi) > 0) return null; for (var i = 0; i < 100; i++) { var mid = (lo + hi) / 2; if (f(lo) * f(mid) <= 0) hi = mid; else lo = mid; } return (lo + hi) / 2; }
+function tile(l, v, s, cls) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + '</div>' + (s ? '<div class="sub">' + s + "</div>" : "") + "</div>"; }
+function check(ok, label, detail) { return '<tr><td>' + (ok ? '<span class="dt-chip" style="background:#16a34a">Pass</span>' : '<span class="dt-chip" style="background:#dc2626">Fail</span>') + "</td><td>" + label + "</td><td>" + (detail || "") + "</td></tr>"; }
+function hbars(rows, fmt) {
+  var mx = 1; rows.forEach(function (r) { mx = Math.max(mx, Math.abs(r.v)); });
+  var W = 640, H = rows.length * 34 + 12, s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bar chart"><title>Bar chart</title>';
+  rows.forEach(function (r, i) { var y = 8 + i * 34, w = Math.max(2, Math.abs(r.v) / mx * 330); s += '<text x="8" y="' + (y + 17) + '" font-size="12" fill="currentColor">' + esc(r.l) + '</text><rect class="dt-bar" x="220" y="' + y + '" width="' + w.toFixed(1) + '" height="22" rx="5" fill="' + (r.c || "#0369a1") + '"/><text x="' + (226 + w).toFixed(1) + '" y="' + (y + 16) + '" font-size="12" font-weight="700" fill="currentColor">' + esc(fmt(r.v)) + "</text>"; });
+  return s + "</svg>";
+}
+function waterfall(steps, fmt) {
+  /* steps: [{l, v, t:'start'|'delta'|'end'}] */
+  var n = steps.length, W = Math.max(600, n * 78), H = 250, run = 0, pts = [], mx = 0, mn = 0;
+  steps.forEach(function (st) { var a, b; if (st.t === "start") { a = 0; b = st.v; run = st.v; } else if (st.t === "end") { a = 0; b = run; } else { a = run; b = run + st.v; run = b; } pts.push([a, b]); mx = Math.max(mx, a, b); mn = Math.min(mn, a, b); });
+  var rng = (mx - mn) || 1, sy = function (v) { return 30 + (mx - v) / rng * 150; }, bw = Math.min(54, (W - 40) / n - 14);
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:560px" role="img" aria-label="Waterfall chart"><title>Waterfall chart</title><line x1="14" x2="' + (W - 6) + '" y1="' + sy(0) + '" y2="' + sy(0) + '" stroke="currentColor" opacity=".3"/>';
+  steps.forEach(function (st, i) {
+    var x = 20 + i * ((W - 30) / n) + ((W - 30) / n - bw) / 2, a = pts[i][0], b = pts[i][1], top = sy(Math.max(a, b)), h = Math.max(2, Math.abs(sy(a) - sy(b))), col = st.t === "delta" ? (st.v >= 0 ? "#16a34a" : "#dc2626") : (st.t === "end" ? (b >= 0 ? "#0369a1" : "#dc2626") : "#0ea5e9");
+    s += '<rect class="dt-pop" x="' + x.toFixed(1) + '" y="' + top.toFixed(1) + '" width="' + bw + '" height="' + h.toFixed(1) + '" rx="4" fill="' + col + '"/><text x="' + (x + bw / 2).toFixed(1) + '" y="' + (top - 5).toFixed(1) + '" text-anchor="middle" font-size="10.5" font-weight="700" fill="currentColor">' + esc(fmt(st.t === "delta" ? st.v : b)) + '</text><text x="' + (x + bw / 2).toFixed(1) + '" y="212" text-anchor="middle" font-size="10" fill="currentColor" opacity=".8">' + esc(st.l) + "</text>";
+  });
+  return s + "</svg>";
+}
+function linechart(series, labels, fmt) {
+  var W = 620, H = 230, mx = -1e18, mn = 1e18; series.forEach(function (s) { s.d.forEach(function (v) { mx = Math.max(mx, v); mn = Math.min(mn, v); }); }); if (mn > 0) mn = 0; var rng = (mx - mn) || 1, n = labels.length;
+  var sx = function (i) { return 50 + i * (W - 70) / Math.max(1, n - 1); }, sy = function (v) { return 20 + (mx - v) / rng * 160; };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Line chart"><title>Line chart</title>';
+  [0, 0.5, 1].forEach(function (f) { var v = mn + rng * f, y = sy(v); s += '<line x1="46" x2="' + (W - 10) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".12"/><text x="42" y="' + (y + 4) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".6">' + esc(fmt(v)) + "</text>"; });
+  labels.forEach(function (l, i) { if (n <= 12 || i % 2 === 0) s += '<text x="' + sx(i) + '" y="200" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + l + "</text>"; });
+  series.forEach(function (sr, k) { s += '<polyline fill="none" stroke="' + sr.c + '" stroke-width="2.5" points="' + sr.d.map(function (v, i) { return sx(i).toFixed(1) + "," + sy(v).toFixed(1); }).join(" ") + '"/>'; s += '<text x="' + (W - 10) + '" y="' + (sy(sr.d[n - 1]) - 6) + '" text-anchor="end" font-size="10.5" font-weight="700" fill="' + sr.c + '">' + esc(sr.n) + "</text>"; });
+  return s + "</svg>";
+}
+function csvDownload(rows, name) { saveBlob(new Blob([csvText(rows)], { type: "text/csv;charset=utf-8" }), name); msg("CSV downloaded."); }
+function sumRows(o, rows) { return rows.map(function (r) { return [r[0], r[1]]; }); }
+
+/* ---------- refinance engine (shared) ---------- */
+var RF_CAP = 720;
+function loanSim(P, ratePct, pay, cap) {
+  var r = ratePct / 1200, bal = P, B = [P], I = [0], PD = [0], CI = [0], ti = 0, tp = 0, m = 0; cap = cap || RF_CAP;
+  while (bal > 0.005 && m < cap) {
+    var i = bal * r, p = Math.min(pay, bal + i); bal = bal + i - p; if (bal < 0.005) bal = 0; m++;
+    B.push(bal); I.push(i); PD.push(p); ti += i; tp += p; CI.push(ti);
+  }
+  return { n: m, bal: B, intr: I, paid: PD, cumInt: CI, totalInt: ti, totalPaid: tp, never: bal > 0.005 };
+}
+function addMonths(n) { var d = new Date(); d.setDate(1); d.setMonth(d.getMonth() + n); return d.toLocaleString("en-US", { month: "short", year: "numeric" }); }
+function yrs(m) { return m == null ? "n/a" : (m >= 12 ? Math.floor(m / 12) + " yr " + (m % 12) + " mo" : m + " mo"); }
+function refi(o) {
+  var r = {}, base = o.bal + o.cashOut, pct = (o.closePct + o.pts) / 100, fx = o.closeFixed, L, costs;
+  if (o.roll) { L = (base + fx) / (1 - pct); costs = L * pct + fx; } else { L = base; costs = L * pct + fx; }
+  r.newLoan = L; r.points = L * o.pts / 100; r.closing = costs - r.points; r.costs = costs; r.upfront = o.roll ? 0 : costs;
+  r.curPay = o.curPay > 0 ? o.curPay : pmt(o.bal, o.rate, o.remYears);
+  r.newPmt = pmt(L, o.newRate, o.newYears); r.newPay = r.newPmt + o.extra;
+  r.old = o.oldSim || loanSim(o.bal, o.rate, r.curPay); r.nw = loanSim(L, o.newRate, r.newPay);
+  if (o.oldSim) r.curPay = o.oldSim.paid[1] || 0;
+  var aO = o.addOld || 0, aOn = o.addOldMonths == null ? 1e9 : o.addOldMonths, aN = o.addNew || 0, aNn = o.addNewMonths == null ? 1e9 : o.addNewMonths;
+  r.addOld = aO; r.addNew = aN;
+  var N = Math.max(r.old.n, r.nw.n), cc = [-r.upfront], ci = [-costs], a = -r.upfront, b = -costs, be = null, bi = null;
+  for (var m = 1; m <= N; m++) {
+    var op = m <= r.old.n ? r.old.paid[m] + (m <= aOn ? aO : 0) : 0, np = m <= r.nw.n ? r.nw.paid[m] + (m <= aNn ? aN : 0) : 0, oi = m <= r.old.n ? r.old.intr[m] : 0, ni = m <= r.nw.n ? r.nw.intr[m] : 0;
+    a += op - np; b += oi - ni; cc.push(a); ci.push(b);
+    if (be == null && a >= 0 && m <= r.old.n) be = m; if (bi == null && b >= 0) bi = m;
+  }
+  if (costs <= 0) { be = 0; bi = 0; }
+  r.N = N; r.cumCash = cc; r.cumInt = ci; r.be = be; r.beInt = bi; r.monthly = r.curPay + aO - r.newPay - aN;
+  r.lifeCash = cc[N]; r.lifeInt = ci[N]; r.stayM = Math.round(o.stay * 12);
+  var sm = Math.min(r.stayM, N); r.netStay = cc[sm]; r.netStayInt = ci[sm];
+  r.ltvOld = o.val > 0 ? o.bal / o.val * 100 : null; r.ltvNew = o.val > 0 ? L / o.val * 100 : null;
+  return r;
+}
+function beFor(o, rate) { var q = {}; for (var k in o) q[k] = o[k]; q.newRate = rate; return refi(q); }
+function rateNeeded(o, target) {
+  /* highest new rate (to 0.01%) that still recovers the costs within `target` months */
+  var ok = function (rt) { var q = beFor(o, rt); return q.be != null && q.be <= target; };
+  if (!ok(0)) return null; var x = 0, y = Math.max(o.rate, o.newRate);
+  if (ok(y)) return y;
+  for (var j = 0; j < 40; j++) { var md = (x + y) / 2; if (ok(md)) x = md; else y = md; }
+  return Math.floor(x * 100) / 100;
+}
+function yearly(r) {
+  var rows = [], N = r.nw.n;
+  for (var y = 1; y * 12 - 12 < N; y++) {
+    var a = (y - 1) * 12 + 1, z = Math.min(y * 12, N), it = 0, pd = 0;
+    for (var m = a; m <= z; m++) { it += r.nw.intr[m]; pd += r.nw.paid[m]; }
+    rows.push({ y: y, intr: it, prin: pd - it, bal: r.nw.bal[z], old: r.old.bal[Math.min(y * 12, r.old.n)] || 0 });
+  }
+  return rows;
+}
+function saveChart(r, W) {
+  W = W || 620; var H = 270, L = 66, R = 16, T = 26, B = 40, N = Math.min(r.N, 480), pts = r.cumCash.slice(0, N + 1), mx = 0, mn = 0, i;
+  for (i = 0; i <= N; i++) { mx = Math.max(mx, pts[i]); mn = Math.min(mn, pts[i]); } if (mx === mn) mx = mn + 1;
+  var sx = function (m) { return L + m / N * (W - L - R); }, sy = function (v) { return T + (mx - v) / (mx - mn) * (H - T - B); };
+  var s = '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" style="min-width:520px" role="img" aria-label="Cumulative savings from refinancing by month"><title>Cumulative savings from refinancing</title>';
+  [mn, 0, mx].forEach(function (v) { var y = sy(v); s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity="' + (v === 0 ? ".45" : ".12") + '"/><text x="' + (L - 6) + '" y="' + (y + 4).toFixed(1) + '" text-anchor="end" font-size="10" fill="currentColor" opacity=".7">' + esc(fm(v)) + "</text>"; });
+  var step = N > 240 ? 60 : N > 120 ? 36 : N > 60 ? 24 : 12;
+  for (var m = 0; m <= N; m += step) s += '<text x="' + sx(m).toFixed(1) + '" y="' + (H - 18) + '" text-anchor="middle" font-size="10" fill="currentColor" opacity=".7">' + (m / 12 % 1 === 0 ? m / 12 + "y" : m + "m") + "</text>";
+  var d = ""; for (i = 0; i <= N; i += (N > 240 ? 2 : 1)) d += (i ? "L" : "M") + sx(i).toFixed(1) + " " + sy(pts[i]).toFixed(1);
+  var y0 = sy(0); s += '<path d="' + d + "L" + sx(N).toFixed(1) + " " + y0.toFixed(1) + "L" + sx(0).toFixed(1) + " " + y0.toFixed(1) + 'Z" fill="#0369a1" opacity=".12"/>';
+  s += '<path d="' + d + '" fill="none" stroke="#0369a1" stroke-width="2.8" pathLength="1" stroke-dasharray="1" stroke-dashoffset="1"><animate attributeName="stroke-dashoffset" from="1" to="0" dur="1s" fill="freeze"/></path>';
+  if (r.stayM > 0 && r.stayM <= N) { var xs = sx(r.stayM); s += '<line x1="' + xs.toFixed(1) + '" x2="' + xs.toFixed(1) + '" y1="' + T + '" y2="' + (H - B) + '" stroke="#7c3aed" stroke-dasharray="5 4" stroke-width="2"/><text x="' + xs.toFixed(1) + '" y="' + (T - 8) + '" text-anchor="middle" font-size="11" font-weight="700" fill="#7c3aed">you stay (' + (Math.round(r.stayM / 12 * 10) / 10) + "y)</text>"; }
+  if (r.be != null && r.be > 0 && r.be <= N) { var xb = sx(r.be); s += '<circle class="dt-pop" cx="' + xb.toFixed(1) + '" cy="' + y0.toFixed(1) + '" r="6.5" fill="#16a34a" stroke="#fff" stroke-width="2"/><text x="' + Math.min(W - 70, xb + 10).toFixed(1) + '" y="' + (y0 + 17).toFixed(1) + '" font-size="11.5" font-weight="700" fill="#16a34a">break-even: month ' + r.be + "</text>"; }
+  return s + "</svg>";
+}
+function rd(v, d) { var m = Math.pow(10, d || 0); return Math.round(v * m) / m; }
+
+/* ---------- shared wiring for refinance tools ---------- */
+function rfWire(o) {
+  initCommon(); initTabs(o.tabs); o.setDef();
+  window.fillReport = function () { if (!o.ready()) return; var b = repBox(); repHead(b, o.title, "Free online " + o.name); repTbl(b, ["Item", "Value"], o.rows()); if (o.report) o.report(b); repDisc(b, o.disc || "Estimates for education only. Not financial, tax or lending advice. Compare official quotes and Loan Estimates before you decide."); };
+  document.querySelectorAll("#tool input, #tool select").forEach(function (e) { e.addEventListener("input", o.calc); e.addEventListener("change", o.calc); });
+  $("resetBtn").addEventListener("click", function () { o.setDef(); o.calc(); msg("Reset to the example."); });
+  $(o.p + "Csv").addEventListener("click", function () { if (!o.ready()) { msg("Nothing to download yet.", "err"); return; } csvDownload([["Item", "Value"]].concat(o.rows()), o.csv); });
+  $(o.p + "Copy").addEventListener("click", function () { if (!o.ready()) { msg("Nothing to copy yet.", "err"); return; } copyText(o.title + "\n" + o.rows().map(function (x) { return x[0] + ": " + x[1]; }).join("\n") + "\n\nCalculated with the free online " + o.name + " at utiliby.com", $(o.p + "Copy")); });
+  $(o.p + "Print").addEventListener("click", function () { if (!o.ready()) { msg("Nothing to print yet.", "err"); return; } window.fillReport(); window.print(); });
+  o.calc();
+}
+
+/* ---------- FHA / VA / USDA streamline refinance UI ---------- */
+var ST = { r: null };
+var PRE = { fha: { fee: 1.75, nmi: 0.55, cmi: 0.55, close: 1, roll: "yes" }, va: { fee: 0.5, nmi: 0, cmi: 0, close: 1, roll: "yes" }, usda: { fee: 1, nmi: 0.35, cmi: 0.35, close: 1, roll: "yes" } };
+var DEF = { fvProg: "fha", fvBal: 250000, fvRate: 7, fvYears: 27, fvCurMI: 0.55, fvNRate: 6, fvNYears: "30", fvStay: 5, fvFee: 1.75, fvNMI: 0.55, fvClose: 1, fvRoll: "yes", fvVal: 300000, fvCvRate: 6.25, fvCvClose: 2.5, fvCvPmi: 0.4 };
+function rd2() { return { prog: $("fvProg").value, bal: nv("fvBal", 0, 0), rate: nv("fvRate", 0, 0, 30), rem: nv("fvYears", 27, 1, 40), cmi: nv("fvCurMI", 0, 0, 5), nrate: nv("fvNRate", 0, 0, 30), ny: parseFloat($("fvNYears").value), stay: nv("fvStay", 5, 0.5, 40), fee: nv("fvFee", 0, 0, 10), nmi: nv("fvNMI", 0, 0, 5), close: nv("fvClose", 0, 0, 20), roll: $("fvRoll").value === "yes", val: nv("fvVal", 0, 0), cvRate: nv("fvCvRate", 0, 0, 30), cvClose: nv("fvCvClose", 0, 0, 20), cvPmi: nv("fvCvPmi", 0, 0, 5) }; }
+function run(f, rate, closePct, nmiPct, ltvForMi) {
+  var o = { bal: f.bal, rate: f.rate, remYears: f.rem, val: f.val, curPay: 0, esc: 0, newRate: rate, newYears: f.ny, closePct: closePct, pts: 0, closeFixed: 0, roll: f.roll, cashOut: 0, extra: 0, stay: f.stay, addOld: f.bal * f.cmi / 1200, addNew: 0 };
+  var r1 = refi(o); o.addNew = r1.newLoan * nmiPct / 1200; var r = refi(o);
+  if (f.roll) { var d = r.addOld - r.addNew, cc = [], be = null, m; for (m = 0; m <= r.N; m++) { cc.push(r.cumInt[m] + m * d); if (be == null && m > 0 && cc[m] >= 0 && m <= r.old.n) be = m; } if (r.costs <= 0) be = 0; r.cumCash = cc; r.be = be; r.netStay = cc[Math.min(r.stayM, r.N)]; }
+  return { o: o, r: r };
+}
+function tests(f, r) {
+  var oldC = f.rate + f.cmi, newC = f.nrate + f.nmi, drop = f.rate - f.nrate, cdrop = oldC - newC, mo = r.monthly, T = [];
+  if (f.prog === "fha") { T.push([cdrop >= 0.5 - 1e-9, "Combined rate (interest + annual MI) is lower by at least 0.50 point", "lower by " + cdrop.toFixed(2) + " point"]); T.push([mo > 0, "Total monthly payment is lower", fm(mo) + " a month"]); }
+  if (f.prog === "va") { T.push([drop >= 0.5 - 1e-9, "Rate is lower by at least 0.50 point (fixed to fixed)", "lower by " + drop.toFixed(2) + " point"]); T.push([r.be != null && r.be <= 36, "Fees recouped within 36 months", r.be == null ? "never" : "month " + r.be]); T.push([mo > 0, "Monthly payment is lower", fm(mo) + " a month"]); }
+  if (f.prog === "usda") { T.push([mo >= 50 - 1e-9, "Payment is lower by at least 50 a month", fm(mo) + " a month"]); }
+  T.push([r.be != null && r.be <= Math.round(f.stay * 12), "Break-even comes before you plan to move", r.be == null ? "never" : "month " + r.be + " of " + Math.round(f.stay * 12)]); return T;
+}
+function calc() {
+  var f = rd2();
+  if (f.bal <= 0) { $("fvRes").innerHTML = '<div class="dt-result"><div class="dt-big">Enter your current loan balance to start.</div></div>'; $("fvRate2").innerHTML = ""; $("fvConv").innerHTML = ""; ST.r = null; return; }
+  var x = run(f, f.nrate, f.close + f.fee, f.nmi), r = x.r, o = x.o; ST.f = f; ST.r = r; ST.o = o;
+  var T = tests(f, r), pass = T.filter(function (t) { return t[0]; }).length, all = pass === T.length, cls = all ? "ok" : pass >= T.length - 1 ? "warn" : "err", name = { fha: "FHA streamline", va: "VA IRRRL", usda: "USDA streamlined-assist" }[f.prog];
+  var head = all ? "Passes the commonly applied tests: saves " + fm(r.monthly) + " a month" : (r.monthly > 0 ? "Saves " + fm(r.monthly) + " a month but misses a test" : "Payment does not fall, so it probably does not qualify");
+  var h = '<div class="dt-result"><div class="dt-label">' + name + " verdict</div><div class=\"dt-big\">" + head + '</div><p class="dt-sum">' + pass + " of " + T.length + " tests met. Costs: " + fm(r.costs) + " (" + fm(r.newLoan * f.fee / 100) + " program fee and " + fm(r.newLoan * f.close / 100) + " other)" + (f.roll ? ", rolled into the loan." : ", paid at closing.") + (r.be != null ? " You break even in month " + r.be + " (" + yrs(r.be) + ")." : " The costs are not repaid within the loan.") + "</p></div>";
+  h += '<div class="dt-stats">' + tile("New loan", fm(r.newLoan), f.roll ? "includes fees" : "") + tile("Payment now", fm(r.curPay + r.addOld), fm(r.curPay) + " P&amp;I + " + fm(r.addOld) + " MI") + tile("Payment after", fm(r.newPay + r.addNew), fm(r.newPay) + " P&amp;I + " + fm(r.addNew) + " MI") + tile("Monthly change", (r.monthly >= 0 ? "-" : "+") + fm(Math.abs(r.monthly)), "total payment", r.monthly > 0 ? "ok" : "err") +
+    tile("Break-even", r.be == null ? "Never" : r.be + " mo", r.be ? yrs(r.be) : "", r.be != null && r.be <= f.stay * 12 ? "ok" : "warn") + tile("Net after " + (Math.round(f.stay * 10) / 10) + " yrs", fm(r.netStay), "after fees", r.netStay >= 0 ? "ok" : "err") + tile("Total fees and costs", fm(r.costs), pc(r.costs / r.newLoan * 100, 2) + " of the loan") + tile("Lifetime interest saved", fm(r.lifeInt), "P&amp;I interest, after costs", r.lifeInt >= 0 ? "ok" : "err") + "</div>";
+  h += '<h3 class="dt-lbl">Benefit tests</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Result</th><th>Test</th><th>Your loan</th></tr>' + T.map(function (t) { return check(t[0], t[1], t[2]); }).join("") + '</table></div><p class="rf-note">These are commonly applied tests. Program rules differ by lender and change, so confirm them with your lender.</p>';
+  var a = r.curPay + r.addOld, b = r.newPay + r.addNew, mx = Math.max(a, b), W = 620, sx = function (v) { return v / mx * 440; };
+  h += '<h3 class="dt-lbl">Monthly payment before and after</h3><div class="dt-diagram"><svg viewBox="0 0 ' + W + ' 150" width="100%" role="img" aria-label="Monthly payment before and after, split into principal and interest and mortgage insurance"><title>Payment before and after</title><g font-size="12" fill="currentColor"><text x="8" y="38">Now</text><text x="8" y="98">After</text></g>' +
+    '<rect class="dt-bar" x="70" y="20" width="' + sx(r.curPay).toFixed(1) + '" height="30" rx="5" fill="#0369a1"/><rect class="dt-bar" x="' + (70 + sx(r.curPay)).toFixed(1) + '" y="20" width="' + Math.max(0, sx(r.addOld)).toFixed(1) + '" height="30" fill="#d97706" style="animation-delay:.2s"/><text x="' + (80 + sx(a)).toFixed(1) + '" y="40" font-size="12" font-weight="700" fill="currentColor">' + esc(fm(a)) + "</text>" +
+    '<rect class="dt-bar" x="70" y="80" width="' + sx(r.newPay).toFixed(1) + '" height="30" rx="5" fill="#16a34a" style="animation-delay:.4s"/><rect class="dt-bar" x="' + (70 + sx(r.newPay)).toFixed(1) + '" y="80" width="' + Math.max(0, sx(r.addNew)).toFixed(1) + '" height="30" fill="#d97706" style="animation-delay:.6s"/><text x="' + (80 + sx(b)).toFixed(1) + '" y="100" font-size="12" font-weight="700" fill="currentColor">' + esc(fm(b)) + '</text><text x="70" y="140" font-size="11" fill="currentColor" opacity=".8">blue/green: principal and interest · orange: mortgage insurance or fee</text></svg></div>';
+  h += '<h3 class="dt-lbl">Savings month by month</h3><div class="dt-diagram">' + saveChart(r) + "</div>";
+  $("fvRes").innerHTML = h; rateTab(f); convTab(f, r);
+}
+function rateTab(f) {
+  var h = '<div class="dt-scroll"><table class="dt-table"><tr><th>New rate</th><th>Total payment</th><th>Monthly change</th><th>Tests met</th><th>Break-even</th><th>Net after stay</th></tr>';
+  [-1, -0.75, -0.5, -0.25, 0, 0.25, 0.5].forEach(function (d) { var rt = Math.max(0, f.nrate + d), x = run(f, rt, f.close + f.fee, f.nmi), g = Object.assign({}, f, { nrate: rt }), T = tests(g, x.r), p = T.filter(function (t) { return t[0]; }).length; h += "<tr" + (d === 0 ? ' style="font-weight:700"' : "") + "><td>" + pc(rt, 3) + "</td><td>" + fm(x.r.newPay + x.r.addNew) + "</td><td>" + (x.r.monthly >= 0 ? "-" : "+") + fm(Math.abs(x.r.monthly)) + "</td><td>" + p + " of " + T.length + "</td><td>" + (x.r.be == null ? "never" : x.r.be + " mo") + "</td><td>" + fm(x.r.netStay) + "</td></tr>"; });
+  $("fvRate2").innerHTML = h + '</table></div><p class="rf-note">Same fees and insurance, different rates. The tests-met column uses the commonly applied tests for your program.</p>';
+}
+function convTab(f, r) {
+  if (f.val <= 0) { $("fvConv").innerHTML = '<div class="dt-result"><div class="dt-big">Enter your home value to compare a conventional loan.</div></div>'; return; }
+  var ltvOld = f.bal / f.val * 100, g = Object.assign({}, f, { roll: f.roll }), L0 = run(g, f.cvRate, f.cvClose, 0).r.newLoan, ltv = L0 / f.val * 100, pmi = ltv > 80 ? f.cvPmi : 0, x = run(g, f.cvRate, f.cvClose, pmi), c = x.r;
+  var h = '<div class="dt-result"><div class="dt-label">FHA to conventional</div><div class="dt-big">' + (ltv <= 80 ? "No PMI: loan-to-value is " + pc(ltv, 1) : "PMI applies: loan-to-value is " + pc(ltv, 1)) + '</div><p class="dt-sum">A conventional loan of ' + fm(c.newLoan) + " at " + pc(f.cvRate, 2) + " costs " + fm(c.newPay + c.addNew) + " a month" + (pmi > 0 ? " including about " + fm(c.addNew) + " of PMI" : " with no mortgage insurance") + ", against " + fm(r.newPay + r.addNew) + " for the " + { fha: "FHA", va: "VA", usda: "USDA" }[f.prog] + " streamline and " + fm(r.curPay + r.addOld) + " now. " + (c.be == null ? "The costs are not repaid within the loan." : "Break-even is month " + c.be + " (" + yrs(c.be) + ").") + "</p></div>";
+  h += '<div class="dt-scroll"><table class="dt-table rf-cmp"><tr><th></th><th class="n">Streamline</th><th class="n">Conventional</th></tr><tr><td>New loan</td><td class="n">' + fm(r.newLoan) + '</td><td class="n">' + fm(c.newLoan) + '</td></tr><tr><td>Rate</td><td class="n">' + pc(f.nrate, 3) + '</td><td class="n">' + pc(f.cvRate, 3) + '</td></tr><tr><td>Principal and interest</td><td class="n">' + fm(r.newPay) + '</td><td class="n">' + fm(c.newPay) + '</td></tr><tr><td>Mortgage insurance a month</td><td class="n">' + fm(r.addNew) + '</td><td class="n">' + fm(c.addNew) + '</td></tr><tr><td>Total payment</td><td class="n">' + fm(r.newPay + r.addNew) + '</td><td class="n">' + fm(c.newPay + c.addNew) + '</td></tr><tr><td>Costs</td><td class="n">' + fm(r.costs) + '</td><td class="n">' + fm(c.costs) + '</td></tr><tr><td>Break-even</td><td class="n">' + (r.be == null ? "never" : r.be + " mo") + '</td><td class="n">' + (c.be == null ? "never" : c.be + " mo") + '</td></tr><tr><td>Net after ' + (Math.round(f.stay * 10) / 10) + ' years</td><td class="n">' + fm(r.netStay) + '</td><td class="n">' + fm(c.netStay) + "</td></tr></table></div>";
+  $("fvConv").innerHTML = h + '<p class="rf-note">Your current loan-to-value is ' + pc(ltvOld, 1) + ". A conventional loan generally needs a standard application and often an appraisal, and its eligibility depends on your credit and income. PMI is modelled as a flat amount on the starting loan.</p>";
+}
+function rowsOut() { var f = ST.f, r = ST.r; return [["Program", $("fvProg").options[$("fvProg").selectedIndex].text], ["Current balance", fm(f.bal)], ["Current rate", pc(f.rate, 3)], ["Current payment (P&I + MI)", fm(r.curPay + r.addOld)], ["New loan", fm(r.newLoan)], ["New rate", pc(f.nrate, 3)], ["New payment (P&I + MI)", fm(r.newPay + r.addNew)], ["Monthly change", fm(r.monthly)], ["Program fee and costs", fm(r.costs)], ["Break-even", r.be == null ? "Never" : "Month " + r.be], ["Net after stay", fm(r.netStay)], ["Tests met", tests(f, r).filter(function (t) { return t[0]; }).length + " of " + tests(f, r).length]]; }
+function setDef() { for (var k in DEF) $(k).value = DEF[k]; }
+$("fvProg").addEventListener("change", function () { var p = PRE[$("fvProg").value]; $("fvFee").value = p.fee; $("fvNMI").value = p.nmi; $("fvCurMI").value = p.cmi; $("fvClose").value = p.close; $("fvRoll").value = p.roll; });
+rfWire({ p: "fv", name: "FHA, VA and USDA Streamline Refinance Calculator", tabs: ["res", "rate", "conv"], title: "Streamline refinance analysis", csv: "streamline-refinance.csv", calc: calc, ready: function () { return !!ST.r; }, rows: rowsOut, setDef: setDef,
+  report: function (b) { repAdd(b, "h3", "Benefit tests"); repTbl(b, ["Result", "Test", "Your loan"], tests(ST.f, ST.r).map(function (t) { return [t[0] ? "Pass" : "Fail", t[1], t[2]]; })); repFig(b, saveChart(ST.r, 600)); } });
+
+})();
+</script>
+</body>
+</html>
