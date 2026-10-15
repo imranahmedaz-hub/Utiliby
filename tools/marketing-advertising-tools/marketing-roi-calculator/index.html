@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Marketing ROI & ROAS Calculator: Break-Even, LTV</title>
+<meta name="description" content="Free online marketing ROI and ROAS calculator. Get ROI, ROAS, net profit and break-even ROAS, plan a budget goal, and compare CAC with LTV. No sign-up needed.">
+<link rel="canonical" href="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Marketing ROI & ROAS Calculator: Break-Even, LTV">
+<meta property="og:description" content="Free online marketing ROI and ROAS calculator with break-even ROAS, goal planner and CAC to LTV. See profit and ROI with a live chart. No sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Marketing ROI & ROAS Calculator: Break-Even, LTV">
+<meta name="twitter:description" content="Free online marketing ROI and ROAS calculator with break-even ROAS, goal planner and CAC to LTV. See profit and ROI with a live chart. No sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.dc-sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid rgba(128,128,128,.5);vertical-align:middle}
+.dc-note{font-size:.8rem;color:var(--muted)}
+.cn-article code,.cn-article li,.cn-article p,.cn-article td{overflow-wrap:anywhere}
+.cn-article code{white-space:normal}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool input[type=range]{padding:0;width:100%}
+#tool input[type=color]{padding:2px;height:40px;cursor:pointer}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500;text-transform:none;letter-spacing:0}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:340px;max-width:100%;tab-size:2;user-select:all}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.seo-tabs button{padding:6px 14px;font-size:.82rem;margin:0}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.dc-big{height:84px;border-radius:12px;border:1px solid var(--line);margin:8px 0;transition:background .12s}
+.dc-vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0}
+.dc-val{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);min-width:0}
+.dc-val b{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);min-width:64px;white-space:nowrap}
+.dc-val code{flex:1 1 130px;font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.dc-val button{padding:3px 9px;font-size:.72rem;border-radius:6px;border:1px solid var(--line);background:transparent;color:#0369a1;cursor:pointer;font-family:inherit;font-weight:700}
+@media(prefers-color-scheme:dark){.dc-val button{color:#7dd3fc}}
+.dc-strip{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:8px 0}
+.dc-strip>div{flex:1;min-height:56px;display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;font-weight:700;padding:3px 1px;min-width:0;overflow:hidden}
+.dc-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.dc-card{flex:1 1 110px;min-width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-align:center;font-size:.76rem}
+.dc-card i{display:block;height:54px}.dc-card span{display:block;padding:4px 2px;overflow-wrap:anywhere}
+.dc-card button{border:0;background:transparent;color:#0369a1;cursor:pointer;font-weight:700;font-size:.72rem;padding:2px 6px 5px;font-family:inherit}
+@media(prefers-color-scheme:dark){.dc-card button{color:#7dd3fc}}
+.dc-tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}.dc-tbl th,.dc-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}.dc-tbl th{background:var(--card)}
+.dc-scroll{overflow-x:auto;max-width:100%}
+
+.ab-verdict{padding:12px 14px;border-radius:12px;font-weight:600;margin:10px 0;border:1px solid var(--line)}
+.ab-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.ab-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.ab-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}
+.ab-tbl th,.ab-tbl td{text-align:left;vertical-align:top}
+.ab-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}.ab-big div{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.ab-big b{display:block;font-size:1.4rem;overflow-wrap:anywhere}.ab-big span{font-size:.82rem;opacity:.8}
+#roChart{margin:8px 0}.ro-bar{transform-origin:left;animation:roGrow .7s ease-out}.ro-dot{animation:roPop .7s ease-out}
+@keyframes roGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}@keyframes roPop{from{opacity:0}to{opacity:1}}
+@media(prefers-reduced-motion:reduce){.ro-bar,.ro-dot{animation:none}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Marketing ROI & ROAS Calculator","url":"https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/","description":"Free online marketing ROI and ROAS calculator. Calculate return on ad spend, marketing ROI, net profit and break-even ROAS from spend, other costs, revenue and gross margin, plan a budget goal with the ROAS, CPA and CPC you need, and compare customer acquisition cost with lifetime value and payback. Live chart, CSV export and print. No sign-up.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["ROAS, ROI and net profit","Break-even ROAS gauge","Goal planner with max CPA and CPC","CAC, LTV and payback","Live charts","CSV export and print"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I calculate ROAS?","acceptedAnswer":{"@type":"Answer","text":"Divide the revenue from a campaign by the ad spend. If you spend $2,000 and earn $9,000 in revenue, ROAS is 4.5, or 4.5 to 1. The calculator does this for you and also shows break-even ROAS."}},{"@type":"Question","name":"How do I calculate marketing ROI?","acceptedAnswer":{"@type":"Answer","text":"Subtract the total marketing cost from the gross profit it produced, then divide by the cost. Marketing ROI = (gross profit - marketing cost) / marketing cost, shown as a percentage."}},{"@type":"Question","name":"What is the difference between ROAS and ROI?","acceptedAnswer":{"@type":"Answer","text":"ROAS compares revenue with ad spend only. ROI compares profit with all costs. A campaign can have a high ROAS and still lose money if margins are thin."}},{"@type":"Question","name":"What is break-even ROAS?","acceptedAnswer":{"@type":"Answer","text":"It is the lowest ROAS at which a campaign covers its costs. It equals 1 divided by your gross margin. At a 40% margin, break-even ROAS is 2.5, because each $1 of ad spend needs $2.50 in revenue."}},{"@type":"Question","name":"What is a good ROAS?","acceptedAnswer":{"@type":"Answer","text":"There is no single answer. A common benchmark is 4 to 1, but it depends on margin. A business with a 25% margin needs 4 to 1 only to break even. Use break-even ROAS as your floor."}},{"@type":"Question","name":"What is a good marketing ROI?","acceptedAnswer":{"@type":"Answer","text":"Many marketers aim for a 5 to 1 revenue return or at least 100% ROI after costs, but the right figure depends on margin, sales cycle and goals. Compare against your own break-even."}},{"@type":"Question","name":"Should I include margin in ROAS?","acceptedAnswer":{"@type":"Answer","text":"ROAS itself uses revenue, but you need margin to judge it. Enter your gross margin and the tool shows profit-based ROI and break-even ROAS."}},{"@type":"Question","name":"What costs should I include?","acceptedAnswer":{"@type":"Answer","text":"Include ad spend, creative, agency fees, software, freelancers and any staff time you can attribute to the campaign. Put everything except ad spend in the other costs field."}},{"@type":"Question","name":"What is the goal planner?","acceptedAnswer":{"@type":"Answer","text":"It works backwards from a target ROI. Enter budget, margin, order value and target ROI to see the ROAS and revenue you need, the number of orders and the highest cost per order and per click you can afford."}},{"@type":"Question","name":"What is customer acquisition cost (CAC)?","acceptedAnswer":{"@type":"Answer","text":"CAC is the total sales and marketing cost divided by the number of new customers won in the same period."}},{"@type":"Question","name":"What is customer lifetime value (LTV)?","acceptedAnswer":{"@type":"Answer","text":"LTV is the gross profit you expect from a customer over their relationship. The tool multiplies order value, orders per year, years and margin."}},{"@type":"Question","name":"What is a good LTV to CAC ratio?","acceptedAnswer":{"@type":"Answer","text":"A common target is 3 to 1 or higher. Below 1 to 1 you lose money on each customer. Very high ratios may mean you under-invest in growth."}},{"@type":"Question","name":"What is the payback period?","acceptedAnswer":{"@type":"Answer","text":"It is how many months of gross profit from a customer it takes to repay the cost of winning them. Shorter payback frees cash faster."}},{"@type":"Question","name":"Can ROAS be negative?","acceptedAnswer":{"@type":"Answer","text":"No. ROAS is revenue divided by spend and is never negative. ROI can be negative when a campaign loses money."}},{"@type":"Question","name":"Does this work for Google Ads, Facebook Ads and email?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any channel where you know the cost and the revenue works. Use the revenue your analytics attributes to the campaign, and remember that attribution models differ between platforms."}},{"@type":"Question","name":"Is my data stored?","acceptedAnswer":{"@type":"Answer","text":"No. Everything is calculated in your browser and nothing is uploaded."}},{"@type":"Question","name":"Can I print or export the result?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy a summary, download a CSV or print or save a one-page report. Only the report prints, not the whole page."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Marketing Tools","item":"https://utiliby.com/tools/marketing-advertising-tools/"},{"@type":"ListItem","position":3,"name":"Marketing ROI & ROAS Calculator","item":"https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/marketing-advertising-tools/">Marketing &amp; Advertising</a> › Marketing ROI & ROAS Calculator</nav>
+<h1 class="noembed">Free Online Marketing ROI and ROAS Calculator: Profit, Break-Even and LTV</h1>
+<p class="lead noembed">Free online marketing ROI and ROAS calculator. See ROAS, ROI, net profit and break-even ROAS for a campaign, plan a budget goal, and compare customer acquisition cost with lifetime value.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/" target="_blank" rel="noopener">Marketing ROI &amp; ROAS Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Marketing ROI and ROAS calculator">
+<div class="dt-hero noembed">
+<h2>Free Online Marketing ROI and ROAS Calculator: Profit, Break-Even and LTV</h2>
+<p>Work out ROAS, ROI, net profit and break-even ROAS for a campaign, set a goal for your budget, or compare customer acquisition cost with lifetime value.</p>
+</div>
+<div class="dt-panel"><div class="seo-tabs" id="roTabs" role="group" aria-label="Calculator mode"><button type="button" class="dt-btn" data-tab="roas">ROI &amp; ROAS</button><button type="button" class="dt-btn ghost" data-tab="goal">Goal planner</button><button type="button" class="dt-btn ghost" data-tab="ltv">CAC &amp; LTV</button></div><div id="ro-roas"><div class="dt-row"><div><label for="roSpend">Ad spend ($)</label><input type="number" id="roSpend" value="2000" min="0" step="any"></div><div><label for="roOther">Other campaign costs ($)</label><input type="number" id="roOther" value="500" min="0" step="any"></div><div><label for="roRev">Revenue from the campaign ($)</label><input type="number" id="roRev" value="9000" min="0" step="any"></div><div><label for="roMargin">Gross margin (%)</label><input type="number" id="roMargin" value="60" min="1" max="100" step="any"></div></div><p class="dc-note">Gross margin is the share of each sale left after the cost of the product. Use 100 if you only want revenue-based ROI.</p><div id="roRes" aria-live="polite"></div><div id="roChart"></div></div><div id="ro-goal" hidden><div class="dt-row"><div><label for="gBudget">Marketing budget ($)</label><input type="number" id="gBudget" value="5000" min="1" step="any"></div><div><label for="gMargin">Gross margin (%)</label><input type="number" id="gMargin" value="50" min="1" max="100" step="any"></div><div><label for="gAov">Average order value ($)</label><input type="number" id="gAov" value="80" min="1" step="any"></div><div><label for="gRoi">Target ROI (%)</label><input type="number" id="gRoi" value="50" min="-100" step="any"></div><div><label for="gCvr">Conversion rate (%, optional)</label><input type="number" id="gCvr" value="2.5" min="0" max="100" step="any"></div></div><div id="goRes" aria-live="polite"></div></div><div id="ro-ltv" hidden><div class="dt-row"><div><label for="lCust">New customers won</label><input type="number" id="lCust" value="100" min="1" step="any"></div><div><label for="lCost">Sales and marketing cost ($)</label><input type="number" id="lCost" value="8000" min="0" step="any"></div><div><label for="lAov">Average order value ($)</label><input type="number" id="lAov" value="60" min="1" step="any"></div><div><label for="lFreq">Orders per customer per year</label><input type="number" id="lFreq" value="3" min="0.1" step="any"></div><div><label for="lYears">Customer lifetime (years)</label><input type="number" id="lYears" value="2" min="0.1" step="any"></div><div><label for="lMargin">Gross margin (%)</label><input type="number" id="lMargin" value="50" min="1" max="100" step="any"></div></div><div id="ltRes" aria-live="polite"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="roCopy">Copy summary</button>
+<button type="button" class="dt-btn ghost" id="roDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="roPrint">Print / save result</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online marketing ROI and ROAS calculator runs in your browser and sends nothing to a server. Results are estimates from the figures you enter. They depend on accurate revenue, cost and margin data and on how you attribute sales to campaigns, and they ignore factors such as taxes, repeat purchases beyond what you enter and the time value of money. This is not financial advice.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Marketing ROI &amp; ROAS Calculator. https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Marketing ROI &amp; ROAS Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/marketing-advertising-tools/marketing-roi-calculator/"&gt;Marketing ROI &amp; ROAS Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online marketing ROI and ROAS calculator does</a></li><li><a href="#how">How to use the calculator</a></li><li><a href="#formulas">The formulas, explained</a></li><li><a href="#roas">ROAS in depth: why break-even matters</a></li><li><a href="#goal">Setting a budget goal backwards</a></li><li><a href="#ltv">CAC, LTV and payback for repeat customers</a></li><li><a href="#improve">How to improve marketing ROI</a></li><li><a href="#example">Worked example: a campaign that looks good and loses money</a></li><li><a href="#attribution">Attribution, time and honest measurement</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online marketing ROI and ROAS calculator does</h2>
+<p>Every marketing budget has to answer one question: did it earn more than it cost? This free online <b>marketing ROI calculator</b> and <b>ROAS calculator</b> gives you the answer in seconds. Enter your ad spend, other campaign costs, the revenue the campaign produced and your gross margin. It returns <b>ROAS</b>, <b>ROI</b>, <b>net profit</b> and the all-important <b>break-even ROAS</b>, with a dynamic gauge that shows whether you are above or below the line.</p><p>Two more tools sit beside it. The <b>goal planner</b> works backwards from a target ROI to the ROAS, revenue, orders, cost per order (CPA) and cost per click (CPC) you need. The <b>CAC and LTV</b> tab compares what it costs to win a customer with what they are worth, with payback months. Copy, download or print any result.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Difference between ROAS, which looks at revenue, and ROI, which looks at profit"><title>ROAS versus ROI</title>
+<g font-size="13" fill="currentColor"><rect x="20" y="30" width="270" height="130" rx="12" fill="#e0f2fe" stroke="#0369a1"/><text x="155" y="58" text-anchor="middle" font-weight="700">ROAS</text><text x="155" y="84" text-anchor="middle">Revenue ÷ ad spend</text><text x="155" y="110" text-anchor="middle">$9,000 ÷ $2,000 = 4.5x</text><text x="155" y="136" text-anchor="middle" font-size="12">Ignores product cost</text>
+<rect x="350" y="30" width="270" height="130" rx="12" fill="#dcfce7" stroke="#047857"/><text x="485" y="58" text-anchor="middle" font-weight="700">ROI</text><text x="485" y="84" text-anchor="middle">(Gross profit − cost) ÷ cost</text><text x="485" y="110" text-anchor="middle">($5,400 − $2,500) ÷ $2,500</text><text x="485" y="136" text-anchor="middle" font-size="12">= 116%, counts margin and costs</text></g><path class="dt-pop" d="M296 95H344" stroke="#64748b" stroke-width="3" fill="none"/></svg>
+<figcaption>ROAS tells you how hard the ad works. ROI tells you whether the business made money.</figcaption></figure>
+<h2 id="how">How to use the calculator</h2>
+<ol><li><b>Enter spend and revenue.</b> Use the same period for both, such as one month or one campaign.</li><li><b>Add other costs.</b> Creative, agency, tools and attributable staff time give a more honest ROI.</li><li><b>Set gross margin.</b> It is the share of revenue left after product cost. Without it, ROAS can look healthy while the business loses money.</li><li><b>Read break-even ROAS.</b> Aim for a ROAS above it.</li><li><b>Plan ahead.</b> Use the goal planner to see the ROAS and CPA that your target needs.</li><li><b>Check customer economics.</b> Use CAC and LTV for subscription and repeat-purchase businesses.</li></ol>
+<h2 id="formulas">The formulas, explained</h2>
+<div class="dt-wrap"><table><tr><th>Metric</th><th>Formula</th><th>Example</th></tr><tr><td>ROAS</td><td>Revenue / ad spend</td><td>$9,000 / $2,000 = 4.5x</td></tr><tr><td>Break-even ROAS</td><td>1 / gross margin</td><td>1 / 0.6 = 1.67x on ad spend alone</td></tr><tr><td>Gross profit</td><td>Revenue x margin</td><td>$9,000 x 0.6 = $5,400</td></tr><tr><td>Net profit</td><td>Gross profit - marketing cost</td><td>$5,400 - $2,500 = $2,900</td></tr><tr><td>ROI</td><td>Net profit / marketing cost</td><td>$2,900 / $2,500 = 116%</td></tr><tr><td>CAC</td><td>Sales and marketing cost / new customers</td><td>$8,000 / 100 = $80</td></tr><tr><td>LTV</td><td>Order value x orders per year x years x margin</td><td>$60 x 3 x 2 x 0.5 = $180</td></tr></table></div>
+<h2 id="roas">ROAS in depth: why break-even matters</h2>
+<p>ROAS is popular because every ad platform reports it, but it is a blunt measure. A ROAS of 4 sounds strong. If your gross margin is 25%, though, each $1 of ad spend returns only $1.00 of gross profit, which is exactly break-even before any other cost. The same ROAS of 4 at a 60% margin returns $2.40 of gross profit per $1, a healthy profit. That is why the calculator always shows <b>break-even ROAS</b>, which is one divided by your gross margin. Include other costs, and the figure rises a little more. Think of break-even as your floor and set campaign targets above it.</p><p>Remember that platforms report revenue they attribute to themselves. Different channels often claim the same sale, so check platform ROAS against your own sales data, and run tests to see what happens when a campaign is switched off. Compare versions of an advert properly with the <a href="/tools/marketing-advertising-tools/ab-test-calculator/">A/B Test Calculator</a>.</p>
+<h2 id="goal">Setting a budget goal backwards</h2>
+<p>Most marketers start with a budget and hope. Starting from the result you need is better. Enter the budget, margin, average order value and the ROI you want. The planner returns the revenue and orders you need, the ROAS required and the <b>highest cost per order</b> you can pay. Add your conversion rate and it also gives the highest <b>cost per click</b> you can bid. If the numbers look out of reach, you have three levers: raise the average order value or margin, raise the conversion rate or accept a lower ROI. Explore click and conversion maths with the <a href="/tools/marketing-advertising-tools/ad-metrics-calculator/">Ad Metrics Calculator</a>, and test costs against fixed costs with the <a href="/tools/business-legal-tools/break-even-calculator/">Break-Even Calculator</a>.</p>
+<h2 id="ltv">CAC, LTV and payback for repeat customers</h2>
+<p>For businesses where customers buy more than once, first-order profit understates the value of marketing. <b>Customer acquisition cost</b> tells you what you pay to win a customer. <b>Lifetime value</b> estimates the gross profit that customer brings over time. The ratio of the two, with the payback period, shows whether growth is healthy and how fast cash returns. A ratio of 3 to 1 and a payback under 12 months is a common goal. If the ratio is low, raise margin or retention, or find cheaper channels. Use realistic lifetimes. Overestimating retention is the most common error in LTV.</p>
+<h2 id="improve">How to improve marketing ROI</h2>
+<ul><li><b>Raise conversion rate.</b> Better offers, faster pages and clearer calls to action multiply every ad dollar. Craft stronger copy with the <a href="/tools/marketing-advertising-tools/headline-analyzer/">Headline Analyzer</a>.</li><li><b>Raise order value.</b> Bundles, upsells and free-shipping thresholds.</li><li><b>Lower cost per click.</b> Better relevance and tighter targeting.</li><li><b>Cut waste.</b> Stop keywords, audiences and placements that do not convert.</li><li><b>Improve retention.</b> Email and loyalty offers raise LTV at low cost.</li><li><b>Track properly.</b> Tag campaigns with the <a href="/tools/seo-web-tools/utm-link-builder/">UTM Link Builder</a>.</li></ul>
+<h2 id="example">Worked example: a campaign that looks good and loses money</h2>
+<p>A shop spends $2,000 on ads and $500 on creative and tools, and the campaign brings in $9,000 of sales. ROAS on ad spend is 4.5, which looks excellent. But if the shop's gross margin is only 25%, gross profit is $2,250, which is less than the $2,500 spent, so the campaign lost $250 and ROI is minus ten percent. At a 60% margin the same campaign makes a $2,900 profit, a 116% return. Change the margin field in the calculator and watch the verdict and the gauge change. This is why break-even ROAS matters more than ROAS alone.</p><p>The goal planner shows the other side. With a $5,000 budget, a 50% margin and a $80 average order, a 50% ROI requires a 3x ROAS, $15,000 in revenue and about 188 orders, so you can pay at most about $26.67 for each order. If your current cost per order is $40, you now know the size of the gap to close.</p>
+<h2 id="attribution">Attribution, time and honest measurement</h2>
+<p>No calculator can tell you which sale an ad caused. Ad platforms credit themselves for conversions within their own windows, analytics tools use other rules, and many customers see several ads before they buy. Use the figures here as a consistent yardstick: use the same attribution source and the same date range every time, so that changes mean something. For repeat-purchase businesses, include customer lifetime value, as the CAC and LTV tab does, since first-order profit understates what a customer is worth. Before you commit a large budget, run a small test and compare against a period without the campaign. If you are planning for a new audience, describe them first with the <a href="/tools/marketing-advertising-tools/buyer-persona-generator/">Buyer Persona Generator</a> so the message fits the people you are paying to reach.</p>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The calculator does simple arithmetic on the numbers you enter, so the answer is only as good as those numbers. It does not account for taxes, refunds, discounts, long sales cycles, sales that would have happened anyway, or the time value of money. ROAS from ad platforms depends on their attribution rules. LTV depends on estimated lifetimes and margins that can change. Use the output to compare options and set goals, not as a forecast. This free online marketing ROI calculator is for lawful, honest use only and is not financial advice.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I calculate ROAS?</summary><p>Divide the revenue from a campaign by the ad spend. If you spend $2,000 and earn $9,000 in revenue, ROAS is 4.5, or 4.5 to 1. The calculator does this for you and also shows break-even ROAS.</p></details><details><summary>How do I calculate marketing ROI?</summary><p>Subtract the total marketing cost from the gross profit it produced, then divide by the cost. Marketing ROI = (gross profit - marketing cost) / marketing cost, shown as a percentage.</p></details><details><summary>What is the difference between ROAS and ROI?</summary><p>ROAS compares revenue with ad spend only. ROI compares profit with all costs. A campaign can have a high ROAS and still lose money if margins are thin.</p></details><details><summary>What is break-even ROAS?</summary><p>It is the lowest ROAS at which a campaign covers its costs. It equals 1 divided by your gross margin. At a 40% margin, break-even ROAS is 2.5, because each $1 of ad spend needs $2.50 in revenue.</p></details><details><summary>What is a good ROAS?</summary><p>There is no single answer. A common benchmark is 4 to 1, but it depends on margin. A business with a 25% margin needs 4 to 1 only to break even. Use break-even ROAS as your floor.</p></details><details><summary>What is a good marketing ROI?</summary><p>Many marketers aim for a 5 to 1 revenue return or at least 100% ROI after costs, but the right figure depends on margin, sales cycle and goals. Compare against your own break-even.</p></details><details><summary>Should I include margin in ROAS?</summary><p>ROAS itself uses revenue, but you need margin to judge it. Enter your gross margin and the tool shows profit-based ROI and break-even ROAS.</p></details><details><summary>What costs should I include?</summary><p>Include ad spend, creative, agency fees, software, freelancers and any staff time you can attribute to the campaign. Put everything except ad spend in the other costs field.</p></details><details><summary>What is the goal planner?</summary><p>It works backwards from a target ROI. Enter budget, margin, order value and target ROI to see the ROAS and revenue you need, the number of orders and the highest cost per order and per click you can afford.</p></details><details><summary>What is customer acquisition cost (CAC)?</summary><p>CAC is the total sales and marketing cost divided by the number of new customers won in the same period.</p></details><details><summary>What is customer lifetime value (LTV)?</summary><p>LTV is the gross profit you expect from a customer over their relationship. The tool multiplies order value, orders per year, years and margin.</p></details><details><summary>What is a good LTV to CAC ratio?</summary><p>A common target is 3 to 1 or higher. Below 1 to 1 you lose money on each customer. Very high ratios may mean you under-invest in growth.</p></details><details><summary>What is the payback period?</summary><p>It is how many months of gross profit from a customer it takes to repay the cost of winning them. Shorter payback frees cash faster.</p></details><details><summary>Can ROAS be negative?</summary><p>No. ROAS is revenue divided by spend and is never negative. ROI can be negative when a campaign loses money.</p></details><details><summary>Does this work for Google Ads, Facebook Ads and email?</summary><p>Yes. Any channel where you know the cost and the revenue works. Use the revenue your analytics attributes to the campaign, and remember that attribution models differ between platforms.</p></details><details><summary>Is my data stored?</summary><p>No. Everything is calculated in your browser and nothing is uploaded.</p></details><details><summary>Can I print or export the result?</summary><p>Yes. Copy a summary, download a CSV or print or save a one-page report. Only the report prints, not the whole page.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Google Ads Help, <a href="https://support.google.com/google-ads/answer/9006601" rel="noopener">About return on ad spend (ROAS)</a>.</li><li>Meta Business Help Centre, <a href="https://www.facebook.com/business/help/1135379843201130" rel="noopener">About return on ad spend</a>.</li><li>Investopedia, <a href="https://www.investopedia.com/terms/r/returnoninvestment.asp" rel="noopener">Return on investment (ROI)</a>.</li><li>Wikipedia, <a href="https://en.wikipedia.org/wiki/Customer_lifetime_value" rel="noopener">Customer lifetime value</a>.</li><li>HubSpot, <a href="https://blog.hubspot.com/marketing/how-to-calculate-marketing-roi" rel="noopener">How to calculate marketing ROI</a>.</li><li>U.S. Small Business Administration, <a href="https://www.sba.gov/business-guide/plan-your-business/market-research-competitive-analysis" rel="noopener">Market research and competitive analysis</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online marketing ROI and ROAS calculator runs in your browser and sends nothing to a server. Results are estimates from the figures you enter. They depend on accurate revenue, cost and margin data and on how you attribute sales to campaigns, and they ignore factors such as taxes, repeat purchases beyond what you enter and the time value of money. This is not financial advice.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+
+/* ---------- marketing roi & roas calculator ---------- */
+var ST = { tab: "roas", r: null, g: null, l: null };
+function N(id, d) { var v = parseFloat($(id).value); return isNaN(v) ? d : v; }
+function usd(v) { return (v < 0 ? "-" : "") + "$" + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function pc(v, d) { return isFinite(v) ? (v * 100).toFixed(d == null ? 1 : d) + "%" : "n/a"; }
+function row(k, v, n) { return "<tr><th>" + k + "</th><td>" + v + "</td><td>" + (n || "") + "</td></tr>"; }
+function calcRoas(spend, other, rev, margin) {
+  var cost = spend + other, gp = rev * margin, net = gp - cost;
+  return { spend: spend, other: other, rev: rev, margin: margin, cost: cost, gp: gp, net: net, roas: spend > 0 ? rev / spend : NaN, roi: cost > 0 ? net / cost : NaN, bero: margin > 0 ? cost / margin / (spend > 0 ? spend : 1) : NaN, beRev: margin > 0 ? cost / margin : NaN, revRoi: rev > 0 ? net / rev : NaN };
+}
+function calcGoal(budget, margin, aov, roi, cvr) {
+  var rev = margin > 0 ? budget * (1 + roi) / margin : NaN, roas = margin > 0 ? (1 + roi) / margin : NaN, orders = aov > 0 ? rev / aov : NaN, cpa = orders > 0 ? budget / orders : NaN, maxCpc = cvr > 0 ? cpa * cvr : NaN;
+  return { budget: budget, margin: margin, aov: aov, roi: roi, cvr: cvr, rev: rev, roas: roas, orders: orders, cpa: cpa, maxCpc: maxCpc, beRoas: margin > 0 ? 1 / margin : NaN, beCpa: aov * margin };
+}
+function calcLtv(cust, cost, aov, freq, years, margin) {
+  var cac = cust > 0 ? cost / cust : NaN, ltv = aov * freq * years * margin, ratio = cac > 0 ? ltv / cac : NaN, mProfit = aov * freq * margin / 12, pay = mProfit > 0 && cac > 0 ? cac / mProfit : NaN;
+  return { cust: cust, cost: cost, aov: aov, freq: freq, years: years, margin: margin, cac: cac, ltv: ltv, ratio: ratio, pay: pay, net: ltv - cac };
+}
+function bars(r) {
+  var items = [["Revenue", r.rev, "#0369a1"], ["Gross profit", r.gp, "#0d9488"], ["Marketing cost", r.cost, "#b45309"], ["Net profit", r.net, r.net >= 0 ? "#059669" : "#dc2626"]], W = 640, H = 230, L = 110, mx = Math.max.apply(null, items.map(function (i) { return Math.abs(i[1]); })) || 1, g = "";
+  items.forEach(function (it, i) { var y = 18 + i * 52, w = Math.max(2, Math.abs(it[1]) / mx * (W - L - 90)); g += '<text x="' + (L - 8) + '" y="' + (y + 20) + '" text-anchor="end" font-size="13" fill="currentColor">' + it[0] + '</text><rect class="ro-bar" x="' + L + '" y="' + y + '" width="' + w.toFixed(1) + '" height="30" rx="6" fill="' + it[2] + '"/><text x="' + (L + w + 8).toFixed(1) + '" y="' + (y + 20) + '" font-size="13" font-weight="700" fill="currentColor">' + usd(it[1]) + "</text>"; });
+  return '<svg viewBox="0 0 ' + W + " " + H + '" width="100%" role="img" aria-label="Bars for revenue, gross profit, marketing cost and net profit"><title>Where the revenue goes</title>' + g + "</svg>";
+}
+function gauge(r) {
+  if (!isFinite(r.roas) || !isFinite(r.bero)) return "";
+  var mx = Math.max(r.roas, r.bero) * 1.3 || 1, W = 640, x = function (v) { return 20 + v / mx * (W - 40); };
+  return '<svg viewBox="0 0 ' + W + ' 90" width="100%" role="img" aria-label="Your ROAS of ' + r.roas.toFixed(2) + ' compared with break-even ROAS of ' + r.bero.toFixed(2) + '"><title>ROAS against break-even ROAS</title><rect x="20" y="36" width="' + (W - 40) + '" height="16" rx="8" fill="#e2e8f0"/><rect x="20" y="36" width="' + (x(r.bero) - 20).toFixed(1) + '" height="16" rx="8" fill="#fca5a5"/><rect x="' + x(r.bero).toFixed(1) + '" y="36" width="' + (W - 20 - x(r.bero)).toFixed(1) + '" height="16" fill="#bbf7d0"/><line x1="' + x(r.bero).toFixed(1) + '" x2="' + x(r.bero).toFixed(1) + '" y1="26" y2="62" stroke="#b45309" stroke-width="3"/><text x="' + x(r.bero).toFixed(1) + '" y="18" text-anchor="middle" font-size="12" fill="currentColor">Break-even ' + r.bero.toFixed(2) + 'x</text><circle class="ro-dot" cx="' + x(r.roas).toFixed(1) + '" cy="44" r="10" fill="' + (r.roas >= r.bero ? "#059669" : "#dc2626") + '" stroke="#fff" stroke-width="3"/><text x="' + x(r.roas).toFixed(1) + '" y="82" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">Your ROAS ' + r.roas.toFixed(2) + "x</text></svg>";
+}
+function renderRoas() {
+  var spend = N("roSpend", 0), other = N("roOther", 0), rev = N("roRev", 0), m = N("roMargin", 100) / 100, box = $("roRes");
+  if (!(spend >= 0) || !(other >= 0) || !(rev >= 0) || spend + other <= 0) { box.innerHTML = '<p class="dc-note">Enter your ad spend (or other costs) and the revenue from the campaign.</p>'; $("roChart").innerHTML = ""; ST.r = null; return; }
+  if (!(m > 0 && m <= 1)) { box.innerHTML = '<p class="dc-note">Gross margin must be between 1 and 100 percent.</p>'; $("roChart").innerHTML = ""; ST.r = null; return; }
+  var r = calcRoas(spend, other, rev, m); ST.r = r;
+  var good = r.net > 0, cls = r.net > 0 ? "ok" : r.net < 0 ? "bad" : "warn";
+  var vt = r.net > 0 ? "Profitable: after costs and product costs the campaign made " + usd(r.net) + " (ROI " + pc(r.roi) + ")." : r.net < 0 ? "Losing money: the campaign lost " + usd(-r.net) + " (ROI " + pc(r.roi) + "). You need " + usd(r.beRev) + " in revenue, or a ROAS of " + (r.beRev / (spend || 1)).toFixed(2) + "x, to break even." : "Break-even: the campaign exactly covers its costs.";
+  box.innerHTML = '<div class="ab-verdict ab-' + cls + '" role="status">' + esc(vt) + '</div><div class="dt-wrap"><table class="ab-tbl"><tr><th></th><th>Value</th><th>What it means</th></tr>'
+    + row("ROAS (return on ad spend)", isFinite(r.roas) ? r.roas.toFixed(2) + "x" : "n/a", "Revenue for every $1 of ad spend")
+    + row("Break-even ROAS", isFinite(r.bero) ? r.bero.toFixed(2) + "x" : "n/a", "Lowest ROAS that covers all costs at " + pc(m, 0) + " margin")
+    + row("ROI (return on investment)", pc(r.roi), "Net profit divided by total marketing cost")
+    + row("Gross profit", usd(r.gp), "Revenue after cost of goods")
+    + row("Total marketing cost", usd(r.cost), "Ad spend " + usd(spend) + " plus other costs " + usd(other))
+    + row("Net profit", usd(r.net), "Gross profit minus marketing cost")
+    + row("Profit per $1 spent", isFinite(r.roi) ? usd(r.roi) : "n/a", "Net profit per dollar of marketing cost")
+    + "</table></div>";
+  $("roChart").innerHTML = gauge(r) + bars(r);
+}
+function renderGoal() {
+  var b = N("gBudget", 0), m = N("gMargin", 0) / 100, aov = N("gAov", 0), roi = N("gRoi", 0) / 100, cvr = N("gCvr", 0) / 100, box = $("goRes");
+  if (!(b > 0) || !(m > 0 && m <= 1) || !(aov > 0)) { box.innerHTML = '<p class="dc-note">Enter a budget, a gross margin and an average order value.</p>'; ST.g = null; return; }
+  var g = calcGoal(b, m, aov, roi, cvr); ST.g = g;
+  box.innerHTML = '<div class="ab-big"><div><b>' + g.roas.toFixed(2) + "x</b><span>ROAS you need</span></div><div><b>" + usd(g.rev) + "</b><span>revenue you need</span></div><div><b>" + Math.ceil(g.orders).toLocaleString("en-US") + "</b><span>orders you need</span></div></div>"
+    + '<div class="dt-wrap"><table class="ab-tbl"><tr><th></th><th>Value</th><th>What it means</th></tr>' + row("Break-even ROAS", g.beRoas.toFixed(2) + "x", "Below this you lose money")
+    + row("Highest cost per order (CPA) to hit your goal", usd(g.cpa), "Budget divided by orders needed")
+    + row("Break-even CPA", usd(g.beCpa), "Order value times margin; ROI would be 0%")
+    + row("Highest cost per click (CPC)", isFinite(g.maxCpc) ? usd(g.maxCpc) : "n/a", isFinite(g.maxCpc) ? "At a " + pc(cvr, 1) + " conversion rate" : "Add a conversion rate") + "</table></div>";
+}
+function renderLtv() {
+  var c = N("lCust", 0), cost = N("lCost", 0), aov = N("lAov", 0), f = N("lFreq", 0), y = N("lYears", 0), m = N("lMargin", 0) / 100, box = $("ltRes");
+  if (!(c > 0) || !(cost >= 0) || !(aov > 0) || !(f > 0) || !(y > 0) || !(m > 0 && m <= 1)) { box.innerHTML = '<p class="dc-note">Fill in every field with a number above zero.</p>'; ST.l = null; return; }
+  var l = calcLtv(c, cost, aov, f, y, m); ST.l = l; var cls = l.ratio >= 3 ? "ok" : l.ratio >= 1 ? "warn" : "bad";
+  var vt = l.ratio >= 3 ? "Healthy: each customer returns " + l.ratio.toFixed(1) + " times what it costs to win them." : l.ratio >= 1 ? "Thin: LTV to CAC is " + l.ratio.toFixed(1) + ". A common target is 3 or higher." : "Unprofitable: it costs more to win a customer than they return.";
+  box.innerHTML = '<div class="ab-verdict ab-' + cls + '" role="status">' + esc(vt) + '</div><div class="ab-big"><div><b>' + usd(l.cac) + "</b><span>customer acquisition cost</span></div><div><b>" + usd(l.ltv) + "</b><span>lifetime value (gross profit)</span></div><div><b>" + (isFinite(l.pay) ? l.pay.toFixed(1) : "n/a") + "</b><span>months to pay back CAC</span></div></div>"
+    + '<div class="dt-wrap"><table class="ab-tbl"><tr><th></th><th>Value</th><th>What it means</th></tr>' + row("LTV to CAC ratio", l.ratio.toFixed(2) + " : 1", "3:1 or better is a common goal")
+    + row("Net value per customer", usd(l.net), "Lifetime value minus acquisition cost") + "</table></div>";
+}
+function setTab(k) { ST.tab = k; setTabs("roTabs", [["roas", "ro-roas"], ["goal", "ro-goal"], ["ltv", "ro-ltv"]], k); }
+function summary() {
+  if (ST.tab === "goal" && ST.g) { var g = ST.g; return "Marketing goal planner\nBudget " + usd(g.budget) + ", margin " + pc(g.margin, 0) + ", target ROI " + pc(g.roi, 0) + "\nROAS needed: " + g.roas.toFixed(2) + "x\nRevenue needed: " + usd(g.rev) + "\nOrders needed: " + Math.ceil(g.orders) + "\nMax CPA: " + usd(g.cpa); }
+  if (ST.tab === "ltv" && ST.l) { var l = ST.l; return "CAC and LTV\nCAC: " + usd(l.cac) + "\nLTV: " + usd(l.ltv) + "\nLTV:CAC: " + l.ratio.toFixed(2) + ":1\nPayback: " + (isFinite(l.pay) ? l.pay.toFixed(1) + " months" : "n/a"); }
+  var r = ST.r; if (!r) return ""; return "Marketing ROI and ROAS\nSpend " + usd(r.cost) + ", revenue " + usd(r.rev) + ", margin " + pc(r.margin, 0) + "\nROAS: " + r.roas.toFixed(2) + "x (break-even " + r.bero.toFixed(2) + "x)\nROI: " + pc(r.roi) + "\nNet profit: " + usd(r.net);
+}
+function csvRows() {
+  if (ST.tab === "goal" && ST.g) { var g = ST.g; return [["Metric", "Value"], ["Budget", g.budget], ["Gross margin", pc(g.margin, 1)], ["Target ROI", pc(g.roi, 1)], ["ROAS needed", g.roas.toFixed(3)], ["Revenue needed", g.rev.toFixed(2)], ["Orders needed", Math.ceil(g.orders)], ["Max CPA", g.cpa.toFixed(2)]]; }
+  if (ST.tab === "ltv" && ST.l) { var l = ST.l; return [["Metric", "Value"], ["CAC", l.cac.toFixed(2)], ["LTV", l.ltv.toFixed(2)], ["LTV:CAC", l.ratio.toFixed(2)], ["Payback months", isFinite(l.pay) ? l.pay.toFixed(1) : ""]]; }
+  var r = ST.r; if (!r) return null; return [["Metric", "Value"], ["Ad spend", r.spend], ["Other costs", r.other], ["Revenue", r.rev], ["Gross margin", pc(r.margin, 1)], ["ROAS", r.roas.toFixed(3)], ["Break-even ROAS", r.bero.toFixed(3)], ["ROI", pc(r.roi, 2)], ["Net profit", r.net.toFixed(2)]];
+}
+function init() {
+  initCommon(); setTab("roas"); renderRoas(); renderGoal(); renderLtv();
+  ["roSpend", "roOther", "roRev", "roMargin"].forEach(function (i) { $(i).addEventListener("input", renderRoas); });
+  ["gBudget", "gMargin", "gAov", "gRoi", "gCvr"].forEach(function (i) { $(i).addEventListener("input", renderGoal); });
+  ["lCust", "lCost", "lAov", "lFreq", "lYears", "lMargin"].forEach(function (i) { $(i).addEventListener("input", renderLtv); });
+  $("roTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) setTab(b.getAttribute("data-tab")); });
+  $("resetBtn").addEventListener("click", function () { var D = { roSpend: 2000, roOther: 500, roRev: 9000, roMargin: 60, gBudget: 5000, gMargin: 50, gAov: 80, gRoi: 50, gCvr: 2.5, lCust: 100, lCost: 8000, lAov: 60, lFreq: 3, lYears: 2, lMargin: 50 }; Object.keys(D).forEach(function (k) { $(k).value = D[k]; }); renderRoas(); renderGoal(); renderLtv(); setTab("roas"); msg("Reset."); });
+  bindAct("ro", { code: summary, file: function () { return "marketing-roi.csv"; }, mime: "text/csv", title: "Marketing ROI", site: "Free online marketing ROI and ROAS calculator", note: "", rows: function () { return []; }, dlClick: function () { var r = csvRows(); if (!r) { msg("Enter your numbers first.", "err"); return; } dlText("marketing-roi.csv", csvText(r), "text/csv"); msg("Downloaded marketing-roi.csv."); } });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, ST.tab === "goal" ? "Marketing goal planner" : ST.tab === "ltv" ? "CAC and lifetime value" : "Marketing ROI and ROAS", "Free online marketing ROI and ROAS calculator"); var r = csvRows();
+    if (!r) { repAdd(b, "p", "No valid input yet."); return; }
+    if (ST.tab === "roas" && ST.r) repFig(b, bars(ST.r));
+    repTbl(b, r[0], r.slice(1).map(function (x) { return x.map(String); })); repDisc(b, "Estimates from the numbers you entered. Results depend on accurate revenue, margin and cost data and on how you attribute sales to campaigns.");
+  };
+}
+init();
+
+})();
+</script>
+</body>
+</html>

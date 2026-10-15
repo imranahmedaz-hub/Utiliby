@@ -1,0 +1,461 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Headline Analyzer: Score Headlines & Subject Lines</title>
+<meta name="description" content="Free online headline analyzer and email subject line tester. Get a score out of 100, readability, spam checks and Google and inbox previews. No sign-up.">
+<link rel="canonical" href="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Headline Analyzer: Score Headlines & Subject Lines">
+<meta property="og:description" content="Free online headline and email subject line analyzer. Score out of 100, power and emotion words, readability, spam check, inbox and Google previews.">
+<meta property="og:url" content="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Headline Analyzer: Score Headlines & Subject Lines">
+<meta name="twitter:description" content="Free online headline and email subject line analyzer. Score out of 100, power and emotion words, readability, spam check, inbox and Google previews.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.dc-sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid rgba(128,128,128,.5);vertical-align:middle}
+.dc-note{font-size:.8rem;color:var(--muted)}
+.cn-article code,.cn-article li,.cn-article p,.cn-article td{overflow-wrap:anywhere}
+.cn-article code{white-space:normal}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool input[type=range]{padding:0;width:100%}
+#tool input[type=color]{padding:2px;height:40px;cursor:pointer}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500;text-transform:none;letter-spacing:0}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:340px;max-width:100%;tab-size:2;user-select:all}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.seo-tabs button{padding:6px 14px;font-size:.82rem;margin:0}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.dc-big{height:84px;border-radius:12px;border:1px solid var(--line);margin:8px 0;transition:background .12s}
+.dc-vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0}
+.dc-val{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);min-width:0}
+.dc-val b{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);min-width:64px;white-space:nowrap}
+.dc-val code{flex:1 1 130px;font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.dc-val button{padding:3px 9px;font-size:.72rem;border-radius:6px;border:1px solid var(--line);background:transparent;color:#0369a1;cursor:pointer;font-family:inherit;font-weight:700}
+@media(prefers-color-scheme:dark){.dc-val button{color:#7dd3fc}}
+.dc-strip{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:8px 0}
+.dc-strip>div{flex:1;min-height:56px;display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;font-weight:700;padding:3px 1px;min-width:0;overflow:hidden}
+.dc-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.dc-card{flex:1 1 110px;min-width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-align:center;font-size:.76rem}
+.dc-card i{display:block;height:54px}.dc-card span{display:block;padding:4px 2px;overflow-wrap:anywhere}
+.dc-card button{border:0;background:transparent;color:#0369a1;cursor:pointer;font-weight:700;font-size:.72rem;padding:2px 6px 5px;font-family:inherit}
+@media(prefers-color-scheme:dark){.dc-card button{color:#7dd3fc}}
+.dc-tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}.dc-tbl th,.dc-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}.dc-tbl th{background:var(--card)}
+.dc-scroll{overflow-x:auto;max-width:100%}
+
+.qr-tips{list-style:none;margin:6px 0;padding:0}.qr-tips li{margin:6px 0;font-size:.88rem}
+.ab-verdict{padding:12px 14px;border-radius:12px;font-weight:600;margin:6px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.ab-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.ab-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.ab-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}
+.ab-tbl th,.ab-tbl td{text-align:left;vertical-align:top}.ha-on{background:rgba(3,105,161,.08)}
+.ha-top{display:flex;gap:16px;align-items:center;flex-wrap:wrap;margin:8px 0}.ha-top>div:last-child{flex:1;min-width:220px}
+.ha-arc{transition:stroke-dashoffset .6s ease}
+.ha-h{font-size:1rem;margin:16px 0 6px}
+.ha-bal{display:grid;grid-template-columns:80px 1fr 44px;gap:8px;align-items:center;font-size:.85rem;margin:4px 0}.ha-bal i{display:block;height:10px;border-radius:6px;background:linear-gradient(90deg,var(--c) var(--w),var(--line) var(--w))}
+.ha-serp,.ha-mail,.ha-card{border:1px solid var(--line);border-radius:10px;padding:10px 14px;background:#fff;color:#202124;max-width:620px;overflow-wrap:anywhere}
+.ha-url{font-size:.78rem;color:#4d5156}.ha-t{font-size:1.15rem;color:#1a0dab;margin:2px 0}.ha-d{font-size:.85rem;color:#4d5156}
+.ha-ph{max-width:340px}.ha-s{font-size:.92rem;font-weight:600}.ha-p{font-weight:400;color:#6b7280;font-size:.85rem}
+.ha-card{padding:0;overflow:hidden;max-width:420px}.ha-img{height:90px;background:linear-gradient(135deg,#0369a1,#0ea5e9)}.ha-ct{padding:8px 12px}.ha-ct small{color:#6b7280}.ha-ct b{display:block}
+@media(prefers-reduced-motion:reduce){.ha-arc{transition:none}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Headline & Subject Line Analyzer","url":"https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/","description":"Free online headline analyzer and email subject line tester. Score blog headlines, subject lines and ad headlines out of 100 for length, word count, power words, emotion, numbers, structure, readability and spam signals, see word balance, preview them in Google, phone and desktop inboxes and social cards, compare up to 15 headlines, and export CSV or print. No sign-up.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Score out of 100 with tips","Blog, email and ad modes","Power, emotion and spam checks","Word balance chart","Google, inbox and social previews","Compare up to 15 headlines","CSV export and print"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I use this free headline analyzer?","acceptedAnswer":{"@type":"Answer","text":"Type or paste a headline or email subject line, pick the type, and read the score, the checks and the tips. Add one headline per line to compare up to 15 and see them ranked."}},{"@type":"Question","name":"How is the headline score calculated?","acceptedAnswer":{"@type":"Answer","text":"The score out of 100 adds points for length, word count, power words, emotion, numbers, structure, speaking to the reader and readability, and takes off points for spam signals such as ALL CAPS and many exclamation marks."}},{"@type":"Question","name":"What is a good headline score?","acceptedAnswer":{"@type":"Answer","text":"70 and above is strong, 45 to 69 is fair and below 45 needs work. Scores are a guide to good habits, so use them to improve drafts and then test the real thing."}},{"@type":"Question","name":"How long should a headline be?","acceptedAnswer":{"@type":"Answer","text":"For articles, about 50 to 70 characters, or 6 to 12 words, so that the title is not cut off in Google results. The tool changes the targets for emails and ads."}},{"@type":"Question","name":"How long should an email subject line be?","acceptedAnswer":{"@type":"Answer","text":"Around 30 to 50 characters. Many phones show only the first 35 to 40 characters, so put the key words at the start."}},{"@type":"Question","name":"What are power words?","acceptedAnswer":{"@type":"Answer","text":"Power words are strong, specific words that promise a result or create curiosity, such as proven, secret, essential or simple. Use one or two. Too many sound like hype."}},{"@type":"Question","name":"Do numbers in headlines help?","acceptedAnswer":{"@type":"Answer","text":"Often. Numbers make a promise concrete and suggest a quick read, as in 7 ways or 30 days. Odd numbers and specific figures tend to be more believable than round ones."}},{"@type":"Question","name":"What are spam trigger words in subject lines?","acceptedAnswer":{"@type":"Answer","text":"Phrases such as free money, act now, click here, urgent and winner, plus ALL CAPS and many exclamation marks, can push an email towards spam folders. The tool flags common ones."}},{"@type":"Question","name":"What is the word balance chart?","acceptedAnswer":{"@type":"Answer","text":"It shows the share of common, uncommon, emotional and power words in your headline. Good headlines are mostly common words so that they are easy to read, with a few emotional or power words."}},{"@type":"Question","name":"What does the reading grade mean?","acceptedAnswer":{"@type":"Answer","text":"It estimates the US school grade needed to read the text, from the length of the words. A grade of 8 or lower suits most audiences."}},{"@type":"Question","name":"What are the previews for?","acceptedAnswer":{"@type":"Answer","text":"They show how your text may look as a Google search result, in a phone inbox and desktop inbox, and on a social share card, including where long text is cut off."}},{"@type":"Question","name":"Does a higher score guarantee more clicks?","acceptedAnswer":{"@type":"Answer","text":"No. The score reflects good practice, not what your audience will click. Test two or three versions in your real channel and compare the results with the A/B Test Calculator."}},{"@type":"Question","name":"Can I analyze ad headlines?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose Ad or social headline for shorter length targets, and use the Google Ads Character Counter for exact limits."}},{"@type":"Question","name":"Which language does it support?","acceptedAnswer":{"@type":"Answer","text":"The word lists and readability rules are for English. Length and spam checks still work for other languages that use Latin letters."}},{"@type":"Question","name":"Can I compare several headlines?","acceptedAnswer":{"@type":"Answer","text":"Yes. Put each headline on its own line and open Compare all to see them ranked by score, with a Details button for each one."}},{"@type":"Question","name":"Is my text stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. The analysis runs in your browser and nothing is uploaded."}},{"@type":"Question","name":"Can I print or export the results?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the analysis, download all scores as CSV or print or save a one-page report. Only the report is printed, not the whole page."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Marketing Tools","item":"https://utiliby.com/tools/marketing-advertising-tools/"},{"@type":"ListItem","position":3,"name":"Headline & Subject Line Analyzer","item":"https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/marketing-advertising-tools/">Marketing &amp; Advertising</a> › Headline & Subject Line Analyzer</nav>
+<h1 class="noembed">Free Online Headline Analyzer: Score Headlines and Email Subject Lines</h1>
+<p class="lead noembed">Free online headline analyzer and email subject line tester. Get a score out of 100, tips, word balance, readability and previews for Google, inboxes and social, and compare many headlines at once.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/" target="_blank" rel="noopener">Headline &amp; Subject Line Analyzer by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Headline and subject line analyzer">
+<div class="dt-hero noembed">
+<h2>Free Online Headline Analyzer: Score Headlines and Email Subject Lines</h2>
+<p>Paste a headline or email subject line to get a score out of 100, word balance, readability, and previews for Google, the inbox and social. Compare up to 15 at once.</p>
+</div>
+<div class="dt-panel"><div><label for="haIn">Your headline or subject line (one per line, up to 15)</label><textarea id="haIn" rows="4" placeholder="10 Proven Ways to Boost Your Email Open Rates" spellcheck="false"></textarea></div><div class="dt-row"><div><label for="haMode">What are you writing?</label><select id="haMode"><option value="headline">Blog or article headline</option></select></div><div><label>&nbsp;</label><button type="button" class="dt-btn small ghost" id="haEx">Load examples</button> <span id="haCount" class="dc-note"></span></div></div><div class="seo-tabs" id="haTabs" role="group" aria-label="Analyzer views"><button type="button" class="dt-btn" data-tab="score">Score &amp; tips</button><button type="button" class="dt-btn ghost" data-tab="prev">Previews</button><button type="button" class="dt-btn ghost" data-tab="cmp">Compare all</button></div><div id="ha-score"><div id="haScore" aria-live="polite"></div></div><div id="ha-prev" hidden><div class="dt-row"><div><label for="haSnd">Sender name (email preview)</label><input type="text" id="haSnd" placeholder="Your Brand" autocomplete="off" spellcheck="false"></div><div><label for="haPre">Preview text (email preview)</label><input type="text" id="haPre" placeholder="The first line of your email" autocomplete="off" spellcheck="false"></div></div><div id="haPrev"></div></div><div id="ha-cmp" hidden><div id="haCmp"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="haCopy">Copy analysis</button>
+<button type="button" class="dt-btn ghost" id="haDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="haPrint">Print / save analysis</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online headline analyzer scores text with simple writing rules and word lists, in your browser, and sends nothing to a server. The score is a guide to common good practice, not a prediction of clicks or opens, and it cannot judge your audience, your topic or your brand. Test real headlines and subject lines with your readers, and follow the laws and platform rules that apply to your emails, such as CAN-SPAM and GDPR.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Headline &amp; Subject Line Analyzer. https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Headline &amp; Subject Line Analyzer by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/marketing-advertising-tools/headline-analyzer/"&gt;Headline &amp; Subject Line Analyzer by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online headline analyzer does</a></li><li><a href="#how">How to use the analyzer to write better headlines</a></li><li><a href="#checks">What the checks mean</a></li><li><a href="#formulas">Headline formulas that work</a></li><li><a href="#subject">Email subject lines: opens, previews and spam filters</a></li><li><a href="#seo">Writing headlines that rank and get clicked</a></li><li><a href="#mistakes">Common headline mistakes</a></li><li><a href="#examples">Before and after: improving real-style headlines</a></li><li><a href="#testing">A simple plan for testing subject lines</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online headline analyzer does</h2>
+<p>Eight out of ten people read a headline, but only about two out of ten read the rest. The same is true of email: the subject line decides whether your message is opened at all. This free online <b>headline analyzer</b> and <b>email subject line tester</b> scores your text from 0 to 100, shows exactly which parts are strong or weak, and gives specific tips to improve it.</p><p>It checks <b>length</b>, <b>word count</b>, <b>power words</b>, <b>emotional words</b>, <b>numbers</b>, <b>structure</b> (questions, how-to and lists), <b>readability</b> and <b>spam signals</b>. A <b>word balance</b> chart shows the mix of common, uncommon, emotional and power words. Previews show how your headline looks in Google, in a phone and desktop inbox and on a social card, and you can compare up to 15 headlines at once.</p><figure class="dt-fig"><svg viewBox="0 0 640 200" width="100%" role="img" aria-label="A headline scored from five checks: length, words, emotion, numbers and readability"><title>How a headline is scored</title>
+<g font-size="13" fill="currentColor"><rect x="20" y="20" width="360" height="40" rx="8" fill="#e0f2fe" stroke="#0369a1"/><text x="34" y="45" font-weight="700">10 Proven Ways to Boost Your Open Rates</text>
+<g text-anchor="middle"><rect x="20" y="86" width="64" height="30" rx="8" fill="#dcfce7" stroke="#047857"/><text x="52" y="106">Length</text><rect x="92" y="86" width="64" height="30" rx="8" fill="#dcfce7" stroke="#047857"/><text x="124" y="106">Words</text><rect x="164" y="86" width="76" height="30" rx="8" fill="#dcfce7" stroke="#047857"/><text x="202" y="106">Power</text><rect x="248" y="86" width="64" height="30" rx="8" fill="#fef3c7" stroke="#d97706"/><text x="280" y="106">Emotion</text><rect x="320" y="86" width="60" height="30" rx="8" fill="#dcfce7" stroke="#047857"/><text x="350" y="106">Number</text></g>
+<path d="M200 62V84" stroke="#64748b" stroke-width="2"/><circle class="dt-pop" cx="520" cy="80" r="50" fill="none" stroke="#059669" stroke-width="12" stroke-dasharray="314" stroke-dashoffset="62" transform="rotate(-90 520 80)"/><text x="520" y="88" text-anchor="middle" font-size="28" font-weight="800">82</text><text x="520" y="150" text-anchor="middle">Score out of 100</text></g></svg>
+<figcaption>The analyzer checks several signals and adds them into one score, with a tip for each weak spot.</figcaption></figure>
+<h2 id="how">How to use the analyzer to write better headlines</h2>
+<ol><li><b>Choose the type.</b> Article headline, email subject line or ad headline each have different length targets.</li><li><b>Write several versions.</b> Put one per line. Aim for at least five.</li><li><b>Read the score and checks.</b> Fix the lowest scores first.</li><li><b>Open Previews.</b> Check where the text is cut off on phones and in search results.</li><li><b>Compare.</b> The ranking shows the strongest candidates.</li><li><b>Test the finalists.</b> Send two versions to a small share of your list or run them as an A/B test.</li></ol>
+<h2 id="checks">What the checks mean</h2>
+<div class="dt-wrap"><table><tr><th>Check</th><th>Why it matters</th><th>What to aim for</th></tr><tr><td>Length</td><td>Search results and inboxes cut off long text</td><td>Articles 50 to 70 characters, emails 30 to 50</td></tr><tr><td>Word count</td><td>Short headlines are scanned faster</td><td>6 to 12 words, emails 4 to 9</td></tr><tr><td>Power words</td><td>Create curiosity and promise value</td><td>One or two</td></tr><tr><td>Emotion</td><td>Feelings drive clicks</td><td>At least one emotional word</td></tr><tr><td>Number</td><td>Makes the promise specific</td><td>A digit, ideally at the start</td></tr><tr><td>Structure</td><td>Proven patterns attract attention</td><td>Question, how-to, why or list</td></tr><tr><td>Speaks to the reader</td><td>You and your make it personal</td><td>Use you or your</td></tr><tr><td>Readability</td><td>Easy words reach more people</td><td>Grade 8 or lower</td></tr><tr><td>Clean style</td><td>Spam signals reduce trust and delivery</td><td>No ALL CAPS, one exclamation mark at most</td></tr></table></div>
+<h2 id="formulas">Headline formulas that work</h2>
+<ul><li><b>Number plus benefit.</b> 7 Ways to Cut Your Ad Costs This Month.</li><li><b>How to.</b> How to Write Subject Lines Your Readers Open.</li><li><b>Question.</b> Is Your Landing Page Losing Half Its Visitors?</li><li><b>Mistake.</b> The 5 Mistakes That Quietly Kill Your Open Rate.</li><li><b>Time-bound result.</b> Double Your Sign-Ups in 30 Days.</li><li><b>Plain promise.</b> The Simple Guide to Email Marketing.</li><li><b>Curiosity with proof.</b> What 10,000 Subject Lines Taught Us.</li></ul><p>Whatever the formula, be specific, be honest and deliver what the headline promises. Misleading headlines may win a click but lose trust, and search engines and email providers notice when readers leave quickly.</p>
+<h2 id="subject">Email subject lines: opens, previews and spam filters</h2>
+<p>An email subject line has three jobs: get the email seen, get it opened and keep it out of the spam folder. Write for the phone first, because most people read email there and see about 35 to 40 characters. Put the most important words first, add a number or a clear benefit, and use the preview text to continue the thought. Avoid ALL CAPS, strings of exclamation marks, money symbols and phrases that spam filters have learnt to distrust. Do not fake a reply or forward with Re: or Fwd:. Honest subject lines are also a legal matter in many countries: laws such as CAN-SPAM require them not to be deceptive. Build matching sign-offs with the <a href="/tools/marketing-advertising-tools/email-signature-generator/">Email Signature Generator</a> and test your finalists with the <a href="/tools/marketing-advertising-tools/ab-test-calculator/">A/B Test Calculator</a>.</p>
+<h2 id="seo">Writing headlines that rank and get clicked</h2>
+<p>For web pages the headline is usually the title that appears in search results, so it must work for people and for search. Put the main keyword near the front, keep the title under about 60 characters, and promise something the page delivers. Pair the title with a meta description and social tags using the <a href="/tools/seo-web-tools/meta-tag-generator/">Meta Tag Generator</a> and the <a href="/tools/seo-web-tools/open-graph-generator/">Open Graph Generator</a>. For video and social posts, see the <a href="/tools/social-media-tools/youtube-title-generator/">YouTube Title Generator</a> and the <a href="/tools/social-media-tools/instagram-caption-generator/">Instagram Caption Generator</a>. Short ad copy has strict limits, so check it with the <a href="/tools/marketing-advertising-tools/google-ads-character-counter/">Google Ads Character Counter</a>.</p>
+<h2 id="mistakes">Common headline mistakes</h2>
+<ul><li><b>Vague promises.</b> Marketing Tips tells the reader nothing. Say what they get.</li><li><b>Clickbait.</b> Overpromising wins one click and loses a reader.</li><li><b>Too long.</b> Text that is cut off in search results or inboxes loses its ending.</li><li><b>Jargon.</b> Words your reader does not use are not read.</li><li><b>Too many tricks.</b> A number, a power word, a question and an exclamation all at once reads as spam.</li><li><b>Ignoring the audience.</b> A headline for experts should not read like one for beginners.</li></ul>
+<h2 id="examples">Before and after: improving real-style headlines</h2>
+<div class="dt-wrap"><table><tr><th>Before</th><th>After</th><th>What changed</th></tr><tr><td>Email Tips</td><td>7 Email Tips That Raise Open Rates This Month</td><td>Added a number, a benefit and a time frame</td></tr><tr><td>Our Spring Sale Is Here!!!</td><td>Your Spring Sale: 20% Off Ends Sunday</td><td>Removed shouting, added the offer and a deadline, and spoke to the reader</td></tr><tr><td>Newsletter June</td><td>The Three Mistakes Costing You Customers</td><td>Replaced a label with a curiosity hook</td></tr><tr><td>A Comprehensive Guide to the Fundamentals of Search Engine Optimisation for Beginners</td><td>SEO for Beginners: A Simple 10-Step Guide</td><td>Cut the length, used simpler words and added a number</td></tr></table></div><p>Paste the two versions of each pair into the tool, one per line, and compare the scores. The improvements are not magic: each one follows the checks above, which is why the score moves.</p>
+<h2 id="testing">A simple plan for testing subject lines</h2>
+<p>Write at least five subject lines and score them. Keep the top two or three, and make sure they really differ in approach, for example a benefit against a question, rather than in one word. Send each to a random share of your list, such as ten percent each, wait long enough for most opens to arrive, usually a day, then send the winner to the rest. Judge on clicks and sales as well as opens, because opens can be inflated by privacy features in some email apps. Use the <a href="/tools/marketing-advertising-tools/ab-test-calculator/">A/B Test Calculator</a> to check whether the difference is real, and keep a record of what you learn. Over a few months you will see which patterns suit your audience, and you can build a short style guide for your own subject lines. For a business newsletter, also set up a clean sign-off with the <a href="/tools/marketing-advertising-tools/email-signature-generator/">Email Signature Generator</a>.</p>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The analyzer uses fixed word lists, simple counting rules and a standard readability formula, so it cannot understand meaning, humour, local slang or your brand voice, and it will sometimes rate a clever headline low or a bland one high. Syllable counts are estimates. The score is a guide to common good practice, and the only real test of a headline is how your own audience responds. This free online headline analyzer is for lawful, honest use only.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I use this free headline analyzer?</summary><p>Type or paste a headline or email subject line, pick the type, and read the score, the checks and the tips. Add one headline per line to compare up to 15 and see them ranked.</p></details><details><summary>How is the headline score calculated?</summary><p>The score out of 100 adds points for length, word count, power words, emotion, numbers, structure, speaking to the reader and readability, and takes off points for spam signals such as ALL CAPS and many exclamation marks.</p></details><details><summary>What is a good headline score?</summary><p>70 and above is strong, 45 to 69 is fair and below 45 needs work. Scores are a guide to good habits, so use them to improve drafts and then test the real thing.</p></details><details><summary>How long should a headline be?</summary><p>For articles, about 50 to 70 characters, or 6 to 12 words, so that the title is not cut off in Google results. The tool changes the targets for emails and ads.</p></details><details><summary>How long should an email subject line be?</summary><p>Around 30 to 50 characters. Many phones show only the first 35 to 40 characters, so put the key words at the start.</p></details><details><summary>What are power words?</summary><p>Power words are strong, specific words that promise a result or create curiosity, such as proven, secret, essential or simple. Use one or two. Too many sound like hype.</p></details><details><summary>Do numbers in headlines help?</summary><p>Often. Numbers make a promise concrete and suggest a quick read, as in 7 ways or 30 days. Odd numbers and specific figures tend to be more believable than round ones.</p></details><details><summary>What are spam trigger words in subject lines?</summary><p>Phrases such as free money, act now, click here, urgent and winner, plus ALL CAPS and many exclamation marks, can push an email towards spam folders. The tool flags common ones.</p></details><details><summary>What is the word balance chart?</summary><p>It shows the share of common, uncommon, emotional and power words in your headline. Good headlines are mostly common words so that they are easy to read, with a few emotional or power words.</p></details><details><summary>What does the reading grade mean?</summary><p>It estimates the US school grade needed to read the text, from the length of the words. A grade of 8 or lower suits most audiences.</p></details><details><summary>What are the previews for?</summary><p>They show how your text may look as a Google search result, in a phone inbox and desktop inbox, and on a social share card, including where long text is cut off.</p></details><details><summary>Does a higher score guarantee more clicks?</summary><p>No. The score reflects good practice, not what your audience will click. Test two or three versions in your real channel and compare the results with the A/B Test Calculator.</p></details><details><summary>Can I analyze ad headlines?</summary><p>Yes. Choose Ad or social headline for shorter length targets, and use the Google Ads Character Counter for exact limits.</p></details><details><summary>Which language does it support?</summary><p>The word lists and readability rules are for English. Length and spam checks still work for other languages that use Latin letters.</p></details><details><summary>Can I compare several headlines?</summary><p>Yes. Put each headline on its own line and open Compare all to see them ranked by score, with a Details button for each one.</p></details><details><summary>Is my text stored or sent anywhere?</summary><p>No. The analysis runs in your browser and nothing is uploaded.</p></details><details><summary>Can I print or export the results?</summary><p>Yes. Copy the analysis, download all scores as CSV or print or save a one-page report. Only the report is printed, not the whole page.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Nielsen Norman Group, <a href="https://www.nngroup.com/articles/headlines/" rel="noopener">Writing headlines for the web</a>.</li><li>Google Search Central, <a href="https://developers.google.com/search/docs/appearance/title-link" rel="noopener">Influencing your title links in search results</a>.</li><li>U.S. Federal Trade Commission, <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" rel="noopener">CAN-SPAM Act: A compliance guide for business</a>.</li><li>Wikipedia, <a href="https://en.wikipedia.org/wiki/Flesch%E2%80%93Kincaid_readability_tests" rel="noopener">Flesch-Kincaid readability tests</a>.</li><li>Mailchimp, <a href="https://mailchimp.com/help/best-practices-for-email-subject-lines/" rel="noopener">Best practices for email subject lines</a>.</li><li>Moz, <a href="https://moz.com/learn/seo/title-tag" rel="noopener">Title tag guide</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online headline analyzer scores text with simple writing rules and word lists, in your browser, and sends nothing to a server. The score is a guide to common good practice, not a prediction of clicks or opens, and it cannot judge your audience, your topic or your brand. Test real headlines and subject lines with your readers, and follow the laws and platform rules that apply to your emails, such as CAN-SPAM and GDPR.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+
+/* ---------- headline & subject line analyzer ---------- */
+function W(s) { var o = {}; s.split(/\s+/).forEach(function (w) { if (w) o[w] = 1; }); return o; }
+var POWER = W("proven secret secrets ultimate essential effortless instant powerful guaranteed exclusive amazing incredible surprising shocking simple easy fast quick free new best top savvy bold brilliant critical crucial dynamic fearless genuine hidden insider master mistakes remarkable revealed science stunning breakthrough tested trusted unique unlock win winning boost boosted double triple transform discover discovered reveal revealed revolutionary smart smarter strategy strategies tips tricks hacks checklist blueprint playbook formula ways reasons lessons truth truths never always stop avoid beware warning danger deadly painless foolproof flawless unbeatable limited bonus save saving profit profits results success successful wealth rich gold epic legendary jaw-dropping");
+var EMO = W("love hate fear afraid worry worried happy sad angry joy joyful proud shame ashamed guilty lonely dream dreams hope hopeful brave courage beautiful gorgeous ugly terrible awful horrible wonderful fantastic delightful painful pain suffer struggle struggling heartbreak heartbreaking thrilling thrilled exciting excited inspire inspiring inspired passion passionate crazy insane wild stress stressful stressed anxious calm peace peaceful safe safety trust trusted trusting secret surprise surprising surprised shock shocking mistake mistakes fail failure failing regret regrets miss missing lose losing lost envy jealous grateful thankful kindness kind cruel brutal sweet bitter obsessed addicted");
+var POS = W("love happy joy joyful proud dream hope hopeful brave courage beautiful gorgeous wonderful fantastic delightful thrilling thrilled exciting excited inspire inspiring inspired passion passionate peace peaceful safe best amazing incredible easy simple free win winning success successful boost great good better improve improved grow growth gain save profit");
+var NEG = W("hate fear afraid worry worried sad angry shame ashamed guilty lonely ugly terrible awful horrible painful pain suffer struggle struggling heartbreak crazy insane stress stressful anxious mistake mistakes fail failure failing regret lose losing lost envy jealous cruel brutal bitter danger deadly warning avoid worst never stop wrong bad problem problems");
+var URG = W("now today tonight tomorrow hurry last final ends ending deadline limited only soon urgent immediately fast quick quickly expires expiring running");
+var SPAM = ["free!!!", "act now", "click here", "buy now", "100%", "$$$", "winner", "congratulations", "cash", "urgent", "guarantee", "no obligation", "risk free", "risk-free", "double your", "earn money", "make money", "lowest price", "order now", "limited time", "once in a lifetime", "no cost", "dear friend", "this isn't spam", "viagra", "casino", "lottery", "weight loss", "miracle", "credit card", "unsubscribe", "re:", "fwd:"];
+var COMMON = W("the a an and or but of to in on at for with by from as is are was were be been it its this that these those you your yours we our i my me he she they them their his her not no so if than then there here what which who whom when where why how can could should would will do does did have has had about into over after before up down out off just more most very much many some any all each every other own same such too only also");
+var CTA = W("get start try learn discover join save shop buy grab claim download reserve book see find unlock explore build make read watch");
+var MODES = { headline: { n: "Blog or article headline", len: [50, 70], lw: [6, 12], max: 100 }, subject: { n: "Email subject line", len: [30, 50], lw: [4, 9], max: 100 }, ad: { n: "Ad or social headline", len: [25, 45], lw: [4, 8], max: 100 } };
+var ST = { mode: "headline", sel: 0, tab: "score", lines: [] };
+function words(t) { return (t.toLowerCase().match(/[a-z0-9$%'’\-]+/g) || []).map(function (w) { return w.replace(/^[-'’]+|[-'’]+$/g, ""); }).filter(Boolean); }
+function syl(w) { w = w.toLowerCase().replace(/[^a-z]/g, ""); if (!w) return 0; if (w.length <= 3) return 1; w = w.replace(/(?:[^laeiouy]es|ed|[^laeiouy]e)$/, "").replace(/^y/, ""); var m = w.match(/[aeiouy]{1,2}/g); return m ? m.length : 1; }
+function band(v, lo, hi, soft) { if (v >= lo && v <= hi) return 1; var d = v < lo ? lo - v : v - hi, span = soft || (hi - lo); return Math.max(0, 1 - d / span); }
+function analyze(text, mode) {
+  var t = String(text || "").trim(), M = MODES[mode], ws = words(t), nW = ws.length, nC = t.length, parts = [], pen = 0, tips = [];
+  var add = function (k, pts, max, tip, good) { pts = Math.round(pts * 10) / 10; parts.push({ k: k, pts: pts, max: max, st: pts >= max * 0.75 ? "ok" : pts >= max * 0.4 ? "warn" : "bad", tip: tip }); };
+  var power = ws.filter(function (w) { return POWER[w]; }), emo = ws.filter(function (w) { return EMO[w]; }), pos = ws.filter(function (w) { return POS[w]; }), neg = ws.filter(function (w) { return NEG[w]; }), urg = ws.filter(function (w) { return URG[w]; }), com = ws.filter(function (w) { return COMMON[w]; });
+  var lc = band(nC, M.len[0], M.len[1], 30); add("Length", 25 * lc, 25, nC < M.len[0] ? "Too short at " + nC + " characters. Aim for " + M.len[0] + " to " + M.len[1] + "." : nC > M.len[1] ? "Too long at " + nC + " characters. Aim for " + M.len[0] + " to " + M.len[1] + "." : "Good length: " + nC + " characters.");
+  var wc = band(nW, M.lw[0], M.lw[1], 6); add("Word count", 10 * wc, 10, nW < M.lw[0] ? "Only " + nW + " words. Try " + M.lw[0] + " to " + M.lw[1] + "." : nW > M.lw[1] ? nW + " words is a lot. Try " + M.lw[0] + " to " + M.lw[1] + "." : nW + " words is a good count.");
+  add("Power words", Math.min(15, power.length * 8), 15, power.length ? "Power words found: " + power.slice(0, 5).join(", ") + "." : "Add a power word such as proven, simple, secret or essential.");
+  add("Emotion", Math.min(10, emo.length * 5 + (urg.length ? 3 : 0)), 10, emo.length ? "Emotional words found: " + emo.slice(0, 5).join(", ") + "." : "Add feeling: a benefit you want or a mistake you fear.");
+  var hasNum = /\d/.test(t), startNum = /^\s*\d/.test(t); add("Number", hasNum ? (startNum ? 10 : 8) : 0, 10, hasNum ? "A number makes the promise concrete." : "Try a specific number, such as 7 ways or 30 days.");
+  var q = /\?\s*$/.test(t), how = /^(how|why|what|when|where|who|which)\b/i.test(t), list = /^\d+\s/.test(t), you = /\b(you|your|you're|yours)\b/i.test(t) || /\b(we|our|my|i)\b/i.test(t) && mode === "subject";
+  add("Structure", (q ? 6 : 0) + (how ? 6 : 0) + (list ? 6 : 0) > 0 ? Math.min(10, (q ? 6 : 0) + (how ? 6 : 0) + (list ? 6 : 0)) : 3, 10, q || how || list ? "Uses a proven pattern (question, how or why, or list)." : "Try a question, a how-to or a list format.");
+  add("Speaks to the reader", you ? 5 : 0, 5, you ? "Speaks directly to the reader." : "Use you or your to make it personal.");
+  var sy = ws.reduce(function (a, w) { return a + syl(w); }, 0), spw = nW ? sy / nW : 0, grade = nW ? Math.max(0, 0.39 * nW + 11.8 * spw - 15.59) : 0, ease = nW ? Math.max(0, Math.min(100, 206.835 - 1.015 * nW - 84.6 * spw)) : 0;
+  var rd = nW ? Math.max(0, Math.min(1, (14 - grade) / 8)) : 0; add("Readability", 10 * rd, 10, nW ? "Reading grade about " + grade.toFixed(1) + ". " + (grade <= 8 ? "Easy to read." : "Use shorter words for a wider audience.") : "Type a headline to score readability.");
+  var caps = (t.match(/\b[A-Z]{3,}\b/g) || []).length, ex = (t.match(/!/g) || []).length, qm = (t.match(/\?/g) || []).length, lower = t.toLowerCase(), spam = SPAM.filter(function (s) { return lower.indexOf(s) > -1; });
+  if (caps > 1) { pen += 3 * (caps - 1); tips.push("Too many ALL CAPS words (" + caps + "). They look like shouting and can trigger spam filters."); }
+  if (ex > 1) { pen += 3 * (ex - 1); tips.push("Several exclamation marks. Use at most one."); }
+  if (qm > 1) { pen += 2; tips.push("More than one question mark."); }
+  if (/[$€£]{2,}/.test(t)) { pen += 5; tips.push("Repeated currency symbols look like spam."); }
+  if (mode === "subject" && spam.length) { pen += 6 * spam.length; tips.push("Spam trigger words found: " + spam.slice(0, 4).join(", ") + ". Rephrase them."); }
+  else if (spam.length) { pen += 2 * spam.length; tips.push("Salesy phrases found: " + spam.slice(0, 3).join(", ") + "."); }
+  if (mode === "subject" && /^(re|fwd?):/i.test(t)) { pen += 8; tips.push("Fake Re: or Fwd: prefixes erode trust."); }
+  if (mode === "ad" && !ws.some(function (w) { return CTA[w]; })) tips.push("Add an action verb such as get, try, learn or save.");
+  var clean = Math.max(0, 5 - pen * 0.5); add("Clean style", clean, 5, pen ? "Fix the style warnings below." : "No spam signals or shouting.");
+  var total = parts.reduce(function (a, p) { return a + p.pts; }, 0); total = nC ? Math.max(0, Math.min(100, Math.round(total - Math.max(0, pen - 2)))) : 0;
+  var other = nW - power.length - emo.length - com.length; var bal = { common: nW ? com.length / nW : 0, power: nW ? power.length / nW : 0, emotional: nW ? emo.length / nW : 0, uncommon: nW ? Math.max(0, other) / nW : 0 };
+  var sent = pos.length > neg.length ? "Positive" : neg.length > pos.length ? "Negative" : "Neutral";
+  parts.forEach(function (p) { if (p.st !== "ok") tips.push(p.tip); });
+  return { text: t, mode: mode, score: total, parts: parts, tips: tips, nC: nC, nW: nW, grade: grade, ease: ease, sent: sent, bal: bal, power: power, emo: emo, spam: spam };
+}
+function grade(s) { return s >= 80 ? ["Excellent", "ok"] : s >= 65 ? ["Good", "ok"] : s >= 45 ? ["Fair", "warn"] : ["Needs work", "bad"]; }
+function lines() { return $("haIn").value.split(/\r?\n/).map(function (s) { return s.trim(); }).filter(Boolean).slice(0, 15); }
+function dial(r) { var c = 2 * Math.PI * 52, off = c * (1 - r.score / 100), col = r.score >= 65 ? "#059669" : r.score >= 45 ? "#d97706" : "#dc2626"; return '<svg viewBox="0 0 130 130" width="130" height="130" role="img" aria-label="Score ' + r.score + ' out of 100"><circle cx="65" cy="65" r="52" fill="none" stroke="#e2e8f0" stroke-width="12"/><circle class="ha-arc" cx="65" cy="65" r="52" fill="none" stroke="' + col + '" stroke-width="12" stroke-linecap="round" stroke-dasharray="' + c.toFixed(1) + '" stroke-dashoffset="' + off.toFixed(1) + '" transform="rotate(-90 65 65)"/><text x="65" y="72" text-anchor="middle" font-size="30" font-weight="800" fill="currentColor">' + r.score + '</text><text x="65" y="90" text-anchor="middle" font-size="11" fill="currentColor">out of 100</text></svg>'; }
+function trunc(s, n) { return s.length > n ? s.slice(0, n - 1).replace(/\s+$/, "") + "…" : s; }
+function renderScore(r) {
+  var g = grade(r.score);
+  var h = '<div class="ha-top"><div>' + dial(r) + '</div><div><div class="ab-verdict ab-' + g[1] + '" role="status">' + g[0] + ": " + esc(r.text) + '</div><p class="dc-note">' + r.nC + " characters · " + r.nW + " words · reading grade " + r.grade.toFixed(1) + " · sentiment: " + r.sent + "</p></div></div>";
+  h += '<ul class="qr-tips">' + r.parts.map(function (p) { return "<li>" + badge(p.st, p.pts + "/" + p.max) + " <b>" + esc(p.k) + ".</b> " + esc(p.tip) + "</li>"; }).join("") + "</ul>";
+  var tp = r.tips.filter(function (x, i, a) { return a.indexOf(x) === i; }).filter(function (x) { return !r.parts.some(function (p) { return p.tip === x && p.st === "ok"; }); });
+  var bars = [["Common", r.bal.common, "#64748b"], ["Uncommon", r.bal.uncommon, "#0369a1"], ["Emotional", r.bal.emotional, "#be123c"], ["Power", r.bal.power, "#047857"]].map(function (b) { return '<div class="ha-bal"><span>' + b[0] + '</span><i style="--w:' + Math.round(b[1] * 100) + "%;--c:" + b[2] + '"></i><b>' + Math.round(b[1] * 100) + "%</b></div>"; }).join("");
+  h += '<h3 class="ha-h">Word balance</h3>' + bars + '<p class="dc-note">Strong headlines mix mostly common words with a few emotional or power words.</p>';
+  return h;
+}
+function renderPrev(r) {
+  var s = r.text, pre = $("haPre").value.trim() || "Preview text appears here after the subject line in most inboxes.", snd = $("haSnd").value.trim() || "Your Brand";
+  var h = '<h3 class="ha-h">Google search result</h3><div class="ha-serp"><div class="ha-url">example.com › blog › post</div><div class="ha-t">' + esc(trunc(s, 60)) + '</div><div class="ha-d">A short meta description appears here. Keep the title under about 60 characters so it is not cut off.</div></div>' + (s.length > 60 ? '<p class="dc-note">The title is ' + s.length + " characters and will probably be cut off in search results.</p>" : "");
+  h += '<h3 class="ha-h">Email inbox, phone</h3><div class="ha-mail ha-ph"><b>' + esc(snd) + "</b><div class=\"ha-s\">" + esc(trunc(s, 38)) + '</div><div class="ha-p">' + esc(trunc(pre, 46)) + "</div></div>" + (s.length > 38 ? '<p class="dc-note">On many phones only about 35 to 40 characters show. Put the key words first.</p>' : "");
+  h += '<h3 class="ha-h">Email inbox, desktop</h3><div class="ha-mail"><b>' + esc(snd) + '</b><div class="ha-s">' + esc(trunc(s, 70)) + ' <span class="ha-p">— ' + esc(trunc(pre, 70)) + "</span></div></div>";
+  h += '<h3 class="ha-h">Social share card</h3><div class="ha-card"><div class="ha-img"></div><div class="ha-ct"><small>EXAMPLE.COM</small><b>' + esc(trunc(s, 90)) + "</b></div></div>";
+  return h;
+}
+function renderCmp() {
+  var L = ST.lines; if (!L.length) return '<p class="dc-note">Add headlines above, one per line, to compare them.</p>';
+  var order = L.map(function (r, i) { return i; }).sort(function (a, b) { return L[b].score - L[a].score; });
+  return '<div class="dt-wrap"><table class="ab-tbl"><tr><th>Rank</th><th>Headline</th><th>Score</th><th>Chars</th><th>Words</th><th></th></tr>' + order.map(function (i, k) { var r = L[i]; return "<tr" + (i === ST.sel ? ' class="ha-on"' : "") + "><td>" + (k + 1) + "</td><td>" + esc(r.text) + "</td><td><b>" + r.score + "</b></td><td>" + r.nC + "</td><td>" + r.nW + '</td><td><button type="button" class="dt-btn small ghost" data-sel="' + i + '">Details</button></td></tr>'; }).join("") + "</table></div>";
+}
+function render() {
+  var L = lines(), mode = $("haMode").value; ST.mode = mode; ST.lines = L.map(function (t) { return analyze(t, mode); });
+  if (ST.sel >= ST.lines.length) ST.sel = 0;
+  var cur = ST.lines[ST.sel];
+  $("haCount").textContent = L.length > 1 ? L.length + " headlines" : "";
+  if (!cur) { $("haScore").innerHTML = '<p class="dc-note">Type or paste a headline or subject line above. Add one per line to compare up to 15.</p>'; $("haPrev").innerHTML = ""; $("haCmp").innerHTML = ""; return; }
+  $("haScore").innerHTML = renderScore(cur); $("haPrev").innerHTML = renderPrev(cur); $("haCmp").innerHTML = renderCmp();
+}
+function setTab(k) { ST.tab = k; setTabs("haTabs", [["score", "ha-score"], ["prev", "ha-prev"], ["cmp", "ha-cmp"]], k); }
+function summary() { var r = ST.lines[ST.sel]; if (!r) return ""; return "Headline: " + r.text + "\nScore: " + r.score + "/100 (" + grade(r.score)[0] + ")\n" + r.parts.map(function (p) { return p.k + ": " + p.pts + "/" + p.max + " - " + p.tip; }).join("\n"); }
+function init() {
+  initCommon(); $("haMode").innerHTML = Object.keys(MODES).map(function (k) { return '<option value="' + k + '">' + MODES[k].n + "</option>"; }).join(""); setTab("score"); render();
+  ["haIn", "haPre", "haSnd"].forEach(function (i) { $(i).addEventListener("input", render); }); $("haMode").addEventListener("change", render);
+  $("haTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) setTab(b.getAttribute("data-tab")); });
+  $("tool").addEventListener("click", function (e) { var s = e.target.closest("[data-sel]"); if (s) { ST.sel = +s.getAttribute("data-sel"); render(); setTab("score"); } });
+  $("haEx").addEventListener("click", function () { $("haIn").value = "10 Proven Ways to Boost Your Email Open Rates\nEmail Tips\nHow to Write Subject Lines Your Readers Actually Open\nThe Secret Mistakes That Are Killing Your Open Rate"; ST.sel = 0; render(); });
+  $("resetBtn").addEventListener("click", function () { $("haIn").value = ""; $("haPre").value = ""; $("haSnd").value = ""; $("haMode").value = "headline"; ST.sel = 0; render(); setTab("score"); msg("Reset."); });
+  bindAct("ha", { code: summary, file: function () { return "headline-scores.csv"; }, mime: "text/csv", title: "Headline analysis", site: "Free online headline analyzer", note: "", rows: function () { return []; }, dlClick: function () { if (!ST.lines.length) { msg("Enter a headline first.", "err"); return; } var rows = [["Headline", "Score", "Characters", "Words", "Reading grade", "Sentiment"]]; ST.lines.forEach(function (r) { rows.push([r.text, r.score, r.nC, r.nW, r.grade.toFixed(1), r.sent]); }); dlText("headline-scores.csv", csvText(rows), "text/csv"); msg("Downloaded headline-scores.csv."); } });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, "Headline analysis", "Free online headline analyzer"); var r = ST.lines[ST.sel]; if (!r) { repAdd(b, "p", "No headline entered."); return; }
+    repAdd(b, "h3", r.text); repAdd(b, "p", "Score " + r.score + "/100 (" + grade(r.score)[0] + ") · " + r.nC + " characters · " + r.nW + " words"); repTbl(b, ["Check", "Points", "Advice"], r.parts.map(function (p) { return [p.k, p.pts + "/" + p.max, p.tip]; }));
+    if (ST.lines.length > 1) { repAdd(b, "h3", "All headlines ranked"); repTbl(b, ["Headline", "Score"], ST.lines.slice().sort(function (a, c) { return c.score - a.score; }).map(function (x) { return [x.text, String(x.score)]; })); }
+    repDisc(b, "Scores come from simple writing rules and word lists. They are a guide, not a prediction. Test real headlines with your audience.");
+  };
+}
+init();
+
+})();
+</script>
+</body>
+</html>
