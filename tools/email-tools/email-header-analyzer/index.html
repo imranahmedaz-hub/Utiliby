@@ -1,0 +1,479 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Email Header Analyzer: Trace Email & Check SPF</title>
+<meta name="description" content="Free online email header analyzer. Paste raw headers to trace the delivery path, see delays, read SPF, DKIM and DMARC results and spot spoofing. Private and instant.">
+<link rel="canonical" href="https://utiliby.com/tools/email-tools/email-header-analyzer/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Email Header Analyzer: Trace Email & Check SPF">
+<meta property="og:description" content="Free online email header analyzer. Trace an email's path, find delays, check SPF, DKIM and DMARC and spot spoofed senders. Runs in your browser, no sign-up.">
+<meta property="og:url" content="https://utiliby.com/tools/email-tools/email-header-analyzer/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Email Header Analyzer: Trace Email & Check SPF">
+<meta name="twitter:description" content="Free online email header analyzer. Trace an email's path, find delays, check SPF, DKIM and DMARC and spot spoofed senders. Runs in your browser, no sign-up.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.qr-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:18px;align-items:start}
+@media(max-width:900px){.qr-wrap{grid-template-columns:minmax(0,1fr)}.qr-side{order:-1}}
+.qr-tips{list-style:none;margin:6px 0;padding:0}.qr-tips li{margin:6px 0;font-size:.88rem}
+.ab-verdict{padding:12px 14px;border-radius:12px;font-weight:600;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.ab-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.ab-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.ab-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}
+.ab-tbl th,.ab-tbl td{text-align:left;vertical-align:top}
+.ab-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}.ab-big div{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.ab-big b{display:block;font-size:1.4rem;overflow-wrap:anywhere}.ab-big span{font-size:.82rem;opacity:.8}
+
+.dc-sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid rgba(128,128,128,.5);vertical-align:middle}
+.dc-note{font-size:.8rem;color:var(--muted)}
+.cn-article code,.cn-article li,.cn-article p,.cn-article td{overflow-wrap:anywhere}
+.cn-article code{white-space:normal}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool input[type=range]{padding:0;width:100%}
+#tool input[type=color]{padding:2px;height:40px;cursor:pointer}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500;text-transform:none;letter-spacing:0}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:340px;max-width:100%;tab-size:2;user-select:all}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.seo-tabs button{padding:6px 14px;font-size:.82rem;margin:0}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.dc-big{height:84px;border-radius:12px;border:1px solid var(--line);margin:8px 0;transition:background .12s}
+.dc-vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0}
+.dc-val{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);min-width:0}
+.dc-val b{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);min-width:64px;white-space:nowrap}
+.dc-val code{flex:1 1 130px;font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.dc-val button{padding:3px 9px;font-size:.72rem;border-radius:6px;border:1px solid var(--line);background:transparent;color:#0369a1;cursor:pointer;font-family:inherit;font-weight:700}
+@media(prefers-color-scheme:dark){.dc-val button{color:#7dd3fc}}
+.dc-strip{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:8px 0}
+.dc-strip>div{flex:1;min-height:56px;display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;font-weight:700;padding:3px 1px;min-width:0;overflow:hidden}
+.dc-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.dc-card{flex:1 1 110px;min-width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-align:center;font-size:.76rem}
+.dc-card i{display:block;height:54px}.dc-card span{display:block;padding:4px 2px;overflow-wrap:anywhere}
+.dc-card button{border:0;background:transparent;color:#0369a1;cursor:pointer;font-weight:700;font-size:.72rem;padding:2px 6px 5px;font-family:inherit}
+@media(prefers-color-scheme:dark){.dc-card button{color:#7dd3fc}}
+.dc-tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}.dc-tbl th,.dc-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}.dc-tbl th{background:var(--card)}
+.dc-scroll{overflow-x:auto;max-width:100%}
+
+.ev-h{font-size:1rem;margin:14px 0 6px}
+#ehIn{width:100%;min-height:200px;font:.82rem/1.5 ui-monospace,Menlo,Consolas,monospace}
+.ab-tbl{width:100%;border-collapse:collapse;font-size:.85rem}.ab-tbl th,.ab-tbl td{border:1px solid var(--line);padding:5px 8px}
+.ab-tbl th{background:var(--card)}
+.ab-verdict .dc-note{font-weight:400}
+.dt-fig svg{max-width:100%}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Email Header Analyzer","url":"https://utiliby.com/tools/email-tools/email-header-analyzer/","description":"Free online email header analyzer. Paste raw email headers to trace the delivery path with delay at each hop, read SPF, DKIM and DMARC results, compare From, Return-Path and Reply-To, find the originating IP and spot spoofing. Runs in your browser. No sign-up.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Delivery path timeline","Delay at every hop","SPF, DKIM, DMARC results","Spoofing checks","Originating IP","Searchable header list","Printable report"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I use this free email header analyzer?","acceptedAnswer":{"@type":"Answer","text":"Copy the full headers of a message, paste them into the box and read the Summary. The Delivery path tab shows each hop and delay, and the SPF, DKIM, DMARC tab shows authentication results."}},{"@type":"Question","name":"Is this email header analyzer really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is a free online tool with no sign-up and no limits. The headers you paste stay in your browser."}},{"@type":"Question","name":"How do I find the email headers in Gmail?","acceptedAnswer":{"@type":"Answer","text":"Open the message, click the three dots next to Reply, choose Show original and copy the text at the top, or use Copy to clipboard."}},{"@type":"Question","name":"How do I find the headers in Outlook?","acceptedAnswer":{"@type":"Answer","text":"In desktop Outlook, open the message, choose File, Properties and copy the Internet headers box. In Outlook on the web, open the message, choose the three dots, View, View message details."}},{"@type":"Question","name":"How do I find the headers in Apple Mail?","acceptedAnswer":{"@type":"Answer","text":"Open the message, choose View, Message, All Headers, or Raw Source, and copy the header lines."}},{"@type":"Question","name":"How do I find the headers in Yahoo Mail?","acceptedAnswer":{"@type":"Answer","text":"Open the message, click the three dots, choose View raw message and copy the header block at the top."}},{"@type":"Question","name":"What is a Received header?","acceptedAnswer":{"@type":"Answer","text":"Each mail server that handles a message adds a Received line that says where the message came from, which server got it, how and when. Together they form the delivery path."}},{"@type":"Question","name":"In what order should I read Received headers?","acceptedAnswer":{"@type":"Answer","text":"From the bottom to the top. The bottom line is the first server that handled the message. This tool reorders them for you and numbers them from oldest to newest."}},{"@type":"Question","name":"What do SPF, DKIM and DMARC results mean?","acceptedAnswer":{"@type":"Answer","text":"SPF checks that the sending server is allowed to send for the domain. DKIM checks a digital signature. DMARC says what to do when those checks do not line up with the visible From address. Pass is good, fail is a warning."}},{"@type":"Question","name":"Why is Return-Path different from From?","acceptedAnswer":{"@type":"Answer","text":"Return-Path is where bounces go. Services that send mail for you often use their own domain there, so a difference is common, but it is also a sign spoofers look for."}},{"@type":"Question","name":"What does a Reply-To mismatch mean?","acceptedAnswer":{"@type":"Answer","text":"If Reply-To points to a different domain than From, your reply goes somewhere else. That is a classic phishing sign, but some mailing tools use it on purpose."}},{"@type":"Question","name":"How can I tell if an email is spoofed?","acceptedAnswer":{"@type":"Answer","text":"Look for failed SPF, DKIM or DMARC, a display name that hides another address, a Return-Path or Reply-To that does not match, and a delivery path that starts at an unexpected server. No single sign is proof."}},{"@type":"Question","name":"Why did my email take so long to arrive?","acceptedAnswer":{"@type":"Answer","text":"The Delivery path tab shows the wait at each hop. Long gaps often mean a queue, greylisting, security scanning or a busy server, and the slow hop is where to look."}},{"@type":"Question","name":"What is the originating IP?","acceptedAnswer":{"@type":"Answer","text":"It is the first public IP address found in the oldest Received line. Private addresses are skipped. It identifies the server that handed the mail to the first relay, not always the person who wrote it."}},{"@type":"Question","name":"Can headers be faked?","acceptedAnswer":{"@type":"Answer","text":"Yes. A sender can write false lines at the bottom of the header block. The lines added by servers you trust, for example your own provider at the top, are the reliable ones."}},{"@type":"Question","name":"Does this tool check IP reputation or DNS?","acceptedAnswer":{"@type":"Answer","text":"No. It works offline on the text you paste. To look at your own SPF and DMARC records you can build and check them with the DMARC and SPF Record Generator."}},{"@type":"Question","name":"Can I save the analysis?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the summary, download a text report or print or save a one-page report that shows only the findings and tables."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Email Tools","item":"https://utiliby.com/tools/email-tools/"},{"@type":"ListItem","position":3,"name":"Email Header Analyzer","item":"https://utiliby.com/tools/email-tools/email-header-analyzer/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/email-tools/">Email</a> › Email Header Analyzer</nav>
+<h1 class="noembed">Free Online Email Header Analyzer</h1>
+<p class="lead noembed">Free online email header analyzer. Paste raw headers to trace the delivery path, find delays, check SPF, DKIM and DMARC and spot spoofing. Runs in your browser.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/email-tools/email-header-analyzer/" target="_blank" rel="noopener">Email Header Analyzer by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Email header analyzer">
+<div class="dt-hero noembed">
+<h2>Free Online Email Header Analyzer</h2>
+<p>Paste raw email headers to trace the delivery path, see delays at every hop, read SPF, DKIM and DMARC results and spot signs of spoofing.</p>
+</div>
+<div class="dt-panel"><div><label for="ehIn">Paste the full email headers here</label><textarea id="ehIn" rows="9" placeholder="Received: from mail.example.com ...&#10;From: Jane &lt;jane@example.com&gt;&#10;To: ..." spellcheck="false"></textarea></div><p><button type="button" class="dt-btn small ghost" id="ehEx">Load a normal example</button> <button type="button" class="dt-btn small ghost" id="ehEx2">Load a suspicious example</button></p><div class="seo-tabs" id="ehTabs" role="group" aria-label="Results"><button type="button" class="dt-btn" data-tab="sum">Summary</button><button type="button" class="dt-btn ghost" data-tab="hops">Delivery path</button><button type="button" class="dt-btn ghost" data-tab="auth">SPF, DKIM, DMARC</button><button type="button" class="dt-btn ghost" data-tab="all">All headers</button></div><div id="eh-sum"><div id="ehSum" aria-live="polite"></div></div><div id="eh-hops" hidden><div id="ehHops"></div></div><div id="eh-auth" hidden><div id="ehAuth"></div></div><div id="eh-all" hidden><div><label for="ehFilter">Filter headers</label><input type="text" id="ehFilter" placeholder="Type a name or text" autocomplete="off" spellcheck="false"></div><div id="ehAll"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="ehCopy">Copy summary</button>
+<button type="button" class="dt-btn ghost" id="ehDl">Download report</button>
+<button type="button" class="dt-btn ghost" id="ehPrint">Print / save report</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online email header analyzer runs in your browser and nothing you paste is sent to a server. It reads the text you give it using rules and does not look up DNS records, check IP reputation or contact mail servers. Headers can be forged, especially below the first server you trust, and a mismatch is a reason to look closer, not proof of fraud. Email headers can contain personal details, so remove addresses you do not want to share before you show them to anyone. Do not rely on this tool alone for security decisions.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/email-tools/email-header-analyzer/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Email Header Analyzer. https://utiliby.com/tools/email-tools/email-header-analyzer/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/email-tools/email-header-analyzer/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Email Header Analyzer by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/email-tools/email-header-analyzer/"&gt;Email Header Analyzer by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online email header analyzer does</a></li><li><a href="#how">How to analyze email headers step by step</a></li><li><a href="#find">Where to find the full headers in your email program</a></li><li><a href="#fields">The headers that matter most</a></li><li><a href="#auth">SPF, DKIM and DMARC in plain language</a></li><li><a href="#spoof">Signs of a spoofed or phishing email</a></li><li><a href="#delay">Why emails are delayed</a></li><li><a href="#sender">If you send email: using headers to fix deliverability</a></li><li><a href="#privacy">Privacy: what headers reveal</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online email header analyzer does</h2>
+<p>Every email carries a block of hidden text called the <b>email headers</b>. They record who sent the message, which servers handled it, when each step happened and whether the message passed security checks. When a message looks suspicious, arrives late or lands in spam, the headers hold the answer. They are also long and hard to read. This free online <b>email header analyzer</b> turns the raw text into a clear report: a verdict with findings, a timeline of the <b>delivery path</b> with the delay at every hop, the results of <b>SPF, DKIM and DMARC</b>, a check of the <b>From, Return-Path and Reply-To</b> addresses, and a searchable list of every header.</p><p>Use it to <b>trace an email</b>, to see why a message was delayed, to check whether an email could be <b>spoofed or phishing</b>, and to debug authentication on mail you send. It runs in your browser, so the headers never leave your device.</p><figure class="dt-fig"><svg viewBox="0 0 640 170" width="100%" role="img" aria-label="An email travels through several servers and each adds a Received header"><title>How an email picks up headers on its way</title>
+<g font-size="12" fill="currentColor" text-anchor="middle"><rect x="10" y="40" width="108" height="76" rx="10" fill="#e0f2fe" stroke="#0369a1"/><text x="64" y="72" font-weight="700">Sender</text><text x="64" y="92" font-size="11">From, Message-ID</text>
+<rect x="170" y="40" width="108" height="76" rx="10" fill="#fff" stroke="#94a3b8"/><text x="224" y="72" font-weight="700">Relay 1</text><text x="224" y="92" font-size="11">adds Received</text>
+<rect x="330" y="40" width="108" height="76" rx="10" fill="#fff" stroke="#94a3b8"/><text x="384" y="72" font-weight="700">Relay 2</text><text x="384" y="92" font-size="11">adds Received</text>
+<rect x="490" y="40" width="140" height="76" rx="10" fill="#dcfce7" stroke="#047857"/><text x="560" y="72" font-weight="700">Your inbox</text><text x="560" y="92" font-size="11">adds SPF, DKIM, DMARC</text>
+<text x="320" y="150" font-size="11" opacity=".75">Read Received lines from the bottom up to follow the path in time order.</text></g>
+<path class="dt-pop" d="M120 78H168M280 78H328M440 78H488" stroke="#64748b" stroke-width="2" fill="none"/></svg>
+<figcaption>Each server that handles a message adds a Received line at the top, so the oldest hop is at the bottom of the header block.</figcaption></figure>
+<h2 id="how">How to analyze email headers step by step</h2>
+<ol><li><b>Open the full headers</b> in your mail program. The next section shows where to find them.</li><li><b>Copy everything</b> from the first header line to the last header line. You do not need the message body.</li><li><b>Paste it into the box.</b> The report appears at once.</li><li><b>Read the verdict and findings.</b> Problems are marked in red, things to check in amber and passes in green.</li><li><b>Open Delivery path</b> to see each hop and the wait between them.</li><li><b>Open SPF, DKIM, DMARC</b> to see the authentication results and whether the domains line up with the From address.</li><li><b>Use All headers</b> to search for a specific header.</li></ol>
+<h2 id="find">Where to find the full headers in your email program</h2>
+<div class="dt-wrap"><table><tr><th>Program</th><th>Steps</th></tr><tr><td>Gmail</td><td>Open the message, three dots, Show original, Copy to clipboard</td></tr><tr><td>Outlook desktop</td><td>Open the message in its own window, File, Properties, Internet headers</td></tr><tr><td>Outlook on the web</td><td>Three dots, View, View message details</td></tr><tr><td>Apple Mail</td><td>View, Message, All Headers or Raw Source</td></tr><tr><td>Yahoo Mail</td><td>Three dots, View raw message</td></tr><tr><td>Thunderbird</td><td>View, Headers, All, or View Source</td></tr></table></div>
+<h2 id="fields">The headers that matter most</h2>
+<ul><li><b>From:</b> the visible sender. It is easy to fake on its own.</li><li><b>Return-Path:</b> the address that receives bounces. It is set by the sending system and used in SPF checks.</li><li><b>Reply-To:</b> where your reply will go, if different from From.</li><li><b>Received:</b> one line per server, newest at the top. This is the delivery path.</li><li><b>Authentication-Results:</b> the SPF, DKIM and DMARC verdicts that your provider added.</li><li><b>DKIM-Signature:</b> the signature, including the signing domain (d=) and selector (s=).</li><li><b>Message-ID:</b> a unique identifier that real systems always add.</li><li><b>Date:</b> the time on the sender's clock.</li><li><b>List-Unsubscribe:</b> present on well-behaved bulk mail.</li><li><b>X-Spam headers:</b> scores and flags from spam filters, which vary by provider.</li></ul>
+<h2 id="auth">SPF, DKIM and DMARC in plain language</h2>
+<p><b>SPF</b> lets a domain publish a list of servers that may send its mail. The receiving server compares the connecting IP with that list for the domain in the Return-Path. <b>DKIM</b> adds a digital signature that the receiver checks against a public key in DNS, which proves the message was not altered and that the signing domain approved it. <b>DMARC</b> ties them together. It asks that SPF or DKIM pass and that the passing domain line up with the visible From domain, and tells receivers what to do if not: nothing, quarantine or reject. A message can pass SPF and DKIM and still fail DMARC if the domains do not align, which is why the tool shows alignment. If you send email yourself, use the <a href="/tools/email-tools/dmarc-record-generator/">DMARC and SPF Record Generator</a> to build the records.</p>
+<h2 id="spoof">Signs of a spoofed or phishing email</h2>
+<ul><li>SPF, DKIM or DMARC fails, or all three are missing.</li><li>The display name shows one address but the real address is another.</li><li>Return-Path or Reply-To uses an unrelated domain.</li><li>The oldest hop is an unknown host or a home or mobile network instead of a mail server.</li><li>The Date is far from the delivery time.</li><li>The Message-ID is missing or uses a strange domain.</li></ul><p>No single sign proves anything. Newsletters, ticketing systems and helpdesks often use different Return-Path and Reply-To domains. Treat the report as a prompt to look closer, never click links in a message you doubt, and report suspected phishing to your provider or IT team.</p>
+<h2 id="delay">Why emails are delayed</h2>
+<p>The delivery path shows the time between each pair of timestamps. Most hops take under a few seconds. Long waits usually come from greylisting, where a receiver temporarily rejects unknown senders, from busy queues, from antivirus or data-loss scanning and from servers that are down and retrying. If every hop is quick but the message is still late, the sender may have scheduled it, or the Date header may be wrong. Negative delays mean two servers have clocks that differ, which is common and harmless.</p>
+<h2 id="sender">If you send email: using headers to fix deliverability</h2>
+<p>Send a test message to a mailbox you control and paste its headers here. Check that SPF and DKIM pass and that both align with the From domain, because DMARC needs that. If the message reached spam, compare the headers with a message that reached the inbox. Content also matters, so run your copy through the <a href="/tools/email-tools/email-spam-word-checker/">Email Spam Word Checker</a>, remove addresses that bounce with the <a href="/tools/email-tools/email-validator/">Email Validator and List Cleaner</a> and build your layout with the <a href="/tools/email-tools/html-email-template-builder/">HTML Email Template Builder</a>.</p>
+<h2 id="privacy">Privacy: what headers reveal</h2>
+<p>Headers can include your email address, the sender's IP address, internal server names, the programs used and sometimes the sender's location. Before you share headers with a support team, forum or friend, consider replacing addresses you want to keep private. This tool processes the text in your browser only.</p>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The analyzer reads text. It cannot confirm that DNS records exist, check an IP address against a blocklist or know whether a header was forged. Results are rule-based and meant as a guide. Use it to understand your own mail and to spot warning signs, not as the only basis for accusing anyone or for a security decision.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I use this free email header analyzer?</summary><p>Copy the full headers of a message, paste them into the box and read the Summary. The Delivery path tab shows each hop and delay, and the SPF, DKIM, DMARC tab shows authentication results.</p></details><details><summary>Is this email header analyzer really free?</summary><p>Yes. It is a free online tool with no sign-up and no limits. The headers you paste stay in your browser.</p></details><details><summary>How do I find the email headers in Gmail?</summary><p>Open the message, click the three dots next to Reply, choose Show original and copy the text at the top, or use Copy to clipboard.</p></details><details><summary>How do I find the headers in Outlook?</summary><p>In desktop Outlook, open the message, choose File, Properties and copy the Internet headers box. In Outlook on the web, open the message, choose the three dots, View, View message details.</p></details><details><summary>How do I find the headers in Apple Mail?</summary><p>Open the message, choose View, Message, All Headers, or Raw Source, and copy the header lines.</p></details><details><summary>How do I find the headers in Yahoo Mail?</summary><p>Open the message, click the three dots, choose View raw message and copy the header block at the top.</p></details><details><summary>What is a Received header?</summary><p>Each mail server that handles a message adds a Received line that says where the message came from, which server got it, how and when. Together they form the delivery path.</p></details><details><summary>In what order should I read Received headers?</summary><p>From the bottom to the top. The bottom line is the first server that handled the message. This tool reorders them for you and numbers them from oldest to newest.</p></details><details><summary>What do SPF, DKIM and DMARC results mean?</summary><p>SPF checks that the sending server is allowed to send for the domain. DKIM checks a digital signature. DMARC says what to do when those checks do not line up with the visible From address. Pass is good, fail is a warning.</p></details><details><summary>Why is Return-Path different from From?</summary><p>Return-Path is where bounces go. Services that send mail for you often use their own domain there, so a difference is common, but it is also a sign spoofers look for.</p></details><details><summary>What does a Reply-To mismatch mean?</summary><p>If Reply-To points to a different domain than From, your reply goes somewhere else. That is a classic phishing sign, but some mailing tools use it on purpose.</p></details><details><summary>How can I tell if an email is spoofed?</summary><p>Look for failed SPF, DKIM or DMARC, a display name that hides another address, a Return-Path or Reply-To that does not match, and a delivery path that starts at an unexpected server. No single sign is proof.</p></details><details><summary>Why did my email take so long to arrive?</summary><p>The Delivery path tab shows the wait at each hop. Long gaps often mean a queue, greylisting, security scanning or a busy server, and the slow hop is where to look.</p></details><details><summary>What is the originating IP?</summary><p>It is the first public IP address found in the oldest Received line. Private addresses are skipped. It identifies the server that handed the mail to the first relay, not always the person who wrote it.</p></details><details><summary>Can headers be faked?</summary><p>Yes. A sender can write false lines at the bottom of the header block. The lines added by servers you trust, for example your own provider at the top, are the reliable ones.</p></details><details><summary>Does this tool check IP reputation or DNS?</summary><p>No. It works offline on the text you paste. To look at your own SPF and DMARC records you can build and check them with the DMARC and SPF Record Generator.</p></details><details><summary>Can I save the analysis?</summary><p>Yes. Copy the summary, download a text report or print or save a one-page report that shows only the findings and tables.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc5322" rel="noopener">RFC 5322: Internet Message Format</a>.</li><li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7208" rel="noopener">RFC 7208: Sender Policy Framework (SPF)</a>.</li><li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc6376" rel="noopener">RFC 6376: DomainKeys Identified Mail (DKIM) Signatures</a>.</li><li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7489" rel="noopener">RFC 7489: DMARC</a>.</li><li>Google, <a href="https://support.google.com/mail/answer/29436" rel="noopener">Trace an email with its full headers</a>.</li><li>Microsoft, <a href="https://support.microsoft.com/en-us/office/view-internet-message-headers-in-outlook-cd039382-dc6e-4264-ac74-c048563d212c" rel="noopener">View internet message headers in Outlook</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online email header analyzer runs in your browser and nothing you paste is sent to a server. It reads the text you give it using rules and does not look up DNS records, check IP reputation or contact mail servers. Headers can be forged, especially below the first server you trust, and a mismatch is a reason to look closer, not proof of fraud. Email headers can contain personal details, so remove addresses you do not want to share before you show them to anyone. Do not rely on this tool alone for security decisions.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+
+/* ---------- email header analyzer ---------- */
+var ST = { tab: "sum", res: null, report: "" };
+var EX1 = "Delivered-To: jane@example.org\nReceived: by 2002:a05:7110:1a1c:b0:1c8:aaaa:bbbb with SMTP id x1csp123456xyz;\n        Tue, 13 Oct 2026 09:15:09 -0700 (PDT)\nReceived: from mail-out.example.com (mail-out.example.com [203.0.113.25])\n        by mx.google.com with ESMTPS id q12si999999qkn.100.2026.10.13.09.15.08\n        for <jane@example.org>\n        (version=TLS1_3 cipher=TLS_AES_256_GCM_SHA384 bits=256/256);\n        Tue, 13 Oct 2026 09:15:08 -0700 (PDT)\nReceived: from app01.internal.example.com (app01.internal.example.com [10.0.4.12])\n        by mail-out.example.com with ESMTP id 5C2F31A0042;\n        Tue, 13 Oct 2026 16:15:06 +0000 (UTC)\nAuthentication-Results: mx.google.com;\n       dkim=pass header.i=@example.com header.s=sel1 header.b=AbCdEf12;\n       spf=pass (google.com: domain of news@example.com designates 203.0.113.25 as permitted sender) smtp.mailfrom=news@example.com;\n       dmarc=pass (p=REJECT sp=REJECT dis=NONE) header.from=example.com\nReceived-SPF: pass (google.com: domain of news@example.com designates 203.0.113.25 as permitted sender) client-ip=203.0.113.25;\nDKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=example.com; s=sel1; h=from:to:subject:date:message-id; bh=abc=; b=def=\nReturn-Path: <news@example.com>\nFrom: Example News <news@example.com>\nTo: Jane <jane@example.org>\nSubject: Your October update\nDate: Tue, 13 Oct 2026 16:15:05 +0000\nMessage-ID: <20261013161505.5C2F31A0042@mail-out.example.com>\nMIME-Version: 1.0\nContent-Type: multipart/alternative; boundary=\"b1\"\nList-Unsubscribe: <https://example.com/unsub/abc>, <mailto:unsub@example.com>\nX-Mailer: ExampleMailer 4.2\n";
+var EX2 = "Received: by 2002:a05:7110:1a1c:b0:1c8:aaaa:bbbb with SMTP id x1csp1;\n        Tue, 13 Oct 2026 11:20:31 -0700 (PDT)\nReceived: from unknown (unknown [198.51.100.77])\n        by mx.google.com with SMTP id z9si1;\n        Tue, 13 Oct 2026 11:20:30 -0700 (PDT)\nReceived: from relay2.badhost.example (relay2.badhost.example [198.51.100.77])\n        by smtp.badhost.example with ESMTP id AA11;\n        Tue, 13 Oct 2026 17:02:11 +0000 (UTC)\nReceived: from [192.168.1.20] (host.local [192.168.1.20])\n        by relay2.badhost.example with ESMTP id BB22;\n        Tue, 13 Oct 2026 16:59:02 +0000 (UTC)\nAuthentication-Results: mx.google.com;\n       spf=fail (google.com: domain of billing@bank-secure.example does not designate 198.51.100.77 as permitted sender) smtp.mailfrom=billing@bank-secure.example;\n       dkim=none;\n       dmarc=fail (p=NONE) header.from=mybank.example\nReturn-Path: <billing@bank-secure.example>\nFrom: \"MyBank Support <support@mybank.example>\" <alerts@mybank.example>\nReply-To: helpdesk@free-mail.example\nTo: undisclosed-recipients:;\nSubject: Urgent: verify your account\nDate: Tue, 13 Oct 2026 12:00:00 +0000\nMIME-Version: 1.0\nContent-Type: text/html; charset=utf-8\nX-Mailer: MassSender 1.0\n";
+function unfold(t) { var out = [], cur = null; t = String(t).replace(/\r\n?/g, "\n"); var i = t.search(/\n\s*\n/); if (i > 0 && /^[\w-]+:/m.test(t.slice(0, i))) t = t.slice(0, i); t.split("\n").forEach(function (l) { if (/^[ \t]/.test(l) && cur) cur.v += " " + l.trim(); else { var m = /^([^\s:]+):\s*(.*)$/.exec(l); if (m) { cur = { n: m[1], v: m[2].trim() }; out.push(cur); } else if (l.trim() && cur) cur.v += " " + l.trim(); } }); return out; }
+function get(h, n) { n = n.toLowerCase(); for (var i = 0; i < h.length; i++) if (h[i].n.toLowerCase() === n) return h[i].v; return ""; }
+function all(h, n) { n = n.toLowerCase(); return h.filter(function (x) { return x.n.toLowerCase() === n; }).map(function (x) { return x.v; }); }
+function addr(v) { var m = /<([^<>]+)>\s*$/.exec(v) || /<([^<>]+)>/.exec(v); var a = (m ? m[1] : v).trim(); var e = /[^\s<>"',;:()\[\]]+@[^\s<>"',;:()\[\]]+/.exec(a); return e ? e[0].toLowerCase() : ""; }
+function dom(a) { var i = a.lastIndexOf("@"); return i < 0 ? "" : a.slice(i + 1).replace(/[>;]+$/, "").toLowerCase(); }
+function aligned(a, b) { if (!a || !b) return false; return a === b || a.slice(-(b.length + 1)) === "." + b || b.slice(-(a.length + 1)) === "." + a; }
+function priv(ip) { return /^(10\.|127\.|169\.254\.|192\.168\.|172\.(1[6-9]|2\d|3[01])\.|0\.)/.test(ip) || /^(::1|fe80:|fc|fd)/i.test(ip); }
+function ips(s) { var r = [], re = /\[(?:IPv6:)?([0-9a-f:.]{3,})\]|\((\d{1,3}(?:\.\d{1,3}){3})\)/gi, m; while ((m = re.exec(s))) { var ip = m[1] || m[2]; if (/^\d+(\.\d+){3}$/.test(ip) && !ip.split(".").every(function (x) { return +x <= 255; })) continue; if (!/^\d+(\.\d+){3}$/.test(ip) && ip.indexOf(":") < 0) continue; if (r.indexOf(ip) < 0) r.push(ip); } return r; }
+function pdate(s) { if (!s) return null; s = String(s).replace(/\([^)]*\)/g, "").replace(/\s+/g, " ").trim(); var t = Date.parse(s); return isNaN(t) ? null : t; }
+function hop(v) { var semi = v.lastIndexOf(";"), body = semi >= 0 ? v.slice(0, semi) : v, ds = semi >= 0 ? v.slice(semi + 1) : ""; var f = /\bfrom\s+(\S+)/i.exec(body), by = /\bby\s+(\S+)/i.exec(body), w = /\bwith\s+([A-Za-z0-9-]+)/i.exec(body); return { from: f ? f[1] : "", by: by ? by[1] : "", via: w ? w[1] : "", ips: ips(body), t: pdate(ds), raw: v }; }
+function authMethods(h) {
+  var res = {}, ar = all(h, "Authentication-Results"), re = /\b(spf|dkim|dmarc|arc)\s*=\s*([a-z]+)/gi;
+  ar.forEach(function (v) { var m; while ((m = re.exec(v))) { var k = m[1].toLowerCase(); if (!res[k]) { var seg = v.slice(m.index, (v.indexOf(";", m.index) < 0 ? v.length : v.indexOf(";", m.index))); res[k] = { r: m[2].toLowerCase(), seg: seg }; } } });
+  var rs = get(h, "Received-SPF"); if (rs && !res.spf) { var w = /^\s*([a-z]+)/i.exec(rs); if (w) res.spf = { r: w[1].toLowerCase(), seg: rs.slice(0, 160) }; }
+  return res;
+}
+function dkimSigs(h) { return all(h, "DKIM-Signature").map(function (v) { var d = /\bd=([^;\s]+)/.exec(v), s = /\bs=([^;\s]+)/.exec(v), a = /\ba=([^;\s]+)/.exec(v); return { d: d ? d[1].toLowerCase() : "", s: s ? s[1] : "", a: a ? a[1] : "" }; }); }
+function analyze(text) {
+  var h = unfold(text); if (!h.length) return null;
+  var recv = all(h, "Received").map(hop).reverse(), F = [], add = function (s, t) { F.push({ s: s, t: t }); };
+  var from = get(h, "From"), fa = addr(from), fd = dom(fa), rp = addr(get(h, "Return-Path")), rd = dom(rp), rt = get(h, "Reply-To"), ra = addr(rt), rdm = dom(ra);
+  var au = authMethods(h), sigs = dkimSigs(h);
+  recv.forEach(function (x, i) { x.delay = i > 0 && x.t != null && recv[i - 1].t != null ? Math.round((x.t - recv[i - 1].t) / 1000) : null; });
+  var total = null, ts = recv.filter(function (x) { return x.t != null; }); if (ts.length > 1) total = Math.round((ts[ts.length - 1].t - ts[0].t) / 1000);
+  var dh = pdate(get(h, "Date")); if (dh != null && ts.length) { var lag = Math.round((ts[ts.length - 1].t - dh) / 1000); if (lag > 3600) add("warn", "The Date header is " + fmtDur(lag) + " earlier than the last delivery time. The sender clock may be wrong, or the message was delayed or backdated."); else if (lag < -300) add("warn", "The Date header is " + fmtDur(-lag) + " later than the last delivery time. The sender clock may be wrong."); }
+  if (!from) add("bad", "There is no From header."); else if (!fa) add("warn", "The From header does not contain a readable email address.");
+  var fm = /<([^<>]+)>\s*$/.exec(from), np = fm ? from.slice(0, fm.index) : "", de = /[^\s<>"']+@[^\s<>"']+/.exec(np); if (de && fa && de[0].toLowerCase().replace(/["']/g, "") !== fa) add("bad", "The display name contains an email address (" + de[0].replace(/["']/g, "") + ") that differs from the real sender address (" + fa + "). This is a common spoofing trick.");
+  ["spf", "dkim", "dmarc"].forEach(function (k) { var a = au[k]; if (!a) add("warn", k.toUpperCase() + " result not found in the headers you pasted."); else if (a.r === "pass") add("ok", k.toUpperCase() + " passed."); else if (a.r === "fail" || a.r === "hardfail" || a.r === "permerror") add("bad", k.toUpperCase() + " failed (" + a.r + ")."); else add("warn", k.toUpperCase() + " result: " + a.r + "."); });
+  if (rd && fd) { if (aligned(rd, fd)) add("ok", "The Return-Path domain (" + rd + ") matches the From domain."); else add("warn", "The Return-Path domain (" + rd + ") differs from the From domain (" + fd + "). Legitimate services that send for you often do this, but so do spoofers."); }
+  if (rp === "" && get(h, "Return-Path") === "<>") add("ok", "Return-Path is empty, which is normal for bounce messages.");
+  if (ra && fa && ra !== fa) { if (aligned(rdm, fd)) add("warn", "Reply-To (" + ra + ") differs from From (" + fa + ") but is in the same domain."); else add("bad", "Reply-To (" + ra + ") goes to a different domain than From (" + fa + "). Replies would not reach the sender."); }
+  if (sigs.length && fd) { var okd = sigs.some(function (s) { return aligned(s.d, fd); }); if (okd) add("ok", "A DKIM signature is aligned with the From domain."); else add("warn", "DKIM signature domain (" + sigs.map(function (s) { return s.d; }).join(", ") + ") does not match the From domain (" + fd + ")."); } else if (!sigs.length) add("warn", "No DKIM-Signature header was found.");
+  if (!get(h, "Message-ID")) add("warn", "There is no Message-ID header. Real mail systems almost always add one.");
+  var mid = get(h, "Message-ID"); if (mid && fd) { var md = dom(addr(mid)); if (md && !aligned(md, fd) && !/\.(google|outlook|amazonses|sendgrid|mailgun|mandrillapp|mailchimp)/.test(md)) add("info", "The Message-ID domain (" + md + ") is different from the From domain. This is common when a mail service sends for you."); }
+  recv.forEach(function (x, i) { if (x.delay != null && x.delay < -60) add("warn", "Hop " + (i + 1) + " has a timestamp " + fmtDur(-x.delay) + " earlier than the one before it, which points to clock differences between servers."); else if (x.delay != null && x.delay >= 300) add("warn", "Hop " + (i + 1) + " took " + fmtDur(x.delay) + " (from " + (recv[i - 1].by || "previous hop") + " to " + (x.by || "next hop") + "). Long gaps are usually queues, greylisting or filtering."); });
+  if (total != null && total >= 3600) add("warn", "The message took " + fmtDur(total) + " end to end."); 
+  if (recv.some(function (x) { return /^unknown$/i.test(x.from); })) add("info", "At least one hop reports its sending host as unknown.");
+  if (!recv.length) add("warn", "No Received headers were found, so the delivery path cannot be traced.");
+  var first = null; recv.forEach(function (x) { if (first) return; x.ips.forEach(function (ip) { if (!first && !priv(ip)) first = ip; }); });
+  var spamS = get(h, "X-Spam-Status"), spamL = get(h, "X-Spam-Score") || get(h, "X-Spam-Level"); if (/^yes/i.test(spamS)) add("bad", "X-Spam-Status says Yes."); 
+  var bad = F.filter(function (x) { return x.s === "bad"; }).length, warn = F.filter(function (x) { return x.s === "warn"; }).length;
+  var verdict = bad ? { k: "bad", t: "Suspicious: " + bad + " serious issue" + (bad > 1 ? "s" : "") + " found" } : warn ? { k: "warn", t: "Mostly consistent, with " + warn + " thing" + (warn > 1 ? "s" : "") + " to check" } : { k: "ok", t: "Looks consistent" };
+  return { h: h, recv: recv, F: F, au: au, sigs: sigs, total: total, verdict: verdict, first: first, from: from, fa: fa, fd: fd, rp: rp, rd: rd, ra: ra, spam: spamS || spamL };
+}
+function fmtDur(s) { s = Math.abs(Math.round(s)); if (s < 60) return s + " s"; if (s < 3600) return Math.floor(s / 60) + " min " + (s % 60) + " s"; return Math.floor(s / 3600) + " h " + Math.floor((s % 3600) / 60) + " min"; }
+function dlab(d) { return d == null ? "n/a" : d < 0 ? "-" + fmtDur(-d) : fmtDur(d); }
+function dcol(d) { return d == null ? "#94a3b8" : d < 0 ? "#a16207" : d < 10 ? "#047857" : d < 120 ? "#d97706" : "#dc2626"; }
+function trunc(s, n) { s = String(s || ""); return s.length > n ? s.slice(0, n - 1) + "…" : s; }
+function tl(r) {
+  var n = r.recv.length; if (!n) return ""; var W = 640, step = n > 1 ? Math.min(150, (W - 80) / (n - 1)) : 0, x0 = n > 1 ? (W - step * (n - 1)) / 2 : W / 2, s = '<svg viewBox="0 0 ' + W + ' 150" width="100%" role="img" aria-label="Delivery path with ' + n + ' hops"><title>Delivery path</title><g font-size="11" fill="currentColor" text-anchor="middle">';
+  r.recv.slice(0, 12).forEach(function (x, i) { var cx = x0 + step * i; if (i > 0) { var px = x0 + step * (i - 1); s += '<line class="dt-pop" x1="' + (px + 14) + '" y1="62" x2="' + (cx - 14) + '" y2="62" stroke="' + dcol(x.delay) + '" stroke-width="3"/><text x="' + ((px + cx) / 2) + '" y="50" font-size="10" font-weight="700" fill="' + dcol(x.delay) + '">' + esc(dlab(x.delay)) + "</text>"; }
+    s += '<circle cx="' + cx + '" cy="62" r="14" fill="#e0f2fe" stroke="#0369a1" stroke-width="2"/><text x="' + cx + '" y="66" font-weight="700">' + (i + 1) + '</text><text x="' + cx + '" y="94">' + esc(trunc(x.by || x.from || "unknown", 18)) + '</text><text x="' + cx + '" y="108" font-size="10" opacity=".7">' + esc(x.via || "") + "</text>"; });
+  return s + '<text x="' + (W / 2) + '" y="140" font-size="10" opacity=".7">Oldest hop on the left, newest on the right. Line color shows the wait: green under 10 s, amber under 2 min, red longer.</text></g></svg>';
+}
+function kv(k, v) { return "<tr><th scope=\"row\">" + esc(k) + "</th><td>" + (v ? esc(v) : '<span class="dc-note">not present</span>') + "</td></tr>"; }
+function renderSum(r) {
+  var s = '<div class="ab-verdict ab-' + r.verdict.k + '"><b>' + esc(r.verdict.t) + '</b><br><span class="dc-note">This is a rule-based check of the headers you pasted. A mismatch is a reason to look closer, not proof of fraud.</span></div>';
+  s += '<h3 class="ev-h">Findings</h3><ul class="qr-tips">' + r.F.map(function (f) { return "<li>" + badge(f.s === "ok" ? "ok" : f.s === "bad" ? "bad" : "warn", f.s === "ok" ? "OK" : f.s === "bad" ? "Problem" : f.s === "info" ? "Note" : "Check") + " " + esc(f.t) + "</li>"; }).join("") + "</ul>";
+  var g = function (n) { return get(r.h, n); };
+  s += '<h3 class="ev-h">Key fields</h3><div class="dc-scroll"><table class="ab-tbl">' + kv("From", g("From")) + kv("To", g("To")) + kv("Reply-To", g("Reply-To")) + kv("Return-Path", g("Return-Path")) + kv("Subject", g("Subject")) + kv("Date", g("Date")) + kv("Message-ID", g("Message-ID")) + kv("Mailer", g("X-Mailer") || g("User-Agent")) + kv("List-Unsubscribe", g("List-Unsubscribe")) + kv("Likely originating IP", r.first || "") + kv("Total transit time", r.total == null ? "" : fmtDur(r.total)) + (r.spam ? kv("Spam header", r.spam) : "") + "</table></div>";
+  return s;
+}
+function renderHops(r) {
+  if (!r.recv.length) return '<p class="dc-note">No Received headers found.</p>';
+  return '<div class="dt-fig">' + tl(r) + '</div><div class="dc-scroll"><table class="ab-tbl"><tr><th>#</th><th>From</th><th>By</th><th>With</th><th>IP</th><th>Time (UTC)</th><th>Delay</th></tr>' + r.recv.map(function (x, i) { return "<tr><td>" + (i + 1) + "</td><td>" + esc(x.from || "n/a") + "</td><td>" + esc(x.by || "n/a") + "</td><td>" + esc(x.via || "n/a") + "</td><td>" + esc(x.ips.join(", ") || "n/a") + "</td><td>" + esc(x.t == null ? "n/a" : new Date(x.t).toISOString().replace("T", " ").slice(0, 19)) + "</td><td style=\"color:" + dcol(x.delay) + ';font-weight:700">' + esc(dlab(x.delay)) + "</td></tr>"; }).join("") + "</table></div>";
+}
+function renderAuth(r) {
+  var card = function (k, lab) { var a = r.au[k], c = !a ? "warn" : a.r === "pass" ? "ok" : /fail|error/.test(a.r) ? "bad" : "warn"; return '<div class="ab-verdict ab-' + c + '"><b>' + lab + ": " + esc(a ? a.r.toUpperCase() : "NOT FOUND") + '</b><br><span class="dc-note">' + esc(a ? trunc(a.seg, 220) : "No result in the pasted headers.") + "</span></div>"; };
+  var s = card("spf", "SPF") + card("dkim", "DKIM") + card("dmarc", "DMARC");
+  s += '<h3 class="ev-h">Alignment</h3><div class="dc-scroll"><table class="ab-tbl"><tr><th>Item</th><th>Domain</th><th>Matches From?</th></tr><tr><td>From</td><td>' + esc(r.fd || "n/a") + "</td><td>n/a</td></tr><tr><td>Return-Path (SPF)</td><td>" + esc(r.rd || "n/a") + "</td><td>" + (r.rd && r.fd ? (aligned(r.rd, r.fd) ? "Yes" : "No") : "n/a") + "</td></tr>" + (r.sigs.length ? r.sigs.map(function (x) { return "<tr><td>DKIM (selector " + esc(x.s) + ")</td><td>" + esc(x.d) + "</td><td>" + (aligned(x.d, r.fd) ? "Yes" : "No") + "</td></tr>"; }).join("") : "<tr><td>DKIM</td><td>none</td><td>n/a</td></tr>") + "</table></div>";
+  return s + '<p class="dc-note">Results come from headers added by the receiving server. This tool cannot look up DNS records. Check your own records with the DMARC and SPF Record Generator.</p>';
+}
+function renderAll(r) {
+  var q = $("ehFilter").value.trim().toLowerCase(), rows = r.h.filter(function (x) { return !q || x.n.toLowerCase().indexOf(q) >= 0 || x.v.toLowerCase().indexOf(q) >= 0; });
+  return '<p class="dc-note">' + rows.length + " of " + r.h.length + ' headers</p><div class="dc-scroll"><table class="ab-tbl"><tr><th>Header</th><th>Value</th></tr>' + rows.slice(0, 400).map(function (x) { return "<tr><td>" + esc(x.n) + "</td><td style=\"overflow-wrap:anywhere\">" + esc(x.v) + "</td></tr>"; }).join("") + "</table></div>";
+}
+function reportText(r) {
+  var L = ["EMAIL HEADER ANALYSIS", "Verdict: " + r.verdict.t, "", "FINDINGS"]; r.F.forEach(function (f) { L.push("[" + f.s.toUpperCase() + "] " + f.t); });
+  L.push("", "KEY FIELDS"); ["From", "To", "Reply-To", "Return-Path", "Subject", "Date", "Message-ID"].forEach(function (n) { L.push(n + ": " + (get(r.h, n) || "-")); });
+  L.push("Likely originating IP: " + (r.first || "-"), "Total transit time: " + (r.total == null ? "-" : fmtDur(r.total)), "", "AUTHENTICATION"); ["spf", "dkim", "dmarc"].forEach(function (k) { L.push(k.toUpperCase() + ": " + (r.au[k] ? r.au[k].r : "not found")); });
+  L.push("", "HOPS (oldest first)"); r.recv.forEach(function (x, i) { L.push((i + 1) + ". from " + (x.from || "?") + " by " + (x.by || "?") + " [" + x.ips.join(", ") + "] " + (x.t == null ? "" : new Date(x.t).toISOString()) + " delay " + dlab(x.delay)); });
+  return L.join("\n");
+}
+function setTab(k) { ST.tab = k; setTabs("ehTabs", [["sum", "eh-sum"], ["hops", "eh-hops"], ["auth", "eh-auth"], ["all", "eh-all"]], k); }
+function run() {
+  var t = $("ehIn").value, r = ST.res = t.trim() ? analyze(t) : null;
+  if (!r) { ST.report = ""; var m = t.trim() ? '<p class="dc-note">No headers found. Paste the raw headers, which are lines such as Received: and From: with no body text.</p>' : '<p class="dc-note">Paste email headers above, or load an example.</p>'; ["ehSum", "ehHops", "ehAuth", "ehAll"].forEach(function (i) { $(i).innerHTML = m; }); return; }
+  ST.report = reportText(r); $("ehSum").innerHTML = renderSum(r); $("ehHops").innerHTML = renderHops(r); $("ehAuth").innerHTML = renderAuth(r); $("ehAll").innerHTML = renderAll(r);
+}
+function init() {
+  initCommon();
+  $("ehIn").addEventListener("input", run); $("ehFilter").addEventListener("input", function () { if (ST.res) $("ehAll").innerHTML = renderAll(ST.res); });
+  $("ehEx").addEventListener("click", function () { $("ehIn").value = EX1; run(); setTab("sum"); });
+  $("ehEx2").addEventListener("click", function () { $("ehIn").value = EX2; run(); setTab("sum"); });
+  $("ehTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) setTab(b.getAttribute("data-tab")); });
+  $("resetBtn").addEventListener("click", function () { $("ehIn").value = ""; $("ehFilter").value = ""; run(); setTab("sum"); msg("Reset."); });
+  bindAct("eh", { code: function () { return ST.report; }, file: function () { return "email-header-analysis.txt"; }, mime: "text/plain", title: "Email header analysis", site: "Free online email header analyzer", note: "", rows: function () { return []; } });
+  window.fillReport = function () {
+    var r = ST.res, b = repBox(); repHead(b, "Email header analysis", "Free online email header analyzer"); if (!r) { repAdd(b, "p", "Paste email headers to see an analysis."); return; } repAdd(b, "h3", "Verdict: " + r.verdict.t);
+    repTbl(b, ["Result", "Finding"], r.F.map(function (f) { return [f.s === "ok" ? "OK" : f.s === "bad" ? "Problem" : f.s === "info" ? "Note" : "Check", f.t]; }));
+    repAdd(b, "h3", "Key fields"); repTbl(b, ["Field", "Value"], ["From", "To", "Reply-To", "Return-Path", "Subject", "Date", "Message-ID"].map(function (n) { return [n, get(r.h, n) || "-"]; }).concat([["Likely originating IP", r.first || "-"], ["Total transit time", r.total == null ? "-" : fmtDur(r.total)]]));
+    repAdd(b, "h3", "Authentication"); repTbl(b, ["Check", "Result"], ["spf", "dkim", "dmarc"].map(function (k) { return [k.toUpperCase(), r.au[k] ? r.au[k].r : "not found"]; }));
+    if (r.recv.length) { repAdd(b, "h3", "Delivery hops (oldest first)"); repFig(b, tl(r)); repTbl(b, ["#", "By", "From", "Delay"], r.recv.map(function (x, i) { return [String(i + 1), x.by || "n/a", x.from || "n/a", dlab(x.delay)]; })); }
+    repDisc(b, "A rule-based reading of pasted headers. Mismatches are reasons to look closer, not proof of fraud. Headers can be forged below the first trusted hop.");
+  };
+}
+init();
+
+})();
+</script>
+</body>
+</html>

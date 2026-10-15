@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Email Spam Word Checker: Test Your Email Text</title>
+<meta name="description" content="Free online email spam word checker. Find spam trigger words, risky links and caps, see a risk score and get safer wording before you send. No sign-up, private.">
+<link rel="canonical" href="https://utiliby.com/tools/email-tools/email-spam-word-checker/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Email Spam Word Checker: Test Your Email Text">
+<meta property="og:description" content="Free online email spam word checker. Paste your subject and message to find spam trigger words and risky structure, get a score and safer wording ideas.">
+<meta property="og:url" content="https://utiliby.com/tools/email-tools/email-spam-word-checker/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Email Spam Word Checker: Test Your Email Text">
+<meta name="twitter:description" content="Free online email spam word checker. Paste your subject and message to find spam trigger words and risky structure, get a score and safer wording ideas.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.qr-wrap{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,420px);gap:18px;align-items:start}
+@media(max-width:900px){.qr-wrap{grid-template-columns:minmax(0,1fr)}.qr-side{order:-1}}
+.qr-tips{list-style:none;margin:6px 0;padding:0}.qr-tips li{margin:6px 0;font-size:.88rem}
+.ab-verdict{padding:12px 14px;border-radius:12px;font-weight:600;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.ab-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.ab-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.ab-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}
+.ab-tbl th,.ab-tbl td{text-align:left;vertical-align:top}
+.ab-big{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:10px 0}.ab-big div{border:1px solid var(--line);border-radius:12px;padding:10px 12px}.ab-big b{display:block;font-size:1.4rem;overflow-wrap:anywhere}.ab-big span{font-size:.82rem;opacity:.8}
+
+.dc-sw{display:inline-block;width:22px;height:22px;border-radius:6px;border:1px solid rgba(128,128,128,.5);vertical-align:middle}
+.dc-note{font-size:.8rem;color:var(--muted)}
+.cn-article code,.cn-article li,.cn-article p,.cn-article td{overflow-wrap:anywhere}
+.cn-article code{white-space:normal}
+.dt-row2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:480px){.dt-row2{grid-template-columns:1fr}}
+#tool input[type=range]{padding:0;width:100%}
+#tool input[type=color]{padding:2px;height:40px;cursor:pointer}
+.im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}.im-chk input{width:auto}.im-chk label{margin:0;font-weight:500;text-transform:none;letter-spacing:0}
+.seo-code{margin:8px 0;padding:12px;border:1px solid var(--line);border-radius:10px;background:var(--bg);font:.8rem/1.5 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;overflow:auto;max-height:340px;max-width:100%;tab-size:2;user-select:all}
+.seo-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:10px 0}.seo-tabs button{padding:6px 14px;font-size:.82rem;margin:0}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 4px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+.dc-big{height:84px;border-radius:12px;border:1px solid var(--line);margin:8px 0;transition:background .12s}
+.dc-vals{display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:8px;margin:10px 0}
+.dc-val{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;border:1px solid var(--line);border-radius:10px;padding:6px 8px;background:var(--bg);min-width:0}
+.dc-val b{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);min-width:64px;white-space:nowrap}
+.dc-val code{flex:1 1 130px;font-size:.8rem;overflow-wrap:anywhere;min-width:0}
+.dc-val button{padding:3px 9px;font-size:.72rem;border-radius:6px;border:1px solid var(--line);background:transparent;color:#0369a1;cursor:pointer;font-family:inherit;font-weight:700}
+@media(prefers-color-scheme:dark){.dc-val button{color:#7dd3fc}}
+.dc-strip{display:flex;border-radius:10px;overflow:hidden;border:1px solid var(--line);margin:8px 0}
+.dc-strip>div{flex:1;min-height:56px;display:flex;align-items:flex-end;justify-content:center;font-size:.66rem;font-weight:700;padding:3px 1px;min-width:0;overflow:hidden}
+.dc-cards{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0}
+.dc-card{flex:1 1 110px;min-width:96px;border:1px solid var(--line);border-radius:10px;overflow:hidden;background:var(--bg);text-align:center;font-size:.76rem}
+.dc-card i{display:block;height:54px}.dc-card span{display:block;padding:4px 2px;overflow-wrap:anywhere}
+.dc-card button{border:0;background:transparent;color:#0369a1;cursor:pointer;font-weight:700;font-size:.72rem;padding:2px 6px 5px;font-family:inherit}
+@media(prefers-color-scheme:dark){.dc-card button{color:#7dd3fc}}
+.dc-tbl{width:100%;border-collapse:collapse;font-size:.82rem;margin:8px 0}.dc-tbl th,.dc-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:middle}.dc-tbl th{background:var(--card)}
+.dc-scroll{overflow-x:auto;max-width:100%}
+
+.qr-side input,.qr-side select,.qr-side textarea{min-width:0;max-width:100%;box-sizing:border-box}.qr-side .dt-row>div{min-width:0}
+.ab-tbl{width:100%;border-collapse:collapse;font-size:.85rem}.ab-tbl th,.ab-tbl td{border:1px solid var(--line);padding:5px 8px;text-align:left;vertical-align:top}.ab-tbl th{background:var(--card)}
+.ev-h{font-size:1rem;margin:14px 0 6px}
+#spBody{width:100%;min-height:240px;font:.85rem/1.5 ui-monospace,Menlo,Consolas,monospace}
+.sp-m{padding:0 3px;border-radius:4px;color:#111827}
+.sp-money{background:#fde68a}.sp-urgency{background:#fdba74}.sp-claims{background:#fca5a5}.sp-scam{background:#f87171}.sp-health{background:#c4b5fd}
+.sp-leg{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;font-size:.8rem}
+.sp-box{border:1px solid var(--line);border-radius:10px;padding:10px 12px;margin:8px 0;background:var(--bg);overflow-wrap:anywhere;line-height:1.6}
+#spDial{text-align:center}#spDial svg{display:block;margin:0 auto}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Email Spam Word Checker","url":"https://utiliby.com/tools/email-tools/email-spam-word-checker/","description":"Free online email spam word checker. Scan an email subject and body for spam trigger words, excessive capitals and punctuation, link shorteners, mismatched links, mostly-image layouts, hidden text and missing unsubscribe lines, see a risk score dial, highlighted text and safer wording suggestions. Runs in your browser.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Risk score dial","Over 100 trigger phrases","Structure checks","Highlighted text","Safer wording ideas","Plain text and HTML","Printable report"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I use this free email spam word checker?","acceptedAnswer":{"@type":"Answer","text":"Paste your subject line and email body, and read the risk score, the list of trigger words, the structure checks and the safer wording ideas. Edit your text and the score updates at once."}},{"@type":"Question","name":"Is this spam checker really free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is a free online tool with no sign-up and no limit. Your text stays in your browser."}},{"@type":"Question","name":"What are spam trigger words?","acceptedAnswer":{"@type":"Answer","text":"They are words and phrases such as free money, act now, risk-free and you have won that appear far more often in spam than in normal mail. Filters use them as one signal among many."}},{"@type":"Question","name":"Do spam words still matter?","acceptedAnswer":{"@type":"Answer","text":"Less than they used to. Modern filters weigh sender reputation, authentication, engagement and complaints more heavily. But hype wording can still add to a score and puts readers off, so it is worth removing."}},{"@type":"Question","name":"Will my email go to spam if it contains the word free?","acceptedAnswer":{"@type":"Answer","text":"Not by itself. A single word rarely decides it. The tool gives common words a small weight and strong scam phrases a larger one, and adds up the total."}},{"@type":"Question","name":"What is a good spam score?","acceptedAnswer":{"@type":"Answer","text":"In this tool, 0 to 14 is low risk, 15 to 34 is moderate, 35 to 59 is high and 60 or more is very high. The scale is a guide for writing, not a measure used by mail providers."}},{"@type":"Question","name":"Does the tool check my domain or IP reputation?","acceptedAnswer":{"@type":"Answer","text":"No. It checks only the text. For authentication, use the DMARC and SPF Record Generator, and for message paths use the Email Header Analyzer."}},{"@type":"Question","name":"What does the structure check look at?","acceptedAnswer":{"@type":"Answer","text":"The share of capital letters, exclamation marks, number of links, link shorteners, links that go somewhere other than they say, mostly-image emails, missing unsubscribe wording and similar signals."}},{"@type":"Question","name":"Why are capital letters a problem?","acceptedAnswer":{"@type":"Answer","text":"All caps looks like shouting and is common in spam. Filters and readers both react badly to it. Use sentence case and let the content do the work."}},{"@type":"Question","name":"Are link shorteners bad for email?","acceptedAnswer":{"@type":"Answer","text":"They are often used to hide where a link goes, so many filters distrust them. Use your full, branded domain in email links."}},{"@type":"Question","name":"What is the image-to-text ratio?","acceptedAnswer":{"@type":"Answer","text":"Emails that are mostly pictures with little text can look like attempts to hide wording from filters. Aim for real text with supporting images, and add alt text."}},{"@type":"Question","name":"Can I paste HTML?","acceptedAnswer":{"@type":"Answer","text":"Yes. The tool detects HTML, reads the visible text and also checks links, images and hidden text in the code."}},{"@type":"Question","name":"Does an unsubscribe link help deliverability?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is required by law for marketing email in many places and it gives unhappy readers a way out that is not the spam button, which protects your reputation."}},{"@type":"Question","name":"What should I write instead of click here?","acceptedAnswer":{"@type":"Answer","text":"Use link text that says where the link goes, such as Read the full guide. It is better for readers, for accessibility and for filters."}},{"@type":"Question","name":"Can I add my own words to flag?","acceptedAnswer":{"@type":"Answer","text":"Yes. Type extra words or phrases separated by commas in the extra words box and the tool will count them as triggers."}},{"@type":"Question","name":"How can I improve deliverability beyond wording?","acceptedAnswer":{"@type":"Answer","text":"Authenticate your domain, send only to people who asked, remove bounces, keep complaint rates low and send content people want. Warm up new domains slowly."}},{"@type":"Question","name":"Can I save or print the report?","acceptedAnswer":{"@type":"Answer","text":"Yes. Copy the report, download it as a text file or print or save a one-page report."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Email Tools","item":"https://utiliby.com/tools/email-tools/"},{"@type":"ListItem","position":3,"name":"Email Spam Word Checker","item":"https://utiliby.com/tools/email-tools/email-spam-word-checker/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/email-tools/">Email</a> › Email Spam Word Checker</nav>
+<h1 class="noembed">Free Online Email Spam Word Checker</h1>
+<p class="lead noembed">Free online email spam word checker. Paste your subject and message, find spam trigger words and risky structure, and get a score and safer wording. Private.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/email-tools/email-spam-word-checker/" target="_blank" rel="noopener">Email Spam Word Checker by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Email spam word checker">
+<div class="dt-hero noembed">
+<h2>Free Online Email Spam Word Checker</h2>
+<p>Paste your subject and message to find spam trigger words, risky structure and weak points, see a risk score and get safer wording ideas.</p>
+</div>
+<div class="dt-panel"><div class="qr-wrap"><div class="qr-side"><div><label for="spSub">Subject line</label><input type="text" id="spSub" placeholder="Your October newsletter" autocomplete="off" spellcheck="false"></div><div><label for="spBody">Email body (plain text or HTML)</label><textarea id="spBody" rows="10" placeholder="Paste your email here..." spellcheck="false"></textarea></div><p><button type="button" class="dt-btn small ghost" id="spEx1">Load a spammy example</button> <button type="button" class="dt-btn small ghost" id="spEx2">Load a clean example</button></p><div class="dt-row"><div><label for="spSens">Sensitivity</label><select id="spSens"><option value="normal">Normal</option><option value="strict">Strict</option><option value="lenient">Lenient</option></select></div><div><label for="spExtra">Extra words to flag (optional)</label><input type="text" id="spExtra" placeholder="word one, word two" autocomplete="off" spellcheck="false"></div></div></div><div><div id="spDial"></div><div id="spSum" aria-live="polite"></div><div class="seo-tabs" id="spTabs" role="group" aria-label="Results"><button type="button" class="dt-btn" data-tab="rep">Report</button><button type="button" class="dt-btn ghost" data-tab="hi">Highlighted text</button><button type="button" class="dt-btn ghost" data-tab="fix">What to say instead</button></div><div id="sp-rep"><div id="spList"></div><div id="spChecks"></div></div><div id="sp-hi" hidden><div id="spHi"></div></div><div id="sp-fix" hidden><div id="spFix"></div></div></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="spCopy">Copy report</button>
+<button type="button" class="dt-btn ghost" id="spDl">Download report</button>
+<button type="button" class="dt-btn ghost" id="spPrint">Print / save report</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online email spam word checker runs in your browser and does not send your text anywhere. It scores wording and structure with simple rules and a built-in list of phrases that are common in unwanted mail. It cannot see your sender reputation, domain authentication, list quality or how recipients react, which matter far more to real spam filters. A low score does not guarantee inbox delivery and a high score does not mean a message will be blocked. Use the results as writing advice, and only send email to people who have agreed to receive it.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/email-tools/email-spam-word-checker/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Email Spam Word Checker. https://utiliby.com/tools/email-tools/email-spam-word-checker/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/email-tools/email-spam-word-checker/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Email Spam Word Checker by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/email-tools/email-spam-word-checker/"&gt;Email Spam Word Checker by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 15, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online email spam word checker does</a></li><li><a href="#how">How to check an email for spam words step by step</a></li><li><a href="#how-filters">How spam filters actually decide</a></li><li><a href="#categories">The kinds of words that raise a score</a></li><li><a href="#structure">Structure and formatting signals</a></li><li><a href="#writing">How to write email that avoids the spam folder</a></li><li><a href="#fix">If your emails already land in spam</a></li><li><a href="#law">Honesty and the law</a></li><li><a href="#glossary">Quick glossary</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online email spam word checker does</h2>
+<p>Every day mailbox providers block or hide billions of unwanted messages, and sometimes they catch good email by mistake. Marketers, small businesses and anyone who writes bulk or cold email want to know whether their message looks like spam before it goes out. This free online <b>email spam word checker</b> reads your subject line and message and gives you a <b>spam risk score</b> from 0 to 100, a list of <b>spam trigger words</b> and phrases found in your text, and a set of structure checks for the things filters notice: capital letters, exclamation marks, too many links, link shorteners, links that disguise their real destination, mostly-image layouts, hidden text and a missing unsubscribe line.</p><p>Your text is highlighted by type of trigger, and a What to say instead tab gives calmer, more honest wording. You can paste plain text or full HTML, set the sensitivity and add your own words to flag. Nothing leaves your browser.</p><figure class="dt-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Spam filters weigh wording, structure, authentication and reputation to decide between inbox and spam folder"><title>What spam filters weigh</title>
+<g font-size="12" fill="currentColor" text-anchor="middle"><rect x="14" y="14" width="170" height="40" rx="8" fill="#fef9c3" stroke="#a16207"/><text x="99" y="38">Wording and subject</text><rect x="14" y="62" width="170" height="40" rx="8" fill="#fef9c3" stroke="#a16207"/><text x="99" y="86">Links, images, layout</text><rect x="14" y="110" width="170" height="40" rx="8" fill="#e0f2fe" stroke="#0369a1"/><text x="99" y="134">SPF, DKIM, DMARC</text><rect x="14" y="158" width="170" height="28" rx="8" fill="#e0f2fe" stroke="#0369a1"/><text x="99" y="177">Sender reputation, complaints</text>
+<rect x="260" y="56" width="120" height="76" rx="12" fill="#fff" stroke="#64748b" stroke-width="2"/><text x="320" y="88" font-weight="700">Filter</text><text x="320" y="108" font-size="11">adds up signals</text>
+<rect x="470" y="22" width="156" height="44" rx="10" fill="#dcfce7" stroke="#047857"/><text x="548" y="49" font-weight="700">Inbox</text><rect x="470" y="122" width="156" height="44" rx="10" fill="#fee2e2" stroke="#dc2626"/><text x="548" y="149" font-weight="700">Spam folder</text></g>
+<path class="dt-pop" d="M186 34L258 80M186 82L258 90M186 130L258 104M186 172L258 116M382 80L468 46M382 108L468 140" stroke="#64748b" stroke-width="2" fill="none"/></svg>
+<figcaption>This tool checks the top two boxes. Authentication and reputation count for more, so fix those too.</figcaption></figure>
+<h2 id="how">How to check an email for spam words step by step</h2>
+<ol><li><b>Paste the subject line</b> in the first box.</li><li><b>Paste the body.</b> Plain text and HTML both work.</li><li><b>Read the score.</b> The dial and label show the risk level.</li><li><b>Look at the trigger list.</b> Each phrase shows where it is, how often and what kind it is.</li><li><b>Check the structure notes.</b> Fix problems marked in red first.</li><li><b>Open the highlighted text</b> to see the words in context.</li><li><b>Rewrite</b> using the What to say instead tab, and watch the score fall.</li><li><b>Test in a real inbox</b> before the full send.</li></ol>
+<h2 id="how-filters">How spam filters actually decide</h2>
+<p>A spam filter is not a list of banned words. It is a scoring system that adds up many signals. The biggest signals are about the sender: is the domain authenticated with SPF, DKIM and DMARC, does the sending address have a good history, do recipients open and reply, and how many mark the message as spam. Next come technical signals such as the sending server and the links. Content comes last: wording, layout and the balance of text and images. A trusted sender can use words that would sink an unknown one. This is why the tool is best used as writing advice, together with proper authentication from the <a href="/tools/email-tools/dmarc-record-generator/">DMARC and SPF Record Generator</a> and a clean list from the <a href="/tools/email-tools/email-validator/">Email Validator and List Cleaner</a>.</p>
+<h2 id="categories">The kinds of words that raise a score</h2>
+<div class="dt-wrap"><table><tr><th>Type</th><th>Examples</th><th>Why filters care</th></tr><tr><td>Money and offers</td><td>make money, cash bonus, no fees</td><td>Common in get-rich and loan spam</td></tr><tr><td>Urgency and pressure</td><td>act now, last chance, today only</td><td>Pushes readers to act without thinking</td></tr><tr><td>Hype and guarantees</td><td>100% guaranteed, risk-free, miracle</td><td>Unverifiable claims</td></tr><tr><td>Scam-style wording</td><td>you have won, dear friend, verify your account</td><td>Typical of phishing and prize scams</td></tr><tr><td>Health claims</td><td>miracle cure, burn fat</td><td>Common in illegal pill and supplement spam</td></tr></table></div><p>Context matters. A bank that really needs a customer to verify an account has to say so, and a real sale really can end today. The aim is not to avoid every word, but to avoid hype, pressure and vagueness, and to say true things plainly.</p>
+<h2 id="structure">Structure and formatting signals</h2>
+<ul><li><b>Capital letters:</b> a high share of capitals looks like shouting.</li><li><b>Punctuation:</b> several exclamation marks, or runs of !!! and ???, are penalised.</li><li><b>Links:</b> too many links, link shorteners and bare IP addresses all lower trust.</li><li><b>Mismatched links:</b> text that shows one address while the link goes to another looks like phishing.</li><li><b>Images:</b> an email that is one big picture hides its wording from filters and readers who block images.</li><li><b>Hidden text:</b> tiny or invisible keyword text is a well-known trick and is punished.</li><li><b>Unsubscribe:</b> marketing messages without an opt-out are riskier and often illegal.</li><li><b>Attachments:</b> executable files are blocked almost everywhere, and bulk attachments lower trust.</li></ul>
+<h2 id="writing">How to write email that avoids the spam folder</h2>
+<ul><li><b>Be honest and specific.</b> Say what you are offering and for whom.</li><li><b>Write to one person.</b> Use a real sender name and, where you can, the reader's name.</li><li><b>Use plain link text.</b> Read the guide beats Click here.</li><li><b>Keep it balanced.</b> Real text, a few images, alt text on each.</li><li><b>Add an opt-out and your postal address.</b></li><li><b>Test your subject line.</b> The <a href="/tools/email-tools/email-subject-line-generator/">Email Subject Line Generator</a> checks length and wording for you.</li><li><b>Build clean HTML.</b> The <a href="/tools/email-tools/html-email-template-builder/">HTML Email Template Builder</a> produces lightweight, table-based code.</li></ul>
+<h2 id="fix">If your emails already land in spam</h2>
+<p>Send a test message to a Gmail and an Outlook mailbox you control, and open the full headers in the <a href="/tools/email-tools/email-header-analyzer/">Email Header Analyzer</a> to see whether SPF, DKIM and DMARC passed and aligned. Check that your list contains only people who agreed to hear from you, remove bounces and long-term non-openers, and keep your complaint rate very low. Warm up new domains and send volume gradually. If you collect addresses from your own documents, extract and then validate them with the <a href="/tools/email-tools/email-extractor/">Email Extractor</a> and the validator, and only email people who have a genuine relationship with you.</p>
+<h2 id="law">Honesty and the law</h2>
+<p>Avoiding spam filters is not about tricking them. It is about sending mail people want and presenting it honestly. In the United States, CAN-SPAM forbids deceptive headers and subject lines, and requires a postal address and a working opt-out. The EU and UK require a legal basis, usually consent, for marketing to individuals. Using this tool to disguise unwanted or deceptive mail is not its purpose and would not work against modern filters anyway.</p>
+<h2 id="glossary">Quick glossary</h2>
+<ul><li><b>Trigger word:</b> a word or phrase that appears much more often in spam than in normal mail.</li><li><b>Spam trap:</b> an address that exists only to catch senders with poor list habits.</li><li><b>Sender reputation:</b> a provider's record of how recipients treat your mail.</li><li><b>Complaint rate:</b> the share of recipients who mark your mail as spam.</li><li><b>Bounce:</b> a message that could not be delivered.</li><li><b>Double opt-in:</b> asking new subscribers to confirm by clicking a link.</li><li><b>Warm-up:</b> raising send volume slowly on a new domain or address.</li><li><b>Phishing:</b> deceptive mail that tries to steal sign-in or payment details.</li></ul>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The phrase list is a general-purpose sample, not a copy of any provider's rules, and providers do not publish theirs. The score is a guide to wording and structure and cannot predict placement. Always test with real inboxes, and send only permission-based email.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I use this free email spam word checker?</summary><p>Paste your subject line and email body, and read the risk score, the list of trigger words, the structure checks and the safer wording ideas. Edit your text and the score updates at once.</p></details><details><summary>Is this spam checker really free?</summary><p>Yes. It is a free online tool with no sign-up and no limit. Your text stays in your browser.</p></details><details><summary>What are spam trigger words?</summary><p>They are words and phrases such as free money, act now, risk-free and you have won that appear far more often in spam than in normal mail. Filters use them as one signal among many.</p></details><details><summary>Do spam words still matter?</summary><p>Less than they used to. Modern filters weigh sender reputation, authentication, engagement and complaints more heavily. But hype wording can still add to a score and puts readers off, so it is worth removing.</p></details><details><summary>Will my email go to spam if it contains the word free?</summary><p>Not by itself. A single word rarely decides it. The tool gives common words a small weight and strong scam phrases a larger one, and adds up the total.</p></details><details><summary>What is a good spam score?</summary><p>In this tool, 0 to 14 is low risk, 15 to 34 is moderate, 35 to 59 is high and 60 or more is very high. The scale is a guide for writing, not a measure used by mail providers.</p></details><details><summary>Does the tool check my domain or IP reputation?</summary><p>No. It checks only the text. For authentication, use the DMARC and SPF Record Generator, and for message paths use the Email Header Analyzer.</p></details><details><summary>What does the structure check look at?</summary><p>The share of capital letters, exclamation marks, number of links, link shorteners, links that go somewhere other than they say, mostly-image emails, missing unsubscribe wording and similar signals.</p></details><details><summary>Why are capital letters a problem?</summary><p>All caps looks like shouting and is common in spam. Filters and readers both react badly to it. Use sentence case and let the content do the work.</p></details><details><summary>Are link shorteners bad for email?</summary><p>They are often used to hide where a link goes, so many filters distrust them. Use your full, branded domain in email links.</p></details><details><summary>What is the image-to-text ratio?</summary><p>Emails that are mostly pictures with little text can look like attempts to hide wording from filters. Aim for real text with supporting images, and add alt text.</p></details><details><summary>Can I paste HTML?</summary><p>Yes. The tool detects HTML, reads the visible text and also checks links, images and hidden text in the code.</p></details><details><summary>Does an unsubscribe link help deliverability?</summary><p>Yes. It is required by law for marketing email in many places and it gives unhappy readers a way out that is not the spam button, which protects your reputation.</p></details><details><summary>What should I write instead of click here?</summary><p>Use link text that says where the link goes, such as Read the full guide. It is better for readers, for accessibility and for filters.</p></details><details><summary>Can I add my own words to flag?</summary><p>Yes. Type extra words or phrases separated by commas in the extra words box and the tool will count them as triggers.</p></details><details><summary>How can I improve deliverability beyond wording?</summary><p>Authenticate your domain, send only to people who asked, remove bounces, keep complaint rates low and send content people want. Warm up new domains slowly.</p></details><details><summary>Can I save or print the report?</summary><p>Yes. Copy the report, download it as a text file or print or save a one-page report.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>U.S. Federal Trade Commission, <a href="https://www.ftc.gov/business-guidance/resources/can-spam-act-compliance-guide-business" rel="noopener">CAN-SPAM Act: A compliance guide for business</a>.</li><li>Google, <a href="https://support.google.com/a/answer/81126" rel="noopener">Email sender guidelines</a>.</li><li>Google, <a href="https://support.google.com/mail/answer/81126" rel="noopener">Prevent mail from going to spam</a>.</li><li>Microsoft, <a href="https://learn.microsoft.com/en-us/defender-office-365/anti-spam-protection-about" rel="noopener">Anti-spam protection in Microsoft 365</a>.</li><li>IETF, <a href="https://www.rfc-editor.org/rfc/rfc7489" rel="noopener">RFC 7489: DMARC</a>.</li><li>Information Commissioner's Office, <a href="https://ico.org.uk/for-organisations/direct-marketing-and-privacy-and-electronic-communications/" rel="noopener">Direct marketing and electronic communications</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online email spam word checker runs in your browser and does not send your text anywhere. It scores wording and structure with simple rules and a built-in list of phrases that are common in unwanted mail. It cannot see your sender reputation, domain authentication, list quality or how recipients react, which matter far more to real spam filters. A low score does not guarantee inbox delivery and a high score does not mean a message will be blocked. Use the results as writing advice, and only send email to people who have agreed to receive it.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+
+/* ---------- email spam word checker ---------- */
+var ST = { tab: "rep", res: null, report: "" };
+var CATS = { money: "Money and offers", urgency: "Urgency and pressure", claims: "Hype and guarantees", scam: "Scam-style wording", health: "Health and miracle claims" };
+var RAW = [
+"make money|3|money|earn from the work you do, or describe the specific value","earn money|3|money|describe what the reader will actually get","extra cash|3|money|describe the benefit in plain words","easy money|4|money|remove it. It reads as a scam","fast cash|4|money|remove it","cash bonus|3|money|say what the reward is","free money|4|money|remove it","income from home|3|money|describe the role or product directly","double your|3|money|give a real, specific result","$$$|4|money|remove it","100% free|4|money|included at no extra cost","no cost|2|money|included","no fees|2|money|state the price clearly","no obligation|2|money|you can cancel any time","no strings attached|3|money|cancel any time","lowest price|3|money|a fair price","best price|2|money|a clear price","cheap|2|money|affordable","save big|3|money|save 20%","special promotion|2|money|our spring offer","credit card|2|money|payment details","no credit check|4|money|remove it","get paid|2|money|describe the payment","financial freedom|4|money|remove it","pure profit|4|money|remove it","million dollars|4|money|remove it","investment|1|money|plan","discount|1|money|offer","free|1|money|complimentary, included","bonus|1|money|extra","lowest rates|3|money|competitive rates","order now|3|urgency|see the options","buy now|3|urgency|shop the range","apply now|3|urgency|apply today","call now|3|urgency|call us when ready","click here|3|urgency|use link text that says where it goes, such as Read the guide","click below|2|urgency|use descriptive link text","act now|4|urgency|decide at your own pace","urgent|3|urgency|time-sensitive, if it truly is","limited time|3|urgency|ends Friday, if true","expires|2|urgency|ends on a real date","last chance|3|urgency|final reminder","hurry|3|urgency|remove it","don't delay|3|urgency|remove it","today only|3|urgency|ends tonight, if true","instant|2|urgency|quick","immediately|2|urgency|soon","while supplies last|3|urgency|limited stock, if true","what are you waiting for|3|urgency|remove it","once in a lifetime|4|urgency|remove it","final notice|3|urgency|reminder","offer expires|3|urgency|ends on a real date","guarantee|3|claims|promise, or state the actual return policy","100% guaranteed|4|claims|state the return policy","satisfaction guaranteed|3|claims|30-day returns","risk-free|3|claims|try it for 30 days","no risk|3|claims|cancel any time","miracle|4|claims|remove it","amazing|2|claims|describe what is good","incredible deal|3|claims|a clear offer","winner|4|claims|remove it","you have won|5|scam|remove it","you've won|5|scam|remove it","congratulations|3|scam|thank you","you've been selected|4|scam|you are invited","prize|3|scam|reward","free gift|3|claims|gift with purchase","free trial|2|claims|try it for 14 days","free access|3|claims|full access","free consultation|2|claims|a first call","this isn't spam|5|scam|remove it","not spam|5|scam|remove it","as seen on|2|claims|featured in","no questions asked|3|claims|easy returns","dear friend|4|scam|use the person's name","this is not a scam|5|scam|remove it","verify your account|4|scam|only if you truly send such emails, and link to the official site","confirm your identity|4|scam|link to the official site","account suspended|4|scam|remove it","social security|4|scam|remove it","wire transfer|4|scam|remove it","bank account|3|scam|payment details","inheritance|4|scam|remove it","lottery|5|scam|remove it","claim your reward|4|scam|remove it","password|2|scam|sign-in details","viagra|6|health|remove it","weight loss|3|health|healthy habits","lose weight|3|health|healthy habits","burn fat|4|health|remove it","anti-aging|3|health|skin care","cure|3|health|help with","miracle cure|5|health|remove it","no prescription|5|health|remove it","enlarge|5|health|remove it","clearance|1|money|end of season","exclusive deal|2|money|member offer","special offer|2|money|our offer","best deal|2|money|a good deal","unbeatable|3|claims|good","incredible|2|claims|strong","apply today|1|urgency|apply","be your own boss|3|money|remove it","work from home|2|money|remote role","multi-level|3|money|remove it","pyramid|4|money|remove it","dear sir|3|scam|use the person's name","dear customer|2|scam|use the person's name","unsubscribe me|1|claims|keep"
+];
+var PH = RAW.map(function (r) { var p = r.split("|"); return { p: p[0], w: +p[1], c: p[2], s: p[3] }; }).sort(function (a, b) { return b.p.length - a.p.length; });
+var SHORT = ["bit.ly", "tinyurl.com", "goo.gl", "t.co", "ow.ly", "is.gd", "buff.ly", "rebrand.ly", "cutt.ly", "tiny.cc", "shorturl.at"];
+var EX1 = { sub: "FREE!!! Act now, you've been selected to win $$$", body: "Dear friend,\n\nCONGRATULATIONS! You have won a FREE gift. This is a once in a lifetime offer and it expires TODAY ONLY. Make money from home with our 100% guaranteed system. No risk, no obligation, no fees.\n\nCLICK HERE NOW: http://bit.ly/abc123 or http://192.168.4.5/win\n\nHurry, don't delay! Order now!!!\n\nCall now to claim your cash bonus." };
+var EX2 = { sub: "Your October newsletter: 3 tips for tidier spreadsheets", body: "Hi Sam,\n\nHere is this month's short guide. We cover three simple habits that make spreadsheets easier to read, share and update.\n\n1. Name your sheets clearly.\n2. Keep one idea per column.\n3. Add a notes tab for assumptions.\n\nRead the full guide: https://example.com/guides/spreadsheets\n\nThanks for reading,\nThe Example Team\n\nExample Ltd, 12 High Street, London\nUnsubscribe or manage your preferences: https://example.com/prefs" };
+function G(id) { return $(id).value; }
+function re(s) { return s.replace(/[.*+?^${}()|[\]\\\/]/g, "\\$&"); }
+function plain(t) {
+  if (!/<[a-z!][\s\S]*>/i.test(t)) return { text: t, doc: null };
+  var d = new DOMParser().parseFromString(t, "text/html"); [].forEach.call(d.querySelectorAll("script,style"), function (n) { n.remove(); });
+  var body = d.body; [].forEach.call(body.querySelectorAll("br,p,div,tr,li,h1,h2,h3,h4"), function (n) { n.appendChild(d.createTextNode("\n")); });
+  return { text: body.textContent.replace(/[ \t]+\n/g, "\n").replace(/\n{3,}/g, "\n\n"), doc: d, raw: t };
+}
+function finder(extra) {
+  var list = PH.slice(); extra.forEach(function (x) { list.push({ p: x, w: 3, c: "claims", s: "choose another word", custom: true }); });
+  list.sort(function (a, b) { return b.p.length - a.p.length; }); return list;
+}
+function scan(text, list) {
+  var low = text.toLowerCase(), used = new Array(low.length), hits = [];
+  list.forEach(function (ph) {
+    var start = /^\w/.test(ph.p) ? "\\b" : "", end = /\w$/.test(ph.p) ? "\\b" : "", r = new RegExp(start + re(ph.p) + end, "g"), m;
+    while ((m = r.exec(low))) { var a = m.index, b = a + ph.p.length, clash = false; for (var i = a; i < b; i++) if (used[i]) { clash = true; break; } if (clash) continue; for (var j = a; j < b; j++) used[j] = 1; hits.push({ a: a, b: b, ph: ph }); }
+  });
+  hits.sort(function (x, y) { return x.a - y.a; }); return hits;
+}
+function group(hits) { var g = {}; hits.forEach(function (h) { var k = h.ph.p; if (!g[k]) g[k] = { ph: h.ph, n: 0 }; g[k].n++; }); return Object.keys(g).map(function (k) { return g[k]; }).sort(function (a, b) { return b.ph.w * Math.min(3, b.n) - a.ph.w * Math.min(3, a.n); }); }
+function analyze(sub, body, sens, extraWords) {
+  var list = finder(extraWords), P = plain(body), txt = P.text, F = [], pts = 0, add = function (k, t, p) { F.push({ s: k, t: t, p: p || 0 }); pts += p || 0; };
+  var sh = scan(sub, list), bh = scan(txt, list), sg = group(sh), bg = group(bh), trig = 0;
+  sg.concat(bg).forEach(function (g) { trig += g.ph.w * Math.min(3, g.n) * 1; });
+  sg.forEach(function (g) { trig += g.ph.w; });
+  pts += trig;
+  var letters = (txt.match(/[A-Za-z]/g) || []).length, upper = (txt.match(/[A-Z]/g) || []).length, cr = letters > 40 ? upper / letters : 0;
+  if (cr > 0.35) add("bad", "Over a third of the letters in the body are capitals (" + Math.round(cr * 100) + "%).", 15); else if (cr > 0.2) add("warn", Math.round(cr * 100) + "% of the body letters are capitals. Use normal sentence case.", 8);
+  var capW = (txt.match(/\b[A-Z]{4,}\b/g) || []).length; if (capW >= 5 && cr <= 0.35) add("warn", capW + " words are written in ALL CAPS.", 6);
+  var sc = (sub.match(/\b[A-Z]{3,}\b/g) || []).length; if (sc >= 2) add("bad", "The subject has " + sc + " ALL CAPS words.", 8);
+  if (!sub.trim()) add("warn", "There is no subject line. Messages without one are often filtered.", 10);
+  if (sub.length > 60) add("warn", "The subject is " + sub.length + " characters. Long subjects get cut off.", 3);
+  var sx = (sub.match(/!/g) || []).length; if (sx >= 2) add("warn", "The subject has " + sx + " exclamation marks.", 6); else if (sx === 1) add("info", "One exclamation mark in the subject is fine, but avoid more.", 0);
+  if (/^\s*(re|fwd?):/i.test(sub)) add("bad", "The subject starts with Re: or Fwd:. Faking a reply is deceptive and a strong spam signal.", 8);
+  var ex = (txt.match(/!/g) || []).length; if (ex > 8) add("bad", ex + " exclamation marks in the body.", 10); else if (ex > 3) add("warn", ex + " exclamation marks in the body.", 4);
+  if (/[!?]{3,}/.test(sub + " " + txt)) add("warn", "Runs of !!! or ??? look like shouting.", 3);
+  if (/(.)\1{4,}/.test(sub + " " + txt.replace(/\n+/g, " ")) && !/https?:\/\/\S*(.)\1{4,}/.test(txt)) add("warn", "Repeated characters such as aaaaa or $$$$$.", 3);
+  var dol = (txt.match(/\$/g) || []).length; if (dol > 5) add("warn", dol + " dollar signs in the text.", 4);
+  var urls = (txt + " " + (P.raw || "")).match(/https?:\/\/[^\s"'<>)\]]+/gi) || [], uniq = urls.filter(function (u, i) { return urls.indexOf(u) === i; });
+  if (uniq.length > 10) add("bad", uniq.length + " different links. Too many links is a classic spam signal.", 10); else if (uniq.length > 5) add("warn", uniq.length + " different links.", 4);
+  var sCount = 0; uniq.forEach(function (u) { var h = (/^https?:\/\/([^\/:?#]+)/i.exec(u) || [])[1] || ""; if (SHORT.indexOf(h.toLowerCase()) >= 0) sCount++; });
+  if (sCount) add("bad", sCount + " link" + (sCount > 1 ? "s use" : " uses") + " a URL shortener, which spam filters distrust.", Math.min(16, sCount * 8));
+  var ipN = uniq.filter(function (u) { return /^https?:\/\/\d{1,3}(\.\d{1,3}){3}/i.test(u); }).length; if (ipN) add("bad", ipN + " link" + (ipN > 1 ? "s point" : " points") + " to a bare IP address instead of a domain name.", 12);
+  if (P.doc) {
+    var a = [].slice.call(P.doc.querySelectorAll("a[href]")), mis = 0; a.forEach(function (x) { var t = x.textContent.trim(), m = /^(?:https?:\/\/)?(?:www\.)?([a-z0-9.-]+\.[a-z]{2,})/i.exec(t), h = /^https?:\/\/(?:www\.)?([^\/:?#]+)/i.exec(x.getAttribute("href") || ""); if (m && h && m[1].toLowerCase() !== h[1].toLowerCase()) mis++; });
+    if (mis) add("bad", mis + " link" + (mis > 1 ? "s show" : " shows") + " one web address as text but go" + (mis > 1 ? "" : "es") + " to another. That looks like phishing.", 12);
+    var imgs = P.doc.querySelectorAll("img").length, tl = txt.replace(/\s+/g, " ").trim().length; if (imgs && tl < 120 * imgs && tl < 300) add("warn", "The message is mostly images (" + imgs + " image" + (imgs > 1 ? "s" : "") + ", about " + tl + " characters of text). Add real text.", 10);
+    var noAlt = [].filter.call(P.doc.querySelectorAll("img"), function (i) { return !(i.getAttribute("alt") || "").trim(); }).length; if (noAlt) add("info", noAlt + " image" + (noAlt > 1 ? "s have" : " has") + " no alt text.", 0);
+    if (/display\s*:\s*none|font-size\s*:\s*0|visibility\s*:\s*hidden/i.test(P.raw) ) add("info", "Hidden text found. A hidden preheader is normal, but hidden keywords are penalised.", 0);
+  }
+  var words = txt.split(/\s+/).filter(Boolean).length;
+  if (words && words < 20) add("warn", "Only " + words + " words. Very short messages with a link can look like bait.", 4);
+  if (words > 1500) add("info", "Over 1,500 words. Long emails are fine if they are useful.", 0);
+  if (words > 60 && !/unsubscribe|opt[- ]?out|manage (your )?preferences|stop receiving|email preferences/i.test(txt + " " + (P.raw || ""))) add("warn", "No unsubscribe or opt-out wording found. Marketing email needs one.", 8); else if (words > 60) add("ok", "An unsubscribe or opt-out line is present.", 0);
+  if (words > 60 && !/\d{1,5}\s+[\w .]+\s+(street|st\b|road|rd\b|avenue|ave\b|lane|ln\b|blvd|boulevard|drive|dr\b|way|square|court)|p\.?\s?o\.?\s?box/i.test(txt)) add("info", "No postal address spotted. CAN-SPAM requires one in commercial email.", 0);
+  if (/\.(exe|scr|bat|vbs|js)\b/i.test(txt)) add("bad", "Mentions an executable file type.", 10); else if (/\battach(ed|ment)\b|\.zip\b/i.test(txt)) add("info", "Mentions an attachment. Attachments can lower trust for bulk email.", 0);
+  var mult = sens === "strict" ? 1.3 : sens === "lenient" ? 0.7 : 1, score = Math.max(0, Math.min(100, Math.round(pts * mult)));
+  var lab = score >= 60 ? { k: "bad", t: "Very high risk" } : score >= 35 ? { k: "bad", t: "High risk" } : score >= 15 ? { k: "warn", t: "Moderate risk" } : { k: "ok", t: "Low risk" };
+  if (!sg.length && !bg.length) add("ok", "No spam trigger words or phrases found.", 0);
+  return { score: score, lab: lab, F: F, sg: sg, bg: bg, sh: sh, bh: bh, txt: txt, sub: sub, words: words, trig: trig, uniq: uniq.length, list: list };
+}
+function dial(score) {
+  var a = -90 + score * 1.8, c = score >= 60 ? "#dc2626" : score >= 35 ? "#ea580c" : score >= 15 ? "#d97706" : "#047857";
+  return '<svg viewBox="0 0 240 150" width="100%" style="max-width:300px;min-width:0" role="img" aria-label="Spam risk score ' + score + ' out of 100"><title>Spam risk dial</title><path d="M20 120 A100 100 0 0 1 220 120" fill="none" stroke="#e2e8f0" stroke-width="22"/><path d="M20 120 A100 100 0 0 1 68 34" fill="none" stroke="#34d399" stroke-width="22"/><path d="M68 34 A100 100 0 0 1 120 20" fill="none" stroke="#fbbf24" stroke-width="22"/><path d="M120 20 A100 100 0 0 1 187 40" fill="none" stroke="#fb923c" stroke-width="22"/><path d="M187 40 A100 100 0 0 1 220 120" fill="none" stroke="#f87171" stroke-width="22"/><g transform="translate(120 120)"><g style="transform:rotate(' + a + 'deg);transition:transform .6s ease-out"><line x1="0" y1="0" x2="0" y2="-82" stroke="#111827" stroke-width="4" stroke-linecap="round"/></g><circle r="8" fill="#111827"/></g><text x="120" y="146" text-anchor="middle" font-size="26" font-weight="700" fill="' + c + '">' + score + '</text><text x="20" y="140" font-size="10" fill="currentColor">0</text><text x="214" y="140" font-size="10" fill="currentColor">100</text></svg>';
+}
+function marks(text, hits) {
+  var o = "", p = 0; hits.forEach(function (h) { o += esc(text.slice(p, h.a)) + '<mark class="sp-m sp-' + h.ph.c + '" title="' + esc(CATS[h.ph.c] || "") + '">' + esc(text.slice(h.a, h.b)) + "</mark>"; p = h.b; }); return (o + esc(text.slice(p))).replace(/\n/g, "<br>");
+}
+function render() {
+  var r = ST.res = analyze(G("spSub"), G("spBody"), G("spSens"), G("spExtra").split(/[,\n]+/).map(function (x) { return x.trim().toLowerCase(); }).filter(Boolean));
+  var has = G("spSub").trim() || G("spBody").trim();
+  if (!has) { ST.report = ""; $("spDial").innerHTML = dial(0); $("spSum").innerHTML = '<p class="dc-note">Paste a subject line and the body of your email, or load an example.</p>'; $("spList").innerHTML = ""; $("spChecks").innerHTML = ""; $("spHi").innerHTML = ""; $("spFix").innerHTML = ""; return; }
+  $("spDial").innerHTML = dial(r.score);
+  $("spSum").innerHTML = '<div class="ab-verdict ab-' + r.lab.k + '"><b>' + r.lab.t + " (" + r.score + " of 100)</b><br><span class=\"dc-note\">" + (r.sg.length + r.bg.length) + " trigger phrase" + (r.sg.length + r.bg.length === 1 ? "" : "s") + " found in " + r.words + " words. This is a simple word and structure check, not a prediction of where your email will land.</span></div>";
+  var all = r.sg.map(function (g) { return { g: g, where: "Subject" }; }).concat(r.bg.map(function (g) { return { g: g, where: "Body" }; }));
+  $("spList").innerHTML = all.length ? '<h3 class="ev-h">Trigger words and phrases</h3><div class="dc-scroll"><table class="ab-tbl"><tr><th>Phrase</th><th>Where</th><th>Times</th><th>Type</th><th>Weight</th></tr>' + all.map(function (x) { return "<tr><td><mark class=\"sp-m sp-" + x.g.ph.c + "\">" + esc(x.g.ph.p) + "</mark></td><td>" + x.where + "</td><td>" + x.g.n + "</td><td>" + esc(CATS[x.g.ph.c]) + "</td><td>" + x.g.ph.w + "</td></tr>"; }).join("") + "</table></div>" : "";
+  $("spChecks").innerHTML = '<h3 class="ev-h">Structure checks</h3><ul class="qr-tips">' + r.F.map(function (f) { return "<li>" + badge(f.s === "ok" ? "ok" : f.s === "bad" ? "bad" : "warn", f.s === "ok" ? "OK" : f.s === "bad" ? "Problem" : f.s === "info" ? "Note" : "Check") + " " + esc(f.t) + (f.p ? ' <span class="dc-note">(+' + f.p + ")</span>" : "") + "</li>"; }).join("") + "</ul>";
+  $("spHi").innerHTML = '<p class="dc-note">Highlights show trigger words. Colors match their type.</p><div class="sp-leg">' + Object.keys(CATS).map(function (k) { return '<mark class="sp-m sp-' + k + '">' + CATS[k] + "</mark>"; }).join(" ") + '</div><div class="sp-box"><b>Subject:</b> ' + marks(r.sub, r.sh) + '</div><div class="sp-box">' + marks(r.txt, r.bh) + "</div>";
+  var fx = r.sg.concat(r.bg).filter(function (g, i, a) { return a.findIndex(function (x) { return x.ph.p === g.ph.p; }) === i; });
+  $("spFix").innerHTML = fx.length ? '<table class="ab-tbl"><tr><th>Instead of</th><th>Try</th></tr>' + fx.map(function (g) { return "<tr><td>" + esc(g.ph.p) + "</td><td>" + esc(g.ph.s) + "</td></tr>"; }).join("") + "</table>" : '<p class="dc-note">Nothing to fix. Keep your wording honest and specific.</p>';
+  ST.report = ["EMAIL SPAM WORD CHECK", "Risk: " + r.lab.t + " (" + r.score + "/100)", "", "TRIGGER PHRASES"].concat(all.length ? all.map(function (x) { return x.where + ": " + x.g.ph.p + " x" + x.g.n + " (" + CATS[x.g.ph.c] + ")"; }) : ["None"]).concat(["", "CHECKS"], r.F.map(function (f) { return "[" + f.s.toUpperCase() + "] " + f.t; })).join("\n");
+}
+function setTab(k) { ST.tab = k; setTabs("spTabs", [["rep", "sp-rep"], ["hi", "sp-hi"], ["fix", "sp-fix"]], k); }
+function init() {
+  initCommon();
+  ["spSub", "spBody", "spSens", "spExtra"].forEach(function (i) { $(i).addEventListener("input", render); $(i).addEventListener("change", render); });
+  $("spEx1").addEventListener("click", function () { $("spSub").value = EX1.sub; $("spBody").value = EX1.body; render(); setTab("rep"); });
+  $("spEx2").addEventListener("click", function () { $("spSub").value = EX2.sub; $("spBody").value = EX2.body; render(); setTab("rep"); });
+  $("spTabs").addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (b) setTab(b.getAttribute("data-tab")); });
+  $("resetBtn").addEventListener("click", function () { $("spSub").value = ""; $("spBody").value = ""; $("spExtra").value = ""; $("spSens").value = "normal"; render(); setTab("rep"); msg("Reset."); });
+  bindAct("sp", { code: function () { return ST.report; }, file: function () { return "spam-check-report.txt"; }, mime: "text/plain", title: "Email spam word check", site: "Free online email spam word checker", note: "", rows: function () { return []; } });
+  window.fillReport = function () {
+    var r = ST.res, b = repBox(); repHead(b, "Email spam word check", "Free online email spam word checker");
+    repAdd(b, "h3", "Risk: " + r.lab.t + " (" + r.score + " of 100)"); repFig(b, dial(r.score));
+    var all = r.sg.map(function (g) { return ["Subject", g.ph.p, String(g.n), CATS[g.ph.c], g.ph.s]; }).concat(r.bg.map(function (g) { return ["Body", g.ph.p, String(g.n), CATS[g.ph.c], g.ph.s]; }));
+    if (all.length) { repAdd(b, "h3", "Trigger phrases"); repTbl(b, ["Where", "Phrase", "Times", "Type", "Try"], all); }
+    repAdd(b, "h3", "Structure checks"); repTbl(b, ["Result", "Note"], r.F.map(function (f) { return [f.s === "ok" ? "OK" : f.s === "bad" ? "Problem" : f.s === "info" ? "Note" : "Check", f.t]; }));
+    repDisc(b, "A simple word and structure check. Real spam filters also use sender reputation, authentication, engagement and complaints, so this score cannot predict inbox placement.");
+  };
+  render(); setTab("rep");
+}
+init();
+
+})();
+</script>
+</body>
+</html>
