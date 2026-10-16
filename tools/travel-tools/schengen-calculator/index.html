@@ -1,282 +1,552 @@
-<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
+<!DOCTYPE html>
+<!-- saved from url=(0043)file:///C:/Users/imn/Downloads/index_1.html -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
-<title>Free Schengen 90/180 Day Calculator Online – Rolling Window Overstay Checker</title>
-<meta name="description" content="Free online Schengen 90/180 day calculator. Add your trips, see days used, days remaining, peak rolling-window usage and the next date you can re-enter. Rolling-window algorithm, EES context, overstay warning. 100% browser-based, no sign-up.">
+<title>Free Schengen 90/180 Day Calculator Online</title>
+<meta name="description" content="Free online Schengen 90/180 day calculator. Add your trips to see days used, days left, your last legal day and when you can return. Private, no sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/travel-tools/schengen-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
-<meta property="og:title" content="Free Schengen 90/180 Day Calculator Online – Rolling Window">
-<meta property="og:description" content="Add trips, see days used and remaining, peak rolling-window usage and next re-entry date.">
+<meta property="og:title" content="Free Schengen 90/180 Day Calculator Online">
+<meta property="og:description" content="Free online Schengen 90/180 day calculator. See days used and left, the last legal day, the earliest return date and plan future trips. Private.">
 <meta property="og:url" content="https://utiliby.com/tools/travel-tools/schengen-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
-<link rel="icon" href="/favicon.png">
-<link rel="stylesheet" href="/assets/style.css">
+<meta name="twitter:title" content="Free Schengen 90/180 Day Calculator Online">
+<meta name="twitter:description" content="Free online Schengen 90/180 day calculator. See days used and left, the last legal day, the earliest return date and plan future trips. Private.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="file:///C:/favicon.png">
+<link rel="stylesheet" href="file:///C:/assets/style.css">
 <style>
-.sc-hero{background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
-.sc-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
-.sc-hero p{margin:0;opacity:.92;font-size:.9rem}
-.sc-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
-.sc-panel h3{margin:0 0 10px;font-size:1rem}
-.sc-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
-.sc-panel input,.sc-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
-.sc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){.sc-row{grid-template-columns:1fr}}
-.sc-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#1e40af,#3b82f6);color:#fff;margin-right:8px;margin-top:8px}
-.sc-btn:hover{opacity:.92}
-.sc-btn.ghost{background:transparent;color:#1e40af;border:1px solid var(--line)}
-@media(prefers-color-scheme:dark){.sc-btn.ghost{color:#93c5fd}}
-.sc-trip{display:grid;grid-template-columns:1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
-@media(max-width:560px){.sc-trip{grid-template-columns:1fr}}
-.sc-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
-.sc-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
-.sc-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
-.sc-big{font-size:2rem;font-weight:800;color:#1e40af;line-height:1.1;margin:4px 0}
-@media(prefers-color-scheme:dark){.sc-big{color:#93c5fd}}
-.sc-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
-.sc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
-.sc-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
-.sc-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
-.sc-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
-.sc-stat .val.ok{color:#16a34a}.sc-stat .val.warn{color:#f59e0b}.sc-stat .val.err{color:#dc2626}
-.sc-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
-@media(prefers-color-scheme:dark){.sc-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
-.sc-tip{background:rgba(30,64,175,.06);border-left:3px solid #1e40af;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
-.sc-tip b{color:#1e40af}
-.sc-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
-.sc-table th,.sc-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
-.sc-table th{background:var(--card);font-weight:700}
-.sc-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
-.sc-share h3{margin:0 0 10px;font-size:1rem}
-.sc-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
-.sc-share input,.sc-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
-.sc-share textarea{min-height:80px;resize:vertical}
-.sc-share button{margin-top:6px;background:transparent;color:#1e40af;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
-.sc-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
-.sc-disclaimer b{color:var(--fg)}
-@media print{header.site,footer.site,.sc-btn,.sc-hero,.cn-article,.no-print,.sc-panel form,.sc-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
 .cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
 .cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
-.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.tr-grid{grid-template-columns:minmax(0,1fr)}}
+.tr-verdict{padding:14px 16px;border-radius:12px;font-weight:700;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.tr-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.tr-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.tr-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}.tr-info{background:#e0f2fe;color:#0c4a6e;border-color:#7dd3fc}
+.tr-list{list-style:none;margin:6px 0;padding:0}.tr-list li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:.88rem;line-height:1.5}.tr-list li>span{flex:0 0 auto;font-weight:800;min-width:1.2em;text-align:center}
+.tr-y{color:#16a34a}.tr-n{color:#dc2626}.tr-q{color:#d97706}
+.cn-article p,.cn-article li,.cn-article td{overflow-wrap:anywhere}
+.tr-fig svg{min-width:0!important}
+.tr-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.tr-trip{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:640px){.tr-trip{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tr-trip{grid-template-columns:1fr}}
+.tr-trip>div{min-width:0}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+.tr-letter{white-space:pre-wrap;word-break:break-word;min-height:260px;line-height:1.55}
+.tr-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr-rowline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.tr-rowline b{white-space:nowrap}
+
+.dt-hero{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.dt-btn,.dt-tab.on{background:linear-gradient(135deg,#1d4ed8,#3b82f6)}
+.dt-btn.ghost{color:#1d4ed8}.dt-tab{color:#1d4ed8}.dt-tab.on{color:#fff}
+.dt-tip{border-left-color:#1d4ed8}.dt-tip b{color:#1d4ed8}
+.dt-share button{color:#1d4ed8}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline-color:#1d4ed8}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab,.dt-share button,.dt-tip b{color:#93c5fd}.dt-tab.on{color:#fff}}
+
+.sc-opt{display:flex;align-items:center;gap:8px;margin:8px 0}.sc-opt input{width:auto}.sc-opt label{margin:0;text-transform:none;letter-spacing:0;font-weight:600;font-size:.86rem;color:var(--fg)}
+.tr-trip{grid-template-columns:1fr 1fr!important}.tr-trip .t-m:empty{display:none}.tr-trip input[type=date]{min-width:0;width:100%}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Schengen 90/180 Day Calculator","url":"https://utiliby.com/tools/travel-tools/schengen-calculator/","applicationCategory":"TravelApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the Schengen 90/180 day rule?","acceptedAnswer":{"@type":"Answer","text":"The Schengen 90/180 rule limits non-EU visitors to a maximum of 90 days inside the Schengen Area in any rolling 180-day period. The 180-day window is not a calendar period — for any date you pick, you look back 180 days and count every day you were inside Schengen. Both entry and exit days count as full days."}},{"@type":"Question","name":"Does the 90-day clock reset when I leave Schengen?","acceptedAnswer":{"@type":"Answer","text":"No. The clock does not reset when you leave. Old days fade out only as they fall outside the 180-day look-back window. If you stayed 90 days and left, you must wait until enough of those days have exited the window before you can re-enter."}},{"@type":"Question","name":"Do entry and exit days count as full days?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the day you enter and the day you exit count as full days in your 90-day allowance, even if you crossed the border for only a few hours on those days."}},{"@type":"Question","name":"Which countries count towards the Schengen 90 days?","acceptedAnswer":{"@type":"Answer","text":"Your 90 days count across the entire Schengen Area collectively, not per country. The Schengen countries include Austria, Belgium, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland is not in Schengen."}},{"@type":"Question","name":"What happens if I overstay in Schengen?","acceptedAnswer":{"@type":"Answer","text":"Overstaying is taken seriously. Consequences can include fines, deportation, entry bans of one to five years depending on the length and circumstances, and refused future visa or entry applications. With the EES system, overstays are detected automatically."}},{"@type":"Question","name":"Is this Schengen calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your trip data anywhere."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Schengen 90/180 Day Calculator","url":"https://utiliby.com/tools/travel-tools/schengen-calculator/","description":"Free online Schengen 90/180 day calculator. Add your trips to count entry and exit days across the rolling 180-day window, see days remaining and the last legal day, find the earliest return date, plan future trips, import or export stays as CSV and add a calendar reminder. Runs in your browser.","applicationCategory":"TravelApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Rolling 180-day check","Days remaining and last legal day","Earliest return dates","Trip planner","180-day strip and chart","CSV import and export","Calendar reminder","Printable report"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does the Schengen 90/180 day rule work?","acceptedAnswer":{"@type":"Answer","text":"In any period of 180 days you may spend at most 90 days in the Schengen Area on a short stay. The 180 days are a rolling window ending on the date you check, not a calendar half-year, so the count changes every day."}},{"@type":"Question","name":"Do the day of entry and the day of exit count?","acceptedAnswer":{"@type":"Answer","text":"Yes. Both the day you enter and the day you leave count as full days, even if you were there for only a few hours. A stay from 1 to 10 March is 10 days, not 9."}},{"@type":"Question","name":"Is the 180-day period fixed or rolling?","acceptedAnswer":{"@type":"Answer","text":"Rolling. For any date, look back 179 days plus that date itself. Days older than that no longer count. This is why a single reset date does not exist."}},{"@type":"Question","name":"How do I find out how many days I have left?","acceptedAnswer":{"@type":"Answer","text":"Add every past stay, set the check date to today and read the days remaining. The tool also shows the last legal day if you stay without a break."}},{"@type":"Question","name":"How long must I stay out before coming back?","acceptedAnswer":{"@type":"Answer","text":"There is no fixed waiting time. You can return as soon as the rolling count lets you. After a full 90-day stay you generally need to wait about 90 days to be allowed a new 90-day stay. The table in the tool shows exact earliest entry dates."}},{"@type":"Question","name":"Which countries are in the Schengen Area?","acceptedAnswer":{"@type":"Answer","text":"Twenty-nine countries: Austria, Belgium, Bulgaria, Croatia, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland and Cyprus are in the EU but not in Schengen."}},{"@type":"Question","name":"Do days in Ireland, Cyprus or the UK count?","acceptedAnswer":{"@type":"Answer","text":"No. Only time spent inside the Schengen Area counts. Ireland, Cyprus, the UK, Albania, Serbia and other non-Schengen countries do not use up days."}},{"@type":"Question","name":"Do days in the microstates count?","acceptedAnswer":{"@type":"Answer","text":"Monaco, San Marino and the Vatican have open borders with their neighbours and are treated as part of the Schengen Area, so time there counts. Andorra is not in Schengen, but you must cross France or Spain to reach it."}},{"@type":"Question","name":"Does the rule apply to everyone?","acceptedAnswer":{"@type":"Answer","text":"No. It applies to short stays of non-EU citizens who do not need a visa or who hold a short-stay Schengen visa. EU, EEA and Swiss citizens, and people with a residence permit or long-stay national visa, follow different rules."}},{"@type":"Question","name":"Can a long-stay visa or residence permit change the count?","acceptedAnswer":{"@type":"Answer","text":"Time spent on a national long-stay visa or residence permit of a Schengen state does not count towards the 90 days for short stays. Always check with the issuing country."}},{"@type":"Question","name":"What happens if I overstay?","acceptedAnswer":{"@type":"Answer","text":"Consequences range from a warning to fines, deportation and an entry ban of up to several years, and an overstay can lead to later visa refusals. The penalty depends on the country and on how long you overstayed."}},{"@type":"Question","name":"What is the Entry/Exit System (EES)?","acceptedAnswer":{"@type":"Answer","text":"EES is a digital border system that registers non-EU visitors with fingerprints and a photo and records entry and exit dates automatically. It replaces passport stamps, so officers can see your exact days. It has been in operation since late 2025 and was fully rolled out in April 2026."}},{"@type":"Question","name":"What is ETIAS and do I need it?","acceptedAnswer":{"@type":"Answer","text":"ETIAS is a planned online travel authorisation for visa-exempt travellers, similar to a US ESTA. It has not started yet at the time of writing. When it does it will not change the 90/180 rule. Check the official EU website for the start date."}},{"@type":"Question","name":"Can I use the calculator for future trips?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the Plan a trip tab to enter a planned entry date and see the longest stay allowed, or enter an exit date to test a specific trip. You can also add planned trips in the first tab."}},{"@type":"Question","name":"Do some countries allow extra days through bilateral agreements?","acceptedAnswer":{"@type":"Answer","text":"A few older bilateral visa agreements let citizens of certain countries stay longer in specific Schengen states, in addition to the 90 days. These are rare and nationality specific, and this tool does not apply them."}},{"@type":"Question","name":"Is my data stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser. If you tick the remember box, your stays are saved only in this browser on this device, and you can clear them any time with Reset."}},{"@type":"Question","name":"Is this the same as the official EU calculator?","acceptedAnswer":{"@type":"Answer","text":"The method is the same: a 180-day look-back window with entry and exit days counted. The official short-stay calculator from the European Commission is a good second check before you travel."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Travel Tools","item":"https://utiliby.com/tools/travel-tools/"},{"@type":"ListItem","position":3,"name":"Schengen 90/180 Day Calculator","item":"https://utiliby.com/tools/travel-tools/schengen-calculator/"}]}]}</script>
 </head>
 <body>
-<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<header class="site noembed"><div class="wrap"><a class="logo" href="file:///C:/"><img src="file:///C:/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
-<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/travel-tools/">Travel Tools</a> › Schengen Calculator</nav>
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="file:///C:/">Home</a> › <a href="file:///C:/tools/travel-tools/">Travel Tools</a> › Schengen Calculator</nav>
 <h1 class="noembed">Schengen 90/180 Day Calculator</h1>
-<p class="lead noembed">Add your trips and see days used, days remaining, peak rolling-window usage and the next date you can re-enter. Rolling-window algorithm, EES context, overstay warning. Free, private and no sign-up.</p>
-<p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/schengen-calculator/" target="_blank" rel="noopener">Schengen Calculator by Utiliby</a></p>
+<p class="lead noembed">Count your days in the Schengen Area, see how many of your 90 days are left and when you can come back. Rolling 180-day window, trip planner and charts. Free and private.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/schengen-calculator/" target="_blank" rel="noopener">Schengen 90/180 Day Calculator by Utiliby</a></p>
 <section class="tool" id="tool" aria-label="Schengen 90/180 day calculator">
-<div class="sc-hero noembed">
-<h2>Free Schengen 90/180 Day Calculator</h2>
-<p>Rolling-window calculation with peak-day detection. Add every past or planned stay.</p>
+<div class="dt-hero noembed">
+<h2>Free Online Schengen 90/180 Day Calculator</h2>
+<p>Add your trips, see how many of your 90 days are used, when you must leave and when you can return. Private and free.</p>
 </div>
-<div class="sc-panel">
-<h3>Your trips to the Schengen Area</h3>
-<p class="meta" style="font-size:.8rem;margin:0 0 10px">Add each stay with entry and exit dates. Same-day entry and exit counts as one day. Overlapping stays count each day only once.</p>
-<div id="tripList"></div>
-<button type="button" class="sc-btn" id="addTripBtn">+ Add trip</button>
+<div class="dt-tabs" role="group" aria-label="Tool sections"><button type="button" class="dt-tab on" id="dtTabBtn-check">Check my days</button><button type="button" class="dt-tab" id="dtTabBtn-plan">Plan a trip</button></div><div id="dtTab-check"><div class="tr-grid"><div><div class="dt-panel"><h3>Your stays in the Schengen Area</h3><p class="tr-note">Add one row per visit. Entry day and exit day both count as days spent. Past and planned stays can be mixed.</p><div id="scTrips"><div class="tr-trip" data-bad=""><div><label>Entry date</label><input type="date" class="t-e" value=""></div><div><label>Exit date</label><input type="date" class="t-x" value=""></div><div><label>Country (optional)</label><select class="t-c"><option value="">Not set</option><option>Austria</option><option>Belgium</option><option>Bulgaria</option><option>Croatia</option><option>Czechia</option><option>Denmark</option><option>Estonia</option><option>Finland</option><option>France</option><option>Germany</option><option>Greece</option><option>Hungary</option><option>Iceland</option><option>Italy</option><option>Latvia</option><option>Liechtenstein</option><option>Lithuania</option><option>Luxembourg</option><option>Malta</option><option>Netherlands</option><option>Norway</option><option>Poland</option><option>Portugal</option><option>Romania</option><option>Slovakia</option><option>Slovenia</option><option>Spain</option><option>Sweden</option><option>Switzerland</option></select></div><div><button type="button" class="dt-btn small ghost t-r" aria-label="Remove this trip">Remove</button></div><p class="tr-note t-m" style="grid-column:1/-1;margin:0;color:#dc2626"></p></div></div><p><button type="button" class="dt-btn small" id="scAdd">Add a stay</button> <button type="button" class="dt-btn small ghost" id="scExample">Load an example</button> <button type="button" class="dt-btn small ghost" id="scClear">Clear all</button></p><div><label for="scRef">Check as of (date)</label><input type="date" id="scRef"></div><div class="sc-opt"><input type="checkbox" id="scSave"><label for="scSave">Remember my stays on this device</label></div><details><summary>Import or export stays (CSV)</summary><p class="tr-note">One stay per line: entry date, exit date, optional country. Dates as 2026-03-01 or 01/03/2026.</p><div><label for="scIO">Stays as text</label><textarea id="scIO" rows="4" placeholder="2026-03-01,2026-03-20,Spain" spellcheck="false"></textarea></div><p><button type="button" class="dt-btn small ghost" id="scImport">Import lines</button> <button type="button" class="dt-btn small ghost" id="scExportBox">Show current stays</button> <button type="button" class="dt-btn small ghost" id="scDlCsv">Download .csv</button></p></details></div></div><div><div id="scOut" aria-live="polite"><div class="dt-result"><div class="dt-label">Days used in the 180 days up to 16 Oct 2026</div><div class="dt-big" style="color:#16a34a">0 of 90</div><p class="dt-sum"><b>Within the limit</b>. 90 days left.</p></div><div class="dt-stats"><div class="dt-stat"><div class="lbl">Days remaining</div><div class="val ok">90</div></div><div class="dt-stat"><div class="lbl">Window</div><div class="val ">20 Apr 2026 to 16 Oct 2026</div><div class="sub">180 days, both ends included</div></div><div class="dt-stat"><div class="lbl">Highest count</div><div class="val ok">0</div><div class="sub">no stays yet</div></div><div class="dt-stat"><div class="lbl">If you enter on this date</div><div class="val ">90 days</div><div class="sub">up to 13 Jan 2027</div></div></div><div class="dt-tip"><b>Add your stays above.</b> The strip and chart below show an empty record until you do.</div><h3 style="margin-top:14px">When you can come back</h3><div class="dt-scroll"><table class="dt-table"><tbody><tr><th>Stay you want</th><th>Earliest entry</th><th>Last day of that stay</th></tr><tr><td>7 days</td><td>Today (16 Oct 2026)</td><td>22 Oct 2026</td></tr><tr><td>14 days</td><td>Today (16 Oct 2026)</td><td>29 Oct 2026</td></tr><tr><td>30 days</td><td>Today (16 Oct 2026)</td><td>14 Nov 2026</td></tr><tr><td>60 days</td><td>Today (16 Oct 2026)</td><td>14 Dec 2026</td></tr><tr><td>90 days</td><td>Today (16 Oct 2026)</td><td>13 Jan 2027</td></tr></tbody></table></div></div></div></div><figure class="dt-fig tr-fig" id="scFigA" style="margin:12px 0"><svg viewBox="0 0 640 150" width="100%" role="img" aria-label="Days spent in Schengen during the last 180 days"><title>The 180-day look-back window</title><text x="320" y="20" font-size="13" text-anchor="middle" font-weight="700" fill="currentColor">Your 180-day window: each box is one day</text><rect x="20.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="23.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="26.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="30.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="33.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="36.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="40.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="43.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="46.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="50.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="53.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="56.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="60.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="63.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="66.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="70.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="73.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="76.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="80.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="83.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="86.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="90.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="93.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="96.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="100.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="103.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="106.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="110.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="113.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="116.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="120.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="123.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="126.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="130.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="133.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="136.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="140.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="143.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="146.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="150.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="153.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="156.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="160.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="163.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="166.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="170.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="173.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="176.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="180.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="183.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="186.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="190.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="193.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="196.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="200.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="203.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="206.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="210.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="213.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="216.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="220.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="223.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="226.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="230.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="233.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="236.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="240.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="243.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="246.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="250.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="253.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="256.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="260.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="263.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="266.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="270.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="273.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="276.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="280.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="283.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="286.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="290.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="293.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="296.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="300.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="303.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="306.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="310.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="313.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="316.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="320.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="323.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="326.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="330.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="333.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="336.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="340.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="343.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="346.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="350.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="353.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="356.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="360.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="363.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="366.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="370.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="373.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="376.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="380.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="383.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="386.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="390.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="393.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="396.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="400.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="403.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="406.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="410.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="413.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="416.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="420.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="423.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="426.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="430.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="433.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="436.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="440.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="443.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="446.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="450.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="453.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="456.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="460.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="463.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="466.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="470.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="473.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="476.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="480.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="483.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="486.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="490.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="493.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="496.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="500.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="503.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="506.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="510.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="513.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="516.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="520.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="523.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="526.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="530.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="533.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="536.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="540.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="543.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="546.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="550.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="553.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="556.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="560.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="563.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="566.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="570.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="573.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="576.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="580.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="583.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="586.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="590.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="593.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="596.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="600.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="603.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="606.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="610.00" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="613.33" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><rect x="616.67" y="38" width="2.83" height="46" fill="#94a3b8" opacity=".4"></rect><line x1="56.7" y1="84" x2="56.7" y2="92" stroke="currentColor" opacity=".6"></line><text x="58.66666666666667" y="104" font-size="11" fill="currentColor">May</text><line x1="160.0" y1="84" x2="160.0" y2="92" stroke="currentColor" opacity=".6"></line><text x="162" y="104" font-size="11" fill="currentColor">Jun</text><line x1="260.0" y1="84" x2="260.0" y2="92" stroke="currentColor" opacity=".6"></line><text x="262" y="104" font-size="11" fill="currentColor">Jul</text><line x1="363.3" y1="84" x2="363.3" y2="92" stroke="currentColor" opacity=".6"></line><text x="365.33333333333337" y="104" font-size="11" fill="currentColor">Aug</text><line x1="466.7" y1="84" x2="466.7" y2="92" stroke="currentColor" opacity=".6"></line><text x="468.6666666666667" y="104" font-size="11" fill="currentColor">Sep</text><line x1="566.7" y1="84" x2="566.7" y2="92" stroke="currentColor" opacity=".6"></line><text x="568.6666666666667" y="104" font-size="11" fill="currentColor">Oct</text><text x="20" y="128" font-size="12" fill="currentColor">20 Apr 2026</text><text x="620" y="128" font-size="12" text-anchor="end" fill="currentColor">16 Oct 2026 (as of)</text><text x="320" y="128" font-size="13" text-anchor="middle" font-weight="700" fill="currentColor">0 of 90 days used</text><rect x="20" y="138" width="10" height="8" fill="#1d4ed8"></rect><text x="34" y="146" font-size="11" fill="currentColor">In Schengen</text><rect x="120" y="138" width="10" height="8" fill="#94a3b8" opacity=".5"></rect><text x="134" y="146" font-size="11" fill="currentColor">Outside</text></svg></figure><figure class="dt-fig tr-fig" id="scFigB" style="margin:12px 0"><svg viewBox="0 0 640 250" width="100%" role="img" aria-label="Rolling 180-day count against the 90-day limit"><title>Rolling day count</title><rect x="38" y="26" width="588" height="16.0" fill="#dc2626" opacity=".12"></rect><line x1="38" x2="626" y1="186.0" y2="186.0" stroke="currentColor" opacity=".18"></line><text x="33" y="190" font-size="11" text-anchor="end" fill="currentColor">0</text><line x1="38" x2="626" y1="138.0" y2="138.0" stroke="currentColor" opacity=".18"></line><text x="33" y="142" font-size="11" text-anchor="end" fill="currentColor">30</text><line x1="38" x2="626" y1="90.0" y2="90.0" stroke="currentColor" opacity=".18"></line><text x="33" y="94" font-size="11" text-anchor="end" fill="currentColor">60</text><line x1="38" x2="626" y1="42.0" y2="42.0" stroke="currentColor" opacity=".7" stroke-dasharray="5 4"></line><text x="33" y="46" font-size="11" text-anchor="end" fill="currentColor">90</text><text x="44" y="37" font-size="11" font-weight="700" fill="#dc2626">90-day limit</text><path d="M38 186.0 L38.0 186.0 L39.8 186.0 L41.6 186.0 L43.3 186.0 L45.1 186.0 L46.9 186.0 L48.7 186.0 L50.5 186.0 L52.3 186.0 L54.0 186.0 L55.8 186.0 L57.6 186.0 L59.4 186.0 L61.2 186.0 L62.9 186.0 L64.7 186.0 L66.5 186.0 L68.3 186.0 L70.1 186.0 L71.9 186.0 L73.6 186.0 L75.4 186.0 L77.2 186.0 L79.0 186.0 L80.8 186.0 L82.5 186.0 L84.3 186.0 L86.1 186.0 L87.9 186.0 L89.7 186.0 L91.5 186.0 L93.2 186.0 L95.0 186.0 L96.8 186.0 L98.6 186.0 L100.4 186.0 L102.1 186.0 L103.9 186.0 L105.7 186.0 L107.5 186.0 L109.3 186.0 L111.1 186.0 L112.8 186.0 L114.6 186.0 L116.4 186.0 L118.2 186.0 L120.0 186.0 L121.7 186.0 L123.5 186.0 L125.3 186.0 L127.1 186.0 L128.9 186.0 L130.7 186.0 L132.4 186.0 L134.2 186.0 L136.0 186.0 L137.8 186.0 L139.6 186.0 L141.3 186.0 L143.1 186.0 L144.9 186.0 L146.7 186.0 L148.5 186.0 L150.3 186.0 L152.0 186.0 L153.8 186.0 L155.6 186.0 L157.4 186.0 L159.2 186.0 L160.9 186.0 L162.7 186.0 L164.5 186.0 L166.3 186.0 L168.1 186.0 L169.9 186.0 L171.6 186.0 L173.4 186.0 L175.2 186.0 L177.0 186.0 L178.8 186.0 L180.5 186.0 L182.3 186.0 L184.1 186.0 L185.9 186.0 L187.7 186.0 L189.5 186.0 L191.2 186.0 L193.0 186.0 L194.8 186.0 L196.6 186.0 L198.4 186.0 L200.1 186.0 L201.9 186.0 L203.7 186.0 L205.5 186.0 L207.3 186.0 L209.1 186.0 L210.8 186.0 L212.6 186.0 L214.4 186.0 L216.2 186.0 L218.0 186.0 L219.7 186.0 L221.5 186.0 L223.3 186.0 L225.1 186.0 L226.9 186.0 L228.7 186.0 L230.4 186.0 L232.2 186.0 L234.0 186.0 L235.8 186.0 L237.6 186.0 L239.3 186.0 L241.1 186.0 L242.9 186.0 L244.7 186.0 L246.5 186.0 L248.3 186.0 L250.0 186.0 L251.8 186.0 L253.6 186.0 L255.4 186.0 L257.2 186.0 L258.9 186.0 L260.7 186.0 L262.5 186.0 L264.3 186.0 L266.1 186.0 L267.9 186.0 L269.6 186.0 L271.4 186.0 L273.2 186.0 L275.0 186.0 L276.8 186.0 L278.5 186.0 L280.3 186.0 L282.1 186.0 L283.9 186.0 L285.7 186.0 L287.5 186.0 L289.2 186.0 L291.0 186.0 L292.8 186.0 L294.6 186.0 L296.4 186.0 L298.1 186.0 L299.9 186.0 L301.7 186.0 L303.5 186.0 L305.3 186.0 L307.1 186.0 L308.8 186.0 L310.6 186.0 L312.4 186.0 L314.2 186.0 L316.0 186.0 L317.7 186.0 L319.5 186.0 L321.3 186.0 L323.1 186.0 L324.9 186.0 L326.7 186.0 L328.4 186.0 L330.2 186.0 L332.0 186.0 L333.8 186.0 L335.6 186.0 L337.3 186.0 L339.1 186.0 L340.9 186.0 L342.7 186.0 L344.5 186.0 L346.3 186.0 L348.0 186.0 L349.8 186.0 L351.6 186.0 L353.4 186.0 L355.2 186.0 L356.9 186.0 L358.7 186.0 L360.5 186.0 L362.3 186.0 L364.1 186.0 L365.9 186.0 L367.6 186.0 L369.4 186.0 L371.2 186.0 L373.0 186.0 L374.8 186.0 L376.5 186.0 L378.3 186.0 L380.1 186.0 L381.9 186.0 L383.7 186.0 L385.5 186.0 L387.2 186.0 L389.0 186.0 L390.8 186.0 L392.6 186.0 L394.4 186.0 L396.1 186.0 L397.9 186.0 L399.7 186.0 L401.5 186.0 L403.3 186.0 L405.1 186.0 L406.8 186.0 L408.6 186.0 L410.4 186.0 L412.2 186.0 L414.0 186.0 L415.7 186.0 L417.5 186.0 L419.3 186.0 L421.1 186.0 L422.9 186.0 L424.7 186.0 L426.4 186.0 L428.2 186.0 L430.0 186.0 L431.8 186.0 L433.6 186.0 L435.3 186.0 L437.1 186.0 L438.9 186.0 L440.7 186.0 L442.5 186.0 L444.3 186.0 L446.0 186.0 L447.8 186.0 L449.6 186.0 L451.4 186.0 L453.2 186.0 L454.9 186.0 L456.7 186.0 L458.5 186.0 L460.3 186.0 L462.1 186.0 L463.9 186.0 L465.6 186.0 L467.4 186.0 L469.2 186.0 L471.0 186.0 L472.8 186.0 L474.5 186.0 L476.3 186.0 L478.1 186.0 L479.9 186.0 L481.7 186.0 L483.5 186.0 L485.2 186.0 L487.0 186.0 L488.8 186.0 L490.6 186.0 L492.4 186.0 L494.1 186.0 L495.9 186.0 L497.7 186.0 L499.5 186.0 L501.3 186.0 L503.1 186.0 L504.8 186.0 L506.6 186.0 L508.4 186.0 L510.2 186.0 L512.0 186.0 L513.7 186.0 L515.5 186.0 L517.3 186.0 L519.1 186.0 L520.9 186.0 L522.7 186.0 L524.4 186.0 L526.2 186.0 L528.0 186.0 L529.8 186.0 L531.6 186.0 L533.3 186.0 L535.1 186.0 L536.9 186.0 L538.7 186.0 L540.5 186.0 L542.3 186.0 L544.0 186.0 L545.8 186.0 L547.6 186.0 L549.4 186.0 L551.2 186.0 L552.9 186.0 L554.7 186.0 L556.5 186.0 L558.3 186.0 L560.1 186.0 L561.9 186.0 L563.6 186.0 L565.4 186.0 L567.2 186.0 L569.0 186.0 L570.8 186.0 L572.5 186.0 L574.3 186.0 L576.1 186.0 L577.9 186.0 L579.7 186.0 L581.5 186.0 L583.2 186.0 L585.0 186.0 L586.8 186.0 L588.6 186.0 L590.4 186.0 L592.1 186.0 L593.9 186.0 L595.7 186.0 L597.5 186.0 L599.3 186.0 L601.1 186.0 L602.8 186.0 L604.6 186.0 L606.4 186.0 L608.2 186.0 L610.0 186.0 L611.7 186.0 L613.5 186.0 L615.3 186.0 L617.1 186.0 L618.9 186.0 L620.7 186.0 L622.4 186.0 L624.2 186.0 L626.0 186.0 L626.0 186.0 Z" fill="#2563eb" opacity=".16"></path><path class="dt-bar" d="M38.0 186.0 L39.8 186.0 L41.6 186.0 L43.3 186.0 L45.1 186.0 L46.9 186.0 L48.7 186.0 L50.5 186.0 L52.3 186.0 L54.0 186.0 L55.8 186.0 L57.6 186.0 L59.4 186.0 L61.2 186.0 L62.9 186.0 L64.7 186.0 L66.5 186.0 L68.3 186.0 L70.1 186.0 L71.9 186.0 L73.6 186.0 L75.4 186.0 L77.2 186.0 L79.0 186.0 L80.8 186.0 L82.5 186.0 L84.3 186.0 L86.1 186.0 L87.9 186.0 L89.7 186.0 L91.5 186.0 L93.2 186.0 L95.0 186.0 L96.8 186.0 L98.6 186.0 L100.4 186.0 L102.1 186.0 L103.9 186.0 L105.7 186.0 L107.5 186.0 L109.3 186.0 L111.1 186.0 L112.8 186.0 L114.6 186.0 L116.4 186.0 L118.2 186.0 L120.0 186.0 L121.7 186.0 L123.5 186.0 L125.3 186.0 L127.1 186.0 L128.9 186.0 L130.7 186.0 L132.4 186.0 L134.2 186.0 L136.0 186.0 L137.8 186.0 L139.6 186.0 L141.3 186.0 L143.1 186.0 L144.9 186.0 L146.7 186.0 L148.5 186.0 L150.3 186.0 L152.0 186.0 L153.8 186.0 L155.6 186.0 L157.4 186.0 L159.2 186.0 L160.9 186.0 L162.7 186.0 L164.5 186.0 L166.3 186.0 L168.1 186.0 L169.9 186.0 L171.6 186.0 L173.4 186.0 L175.2 186.0 L177.0 186.0 L178.8 186.0 L180.5 186.0 L182.3 186.0 L184.1 186.0 L185.9 186.0 L187.7 186.0 L189.5 186.0 L191.2 186.0 L193.0 186.0 L194.8 186.0 L196.6 186.0 L198.4 186.0 L200.1 186.0 L201.9 186.0 L203.7 186.0 L205.5 186.0 L207.3 186.0 L209.1 186.0 L210.8 186.0 L212.6 186.0 L214.4 186.0 L216.2 186.0 L218.0 186.0 L219.7 186.0 L221.5 186.0 L223.3 186.0 L225.1 186.0 L226.9 186.0 L228.7 186.0 L230.4 186.0 L232.2 186.0 L234.0 186.0 L235.8 186.0 L237.6 186.0 L239.3 186.0 L241.1 186.0 L242.9 186.0 L244.7 186.0 L246.5 186.0 L248.3 186.0 L250.0 186.0 L251.8 186.0 L253.6 186.0 L255.4 186.0 L257.2 186.0 L258.9 186.0 L260.7 186.0 L262.5 186.0 L264.3 186.0 L266.1 186.0 L267.9 186.0 L269.6 186.0 L271.4 186.0 L273.2 186.0 L275.0 186.0 L276.8 186.0 L278.5 186.0 L280.3 186.0 L282.1 186.0 L283.9 186.0 L285.7 186.0 L287.5 186.0 L289.2 186.0 L291.0 186.0 L292.8 186.0 L294.6 186.0 L296.4 186.0 L298.1 186.0 L299.9 186.0 L301.7 186.0 L303.5 186.0 L305.3 186.0 L307.1 186.0 L308.8 186.0 L310.6 186.0 L312.4 186.0 L314.2 186.0 L316.0 186.0 L317.7 186.0 L319.5 186.0 L321.3 186.0 L323.1 186.0 L324.9 186.0 L326.7 186.0 L328.4 186.0 L330.2 186.0 L332.0 186.0 L333.8 186.0 L335.6 186.0 L337.3 186.0 L339.1 186.0 L340.9 186.0 L342.7 186.0 L344.5 186.0 L346.3 186.0 L348.0 186.0 L349.8 186.0 L351.6 186.0 L353.4 186.0 L355.2 186.0 L356.9 186.0 L358.7 186.0 L360.5 186.0 L362.3 186.0 L364.1 186.0 L365.9 186.0 L367.6 186.0 L369.4 186.0 L371.2 186.0 L373.0 186.0 L374.8 186.0 L376.5 186.0 L378.3 186.0 L380.1 186.0 L381.9 186.0 L383.7 186.0 L385.5 186.0 L387.2 186.0 L389.0 186.0 L390.8 186.0 L392.6 186.0 L394.4 186.0 L396.1 186.0 L397.9 186.0 L399.7 186.0 L401.5 186.0 L403.3 186.0 L405.1 186.0 L406.8 186.0 L408.6 186.0 L410.4 186.0 L412.2 186.0 L414.0 186.0 L415.7 186.0 L417.5 186.0 L419.3 186.0 L421.1 186.0 L422.9 186.0 L424.7 186.0 L426.4 186.0 L428.2 186.0 L430.0 186.0 L431.8 186.0 L433.6 186.0 L435.3 186.0 L437.1 186.0 L438.9 186.0 L440.7 186.0 L442.5 186.0 L444.3 186.0 L446.0 186.0 L447.8 186.0 L449.6 186.0 L451.4 186.0 L453.2 186.0 L454.9 186.0 L456.7 186.0 L458.5 186.0 L460.3 186.0 L462.1 186.0 L463.9 186.0 L465.6 186.0 L467.4 186.0 L469.2 186.0 L471.0 186.0 L472.8 186.0 L474.5 186.0 L476.3 186.0 L478.1 186.0 L479.9 186.0 L481.7 186.0 L483.5 186.0 L485.2 186.0 L487.0 186.0 L488.8 186.0 L490.6 186.0 L492.4 186.0 L494.1 186.0 L495.9 186.0 L497.7 186.0 L499.5 186.0 L501.3 186.0 L503.1 186.0 L504.8 186.0 L506.6 186.0 L508.4 186.0 L510.2 186.0 L512.0 186.0 L513.7 186.0 L515.5 186.0 L517.3 186.0 L519.1 186.0 L520.9 186.0 L522.7 186.0 L524.4 186.0 L526.2 186.0 L528.0 186.0 L529.8 186.0 L531.6 186.0 L533.3 186.0 L535.1 186.0 L536.9 186.0 L538.7 186.0 L540.5 186.0 L542.3 186.0 L544.0 186.0 L545.8 186.0 L547.6 186.0 L549.4 186.0 L551.2 186.0 L552.9 186.0 L554.7 186.0 L556.5 186.0 L558.3 186.0 L560.1 186.0 L561.9 186.0 L563.6 186.0 L565.4 186.0 L567.2 186.0 L569.0 186.0 L570.8 186.0 L572.5 186.0 L574.3 186.0 L576.1 186.0 L577.9 186.0 L579.7 186.0 L581.5 186.0 L583.2 186.0 L585.0 186.0 L586.8 186.0 L588.6 186.0 L590.4 186.0 L592.1 186.0 L593.9 186.0 L595.7 186.0 L597.5 186.0 L599.3 186.0 L601.1 186.0 L602.8 186.0 L604.6 186.0 L606.4 186.0 L608.2 186.0 L610.0 186.0 L611.7 186.0 L613.5 186.0 L615.3 186.0 L617.1 186.0 L618.9 186.0 L620.7 186.0 L622.4 186.0 L624.2 186.0 L626.0 186.0" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round"></path><line x1="59.4" x2="59.4" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="61.381818181818176" y="214" font-size="10.5" fill="currentColor">May</text><line x1="114.6" x2="114.6" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="116.61818181818182" y="214" font-size="10.5" fill="currentColor">Jun</text><line x1="168.1" x2="168.1" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="170.0727272727273" y="214" font-size="10.5" fill="currentColor">Jul</text><line x1="223.3" x2="223.3" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="225.30909090909088" y="214" font-size="10.5" fill="currentColor">Aug</text><line x1="278.5" x2="278.5" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="280.54545454545456" y="214" font-size="10.5" fill="currentColor">Sep</text><line x1="332.0" x2="332.0" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="334" y="214" font-size="10.5" fill="currentColor">Oct</text><line x1="387.2" x2="387.2" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="389.23636363636365" y="214" font-size="10.5" fill="currentColor">Nov</text><line x1="440.7" x2="440.7" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="442.6909090909091" y="214" font-size="10.5" fill="currentColor">Dec</text><line x1="495.9" x2="495.9" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="497.92727272727274" y="214" font-size="10.5" fill="currentColor">Jan 27</text><line x1="551.2" x2="551.2" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="553.1636363636363" y="214" font-size="10.5" fill="currentColor">Feb</text><line x1="601.1" x2="601.1" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="603.0545454545454" y="214" font-size="10.5" fill="currentColor">Mar</text><line x1="358.7" x2="358.7" y1="26" y2="186" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"></line><text x="358.7272727272727" y="18" font-size="12" text-anchor="middle" font-weight="700" fill="currentColor">As of 16 Oct 2026: 0</text><rect x="20" y="238" width="10" height="8" fill="#1d4ed8"></rect><text x="34" y="246" font-size="11" fill="currentColor">Your stays</text><text x="620" y="246" font-size="11" text-anchor="end" fill="currentColor">Days counted in the 180 days up to each date</text></svg></figure></div><div id="dtTab-plan" hidden=""><div class="tr-grid"><div><div class="dt-panel"><h3>Plan a trip</h3><div class="dt-row"><div><label for="scPEntry">Planned entry date</label><input type="date" id="scPEntry"></div><div><label for="scPExit">Planned exit date (optional)</label><input type="date" id="scPExit"></div></div><div><label for="scPLen">Stay length you want (days) for the earliest-entry search</label><input type="number" id="scPLen" min="1" max="90" step="1" value="30"></div><p class="tr-note">Uses the stays on the first tab as your history. The orange bar in the chart shows the planned stay.</p></div></div><div><div id="scPOut" aria-live="polite"><div class="dt-result"><div class="dt-label">Longest stay starting 16 Oct 2026</div><div class="dt-big" style="color:#1e40af">90 days</div><p class="dt-sum">Leave on or before <b>Wed 13 Jan 2027</b>. Entry and exit days both count.</p></div><div class="dt-stats"><div class="dt-stat"><div class="lbl">Earliest entry for 30 days</div><div class="val ">Fri 16 Oct 2026</div><div class="sub">stay to 14 Nov 2026</div></div></div></div></div></div><figure class="dt-fig tr-fig" id="scFigP" style="margin:12px 0"><svg viewBox="0 0 640 250" width="100%" role="img" aria-label="Rolling 180-day count against the 90-day limit"><title>Rolling day count</title><rect x="38" y="26" width="588" height="16.0" fill="#dc2626" opacity=".12"></rect><line x1="38" x2="626" y1="186.0" y2="186.0" stroke="currentColor" opacity=".18"></line><text x="33" y="190" font-size="11" text-anchor="end" fill="currentColor">0</text><line x1="38" x2="626" y1="138.0" y2="138.0" stroke="currentColor" opacity=".18"></line><text x="33" y="142" font-size="11" text-anchor="end" fill="currentColor">30</text><line x1="38" x2="626" y1="90.0" y2="90.0" stroke="currentColor" opacity=".18"></line><text x="33" y="94" font-size="11" text-anchor="end" fill="currentColor">60</text><line x1="38" x2="626" y1="42.0" y2="42.0" stroke="currentColor" opacity=".7" stroke-dasharray="5 4"></line><text x="33" y="46" font-size="11" text-anchor="end" fill="currentColor">90</text><text x="44" y="37" font-size="11" font-weight="700" fill="#dc2626">90-day limit</text><path d="M38 186.0 L38.0 186.0 L39.8 186.0 L41.6 186.0 L43.3 186.0 L45.1 186.0 L46.9 186.0 L48.7 186.0 L50.5 186.0 L52.3 186.0 L54.0 186.0 L55.8 186.0 L57.6 186.0 L59.4 186.0 L61.2 186.0 L62.9 186.0 L64.7 186.0 L66.5 186.0 L68.3 186.0 L70.1 186.0 L71.9 186.0 L73.6 186.0 L75.4 186.0 L77.2 186.0 L79.0 186.0 L80.8 186.0 L82.5 186.0 L84.3 186.0 L86.1 186.0 L87.9 186.0 L89.7 186.0 L91.5 186.0 L93.2 186.0 L95.0 186.0 L96.8 186.0 L98.6 186.0 L100.4 186.0 L102.1 186.0 L103.9 186.0 L105.7 186.0 L107.5 186.0 L109.3 186.0 L111.1 186.0 L112.8 186.0 L114.6 186.0 L116.4 186.0 L118.2 186.0 L120.0 186.0 L121.7 186.0 L123.5 186.0 L125.3 186.0 L127.1 186.0 L128.9 186.0 L130.7 186.0 L132.4 186.0 L134.2 186.0 L136.0 186.0 L137.8 186.0 L139.6 186.0 L141.3 186.0 L143.1 186.0 L144.9 186.0 L146.7 186.0 L148.5 186.0 L150.3 186.0 L152.0 186.0 L153.8 186.0 L155.6 186.0 L157.4 186.0 L159.2 186.0 L160.9 186.0 L162.7 186.0 L164.5 186.0 L166.3 186.0 L168.1 186.0 L169.9 186.0 L171.6 186.0 L173.4 186.0 L175.2 186.0 L177.0 186.0 L178.8 186.0 L180.5 186.0 L182.3 186.0 L184.1 186.0 L185.9 186.0 L187.7 186.0 L189.5 186.0 L191.2 186.0 L193.0 186.0 L194.8 186.0 L196.6 186.0 L198.4 186.0 L200.1 186.0 L201.9 186.0 L203.7 186.0 L205.5 186.0 L207.3 186.0 L209.1 186.0 L210.8 186.0 L212.6 186.0 L214.4 186.0 L216.2 186.0 L218.0 186.0 L219.7 186.0 L221.5 186.0 L223.3 186.0 L225.1 186.0 L226.9 186.0 L228.7 186.0 L230.4 186.0 L232.2 186.0 L234.0 186.0 L235.8 186.0 L237.6 186.0 L239.3 186.0 L241.1 186.0 L242.9 186.0 L244.7 186.0 L246.5 186.0 L248.3 186.0 L250.0 186.0 L251.8 186.0 L253.6 186.0 L255.4 186.0 L257.2 186.0 L258.9 186.0 L260.7 186.0 L262.5 186.0 L264.3 186.0 L266.1 186.0 L267.9 186.0 L269.6 186.0 L271.4 186.0 L273.2 186.0 L275.0 186.0 L276.8 186.0 L278.5 186.0 L280.3 186.0 L282.1 186.0 L283.9 186.0 L285.7 186.0 L287.5 186.0 L289.2 186.0 L291.0 186.0 L292.8 186.0 L294.6 186.0 L296.4 186.0 L298.1 186.0 L299.9 186.0 L301.7 186.0 L303.5 186.0 L305.3 186.0 L307.1 186.0 L308.8 186.0 L310.6 186.0 L312.4 186.0 L314.2 186.0 L316.0 186.0 L317.7 186.0 L319.5 186.0 L321.3 186.0 L323.1 186.0 L324.9 186.0 L326.7 186.0 L328.4 186.0 L330.2 186.0 L332.0 186.0 L333.8 186.0 L335.6 186.0 L337.3 186.0 L339.1 186.0 L340.9 186.0 L342.7 186.0 L344.5 186.0 L346.3 186.0 L348.0 186.0 L349.8 186.0 L351.6 186.0 L353.4 186.0 L355.2 186.0 L356.9 186.0 L358.7 184.4 L360.5 182.8 L362.3 181.2 L364.1 179.6 L365.9 178.0 L367.6 176.4 L369.4 174.8 L371.2 173.2 L373.0 171.6 L374.8 170.0 L376.5 168.4 L378.3 166.8 L380.1 165.2 L381.9 163.6 L383.7 162.0 L385.5 160.4 L387.2 158.8 L389.0 157.2 L390.8 155.6 L392.6 154.0 L394.4 152.4 L396.1 150.8 L397.9 149.2 L399.7 147.6 L401.5 146.0 L403.3 144.4 L405.1 142.8 L406.8 141.2 L408.6 139.6 L410.4 138.0 L412.2 136.4 L414.0 134.8 L415.7 133.2 L417.5 131.6 L419.3 130.0 L421.1 128.4 L422.9 126.8 L424.7 125.2 L426.4 123.6 L428.2 122.0 L430.0 120.4 L431.8 118.8 L433.6 117.2 L435.3 115.6 L437.1 114.0 L438.9 112.4 L440.7 110.8 L442.5 109.2 L444.3 107.6 L446.0 106.0 L447.8 104.4 L449.6 102.8 L451.4 101.2 L453.2 99.6 L454.9 98.0 L456.7 96.4 L458.5 94.8 L460.3 93.2 L462.1 91.6 L463.9 90.0 L465.6 88.4 L467.4 86.8 L469.2 85.2 L471.0 83.6 L472.8 82.0 L474.5 80.4 L476.3 78.8 L478.1 77.2 L479.9 75.6 L481.7 74.0 L483.5 72.4 L485.2 70.8 L487.0 69.2 L488.8 67.6 L490.6 66.0 L492.4 64.4 L494.1 62.8 L495.9 61.2 L497.7 59.6 L499.5 58.0 L501.3 56.4 L503.1 54.8 L504.8 53.2 L506.6 51.6 L508.4 50.0 L510.2 48.4 L512.0 46.8 L513.7 45.2 L515.5 43.6 L517.3 42.0 L519.1 42.0 L520.9 42.0 L522.7 42.0 L524.4 42.0 L526.2 42.0 L528.0 42.0 L529.8 42.0 L531.6 42.0 L533.3 42.0 L535.1 42.0 L536.9 42.0 L538.7 42.0 L540.5 42.0 L542.3 42.0 L544.0 42.0 L545.8 42.0 L547.6 42.0 L549.4 42.0 L551.2 42.0 L552.9 42.0 L554.7 42.0 L556.5 42.0 L558.3 42.0 L560.1 42.0 L561.9 42.0 L563.6 42.0 L565.4 42.0 L567.2 42.0 L569.0 42.0 L570.8 42.0 L572.5 42.0 L574.3 42.0 L576.1 42.0 L577.9 42.0 L579.7 42.0 L581.5 42.0 L583.2 42.0 L585.0 42.0 L586.8 42.0 L588.6 42.0 L590.4 42.0 L592.1 42.0 L593.9 42.0 L595.7 42.0 L597.5 42.0 L599.3 42.0 L601.1 42.0 L602.8 42.0 L604.6 42.0 L606.4 42.0 L608.2 42.0 L610.0 42.0 L611.7 42.0 L613.5 42.0 L615.3 42.0 L617.1 42.0 L618.9 42.0 L620.7 42.0 L622.4 42.0 L624.2 42.0 L626.0 42.0 L626.0 186.0 Z" fill="#2563eb" opacity=".16"></path><path class="dt-bar" d="M38.0 186.0 L39.8 186.0 L41.6 186.0 L43.3 186.0 L45.1 186.0 L46.9 186.0 L48.7 186.0 L50.5 186.0 L52.3 186.0 L54.0 186.0 L55.8 186.0 L57.6 186.0 L59.4 186.0 L61.2 186.0 L62.9 186.0 L64.7 186.0 L66.5 186.0 L68.3 186.0 L70.1 186.0 L71.9 186.0 L73.6 186.0 L75.4 186.0 L77.2 186.0 L79.0 186.0 L80.8 186.0 L82.5 186.0 L84.3 186.0 L86.1 186.0 L87.9 186.0 L89.7 186.0 L91.5 186.0 L93.2 186.0 L95.0 186.0 L96.8 186.0 L98.6 186.0 L100.4 186.0 L102.1 186.0 L103.9 186.0 L105.7 186.0 L107.5 186.0 L109.3 186.0 L111.1 186.0 L112.8 186.0 L114.6 186.0 L116.4 186.0 L118.2 186.0 L120.0 186.0 L121.7 186.0 L123.5 186.0 L125.3 186.0 L127.1 186.0 L128.9 186.0 L130.7 186.0 L132.4 186.0 L134.2 186.0 L136.0 186.0 L137.8 186.0 L139.6 186.0 L141.3 186.0 L143.1 186.0 L144.9 186.0 L146.7 186.0 L148.5 186.0 L150.3 186.0 L152.0 186.0 L153.8 186.0 L155.6 186.0 L157.4 186.0 L159.2 186.0 L160.9 186.0 L162.7 186.0 L164.5 186.0 L166.3 186.0 L168.1 186.0 L169.9 186.0 L171.6 186.0 L173.4 186.0 L175.2 186.0 L177.0 186.0 L178.8 186.0 L180.5 186.0 L182.3 186.0 L184.1 186.0 L185.9 186.0 L187.7 186.0 L189.5 186.0 L191.2 186.0 L193.0 186.0 L194.8 186.0 L196.6 186.0 L198.4 186.0 L200.1 186.0 L201.9 186.0 L203.7 186.0 L205.5 186.0 L207.3 186.0 L209.1 186.0 L210.8 186.0 L212.6 186.0 L214.4 186.0 L216.2 186.0 L218.0 186.0 L219.7 186.0 L221.5 186.0 L223.3 186.0 L225.1 186.0 L226.9 186.0 L228.7 186.0 L230.4 186.0 L232.2 186.0 L234.0 186.0 L235.8 186.0 L237.6 186.0 L239.3 186.0 L241.1 186.0 L242.9 186.0 L244.7 186.0 L246.5 186.0 L248.3 186.0 L250.0 186.0 L251.8 186.0 L253.6 186.0 L255.4 186.0 L257.2 186.0 L258.9 186.0 L260.7 186.0 L262.5 186.0 L264.3 186.0 L266.1 186.0 L267.9 186.0 L269.6 186.0 L271.4 186.0 L273.2 186.0 L275.0 186.0 L276.8 186.0 L278.5 186.0 L280.3 186.0 L282.1 186.0 L283.9 186.0 L285.7 186.0 L287.5 186.0 L289.2 186.0 L291.0 186.0 L292.8 186.0 L294.6 186.0 L296.4 186.0 L298.1 186.0 L299.9 186.0 L301.7 186.0 L303.5 186.0 L305.3 186.0 L307.1 186.0 L308.8 186.0 L310.6 186.0 L312.4 186.0 L314.2 186.0 L316.0 186.0 L317.7 186.0 L319.5 186.0 L321.3 186.0 L323.1 186.0 L324.9 186.0 L326.7 186.0 L328.4 186.0 L330.2 186.0 L332.0 186.0 L333.8 186.0 L335.6 186.0 L337.3 186.0 L339.1 186.0 L340.9 186.0 L342.7 186.0 L344.5 186.0 L346.3 186.0 L348.0 186.0 L349.8 186.0 L351.6 186.0 L353.4 186.0 L355.2 186.0 L356.9 186.0 L358.7 184.4 L360.5 182.8 L362.3 181.2 L364.1 179.6 L365.9 178.0 L367.6 176.4 L369.4 174.8 L371.2 173.2 L373.0 171.6 L374.8 170.0 L376.5 168.4 L378.3 166.8 L380.1 165.2 L381.9 163.6 L383.7 162.0 L385.5 160.4 L387.2 158.8 L389.0 157.2 L390.8 155.6 L392.6 154.0 L394.4 152.4 L396.1 150.8 L397.9 149.2 L399.7 147.6 L401.5 146.0 L403.3 144.4 L405.1 142.8 L406.8 141.2 L408.6 139.6 L410.4 138.0 L412.2 136.4 L414.0 134.8 L415.7 133.2 L417.5 131.6 L419.3 130.0 L421.1 128.4 L422.9 126.8 L424.7 125.2 L426.4 123.6 L428.2 122.0 L430.0 120.4 L431.8 118.8 L433.6 117.2 L435.3 115.6 L437.1 114.0 L438.9 112.4 L440.7 110.8 L442.5 109.2 L444.3 107.6 L446.0 106.0 L447.8 104.4 L449.6 102.8 L451.4 101.2 L453.2 99.6 L454.9 98.0 L456.7 96.4 L458.5 94.8 L460.3 93.2 L462.1 91.6 L463.9 90.0 L465.6 88.4 L467.4 86.8 L469.2 85.2 L471.0 83.6 L472.8 82.0 L474.5 80.4 L476.3 78.8 L478.1 77.2 L479.9 75.6 L481.7 74.0 L483.5 72.4 L485.2 70.8 L487.0 69.2 L488.8 67.6 L490.6 66.0 L492.4 64.4 L494.1 62.8 L495.9 61.2 L497.7 59.6 L499.5 58.0 L501.3 56.4 L503.1 54.8 L504.8 53.2 L506.6 51.6 L508.4 50.0 L510.2 48.4 L512.0 46.8 L513.7 45.2 L515.5 43.6 L517.3 42.0 L519.1 42.0 L520.9 42.0 L522.7 42.0 L524.4 42.0 L526.2 42.0 L528.0 42.0 L529.8 42.0 L531.6 42.0 L533.3 42.0 L535.1 42.0 L536.9 42.0 L538.7 42.0 L540.5 42.0 L542.3 42.0 L544.0 42.0 L545.8 42.0 L547.6 42.0 L549.4 42.0 L551.2 42.0 L552.9 42.0 L554.7 42.0 L556.5 42.0 L558.3 42.0 L560.1 42.0 L561.9 42.0 L563.6 42.0 L565.4 42.0 L567.2 42.0 L569.0 42.0 L570.8 42.0 L572.5 42.0 L574.3 42.0 L576.1 42.0 L577.9 42.0 L579.7 42.0 L581.5 42.0 L583.2 42.0 L585.0 42.0 L586.8 42.0 L588.6 42.0 L590.4 42.0 L592.1 42.0 L593.9 42.0 L595.7 42.0 L597.5 42.0 L599.3 42.0 L601.1 42.0 L602.8 42.0 L604.6 42.0 L606.4 42.0 L608.2 42.0 L610.0 42.0 L611.7 42.0 L613.5 42.0 L615.3 42.0 L617.1 42.0 L618.9 42.0 L620.7 42.0 L622.4 42.0 L624.2 42.0 L626.0 42.0" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round"></path><rect x="358.7" y="192" width="160.4" height="7" fill="#ea580c"></rect><line x1="59.4" x2="59.4" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="61.381818181818176" y="214" font-size="10.5" fill="currentColor">May</text><line x1="114.6" x2="114.6" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="116.61818181818182" y="214" font-size="10.5" fill="currentColor">Jun</text><line x1="168.1" x2="168.1" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="170.0727272727273" y="214" font-size="10.5" fill="currentColor">Jul</text><line x1="223.3" x2="223.3" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="225.30909090909088" y="214" font-size="10.5" fill="currentColor">Aug</text><line x1="278.5" x2="278.5" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="280.54545454545456" y="214" font-size="10.5" fill="currentColor">Sep</text><line x1="332.0" x2="332.0" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="334" y="214" font-size="10.5" fill="currentColor">Oct</text><line x1="387.2" x2="387.2" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="389.23636363636365" y="214" font-size="10.5" fill="currentColor">Nov</text><line x1="440.7" x2="440.7" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="442.6909090909091" y="214" font-size="10.5" fill="currentColor">Dec</text><line x1="495.9" x2="495.9" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="497.92727272727274" y="214" font-size="10.5" fill="currentColor">Jan 27</text><line x1="551.2" x2="551.2" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="553.1636363636363" y="214" font-size="10.5" fill="currentColor">Feb</text><line x1="601.1" x2="601.1" y1="186" y2="190" stroke="currentColor" opacity=".6"></line><text x="603.0545454545454" y="214" font-size="10.5" fill="currentColor">Mar</text><line x1="358.7" x2="358.7" y1="26" y2="186" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"></line><text x="358.7272727272727" y="18" font-size="12" text-anchor="middle" font-weight="700" fill="currentColor">As of 16 Oct 2026: 1</text><rect x="20" y="238" width="10" height="8" fill="#1d4ed8"></rect><text x="34" y="246" font-size="11" fill="currentColor">Your stays</text><rect x="116" y="238" width="10" height="8" fill="#ea580c"></rect><text x="130" y="246" font-size="11" fill="currentColor">Planned stay</text><text x="620" y="246" font-size="11" text-anchor="end" fill="currentColor">Days counted in the 180 days up to each date</text></svg></figure></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="scCopy">Copy result</button>
+<button type="button" class="dt-btn ghost" id="scDl">Download result</button>
+<button type="button" class="dt-btn ghost" id="scIcs">Add exit date to calendar</button>
+<button type="button" class="dt-btn ghost" id="scPrint">Print / save report</button>
 </div>
-<div class="sc-panel">
-<h3>Reference date</h3>
-<div class="sc-row">
-<div><label for="refDate">Check compliance as of (default: today)</label><input type="date" id="refDate"></div>
-<div><label for="plannedExit">Planned exit date (optional, for a future trip)</label><input type="date" id="plannedExit"></div>
-</div>
-</div>
-<button type="button" class="sc-btn" id="calcBtn">Calculate days used</button>
-<button type="button" class="sc-btn ghost" id="resetBtn">Reset</button>
-<div id="output"></div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online Schengen 90/180 day calculator is a planning aid, not legal or immigration advice. It applies the 90 days in any 180-day period rule to the dates you enter. It does not know your nationality, visa, residence permit, long-stay status or any bilateral agreement that may allow longer stays. Border officers and national authorities decide, and records at the border may differ from yours. Overstaying can lead to fines, entry bans and visa refusals, so leave a buffer and check the official sources.</p>
 </section>
-<div class="sc-share noembed">
+<div class="dt-share noembed">
 <h3>Share, cite or embed this tool</h3>
-<label for="sc-share-link">Shareable link</label>
-<input type="text" id="sc-share-link" readonly value="https://utiliby.com/tools/travel-tools/schengen-calculator/">
-<button type="button" data-copy-target="sc-share-link">Copy link</button>
-<label for="sc-cite">Cite this page</label>
-<textarea id="sc-cite" readonly>Utiliby. (2026). Schengen 90/180 Day Calculator. https://utiliby.com/tools/travel-tools/schengen-calculator/</textarea>
-<button type="button" data-copy-target="sc-cite">Copy citation</button>
-<label for="sc-embed">Add this tool to your site</label>
-<textarea id="sc-embed" readonly>&lt;iframe src="https://utiliby.com/tools/travel-tools/schengen-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Schengen Calculator by Utiliby"&gt;&lt;/iframe&gt;
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly="" value="https://utiliby.com/tools/travel-tools/schengen-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly="">Utiliby. (2026). Schengen 90/180 Day Calculator. https://utiliby.com/tools/travel-tools/schengen-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly="">&lt;iframe src="https://utiliby.com/tools/travel-tools/schengen-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Schengen 90/180 Day Calculator by Utiliby"&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;a href="https://utiliby.com/tools/travel-tools/schengen-calculator/"&gt;Schengen 90/180 Day Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
-<button type="button" data-copy-target="sc-embed">Copy embed code</button>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
 </div>
 <article class="cn-article noembed">
-<h2>What is a free Schengen 90/180 day calculator online?</h2>
-<p>A free Schengen 90/180 day calculator online is a tool that checks whether your travel pattern complies with the Schengen short-stay rule — a maximum of 90 days inside the Schengen Area in any rolling 180-day period. The key word is "rolling": the window is not a fixed calendar period. For any date, you look back exactly 180 days and count every day you were inside Schengen. Both entry and exit days count as full days, and the 90-day limit applies across the whole Schengen Area collectively, not per country.</p>
-<p>This Schengen calculator uses the peak-counting method: it scans every day from your earliest entry to your latest exit, computes the rolling 180-day count for each, and reports the day when that count peaked. Checking only the last exit can miss a violation that happened earlier in the same trip pattern. The tool also shows days remaining, the next date you can re-enter, and — if you have a planned trip — whether it would push you over the limit. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-<h2>How to use this free Schengen calculator</h2>
-<ol>
-<li>Add each trip to the Schengen Area with entry and exit dates. Past and planned trips both count.</li>
-<li>Set the reference date — the date you want to check compliance for. It defaults to today, but you can set a future date to check a planned entry.</li>
-<li>Optionally set a planned exit date for a trip that is still in progress or planned.</li>
-<li>Click Calculate. The tool shows days used in the rolling window, days remaining, the peak day, and the next date you can re-enter.</li>
-</ol>
-<h2>The rule explained</h2>
-<p>The Schengen short-stay rule is set out in Regulation (EU) No 610/2013, which amended the Schengen Borders Code. It limits third-country nationals on a short stay or visa-free entry to 90 days within any 180-day period. The calculation is performed from the date of first entry and is checked on each entry, so the limit must be respected on every day of a stay, not just on arrival.</p>
-<p>The most common misunderstanding is that the 90 days "reset" after a period outside Schengen. They do not. Old days fade out only as they fall outside the 180-day look-back window. If you stayed 90 consecutive days and left on day 91, you cannot re-enter the next day — many of those 90 days still sit inside the 180-day window. You must wait until enough old days have exited the window, or plan shorter visits spread over time.</p>
-<h2>Schengen countries</h2>
-<p>Your 90 days count across the entire Schengen Area collectively. The current Schengen states are Austria, Belgium, Croatia, Czech Republic, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland is not part of Schengen, so days spent in Ireland do not count against your 90-day allowance. Bulgaria and Romania joined the Schengen Area in 2024; days spent there before that date were subject to different rules.</p>
-<h2>EES and digital day counting</h2>
-<p>The Entry/Exit System (EES) replaced manual passport stamping with digital logging. Every crossing is recorded automatically. Before EES, border guards counted stamps by hand and mistakes were common in both directions. With EES, the system instantly shows the exact number of days used, and automated alerts flag travellers who are near or at the 90-day limit. This makes overstays much harder to miss — and much harder to argue against.</p>
-<h2>What happens if you overstay</h2>
-<p>Overstaying a Schengen short stay is a serious matter. Consequences can include fines, deportation, entry bans of one to five years depending on the length and circumstances, and refused future visa applications. Because EES records every crossing, an overstay that might previously have gone unnoticed is now detected automatically. If you need more than 90 days, you normally need a national long-stay (Type D) visa or residence permit from a specific Schengen country — a short-stay Schengen visa alone cannot be extended beyond the limit.</p>
-<h2>Common mistakes</h2>
-<ul>
-<li><b>Assuming the clock resets.</b> It does not. Old days leave the window only after 180 days have passed.</li>
-<li><b>Forgetting entry and exit days.</b> Both count fully, even for a same-day crossing.</li>
-<li><b>Double-counting overlapping trips.</b> All Schengen days share one 90-day pool. You cannot earn extra days by hopping borders.</li>
-<li><b>Checking only the last exit.</b> A violation can occur earlier in the pattern. Peak-counting catches it.</li>
-<li><b>Using an outdated country list.</b> Croatia (2023), Bulgaria and Romania (2024) have joined. Always use the current Schengen map.</li>
-<li><b>Leaving no buffer.</b> Flight delays or counting errors can push you to the absolute limit. Leave a few days of margin.</li>
-</ul>
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is the Schengen 90/180 day rule?</summary><p>Non-EU visitors may spend at most 90 days inside the Schengen Area in any rolling 180-day period. For any date, you look back 180 days and count every day you were inside Schengen. Both entry and exit days count.</p></details>
-<details><summary>Does the 90-day clock reset when I leave?</summary><p>No. Old days fade out only as they fall outside the 180-day look-back window. You must wait until enough days have passed before you can re-enter.</p></details>
-<details><summary>Do entry and exit days count?</summary><p>Yes. Both the day you enter and the day you exit count as full days, even for same-day crossings.</p></details>
-<details><summary>Which countries count towards the 90 days?</summary><p>Your 90 days count across the entire Schengen Area collectively. Ireland is not in Schengen, so days spent there do not count.</p></details>
-<details><summary>What happens if I overstay?</summary><p>Possible consequences include fines, deportation, entry bans of one to five years, and refused future visa applications. EES detects overstays automatically.</p></details>
-<details><summary>Is this calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-</div>
-<div class="sc-disclaimer">
-<b>Disclaimer:</b> This calculator is provided for planning and educational purposes only. It implements the standard 90/180 rolling-window rule based on the trip data you enter. It does not account for national long-stay visas, residence permits, bilateral agreements, or special statuses that may change how days are counted. Border officials make the final determination. Always verify your situation with the relevant embassy or consulate before travelling, and leave a buffer of a few days to account for counting errors or flight delays. Utiliby accepts no liability for entry decisions, overstays, or consequences arising from the use of this tool.
-</div>
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 16, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="file:///C:/Users/imn/Downloads/index_1.html#what">What this free online Schengen 90/180 day calculator does</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#how">How to use this 90/180 day calculator</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#rule">The 90 in 180 rule explained in plain words</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#example">Worked example</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#countries">Which countries count towards the 90 days</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#who">Who the rule applies to, and who it does not</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#ees">EES, ETIAS and how border records work</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#planning">Planning a trip without overstaying</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#mistakes">Common mistakes the calculator helps you avoid</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#overstay">What happens if you overstay</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#faq-extra">Is this calculator as accurate as the official one</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#limits">Accuracy, limits and responsible use</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#faq">Frequently asked questions</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#sources">Sources and further reading</a></li><li><a href="file:///C:/Users/imn/Downloads/index_1.html#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online Schengen 90/180 day calculator does</h2>
+<p>Travelling around Europe on a passport that does not need a visa feels simple until the <b>Schengen 90/180 day rule</b> catches you out. The rule allows non-EU visitors to spend <b>90 days in any 180-day period</b> inside the Schengen Area. It sounds easy, but because the 180-day window slides forward every single day, working out how many days are left by hand is a common source of mistakes. Digital nomads, long-term travellers, seasonal workers, people with homes in two places and anyone who loves a European summer all run into it.</p><p>This free online Schengen calculator takes your list of visits, counts every entry and exit day, and slides the 180-day window across your whole history to find the busiest day. You get days used, days remaining, the last legal day if you stay put, and a table of the earliest date you can come back for stays of 7, 14, 30, 60 or 90 days. A colour-coded 180-day strip and a rolling-count chart show the picture instead of leaving you to trust a number. A second tab plans future trips, and you can add your exit date to your calendar with reminders. Print or save produces a one-page report with only your result, not the whole web page.</p><p>Everything runs privately in your browser. Nothing is uploaded, no account is needed, and the optional memory feature stores your stays only on your own device.</p>
+<h2 id="how">How to use this 90/180 day calculator</h2>
+<ol><li><b>Add your stays.</b> Press Add a stay for each visit and choose the entry date and the exit date. Add a country if you want a breakdown by country.</li><li><b>Set the check date.</b> It defaults to today. Change it to see the count on any other day, past or future.</li><li><b>Read the result.</b> The big number shows days used out of 90. Below it you see the days remaining, the window dates, the highest count your history ever reached, and the last legal day.</li><li><b>Study the two visuals.</b> The strip shows each of the last 180 days as a box, blue for days inside Schengen. The line chart shows the rolling count and the 90-day limit.</li><li><b>Plan ahead.</b> Open the Plan a trip tab, pick an entry date and see the longest stay it allows, or enter an exit date to test a specific trip.</li><li><b>Save and share.</b> Copy the result, download it, add your last legal day to a calendar file, or print the report.</li></ol><p>You can also paste stays as text in the import box. One line per stay, with the entry date, the exit date and an optional country, separated by commas.</p>
+<h2 id="rule">The 90 in 180 rule explained in plain words</h2>
+<figure class="dt-fig tr-fig"><svg viewBox="0 0 640 150" width="100%" role="img" aria-label="How the Schengen 90 in 180 rule works"><title>How the 90 in 180 rule works</title>
+<g font-size="12" text-anchor="middle" fill="#1f2937"><rect x="8" y="36" width="190" height="78" rx="10" fill="#dbeafe" stroke="#1d4ed8"></rect><text x="103" y="62" font-weight="700">1. Pick a date</text><text x="103" y="80" font-size="11">Today, or the day</text><text x="103" y="95" font-size="11">you plan to be there</text>
+<rect x="225" y="36" width="190" height="78" rx="10" fill="#dbeafe" stroke="#1d4ed8"></rect><text x="320" y="62" font-weight="700">2. Look back 180 days</text><text x="320" y="80" font-size="11">That date and the</text><text x="320" y="95" font-size="11">179 days before it</text>
+<rect x="442" y="36" width="190" height="78" rx="10" fill="#bbf7d0" stroke="#16a34a"></rect><text x="537" y="62" font-weight="700">3. Count your days</text><text x="537" y="80" font-size="11">Must be 90 or fewer</text><text x="537" y="95" font-size="11">on every single date</text></g>
+<g stroke="#1d4ed8" stroke-width="2" fill="none"><path d="M200 75h22"></path><path d="M417 75h22"></path></g></svg><figcaption>The window moves forward every day, so days drop out of the count 180 days after you spent them.</figcaption></figure><p>The rule comes from the Schengen Borders Code. It says that a third-country national who does not need a visa, or who holds a short-stay visa, may stay for up to <b>90 days in any 180-day period</b>. The phrase <i>any</i> 180-day period is the key. It does not mean a fixed six months that starts on 1 January or on the day you arrive. It means that on <b>every single day</b> of your trip, if you look back at that day and the 179 days before it, you must find 90 or fewer days spent in the area.</p><p>Three details cause most mistakes:</p><ul><li><b>Partial days count.</b> Arriving at 23:00 or leaving at 01:00 uses a whole day.</li><li><b>It is the whole area, not each country.</b> Spending 30 days in Spain, 30 in Italy and 30 in France is 90 days, not 30 in each.</li><li><b>Days drop out slowly.</b> A day only leaves the count once it is 180 days old, so a long stay in spring keeps blocking you through the summer.</li></ul><p>The calculator checks the rule for every day of your history rather than only today, because an overstay can hide in the middle of a past trip even when today's count looks fine.</p>
+<h2 id="example">Worked example</h2>
+<p>Imagine a traveller who spends 1 March to 30 April (61 days) in Spain, goes home for a month, and then arrives in Italy on 1 June. On 1 June the 180-day window reaches back to early December, and 61 days are already used. That leaves 29 days. A stay from 1 June can run until 29 June, since the 29 days add up to 90 exactly. Staying one more day would be day 91 and an overstay.</p><p>Now suppose the same traveller waits until 1 September. The window starts in early March, so the first days of the Spain stay have already dropped out and more days are free. The earlier you plan, the more days come back, which is why the earliest-entry table matters for planning a return.</p><div class="dt-wrap"><table><tbody><tr><th>Date</th><th>Days in last 180</th><th>Left</th></tr><tr><td>30 April</td><td>61</td><td>29</td></tr><tr><td>1 June (before arrival)</td><td>61</td><td>29</td></tr><tr><td>29 June (after 29 days in Italy)</td><td>90</td><td>0</td></tr></tbody></table></div><p>The numbers are illustrative. Enter your own dates to see the exact result.</p>
+<h2 id="countries">Which countries count towards the 90 days</h2>
+<p>The Schengen Area has no internal border checks among its 29 members. Time in any of them adds to the same pool. Bulgaria and Romania became full members at the start of 2025, when land border checks with them ended, and Croatia joined in 2023.</p><div class="dt-wrap"><table><tbody><tr><th>In Schengen (counts)</th><th>Not in Schengen (does not count)</th></tr><tr><td>Austria, Belgium, Bulgaria, Croatia, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden, Switzerland</td><td>Ireland, Cyprus, United Kingdom, Albania, Serbia, Montenegro, Bosnia, North Macedonia, Turkey, Andorra, Moldova, Ukraine, Georgia</td></tr></tbody></table></div><p>Monaco, San Marino and the Vatican are in practice part of the area. Overseas territories such as the French Caribbean islands follow separate rules and are not covered by this tool. Check the status of any territory before you travel.</p>
+<h2 id="who">Who the rule applies to, and who it does not</h2>
+<p>The rule applies to citizens of countries whose passport holders can enter Schengen without a visa, such as the United States, the UK, Canada, Australia, Japan and many others, and to people holding a short-stay (Type C) Schengen visa. A multi-entry visa still follows the same 90/180 limit.</p><p>It does <b>not</b> apply to citizens of the EU, Iceland, Liechtenstein, Norway and Switzerland, to their family members under free movement rules, or to people living in a Schengen country on a residence permit or a national long-stay visa. Time spent on such documents does not count towards the 90 days. If you are unsure which category you fall under, ask the embassy or consulate of the country you plan to visit.</p><h3>Digital nomads and remote workers</h3><p>The 90/180 rule limits how long you can stay as a visitor. It does not make working legal. Several countries now offer digital nomad or long-stay visas that sit outside the short-stay count. If you hold one, keep the document with you and track it separately.</p>
+<h2 id="ees">EES, ETIAS and how border records work</h2>
+<p>The <b>Entry/Exit System (EES)</b> is a digital border register that replaced manual passport stamping for non-EU short-stay visitors. At the first crossing you provide a photo and fingerprints, and later each entry and exit is logged. The system calculates your days for the officer, which means your travel record is exact and an overstay shows up automatically. Because the record is digital, you should keep your own log. This tool helps you do that and compare it with what you expect.</p><p><b>ETIAS</b> is a separate, planned online travel authorisation for visitors who do not need a visa. It is a pre-travel check, not a stay permit, and it does not change the 90/180 limit. At the time of writing it has not started. Official guidance will state when it becomes mandatory, and the approved authorisation will be tied to your passport.</p><p>Whatever the border system shows is what officers rely on, so if your count and the border record ever disagree, ask the border authority how it was calculated before you leave.</p>
+<h2 id="planning">Planning a trip without overstaying</h2>
+<ul><li><b>Test the whole trip.</b> Enter the planned dates in the Plan a trip tab. The tool checks the count on every day of the stay, not only the last one.</li><li><b>Find the longest stay.</b> Enter only the entry date to see how many days that start allows and the last legal day.</li><li><b>Find the earliest return.</b> Use the table on the first tab to see when a stay of 7, 14, 30, 60 or 90 days becomes possible again.</li><li><b>Split trips wisely.</b> Because days drop out gradually, two 45-day visits separated by a gap can fit where one 90-day visit followed by an immediate return cannot.</li><li><b>Leave a buffer.</b> A cancelled flight or a strike can delay your exit. Plan to leave two or three days before your last legal day.</li><li><b>Set a reminder.</b> Download the calendar file for your last legal day. It adds alerts seven days and one day before.</li></ul>
+<h2 id="mistakes">Common mistakes the calculator helps you avoid</h2>
+<ul><li>Counting from a fixed date such as 1 January instead of a rolling window.</li><li>Not counting the entry day or the exit day.</li><li>Treating each country as having its own 90 days.</li><li>Assuming you can leave for one night and reset the count. A short exit does not reset anything.</li><li>Forgetting trips from many months ago that still sit inside the 180 days.</li><li>Counting time in Ireland, Cyprus or the UK.</li><li>Mixing up the 90/180 rule with the 'Schengen visa validity' printed on a visa sticker. They are different limits and both apply.</li></ul>
+<h2 id="overstay">What happens if you overstay</h2>
+<p>An overstay is staying longer than your permitted days. Even a few days can have an effect. Penalties vary by country and may include a fine on departure, a longer ban on re-entry, a note in the border database that can affect later visa and ETIAS decisions, and in serious cases detention and deportation. Some countries are more lenient on short overstays caused by emergencies, but you should not rely on that. If you are already over the limit, contact the immigration authority or a qualified adviser before you leave, and keep evidence of the reason, such as medical records or cancelled transport.</p>
+<h2 id="faq-extra">Is this calculator as accurate as the official one</h2>
+<p>It follows the same method as the official short-stay calculator published by the European Commission: it counts entry and exit days, checks the 180 days up to the date, and compares the result with 90. Where it goes further is the visual history, the planning tools, the earliest-entry table and the report. The result only reflects the dates you type. Always check key travel plans against the official tool and the rules of the country you visit.</p>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>This tool is a planning aid. It counts every day between the dates you enter, so any mistake in your dates changes the result. It does not know your nationality or immigration status and does not apply bilateral agreements, residence permits, visa validity, special rules for family members of EU citizens, or the rules of overseas territories. Border officers rely on their own records, which may differ. Keep your boarding passes, tickets and accommodation receipts, and leave a safety margin.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How does the Schengen 90/180 day rule work?</summary><p>In any period of 180 days you may spend at most 90 days in the Schengen Area on a short stay. The 180 days are a rolling window ending on the date you check, not a calendar half-year, so the count changes every day.</p></details><details><summary>Do the day of entry and the day of exit count?</summary><p>Yes. Both the day you enter and the day you leave count as full days, even if you were there for only a few hours. A stay from 1 to 10 March is 10 days, not 9.</p></details><details><summary>Is the 180-day period fixed or rolling?</summary><p>Rolling. For any date, look back 179 days plus that date itself. Days older than that no longer count. This is why a single reset date does not exist.</p></details><details><summary>How do I find out how many days I have left?</summary><p>Add every past stay, set the check date to today and read the days remaining. The tool also shows the last legal day if you stay without a break.</p></details><details><summary>How long must I stay out before coming back?</summary><p>There is no fixed waiting time. You can return as soon as the rolling count lets you. After a full 90-day stay you generally need to wait about 90 days to be allowed a new 90-day stay. The table in the tool shows exact earliest entry dates.</p></details><details><summary>Which countries are in the Schengen Area?</summary><p>Twenty-nine countries: Austria, Belgium, Bulgaria, Croatia, Czechia, Denmark, Estonia, Finland, France, Germany, Greece, Hungary, Iceland, Italy, Latvia, Liechtenstein, Lithuania, Luxembourg, Malta, the Netherlands, Norway, Poland, Portugal, Romania, Slovakia, Slovenia, Spain, Sweden and Switzerland. Ireland and Cyprus are in the EU but not in Schengen.</p></details><details><summary>Do days in Ireland, Cyprus or the UK count?</summary><p>No. Only time spent inside the Schengen Area counts. Ireland, Cyprus, the UK, Albania, Serbia and other non-Schengen countries do not use up days.</p></details><details><summary>Do days in the microstates count?</summary><p>Monaco, San Marino and the Vatican have open borders with their neighbours and are treated as part of the Schengen Area, so time there counts. Andorra is not in Schengen, but you must cross France or Spain to reach it.</p></details><details><summary>Does the rule apply to everyone?</summary><p>No. It applies to short stays of non-EU citizens who do not need a visa or who hold a short-stay Schengen visa. EU, EEA and Swiss citizens, and people with a residence permit or long-stay national visa, follow different rules.</p></details><details><summary>Can a long-stay visa or residence permit change the count?</summary><p>Time spent on a national long-stay visa or residence permit of a Schengen state does not count towards the 90 days for short stays. Always check with the issuing country.</p></details><details><summary>What happens if I overstay?</summary><p>Consequences range from a warning to fines, deportation and an entry ban of up to several years, and an overstay can lead to later visa refusals. The penalty depends on the country and on how long you overstayed.</p></details><details><summary>What is the Entry/Exit System (EES)?</summary><p>EES is a digital border system that registers non-EU visitors with fingerprints and a photo and records entry and exit dates automatically. It replaces passport stamps, so officers can see your exact days. It has been in operation since late 2025 and was fully rolled out in April 2026.</p></details><details><summary>What is ETIAS and do I need it?</summary><p>ETIAS is a planned online travel authorisation for visa-exempt travellers, similar to a US ESTA. It has not started yet at the time of writing. When it does it will not change the 90/180 rule. Check the official EU website for the start date.</p></details><details><summary>Can I use the calculator for future trips?</summary><p>Yes. Use the Plan a trip tab to enter a planned entry date and see the longest stay allowed, or enter an exit date to test a specific trip. You can also add planned trips in the first tab.</p></details><details><summary>Do some countries allow extra days through bilateral agreements?</summary><p>A few older bilateral visa agreements let citizens of certain countries stay longer in specific Schengen states, in addition to the 90 days. These are rare and nationality specific, and this tool does not apply them.</p></details><details><summary>Is my data stored or sent anywhere?</summary><p>No. Everything runs in your browser. If you tick the remember box, your stays are saved only in this browser on this device, and you can clear them any time with Reset.</p></details><details><summary>Is this the same as the official EU calculator?</summary><p>The method is the same: a 180-day look-back window with entry and exit days counted. The official short-stay calculator from the European Commission is a good second check before you travel.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>European Commission, <a href="https://home-affairs.ec.europa.eu/policies/schengen/border-crossing_en" rel="noopener">Border crossing and short-stay rules</a>.</li><li>European Commission, <a href="https://home-affairs.ec.europa.eu/policies/schengen/schengen-area_en" rel="noopener">The Schengen Area</a>.</li><li>European Union, <a href="https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:32016R0399" rel="noopener">Regulation (EU) 2016/399, the Schengen Borders Code</a>.</li><li>European Union, <a href="https://travel-europe.europa.eu/ees_en" rel="noopener">Entry/Exit System (EES)</a>.</li><li>European Union, <a href="https://travel-europe.europa.eu/etias_en" rel="noopener">ETIAS</a>.</li><li>Your Europe, <a href="https://europa.eu/youreurope/citizens/travel/entry-exit/index_en.htm" rel="noopener">Entry and exit rules</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online Schengen 90/180 day calculator is a planning aid, not legal or immigration advice. It applies the 90 days in any 180-day period rule to the dates you enter. It does not know your nationality, visa, residence permit, long-stay status or any bilateral agreement that may allow longer stays. Border officers and national authorities decide, and records at the border may differ from yours. Overstaying can lead to fines, entry bans and visa refusals, so leave a buffer and check the official sources.</div>
 </article>
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
-<script src="/assets/site.js" defer></script>
+<script src="file:///C:/assets/site.js" defer=""></script>
 <script>
 (function(){
 "use strict";
-function $(id){return document.getElementById(id);}
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
 
-var tripId=0;
-function addTrip(entry,exit){
-  tripId++;
-  var host=$("tripList");
-  var div=document.createElement("div");
-  div.className="sc-trip";
-  div.dataset.id=tripId;
-  div.innerHTML='<div><label>Entry date</label><input type="date" class="t-entry" value="'+(entry||"")+'"></div>'+
-    '<div><label>Exit date</label><input type="date" class="t-exit" value="'+(exit||"")+'"></div>'+
-    '<div><button type="button" class="sc-btn ghost t-remove" style="margin:0;padding:8px 12px">Remove</button></div>';
-  host.appendChild(div);
-  div.querySelector(".t-remove").addEventListener("click",function(){div.remove();});
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
 }
-function collectTrips(){
-  var trips=[];
-  document.querySelectorAll(".sc-trip").forEach(function(row){
-    var e=row.querySelector(".t-entry").value;
-    var x=row.querySelector(".t-exit").value;
-    if(e&&x){trips.push({entry:e,exit:x});}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
   });
-  return trips;
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
 }
-function dayCount(a,b){
-  /* inclusive count of calendar days from a to b */
-  var d1=new Date(a+"T00:00:00"),d2=new Date(b+"T00:00:00");
-  if(isNaN(d1)||isNaN(d2)||d2<d1)return 0;
-  return Math.round((d2-d1)/86400000)+1;
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
 }
-function isInSchengenOn(date, trips){
-  for(var i=0;i<trips.length;i++){
-    var e=new Date(trips[i].entry+"T00:00:00");
-    var x=new Date(trips[i].exit+"T00:00:00");
-    if(date>=e&&date<=x)return true;
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
   }
-  return false;
+  out.push(cur); return out.join("\r\n");
 }
-function rollingCount(date, trips){
-  /* Count Schengen days in the 180-day window ending on date */
-  var count=0;
-  var start=new Date(date.getTime()-179*86400000);
-  for(var d=new Date(start);d<=date;d=new Date(d.getTime()+86400000)){
-    if(isInSchengenOn(d,trips))count++;
-  }
-  return count;
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
 }
-function calc(){
-  var trips=collectTrips();
-  var out=$("output");
-  if(trips.length===0){out.innerHTML='<div class="sc-warn">Add at least one trip with entry and exit dates.</div>';return;}
-  var refStr=$("refDate").value;
-  var ref=refStr?new Date(refStr+"T00:00:00"):new Date();
-  var plannedExitStr=$("plannedExit").value;
-  var allTrips=trips.slice();
-  if(plannedExitStr){
-    /* If plannedExit is set, assume a trip starting at ref and ending at plannedExit */
-    allTrips.push({entry:refStr||ref.toISOString().slice(0,10),exit:plannedExitStr});
-  }
-  /* Find earliest entry */
-  var earliest=null,latest=null;
-  for(var i=0;i<allTrips.length;i++){
-    var e=new Date(allTrips[i].entry+"T00:00:00");
-    var x=new Date(allTrips[i].exit+"T00:00:00");
-    if(!earliest||e<earliest)earliest=e;
-    if(!latest||x>latest)latest=x;
-  }
-  /* Scan each day from earliest to max(latest, ref) and find peak rolling count */
-  var scanEnd=new Date(Math.max(latest.getTime(),ref.getTime()));
-  var peak=0,peakDate=null;
-  for(var d=new Date(earliest);d<=scanEnd;d=new Date(d.getTime()+86400000)){
-    var c=rollingCount(d,allTrips);
-    if(c>peak){peak=c;peakDate=new Date(d.getTime());}
-  }
-  var used=rollingCount(ref,allTrips);
-  var remaining=90-used;
-  var status,cls;
-  if(used>90){status="OVERSTAY";cls="err";}
-  else if(used>=85){status="At the limit";cls="err";}
-  else if(used>=75){status="Approaching the limit";cls="warn";}
-  else{status="Compliant";cls="ok";}
-  /* Next re-entry: earliest date when rolling count would drop below 90 */
-  var nextReentry=null;
-  for(var d2=new Date(ref);d2<new Date(ref.getTime()+400*86400000);d2=new Date(d2.getTime()+86400000)){
-    if(rollingCount(d2,allTrips)<90){nextReentry=new Date(d2.getTime());break;}
-  }
-  var h='<div class="sc-result"><div class="sc-label">Days used in the current 180-day window</div>'+
-    '<div class="sc-big">'+used+' / 90</div>'+
-    '<div class="sc-label" style="margin-top:8px">Status: <span style="color:'+(cls==="ok"?"#16a34a":cls==="warn"?"#f59e0b":"#dc2626")+'">'+status+'</span></div></div>';
-  h+='<div class="sc-stats">';
-  h+='<div class="sc-stat"><div class="lbl">Days remaining</div><div class="val '+(remaining>15?"ok":remaining>0?"warn":"err")+'">'+remaining+'</div></div>';
-  h+='<div class="sc-stat"><div class="lbl">Peak rolling count</div><div class="val '+(peak>90?"err":peak>=85?"warn":"ok")+'">'+peak+'</div></div>';
-  h+='<div class="sc-stat"><div class="lbl">Peak date</div><div class="val" style="font-size:.85rem">'+(peakDate?peakDate.toISOString().slice(0,10):"—")+'</div></div>';
-  h+='<div class="sc-stat"><div class="lbl">Reference date</div><div class="val" style="font-size:.85rem">'+ref.toISOString().slice(0,10)+'</div></div>';
-  h+='</div>';
-  if(nextReentry){h+='<div class="sc-tip"><b>Next date you can re-enter (if entering on that day and staying):</b> '+nextReentry.toISOString().slice(0,10)+'. This is the first date on which your rolling 180-day count would drop below 90 for a new entry.</div>';}
-  if(used>90){h+='<div class="sc-warn"><b>Overstay detected.</b> Your current 180-day count is '+used+' days, above the 90-day limit. Consequences can include fines, deportation and entry bans. Adjust your plans or seek advice from the relevant embassy.</div>';}
-  h+='<div class="sc-tip"><b>Your trips:</b> '+(trips.length)+' trip(s) entered. '+(plannedExitStr?'A planned stay from '+($("refDate").value||ref.toISOString().slice(0,10))+' to '+plannedExitStr+' is included in the calculation.':'No planned stay included.')+'</div>';
-  h+='<div class="sc-actions" style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyScBtn" class="sc-btn" style="margin:0">Copy result</button></div>';
-  out.innerHTML=h;
-  document.getElementById("copyScBtn").addEventListener("click",function(){
-    var t="Schengen 90/180 Calculator Result\nDays used: "+used+" / 90\nStatus: "+status+"\nPeak rolling count: "+peak+"\n"+(nextReentry?"Next re-entry date: "+nextReentry.toISOString().slice(0,10)+"\n":"")+"- utiliby.com";
-    copyText(t,document.getElementById("copyScBtn"));
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+/* ---------- travel shared helpers ---------- */
+function tn(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 0 : d, minimumFractionDigits: d == null ? 0 : d }); }
+function cur2(v, sym) { if (v == null || !isFinite(v)) return "n/a"; return sym + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function li(k, t) { return '<li><span class="' + (k === "y" ? "tr-y" : k === "n" ? "tr-n" : "tr-q") + '">' + (k === "y" ? "&#10003;" : k === "n" ? "&#10007;" : "?") + "</span><div>" + t + "</div></li>"; }
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { } }
+function svgTxt(x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 11) + '"' + (o.a ? ' text-anchor="' + o.a + '"' : "") + (o.w ? ' font-weight="' + o.w + '"' : "") + (o.f ? ' fill="' + o.f + '"' : ' fill="currentColor"') + ">" + esc(t) + "</text>"; }
+
+/* ---------- Schengen 90/180 day calculator ---------- */
+var CTRY = ["Austria", "Belgium", "Bulgaria", "Croatia", "Czechia", "Denmark", "Estonia", "Finland", "France", "Germany", "Greece", "Hungary", "Iceland", "Italy", "Latvia", "Liechtenstein", "Lithuania", "Luxembourg", "Malta", "Netherlands", "Norway", "Poland", "Portugal", "Romania", "Slovakia", "Slovenia", "Spain", "Sweden", "Switzerland"];
+var KEY = "utiliby_schengen_trips_v1";
+var ST = { tab: "check", dead: null, last: null };
+/* sorted unique array helpers */
+function lb(a, v) { var l = 0, h = a.length; while (l < h) { var m = (l + h) >> 1; if (a[m] < v) l = m + 1; else h = m; } return l; }
+function ub(a, v) { var l = 0, h = a.length; while (l < h) { var m = (l + h) >> 1; if (a[m] <= v) l = m + 1; else h = m; } return l; }
+function counter(a) { return function (d) { return ub(a, d) - lb(a, d - 179); }; }
+function union(a, from, n) { var o = {}, i, r = []; for (i = 0; i < a.length; i++) o[a[i]] = 1; for (i = 0; i < n; i++) o[from + i] = 1; for (var k in o) r.push(+k); r.sort(function (x, y) { return x - y; }); return r; }
+function valid(a, entry, n) {
+  var B = union(a, entry, n), last = B[B.length - 1], c = counter(B);
+  for (var d = entry; d <= last; d++) if (c(d) > 90) return false;
+  return true;
+}
+function maxStay(a, entry) { var lo = 0, hi = 90; while (lo < hi) { var m = (lo + hi + 1) >> 1; if (valid(a, entry, m)) lo = m; else hi = m - 1; } return lo; }
+function earliestEntry(a, n, from) { for (var e = from; e < from + 760; e++) if (valid(a, e, n)) return e; return null; }
+function expand(trips) { var o = {}, r = []; trips.forEach(function (t) { for (var d = t.e; d <= t.x && d - t.e < 4000; d++) o[d] = 1; }); for (var k in o) r.push(+k); r.sort(function (x, y) { return x - y; }); return r; }
+function collect() {
+  var rows = [], any = false;
+  [].forEach.call(document.querySelectorAll("#scTrips .tr-trip"), function (r) {
+    var es = r.querySelector(".t-e").value, xs = r.querySelector(".t-x").value, c = r.querySelector(".t-c").value, e = parseD(es), x = parseD(xs), msg = r.querySelector(".t-m");
+    var m = "";
+    if (es || xs) { if (!e || !x) m = e || x ? "Enter both dates." : "Enter valid dates."; else if (x < e) m = "The exit date is before the entry date."; }
+    msg.textContent = m; r.setAttribute("data-bad", m ? "1" : "");
+    if (e && x && x >= e) rows.push({ e: e, x: x, c: c });
   });
+  return rows;
 }
-window.addEventListener("DOMContentLoaded",function(){
-  if(!$("tool"))return;
-  $("refDate").value=new Date().toISOString().slice(0,10);
-  addTrip();
-  $("addTripBtn").addEventListener("click",function(){addTrip();});
-  $("calcBtn").addEventListener("click",calc);
-  $("resetBtn").addEventListener("click",function(){$("tripList").innerHTML="";addTrip();$("plannedExit").value="";$("output").innerHTML="";});
-  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
-});
+function refDay() { var r = parseD($("scRef").value); return r == null ? todayDN() : r; }
+function analyse() {
+  var trips = collect(), A = expand(trips), ref = refDay(), c = counter(A), O = { trips: trips, A: A, ref: ref };
+  O.used = c(ref); O.remaining = 90 - O.used; O.ws = ref - 179;
+  var inside = ub(A, ref) - lb(A, ref) > 0; O.inside = inside;
+  var peak = 0, pd = null, firstBad = null, badDays = 0;
+  if (A.length) for (var d = A[0]; d <= Math.max(A[A.length - 1], ref); d++) { var v = c(d); if (v > peak) { peak = v; pd = d; } if (v > 90) { badDays++; if (firstBad == null) firstBad = d; } }
+  O.peak = peak; O.peakDay = pd; O.firstBad = firstBad; O.badDays = badDays;
+  var st = O.used > 90 ? ["Over the limit", "err"] : O.used === 90 ? ["At the limit", "err"] : O.remaining <= 15 ? ["Close to the limit", "warn"] : ["Within the limit", "ok"];
+  O.status = st[0]; O.cls = st[1];
+  var from = inside ? ref + 1 : ref, n = O.used > 90 ? 0 : maxStay(A, from);
+  O.stay = n; O.legalLast = inside ? (O.used > 90 ? null : ref + n) : (n > 0 ? ref + n - 1 : null);
+  O.entryTable = [7, 14, 30, 60, 90].map(function (k) { return [k, earliestEntry(A, k, ref)]; });
+  var per = {}; trips.forEach(function (t) { var s = Math.max(t.e, O.ws), e = Math.min(t.x, ref); if (e >= s && t.c) per[t.c] = (per[t.c] || 0) + (e - s + 1); }); O.per = per;
+  ST.last = O; return O;
+}
+function planAnalyse(O) {
+  var pe = parseD($("scPEntry").value), px = parseD($("scPExit").value), len = intIn("scPLen", 1, 90, 30), P = { len: len, pe: pe, px: px };
+  if (pe != null) { P.max = maxStay(O.A, pe); P.maxLast = P.max > 0 ? pe + P.max - 1 : null; }
+  P.earliest = earliestEntry(O.A, len, O.ref);
+  if (pe != null && px != null) {
+    if (px < pe) P.bad = "The planned exit date is before the planned entry date.";
+    else {
+      var k = px - pe + 1, B = union(O.A, pe, k), cB = counter(B), peak = 0, pd = null, fb = null;
+      for (var d = pe; d <= B[B.length - 1]; d++) { var v = cB(d); if (v > peak) { peak = v; pd = d; } if (v > 90 && fb == null) fb = d; }
+      P.k = k; P.peak = peak; P.peakDay = pd; P.firstBad = fb; P.ok = peak <= 90; P.over = Math.max(0, peak - 90); P.B = B;
+    }
+  }
+  return P;
+}
+function runs(a, lo, hi) { var r = [], s = null, p = null; a.forEach(function (d) { if (d < lo || d > hi) return; if (s == null) { s = d; p = d; } else if (d === p + 1) p = d; else { r.push([s, p]); s = d; p = d; } }); if (s != null) r.push([s, p]); return r; }
+function figStrip(O) {
+  var set = {}; O.A.forEach(function (d) { set[d] = 1; });
+  var x0 = 20, cw = 600 / 180, s = '<svg viewBox="0 0 640 150" width="100%" role="img" aria-label="Days spent in Schengen during the last 180 days"><title>The 180-day look-back window</title>';
+  s += svgTxt(320, 20, "Your 180-day window: each box is one day", { a: "middle", w: 700, s: 13 });
+  for (var i = 0; i < 180; i++) { var d = O.ws + i; s += '<rect x="' + (x0 + i * cw).toFixed(2) + '" y="38" width="' + (cw - 0.5).toFixed(2) + '" height="46" fill="' + (set[d] ? "#1d4ed8" : "#94a3b8") + '"' + (set[d] ? "" : ' opacity=".4"') + "/>"; }
+  for (var d2 = O.ws; d2 <= O.ref; d2++) { var o = ymd(d2); if (o.d === 1) { var xx = x0 + (d2 - O.ws) * cw; s += '<line x1="' + xx.toFixed(1) + '" y1="84" x2="' + xx.toFixed(1) + '" y2="92" stroke="currentColor" opacity=".6"/>' + svgTxt(xx + 2, 104, MON[o.m - 1], { s: 11 }); } }
+  s += svgTxt(x0, 128, fmtD(O.ws), { s: 12 }) + svgTxt(620, 128, fmtD(O.ref) + " (as of)", { a: "end", s: 12 }) + svgTxt(320, 128, O.used + " of 90 days used", { a: "middle", w: 700, s: 13 });
+  s += '<rect x="20" y="138" width="10" height="8" fill="#1d4ed8"/>' + svgTxt(34, 146, "In Schengen", { s: 11 }) + '<rect x="120" y="138" width="10" height="8" fill="#94a3b8" opacity=".5"/>' + svgTxt(134, 146, "Outside", { s: 11 });
+  return s + "</svg>";
+}
+function figRoll(O, extra) {
+  var B = extra ? union(O.A, extra.from, extra.n) : O.A, c = counter(B), d0 = O.ref - 180, d1 = O.ref + 150, L = 38, R = 14, T = 26, Hh = 160, W = 640 - L - R;
+  var mx = 100, d, v, pts = [];
+  for (d = d0; d <= d1; d++) { v = c(d); pts.push(v); if (v + 8 > mx) mx = v + 8; }
+  mx = Math.ceil(mx / 10) * 10;
+  var X = function (day) { return L + (day - d0) / (d1 - d0) * W; }, Y = function (val) { return T + Hh - val / mx * Hh; };
+  var s = '<svg viewBox="0 0 640 250" width="100%" role="img" aria-label="Rolling 180-day count against the 90-day limit"><title>Rolling day count</title>';
+  s += '<rect x="' + L + '" y="' + T + '" width="' + W + '" height="' + (Y(90) - T).toFixed(1) + '" fill="#dc2626" opacity=".12"/>';
+  [0, 30, 60, 90].forEach(function (g) { s += '<line x1="' + L + '" x2="' + (L + W) + '" y1="' + Y(g).toFixed(1) + '" y2="' + Y(g).toFixed(1) + '" stroke="currentColor" opacity="' + (g === 90 ? ".7" : ".18") + '"' + (g === 90 ? ' stroke-dasharray="5 4"' : "") + "/>" + svgTxt(L - 5, Y(g) + 4, g, { a: "end", s: 11 }); });
+  s += svgTxt(L + 6, Y(90) - 5, "90-day limit", { s: 11, w: 700, f: "#dc2626" });
+  var path = "M" + L + " " + Y(0).toFixed(1);
+  pts.forEach(function (p, i) { path += " L" + X(d0 + i).toFixed(1) + " " + Y(p).toFixed(1); });
+  path += " L" + X(d1).toFixed(1) + " " + Y(0).toFixed(1) + " Z";
+  s += '<path d="' + path + '" fill="#2563eb" opacity=".16"/>';
+  var line = pts.map(function (p, i) { return (i ? "L" : "M") + X(d0 + i).toFixed(1) + " " + Y(p).toFixed(1); }).join(" ");
+  s += '<path class="dt-bar" d="' + line + '" fill="none" stroke="#2563eb" stroke-width="2.4" stroke-linejoin="round"/>';
+  runs(O.A, d0, d1).forEach(function (r) { s += '<rect x="' + X(r[0]).toFixed(1) + '" y="' + (T + Hh + 6) + '" width="' + Math.max(2, X(r[1] + 1) - X(r[0])).toFixed(1) + '" height="7" fill="#1d4ed8"/>'; });
+  if (extra) runs(union([], extra.from, extra.n), d0, d1).forEach(function (r) { s += '<rect x="' + X(r[0]).toFixed(1) + '" y="' + (T + Hh + 6) + '" width="' + Math.max(2, X(r[1] + 1) - X(r[0])).toFixed(1) + '" height="7" fill="#ea580c"/>'; });
+  for (d = d0; d <= d1; d++) { var o = ymd(d); if (o.d === 1) s += '<line x1="' + X(d).toFixed(1) + '" x2="' + X(d).toFixed(1) + '" y1="' + (T + Hh) + '" y2="' + (T + Hh + 4) + '" stroke="currentColor" opacity=".6"/>' + svgTxt(X(d) + 2, T + Hh + 28, MON[o.m - 1] + (o.m === 1 ? " " + String(o.y).slice(2) : ""), { s: 10.5 }); }
+  s += '<line x1="' + X(O.ref).toFixed(1) + '" x2="' + X(O.ref).toFixed(1) + '" y1="' + T + '" y2="' + (T + Hh) + '" stroke="#b45309" stroke-width="2" stroke-dasharray="4 3"/>' + svgTxt(X(O.ref), T - 8, "As of " + fmtD(O.ref) + ": " + c(O.ref), { a: "middle", w: 700, s: 12 });
+  s += '<rect x="20" y="238" width="10" height="8" fill="#1d4ed8"/>' + svgTxt(34, 246, "Your stays", { s: 11 }) + (extra ? '<rect x="116" y="238" width="10" height="8" fill="#ea580c"/>' + svgTxt(130, 246, "Planned stay", { s: 11 }) : "") + svgTxt(620, 246, "Days counted in the 180 days up to each date", { a: "end", s: 11 });
+  return s + "</svg>";
+}
+function stat(l, v, cls, sub) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + "</div>" + (sub ? '<div class="sub">' + sub + "</div>" : "") + "</div>"; }
+function renderCheck(O) {
+  var h = '<div class="dt-result"><div class="dt-label">Days used in the 180 days up to ' + fmtD(O.ref) + '</div><div class="dt-big" style="color:' + (O.cls === "ok" ? "#16a34a" : O.cls === "warn" ? "#d97706" : "#dc2626") + '">' + O.used + ' of 90</div><p class="dt-sum"><b>' + O.status + "</b>. " + (O.used > 90 ? "You are " + (O.used - 90) + " day" + (O.used - 90 === 1 ? "" : "s") + " over the limit on this date." : O.remaining + " day" + (O.remaining === 1 ? "" : "s") + " left.") + "</p></div>";
+  h += '<div class="dt-stats">' + stat("Days remaining", Math.max(0, O.remaining), O.remaining > 15 ? "ok" : O.remaining > 0 ? "warn" : "err") + stat("Window", fmtD(O.ws) + " to " + fmtD(O.ref), "", "180 days, both ends included") + stat("Highest count", O.peak, O.peak > 90 ? "err" : O.peak >= 80 ? "warn" : "ok", O.peakDay != null ? "on " + fmtD(O.peakDay) : "no stays yet")
+    + stat(O.inside ? "Last legal day if you stay" : "If you enter on this date", O.inside ? (O.used > 90 ? "Already over" : fmtD(ST.last.legalLast)) : (O.stay > 0 ? plural(O.stay, "day") : "Not possible"), O.used > 90 || (!O.inside && O.stay === 0) ? "err" : "", O.inside ? "staying without a break" : (O.stay > 0 ? "up to " + fmtD(O.legalLast) : "wait until the dates below")) + "</div>";
+  if (O.firstBad != null) h += '<div class="dt-warn"><b>A stay went over 90 days.</b> The rolling count first passed 90 on ' + fmtD(O.firstBad) + " and stayed over for " + plural(O.badDays, "day") + ". Overstays can bring fines, entry bans and refused visas, so seek advice if this is real.</div>";
+  else if (O.used >= 80) h += '<div class="dt-tip"><b>Leave a buffer.</b> Flight delays and counting mistakes can push you over. Plan to leave a few days early.</div>';
+  if (!O.trips.length) h += '<div class="dt-tip"><b>Add your stays above.</b> The strip and chart below show an empty record until you do.</div>';
+  var rows = O.entryTable.map(function (r) { var when = r[1] == null ? "No date within two years" : (r[1] === O.ref ? "Today (" + fmtD(r[1]) + ")" : fmtDW(r[1])); return "<tr><td>" + plural(r[0], "day") + "</td><td>" + when + "</td><td>" + (r[1] == null ? "" : fmtD(r[1] + r[0] - 1)) + "</td></tr>"; }).join("");
+  h += '<h3 style="margin-top:14px">When you can come back</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Stay you want</th><th>Earliest entry</th><th>Last day of that stay</th></tr>' + rows + "</table></div>";
+  var pk = Object.keys(O.per).sort(function (a, b) { return O.per[b] - O.per[a]; });
+  if (pk.length) h += '<h3 style="margin-top:14px">Days by country in this window</h3><div class="dt-scroll"><table class="dt-table"><tr><th>Country</th><th>Days</th></tr>' + pk.map(function (k) { return "<tr><td>" + esc(k) + "</td><td>" + O.per[k] + "</td></tr>"; }).join("") + "</table></div>";
+  $("scOut").innerHTML = h;
+  $("scFigA").innerHTML = figStrip(O); $("scFigB").innerHTML = figRoll(O, null);
+  ST.dead = O.legalLast; $("scIcs").disabled = ST.dead == null;
+}
+function renderPlan(O) {
+  var P = planAnalyse(O), h = "";
+  if (P.pe == null) h += '<div class="dt-tip">Pick a planned entry date to see the longest stay it allows.</div>';
+  else {
+    h += '<div class="dt-result"><div class="dt-label">Longest stay starting ' + fmtD(P.pe) + '</div><div class="dt-big" style="color:' + (P.max > 0 ? "#1e40af" : "#dc2626") + '">' + (P.max > 0 ? plural(P.max, "day") : "0 days") + '</div><p class="dt-sum">' + (P.max > 0 ? "Leave on or before <b>" + fmtDW(P.maxLast) + "</b>. Entry and exit days both count." : "Entering that day would put you over the limit. Choose a later date.") + "</p></div>";
+  }
+  h += '<div class="dt-stats">' + stat("Earliest entry for " + plural(P.len, "day"), P.earliest == null ? "None in 2 years" : fmtDW(P.earliest), "", P.earliest == null ? "" : "stay to " + fmtD(P.earliest + P.len - 1)) + "</div>";
+  if (P.bad) h += '<div class="dt-warn">' + esc(P.bad) + "</div>";
+  else if (P.k) h += '<div class="' + (P.ok ? "dt-tip" : "dt-warn") + '"><b>Your planned trip, ' + fmtD(P.pe) + " to " + fmtD(P.px) + " (" + plural(P.k, "day") + "):</b> " + (P.ok ? "stays within the limit. The highest 180-day count is " + P.peak + " on " + fmtD(P.peakDay) + "." : "goes over the limit by up to " + P.over + " day" + (P.over === 1 ? "" : "s") + ". The count first passes 90 on " + fmtD(P.firstBad) + ". Leave by " + fmtD(P.maxLast || P.pe) + " or shorten the trip.") + "</div>";
+  $("scPOut").innerHTML = h;
+  var n = P.k ? P.k : (P.max || 0), ex = P.pe != null && n > 0 ? { from: P.pe, n: n } : null;
+  $("scFigP").innerHTML = figRoll(O, ex);
+  if (P.pe != null && P.max > 0 && ST.tab === "plan") { ST.dead = P.maxLast; $("scIcs").disabled = false; }
+  ST.plan = P; return P;
+}
+function render() {
+  var O = analyse(); renderCheck(O); var P = renderPlan(O);
+  if (ST.tab === "check") { ST.dead = O.legalLast; $("scIcs").disabled = ST.dead == null; }
+  else { ST.dead = (P.pe != null && P.max > 0) ? P.maxLast : null; $("scIcs").disabled = ST.dead == null; }
+  if ($("scSave").checked) lsSet(KEY, JSON.stringify(O.trips.map(function (t) { return [isoD(t.e), isoD(t.x), t.c]; })));
+}
+function addRow(e, x, c) {
+  var div = document.createElement("div"); div.className = "tr-trip";
+  div.innerHTML = '<div><label>Entry date</label><input type="date" class="t-e" value="' + (e ? isoD(e) : "") + '"></div><div><label>Exit date</label><input type="date" class="t-x" value="' + (x ? isoD(x) : "") + '"></div><div><label>Country (optional)</label><select class="t-c"><option value="">Not set</option>' + CTRY.map(function (n) { return "<option" + (n === c ? " selected" : "") + ">" + n + "</option>"; }).join("") + '</select></div><div><button type="button" class="dt-btn small ghost t-r" aria-label="Remove this trip">Remove</button></div><p class="tr-note t-m" style="grid-column:1/-1;margin:0;color:#dc2626"></p>';
+  $("scTrips").appendChild(div);
+}
+function setRows(list) { $("scTrips").innerHTML = ""; if (!list.length) list = [[null, null, ""]]; list.forEach(function (t) { addRow(t[0], t[1], t[2]); }); }
+function parseLine(s) {
+  var m = /^\s*(\d{4}-\d{1,2}-\d{1,2}|\d{1,2}[\/.]\d{1,2}[\/.]\d{4})\s*[,;\t ]\s*(\d{4}-\d{1,2}-\d{1,2}|\d{1,2}[\/.]\d{1,2}[\/.]\d{4})\s*(?:[,;\t]\s*(.*))?$/.exec(s);
+  if (!m) return null;
+  function conv(t) { var a; if (/^\d{4}/.test(t)) { a = t.split("-"); return parseD(a[0] + "-" + p2(+a[1]) + "-" + p2(+a[2])); } a = t.split(/[\/.]/); return parseD(a[2] + "-" + p2(+a[1]) + "-" + p2(+a[0])); }
+  var e = conv(m[1]), x = conv(m[2]); if (e == null || x == null) return null;
+  var c = (m[3] || "").trim(); if (CTRY.indexOf(c) < 0) c = "";
+  return [e, x, c];
+}
+function csvOut() { var T = ST.last ? ST.last.trips : []; return T.map(function (t) { return isoD(t.e) + "," + isoD(t.x) + (t.c ? "," + t.c : ""); }).join("\n"); }
+function summary() {
+  var O = ST.last; if (!O || !O.trips.length) return "";
+  var t = "Schengen 90/180 check\nAs of: " + fmtD(O.ref) + "\nDays used: " + O.used + " of 90 (" + O.status + ")\nDays remaining: " + Math.max(0, O.remaining) + "\nWindow: " + fmtD(O.ws) + " to " + fmtD(O.ref) + "\n";
+  if (O.legalLast != null) t += "Last legal day if you stay: " + fmtD(O.legalLast) + "\n";
+  if (O.firstBad != null) t += "Warning: count passed 90 on " + fmtD(O.firstBad) + "\n";
+  return t + "Checked with the free Utiliby Schengen calculator, utiliby.com";
+}
+function fillReport() {
+  var O = ST.last, b = repBox(); repHead(b, "Schengen 90/180 day check", "Free online Schengen calculator");
+  if (!O || !O.trips.length) { repAdd(b, "p", "No stays entered yet."); repDisc(b, DISCL); return; }
+  repTbl(b, ["Item", "Result"], [["As of", fmtD(O.ref)], ["Window", fmtD(O.ws) + " to " + fmtD(O.ref)], ["Days used", O.used + " of 90"], ["Days remaining", String(Math.max(0, O.remaining))], ["Status", O.status], ["Highest rolling count", O.peak + (O.peakDay != null ? " on " + fmtD(O.peakDay) : "")], ["Last legal day if you stay", O.legalLast != null ? fmtD(O.legalLast) : "n/a"]].concat(O.firstBad != null ? [["Over-limit from", fmtD(O.firstBad)]] : []));
+  repAdd(b, "h3", "Stays counted"); repTbl(b, ["Entry", "Exit", "Days", "Country"], O.trips.map(function (t) { return [fmtD(t.e), fmtD(t.x), String(t.x - t.e + 1), t.c || ""]; }));
+  repFig(b, figStrip(O)); repFig(b, figRoll(O, null));
+  repAdd(b, "h3", "When you can come back"); repTbl(b, ["Stay", "Earliest entry", "Last day"], O.entryTable.map(function (r) { return [plural(r[0], "day"), r[1] == null ? "none in 2 years" : fmtD(r[1]), r[1] == null ? "" : fmtD(r[1] + r[0] - 1)]; }));
+  var P = ST.plan; if (P && P.pe != null) { repAdd(b, "h3", "Planned trip"); var rows = [["Planned entry", fmtD(P.pe)], ["Longest stay from that date", P.max > 0 ? plural(P.max, "day") + ", leave by " + fmtD(P.maxLast) : "not possible"]]; if (P.k) rows.push(["Planned trip " + fmtD(P.pe) + " to " + fmtD(P.px), P.ok ? "Within the limit (highest " + P.peak + ")" : "Over the limit by " + P.over + " day(s)"]); repTbl(b, ["Item", "Result"], rows); }
+  repDisc(b, DISCL);
+}
+var DISCL = "Planning aid only. It applies the 90/180 rule to the dates you enter and does not know your nationality, visa, residence permit or bilateral agreements. Border officers decide. Leave a buffer.";
+function icsDeadline() {
+  if (ST.dead == null) { msg("No exit date to add yet.", "err"); return; }
+  var d = ST.dead, title = "Last legal day in the Schengen Area", lines = ["BEGIN:VEVENT", "UID:" + icsUid("schengen" + d), "DTSTAMP:" + icsUtcStamp(Date.now()), "DTSTART;VALUE=DATE:" + icsDateStamp(d), "DTEND;VALUE=DATE:" + icsDateStamp(d + 1), "SUMMARY:" + icsEsc(title), "DESCRIPTION:" + icsEsc("Planned from the 90/180 rule. Leave on or before this day. Check your own dates and leave a buffer. utiliby.com"), "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEsc(title + " in 7 days"), "TRIGGER:-P7D", "END:VALARM", "BEGIN:VALARM", "ACTION:DISPLAY", "DESCRIPTION:" + icsEsc(title + " tomorrow"), "TRIGGER:-P1D", "END:VALARM", "END:VEVENT"];
+  dlText("schengen-last-day.ics", icsWrap(lines, "Schengen days"), "text/calendar"); msg("Downloaded schengen-last-day.ics.");
+}
+function example() { var t = todayDN(); setRows([[t - 150, t - 120, "Spain"], [t - 90, t - 61, "Italy"], [t - 20, t - 1, "France"]]); $("scRef").value = isoD(t); render(); }
+function init() {
+  initCommon();
+  var saved = lsGet(KEY), rows = null;
+  if (saved) { try { var a = JSON.parse(saved); if (Array.isArray(a) && a.length) { rows = a.map(function (r) { return [parseD(r[0]), parseD(r[1]), r[2] || ""]; }).filter(function (r) { return r[0] != null && r[1] != null; }); if (rows.length) $("scSave").checked = true; else rows = null; } } catch (e) { rows = null; } }
+  setRows(rows || []); $("scRef").value = isoD(todayDN()); $("scPEntry").value = isoD(todayDN());
+  initTabs(["check", "plan"], function (n) { ST.tab = n; render(); });
+  $("tool").addEventListener("input", function (e) { if (e.target.closest("#scTrips") || /^sc(Ref|PEntry|PExit|PLen|Save)$/.test(e.target.id)) render(); });
+  $("tool").addEventListener("change", function (e) { if (e.target.closest("#scTrips") || /^sc(Ref|PEntry|PExit|PLen|Save)$/.test(e.target.id)) { if (e.target.id === "scSave" && !e.target.checked) { try { window.localStorage.removeItem(KEY); } catch (x) { } } render(); } });
+  $("scTrips").addEventListener("click", function (e) { var b = e.target.closest(".t-r"); if (b) { b.closest(".tr-trip").remove(); if (!$("scTrips").children.length) addRow(); render(); } });
+  $("scAdd").addEventListener("click", function () { addRow(); render(); });
+  $("scExample").addEventListener("click", example);
+  $("scClear").addEventListener("click", function () { setRows([]); $("scPExit").value = ""; render(); });
+  $("scExportBox").addEventListener("click", function () { $("scIO").value = csvOut(); });
+  $("scImport").addEventListener("click", function () { var L = $("scIO").value.split(/\r?\n/), ok = [], bad = 0; L.forEach(function (l) { if (!l.trim()) return; var r = parseLine(l); if (r) ok.push(r); else bad++; }); if (!ok.length) { msg("No valid lines found. Use: 2026-03-01,2026-03-20,Spain", "err"); return; } setRows(ok); render(); msg("Imported " + ok.length + " stay" + (ok.length === 1 ? "" : "s") + (bad ? ", skipped " + bad + " line(s)." : ".")); });
+  $("scDlCsv").addEventListener("click", function () { var T = ST.last ? ST.last.trips : []; if (!T.length) { msg("Add a stay first.", "err"); return; } saveBlob(new Blob([csvText([["Entry", "Exit", "Days", "Country"]].concat(T.map(function (t) { return [isoD(t.e), isoD(t.x), t.x - t.e + 1, t.c]; })))], { type: "text/csv;charset=utf-8" }), "schengen-stays.csv"); msg("Downloaded schengen-stays.csv."); });
+  $("scIcs").addEventListener("click", icsDeadline);
+  $("scCopy").addEventListener("click", function () { var s = summary(); if (!s) { msg("Add a stay first.", "err"); return; } copyText(s, $("scCopy")); });
+  $("scDl").addEventListener("click", function () { var s = summary(); if (!s) { msg("Add a stay first.", "err"); return; } dlText("schengen-check.txt", s, "text/plain"); msg("Downloaded schengen-check.txt."); });
+  $("scPrint").addEventListener("click", function () { if (!summary()) { msg("Add a stay first.", "err"); return; } fillReport(); window.print(); });
+  $("resetBtn").addEventListener("click", function () { setRows([]); $("scRef").value = isoD(todayDN()); $("scPEntry").value = isoD(todayDN()); $("scPExit").value = ""; $("scPLen").value = 30; $("scIO").value = ""; $("scSave").checked = false; try { window.localStorage.removeItem(KEY); } catch (x) { } render(); });
+  window.fillReport = fillReport; render();
+}
+init();
+
 })();
 </script>
-</body>
-</html>
+
+
+</body></html>
