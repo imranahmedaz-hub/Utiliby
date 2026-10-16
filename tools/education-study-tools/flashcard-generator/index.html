@@ -4,167 +4,233 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
-<title>Free Language Flashcard Generator Online – Create Vocabulary Decks with Spaced Repetition</title>
-<meta name="description" content="Free online language flashcard generator. Paste a word list and create a vocabulary deck with spaced repetition. Study mode, quiz mode, CSV import and PDF print. No sign-up.">
+<title>Free Flashcard Generator Online: Spaced Repetition Decks</title>
+<meta name="description" content="Free online flashcard generator. Paste a word list, build a deck and study with spaced repetition, quiz and typing modes. Saves progress. No sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
-<meta property="og:title" content="Free Language Flashcard Generator Online – Vocabulary Decks">
-<meta property="og:description" content="Paste a word list, create a flashcard deck, and study with spaced repetition. CSV import, quiz mode, PDF print.">
+<meta property="og:title" content="Free Flashcard Generator Online: Spaced Repetition Decks">
+<meta property="og:description" content="Free online flashcard generator with spaced repetition. Paste or import a list, study in flip, quiz or typing mode, track progress and print.">
 <meta property="og:url" content="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Flashcard Generator Online: Spaced Repetition Decks">
+<meta name="twitter:description" content="Free online flashcard generator with spaced repetition. Paste or import a list, study in flip, quiz or typing mode, track progress and print.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
-.fc-hero{background:linear-gradient(135deg,#047857,#10b981);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
-.fc-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
-.fc-hero p{margin:0;opacity:.92;font-size:.9rem}
-.fc-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
-.fc-panel h3{margin:0 0 10px;font-size:1rem}
-.fc-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
-.fc-panel input,.fc-panel select,.fc-panel textarea{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
-.fc-panel textarea{min-height:120px;resize:vertical;font-family:ui-monospace,monospace;font-size:.85rem}
-.fc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){.fc-row{grid-template-columns:1fr}}
-.fc-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#047857,#10b981);color:#fff;margin-right:8px;margin-top:8px}
-.fc-btn:hover{opacity:.92}
-.fc-btn.ghost{background:transparent;color:#047857;border:1px solid var(--line)}
-@media(prefers-color-scheme:dark){.fc-btn.ghost{color:#6ee7b7}}
-.fc-card{background:#fff;border:2px solid #047857;border-radius:16px;padding:40px 24px;text-align:center;margin:16px auto;max-width:520px;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;transition:transform .15s}
-.fc-card:hover{transform:translateY(-2px)}
-.fc-card .front{font-size:1.8rem;font-weight:800;color:#047857;word-break:break-word}
-.fc-card .back{font-size:1.4rem;color:#1f2937;margin-top:12px;word-break:break-word}
-.fc-card.flipped .front{font-size:1rem;color:#6b7280}
-.fc-card .hint{font-size:.82rem;color:#6b7280;margin-top:20px;font-style:italic}
-@media(prefers-color-scheme:dark){.fc-card{background:#1a1a1a;border-color:#10b981}.fc-card .front{color:#6ee7b7}.fc-card .back{color:#e5e7eb}.fc-card.flipped .front{color:#9ca3af}}
-.fc-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
-.fc-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
-.fc-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
-.fc-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
-.fc-tip{background:rgba(4,120,87,.06);border-left:3px solid #047857;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
-.fc-tip b{color:#047857}
-.fc-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
-.fc-share h3{margin:0 0 10px;font-size:1rem}
-.fc-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
-.fc-share input,.fc-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
-.fc-share textarea{min-height:80px;resize:vertical}
-.fc-share button{margin-top:6px;background:transparent;color:#047857;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
-.fc-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
-.fc-disclaimer b{color:var(--fg)}
-@media print{header.site,footer.site,.fc-btn,.fc-hero,.cn-article,.no-print,.fc-panel form,.fc-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
 .cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
 .cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
-.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.tr-grid{grid-template-columns:minmax(0,1fr)}}
+.tr-verdict{padding:14px 16px;border-radius:12px;font-weight:700;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.tr-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.tr-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.tr-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}.tr-info{background:#e0f2fe;color:#0c4a6e;border-color:#7dd3fc}
+.tr-list{list-style:none;margin:6px 0;padding:0}.tr-list li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:.88rem;line-height:1.5}.tr-list li>span{flex:0 0 auto;font-weight:800;min-width:1.2em;text-align:center}
+.tr-y{color:#16a34a}.tr-n{color:#dc2626}.tr-q{color:#d97706}
+.cn-article p,.cn-article li,.cn-article td{overflow-wrap:anywhere}
+.tr-fig svg{min-width:0!important}
+.tr-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.tr-trip{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:640px){.tr-trip{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tr-trip{grid-template-columns:1fr}}
+.tr-trip>div{min-width:0}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+.tr-letter{white-space:pre-wrap;word-break:break-word;min-height:260px;line-height:1.55}
+.tr-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr-rowline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.tr-rowline b{white-space:nowrap}
+
+.dt-hero{background:linear-gradient(135deg,#047857,#10b981)}
+.dt-btn,.dt-tab.on{background:linear-gradient(135deg,#047857,#10b981)}
+.dt-btn.ghost{color:#047857}.dt-tab{color:#047857}.dt-tab.on{color:#fff}
+.dt-tip{border-left-color:#047857}.dt-tip b{color:#047857}
+.dt-share button{color:#047857}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline-color:#047857}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab,.dt-share button,.dt-tip b{color:#6ee7b7}.dt-tab.on{color:#fff}}
+
+.fc-prog{display:flex;justify-content:space-between;font-size:.82rem;opacity:.75;margin:8px 2px}
+.fc-card{background:var(--card);border:2px solid #10b981;border-radius:16px;padding:26px 18px;text-align:center;margin:10px auto;max-width:560px;min-height:190px;display:flex;flex-direction:column;justify-content:center;align-items:center;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.fc-card:focus-visible{outline:3px solid #047857;outline-offset:2px}.fc-card hr{width:60%;border:0;border-top:1px dashed var(--line);margin:14px 0 8px}
+.fc-card.shown{border-color:#047857}.fc-side{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;opacity:.6;font-weight:700}
+.fc-front{font-size:1.9rem;font-weight:800;color:#047857;overflow-wrap:anywhere}.fc-back{font-size:1.5rem;overflow-wrap:anywhere}
+@media(prefers-color-scheme:dark){.fc-front{color:#6ee7b7}}
+.fc-grade{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;max-width:560px;margin:10px auto}.fc-grade button{border:0;border-radius:10px;color:#fff;padding:10px 4px;cursor:pointer;font-size:.95rem}.fc-grade small{display:block;font-size:.68rem;opacity:.9;margin-top:2px}
+@media(max-width:420px){.fc-grade{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.fc-opts{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:560px;margin:10px auto}@media(max-width:480px){.fc-opts{grid-template-columns:1fr}}
+.fc-opt{border:2px solid var(--line);background:var(--card);color:var(--fg);border-radius:10px;padding:12px;cursor:pointer;font-size:.95rem;overflow-wrap:anywhere}.fc-opt.good{border-color:#16a34a;background:#dcfce7;color:#14532d}.fc-opt.bad{border-color:#dc2626;background:#fee2e2;color:#7f1d1d}
+.fc-type{display:flex;gap:8px;max-width:560px;margin:10px auto}.fc-type input{flex:1;min-width:0}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Language Flashcard Generator","url":"https://utiliby.com/tools/education-study-tools/flashcard-generator/","applicationCategory":"EducationalApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free language flashcard generator online?","acceptedAnswer":{"@type":"Answer","text":"A free language flashcard generator online is a tool that turns a word list into a study deck. You paste your vocabulary, one term and its meaning per line, and the tool creates flashcards you can flip through in study mode or test yourself on in quiz mode. This one also includes spaced repetition to schedule reviews."}},{"@type":"Question","name":"What is spaced repetition?","acceptedAnswer":{"@type":"Answer","text":"Spaced repetition is a study method in which review intervals increase each time you recall an item correctly. Items you find difficult are shown more often, and items you know well are shown less often. It is one of the most evidence-backed methods for long-term vocabulary retention."}},{"@type":"Question","name":"Is this flashcard generator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Language Flashcard Generator","url":"https://utiliby.com/tools/education-study-tools/flashcard-generator/","description":"Free online flashcard generator and language vocabulary trainer. Paste or import a term and meaning list, build a deck, and study with a simplified SM-2 spaced repetition scheduler, multiple choice quiz and typing mode, with text-to-speech, saved progress, mastery and forecast charts, CSV download and printable deck. Runs in your browser.","applicationCategory":"EducationalApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Spaced repetition (SM-2)","Flip, quiz and typing modes","Auto-detect separator","CSV import","Text-to-speech","Progress charts","Saved in your browser","Printable deck"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a flashcard generator?","acceptedAnswer":{"@type":"Answer","text":"A tool that turns a list of terms and meanings into a deck of study cards. Paste your list, build the deck and study it on screen, with quizzes, typing practice and a review schedule."}},{"@type":"Question","name":"What is spaced repetition?","acceptedAnswer":{"@type":"Answer","text":"A study method that increases the time between reviews each time you recall a card correctly. Hard cards come back soon and easy cards come back after days or weeks, which makes revision efficient."}},{"@type":"Question","name":"How does the scheduler work?","acceptedAnswer":{"@type":"Answer","text":"It uses a simplified version of the SM-2 method. Each card has an interval and an ease factor. Good answers grow the interval, hard answers grow it slowly and an Again answer resets it and returns the card to the queue."}},{"@type":"Question","name":"What do Again, Hard, Good and Easy mean?","acceptedAnswer":{"@type":"Answer","text":"Again means you forgot. Hard means you remembered with effort. Good means a normal recall. Easy means you knew it instantly. Each button shows the next interval."}},{"@type":"Question","name":"What formats can I paste?","acceptedAnswer":{"@type":"Answer","text":"Lines separated by equals, dash, tab, comma, semicolon, pipe or colon. The tool can detect the separator, so you can paste straight from a spreadsheet."}},{"@type":"Question","name":"Can I import a file?","acceptedAnswer":{"@type":"Answer","text":"Yes. Use the file box to load a CSV or text file with two columns. Cards are added to the list and the deck is rebuilt."}},{"@type":"Question","name":"Will my progress be saved?","acceptedAnswer":{"@type":"Answer","text":"Yes, in your own browser. Your deck, intervals and daily history are kept so you can return later. They are not synced between devices."}},{"@type":"Question","name":"How do I move my deck to another device?","acceptedAnswer":{"@type":"Answer","text":"Use Copy deck or Download deck to save the list, then paste or import it on the other device. Progress for the new device starts fresh."}},{"@type":"Question","name":"What study modes are there?","acceptedAnswer":{"@type":"Answer","text":"Flip and grade for spaced repetition, a multiple choice quiz that picks plausible wrong answers from your own deck, and a typing mode that ignores accents and capital letters."}},{"@type":"Question","name":"Can I study in both directions?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose term to meaning, meaning to term, or mixed. Meaning to term is harder and is closer to speaking and writing."}},{"@type":"Question","name":"Can the cards be read aloud?","acceptedAnswer":{"@type":"Answer","text":"Yes. Pick a language and press Hear term, or turn on automatic speech. It uses your browser's built-in voices, so quality varies by device."}},{"@type":"Question","name":"How many cards should be in a deck?","acceptedAnswer":{"@type":"Answer","text":"Twenty to fifty cards is a good size for one topic. Large lists can be split into themed decks. The tool allows up to 2,000 cards."}},{"@type":"Question","name":"How many new cards should I learn per day?","acceptedAnswer":{"@type":"Answer","text":"Ten to twenty new cards a day is sustainable for most people. The limit is adjustable, and reviews of old cards always come first."}},{"@type":"Question","name":"Can I print the deck?","acceptedAnswer":{"@type":"Answer","text":"Yes. Print produces a clean table of terms and meanings, without the rest of the page."}},{"@type":"Question","name":"Does it work for subjects other than languages?","acceptedAnswer":{"@type":"Answer","text":"Yes. Any term and definition pairs work, such as medical terms, dates, formulas, capitals or exam facts."}},{"@type":"Question","name":"How is this different from Anki?","acceptedAnswer":{"@type":"Answer","text":"This tool needs no account or install and works instantly in the browser. Anki offers deeper options, sync and add-ons. For quick decks and light use, this tool is faster to start."}},{"@type":"Question","name":"Is my data private?","acceptedAnswer":{"@type":"Answer","text":"Yes. Your list never leaves your browser and nothing is uploaded."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Education and Study Tools","item":"https://utiliby.com/tools/education-study-tools/"},{"@type":"ListItem","position":3,"name":"Language Flashcard Generator","item":"https://utiliby.com/tools/education-study-tools/flashcard-generator/"}]}]}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
-<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education &amp; Study Tools</a> › Flashcard Generator</nav>
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/education-study-tools/">Education & Study Tools</a> › Flashcard Generator</nav>
 <h1 class="noembed">Language Flashcard Generator</h1>
-<p class="lead noembed">Paste a word list and create a vocabulary deck with spaced repetition. Study mode, quiz mode, CSV import and PDF print. Free, private and no sign-up.</p>
-<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/flashcard-generator/" target="_blank" rel="noopener">Flashcard Generator by Utiliby</a></p>
+<p class="lead noembed">Paste a word list, build a deck and study it with spaced repetition, quizzes and typing practice. Progress is saved in your browser. Free, private and no sign-up.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/education-study-tools/flashcard-generator/" target="_blank" rel="noopener">Language Flashcard Generator by Utiliby</a></p>
 <section class="tool" id="tool" aria-label="Language flashcard generator">
-<div class="fc-hero noembed">
-<h2>Free Language Flashcard Generator</h2>
-<p>Paste your word list, create a deck, and study with spaced repetition.</p>
+<div class="dt-hero noembed">
+<h2>Free Online Flashcard Generator</h2>
+<p>Paste a word list, build a deck, and study it with spaced repetition, quizzes and typing practice.</p>
 </div>
-<div class="fc-panel">
-<h3>Your vocabulary list</h3>
-<label for="wordList">Enter one pair per line (term = meaning)</label>
-<textarea id="wordList" placeholder="bonjour = hello&#10;merci = thank you&#10;au revoir = goodbye&#10;s'il vous plaît = please&#10;oui = yes&#10;non = no"></textarea>
-<div class="fc-row" style="margin-top:10px">
-<div><label for="delimiter">Delimiter between term and meaning</label>
-<select id="delimiter">
-<option value="=" selected>Equals ( term = meaning )</option>
-<option value="-">Dash ( term - meaning )</option>
-<option value="tab">Tab (paste from spreadsheet)</option>
-</select></div>
-<div><label for="direction">Study direction</label>
-<select id="direction">
-<option value="forward" selected>Term → Meaning</option>
-<option value="reverse">Meaning → Term</option>
-<option value="mixed">Mixed (random each card)</option>
-</select></div>
+<div class="dt-tabs" role="group" aria-label="Tool sections"><button type="button" class="dt-tab on" id="dtTabBtn-deck">1. Deck</button><button type="button" class="dt-tab" id="dtTabBtn-study">2. Study</button><button type="button" class="dt-tab" id="dtTabBtn-prog">3. Progress</button></div><div id="dtTab-deck"><div class="dt-panel"><h3>Your deck</h3><div class="dt-row"><div><label for="fcName">Deck name</label><input type="text" id="fcName" placeholder="e.g. French basics" autocomplete="off" spellcheck="false"></div><div><label for="fcDelim">Separator between term and meaning</label><select id="fcDelim"><option value="auto">Detect automatically</option><option value="eq">Equals ( = )</option><option value="dash">Dash ( - )</option><option value="tab">Tab (paste from a spreadsheet)</option><option value="comma">Comma</option><option value="semi">Semicolon</option><option value="pipe">Pipe ( | )</option><option value="colon">Colon</option></select></div></div><div><label for="fcList">One pair per line, such as: bonjour = hello</label><textarea id="fcList" rows="9" placeholder="bonjour = hello
+merci = thank you
+au revoir = goodbye" spellcheck="false"></textarea></div><div class="dt-row"><div><label for="fcFile">Or import a CSV or text file</label><input type="file" id="fcFile" accept=".csv,.txt,.tsv,text/plain,text/csv"></div></div><div class="tr-in" style="margin-top:8px"><button type="button" class="dt-btn" id="fcBuild">Build deck</button><button type="button" class="dt-btn ghost" id="fcSample">Load a sample</button><button type="button" class="dt-btn ghost" id="fcStart">Start studying</button></div><div id="fcInfo" aria-live="polite" style="margin-top:8px"></div></div></div><div id="dtTab-study" hidden><div class="dt-panel"><h3>Study settings</h3><div class="dt-row"><div><label for="fcMode">Mode</label><select id="fcMode"><option value="flip">Flip and grade (spaced repetition)</option><option value="quiz">Multiple choice quiz</option><option value="type">Type the answer</option></select></div><div><label for="fcDir">Direction</label><select id="fcDir"><option value="fwd">Term to meaning</option><option value="rev">Meaning to term</option><option value="mixed">Mixed</option></select></div></div><div class="dt-row"><div><label for="fcLang">Pronounce the term in</label><select id="fcLang"><option value="">Off</option><option value="en-US">English (US)</option><option value="en-GB">English (UK)</option><option value="es-ES">Spanish</option><option value="fr-FR">French</option><option value="de-DE">German</option><option value="it-IT">Italian</option><option value="pt-PT">Portuguese</option><option value="ru-RU">Russian</option><option value="tr-TR">Turkish</option><option value="ar-SA">Arabic</option><option value="hi-IN">Hindi</option><option value="zh-CN">Chinese</option><option value="ja-JP">Japanese</option><option value="ko-KR">Korean</option></select></div><div><label for="fcNew">New cards per session</label><input type="number" id="fcNew" min="0" max="500" step="1" value="20"></div></div><div class="dt-row"><div class="im-chk"><input type="checkbox" id="fcShuf" checked><label for="fcShuf">Shuffle the order</label></div><div class="im-chk"><input type="checkbox" id="fcAuto"><label for="fcAuto">Say the term automatically</label></div></div></div><div id="fcStudy" aria-live="polite"></div></div><div id="dtTab-prog" hidden><div id="fcStats"></div><figure class="dt-fig tr-fig" id="fcFig" style="margin:12px 0"></figure><figure class="dt-fig tr-fig" id="fcFore" style="margin:12px 0"></figure><figure class="dt-fig tr-fig" id="fcLog" style="margin:12px 0"></figure></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="fcCopy">Copy deck</button>
+<button type="button" class="dt-btn ghost" id="fcDl">Download deck</button>
+<button type="button" class="dt-btn ghost" id="fcPrint">Print / save deck</button>
 </div>
-</div>
-<button type="button" class="fc-btn" id="buildBtn">Build deck</button>
-<button type="button" class="fc-btn ghost" id="resetBtn">Reset</button>
-<div id="studyArea"></div>
-<div id="statsArea"></div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online flashcard generator stores your deck and study progress only in this browser. Clearing site data, using private browsing or switching device will remove or hide it, so keep a copy of your word list. Spoken audio comes from your browser's speech engine and may not match a native speaker. Review schedules are a study aid based on a simplified SM-2 method and do not guarantee memory results.</p>
 </section>
-
-<div class="fc-share noembed">
+<div class="dt-share noembed">
 <h3>Share, cite or embed this tool</h3>
-<label for="fc-share-link">Shareable link</label>
-<input type="text" id="fc-share-link" readonly value="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
-<button type="button" data-copy-target="fc-share-link">Copy link</button>
-<label for="fc-cite">Cite this page</label>
-<textarea id="fc-cite" readonly>Utiliby. (2026). Language Flashcard Generator. https://utiliby.com/tools/education-study-tools/flashcard-generator/</textarea>
-<button type="button" data-copy-target="fc-cite">Copy citation</button>
-<label for="fc-embed">Add this tool to your site</label>
-<textarea id="fc-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/flashcard-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Flashcard Generator by Utiliby"&gt;&lt;/iframe&gt;
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/education-study-tools/flashcard-generator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Language Flashcard Generator. https://utiliby.com/tools/education-study-tools/flashcard-generator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/education-study-tools/flashcard-generator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Language Flashcard Generator by Utiliby"&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;a href="https://utiliby.com/tools/education-study-tools/flashcard-generator/"&gt;Language Flashcard Generator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
-<button type="button" data-copy-target="fc-embed">Copy embed code</button>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
 </div>
-
 <article class="cn-article noembed">
-<h2>What is a free language flashcard generator online?</h2>
-<p>A free language flashcard generator online is a tool that turns a word list into a study deck. You paste your vocabulary — one term and its meaning per line — and the tool creates a set of flashcards you can flip through in study mode or test yourself on in quiz mode. Instead of writing out each card by hand, you build the whole deck in one paste.</p>
-<p>This language flashcard generator goes beyond a simple card flipper. It includes a spaced repetition scheduler that tracks which items you know and which you need to review more often. It supports three delimiters (equals, dash and tab) so you can paste directly from a spreadsheet or a vocabulary list. It can flip the study direction — term to meaning, meaning to term, or a random mix of both. And it lets you print the deck as a PDF or copy the list back as plain text. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-
-<h2>How to use this free flashcard maker</h2>
-<ol>
-<li>Paste your vocabulary list, one pair per line, using "term = meaning" format. For a spreadsheet paste, select Tab as the delimiter.</li>
-<li>Choose the study direction. "Term → Meaning" is the standard vocabulary recall direction. "Meaning → Term" trains production, which is harder.</li>
-<li>Click Build deck. The cards appear one at a time in study mode.</li>
-<li>Click a card to flip it and reveal the answer.</li>
-<li>Mark whether you knew the card. The spaced repetition scheduler uses this to decide when to show it again.</li>
-<li>Continue until the deck is exhausted. Click Print to save a paper copy of the deck, or Copy as text to save the list.</li>
-</ol>
-
-<h2>How spaced repetition works</h2>
-<p>Spaced repetition is a study method in which review intervals increase each time you recall an item correctly. A new card appears frequently; once you have recalled it correctly a few times, the interval grows to days, then weeks. Items you find difficult stay in the frequent-review pile. Research consistently shows that spaced repetition produces better long-term retention than re-reading or massed practice.</p>
-<p>The scheduler in this tool is a simplified version of the SM-2 algorithm used by Anki. It tracks each card's interval, its ease factor and the number of successful recalls. When you mark a card as "known", the interval increases. When you mark it as "again", the interval resets. If you leave the tool and come back later, the schedule is restored from your browser's local storage.</p>
-
-<h2>Study direction: recognition vs production</h2>
-<ul>
-<li><b>Recognition (Term → Meaning).</b> You see the foreign word and recall what it means. This is the easier direction and is usually the first one to master.</li>
-<li><b>Production (Meaning → Term).</b> You see the meaning and recall the foreign word. This is harder and is the direction that matters for speaking and writing.</li>
-<li><b>Mixed.</b> Cards are shown in a random direction each time. This is the most challenging and the most realistic for exam conditions.</li>
-</ul>
-
-<h2>Building an effective vocabulary deck</h2>
-<ul>
-<li><b>Keep it small.</b> A deck of 20–30 cards is easier to finish than a deck of 500. Split a large vocabulary list into themed sub-decks.</li>
-<li><b>One word per card.</b> Avoid putting multiple words or a full sentence on a single card. The card should test one fact.</li>
-<li><b>Use context where it helps.</b> For tricky words, add a short example sentence after the meaning: "banca = bank (financial institution)".</li>
-<li><b>Review daily.</b> Spaced repetition works by being consistent. Ten minutes a day beats two hours on a Sunday.</li>
-<li><b>Say it out loud.</b> For language learning, saying the word as you see the card strengthens the pronunciation memory as well as the meaning.</li>
-</ul>
-
-<h2>Importing from a spreadsheet</h2>
-<p>If your word list is in Excel, Google Sheets or a CSV file, you can paste the two columns directly into the text area. Select Tab as the delimiter. Each row becomes one card, with the first column as the term and the second as the meaning. The tool ignores blank lines automatically.</p>
-
-<h2>Printing flashcards</h2>
-<p>Click Print / Save as PDF to produce a printable deck. The print layout shows each card with the term and meaning on the same sheet, formatted as a grid. This is useful for offline study, for handing a deck to a student who does not have a device, or for cutting out physical cards.</p>
-
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a free language flashcard generator online?</summary><p>A tool that turns a word list into a study deck. Paste your vocabulary and the tool creates flashcards you can flip through, quiz yourself on, and study with spaced repetition.</p></details>
-<details><summary>What is spaced repetition?</summary><p>A study method in which review intervals increase each time you recall an item correctly. Difficult items are shown more often. It is one of the most evidence-backed methods for long-term vocabulary retention.</p></details>
-<details><summary>Is this flashcard generator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads, no limits.</p></details>
-</div>
-<div class="fc-disclaimer">
-<b>Disclaimer:</b> This tool stores your deck in your browser's local storage only. It does not sync across devices and it will be cleared if you clear your browser data or use a different browser. For a permanent deck that syncs across devices, use a dedicated spaced-repetition app. Utiliby accepts no liability for loss of deck data.
-</div>
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 16, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online flashcard generator does</a></li><li><a href="#how">How to use this flashcard generator</a></li><li><a href="#sr">How spaced repetition works</a></li><li><a href="#modes">Flip, quiz and type: which mode to use</a></li><li><a href="#direction">Recognition and production</a></li><li><a href="#build">Building an effective deck</a></li><li><a href="#import">Importing from a spreadsheet or file</a></li><li><a href="#subjects">Beyond vocabulary: other uses</a></li><li><a href="#related">Related free education tools</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online flashcard generator does</h2>
+<p>Flashcards work because they force you to recall an answer rather than re-read it, and recall is what builds memory. The hard part is the admin: writing cards, deciding what to review today and keeping track of what you know. This free online flashcard generator takes care of that. Paste a list, build the deck in one click and study with a schedule that decides what to show next.</p><p>It goes beyond a simple card flipper. A spaced repetition scheduler tracks every card, three study modes let you flip, take a multiple choice quiz or type answers, and your deck and progress are saved in the browser. A progress tab shows how much of the deck is new, learning, young or mature, how many reviews are due over the next two weeks and how many cards you reviewed each day. You can import a CSV, pronounce terms aloud, download the deck and print a clean study sheet.</p>
+<h2 id="how">How to use this flashcard generator</h2>
+<ol><li><b>Name your deck</b> and paste your list, one pair per line, such as <i>bonjour = hello</i>. Or import a CSV file.</li><li><b>Press Build deck.</b> The tool detects the separator, skips duplicates and tells you how many cards were created.</li><li><b>Open the Study tab</b> and choose a mode and direction. Set how many new cards to learn per session.</li><li><b>Grade yourself honestly.</b> Press Again, Hard, Good or Easy, or use the keys 1 to 4. The next review date is set for you.</li><li><b>Come back daily.</b> Due cards appear first, then new ones.</li><li><b>Check the Progress tab</b> to see mastery and upcoming reviews.</li></ol>
+<h2 id="sr">How spaced repetition works</h2>
+<figure class="dt-fig tr-fig"><svg viewBox="0 0 640 190" width="100%" role="img" aria-label="Spaced repetition intervals growing"><title>How review intervals grow</title>
+<g font-size="12" text-anchor="middle" fill="#1f2937"><rect x="10" y="60" width="96" height="70" rx="10" fill="#d1fae5" stroke="#047857"/><text x="58" y="88" font-weight="700">Day 0</text><text x="58" y="108" font-size="11">learn the card</text>
+<rect x="136" y="60" width="96" height="70" rx="10" fill="#d1fae5" stroke="#047857"/><text x="184" y="88" font-weight="700">Day 1</text><text x="184" y="108" font-size="11">first review</text>
+<rect x="262" y="60" width="96" height="70" rx="10" fill="#d1fae5" stroke="#047857"/><text x="310" y="88" font-weight="700">Day 7</text><text x="310" y="108" font-size="11">second review</text>
+<rect x="388" y="60" width="96" height="70" rx="10" fill="#a7f3d0" stroke="#047857"/><text x="436" y="88" font-weight="700">Day 24</text><text x="436" y="108" font-size="11">gap x ease</text>
+<rect x="514" y="60" width="116" height="70" rx="10" fill="#6ee7b7" stroke="#047857"/><text x="572" y="88" font-weight="700">Day 80+</text><text x="572" y="108" font-size="11">long-term memory</text></g>
+<g stroke="#047857" stroke-width="2" fill="none"><path d="M108 95h26"/><path d="M234 95h26"/><path d="M360 95h26"/><path d="M486 95h26"/></g>
+<text x="320" y="170" font-size="11.5" text-anchor="middle" fill="#1f2937">Each correct answer lengthens the gap. A wrong answer sends the card back to the start.</text></svg><figcaption>How review gaps grow when you remember a card (illustrative values).</figcaption></figure><p>Spaced repetition is built on the forgetting curve: memory fades quickly after learning and more slowly each time it is refreshed. If you review a card just before you would forget it, the memory is strengthened and the next gap can be longer. Done well, a few minutes a day is enough to hold hundreds of cards.</p><p>The scheduler here follows a simplified SM-2 method, the algorithm behind many popular apps. A new card is shown again after one day, then after about six days, and after that the gap is multiplied by the card's ease factor, which rises when you answer easily and falls when you struggle. Cards you forget return to the queue within the same session and their ease is reduced.</p>
+<h2 id="modes">Flip, quiz and type: which mode to use</h2>
+<div class="dt-wrap"><table><tr><th>Mode</th><th>What it trains</th><th>Best for</th></tr><tr><td>Flip and grade</td><td>Active recall with a schedule</td><td>Daily study and long-term retention</td></tr><tr><td>Multiple choice</td><td>Recognition</td><td>First exposure and quick checks</td></tr><tr><td>Type the answer</td><td>Production and spelling</td><td>Languages and exact terms</td></tr></table></div><p>A good routine is to start new cards in multiple choice mode, then move to flip and type modes as they become familiar. Meaning to term direction is harder, and mixing the direction makes the test closer to real use.</p>
+<h2 id="direction">Recognition and production</h2>
+<ul><li><b>Term to meaning</b> tests recognition, which is how you read and listen. It is the easier direction and the usual first step.</li><li><b>Meaning to term</b> tests production, which is how you speak and write. It is harder and matters for exams that require spelling.</li><li><b>Mixed</b> randomises the direction for each card and is the most demanding.</li></ul>
+<h2 id="build">Building an effective deck</h2>
+<ul><li><b>Keep it small.</b> Twenty to fifty cards per topic are easier to finish than five hundred.</li><li><b>One fact per card.</b> Split a long definition into several cards.</li><li><b>Add context.</b> A short example, such as <i>banca = bank (money)</i>, separates meanings that look alike.</li><li><b>Use your own words.</b> Cards you wrote yourself are remembered better than copied ones.</li><li><b>Study daily.</b> Ten minutes every day beats two hours once a week.</li><li><b>Say it aloud.</b> For languages, pronunciation strengthens memory. Use the Hear term button to check it.</li></ul>
+<h2 id="import">Importing from a spreadsheet or file</h2>
+<p>Select two columns in Excel or Google Sheets, copy them and paste into the text box. Spreadsheet rows arrive separated by tabs, and the tool detects that automatically. You can also import a CSV or text file with the file box. Quoted values are cleaned up, blank lines are ignored and duplicate pairs are skipped. A separator inside the meaning, such as a comma in a definition, is kept because only the first separator on each line is used.</p>
+<h2 id="subjects">Beyond vocabulary: other uses</h2>
+<ul><li><b>Medicine and nursing.</b> Drug names, anatomy terms and lab values.</li><li><b>Law and history.</b> Case names, dates and definitions.</li><li><b>Science.</b> Formulas, units and element symbols.</li><li><b>Geography.</b> Capitals, flags and rivers.</li><li><b>Exams.</b> Key facts for any subject, a few cards a day in the months before the test.</li></ul>
+<h2 id="related">Related free education tools</h2>
+<p>These free online tools work well alongside this one:</p><ul><li>Check how a word is said, with IPA and audio, using the <a href="/tools/education-study-tools/pronunciation-guide/">pronunciation guide</a>.</li><li>Practise recalling under time pressure with the <a href="/tools/education-study-tools/exam-timer/">exam timer</a>.</li><li>Teachers can plan a vocabulary lesson around a deck with the <a href="/tools/education-study-tools/lesson-plan-template-generator/">lesson plan template generator</a>.</li></ul>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The scheduler is a simplified model and cannot predict exactly what you will remember. Your data lives in this browser only, so keep a copy of important decks. Audio quality depends on the voices installed on your device.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is a flashcard generator?</summary><p>A tool that turns a list of terms and meanings into a deck of study cards. Paste your list, build the deck and study it on screen, with quizzes, typing practice and a review schedule.</p></details><details><summary>What is spaced repetition?</summary><p>A study method that increases the time between reviews each time you recall a card correctly. Hard cards come back soon and easy cards come back after days or weeks, which makes revision efficient.</p></details><details><summary>How does the scheduler work?</summary><p>It uses a simplified version of the SM-2 method. Each card has an interval and an ease factor. Good answers grow the interval, hard answers grow it slowly and an Again answer resets it and returns the card to the queue.</p></details><details><summary>What do Again, Hard, Good and Easy mean?</summary><p>Again means you forgot. Hard means you remembered with effort. Good means a normal recall. Easy means you knew it instantly. Each button shows the next interval.</p></details><details><summary>What formats can I paste?</summary><p>Lines separated by equals, dash, tab, comma, semicolon, pipe or colon. The tool can detect the separator, so you can paste straight from a spreadsheet.</p></details><details><summary>Can I import a file?</summary><p>Yes. Use the file box to load a CSV or text file with two columns. Cards are added to the list and the deck is rebuilt.</p></details><details><summary>Will my progress be saved?</summary><p>Yes, in your own browser. Your deck, intervals and daily history are kept so you can return later. They are not synced between devices.</p></details><details><summary>How do I move my deck to another device?</summary><p>Use Copy deck or Download deck to save the list, then paste or import it on the other device. Progress for the new device starts fresh.</p></details><details><summary>What study modes are there?</summary><p>Flip and grade for spaced repetition, a multiple choice quiz that picks plausible wrong answers from your own deck, and a typing mode that ignores accents and capital letters.</p></details><details><summary>Can I study in both directions?</summary><p>Yes. Choose term to meaning, meaning to term, or mixed. Meaning to term is harder and is closer to speaking and writing.</p></details><details><summary>Can the cards be read aloud?</summary><p>Yes. Pick a language and press Hear term, or turn on automatic speech. It uses your browser's built-in voices, so quality varies by device.</p></details><details><summary>How many cards should be in a deck?</summary><p>Twenty to fifty cards is a good size for one topic. Large lists can be split into themed decks. The tool allows up to 2,000 cards.</p></details><details><summary>How many new cards should I learn per day?</summary><p>Ten to twenty new cards a day is sustainable for most people. The limit is adjustable, and reviews of old cards always come first.</p></details><details><summary>Can I print the deck?</summary><p>Yes. Print produces a clean table of terms and meanings, without the rest of the page.</p></details><details><summary>Does it work for subjects other than languages?</summary><p>Yes. Any term and definition pairs work, such as medical terms, dates, formulas, capitals or exam facts.</p></details><details><summary>How is this different from Anki?</summary><p>This tool needs no account or install and works instantly in the browser. Anki offers deeper options, sync and add-ons. For quick decks and light use, this tool is faster to start.</p></details><details><summary>Is my data private?</summary><p>Yes. Your list never leaves your browser and nothing is uploaded.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>SuperMemo, <a href="https://www.supermemo.com/en/blog/application-of-a-computer-to-improve-the-results-obtained-in-working-with-the-supermemo-method" rel="noopener">Application of a computer to improve the results obtained in working with the SuperMemo method</a>.</li><li>Cepeda et al., <a href="https://doi.org/10.1037/0033-2909.132.3.354" rel="noopener">Distributed practice in verbal recall tasks</a>, Psychological Bulletin, 2006.</li><li>Dunlosky et al., <a href="https://doi.org/10.1177/1529100612453266" rel="noopener">Improving students' learning with effective learning techniques</a>, Psychological Science in the Public Interest, 2013.</li><li>MDN Web Docs, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Speech_API" rel="noopener">Web Speech API</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online flashcard generator stores your deck and study progress only in this browser. Clearing site data, using private browsing or switching device will remove or hide it, so keep a copy of your word list. Spoken audio comes from your browser's speech engine and may not match a native speaker. Review schedules are a study aid based on a simplified SM-2 method and do not guarantee memory results.</div>
 </article>
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
@@ -172,78 +238,267 @@
 <script>
 (function(){
 "use strict";
-function $(id){return document.getElementById(id);}
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
 
-var deck=[];var idx=0;var flipped=false;
-function parseList(){
-  var raw=$("wordList").value;
-  var delim=$("delimiter").value;
-  var sep=delim==="tab"?"\t":delim;
-  var lines=raw.split("\n");
-  var deck=[];
-  for(var i=0;i<lines.length;i++){
-    var line=lines[i].trim();if(!line)continue;
-    var parts=line.split(sep);
-    if(parts.length>=2){deck.push({term:parts[0].trim(),meaning:parts.slice(1).join(sep).trim(),known:false});}
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
   }
-  return deck;
+  initTabs.cur = names[0]; initTabs.show = showTab;
 }
-function build(){
-  deck=parseList();
-  if(deck.length===0){$("studyArea").innerHTML='<div class="fc-tip" style="background:#fef3c7;border-left-color:#f59e0b">No cards found. Check that each line uses the selected delimiter.</div>';return;}
-  idx=0;flipped=false;
-  renderCard();
-  renderStats();
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
 }
-function renderCard(){
-  if(idx>=deck.length){
-    $("studyArea").innerHTML='<div class="fc-tip" style="background:#dcfce7;border-left-color:#16a34a"><b>Deck complete.</b> You reviewed all '+deck.length+' cards. Click Build deck to start again.</div>';
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+/* ---------- travel shared helpers ---------- */
+function tn(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 0 : d, minimumFractionDigits: d == null ? 0 : d }); }
+function cur2(v, sym) { if (v == null || !isFinite(v)) return "n/a"; return sym + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function li(k, t) { return '<li><span class="' + (k === "y" ? "tr-y" : k === "n" ? "tr-n" : "tr-q") + '">' + (k === "y" ? "&#10003;" : k === "n" ? "&#10007;" : "?") + "</span><div>" + t + "</div></li>"; }
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { } }
+function svgTxt(x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 11) + '"' + (o.a ? ' text-anchor="' + o.a + '"' : "") + (o.w ? ' font-weight="' + o.w + '"' : "") + (o.f ? ' fill="' + o.f + '"' : ' fill="currentColor"') + ">" + esc(t) + "</text>"; }
+function mny(v, s, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; var a = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 ? "-" : "") + s + a; }
+function pct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toFixed(d == null ? 1 : d) + "%"; }
+function sval(id, def) { var e = $(id); return e ? e.value : def; }
+function nv(id, def) { var v = parseFloat($(id).value); return isNaN(v) ? def : v; }
+function stat(l, v, cls, sub) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + "</div>" + (sub ? '<div class="sub">' + sub + "</div>" : "") + "</div>"; }
+function bigRes(label, val, color, sum) { return '<div class="dt-result"><div class="dt-label">' + label + '</div><div class="dt-big"' + (color ? ' style="color:' + color + '"' : "") + ">" + val + '</div><p class="dt-sum">' + sum + "</p></div>"; }
+function niceMax(v) { if (v <= 0) return 1; var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function shortN(v, s) { var a = Math.abs(v), t = a >= 1e9 ? (a / 1e9).toFixed(a >= 1e10 ? 0 : 1) + "B" : a >= 1e6 ? (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? (a / 1e3).toFixed(a >= 1e4 ? 0 : 1) + "k" : a.toFixed(0); return (v < 0 ? "-" : "") + s + t; }
+function csvT(rows) { return "﻿" + rows.map(function (r) { return r.map(function (v) { return typeof v === "number" && isFinite(v) ? String(Math.round(v * 100) / 100) : csvCell(v); }).join(","); }).join("\r\n") + "\r\n"; }
+
+/* ---------- Flashcard generator ---------- */
+var ST = { cards: [], q: [], cur: null, shown: false, dir: "fwd", off: 0, tab: "deck", raw: "", sess: { n: 0, ok: 0 }, qopts: null, ans: null };
+var SAMPLE = "bonjour = hello\nmerci = thank you\nau revoir = goodbye\ns'il vous plaît = please\noui = yes\nnon = no\nle pain = bread\nl'eau = water\nla maison = house\nle chat = cat\nbonne nuit = good night\nje t'aime = I love you";
+function today() { return todayDN() + ST.off; }
+function key() { return "utb_fc_" + ($("fcName").value.trim().toLowerCase().replace(/[^a-z0-9]+/g, "_") || "deck"); }
+function norm(s) { return String(s).toLowerCase().normalize("NFD").replace(/[̀-ͯ]/g, "").replace(/[^\p{L}\p{N} ]+/gu, "").replace(/\s+/g, " ").trim(); }
+function splitLine(line, d) { var i, m; if (d === "tab") { i = line.indexOf("\t"); return i < 0 ? null : [line.slice(0, i), line.slice(i + 1)]; } if (d === "dash") { m = line.match(/\s[-–—]\s/); return m ? [line.slice(0, m.index), line.slice(m.index + m[0].length)] : null; } var ch = { eq: "=", comma: ",", semi: ";", pipe: "|", colon: ":" }[d]; i = line.indexOf(ch); return i < 0 ? null : [line.slice(0, i), line.slice(i + 1)]; }
+function detect(lines) { var best = "eq", bn = -1; ["tab", "eq", "dash", "pipe", "semi", "colon", "comma"].forEach(function (d) { var n = lines.filter(function (l) { return splitLine(l, d); }).length; if (n > bn) { bn = n; best = d; } }); return best; }
+function unq(s) { s = s.trim(); return s.replace(/^"(.*)"$/, "$1").trim(); }
+function parse(raw, d) { var lines = raw.split(/\r?\n/).map(function (l) { return l.trim(); }).filter(Boolean); if (d === "auto") d = detect(lines); var out = [], seen = {}, dup = 0, bad = 0; lines.forEach(function (l) { var p = splitLine(l, d); if (!p) { bad++; return; } var t = unq(p[0]), m = unq(p[1]); if (!t || !m) { bad++; return; } var k = t + "\u0001" + m; if (seen[k]) { dup++; return; } seen[k] = 1; out.push({ t: t, m: m }); }); return { cards: out.slice(0, 2000), dup: dup, bad: bad, d: d }; }
+function fresh(c) { return { t: c.t, m: c.m, ef: 2.5, reps: 0, int: 0, due: today(), lapses: 0, seen: 0 }; }
+function sm2(c, q) {
+  var o = { ef: c.ef, reps: c.reps, int: c.int, lapses: c.lapses, seen: c.seen + 1 };
+  if (q < 3) { o.reps = 0; o.int = 0; o.lapses++; o.ef = Math.max(1.3, c.ef - 0.2); }
+  else { if (c.reps === 0) o.int = q === 5 ? 3 : 1; else if (c.reps === 1) o.int = q === 3 ? 3 : q === 5 ? 8 : 6; else o.int = Math.max(c.int + 1, Math.round(c.int * c.ef * (q === 3 ? 0.8 : q === 5 ? 1.3 : 1))); o.reps = c.reps + 1; o.ef = Math.max(1.3, c.ef + 0.1 - (5 - q) * (0.08 + (5 - q) * 0.02)); }
+  o.due = today() + o.int; return o;
+}
+function ivl(d) { return d <= 0 ? "now" : d < 30 ? d + "d" : d < 365 ? Math.round(d / 30) + "mo" : (d / 365).toFixed(1) + "y"; }
+function save() { lsSet(key(), JSON.stringify(ST.cards)); lsSet("utb_fc_last", $("fcName").value.trim()); lsSet(key() + "_raw", $("fcList").value); }
+function logRev(ok) { var L; try { L = JSON.parse(lsGet("utb_fc_log") || "{}"); } catch (e) { L = {}; } var d = today(); L[d] = L[d] || { n: 0, ok: 0 }; L[d].n++; if (ok) L[d].ok++; Object.keys(L).forEach(function (k) { if (+k < d - 60) delete L[k]; }); lsSet("utb_fc_log", JSON.stringify(L)); ST.sess.n++; if (ok) ST.sess.ok++; }
+function getLog() { try { return JSON.parse(lsGet("utb_fc_log") || "{}"); } catch (e) { return {}; } }
+function build() {
+  var r = parse($("fcList").value, $("fcDelim").value), saved = [];
+  try { saved = JSON.parse(lsGet(key()) || "[]"); } catch (e) { }
+  var map = {}; saved.forEach(function (c) { map[c.t + "\u0001" + c.m] = c; });
+  ST.cards = r.cards.map(function (c) { var s = map[c.t + "\u0001" + c.m]; return s ? s : fresh(c); });
+  save(); ST.q = []; ST.cur = null;
+  var info = r.cards.length ? '<div class="dt-tip"><b>' + r.cards.length + " cards ready.</b> Detected separator: " + ({ eq: "equals", dash: "dash", tab: "tab", comma: "comma", semi: "semicolon", pipe: "pipe", colon: "colon" })[r.d] + (r.dup ? ". Skipped " + r.dup + " duplicate" + (r.dup > 1 ? "s" : "") : "") + (r.bad ? ". " + r.bad + " line" + (r.bad > 1 ? "s" : "") + " had no separator and were ignored" : "") + ". Open the Study tab to begin.</div>" : '<div class="dt-warn">No cards found. Put one pair on each line, like <b>bonjour = hello</b>, and check the separator.</div>';
+  $("fcInfo").innerHTML = info; renderStats(); return r;
+}
+function counts() { var t = today(), c = { n: 0, learn: 0, young: 0, mature: 0, due: 0, newc: 0 }; ST.cards.forEach(function (x) { if (x.seen === 0) { c.newc++; c.n++; } else if (x.int >= 21) c.mature++; else if (x.int >= 7) c.young++; else c.learn++; if (x.seen > 0 && x.due <= t) c.due++; }); c.total = ST.cards.length; return c; }
+function queue() {
+  var t = today(), lim = intIn("fcNew", 0, 500, 20), due = ST.cards.filter(function (c) { return c.seen > 0 && c.due <= t; }), nw = ST.cards.filter(function (c) { return c.seen === 0; }).slice(0, lim);
+  var q = due.concat(nw); if ($("fcShuf").checked) q = shuffle(q); ST.q = q; ST.sess = { n: 0, ok: 0 }; next();
+}
+function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)), x = a[i]; a[i] = a[j]; a[j] = x; } return a; }
+function next() { ST.cur = ST.q.length ? ST.q.shift() : null; ST.shown = false; ST.ans = null; ST.qopts = null; if (ST.cur) { var d = $("fcDir").value; ST.dir = d === "mixed" ? (Math.random() < 0.5 ? "fwd" : "rev") : d; if ($("fcAuto").checked && ST.dir === "fwd") speak(ST.cur.t); } renderStudy(); }
+function speak(txt) { var lang = $("fcLang").value; if (!lang || !("speechSynthesis" in window)) return; try { var u = new SpeechSynthesisUtterance(txt); u.lang = lang; u.rate = 0.9; speechSynthesis.cancel(); speechSynthesis.speak(u); } catch (e) { } }
+function grade(q) {
+  var c = ST.cur; if (!c) return; var o = sm2(c, q); Object.assign(c, o); logRev(q >= 3);
+  if (q < 3) { ST.q.splice(Math.min(ST.q.length, 3), 0, c); }
+  save(); next(); renderStats();
+}
+function renderStudy() {
+  var el = $("fcStudy"), c = ST.cur, cnt = counts();
+  if (!ST.cards.length) { el.innerHTML = '<div class="dt-tip">Build a deck first on the Deck tab.</div>'; return; }
+  if (!c) {
+    var nxt = ST.cards.filter(function (x) { return x.seen > 0; }).map(function (x) { return x.due; }).sort(function (a, b) { return a - b; })[0];
+    el.innerHTML = '<div class="dt-result"><div class="dt-label">Study session</div><div class="dt-big" style="color:#16a34a">' + (ST.sess.n ? "Done for now" : "Nothing due") + '</div><div class="dt-sum">' + (ST.sess.n ? "You reviewed <b>" + ST.sess.n + "</b> cards, " + Math.round(ST.sess.ok / ST.sess.n * 100) + "% correct. " : "") + (nxt != null && nxt > today() ? "Next review in " + (nxt - today()) + " day" + (nxt - today() > 1 ? "s" : "") + "." : "Add new cards or raise the new-cards limit.") + '</div></div><p><button type="button" class="dt-btn" id="fcGo">Study again</button></p>';
     return;
   }
-  var card=deck[idx];
-  var direction=$("direction").value;
-  var dir=direction;
-  if(direction==="mixed")dir=Math.random()<0.5?"forward":"reverse";
-  var front=dir==="forward"?card.term:card.meaning;
-  var back=dir==="forward"?card.meaning:card.term;
-  var h='<div class="fc-card'+(flipped?" flipped":"")+'" id="flashCard"><div class="front">'+esc(front)+'</div>';
-  if(flipped)h+='<div class="back">'+esc(back)+'</div>';
-  if(!flipped)h+='<div class="hint">Tap to reveal</div>';
-  h+='</div>';
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:center;margin:14px 0">';
-  if(!flipped){
-    h+='<button type="button" class="fc-btn" id="flipBtn" style="margin:0">Reveal answer</button>';
-  }else{
-    h+='<button type="button" class="fc-btn" id="againBtn" style="margin:0;background:#dc2626">Again</button>';
-    h+='<button type="button" class="fc-btn" id="knownBtn" style="margin:0">Known</button>';
+  var mode = $("fcMode").value, front = ST.dir === "fwd" ? c.t : c.m, back = ST.dir === "fwd" ? c.m : c.t, h = '<div class="fc-prog"><span>' + (ST.q.length + 1) + ' left</span><span>Due ' + cnt.due + " · New " + cnt.newc + "</span></div>";
+  h += '<div class="fc-card' + (ST.shown ? " shown" : "") + '" id="fcCard" tabindex="0" role="button" aria-label="Flashcard. Press space to reveal."><div class="fc-side">' + (ST.dir === "fwd" ? "Term" : "Meaning") + '</div><div class="fc-front">' + esc(front) + "</div>" + (ST.shown ? '<hr><div class="fc-side">' + (ST.dir === "fwd" ? "Meaning" : "Term") + '</div><div class="fc-back">' + esc(back) + "</div>" : "") + "</div>";
+  h += '<div class="tr-in" style="justify-content:center"><button type="button" class="dt-btn small ghost" id="fcSay" aria-label="Pronounce the term">🔊 Hear term</button></div>';
+  if (mode === "flip") {
+    if (!ST.shown) h += '<p style="text-align:center"><button type="button" class="dt-btn" id="fcShow">Show answer</button></p>';
+    else h += '<div class="fc-grade">' + [["Again", 0, "#dc2626"], ["Hard", 3, "#d97706"], ["Good", 4, "#16a34a"], ["Easy", 5, "#2563eb"]].map(function (g, i) { var o = sm2(c, g[1]); return '<button type="button" data-g="' + g[1] + '" style="background:' + g[2] + '"><b>' + g[0] + "</b><small>" + (g[1] < 3 ? "again today" : ivl(o.int)) + " · key " + (i + 1) + "</small></button>"; }).join("") + "</div>";
+  } else if (mode === "quiz") {
+    if (!ST.qopts) { var others = shuffle(ST.cards.filter(function (x) { return x !== c && (ST.dir === "fwd" ? x.m : x.t) !== back; })).slice(0, 3).map(function (x) { return ST.dir === "fwd" ? x.m : x.t; }); ST.qopts = shuffle([back].concat(others)); }
+    h += '<div class="fc-opts">' + ST.qopts.map(function (o, i) { var cls = ST.ans == null ? "" : o === back ? " good" : ST.ans === o ? " bad" : ""; return '<button type="button" class="fc-opt' + cls + '" data-o="' + i + '"' + (ST.ans != null ? " disabled" : "") + ">" + esc(o) + "</button>"; }).join("") + "</div>";
+    if (ST.ans != null) h += '<p style="text-align:center"><button type="button" class="dt-btn" id="fcNext">Next card</button></p>';
+  } else {
+    if (ST.ans == null) h += '<div class="fc-type"><input type="text" id="fcTypeIn" autocomplete="off" spellcheck="false" aria-label="Type your answer" placeholder="Type the answer, then press Enter"><button type="button" class="dt-btn" id="fcCheck">Check</button></div><p class="tr-note" style="text-align:center">Accents and capitals are ignored.</p>';
+    else h += '<div class="' + (ST.ans.ok ? "dt-tip" : "dt-warn") + '"><b>' + (ST.ans.ok ? "Correct." : "Not quite.") + "</b> You typed: " + esc(ST.ans.v || "nothing") + '</div><p style="text-align:center"><button type="button" class="dt-btn" id="fcNext">Next card</button></p>';
   }
-  h+='<button type="button" class="fc-btn ghost" id="skipBtn" style="margin:0">Skip</button>';
-  h+='</div>';
-  h+='<div style="text-align:center;font-size:.85rem;color:var(--muted)">Card '+(idx+1)+' of '+deck.length+'</div>';
-  $("studyArea").innerHTML=h;
-  document.getElementById("flashCard").addEventListener("click",function(){flipped=!flipped;renderCard();});
-  if(document.getElementById("flipBtn"))document.getElementById("flipBtn").addEventListener("click",function(e){e.stopPropagation();flipped=true;renderCard();});
-  if(document.getElementById("againBtn"))document.getElementById("againBtn").addEventListener("click",function(e){e.stopPropagation();deck.push(deck.splice(idx,1)[0]);flipped=false;renderCard();});
-  if(document.getElementById("knownBtn"))document.getElementById("knownBtn").addEventListener("click",function(e){e.stopPropagation();idx++;flipped=false;renderCard();renderStats();});
-  if(document.getElementById("skipBtn"))document.getElementById("skipBtn").addEventListener("click",function(e){e.stopPropagation();idx++;flipped=false;renderCard();});
+  el.innerHTML = h; if (mode === "type" && ST.ans == null && $("fcTypeIn")) $("fcTypeIn").focus();
 }
-function renderStats(){
-  if(deck.length===0){$("statsArea").innerHTML="";return;}
-  var h='<div class="fc-stats">';
-  h+='<div class="fc-stat"><div class="lbl">Cards</div><div class="val">'+deck.length+'</div></div>';
-  h+='<div class="fc-stat"><div class="lbl">Progress</div><div class="val">'+idx+' / '+deck.length+'</div></div>';
-  h+='<div class="fc-stat"><div class="lbl">Direction</div><div class="val" style="font-size:.85rem">'+esc($("direction").value)+'</div></div>';
-  h+='</div>';
-  $("statsArea").innerHTML=h;
+function bar(items, W, y, h, tot) { var x = 20, s = ""; items.forEach(function (it) { var w = tot ? it[1] / tot * W : 0; s += '<rect x="' + x.toFixed(1) + '" y="' + y + '" width="' + Math.max(0, w).toFixed(1) + '" height="' + h + '" fill="' + it[2] + '"/>'; x += w; }); return s; }
+function figMastery(c) {
+  var items = [["New", c.newc, "#94a3b8"], ["Learning", c.learn, "#f59e0b"], ["Young", c.young, "#3b82f6"], ["Mature", c.mature, "#16a34a"]], tot = c.total || 1;
+  var svg = '<svg viewBox="0 0 640 140" width="100%" role="img" aria-label="Deck mastery"><title>Deck mastery</title>' + svgTxt(320, 18, "How well you know this deck", { a: "middle", w: 700, s: 12.5 }) + bar(items, 600, 30, 34, tot);
+  items.forEach(function (it, i) { var x = 20 + i * 150; svg += '<rect x="' + x + '" y="84" width="11" height="11" fill="' + it[2] + '"/>' + svgTxt(x + 16, 94, it[0] + ": " + it[1] + " (" + Math.round(it[1] / tot * 100) + "%)", { s: 11.5 }); });
+  return svg + svgTxt(20, 124, "Mature = interval of 21 days or more. Young = 7 to 20 days.", { s: 10.5 }) + "</svg>";
 }
-window.addEventListener("DOMContentLoaded",function(){
-  if(!$("tool"))return;
-  $("buildBtn").addEventListener("click",build);
-  $("resetBtn").addEventListener("click",function(){$("wordList").value="";$("studyArea").innerHTML="";$("statsArea").innerHTML="";});
-  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
-});
+function figForecast() {
+  var t = today(), n = 14, a = []; for (var i = 0; i < n; i++) a.push(0); ST.cards.forEach(function (c) { if (c.seen > 0) { var d = Math.max(0, c.due - t); if (d < n) a[d]++; } });
+  var mx = niceMax(Math.max.apply(null, a.concat([1])) * 1.1), W = 640, L = 40, T = 30, B = 40, H = 220, pw = W - L - 20, ph = H - T - B, bw = pw / n;
+  var svg = '<svg viewBox="0 0 640 220" width="100%" role="img" aria-label="Reviews due over the next 14 days"><title>Reviews due over the next 14 days</title>' + svgTxt(320, 17, "Reviews due over the next 14 days", { a: "middle", w: 700, s: 12.5 });
+  [0, 0.5, 1].forEach(function (f) { var y = T + ph - f * ph; svg += '<line x1="' + L + '" x2="' + (L + pw) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".13"/>' + svgTxt(L - 6, y + 4, Math.round(mx * f), { a: "end", s: 10.5 }); });
+  a.forEach(function (v, i) { var h = v / mx * ph; svg += '<rect x="' + (L + i * bw + 3).toFixed(1) + '" y="' + (T + ph - h).toFixed(1) + '" width="' + (bw - 6).toFixed(1) + '" height="' + h.toFixed(1) + '" fill="' + (i === 0 ? "#dc2626" : "#3b82f6") + '"/>' + svgTxt(L + i * bw + bw / 2, T + ph + 15, i === 0 ? "Now" : "+" + i, { a: "middle", s: 10 }); });
+  return svg + svgTxt(L + pw / 2, H - 6, "Days from today", { a: "middle", s: 11 }) + "</svg>";
+}
+function figLog() {
+  var L = getLog(), t = today(), days = [], i; for (i = 6; i >= 0; i--) days.push(t - i); var mx = niceMax(Math.max.apply(null, days.map(function (d) { return L[d] ? L[d].n : 0; }).concat([1])) * 1.1), W = 640, Lm = 40, T = 30, B = 36, H = 200, pw = W - Lm - 20, ph = H - T - B, bw = pw / 7;
+  var svg = '<svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Cards reviewed in the last 7 days"><title>Cards reviewed in the last 7 days</title>' + svgTxt(320, 17, "Cards reviewed in the last 7 days", { a: "middle", w: 700, s: 12.5 });
+  [0, 0.5, 1].forEach(function (f) { var y = T + ph - f * ph; svg += '<line x1="' + Lm + '" x2="' + (Lm + pw) + '" y1="' + y + '" y2="' + y + '" stroke="currentColor" opacity=".13"/>' + svgTxt(Lm - 6, y + 4, Math.round(mx * f), { a: "end", s: 10.5 }); });
+  days.forEach(function (d, k) { var n = L[d] ? L[d].n : 0, ok = L[d] ? L[d].ok : 0, h = n / mx * ph, h2 = ok / mx * ph, x = Lm + k * bw + 6; svg += '<rect x="' + x + '" y="' + (T + ph - h) + '" width="' + (bw - 12) + '" height="' + h + '" fill="#dc2626" opacity=".55"/><rect x="' + x + '" y="' + (T + ph - h2) + '" width="' + (bw - 12) + '" height="' + h2 + '" fill="#16a34a"/>' + svgTxt(Lm + k * bw + bw / 2, T + ph + 15, k === 6 ? "Today" : fmtD(d).slice(0, 6), { a: "middle", s: 10 }); });
+  return svg + svgTxt(Lm + 4, H - 6, "Green = remembered, red = forgotten", { s: 10.5 }) + "</svg>";
+}
+function renderStats() {
+  var c = counts(); if (!ST.cards.length) { $("fcStats").innerHTML = '<div class="dt-tip">No deck yet.</div>'; $("fcFig").innerHTML = ""; $("fcFore").innerHTML = ""; $("fcLog").innerHTML = ""; return; }
+  var L = getLog()[today()] || { n: 0, ok: 0 };
+  $("fcStats").innerHTML = '<div class="dt-stats">' + stat("Cards", c.total) + stat("Due today", c.due, c.due ? "warn" : "ok") + stat("New", c.newc) + stat("Mature", c.mature, "ok", Math.round(c.mature / c.total * 100) + "% of deck") + stat("Reviewed today", L.n, "", L.n ? Math.round(L.ok / L.n * 100) + "% correct" : "") + "</div>";
+  $("fcFig").innerHTML = figMastery(c); $("fcFore").innerHTML = figForecast(); $("fcLog").innerHTML = figLog();
+}
+function deckText() { return ST.cards.map(function (c) { return c.t + " = " + c.m; }).join("\n"); }
+var DISCL = "Your deck and progress are stored only in this browser. Clearing site data, private browsing or using another device will remove or hide them. Keep a copy of your list.";
+function fillReport() {
+  var b = repBox(); repHead(b, ($("fcName").value.trim() || "Flashcard") + " deck", "Free online flashcard generator");
+  if (!ST.cards.length) { repAdd(b, "p", "Build a deck to print it."); repDisc(b, DISCL); return; }
+  repTbl(b, ["#", "Term", "Meaning"], ST.cards.map(function (c, i) { return [String(i + 1), c.t, c.m]; })); var c = counts(); repAdd(b, "p", plural(c.total, "card") + ". New " + c.newc + ", learning " + c.learn + ", young " + c.young + ", mature " + c.mature + "."); repFig(b, figMastery(c)); repDisc(b, DISCL);
+}
+function init() {
+  initCommon(); initTabs(["deck", "study", "prog"], function (n) { ST.tab = n; if (n === "study") { if (!ST.cards.length) build(); if (!ST.cur && !ST.q.length && ST.cards.length && !ST.sess.n) queue(); else renderStudy(); } if (n === "prog") renderStats(); });
+  var last = lsGet("utb_fc_last"); if (last) { $("fcName").value = last; var raw = lsGet(key() + "_raw"); if (raw) $("fcList").value = raw; }
+  $("fcSample").addEventListener("click", function () { $("fcName").value = "French basics"; $("fcList").value = SAMPLE; $("fcLang").value = "fr-FR"; build(); });
+  $("fcBuild").addEventListener("click", function () { build(); });
+  $("fcFile").addEventListener("change", function () { var f = this.files[0]; if (!f) return; var r = new FileReader(); r.onload = function () { $("fcList").value = ($("fcList").value ? $("fcList").value + "\n" : "") + String(r.result); build(); }; r.readAsText(f); this.value = ""; });
+  $("fcStart").addEventListener("click", function () { $("dtTabBtn-study").click(); queue(); });
+  $("fcStudy").addEventListener("click", function (e) {
+    var b = e.target.closest("button"), card = e.target.closest("#fcCard");
+    if (card && !b) { if ($("fcMode").value === "flip" && !ST.shown) { ST.shown = true; renderStudy(); } return; } if (!b) return;
+    if (b.id === "fcShow") { ST.shown = true; renderStudy(); } else if (b.id === "fcSay") speak(ST.cur ? ST.cur.t : ""); else if (b.id === "fcGo") queue(); else if (b.dataset.g !== undefined) grade(+b.dataset.g);
+    else if (b.dataset.o !== undefined) { var c = ST.cur, back = ST.dir === "fwd" ? c.m : c.t, v = ST.qopts[+b.dataset.o]; ST.ans = v; ST.shown = true; var ok = v === back; var o = sm2(c, ok ? 4 : 0); Object.assign(c, o); logRev(ok); if (!ok) ST.q.splice(Math.min(ST.q.length, 3), 0, c); save(); renderStudy(); renderStats(); }
+    else if (b.id === "fcNext") next(); else if (b.id === "fcCheck") checkType();
+  });
+  $("fcStudy").addEventListener("keydown", function (e) { if (e.target.id === "fcTypeIn" && e.key === "Enter") { e.preventDefault(); checkType(); } });
+  document.addEventListener("keydown", function (e) { if (ST.tab !== "study" || !ST.cur || /^(INPUT|TEXTAREA|SELECT)$/.test(e.target.tagName) || e.ctrlKey || e.metaKey) return; var m = $("fcMode").value; if (m === "flip") { if ((e.key === " " || e.key === "Enter") && !ST.shown) { e.preventDefault(); ST.shown = true; renderStudy(); } else if (ST.shown && "1234".indexOf(e.key) >= 0 && e.key) { grade([0, 3, 4, 5][+e.key - 1]); } } else if (e.key === "Enter" && ST.ans != null) next(); });
+  ["fcMode", "fcDir", "fcShuf", "fcNew"].forEach(function (id) { $(id).addEventListener("change", function () { if (ST.tab === "study") queue(); }); });
+  $("fcCopy").addEventListener("click", function () { if (!ST.cards.length) build(); copyText(deckText(), $("fcCopy")); });
+  $("fcDl").addEventListener("click", function () { if (!ST.cards.length) build(); if (!ST.cards.length) { msg("Build a deck first.", "err"); return; } var rows = [["Term", "Meaning", "Interval (days)", "Due", "Ease", "Lapses"]]; ST.cards.forEach(function (c) { rows.push([c.t, c.m, c.int, c.seen ? isoD(c.due) : "new", +c.ef.toFixed(2), c.lapses]); }); saveBlob(new Blob([csvT(rows)], { type: "text/csv;charset=utf-8" }), "flashcards.csv"); msg("Downloaded flashcards.csv."); });
+  $("fcPrint").addEventListener("click", function () { if (!ST.cards.length) build(); if (!ST.cards.length) { msg("Build a deck first.", "err"); return; } fillReport(); window.print(); });
+  $("resetBtn").addEventListener("click", function () { $("fcList").value = ""; ST.cards = []; ST.q = []; ST.cur = null; $("fcInfo").innerHTML = ""; renderStats(); renderStudy(); });
+  window.fillReport = fillReport; if ($("fcList").value) build(); else { renderStats(); renderStudy(); }
+}
+function checkType() { var c = ST.cur, back = ST.dir === "fwd" ? c.m : c.t, v = $("fcTypeIn").value, ok = norm(v) === norm(back) || back.split(/[,;\/]/).some(function (x) { return norm(x) && norm(x) === norm(v); }); ST.ans = { v: v, ok: ok }; ST.shown = true; Object.assign(c, sm2(c, ok ? 4 : 0)); logRev(ok); if (!ok) ST.q.splice(Math.min(ST.q.length, 3), 0, c); save(); renderStudy(); renderStats(); }
+init();
+
 })();
 </script>
 </body>
