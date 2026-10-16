@@ -4,195 +4,220 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
-<title>Free Startup Runway Calculator Online – Burn Rate &amp; Cash Runway</title>
-<meta name="description" content="Free online startup runway calculator. Enter cash, burn rate and revenue to see how many months of runway you have, your break-even month, and a month-by-month projection. Scenario toggles for burn increase. 100% browser-based, no sign-up.">
+<title>Free Startup Runway Calculator Online: Burn Rate and Cash-Out Date</title>
+<meta name="description" content="Free online startup runway calculator. See months of cash left, burn rate, break-even month and when to raise, with scenarios and charts. No sign-up.">
 <link rel="canonical" href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
 <meta name="robots" content="index,follow,max-image-preview:large">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Utiliby">
-<meta property="og:title" content="Free Startup Runway Calculator Online – Burn Rate &amp; Cash Runway">
-<meta property="og:description" content="See how many months of runway you have, your break-even month, and a month-by-month cash projection.">
+<meta property="og:title" content="Free Startup Runway Calculator Online: Burn Rate and Cash-Out Date">
+<meta property="og:description" content="Free online startup runway calculator with live charts. Months of cash, net burn, cash-out date, break-even, fundraising deadline and burn scenarios.">
 <meta property="og:url" content="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
 <meta property="og:image" content="https://utiliby.com/og-image.png">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Startup Runway Calculator Online: Burn Rate and Cash-Out Date">
+<meta name="twitter:description" content="Free online startup runway calculator with live charts. Months of cash, net burn, cash-out date, break-even, fundraising deadline and burn scenarios.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
 <link rel="icon" href="/favicon.png">
 <link rel="stylesheet" href="/assets/style.css">
 <style>
-.rw-hero{background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
-.rw-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
-.rw-hero p{margin:0;opacity:.92;font-size:.9rem}
-.rw-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
-.rw-panel h3{margin:0 0 10px;font-size:1rem}
-.rw-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
-.rw-panel input,.rw-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box}
-.rw-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-@media(max-width:560px){.rw-row{grid-template-columns:1fr}}
-.rw-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
-@media(max-width:700px){.rw-row3{grid-template-columns:1fr}}
-.rw-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#7c2d12,#ea580c);color:#fff;margin-right:8px;margin-top:8px}
-.rw-btn:hover{opacity:.92}
-.rw-btn.ghost{background:transparent;color:#7c2d12;border:1px solid var(--line)}
-@media(prefers-color-scheme:dark){.rw-btn.ghost{color:#fdba74}}
-.rw-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0;text-align:center;overflow-x:auto}
-.rw-diagram svg{width:100%;max-width:600px;height:auto;display:block;margin:0 auto}
-.rw-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
-.rw-big{font-size:2.4rem;font-weight:800;color:#ea580c;line-height:1.1;margin:4px 0}
-@media(prefers-color-scheme:dark){.rw-big{color:#fdba74}}
-.rw-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
-.rw-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
-.rw-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
-.rw-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
-.rw-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
-.rw-stat .val.ok{color:#16a34a}.rw-stat .val.warn{color:#f59e0b}.rw-stat .val.err{color:#dc2626}
-.rw-tip{background:rgba(124,45,18,.06);border-left:3px solid #ea580c;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
-.rw-tip b{color:#ea580c}
-.rw-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
-.rw-table th,.rw-table td{padding:6px 8px;border:1px solid var(--line);text-align:right}
-.rw-table th{background:var(--card);font-weight:700;text-align:left}
-.rw-table td:first-child,.rw-table th:first-child{text-align:left}
-.rw-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
-.rw-share h3{margin:0 0 10px;font-size:1rem}
-.rw-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
-.rw-share input,.rw-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
-.rw-share textarea{min-height:80px;resize:vertical}
-.rw-share button{margin-top:6px;background:transparent;color:#7c2d12;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
-.rw-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
-.rw-disclaimer b{color:var(--fg)}
-@media print{header.site,footer.site,.rw-btn,.rw-hero,.cn-article,.no-print,.rw-panel form,.rw-share{display:none!important}.tool{border:0!important;background:#fff!important}body{background:#fff!important;color:#000!important}}
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
 .cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
 .cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
 .cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
-.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
 .cn-article table th{background:var(--card);font-weight:700}
 .cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
 .cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.tr-grid{grid-template-columns:minmax(0,1fr)}}
+.tr-verdict{padding:14px 16px;border-radius:12px;font-weight:700;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.tr-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.tr-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.tr-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}.tr-info{background:#e0f2fe;color:#0c4a6e;border-color:#7dd3fc}
+.tr-list{list-style:none;margin:6px 0;padding:0}.tr-list li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:.88rem;line-height:1.5}.tr-list li>span{flex:0 0 auto;font-weight:800;min-width:1.2em;text-align:center}
+.tr-y{color:#16a34a}.tr-n{color:#dc2626}.tr-q{color:#d97706}
+.cn-article p,.cn-article li,.cn-article td{overflow-wrap:anywhere}
+.tr-fig svg{min-width:0!important}
+.tr-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.tr-trip{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:640px){.tr-trip{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tr-trip{grid-template-columns:1fr}}
+.tr-trip>div{min-width:0}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+.tr-letter{white-space:pre-wrap;word-break:break-word;min-height:260px;line-height:1.55}
+.tr-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr-rowline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.tr-rowline b{white-space:nowrap}
+
+.dt-hero{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.dt-btn,.dt-tab.on{background:linear-gradient(135deg,#7c3aed,#8b5cf6)}
+.dt-btn.ghost{color:#7c3aed}.dt-tab{color:#7c3aed}.dt-tab.on{color:#fff}
+.dt-tip{border-left-color:#7c3aed}.dt-tip b{color:#7c3aed}
+.dt-share button{color:#7c3aed}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline-color:#7c3aed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab,.dt-share button,.dt-tip b{color:#c4b5fd}.dt-tab.on{color:#fff}}
 </style>
-<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Startup Runway Calculator","url":"https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/","applicationCategory":"BusinessApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a startup runway calculator?","acceptedAnswer":{"@type":"Answer","text":"A startup runway calculator tells you how many months your company can operate before running out of cash. You enter your current cash balance, your monthly expenses (burn) and any monthly revenue, and the calculator returns the runway in months along with a month-by-month projection and the date your cash reaches zero."}},{"@type":"Question","name":"How do I calculate startup runway?","acceptedAnswer":{"@type":"Answer","text":"Runway (months) = current cash / net monthly burn, where net monthly burn = monthly expenses minus monthly revenue. For example, $600,000 cash with $80,000 monthly expenses and $30,000 monthly revenue gives net burn of $50,000 and runway of 12 months."}},{"@type":"Question","name":"What is the difference between gross burn and net burn?","acceptedAnswer":{"@type":"Answer","text":"Gross burn is your total monthly operating expenses. Net burn is gross burn minus monthly revenue. Net burn is what matters for runway because it reflects how much cash you are actually consuming. A company with $100k gross burn and $60k revenue has net burn of $40k, not $100k."}},{"@type":"Question","name":"How much runway should a startup have?","acceptedAnswer":{"@type":"Answer","text":"Most investors recommend at least 12 months of runway, and 18 to 24 months is preferable for a seed-stage company. Below 6 months, fundraising becomes urgent and you lose negotiating leverage. The rule of thumb is to start fundraising when you have 9 to 12 months left, because a round typically takes 4 to 6 months to close."}},{"@type":"Question","name":"Is this startup runway calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your financial data anywhere."}}]}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Startup Runway Calculator","url":"https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/","description":"Free online startup runway calculator. Enter cash, monthly expenses, revenue and growth rates to project your cash balance month by month, see your runway in months, cash-out date, break-even month and fundraising start date, and compare burn and revenue scenarios with hires, one-off costs and a planned raise. Runs in your browser.","applicationCategory":"BusinessApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Runway in months","Net and gross burn","Cash-out date","Fundraising deadline","Break-even month","Hires, one-offs and funding","Scenario table","Live charts","CSV and print"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is startup runway?","acceptedAnswer":{"@type":"Answer","text":"The number of months your company can keep operating before cash reaches zero, given your current spending and income."}},{"@type":"Question","name":"How do I calculate runway?","acceptedAnswer":{"@type":"Answer","text":"Divide cash on hand by monthly net burn. With 600,000 in the bank and 50,000 of net burn, runway is 12 months. This tool also projects growth month by month for a more realistic date."}},{"@type":"Question","name":"What is the difference between gross burn and net burn?","acceptedAnswer":{"@type":"Answer","text":"Gross burn is total monthly spending. Net burn is gross burn minus the revenue you collect. Runway uses net burn."}},{"@type":"Question","name":"How many months of runway should a startup have?","acceptedAnswer":{"@type":"Answer","text":"Many investors suggest at least 12 to 18 months after a raise, and never letting it fall below six months before you act. A longer runway gives you room to negotiate."}},{"@type":"Question","name":"When should I start fundraising?","acceptedAnswer":{"@type":"Answer","text":"Start when you have 9 to 12 months of runway left, since raising often takes 6 to 9 months. The tool shows a start-by date based on your lead time."}},{"@type":"Question","name":"What does a short runway mean?","acceptedAnswer":{"@type":"Answer","text":"Under six months is critical: you may need to cut costs, bridge, or take worse terms. The tool colors your result so it is obvious."}},{"@type":"Question","name":"How does revenue growth change runway?","acceptedAnswer":{"@type":"Answer","text":"Faster revenue growth shrinks net burn each month and extends runway, sometimes reaching break-even. Slower growth or rising costs shorten it."}},{"@type":"Question","name":"What is the break-even month?","acceptedAnswer":{"@type":"Answer","text":"The first month in which monthly revenue equals or exceeds monthly expenses. After that, your cash stops falling on its own."}},{"@type":"Question","name":"Why is the simple runway different from the projected runway?","acceptedAnswer":{"@type":"Answer","text":"The simple figure assumes burn stays flat. The projection applies your growth rates, hires, one-off costs and funding, so it is usually more accurate."}},{"@type":"Question","name":"How do I model a new hire?","acceptedAnswer":{"@type":"Answer","text":"Enter the extra monthly cost and the month it starts. The runway chart updates, and you can compare the result with the base case."}},{"@type":"Question","name":"Can I include an expected funding round?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter the amount and the month it arrives. Remember to set it only when money is likely, not just hoped for."}},{"@type":"Question","name":"What are the scenarios for?","acceptedAnswer":{"@type":"Answer","text":"They rerun your figures with burn up 20% or 50%, burn down 20%, and revenue up or down 30%. They show how sensitive your runway is."}},{"@type":"Question","name":"Should I include debt repayments?","acceptedAnswer":{"@type":"Answer","text":"Yes. Add loan payments and any other regular cash outflows to monthly expenses so net burn reflects real cash leaving the bank."}},{"@type":"Question","name":"Is runway the same as profit?","acceptedAnswer":{"@type":"Answer","text":"No. Runway is about cash. You can be unprofitable and well funded, or profitable and short of cash if customers pay late."}},{"@type":"Question","name":"What if my revenue is lumpy?","acceptedAnswer":{"@type":"Answer","text":"Use a trailing three-month average, or run the scenarios with lower and higher revenue to cover the range."}},{"@type":"Question","name":"How often should I update runway?","acceptedAnswer":{"@type":"Answer","text":"Monthly, after your books close. Update it any time you hire, raise prices, sign a large customer or lose one."}},{"@type":"Question","name":"Is my data stored?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser and nothing is sent or saved."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Business and Legal Tools","item":"https://utiliby.com/tools/business-legal-tools/"},{"@type":"ListItem","position":3,"name":"Startup Runway Calculator","item":"https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/"}]}]}</script>
 </head>
 <body>
 <header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
 <main class="wrap">
-<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business &amp; Legal Tools</a> › Startup Runway Calculator</nav>
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/business-legal-tools/">Business & Legal Tools</a> › Startup Runway Calculator</nav>
 <h1 class="noembed">Startup Runway Calculator</h1>
-<p class="lead noembed">Enter your cash, monthly expenses and revenue to see how many months of runway you have, your break-even month and a month-by-month projection. Scenario toggles for burn increase. Free, private and no sign-up.</p>
+<p class="lead noembed">See how many months of cash you have, when to start fundraising and how burn and revenue changes move the date. Free, private and no sign-up.</p>
 <p class="onlyembed"><a href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/" target="_blank" rel="noopener">Startup Runway Calculator by Utiliby</a></p>
 <section class="tool" id="tool" aria-label="Startup runway calculator">
-<div class="rw-hero noembed">
-<h2>Free Startup Runway Calculator</h2>
-<p>How many months of cash do you have left? Project runway month by month.</p>
+<div class="dt-hero noembed">
+<h2>Free Online Startup Runway Calculator</h2>
+<p>How many months of cash do you have left? Project runway, break-even and your fundraising deadline with scenarios.</p>
 </div>
-<div class="rw-panel">
-<h3>Current position</h3>
-<div class="rw-row3">
-<div><label for="cash">Cash on hand</label><input type="number" id="cash" min="0" step="1000" value="600000"></div>
-<div><label for="grossBurn">Monthly expenses (gross burn)</label><input type="number" id="grossBurn" min="0" step="1000" value="80000"></div>
-<div><label for="revenue">Monthly revenue</label><input type="number" id="revenue" min="0" step="1000" value="30000"></div>
+<div class="dt-tabs" role="group" aria-label="Tool sections"><button type="button" class="dt-tab on" id="dtTabBtn-run">Runway</button><button type="button" class="dt-tab" id="dtTabBtn-sc">Scenarios</button><button type="button" class="dt-tab" id="dtTabBtn-tab">Monthly table</button></div><div id="dtTab-run"><div class="tr-grid"><div><div class="dt-panel"><h3>Your position</h3><div><label for="rwPre">Start from a typical stage (optional)</label><select id="rwPre"><option value="">Choose a preset</option><option value="lean">Lean bootstrapped</option><option value="seed">Pre-seed</option><option value="saas">Seed SaaS</option><option value="early">Series A</option></select></div><div class="dt-row"><div><label for="rwCash">Cash on hand</label><input type="number" id="rwCash" min="0" step="1000" value="600000"></div><div><label for="rwCur">Currency</label><select id="rwCur"><option value="$">USD $</option><option value="€">EUR €</option><option value="£">GBP £</option><option value="C$">CAD C$</option><option value="A$">AUD A$</option><option value="₹">INR ₹</option><option value="₨">PKR ₨</option><option value="AED ">AED</option><option value="S$">SGD S$</option><option value="¥">JPY/CNY ¥</option></select></div></div><div class="dt-row"><div><label for="rwExp">Monthly expenses (gross burn)</label><input type="number" id="rwExp" min="0" step="500" value="80000"></div><div><label for="rwRev">Monthly revenue</label><input type="number" id="rwRev" min="0" step="500" value="30000"></div></div><div class="dt-row"><div><label for="rwG">Revenue growth per month, %</label><input type="number" id="rwG" min="-50" max="100" step="0.5" value="5"></div><div><label for="rwEG">Expense growth per month, %</label><input type="number" id="rwEG" min="-50" max="100" step="0.5" value="2"></div></div><h3 style="margin-top:12px">Planned events (optional)</h3><div class="dt-row"><div><label for="rwOne">One-off expense</label><input type="number" id="rwOne" min="0" step="1000" value="0"></div><div><label for="rwOneM">In month</label><input type="number" id="rwOneM" min="1" max="60" step="1" value="3"></div></div><div class="dt-row"><div><label for="rwHire">New monthly cost (hires)</label><input type="number" id="rwHire" min="0" step="500" value="0"></div><div><label for="rwHireM">Starting month</label><input type="number" id="rwHireM" min="1" max="60" step="1" value="3"></div></div><div class="dt-row"><div><label for="rwRaise">Funding you expect</label><input type="number" id="rwRaise" min="0" step="1000" value="0"></div><div><label for="rwRaiseM">Arriving in month</label><input type="number" id="rwRaiseM" min="1" max="60" step="1" value="9"></div></div><div class="dt-row"><div><label for="rwLead">Months a raise takes (lead time)</label><input type="number" id="rwLead" min="0" max="24" step="1" value="9"></div><div><label for="rwStart">Today's date</label><input type="date" id="rwStart"></div></div></div></div><div><div id="rwOut" aria-live="polite"></div></div></div><figure class="dt-fig tr-fig" id="rwFig" style="margin:12px 0"></figure><figure class="dt-fig tr-fig" id="rwFig2" style="margin:12px 0"></figure></div><div id="dtTab-sc" hidden><div class="dt-panel"><h3>What if burn or revenue changes?</h3><p class="tr-note">Each row reruns your numbers with a different burn or revenue level. Planned events stay the same.</p><div id="rwSc"></div></div><figure class="dt-fig tr-fig" id="rwFigSc" style="margin:12px 0"></figure></div><div id="dtTab-tab" hidden><div class="dt-panel"><h3>Month-by-month projection</h3><div id="rwTab"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="rwCopy">Copy result</button>
+<button type="button" class="dt-btn ghost" id="rwDl">Download table</button>
+<button type="button" class="dt-btn ghost" id="rwPrint">Print / save report</button>
 </div>
-</div>
-<div class="rw-panel">
-<h3>Growth assumptions (optional)</h3>
-<div class="rw-row3">
-<div><label for="revGrowth">Revenue growth per month (%)</label><input type="number" id="revGrowth" min="-50" max="100" step="0.5" value="5"></div>
-<div><label for="expGrowth">Expense growth per month (%)</label><input type="number" id="expGrowth" min="-50" max="100" step="0.5" value="2"></div>
-<div><label for="scenario">Scenario</label>
-<select id="scenario">
-<option value="base" selected>Base case</option>
-<option value="20">Burn +20%</option>
-<option value="50">Burn +50%</option>
-<option value="minus20">Burn −20%</option>
-</select></div>
-</div>
-</div>
-<button type="button" class="rw-btn" id="calcBtn">Calculate runway</button>
-<button type="button" class="rw-btn ghost" id="resetBtn">Reset</button>
-<div id="output"></div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free online startup runway calculator produces projections for planning, not financial, investment or accounting advice. It relies on your inputs and on smooth monthly growth, and it cannot predict late payments, tax bills, churn, fundraising results or other real-world events. Treat the dates as estimates, review them with your accountant or finance lead, and keep a safety buffer.</p>
 </section>
-<div class="rw-share noembed">
+<div class="dt-share noembed">
 <h3>Share, cite or embed this tool</h3>
-<label for="rw-share-link">Shareable link</label>
-<input type="text" id="rw-share-link" readonly value="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
-<button type="button" data-copy-target="rw-share-link">Copy link</button>
-<label for="rw-cite">Cite this page</label>
-<textarea id="rw-cite" readonly>Utiliby. (2026). Startup Runway Calculator. https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/</textarea>
-<button type="button" data-copy-target="rw-cite">Copy citation</button>
-<label for="rw-embed">Add this tool to your site</label>
-<textarea id="rw-embed" readonly>&lt;iframe src="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/?embed=1" width="100%" height="1100" style="border:0" loading="lazy" title="Startup Runway Calculator by Utiliby"&gt;&lt;/iframe&gt;
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Startup Runway Calculator. https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Startup Runway Calculator by Utiliby"&gt;&lt;/iframe&gt;
 &lt;p&gt;&lt;a href="https://utiliby.com/tools/business-legal-tools/startup-runway-calculator/"&gt;Startup Runway Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
-<button type="button" data-copy-target="rw-embed">Copy embed code</button>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
 </div>
 <article class="cn-article noembed">
-<h2>What is a free startup runway calculator online?</h2>
-<p>A free startup runway calculator online is a tool that tells you how many months your company can keep operating before the cash in the bank runs out. You enter your current cash balance, your monthly operating expenses (the gross burn) and any recurring revenue, and the calculator returns your runway in months, your net burn, the date your cash reaches zero, and a month-by-month projection showing how the balance declines. If revenue is growing faster than expenses, the tool also shows the month you break even — the month when revenue equals expenses and your cash balance stops falling.</p>
-<p>This startup runway calculator goes beyond a simple cash ÷ burn division. It projects the balance month by month with configurable revenue and expense growth rates, includes a scenario toggle for burn increases (a critical planning tool when you are considering hiring or a large purchase), and shows you the break-even month if one is achievable within the projection window. It also gives you the fundraising window — the date by which you should start raising your next round. Everything runs in your browser — no sign-up, no account, no upload, no tracking.</p>
-<h2>How to use this free runway calculator</h2>
-<ol>
-<li>Enter your cash on hand — the current balance in your operating account, plus any other cash you can spend on operations.</li>
-<li>Enter your monthly expenses (gross burn) — payroll, rent, software, marketing, everything you spend in a typical month.</li>
-<li>Enter your monthly revenue — the recurring revenue you actually collect in a typical month, not annualized contract value.</li>
-<li>Optionally set revenue growth and expense growth per month. Use 0 if you want a flat projection.</li>
-<li>Use the scenario dropdown to model a burn increase or decrease — a 20% or 50% jump simulates a hiring round or a large one-off spend.</li>
-<li>Click Calculate runway. The tool shows your runway in months, your net burn, the zero-cash date, a month-by-month table, and a fundraising window.</li>
-</ol>
-<h2>The runway formula</h2>
-<p>The basic runway formula is simple:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Runway (months) = Cash on hand ÷ Net monthly burn</b></p>
-<p>Where net monthly burn is:</p>
-<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px"><b>Net burn = Gross burn − Monthly revenue</b></p>
-<p>For example: $600,000 cash, $80,000 gross burn, $30,000 revenue. Net burn is $50,000, so runway is 12 months. A flat projection would show the cash balance reaching zero in month 12.</p>
-<p>When revenue and expenses are both growing, the calculation becomes iterative. This tool projects the balance month by month rather than using the simple formula, which is important because a growing company's runway can be much longer than the flat formula suggests — or much shorter, if expenses grow faster than revenue.</p>
-<h2>Gross burn vs net burn</h2>
-<p>Gross burn is your total monthly operating expenses. Net burn is gross burn minus revenue. Net burn is the figure that matters for runway, but gross burn matters for a different reason: it tells you the size of the hole you need to fill with revenue or funding.</p>
-<p>The distinction trips up founders who quote the wrong number. A company with $100k gross burn and $60k revenue has a net burn of $40k, not $100k. Runway is $cash ÷ $40k, not $cash ÷ $100k. When investors ask about burn, they usually mean net burn — the amount of cash you are actually consuming each month.</p>
-<h2>How much runway should a startup have?</h2>
-<p>Most investors and accelerators recommend at least <b>12 months</b> of runway, and <b>18 to 24 months</b> is preferable for a seed-stage company. The reasoning is straightforward:</p>
-<table class="cn-article-table">
-<tr><th>Runway remaining</th><th>What it means</th></tr>
-<tr><td>Over 18 months</td><td>Comfortable. You have time to grow into metrics that support the next round.</td></tr>
-<tr><td>12–18 months</td><td>Healthy. Start planning your next round but no urgency.</td></tr>
-<tr><td>9–12 months</td><td>Time to start fundraising. A round typically takes 4–6 months to close.</td></tr>
-<tr><td>6–9 months</td><td>Tight. You are fundraising from a position of weakness. Consider cost cuts.</td></tr>
-<tr><td>Under 6 months</td><td>Urgent. Fundraising, bridge round, or significant cost reduction required immediately.</td></tr>
-<tr><td>Under 3 months</td><td>Critical. You may need a bridge, an acqui-hire, or a wind-down.</td></tr>
-</table>
-<p>The reason to start raising at 9–12 months is that fundraising takes time. The average seed round takes 4 to 6 months from first meeting to money in the bank. If you start with 6 months of runway, you may run out before the round closes. Starting with 12 months gives you a buffer if the round takes longer than expected — which it often does.</p>
-<h2>Why projecting month-by-month matters</h2>
-<p>The simple cash ÷ burn formula gives a single number. But real startups do not have flat revenue and flat expenses. Revenue grows — slowly at first, then faster. Expenses also grow — typically in steps as you hire, sign a new office lease or commit to a large annual contract. A month-by-month projection shows what the flat formula hides:</p>
-<ul>
-<li><b>Break-even month.</b> If revenue grows fast enough, you may reach break-even before you run out of cash. The tool shows the month when revenue overtakes expenses and the balance stops falling.</li>
-<li><b>Cash trough.</b> Even if you break even, you may dip close to zero before that happens. The month-by-month table shows the lowest point.</li>
-<li><b>Runway sensitivity to burn growth.</b> If you plan to hire in Q3, you can model the increased burn and see how much runway it costs.</li>
-</ul>
-<h2>Scenario planning: why the burn toggle matters</h2>
-<p>The most common reason a startup runs out of cash is not that the plan was wrong, but that expenses grew faster than expected. The scenario toggle in this tool lets you model three important cases:</p>
-<ul>
-<li><b>Burn +20%.</b> You hire two or three people or sign a larger office lease. What does that do to runway?</li>
-<li><b>Burn +50%.</b> You make a serious bet — a large marketing commitment, an enterprise sales team, a new product line. What is the runway cost of that bet?</li>
-<li><b>Burn −20%.</b> You trim costs in response to a slower-than-expected raise. How much runway does that buy you?</li>
-</ul>
-<p>Founders who run these scenarios ahead of time make better decisions about when to hire, when to raise, and when to cut. Founders who do not run them tend to discover the answer when the bank balance is already low.</p>
-<h2>The fundraising window</h2>
-<p>The fundraising window is the date by which you should start raising your next round. The conventional rule is to start when you have <b>9 to 12 months</b> of runway remaining, because the round itself will take 4 to 6 months to close. If you start at 12 months, you have a 6-month cushion. If you start at 6 months, you are raising from a position of weakness — investors can see your cash position (or at least your urgency), and the terms reflect it.</p>
-<p>This tool calculates the fundraising window as the date 12 months before your zero-cash date. Treat it as the latest sensible date to start, not the earliest.</p>
-<h2>Common mistakes when calculating runway</h2>
-<ul>
-<li><b>Using gross burn instead of net burn.</b> If you have revenue, subtract it. Otherwise you overstate the runway and understate the urgency.</li>
-<li><b>Forgetting one-off costs.</b> Annual insurance, bonuses, tax payments, legal fees and hardware refresh all hit the cash balance in specific months and often get missed in a flat projection.</li>
-<li><b>Assuming revenue will arrive when you expect.</b> Enterprise deals slip. Collections take longer than invoices. Model a conservative version of revenue, not the optimistic plan.</li>
-<li><b>Ignoring cost growth.</b> Payroll grows with hires and raises. Software subscriptions grow with users. Rent grows on renewal. A flat burn assumption usually understates future burn.</li>
-<li><b>Treating runway as a single number.</b> Runway is a range, not a point. Run three scenarios — base, conservative and bad — and plan for the middle one.</li>
-<li><b>Waiting until runway is short to fundraise.</b> By then you have lost leverage. Start at 9–12 months.</li>
-</ul>
-<h2>Frequently asked questions</h2>
-<div class="cn-faq">
-<details><summary>What is a startup runway calculator?</summary><p>A tool that tells you how many months your company can operate before running out of cash. You enter cash, monthly expenses and revenue, and it projects runway month by month.</p></details>
-<details><summary>How do I calculate startup runway?</summary><p>Runway = cash ÷ net burn, where net burn = monthly expenses − monthly revenue. Example: $600k cash, $80k expenses, $30k revenue → net burn $50k → runway 12 months.</p></details>
-<details><summary>What is the difference between gross burn and net burn?</summary><p>Gross burn is total monthly expenses. Net burn is gross burn minus monthly revenue. Net burn is what matters for runway; gross burn tells you the size of the hole you need to fill.</p></details>
-<details><summary>How much runway should a startup have?</summary><p>At least 12 months, ideally 18–24 months. Start fundraising when you have 9–12 months left, because a round takes 4–6 months to close.</p></details>
-<details><summary>Is this startup runway calculator free?</summary><p>Yes. Free, browser-based, no sign-up, no tracking, no ads.</p></details>
-</div>
-<div class="rw-disclaimer">
-<b>Disclaimer:</b> This calculator provides an estimate of runway based on the figures you enter and the growth assumptions you select. It is a planning tool, not a financial forecast, and it does not account for seasonality, delayed collections, tax timing, debt repayments, or irregular expenses unless you build them into the averages. Founders should review runway monthly with their finance lead or accountant, and should model at least one conservative scenario alongside the base case. Utiliby accepts no liability for financial decisions, missed fundraising windows, or cash shortfalls arising from the use of this tool.
-</div>
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 16, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online startup runway calculator does</a></li><li><a href="#how">How to use this startup runway calculator</a></li><li><a href="#formula">Runway formulas and definitions</a></li><li><a href="#example">Worked example</a></li><li><a href="#benchmarks">Runway benchmarks by stage</a></li><li><a href="#extend">How to extend your runway</a></li><li><a href="#mistakes">Common runway mistakes</a></li><li><a href="#metrics">Burn rate, runway and related startup metrics</a></li><li><a href="#raise">Planning your fundraising timeline</a></li><li><a href="#cuts">Using the scenarios to make decisions</a></li><li><a href="#related">Related free business tools</a></li><li><a href="#limits">Accuracy, limits and responsible use</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free online startup runway calculator does</h2>
+<p>Cash is the oxygen of a young company. Profit can wait, product-market fit can wait, but when the bank balance reaches zero the business stops. The number that tells you how long you have is your <b>runway</b>, and every founder, finance lead and investor watches it closely.</p><p>This free online startup runway calculator goes beyond cash divided by burn. Enter your cash, monthly expenses and revenue, plus how fast each is growing, and it projects your balance month by month for up to five years. It marks the month cash runs out, the date you should start fundraising, the break-even month and your lowest cash point. Two live charts show cash under three burn scenarios and revenue against expenses, and a scenario table shows how sensitive the answer is to cost and revenue changes. You can add a one-off expense, a new hire and an expected funding round to see their effect.</p>
+<h2 id="how">How to use this startup runway calculator</h2>
+<ol><li><b>Pick a stage preset</b> if you want a starting point, or type your own numbers.</li><li><b>Enter cash on hand</b> you can spend on operations.</li><li><b>Enter monthly expenses and revenue.</b> Use gross burn, including payroll, rent, tools, marketing and loan payments.</li><li><b>Set growth rates</b> for revenue and expenses, or use zero for a flat projection.</li><li><b>Add events</b> such as a big purchase, a hiring plan or a funding round.</li><li><b>Set your raise lead time.</b> Nine months is a common planning figure.</li><li><b>Read the result,</b> compare scenarios and print the report for your board or investors.</li></ol>
+<h2 id="formula">Runway formulas and definitions</h2>
+<figure class="dt-fig tr-fig"><svg viewBox="0 0 640 170" width="100%" role="img" aria-label="Runway formula in three steps"><title>How startup runway is found</title>
+<g font-size="12" text-anchor="middle" fill="#1f2937"><rect x="8" y="30" width="190" height="96" rx="10" fill="#ede9fe" stroke="#7c3aed"/><text x="103" y="56" font-weight="700">1. Net burn</text><text x="103" y="78" font-size="11">Expenses - revenue</text><text x="103" y="96" font-size="11">80,000 - 30,000 = 50,000</text>
+<rect x="225" y="30" width="190" height="96" rx="10" fill="#ede9fe" stroke="#7c3aed"/><text x="320" y="56" font-weight="700">2. Divide cash</text><text x="320" y="78" font-size="11">600,000 / 50,000</text><text x="320" y="96" font-size="11">= 12 months (simple)</text>
+<rect x="442" y="30" width="190" height="96" rx="10" fill="#fde68a" stroke="#d97706"/><text x="537" y="56" font-weight="700">3. Subtract lead time</text><text x="537" y="78" font-size="11">12 - 9 months to raise</text><text x="537" y="96" font-size="11">= start in 3 months</text></g>
+<g stroke="#7c3aed" stroke-width="2" fill="none"><path d="M200 78h22"/><path d="M417 78h22"/></g></svg><figcaption>Simple runway, with 600,000 cash, 80,000 expenses, 30,000 revenue and a nine-month raise.</figcaption></figure><p><b>Gross burn</b> is everything you spend per month. <b>Net burn</b> is gross burn minus revenue. <b>Simple runway</b> is cash divided by net burn. The projected runway in this tool steps forward one month at a time, so growth, hires and funding change the answer. The <b>fundraising date</b> is the cash-out date minus your lead time.</p>
+<h2 id="example">Worked example</h2>
+<p>A seed-stage SaaS company has 600,000 in cash, spends 80,000 a month and earns 30,000. Net burn is 50,000, so simple runway is 12 months.</p><div class="dt-wrap"><table><tr><th>Assumption</th><th>Effect</th></tr><tr><td>Revenue grows 5% a month, costs 2%</td><td>Runway is about 12.1 months, barely above the flat 12, because costs also grow</td></tr><tr><td>Burn rises 20% (new hires)</td><td>Runway falls to about 9 months</td></tr><tr><td>Burn falls 20%</td><td>Cash may never run out, because revenue growth catches up with costs</td></tr></table></div><p>If raising takes nine months, the founders must start by around month eight. The tool computes this for you.</p>
+<h2 id="benchmarks">Runway benchmarks by stage</h2>
+<div class="dt-wrap"><table><tr><th>Stage</th><th>Typical target</th><th>Notes</th></tr><tr><td>Bootstrapped</td><td>6 to 12 months</td><td>Growth often funded by revenue</td></tr><tr><td>Pre-seed and seed</td><td>12 to 18 months</td><td>Used to reach milestones for the next round</td></tr><tr><td>Series A and later</td><td>18 to 24 months</td><td>Larger teams, longer raise cycles</td></tr></table></div><p>These are rules of thumb, not requirements. Markets, fundraising conditions and business models all change them.</p>
+<h2 id="extend">How to extend your runway</h2>
+<ul><li><b>Cut non-essential spend,</b> such as unused software, travel and low-return marketing.</li><li><b>Raise prices</b> or move customers to annual plans for upfront cash.</li><li><b>Collect faster.</b> Shorten invoice terms and chase overdue bills.</li><li><b>Delay hires</b> until revenue supports them.</li><li><b>Use non-dilutive funding,</b> such as grants, revenue-based financing or a business loan.</li><li><b>Negotiate costs,</b> including rent and vendor contracts.</li></ul>
+<h2 id="mistakes">Common runway mistakes</h2>
+<ul><li>Counting revenue you have not collected.</li><li>Forgetting taxes, annual subscriptions and benefits that arrive in lumps.</li><li>Assuming a funding round will close on a fixed date.</li><li>Using optimistic growth rates without a downside case.</li><li>Not updating after hires or lost customers.</li></ul>
+<h2 id="metrics">Burn rate, runway and related startup metrics</h2>
+<p>Runway sits among a family of cash metrics. <b>Gross burn</b> shows how expensive the company is to run. <b>Net burn</b> shows how fast the bank balance falls. The <b>burn multiple</b>, net burn divided by new annual recurring revenue, shows how efficiently spending turns into growth, and a figure under 2 is usually considered healthy. <b>Default alive</b> means that at current growth and spending the company reaches profitability before it runs out of cash. <b>Default dead</b> means it does not. The break-even month and cash-out date in this tool give you a quick read on which side you are on.</p><p>Investors look at runway together with growth. A company with 24 months of cash and flat revenue is less attractive than one with 12 months and revenue doubling every year, because the second has a clear path to the next round. Use the revenue growth input honestly: a rate you have sustained for six months is credible, a rate you hope for is not.</p>
+<h2 id="raise">Planning your fundraising timeline</h2>
+<p>Raising money takes longer than most founders expect. Preparing materials, building a list of investors, first meetings, partner meetings, due diligence and legal work often add up to six to nine months, and rounds that look certain can slip. That is why the tool subtracts a lead time from your cash-out date to give a start-raising date.</p><ul><li><b>Start early.</b> Raising from a position of strength gives better terms than raising in a panic.</li><li><b>Show momentum.</b> Investors respond to growth, so time your raise after a strong quarter.</li><li><b>Keep a plan B.</b> Know which costs you would cut and what a bridge from existing investors would look like.</li><li><b>Never count unsigned money.</b> Enter funding only when a term sheet is signed.</li></ul>
+<h2 id="cuts">Using the scenarios to make decisions</h2>
+<p>The scenario tab turns what-if questions into numbers. If you are deciding whether to hire three engineers, test burn at 20% and 50% higher and see how many months you give up. If you are negotiating a large customer, test revenue 30% higher. If cash is tight, test burn 20% lower to see how much runway a modest cost cut buys. Because each row changes only one thing, you can see which lever matters most and decide where to act first.</p>
+<h2 id="related">Related free business tools</h2>
+<p>These free online tools work well alongside this one:</p><ul><li>If you plan to borrow to extend runway, estimate the payment with the <a href="/tools/business-legal-tools/sba-loan-calculator/">SBA loan calculator</a>.</li><li>To find the sales volume that stops the burn, use the <a href="/tools/business-legal-tools/break-even-calculator/">break-even calculator</a>.</li><li>Planning a raise? Get a sense of company value with the <a href="/tools/business-legal-tools/business-valuation-calculator/">business valuation calculator</a>.</li></ul>
+<h2 id="limits">Accuracy, limits and responsible use</h2>
+<p>The projection assumes steady monthly growth and the figures you enter. Real businesses have seasonality, payment delays and surprises, so keep a buffer and use the scenario table. This tool is for planning, not a substitute for a finance model built from your accounts.</p>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>What is startup runway?</summary><p>The number of months your company can keep operating before cash reaches zero, given your current spending and income.</p></details><details><summary>How do I calculate runway?</summary><p>Divide cash on hand by monthly net burn. With 600,000 in the bank and 50,000 of net burn, runway is 12 months. This tool also projects growth month by month for a more realistic date.</p></details><details><summary>What is the difference between gross burn and net burn?</summary><p>Gross burn is total monthly spending. Net burn is gross burn minus the revenue you collect. Runway uses net burn.</p></details><details><summary>How many months of runway should a startup have?</summary><p>Many investors suggest at least 12 to 18 months after a raise, and never letting it fall below six months before you act. A longer runway gives you room to negotiate.</p></details><details><summary>When should I start fundraising?</summary><p>Start when you have 9 to 12 months of runway left, since raising often takes 6 to 9 months. The tool shows a start-by date based on your lead time.</p></details><details><summary>What does a short runway mean?</summary><p>Under six months is critical: you may need to cut costs, bridge, or take worse terms. The tool colors your result so it is obvious.</p></details><details><summary>How does revenue growth change runway?</summary><p>Faster revenue growth shrinks net burn each month and extends runway, sometimes reaching break-even. Slower growth or rising costs shorten it.</p></details><details><summary>What is the break-even month?</summary><p>The first month in which monthly revenue equals or exceeds monthly expenses. After that, your cash stops falling on its own.</p></details><details><summary>Why is the simple runway different from the projected runway?</summary><p>The simple figure assumes burn stays flat. The projection applies your growth rates, hires, one-off costs and funding, so it is usually more accurate.</p></details><details><summary>How do I model a new hire?</summary><p>Enter the extra monthly cost and the month it starts. The runway chart updates, and you can compare the result with the base case.</p></details><details><summary>Can I include an expected funding round?</summary><p>Yes. Enter the amount and the month it arrives. Remember to set it only when money is likely, not just hoped for.</p></details><details><summary>What are the scenarios for?</summary><p>They rerun your figures with burn up 20% or 50%, burn down 20%, and revenue up or down 30%. They show how sensitive your runway is.</p></details><details><summary>Should I include debt repayments?</summary><p>Yes. Add loan payments and any other regular cash outflows to monthly expenses so net burn reflects real cash leaving the bank.</p></details><details><summary>Is runway the same as profit?</summary><p>No. Runway is about cash. You can be unprofitable and well funded, or profitable and short of cash if customers pay late.</p></details><details><summary>What if my revenue is lumpy?</summary><p>Use a trailing three-month average, or run the scenarios with lower and higher revenue to cover the range.</p></details><details><summary>How often should I update runway?</summary><p>Monthly, after your books close. Update it any time you hire, raise prices, sign a large customer or lose one.</p></details><details><summary>Is my data stored?</summary><p>No. Everything runs in your browser and nothing is sent or saved.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>Y Combinator, <a href="https://www.ycombinator.com/library" rel="noopener">Startup Library</a>.</li><li>U.S. Small Business Administration, <a href="https://www.sba.gov/business-guide/manage-your-business/manage-your-finances" rel="noopener">Manage your finances</a>.</li><li>Investopedia, <a href="https://www.investopedia.com/terms/b/burnrate.asp" rel="noopener">Burn rate</a>.</li><li>Corporate Finance Institute, <a href="https://corporatefinanceinstitute.com/resources/valuation/cash-burn-rate/" rel="noopener">Cash burn rate</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free online startup runway calculator produces projections for planning, not financial, investment or accounting advice. It relies on your inputs and on smooth monthly growth, and it cannot predict late payments, tax bills, churn, fundraising results or other real-world events. Treat the dates as estimates, review them with your accountant or finance lead, and keep a safety buffer.</div>
 </article>
 </main>
 <footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
@@ -200,101 +225,233 @@
 <script>
 (function(){
 "use strict";
-function $(id){return document.getElementById(id);}
-function esc(s){return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");}
-function copyText(text,btn){function done(ok){if(!btn)return;var o=btn.getAttribute("data-label");if(o===null){o=btn.textContent;btn.setAttribute("data-label",o);}btn.textContent=ok?"Copied!":"Copy failed";setTimeout(function(){btn.textContent=o;},1400);}function fb(){var ok=false;try{var ta=document.createElement("textarea");ta.value=text;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();ok=document.execCommand("copy");document.body.removeChild(ta);}catch(e){ok=false;}done(ok);}if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(function(){done(true);},fb);}else{fb();}}
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
 
-function currency(n){
-  return "$"+n.toLocaleString(undefined,{maximumFractionDigits:0});
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
 }
-function calc(){
-  var cash=parseFloat($("cash").value)||0;
-  var gross=parseFloat($("grossBurn").value)||0;
-  var rev=parseFloat($("revenue").value)||0;
-  var revG=(parseFloat($("revGrowth").value)||0)/100;
-  var expG=(parseFloat($("expGrowth").value)||0)/100;
-  var scenario=$("scenario").value;
-  var out=$("output");
-  if(cash<=0||gross<=0){out.innerHTML='<div class="rw-warn" style="background:#fef3c7;padding:10px 14px;border-radius:10px;font-size:.85rem">Enter cash and monthly expenses greater than zero.</div>';return;}
-  var burnMult=1;
-  if(scenario==="20")burnMult=1.2;
-  else if(scenario==="50")burnMult=1.5;
-  else if(scenario==="minus20")burnMult=0.8;
-  var balance=cash;
-  var months=0;
-  var breakEvenMonth=null;
-  var proj=[];
-  var maxMonths=120;
-  for(var m=1;m<=maxMonths;m++){
-    var r=rev*Math.pow(1+revG,m-1);
-    var e=gross*Math.pow(1+expG,m-1)*burnMult;
-    var net=r-e;
-    balance+=net;
-    proj.push({month:m,revenue:r,expenses:e,net:net,balance:balance});
-    if(breakEvenMonth===null&&net>=0){breakEvenMonth=m;}
-    if(balance<=0){months=m;break;}
-  }
-  if(balance>0)months=maxMonths;
-  var netBurn=(gross*burnMult)-rev;
-  /* SVG chart */
-  var W=600,H=260,padL=60,padR=20,padT=20,padB=40;
-  var pw=W-padL-padR,ph=H-padT-padB;
-  var points=proj.slice(0,Math.min(months+2,24));
-  var maxBal=Math.max.apply(null,points.map(function(p){return p.balance;}));
-  var svg='<svg viewBox="0 0 '+W+' '+H+'" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Runway projection chart">';
-  svg+='<rect x="'+padL+'" y="'+padT+'" width="'+pw+'" height="'+ph+'" fill="none" stroke="var(--line)"/>';
-  if(points.length>1){
-    var path="M";
-    for(var i=0;i<points.length;i++){
-      var x=padL+(i/(points.length-1))*pw;
-      var y=padT+ph-(points[i].balance/maxBal)*ph;
-      path+=(i===0?" ":" L ")+x.toFixed(1)+" "+y.toFixed(1);
-    }
-    svg+='<path d="'+path+'" fill="none" stroke="#ea580c" stroke-width="3" stroke-linecap="round"/>';
-    svg+='<line x1="'+padL+'" y1="'+(padT+ph)+'" x2="'+(padL+pw)+'" y2="'+(padT+ph)+'" stroke="#dc2626" stroke-dasharray="4,4"/>';
-  }
-  svg+='<text x="'+(padL+pw/2)+'" y="'+(H-10)+'" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600">Months from today</text>';
-  svg+='<text x="14" y="'+(padT+ph/2)+'" text-anchor="middle" font-size="11" fill="var(--muted)" font-weight="600" transform="rotate(-90 14 '+(padT+ph/2)+')">Cash balance</text>';
-  svg+='<text x="'+(padL-6)+'" y="'+(padT+4)+'" text-anchor="end" font-size="10" fill="var(--muted)">'+currency(maxBal)+'</text>';
-  svg+='<text x="'+(padL-6)+'" y="'+(padT+ph+4)+'" text-anchor="end" font-size="10" fill="var(--muted)">$0</text>';
-  svg+='</svg>';
-  var color=months>=18?"#16a34a":months>=12?"#84cc16":months>=9?"#f59e0b":"#dc2626";
-  var status=months>=18?"Healthy":months>=12?"Adequate":months>=9?"Start fundraising":months>=6?"Tight":"Critical";
-  var h='<div class="rw-result"><div class="rw-label">Runway</div>'+
-    '<div class="rw-big" style="color:'+color+'">'+months+' months</div>'+
-    '<div class="rw-label" style="margin-top:6px">Status: '+status+'</div></div>';
-  h+='<div class="rw-diagram">'+svg+'<div style="font-size:.8rem;color:var(--muted);margin-top:8px;font-weight:600">Cash balance projection — flat, then declining, hits zero at month '+months+'</div></div>';
-  h+='<div class="rw-stats">';
-  h+='<div class="rw-stat"><div class="lbl">Net monthly burn</div><div class="val">'+currency(netBurn)+'</div></div>';
-  h+='<div class="rw-stat"><div class="lbl">Cash on hand</div><div class="val">'+currency(cash)+'</div></div>';
-  h+='<div class="rw-stat"><div class="lbl">Zero-cash month</div><div class="val">Month '+months+'</div></div>';
-  h+='<div class="rw-stat"><div class="lbl">Break-even month</div><div class="val '+(breakEvenMonth?"ok":"warn")+'">'+(breakEvenMonth?"Month "+breakEvenMonth:"Not within projection")+'</div></div>';
-  h+='</div>';
-  if(months>=9&&months<12){h+='<div class="rw-tip"><b>Time to start fundraising.</b> The conventional rule is to start raising when you have 9–12 months left, because a round takes 4–6 months to close.</div>';}
-  if(months<6){h+='<div class="rw-tip" style="background:#fee2e2;border-left-color:#dc2626;color:#991b1b"><b>Critical runway.</b> Under 6 months is urgent. Consider a bridge round, an immediate cost reduction, or a wind-down plan.</div>';}
-  if(breakEvenMonth){h+='<div class="rw-tip"><b>Break-even in month '+breakEvenMonth+'.</b> If the growth assumptions hold, revenue will overtake expenses and your cash stops falling. Check the projection table for the lowest point before that.</div>';}
-  h+='<div class="rw-panel"><h3>Month-by-month projection</h3><table class="rw-table"><thead><tr><th>Month</th><th>Revenue</th><th>Expenses</th><th>Net</th><th>Balance</th></tr></thead><tbody>';
-  var show=Math.min(proj.length,24);
-  for(var j=0;j<show;j++){
-    var p=proj[j];
-    var cls=p.balance<=0?"err":p.balance<cash*0.2?"warn":"";
-    h+='<tr><td>'+p.month+'</td><td>'+currency(p.revenue)+'</td><td>'+currency(p.expenses)+'</td><td style="color:'+(p.net>=0?"#16a34a":"#dc2626")+'">'+currency(p.net)+'</td><td class="'+cls+'" style="color:'+(cls==="err"?"#dc2626":cls==="warn"?"#f59e0b":"inherit")+';font-weight:700">'+currency(p.balance)+'</td></tr>';
-  }
-  h+='</tbody></table></div>';
-  h+='<div style="display:flex;gap:8px;flex-wrap:wrap;margin:14px 0"><button type="button" id="copyRwBtn" class="rw-btn" style="margin:0">Copy result</button></div>';
-  out.innerHTML=h;
-  document.getElementById("copyRwBtn").addEventListener("click",function(){
-    var t="Startup Runway Calculator Result\nRunway: "+months+" months ("+status+")\nNet monthly burn: "+currency(netBurn)+"\nCash on hand: "+currency(cash)+"\n"+(breakEvenMonth?"Break-even month: "+breakEvenMonth+"\n":"")+"- utiliby.com";
-    copyText(t,document.getElementById("copyRwBtn"));
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
   });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
 }
-window.addEventListener("DOMContentLoaded",function(){
-  if(!$("tool"))return;
-  $("calcBtn").addEventListener("click",calc);
-  $("resetBtn").addEventListener("click",function(){$("cash").value=600000;$("grossBurn").value=80000;$("revenue").value=30000;$("revGrowth").value=5;$("expGrowth").value=2;$("scenario").value="base";$("output").innerHTML="";});
-  document.addEventListener("click",function(e){var b=e.target.closest("[data-copy-target]");if(b){var t=document.getElementById(b.getAttribute("data-copy-target"));if(t)copyText(t.value,b);}});
-  calc();
-});
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+/* ---------- travel shared helpers ---------- */
+function tn(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 0 : d, minimumFractionDigits: d == null ? 0 : d }); }
+function cur2(v, sym) { if (v == null || !isFinite(v)) return "n/a"; return sym + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function li(k, t) { return '<li><span class="' + (k === "y" ? "tr-y" : k === "n" ? "tr-n" : "tr-q") + '">' + (k === "y" ? "&#10003;" : k === "n" ? "&#10007;" : "?") + "</span><div>" + t + "</div></li>"; }
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { } }
+function svgTxt(x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 11) + '"' + (o.a ? ' text-anchor="' + o.a + '"' : "") + (o.w ? ' font-weight="' + o.w + '"' : "") + (o.f ? ' fill="' + o.f + '"' : ' fill="currentColor"') + ">" + esc(t) + "</text>"; }
+function mny(v, s, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; var a = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 ? "-" : "") + s + a; }
+function pct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toFixed(d == null ? 1 : d) + "%"; }
+function sval(id, def) { var e = $(id); return e ? e.value : def; }
+function nv(id, def) { var v = parseFloat($(id).value); return isNaN(v) ? def : v; }
+function stat(l, v, cls, sub) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + "</div>" + (sub ? '<div class="sub">' + sub + "</div>" : "") + "</div>"; }
+function bigRes(label, val, color, sum) { return '<div class="dt-result"><div class="dt-label">' + label + '</div><div class="dt-big"' + (color ? ' style="color:' + color + '"' : "") + ">" + val + '</div><p class="dt-sum">' + sum + "</p></div>"; }
+function niceMax(v) { if (v <= 0) return 1; var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function shortN(v, s) { var a = Math.abs(v), t = a >= 1e9 ? (a / 1e9).toFixed(a >= 1e10 ? 0 : 1) + "B" : a >= 1e6 ? (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? (a / 1e3).toFixed(a >= 1e4 ? 0 : 1) + "k" : a.toFixed(0); return (v < 0 ? "-" : "") + s + t; }
+function csvT(rows) { return "﻿" + rows.map(function (r) { return r.map(function (v) { return typeof v === "number" && isFinite(v) ? String(Math.round(v * 100) / 100) : csvCell(v); }).join(","); }).join("\r\n") + "\r\n"; }
+
+/* ---------- Startup runway calculator ---------- */
+var ST = { r: null, sc: null };
+var H = 60;
+function S() { return $("rwCur").value; }
+function readIn() { return { cash: nv("rwCash", 0), exp: nv("rwExp", 0), rev: nv("rwRev", 0), g: nv("rwG", 0) / 100, eg: nv("rwEG", 0) / 100, one: nv("rwOne", 0), oneM: Math.max(1, Math.round(nv("rwOneM", 3))), raise: nv("rwRaise", 0), raiseM: Math.max(1, Math.round(nv("rwRaiseM", 9))), hire: nv("rwHire", 0), hireM: Math.max(1, Math.round(nv("rwHireM", 3))), lead: nv("rwLead", 9), start: parseD($("rwStart").value) }; }
+function sim(I, o) {
+  o = o || {}; var bs = o.burn == null ? 1 : o.burn, rs = o.rev == null ? 1 : o.rev, cash = I.cash, rows = [{ m: 0, cash: cash, rev: I.rev * rs, exp: I.exp * bs, net: I.rev * rs - I.exp * bs }], zero = null, be = null, m, minCash = cash;
+  for (m = 1; m <= H; m++) {
+    var rev = I.rev * rs * Math.pow(1 + I.g, m), ex = I.exp * bs * Math.pow(1 + I.eg, m) + (I.hire > 0 && m >= I.hireM ? I.hire : 0), net = rev - ex, add = (m === I.oneM ? -I.one : 0) + (m === I.raiseM ? I.raise : 0), prev = cash; cash = prev + net + add;
+    rows.push({ m: m, cash: cash, rev: rev, exp: ex, net: net });
+    if (be == null && net >= 0) be = m;
+    if (zero == null && cash < 0) { var burn = -(net + add); zero = burn > 0 ? (m - 1) + Math.max(0, prev) / burn : m - 1; }
+    if (cash < minCash) minCash = cash;
+  }
+  return { rows: rows, zero: zero, be: be, minCash: minCash, last: cash };
+}
+function run(I) { var b = sim(I); b.I = I; b.net0 = I.exp - I.rev; b.gross = I.exp; b.ratio = I.exp > 0 ? I.rev / I.exp : 0; b.dateZero = b.zero != null && I.start != null ? addMonths(I.start, Math.floor(b.zero)) : null; b.raiseBy = b.zero != null && I.start != null ? addMonths(I.start, Math.max(0, Math.floor(b.zero - I.lead))) : null; b.raiseIn = b.zero != null ? Math.max(0, b.zero - I.lead) : null; return b; }
+function fm(z) { return z == null ? H + "+ months" : z.toFixed(1) + " months"; }
+function status(b) { if (b.zero == null) return ["ok", "Cash lasts the whole " + H + "-month projection"]; if (b.zero >= 18) return ["ok", "Healthy runway"]; if (b.zero >= 12) return ["ok", "Comfortable, plan your raise"]; if (b.zero >= 6) return ["warn", "Start fundraising or cut costs now"]; return ["err", "Critical: under six months"]; }
+function figCash(b, s) {
+  var I = b.I, W = 640, Hh = 320, L = 66, T = 30, B = 62, R = 18, pw = W - L - R, ph = Hh - T - B, N = Math.min(H, Math.max(12, b.zero != null ? Math.ceil(b.zero * 1.4) : 36)), vals = [], sets = [[b.rows, "#1d4ed8", "Base case"], [sim(I, { burn: 1.2 }).rows, "#dc2626", "Burn +20%"], [sim(I, { burn: 0.8 }).rows, "#16a34a", "Burn -20%"]], mx = 0, mn = 0;
+  sets.forEach(function (st) { st[0].slice(0, N + 1).forEach(function (r) { if (r.cash > mx) mx = r.cash; if (r.cash < mn) mn = r.cash; }); }); mx = niceMax(Math.max(mx, 1) * 1.05); mn = mn < 0 ? -niceMax(-mn * 1.05) : 0;
+  var X = function (m) { return L + m / N * pw; }, Y = function (v) { return T + (mx - v) / (mx - mn) * ph; };
+  var svg = '<svg viewBox="0 0 640 320" width="100%" role="img" aria-label="Projected cash balance"><title>Projected cash balance by month</title>' + svgTxt(320, 17, "Cash in the bank by month, three burn scenarios", { a: "middle", w: 700, s: 12.5 });
+  [mn, mn / 2, 0, mx / 2, mx].forEach(function (v, i, a) { if (i && a[i] === a[i - 1]) return; svg += '<line x1="' + L + '" x2="' + (L + pw) + '" y1="' + Y(v).toFixed(1) + '" y2="' + Y(v).toFixed(1) + '" stroke="currentColor" opacity="' + (v === 0 ? ".45" : ".12") + '"/>' + svgTxt(L - 6, Y(v) + 4, shortN(v, s), { a: "end", s: 10.5 }); });
+  sets.forEach(function (st, k) { var d = ""; st[0].slice(0, N + 1).forEach(function (r, i) { d += (i ? "L" : "M") + X(r.m).toFixed(1) + " " + Y(r.cash).toFixed(1); }); svg += '<path class="dt-bar" d="' + d + '" fill="none" stroke="' + st[1] + '" stroke-width="' + (k ? 1.8 : 2.8) + '"' + (k ? ' stroke-dasharray="5 4"' : "") + "/>"; });
+  if (b.zero != null && b.zero <= N) svg += '<circle cx="' + X(b.zero).toFixed(1) + '" cy="' + Y(0).toFixed(1) + '" r="5.5" fill="#dc2626"/>' + svgTxt(X(b.zero), Y(0) - 10, "Cash out", { a: "middle", s: 11, w: 700 });
+  if (b.raiseIn != null && b.raiseIn <= N && b.raiseIn > 0) svg += '<line x1="' + X(b.raiseIn).toFixed(1) + '" x2="' + X(b.raiseIn).toFixed(1) + '" y1="' + T + '" y2="' + (T + ph) + '" stroke="#d97706" stroke-dasharray="3 3" stroke-width="1.6"/>' + svgTxt(X(b.raiseIn) + 4, T + 12, "Start raising", { s: 10.5, w: 700 });
+  var step = N > 36 ? 12 : N > 18 ? 6 : 3; for (var m = 0; m <= N; m += step) svg += svgTxt(X(m), T + ph + 15, m, { a: "middle", s: 10.5 });
+  svg += svgTxt(L + pw / 2, Hh - 28, "Months from today", { a: "middle", s: 11 });
+  sets.forEach(function (st, k) { var x = 66 + k * 120; svg += '<rect x="' + x + '" y="' + (Hh - 17) + '" width="10" height="8" fill="' + st[1] + '"/>' + svgTxt(x + 14, Hh - 9, st[2], { s: 11 }); });
+  return svg + "</svg>";
+}
+function figRevExp(b, s) {
+  var N = Math.min(H, Math.max(12, b.be != null ? b.be + 6 : 24)), W = 640, L = 66, T = 28, B = 48, Hh = 270, pw = W - L - 18, ph = Hh - T - B, mx = 0; b.rows.slice(0, N + 1).forEach(function (r) { mx = Math.max(mx, r.rev, r.exp); }); mx = niceMax(mx * 1.05);
+  var X = function (m) { return L + m / N * pw; }, Y = function (v) { return T + ph - v / mx * ph; };
+  var svg = '<svg viewBox="0 0 640 270" width="100%" role="img" aria-label="Revenue versus expenses"><title>Monthly revenue versus expenses</title>' + svgTxt(320, 16, "Monthly revenue versus expenses", { a: "middle", w: 700, s: 12.5 });
+  [0, .5, 1].forEach(function (f) { svg += '<line x1="' + L + '" x2="' + (L + pw) + '" y1="' + Y(mx * f).toFixed(1) + '" y2="' + Y(mx * f).toFixed(1) + '" stroke="currentColor" opacity=".13"/>' + svgTxt(L - 6, Y(mx * f) + 4, shortN(mx * f, s), { a: "end", s: 10.5 }); });
+  var dr = "", de = ""; b.rows.slice(0, N + 1).forEach(function (r, i) { dr += (i ? "L" : "M") + X(r.m).toFixed(1) + " " + Y(r.rev).toFixed(1); de += (i ? "L" : "M") + X(r.m).toFixed(1) + " " + Y(r.exp).toFixed(1); });
+  svg += '<path class="dt-bar" d="' + de + '" fill="none" stroke="#dc2626" stroke-width="2.6"/><path class="dt-bar" d="' + dr + '" fill="none" stroke="#16a34a" stroke-width="2.6"/>';
+  if (b.be != null && b.be <= N) svg += '<circle cx="' + X(b.be).toFixed(1) + '" cy="' + Y(b.rows[b.be].rev).toFixed(1) + '" r="5.5" fill="#d97706"/>' + svgTxt(X(b.be), Y(b.rows[b.be].rev) - 10, "Break-even, month " + b.be, { a: "middle", s: 11, w: 700 });
+  var step = N > 36 ? 12 : N > 18 ? 6 : 3; for (var m = 0; m <= N; m += step) svg += svgTxt(X(m), T + ph + 15, m, { a: "middle", s: 10.5 });
+  svg += svgTxt(L + pw / 2, Hh - 22, "Months from today", { a: "middle", s: 11 }) + '<rect x="66" y="' + (Hh - 14) + '" width="10" height="8" fill="#16a34a"/>' + svgTxt(80, Hh - 7, "Revenue", { s: 11 }) + '<rect x="150" y="' + (Hh - 14) + '" width="10" height="8" fill="#dc2626"/>' + svgTxt(164, Hh - 7, "Expenses", { s: 11 });
+  return svg + "</svg>";
+}
+function renderMain(b) {
+  var I = b.I, s = S(), st = status(b), h = "";
+  if (I.exp <= 0 && I.rev <= 0) { $("rwOut").innerHTML = '<div class="dt-tip">Enter your monthly expenses to begin.</div>'; $("rwFig").innerHTML = ""; $("rwFig2").innerHTML = ""; return; }
+  h += bigRes("Runway", b.zero == null ? H + "+ months" : b.zero.toFixed(1) + " months", st[0] === "err" ? "#dc2626" : st[0] === "warn" ? "#d97706" : "#16a34a", st[1] + (b.dateZero ? ". Cash runs out around <b>" + fmtD(b.dateZero) + "</b>." : "."));
+  h += '<div class="dt-stats">' + stat("Net burn now", mny(Math.max(0, b.net0), s), b.net0 > 0 ? "" : "ok", b.net0 > 0 ? "expenses minus revenue per month" : "revenue covers expenses") + stat("Gross burn", mny(I.exp, s), "", "monthly expenses") + stat("Revenue covers", (b.ratio * 100).toFixed(0) + "%", b.ratio >= 1 ? "ok" : "", "of expenses today") + stat("Simple runway", b.net0 > 0 ? (I.cash / b.net0).toFixed(1) + " mo" : "no burn", "", "cash / net burn, no growth");
+  h += stat("Break-even month", b.be != null ? "Month " + b.be : "Not in " + H + " mo", b.be != null ? "ok" : "warn", b.be != null ? "revenue reaches expenses" : "at these growth rates");
+  if (b.raiseBy) h += stat("Start raising by", fmtD(b.raiseBy), "warn", "about " + I.lead + " months before cash-out");
+  else if (b.zero == null) h += stat("Fundraising", "No rush", "ok", "cash does not run out");
+  h += (b.minCash < 0 ? stat("Funding needed", mny(-b.minCash, s), "err", "to reach break-even without running out") : stat("Lowest cash", mny(b.minCash, s), "", "within " + H + " months")) + "</div>";
+  if (b.zero != null && b.zero < I.lead) h += '<div class="dt-warn"><b>Your runway is shorter than a typical raise.</b> Fundraising often takes 6 to 9 months, so consider cutting burn now, bridge financing or revenue-based funding.</div>';
+  if (b.zero == null && b.net0 > 0 && b.be == null) h += '<div class="dt-tip">You are burning cash but the model never runs out in ' + H + " months because of the raise or growth you entered.</div>";
+  if (I.g > 0 && I.eg >= I.g && b.be == null) h += '<div class="dt-tip">Expenses grow at least as fast as revenue, so you never reach break-even. Raise growth or slow cost growth.</div>';
+  $("rwOut").innerHTML = h; $("rwFig").innerHTML = figCash(b, s); $("rwFig2").innerHTML = figRevExp(b, s);
+}
+function renderSc(b) {
+  var I = b.I, s = S(); if (I.exp <= 0 && I.rev <= 0) { $("rwSc").innerHTML = ""; $("rwFigSc").innerHTML = ""; return; }
+  var defs = [["Base case", {}], ["Burn +20%", { burn: 1.2 }], ["Burn +50%", { burn: 1.5 }], ["Burn -20%", { burn: 0.8 }], ["Revenue -30%", { rev: 0.7 }], ["Revenue +30%", { rev: 1.3 }], ["Burn -20%, revenue +20%", { burn: 0.8, rev: 1.2 }]], base = null;
+  var rows = defs.map(function (d) { var r = sim(I, d[1]); if (!base) base = r; return { n: d[0], z: r.zero, be: r.be, min: r.minCash }; }); ST.sc = rows;
+  $("rwSc").innerHTML = '<div class="dt-scroll"><table class="dt-table"><tr><th>Scenario</th><th>Runway</th><th>Change</th><th>Break-even</th><th>Lowest cash</th></tr>' + rows.map(function (r, i) { var d = i === 0 ? "" : (r.z == null && rows[0].z == null) ? "same" : (r.z == null ? "much longer" : rows[0].z == null ? "shorter" : (r.z - rows[0].z >= 0 ? "+" : "") + (r.z - rows[0].z).toFixed(1) + " mo"); return "<tr" + (i === 0 ? ' style="font-weight:700"' : "") + "><td>" + r.n + "</td><td>" + fm(r.z) + "</td><td>" + d + "</td><td>" + (r.be != null ? "Month " + r.be : "None") + "</td><td>" + mny(r.min, s) + "</td></tr>"; }).join("") + "</table></div>";
+  var mx = 0; rows.forEach(function (r) { mx = Math.max(mx, r.z == null ? H : r.z); }); mx = niceMax(mx * 1.08);
+  var svg = '<svg viewBox="0 0 640 ' + (50 + rows.length * 32) + '" width="100%" role="img" aria-label="Runway by scenario"><title>Runway by scenario</title>' + svgTxt(320, 18, "Months of runway in each scenario", { a: "middle", w: 700, s: 12.5 });
+  rows.forEach(function (r, i) { var y = 34 + i * 32, v = r.z == null ? H : r.z, w = v / mx * 360; svg += svgTxt(196, y + 18, r.n, { a: "end", s: 11 }) + '<rect x="204" y="' + y + '" width="' + w.toFixed(1) + '" height="24" fill="' + (i === 0 ? "#1d4ed8" : r.z != null && rows[0].z != null && r.z < rows[0].z ? "#dc2626" : "#16a34a") + '"/>' + svgTxt(204 + w + 6, y + 17, fm(r.z), { s: 11, w: 700 }); });
+  $("rwFigSc").innerHTML = svg + "</svg>";
+}
+function renderTab(b) {
+  var s = S(); $("rwTab").innerHTML = '<div class="dt-scroll"><table class="dt-table"><tr><th>Month</th><th>Date</th><th>Revenue</th><th>Expenses</th><th>Net</th><th>Cash</th></tr>' + b.rows.slice(1, (b.zero != null ? Math.min(H, Math.ceil(b.zero) + 3) : 36) + 1).map(function (r) { return "<tr" + (r.cash < 0 ? ' style="color:#dc2626"' : "") + "><td>" + r.m + "</td><td>" + (b.I.start != null ? fmtD(addMonths(b.I.start, r.m)) : "") + "</td><td>" + mny(r.rev, s) + "</td><td>" + mny(r.exp, s) + "</td><td>" + mny(r.net, s) + "</td><td>" + mny(r.cash, s) + "</td></tr>"; }).join("") + "</table></div>";
+}
+function render() { var b = run(readIn()); ST.r = b; renderMain(b); renderSc(b); renderTab(b); }
+function summary() { var b = ST.r, I = b.I, s = S(); if (I.exp <= 0 && I.rev <= 0) return ""; return "Startup runway\nCash: " + mny(I.cash, s) + "\nMonthly expenses: " + mny(I.exp, s) + "\nMonthly revenue: " + mny(I.rev, s) + "\nNet burn: " + mny(Math.max(0, b.net0), s) + "\nRunway: " + fm(b.zero) + (b.dateZero ? "\nCash-out date: " + fmtD(b.dateZero) : "") + (b.raiseBy ? "\nStart raising by: " + fmtD(b.raiseBy) : "") + "\nBreak-even: " + (b.be != null ? "month " + b.be : "not within " + H + " months") + "\nEstimate from the free Utiliby startup runway calculator, utiliby.com"; }
+var DISCL = "Projection only, not financial advice. Real runway depends on collections, payroll timing, taxes, fundraising outcomes and events no model can predict.";
+function fillReport() {
+  var b = ST.r, I = b.I, s = S(), r = repBox(); repHead(r, "Startup runway report", "Free online startup runway calculator");
+  repTbl(r, ["Item", "Result"], [["Cash on hand", mny(I.cash, s)], ["Monthly expenses", mny(I.exp, s)], ["Monthly revenue", mny(I.rev, s)], ["Revenue growth / month", (I.g * 100).toFixed(1) + "%"], ["Expense growth / month", (I.eg * 100).toFixed(1) + "%"], ["Net burn now", mny(Math.max(0, b.net0), s)], ["Runway", fm(b.zero)], ["Cash-out date", b.dateZero ? fmtD(b.dateZero) : "Not within " + H + " months"], ["Start raising by", b.raiseBy ? fmtD(b.raiseBy) : "n/a"], ["Break-even", b.be != null ? "Month " + b.be : "Not within " + H + " months"]]);
+  repFig(r, figCash(b, s)); repFig(r, figRevExp(b, s));
+  if (ST.sc) { repAdd(r, "h3", "Scenarios"); repTbl(r, ["Scenario", "Runway", "Break-even"], ST.sc.map(function (x) { return [x.n, fm(x.z), x.be != null ? "Month " + x.be : "None"]; })); }
+  repDisc(r, DISCL);
+}
+function init() {
+  initCommon(); $("rwStart").value = isoD(todayDN()); initTabs(["run", "sc", "tab"], function () { render(); });
+  $("rwPre").addEventListener("change", function () { var p = { seed: [150000, 25000, 0, 8, 2], saas: [600000, 80000, 30000, 5, 2], early: [1500000, 180000, 60000, 6, 2], lean: [80000, 12000, 6000, 3, 1] }[this.value]; if (p) { $("rwCash").value = p[0]; $("rwExp").value = p[1]; $("rwRev").value = p[2]; $("rwG").value = p[3]; $("rwEG").value = p[4]; } render(); });
+  $("tool").addEventListener("input", render); $("tool").addEventListener("change", render);
+  $("rwCopy").addEventListener("click", function () { var t = summary(); if (!t) { msg("Enter your expenses first.", "err"); return; } copyText(t, $("rwCopy")); });
+  $("rwDl").addEventListener("click", function () { var b = ST.r; if (!b || (b.I.exp <= 0 && b.I.rev <= 0)) { msg("Enter your expenses first.", "err"); return; } var rows = [["Month", "Date", "Revenue", "Expenses", "Net", "Cash"]]; b.rows.forEach(function (r) { rows.push([r.m, b.I.start != null ? isoD(addMonths(b.I.start, r.m)) : "", r.rev, r.exp, r.net, r.cash]); }); saveBlob(new Blob([csvT(rows)], { type: "text/csv;charset=utf-8" }), "startup-runway.csv"); msg("Downloaded startup-runway.csv."); });
+  $("rwPrint").addEventListener("click", function () { if (!summary()) { msg("Enter your expenses first.", "err"); return; } fillReport(); window.print(); });
+  $("resetBtn").addEventListener("click", function () { $("rwPre").value = ""; $("rwCash").value = 600000; $("rwExp").value = 80000; $("rwRev").value = 30000; $("rwG").value = 5; $("rwEG").value = 2; $("rwOne").value = 0; $("rwRaise").value = 0; $("rwHire").value = 0; $("rwLead").value = 9; $("rwStart").value = isoD(todayDN()); render(); });
+  window.fillReport = fillReport; render();
+}
+init();
+
 })();
 </script>
 </body>
