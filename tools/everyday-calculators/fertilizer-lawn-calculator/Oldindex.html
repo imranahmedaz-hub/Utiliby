@@ -1,0 +1,804 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Free Fertilizer Calculator for Lawns Online – NPK, Seed, Lime &amp; Cost</title>
+<meta name="description" content="Free fertilizer calculator for lawns online. Calculate NPK fertilizer, grass seed, lime or sulfur, topdressing, spreader calibration and cost. 10 grass types, metric and imperial. No sign-up, 100% browser-based.">
+<link rel="canonical" href="https://utiliby.com/tools/everyday-calculators/fertilizer-lawn-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Fertilizer Calculator for Lawns Online – NPK, Seed, Lime &amp; Cost">
+<meta property="og:description" content="Free fertilizer calculator for lawns online. NPK, seed, lime, topdressing, spreader calibration and cost.">
+<meta property="og:url" content="https://utiliby.com/tools/everyday-calculators/fertilizer-lawn-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.fl-hero{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.fl-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.fl-hero p{margin:0;opacity:.92;font-size:.9rem}
+.fl-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:14px 0}
+.fl-tab{background:transparent;color:var(--brand);border:1px solid var(--line);border-radius:8px;padding:8px 14px;font-weight:600;font-size:.85rem;cursor:pointer}
+.fl-tab.on{background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;border-color:transparent}
+.fl-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.fl-panel h3{margin:0 0 10px;font-size:1rem}
+.fl-panel label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.fl-panel input[type="text"],.fl-panel input[type="number"],.fl-panel select{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg)}
+.fl-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+@media(max-width:560px){.fl-row{grid-template-columns:1fr}}
+.fl-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+@media(max-width:700px){.fl-row3{grid-template-columns:1fr}}
+.fl-btn{display:inline-block;padding:10px 20px;border-radius:10px;font-weight:700;font-size:.88rem;cursor:pointer;border:0;background:linear-gradient(135deg,#16a34a,#22c55e);color:#fff;margin-right:8px;margin-top:8px}
+.fl-btn:hover{opacity:.92}
+.fl-btn.ghost{background:transparent;color:#16a34a;border:1px solid var(--line)}
+.fl-btn.small{padding:5px 12px;font-size:.78rem;margin-top:0}
+.fl-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.fl-result-big{font-size:2rem;font-weight:800;color:#16a34a;line-height:1.1;margin:4px 0}
+.fl-result-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.fl-result-sub{font-size:.85rem;color:var(--muted);margin-top:6px}
+.fl-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(130px,1fr));gap:10px;margin:12px 0}
+.fl-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.fl-stat .lbl{font-size:.7rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.fl-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.fl-stat .val.ok{color:#16a34a}
+.fl-stat .val.warn{color:#f59e0b}
+.fl-stat .val.err{color:#dc2626}
+.fl-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.fl-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.fl-tip{background:rgba(22,163,74,.06);border-left:3px solid #16a34a;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.fl-tip b{color:#16a34a}
+.fl-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.fl-table th,.fl-table td{padding:6px 8px;border:1px solid var(--line);text-align:left}
+.fl-table th{background:var(--card);font-weight:700}
+.fl-empty{text-align:center;padding:30px 20px;color:var(--muted)}
+.fl-badge{display:inline-block;padding:3px 10px;border-radius:12px;font-size:.72rem;font-weight:700}
+.fl-badge.ok{background:#dcfce7;color:#166534}
+.fl-badge.warn{background:#fef3c7;color:#92400e}
+.fl-badge.err{background:#fee2e2;color:#991b1b}
+@media(prefers-color-scheme:dark){
+  .fl-badge.ok{background:#14532d;color:#bbf7d0}
+  .fl-badge.warn{background:#78350f;color:#fde68a}
+  .fl-badge.err{background:#7f1d1d;color:#fecaca}
+}
+.fl-progress{background:var(--line);border-radius:6px;height:8px;overflow:hidden;margin:6px 0}
+.fl-progress-bar{height:100%;background:#16a34a;transition:width .25s}
+.fl-progress-bar.warn{background:#f59e0b}
+.fl-progress-bar.err{background:#dc2626}
+@media print{
+  header.site,footer.site,.fl-tabs,.fl-btn,.fl-hero,.cn-article,.no-print{display:none !important}
+  .tool{border:0 !important;background:#fff !important}
+  body{background:#fff !important;color:#000 !important}
+}
+.cn-article h2{margin-top:2em}
+.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article li{margin:4px 0}
+.cn-article p{margin:10px 0}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Fertilizer/Lawn Calculator","url":"https://utiliby.com/tools/everyday-calculators/fertilizer-lawn-calculator/","applicationCategory":"UtilitiesApplication","operatingSystem":"Any","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a free fertilizer calculator for lawns online?","acceptedAnswer":{"@type":"Answer","text":"A free fertilizer calculator for lawns online is a tool that tells you exactly how much fertilizer to apply based on your lawn size, grass type and the NPK analysis on your fertilizer bag. This calculator also covers overseeding, lime and sulfur for pH adjustment, topdressing, spreader calibration and cost estimation, all in one browser-based tool."}},{"@type":"Question","name":"How much fertilizer should I apply per 1,000 square feet?","acceptedAnswer":{"@type":"Answer","text":"The standard target is 1 pound of actual nitrogen per 1,000 square feet per application. The formula is: pounds of product per 1,000 sq ft = desired nitrogen rate ÷ (nitrogen percentage ÷ 100). For example, with a 32-0-4 fertilizer, you would apply 1 ÷ 0.32 = 3.125 pounds of product per 1,000 sq ft."}},{"@type":"Question","name":"How do I calculate how many bags of fertilizer I need?","acceptedAnswer":{"@type":"Answer","text":"First calculate total pounds of product needed using the formula above, then divide by the weight of the bag you are buying. For example, if you need 50 pounds and the fertilizer comes in 40-pound bags, you would buy 2 bags. Always round up to ensure you do not run out mid-application."}},{"@type":"Question","name":"What is the difference between cool-season and warm-season grass fertilisation?","acceptedAnswer":{"@type":"Answer","text":"Cool-season grasses (Kentucky Bluegrass, Fescue, Ryegrass) grow most actively in spring and fall. They typically need 3 to 4 pounds of nitrogen per 1,000 sq ft per year, split across 3 to 4 applications. Warm-season grasses (Bermuda, Zoysia, St. Augustine) grow most actively in summer and need 2 to 3 pounds of nitrogen per 1,000 sq ft per year, with applications concentrated in late spring and summer."}},{"@type":"Question","name":"How much grass seed do I need for overseeding?","acceptedAnswer":{"@type":"Answer","text":"Overseeding an existing lawn typically requires 2 to 5 pounds of grass seed per 1,000 square feet, roughly half the rate of seeding a brand-new lawn. Tall fescue and perennial ryegrass need about 3 to 4 pounds per 1,000 sq ft for overseeding, Kentucky bluegrass needs 1 to 1.5 pounds, and warm-season grasses like Bermuda need under 1 pound."}},{"@type":"Question","name":"How much lime do I need to raise my soil pH?","acceptedAnswer":{"@type":"Answer","text":"Lime application rate depends on your current soil pH, target pH, soil type and grass type. As a general guide to raise pH by 1.0 unit: sandy soil needs about 50 lbs per 1,000 sq ft, loam needs 80 lbs, and clay needs 120 lbs. Rates over 50 lbs per 1,000 sq ft should be split into two applications 4 to 6 months apart."}},{"@type":"Question","name":"How do I calculate how much topdressing I need?","acceptedAnswer":{"@type":"Answer","text":"Topdressing volume = (Lawn area in sq ft × Depth in inches) ÷ 324. The constant 324 comes from converting square feet to cubic yards (27 cubic feet per cubic yard × 12 inches per foot). For example, 5,000 sq ft at 0.25 inches deep needs (5,000 × 0.25) ÷ 324 = 3.86 cubic yards."}},{"@type":"Question","name":"How do I calibrate my spreader?","acceptedAnswer":{"@type":"Answer","text":"To calibrate a spreader: (1) Mark out a test area of known size, such as 400 sq ft. (2) Fill the spreader with a known weight of product. (3) Spread over the test area at your intended setting. (4) Weigh how much product was used. (5) If you used X pounds over 400 sq ft, that is X ÷ 400 × 1,000 pounds per 1,000 sq ft. Adjust the spreader setting up or down and repeat until the rate matches your target."}},{"@type":"Question","name":"Is this fertilizer calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits."}},{"@type":"Question","name":"Does this calculator work in metric units?","acceptedAnswer":{"@type":"Answer","text":"Yes. You can enter your lawn area in square metres or square feet, and the calculator converts everything automatically. The recommended rates are provided in both imperial and metric units."}}]}]}</script>
+</head>
+<body>
+<header class="site"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></nav></div></header>
+<main class="wrap">
+<nav class="crumbs" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › Fertilizer/Lawn Calculator</nav>
+<h1>Fertilizer/Lawn Calculator</h1>
+<p class="lead">Calculate NPK fertilizer, grass seed, lime or sulfur, topdressing, spreader calibration and cost. 10 grass types, metric and imperial. Free, private and no sign-up.</p>
+
+<section class="tool" id="tool" aria-label="Fertilizer lawn calculator">
+
+<div class="fl-hero">
+<h2>Free Fertilizer &amp; Lawn Calculator</h2>
+<p>Everything you need to plan fertilizer, seed, lime, topdressing and cost — in one place.</p>
+</div>
+
+<div class="fl-tabs" role="group" aria-label="Tool sections">
+<button type="button" class="fl-tab on" data-tab="fertilizer">Fertilizer (NPK)</button>
+<button type="button" class="fl-tab" data-tab="seed">Grass Seed</button>
+<button type="button" class="fl-tab" data-tab="lime">Lime / Sulfur</button>
+<button type="button" class="fl-tab" data-tab="topdress">Topdressing</button>
+<button type="button" class="fl-tab" data-tab="spreader">Spreader Calibration</button>
+</div>
+
+<!-- FERTILIZER TAB -->
+<div id="fertilizerTab">
+<div class="fl-panel">
+<h3>Your lawn and fertilizer</h3>
+<div class="fl-row3">
+<div>
+<label for="units">Units</label>
+<select id="units">
+<option value="imperial" selected>Imperial (sq ft, lbs)</option>
+<option value="metric">Metric (m², kg)</option>
+</select>
+</div>
+<div>
+<label for="lawnSize">Lawn size</label>
+<input type="number" id="lawnSize" min="0" step="1" value="5000">
+</div>
+<div>
+<label for="grassType">Grass type</label>
+<select id="grassType">
+<option value="cool" selected>Cool-season (Bluegrass, Fescue, Ryegrass)</option>
+<option value="warm">Warm-season (Bermuda, Zoysia, St. Augustine)</option>
+<option value="bermuda">Bermuda</option>
+<option value="zoysia">Zoysia</option>
+<option value="st-augustine">St. Augustine</option>
+<option value="kentucky-bluegrass">Kentucky Bluegrass</option>
+<option value="tall-fescue">Tall Fescue</option>
+<option value="perennial-ryegrass">Perennial Ryegrass</option>
+<option value="fine-fescue">Fine Fescue</option>
+<option value="centipede">Centipede</option>
+</select>
+</div>
+</div>
+<div class="fl-row">
+<div>
+<label for="targetN">Target nitrogen rate (lbs N / 1,000 sq ft)</label>
+<input type="number" id="targetN" min="0" max="2" step="0.1" value="1.0">
+<p class="meta" style="margin:4px 0 0">Standard: 1 lb per 1,000 sq ft for quick-release. Use 0.5–0.75 for slow-release or sensitive grasses.</p>
+</div>
+<div>
+<label for="spreaderBuffer">Spreader buffer (%)</label>
+<input type="number" id="spreaderBuffer" min="0" max="20" step="1" value="10">
+<p class="meta" style="margin:4px 0 0">Adds a safety margin to cover spreading overlap and waste.</p>
+</div>
+</div>
+</div>
+
+<div class="fl-panel">
+<h3>Fertilizer NPK analysis</h3>
+<div class="fl-row3">
+<div><label for="nPct">Nitrogen (N) %</label><input type="number" id="nPct" min="0" max="50" step="0.1" value="10"></div>
+<div><label for="pPct">Phosphorus (P₂O₅) %</label><input type="number" id="pPct" min="0" max="50" step="0.1" value="10"></div>
+<div><label for="kPct">Potassium (K₂O) %</label><input type="number" id="kPct" min="0" max="50" step="0.1" value="10"></div>
+</div>
+<div class="fl-row3">
+<div><label for="bagWeight">Bag weight</label><input type="number" id="bagWeight" min="1" step="1" value="50"></div>
+<div><label for="bagPrice">Price per bag</label><input type="number" id="bagPrice" min="0" step="0.01" value="25"></div>
+<div><label for="currency">Currency</label><select id="currency">
+<option value="USD" selected>$ USD</option>
+<option value="GBP">£ GBP</option>
+<option value="EUR">€ EUR</option>
+<option value="AUD">A$ AUD</option>
+<option value="CAD">C$ CAD</option>
+<option value="NZD">NZ$ NZD</option>
+<option value="INR">₹ INR</option>
+<option value="PKR">₨ PKR</option>
+</select></div>
+</div>
+</div>
+
+<button type="button" class="fl-btn" id="calcFertBtn">Calculate fertilizer</button>
+<div id="fertResult"></div>
+</div>
+
+<!-- SEED TAB -->
+<div id="seedTab" hidden>
+<div class="fl-panel">
+<h3>Grass seed / overseeding calculator</h3>
+<div class="fl-row3">
+<div>
+<label for="seedUnits">Units</label>
+<select id="seedUnits">
+<option value="imperial" selected>Imperial (sq ft, lbs)</option>
+<option value="metric">Metric (m², kg)</option>
+</select>
+</div>
+<div><label for="seedArea">Lawn area</label><input type="number" id="seedArea" min="0" step="1" value="5000"></div>
+<div>
+<label for="seedPurpose">Purpose</label>
+<select id="seedPurpose">
+<option value="overseed" selected>Overseeding existing lawn</option>
+<option value="new">New lawn (bare soil)</option>
+<option value="patch">Patch repair</option>
+</select>
+</div>
+</div>
+<div class="fl-row">
+<div>
+<label for="seedGrass">Grass type</label>
+<select id="seedGrass">
+<option value="tall-fescue" selected>Tall Fescue</option>
+<option value="kentucky-bluegrass">Kentucky Bluegrass</option>
+<option value="perennial-ryegrass">Perennial Ryegrass</option>
+<option value="fine-fescue">Fine Fescue</option>
+<option value="bermuda">Bermuda</option>
+<option value="zoysia">Zoysia</option>
+<option value="st-augustine">St. Augustine</option>
+<option value="centipede">Centipede</option>
+</select>
+</div>
+<div>
+<label for="seedBagWeight">Seed bag weight</label>
+<input type="number" id="seedBagWeight" min="1" step="0.5" value="5">
+</div>
+</div>
+<button type="button" class="fl-btn" id="calcSeedBtn">Calculate seed</button>
+<div id="seedResult"></div>
+</div>
+</div>
+
+<!-- LIME TAB -->
+<div id="limeTab" hidden>
+<div class="fl-panel">
+<h3>Lime / sulfur calculator (soil pH)</h3>
+<div class="fl-row3">
+<div>
+<label for="limeUnits">Units</label>
+<select id="limeUnits">
+<option value="imperial" selected>Imperial (sq ft, lbs)</option>
+<option value="metric">Metric (m², kg)</option>
+</select>
+</div>
+<div><label for="limeArea">Lawn area</label><input type="number" id="limeArea" min="0" step="1" value="5000"></div>
+<div>
+<label for="limeGrass">Grass type (sets target pH)</label>
+<select id="limeGrass">
+<option value="tall-fescue" selected>Tall Fescue (target 6.0–7.0)</option>
+<option value="kentucky-bluegrass">Kentucky Bluegrass (target 6.0–7.0)</option>
+<option value="perennial-ryegrass">Perennial Ryegrass (target 6.0–7.0)</option>
+<option value="fine-fescue">Fine Fescue (target 5.5–6.5)</option>
+<option value="bermuda">Bermuda (target 6.0–7.0)</option>
+<option value="zoysia">Zoysia (target 6.0–7.0)</option>
+<option value="st-augustine">St. Augustine (target 5.5–6.5)</option>
+<option value="centipede">Centipede (target 5.0–5.5)</option>
+</select>
+</div>
+</div>
+<div class="fl-row3">
+<div><label for="currentPh">Current soil pH</label><input type="number" id="currentPh" min="3" max="10" step="0.1" value="5.5"></div>
+<div><label for="targetPh">Target soil pH (auto-filled)</label><input type="number" id="targetPh" min="3" max="10" step="0.1" value="6.5"></div>
+<div>
+<label for="soilType">Soil texture</label>
+<select id="soilType">
+<option value="sandy">Sandy</option>
+<option value="loam" selected>Loam</option>
+<option value="clay">Clay</option>
+</select>
+</div>
+</div>
+<button type="button" class="fl-btn" id="calcLimeBtn">Calculate lime / sulfur</button>
+<div id="limeResult"></div>
+</div>
+</div>
+
+<!-- TOPDRESSING TAB -->
+<div id="topdressTab" hidden>
+<div class="fl-panel">
+<h3>Topdressing calculator</h3>
+<div class="fl-row3">
+<div>
+<label for="tdUnits">Units</label>
+<select id="tdUnits">
+<option value="imperial" selected>Imperial (sq ft, cubic yards)</option>
+<option value="metric">Metric (m², cubic metres)</option>
+</select>
+</div>
+<div><label for="tdArea">Lawn area</label><input type="number" id="tdArea" min="0" step="1" value="5000"></div>
+<div><label for="tdDepth">Depth</label><input type="number" id="tdDepth" min="0.05" max="2" step="0.05" value="0.25"></div>
+</div>
+<button type="button" class="fl-btn" id="calcTdBtn">Calculate topdressing</button>
+<div id="tdResult"></div>
+</div>
+</div>
+
+<!-- SPREADER TAB -->
+<div id="spreaderTab" hidden>
+<div class="fl-panel">
+<h3>Spreader calibration calculator</h3>
+<p class="meta" style="margin-bottom:10px">Work out how much product your spreader is actually applying so you can dial in the correct setting.</p>
+<div class="fl-row3">
+<div>
+<label for="spUnits">Units</label>
+<select id="spUnits">
+<option value="imperial" selected>Imperial (sq ft, lbs)</option>
+<option value="metric">Metric (m², kg)</option>
+</select>
+</div>
+<div><label for="spTestArea">Test area size</label><input type="number" id="spTestArea" min="1" step="1" value="400"></div>
+<div><label for="spProductUsed">Product used in test</label><input type="number" id="spProductUsed" min="0" step="0.01" value="1"></div>
+</div>
+<div class="fl-row">
+<div><label for="spTargetRate">Target application rate (per 1,000 sq ft)</label><input type="number" id="spTargetRate" min="0" step="0.01" value="3.125"></div>
+<div><label for="spCurrentSetting">Current spreader setting</label><input type="number" id="spCurrentSetting" min="0" step="0.5" value="5"></div>
+</div>
+<button type="button" class="fl-btn" id="calcSpBtn">Calculate calibration</button>
+<div id="spResult"></div>
+</div>
+</div>
+
+</section>
+
+<article class="cn-article">
+
+<h2>What is a free fertilizer calculator for lawns online?</h2>
+<p>A free fertilizer calculator for lawns online is a tool that tells you exactly how much fertilizer to apply based on your lawn size, grass type and the N-P-K analysis on your fertilizer bag. Instead of guessing at spreader settings or risking fertilizer burn, you enter a few numbers and get precise measurements in pounds (or kilograms), bags to buy and application rate per 1,000 square feet (or per square metre).</p>
+<p>This fertilizer calculator for lawns goes far beyond basic NPK dosing. It includes a grass seed and overseeding calculator, a lime and sulfur calculator for adjusting soil pH, a topdressing volume calculator, a spreader calibration tool and cost estimation — all in one browser-based page. It supports 10 grass types, both imperial and metric units, and runs entirely client-side. No sign-up, no account, no upload, no tracking.</p>
+
+<h2>How to use this free fertilizer calculator</h2>
+<ol>
+<li>Select your units — imperial (square feet, pounds) or metric (square metres, kilograms).</li>
+<li>Enter your lawn size. If your lawn is irregular, break it into rectangles and add the areas together.</li>
+<li>Choose your grass type. The calculator uses this to recommend the correct nitrogen rate.</li>
+<li>Enter the N-P-K percentages from your fertilizer bag. These are the three numbers printed prominently on the label (e.g., 10-10-10).</li>
+<li>Enter the bag weight and price to get bag count and total cost.</li>
+<li>Click Calculate. You'll see total product needed, application rate per 1,000 sq ft, bags to buy and cost.</li>
+<li>Use the other tabs for grass seed, lime, topdressing and spreader calibration.</li>
+</ol>
+
+<h2>How to calculate fertilizer for your lawn</h2>
+<p>Lawn fertilizer calculations follow a simple two-step formula used by university extension services across the world:</p>
+<h3>Step 1: Calculate product needed per 1,000 sq ft</h3>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Product per 1,000 sq ft = Desired N rate ÷ (N% ÷ 100)</b></p>
+<p>For example, with a 10-10-10 fertilizer and a target of 1 lb nitrogen per 1,000 sq ft:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px">1 ÷ 0.10 = <b>10 lbs of product per 1,000 sq ft</b></p>
+<h3>Step 2: Calculate total product for your lawn</h3>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Total product = Product per 1,000 sq ft × (Lawn area ÷ 1,000)</b></p>
+<p>For a 5,000 sq ft lawn: 10 × 5 = <b>50 lbs of 10-10-10 fertilizer</b>.</p>
+<p>This calculator does both steps automatically and also shows you how much actual nitrogen, phosphorus and potassium your lawn will receive.</p>
+
+<h2>Understanding the N-P-K ratio</h2>
+<p>Every fertilizer bag shows three numbers, such as 10-10-10 or 32-0-4. These represent the percentage by weight of three key nutrients:</p>
+<ul>
+<li><b>Nitrogen (N)</b> — drives green colour and leaf growth. This is the primary nutrient for lawn fertilisation. Nitrogen deficiency causes yellowing and slow growth; excess nitrogen causes excessive top growth, thatch buildup and increased disease susceptibility.</li>
+<li><b>Phosphorus (P₂O₅)</b> — supports root development, flowering and seeding. Most established lawns need little to no phosphorus, which is why many lawn fertilizers are "0" in the middle number. Starter fertilizers for new lawns or overseeding typically contain higher phosphorus.</li>
+<li><b>Potassium (K₂O)</b> — builds stress tolerance, drought resistance and winter hardiness. Winterizer fertilizers for fall application are usually higher in potassium.</li>
+</ul>
+<p>The ratio tells you the relative proportions. A 3-1-2 ratio (like 15-5-10) is ideal for maintenance fertilisation. A 1-0-1 ratio is common for summer stress. The higher the first number, the less product you need to deliver the same amount of nitrogen.</p>
+
+<h2>How much fertilizer per 1,000 square feet?</h2>
+<p>The standard recommendation across university extension services is <b>1 pound of actual nitrogen per 1,000 square feet per application</b> for quick-release fertilizers. For slow-release or controlled-release products, the rate can be higher — often 1.5 pounds per 1,000 sq ft — because the nitrogen releases slowly and is less likely to burn the grass.</p>
+<p>Here is how three common products compare for a 5,000 sq ft lawn targeting 1 lb N per 1,000 sq ft:</p>
+<table>
+<tr><th>Fertilizer</th><th>Formula</th><th>Product needed</th><th>Bags</th></tr>
+<tr><td>10-10-10 Balanced</td><td>(1 ÷ 0.10) × 5</td><td>50 lbs</td><td>1 × 50 lb</td></tr>
+<tr><td>32-0-4 High Nitrogen</td><td>(1 ÷ 0.32) × 5</td><td>16 lbs</td><td>1 × 50 lb</td></tr>
+<tr><td>18-24-12 Starter</td><td>(1 ÷ 0.18) × 5</td><td>28 lbs</td><td>1 × 42 lb</td></tr>
+</table>
+<p>Notice how a higher-nitrogen product requires far less material to deliver the same 1 lb N per 1,000 sq ft. This is why professional lawn care companies prefer high-nitrogen products — less product to buy, transport and spread.</p>
+
+<h2>Grass-type specific nitrogen rates</h2>
+<p>Different grass types have different nitrogen requirements. This calculator includes built-in rates for 10 common grass types:</p>
+<table>
+<tr><th>Grass type</th><th>Season</th><th>Annual N target</th><th>Applications per year</th></tr>
+<tr><td>Kentucky Bluegrass</td><td>Cool</td><td>3–4 lbs N / 1,000 sq ft</td><td>3–4</td></tr>
+<tr><td>Tall Fescue</td><td>Cool</td><td>2–3 lbs N / 1,000 sq ft</td><td>2–3</td></tr>
+<tr><td>Perennial Ryegrass</td><td>Cool</td><td>2–3 lbs N / 1,000 sq ft</td><td>2–3</td></tr>
+<tr><td>Fine Fescue</td><td>Cool</td><td>1–2 lbs N / 1,000 sq ft</td><td>1–2</td></tr>
+<tr><td>Bermuda</td><td>Warm</td><td>4–6 lbs N / 1,000 sq ft</td><td>4–5</td></tr>
+<tr><td>Zoysia</td><td>Warm</td><td>2–3 lbs N / 1,000 sq ft</td><td>2–3</td></tr>
+<tr><td>St. Augustine</td><td>Warm</td><td>2–3 lbs N / 1,000 sq ft</td><td>2–3</td></tr>
+<tr><td>Centipede</td><td>Warm</td><td>1–2 lbs N / 1,000 sq ft</td><td>1–2</td></tr>
+</table>
+<p>Cool-season grasses grow most actively in spring and fall, so nitrogen applications should be concentrated in those seasons. Warm-season grasses grow most actively in summer. Avoid late-season nitrogen applications on warm-season grasses — it encourages tender growth that winter kills.</p>
+
+<h2>How much grass seed for overseeding</h2>
+<p>Overseeding an existing lawn uses roughly half the seed rate of seeding a brand-new lawn. This is because you are filling in thin areas and thickening existing grass, not establishing a lawn from bare soil.</p>
+<p>Typical overseeding rates per 1,000 sq ft:</p>
+<table>
+<tr><th>Grass type</th><th>Overseeding rate</th><th>New lawn rate</th></tr>
+<tr><td>Tall Fescue</td><td>3–4 lbs</td><td>6–8 lbs</td></tr>
+<tr><td>Kentucky Bluegrass</td><td>1–1.5 lbs</td><td>2–3 lbs</td></tr>
+<tr><td>Perennial Ryegrass</td><td>3–4 lbs</td><td>6–8 lbs</td></tr>
+<tr><td>Fine Fescue</td><td>2–3 lbs</td><td>4–5 lbs</td></tr>
+<tr><td>Bermuda</td><td>0.5–1 lb</td><td>1–2 lbs</td></tr>
+<tr><td>Zoysia</td><td>0.5–1 lb</td><td>1–2 lbs</td></tr>
+<tr><td>St. Augustine</td><td>1–2 lbs</td><td>2–4 lbs</td></tr>
+</table>
+<p>For patch repair, use the full new-lawn rate on the damaged area only.</p>
+
+<h2>How much lime or sulfur to adjust soil pH</h2>
+<p>Soil pH affects nutrient availability. Most lawn grasses prefer pH 6.0 to 7.0. When pH drops below 6.0 (acidic), nutrients like phosphorus and calcium become less available. When it rises above 7.5 (alkaline), iron and manganese become less available, causing yellowing.</p>
+<p><b>Lime</b> raises pH. Application rates per 1,000 sq ft to raise pH by 1.0 unit:</p>
+<ul>
+<li><b>Sandy soil:</b> 50 lbs</li>
+<li><b>Loam soil:</b> 80 lbs</li>
+<li><b>Clay soil:</b> 120 lbs</li>
+</ul>
+<p>Rates over 50 lbs per 1,000 sq ft should be split into two applications 4 to 6 months apart. Pelletized lime is grass-safe and can be watered in immediately.</p>
+<p><b>Elemental sulfur</b> lowers pH. Apply no more than 10 lbs per 1,000 sq ft in a single pass, and re-test each season. Sulfur works more slowly than lime because soil bacteria must convert it first.</p>
+
+<h2>How much topdressing to apply</h2>
+<p>Topdressing is a thin layer of compost, sand or topsoil spread over the lawn to level low spots, improve soil structure and encourage thatch breakdown. The recommended depth is 0.25 to 0.5 inches per application.</p>
+<p>The formula for volume:</p>
+<p style="text-align:center;font-family:monospace;background:var(--card);padding:12px;border-radius:8px;font-size:1rem"><b>Cubic yards = (Area in sq ft × Depth in inches) ÷ 324</b></p>
+<p>The constant 324 converts square feet to cubic yards (27 cubic feet per cubic yard × 12 inches per foot). For example, 5,000 sq ft at 0.25 inches deep requires (5,000 × 0.25) ÷ 324 = <b>3.86 cubic yards</b>.</p>
+<p>One cubic yard covers about 324 square feet at 1 inch deep, or 648 square feet at 0.5 inches deep.</p>
+
+<h2>How to calibrate your fertilizer spreader</h2>
+<p>Spreader calibration is the difference between a professional result and a striped, patchy lawn. Even if you calculate the right amount of fertilizer, an incorrectly calibrated spreader will apply too much in some areas and too little in others.</p>
+<ol>
+<li>Mark out a test area of a known size — 400 sq ft is convenient (20 ft × 20 ft).</li>
+<li>Fill the spreader with a known weight of fertilizer. Weigh it before you start.</li>
+<li>Spread over the test area at your intended setting.</li>
+<li>Weigh the spreader again to see how much product was used.</li>
+<li>Calculate your actual application rate: (Product used ÷ Test area) × 1,000 = pounds per 1,000 sq ft.</li>
+<li>If the rate is too high, lower the spreader setting and repeat. If too low, raise it.</li>
+<li>Repeat until your actual rate matches your target rate within 10%.</li>
+</ol>
+<p>This calculator does the math for you — enter your test area, product used and current setting, and it tells you the actual application rate and whether to adjust up or down.</p>
+
+<h2>Common lawn fertilizer mistakes</h2>
+<ul>
+<li><b>Guessing the application rate.</b> Too much fertilizer burns the grass; too little wastes money and underfeeds the lawn. Always calculate.</li>
+<li><b>Ignoring grass type.</b> Bermuda needs twice the nitrogen of Centipede. Using the same rate for every lawn leads to problems.</li>
+<li><b>Applying at the wrong time.</b> Cool-season grasses should be fertilised in spring and fall, warm-season grasses in summer. Fertilising at the wrong time encourages weeds and disease.</li>
+<li><b>Not calibrating the spreader.</b> A spreader set to 5 on one machine may apply a different rate than a spreader set to 5 on another. Calibration is essential.</li>
+<li><b>Forgetting the spreader buffer.</b> Overlap and waste mean you need 5 to 10% more product than the theoretical calculation suggests.</li>
+<li><b>Applying too much nitrogen at once.</b> Never exceed 1 lb of quick-release nitrogen per 1,000 sq ft in a single application. Split higher annual targets across multiple applications.</li>
+<li><b>Ignoring soil pH.</b> If pH is out of range, fertilizer is wasted because nutrients are locked up and unavailable to the grass.</li>
+</ul>
+
+<h2>Frequently asked questions</h2>
+<div class="cn-faq">
+<details><summary>What is a free fertilizer calculator for lawns online?</summary><p>A free fertilizer calculator for lawns online is a tool that tells you exactly how much fertilizer to apply based on your lawn size, grass type and the NPK analysis on your fertilizer bag. This calculator also covers overseeding, lime and sulfur for pH adjustment, topdressing, spreader calibration and cost estimation, all in one browser-based tool.</p></details>
+<details><summary>How much fertilizer should I apply per 1,000 square feet?</summary><p>The standard target is 1 pound of actual nitrogen per 1,000 square feet per application. The formula is: pounds of product per 1,000 sq ft = desired nitrogen rate ÷ (nitrogen percentage ÷ 100). For example, with a 32-0-4 fertilizer, you would apply 1 ÷ 0.32 = 3.125 pounds of product per 1,000 sq ft.</p></details>
+<details><summary>How do I calculate how many bags of fertilizer I need?</summary><p>First calculate total pounds of product needed using the formula above, then divide by the weight of the bag you are buying. For example, if you need 50 pounds and the fertilizer comes in 40-pound bags, you would buy 2 bags. Always round up to ensure you do not run out mid-application.</p></details>
+<details><summary>What is the difference between cool-season and warm-season grass fertilisation?</summary><p>Cool-season grasses (Kentucky Bluegrass, Fescue, Ryegrass) grow most actively in spring and fall. They typically need 3 to 4 pounds of nitrogen per 1,000 sq ft per year, split across 3 to 4 applications. Warm-season grasses (Bermuda, Zoysia, St. Augustine) grow most actively in summer and need 2 to 3 pounds of nitrogen per 1,000 sq ft per year.</p></details>
+<details><summary>How much grass seed do I need for overseeding?</summary><p>Overseeding an existing lawn typically requires 2 to 5 pounds of grass seed per 1,000 square feet, roughly half the rate of seeding a brand-new lawn. Tall fescue and perennial ryegrass need about 3 to 4 pounds per 1,000 sq ft for overseeding, Kentucky bluegrass needs 1 to 1.5 pounds, and warm-season grasses like Bermuda need under 1 pound.</p></details>
+<details><summary>How much lime do I need to raise my soil pH?</summary><p>Lime application rate depends on your current soil pH, target pH, soil type and grass type. As a general guide to raise pH by 1.0 unit: sandy soil needs about 50 lbs per 1,000 sq ft, loam needs 80 lbs, and clay needs 120 lbs. Rates over 50 lbs per 1,000 sq ft should be split into two applications 4 to 6 months apart.</p></details>
+<details><summary>How do I calculate how much topdressing I need?</summary><p>Topdressing volume = (Lawn area in sq ft × Depth in inches) ÷ 324. The constant 324 comes from converting square feet to cubic yards. For example, 5,000 sq ft at 0.25 inches deep needs (5,000 × 0.25) ÷ 324 = 3.86 cubic yards.</p></details>
+<details><summary>How do I calibrate my spreader?</summary><p>To calibrate a spreader: (1) Mark out a test area of known size, such as 400 sq ft. (2) Fill the spreader with a known weight of product. (3) Spread over the test area at your intended setting. (4) Weigh how much product was used. (5) If you used X pounds over 400 sq ft, that is X ÷ 400 × 1,000 pounds per 1,000 sq ft. Adjust the spreader setting up or down and repeat until the rate matches your target.</p></details>
+<details><summary>Is this fertilizer calculator free?</summary><p>Yes. It is completely free, runs entirely in your browser, requires no sign-up and never sends your data anywhere. There are no ads and no rate limits.</p></details>
+<details><summary>Does this calculator work in metric units?</summary><p>Yes. You can enter your lawn area in square metres or square feet, and the calculator converts everything automatically. The recommended rates are provided in both imperial and metric units.</p></details>
+</div>
+
+</article>
+
+</main>
+<footer class="site"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+
+function $(id){ return document.getElementById(id); }
+function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;"); }
+function num(v, d){ var n = parseFloat(v); return isFinite(n) ? n : d; }
+
+var CURRENCIES = { USD:"$", GBP:"£", EUR:"€", AUD:"A$", CAD:"C$", NZD:"NZ$", INR:"₹", PKR:"₨" };
+
+/* ---------- GRASS DATA ---------- */
+var GRASS_DATA = {
+  "cool": { name: "Cool-season", nAnnual: 3.5, apps: 4, targetPh: [6.0, 7.0] },
+  "warm": { name: "Warm-season", nAnnual: 3.0, apps: 4, targetPh: [5.5, 7.0] },
+  "bermuda": { name: "Bermuda", nAnnual: 5.0, apps: 5, targetPh: [6.0, 7.0] },
+  "zoysia": { name: "Zoysia", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
+  "st-augustine": { name: "St. Augustine", nAnnual: 2.5, apps: 3, targetPh: [5.5, 6.5] },
+  "kentucky-bluegrass": { name: "Kentucky Bluegrass", nAnnual: 3.5, apps: 4, targetPh: [6.0, 7.0] },
+  "tall-fescue": { name: "Tall Fescue", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
+  "perennial-ryegrass": { name: "Perennial Ryegrass", nAnnual: 2.5, apps: 3, targetPh: [6.0, 7.0] },
+  "fine-fescue": { name: "Fine Fescue", nAnnual: 1.5, apps: 2, targetPh: [5.5, 6.5] },
+  "centipede": { name: "Centipede", nAnnual: 1.5, apps: 2, targetPh: [5.0, 5.5] }
+};
+
+var SEED_RATES = {
+  "tall-fescue": { over: [3, 4], new: [6, 8] },
+  "kentucky-bluegrass": { over: [1, 1.5], new: [2, 3] },
+  "perennial-ryegrass": { over: [3, 4], new: [6, 8] },
+  "fine-fescue": { over: [2, 3], new: [4, 5] },
+  "bermuda": { over: [0.5, 1], new: [1, 2] },
+  "zoysia": { over: [0.5, 1], new: [1, 2] },
+  "st-augustine": { over: [1, 2], new: [2, 4] },
+  "centipede": { over: [0.5, 1], new: [1, 2] }
+};
+
+var LIME_RATES = {
+  sandy: { "0.5": 25, "1.0": 50, "1.5": 75, "2.0": 100 },
+  loam: { "0.5": 40, "1.0": 80, "1.5": 120, "2.0": 160 },
+  clay: { "0.5": 60, "1.0": 120, "1.5": 180, "2.0": 240 }
+};
+
+var SULFUR_RATES = {
+  sandy: { "0.5": 5, "1.0": 10 },
+  loam: { "0.5": 8, "1.0": 15 },
+  clay: { "0.5": 10, "1.0": 20 }
+};
+
+/* ---------- STATE ---------- */
+var state = { units: "imperial", currency: "USD" };
+
+/* ---------- UTILS ---------- */
+function fmtMoney(n){
+  var sym = CURRENCIES[state.currency] || "$";
+  return sym + n.toFixed(2);
+}
+function fmtNumber(n, dec){
+  if(dec === undefined) dec = 2;
+  return n.toLocaleString(undefined, { minimumFractionDigits: dec, maximumFractionDigits: dec });
+}
+
+/* ---------- FERTILIZER ---------- */
+function calcFertilizer(){
+  var isMetric = state.units === "metric";
+  var area = num($("lawnSize").value, 0);
+  var areaSqFt = isMetric ? area * 10.7639 : area;
+  var targetN = num($("targetN").value, 1.0);
+  var buffer = num($("spreaderBuffer").value, 10);
+  var n = num($("nPct").value, 0);
+  var p = num($("pPct").value, 0);
+  var k = num($("kPct").value, 0);
+  var bagWeight = num($("bagWeight").value, 50);
+  var bagPrice = num($("bagPrice").value, 0);
+
+  if(n <= 0){
+    $("fertResult").innerHTML = '<div class="fl-warn">Nitrogen percentage must be greater than zero.</div>';
+    return;
+  }
+  if(areaSqFt <= 0){
+    $("fertResult").innerHTML = '<div class="fl-warn">Lawn size must be greater than zero.</div>';
+    return;
+  }
+
+  // Product per 1,000 sq ft
+  var productPer1000 = targetN / (n / 100);
+  var totalProduct = productPer1000 * (areaSqFt / 1000);
+  var buffered = totalProduct * (1 + buffer / 100);
+  var bags = Math.ceil(buffered / bagWeight);
+  var cost = bags * bagPrice;
+
+  // Actual N delivered
+  var nDelivered = totalProduct * (n / 100);
+  var pDelivered = totalProduct * (p / 100);
+  var kDelivered = totalProduct * (k / 100);
+
+  var h = '<div class="fl-result">';
+  h += '<div class="fl-result-label">Total fertilizer needed</div>';
+  h += '<div class="fl-result-big">' + fmtNumber(buffered, 1) + (isMetric ? " kg" : " lbs") + '</div>';
+  h += '<div class="fl-result-sub">' + fmtNumber(buffered * 0.453592, 1) + ' kg · with ' + buffer + '% spreader buffer</div>';
+  h += '</div>';
+
+  h += '<div class="fl-stats">';
+  h += '<div class="fl-stat"><div class="lbl">Product per 1,000 sq ft</div><div class="val">' + fmtNumber(productPer1000, 2) + (isMetric ? " kg" : " lbs") + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + bags + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Total cost</div><div class="val ok">' + fmtMoney(cost) + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Actual N delivered</div><div class="val">' + fmtNumber(nDelivered, 1) + (isMetric ? " kg" : " lbs") + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="fl-panel"><h3>Nutrient delivery breakdown</h3>';
+  h += '<table class="fl-table">';
+  h += '<tr><th>Nutrient</th><th>% in bag</th><th>Total delivered</th><th>Per 1,000 sq ft</th></tr>';
+  h += '<tr><td>Nitrogen (N)</td><td>' + n + '%</td><td>' + fmtNumber(nDelivered, 2) + ' lbs</td><td>' + fmtNumber(targetN, 2) + ' lbs</td></tr>';
+  h += '<tr><td>Phosphorus (P₂O₅)</td><td>' + p + '%</td><td>' + fmtNumber(pDelivered, 2) + ' lbs</td><td>' + fmtNumber(pDelivered / (areaSqFt / 1000), 2) + ' lbs</td></tr>';
+  h += '<tr><td>Potassium (K₂O)</td><td>' + k + '%</td><td>' + fmtNumber(kDelivered, 2) + ' lbs</td><td>' + fmtNumber(kDelivered / (areaSqFt / 1000), 2) + ' lbs</td></tr>';
+  h += '</table></div>';
+
+  h += '<div class="fl-tip"><b>How to apply:</b> Set your spreader to the rate calculated above. For a 10-10-10 fertilizer, you will need ' + bags + ' bag' + (bags > 1 ? "s" : "") + ' of ' + bagWeight + ' lbs. Apply half the product in one direction and half perpendicular to avoid stripes.</div>';
+
+  $("fertResult").innerHTML = h;
+}
+
+/* ---------- SEED ---------- */
+function calcSeed(){
+  var isMetric = state.units === "metric";
+  var area = num($("seedArea").value, 0);
+  var areaSqFt = isMetric ? area * 10.7639 : area;
+  var grass = $("seedGrass").value;
+  var purpose = $("seedPurpose").value;
+  var bagWeight = num($("seedBagWeight").value, 5);
+
+  var rates = SEED_RATES[grass] || SEED_RATES["tall-fescue"];
+  var rateRange = purpose === "new" ? rates.new : (purpose === "patch" ? rates.new : rates.over);
+  var rateAvg = (rateRange[0] + rateRange[1]) / 2;
+  var seedNeeded = rateAvg * (areaSqFt / 1000);
+  var bags = Math.ceil(seedNeeded / bagWeight);
+
+  var h = '<div class="fl-result">';
+  h += '<div class="fl-result-label">Grass seed needed</div>';
+  h += '<div class="fl-result-big">' + fmtNumber(seedNeeded, 1) + (isMetric ? " kg" : " lbs") + '</div>';
+  h += '<div class="fl-result-sub">' + fmtNumber(seedNeeded * 0.453592, 1) + ' kg · ' + fmtNumber(rateAvg, 1) + ' lbs per 1,000 sq ft (' + purpose + ')</div>';
+  h += '</div>';
+
+  h += '<div class="fl-stats">';
+  h += '<div class="fl-stat"><div class="lbl">Application rate</div><div class="val">' + rateRange[0] + '–' + rateRange[1] + ' lbs / 1,000 sq ft</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags to buy</div><div class="val">' + bags + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Area covered</div><div class="val">' + fmtNumber(area, 0) + (isMetric ? " m²" : " sq ft") + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="fl-tip"><b>Tip:</b> For overseeding, use the lower end of the range if your lawn is thick and the higher end if it is thin. Always water lightly and frequently for the first two weeks after seeding.</div>';
+
+  $("seedResult").innerHTML = h;
+}
+
+/* ---------- LIME / SULFUR ---------- */
+function calcLime(){
+  var isMetric = state.units === "metric";
+  var area = num($("limeArea").value, 0);
+  var areaSqFt = isMetric ? area * 10.7639 : area;
+  var currentPh = num($("currentPh").value, 6.0);
+  var targetPh = num($("targetPh").value, 6.5);
+  var soil = $("soilType").value;
+  var grass = $("limeGrass").value;
+
+  var h = "";
+  var diff = targetPh - currentPh;
+
+  if(diff > 0){
+    // Need lime
+    var diffKey = Math.min(2.0, Math.round(diff * 2) / 2).toFixed(1);
+    if(diffKey === "0.0") diffKey = "0.5";
+    var rate = (LIME_RATES[soil] || LIME_RATES.loam)[diffKey] || 0;
+    var total = rate * (areaSqFt / 1000);
+
+    var h2 = '<div class="fl-result">';
+    h2 += '<div class="fl-result-label">Lime needed to raise pH by ' + diff.toFixed(1) + '</div>';
+    h2 += '<div class="fl-result-big">' + fmtNumber(total, 0) + ' lbs</div>';
+    h2 += '<div class="fl-result-sub">' + fmtNumber(total * 0.453592, 0) + ' kg · ' + rate + ' lbs per 1,000 sq ft (' + soil + ' soil)</div>';
+    h2 += '</div>';
+    h2 += '<div class="fl-tip"><b>Application:</b> Apply in fall for best results. Pelletized lime is grass-safe and can be watered in immediately. If the total exceeds 50 lbs per 1,000 sq ft, split into two applications 4–6 months apart.</div>';
+    h = h2;
+
+  } else if(diff < 0){
+    // Need sulfur
+    var diffKey2 = Math.min(1.0, Math.round(Math.abs(diff) * 2) / 2).toFixed(1);
+    if(diffKey2 === "0.0") diffKey2 = "0.5";
+    var rate2 = (SULFUR_RATES[soil] || SULFUR_RATES.loam)[diffKey2] || 0;
+    var total2 = rate2 * (areaSqFt / 1000);
+
+    var h3 = '<div class="fl-result">';
+    h3 += '<div class="fl-result-label">Elemental sulfur to lower pH by ' + Math.abs(diff).toFixed(1) + '</div>';
+    h3 += '<div class="fl-result-big">' + fmtNumber(total2, 1) + ' lbs</div>';
+    h3 += '<div class="fl-result-sub">' + fmtNumber(total2 * 0.453592, 1) + ' kg · ' + rate2 + ' lbs per 1,000 sq ft</div>';
+    h3 += '</div>';
+    h3 += '<div class="fl-tip"><b>Application:</b> Never apply more than 10 lbs per 1,000 sq ft in a single pass. Sulfur lowers pH slowly — re-test each season. Water in well after application.</div>';
+    h = h3;
+
+  } else {
+    h = '<div class="fl-tip"><b>Your soil pH is already at target.</b> No lime or sulfur needed. Re-test every 2–3 years.</div>';
+  }
+
+  $("limeResult").innerHTML = h;
+}
+
+/* ---------- TOPDRESSING ---------- */
+function calcTopdress(){
+  var isMetric = state.units === "metric";
+  var area = num($("tdArea").value, 0);
+  var areaSqFt = isMetric ? area * 10.7639 : area;
+  var depth = num($("tdDepth").value, 0.25);
+  var depthInches = depth;
+
+  var cubicYards = (areaSqFt * depthInches) / 324;
+  var cubicMeters = cubicYards * 0.764555;
+  var weightTons = cubicYards * 1.3; // approx 1.3 tons per cubic yard for topsoil
+
+  var h = '<div class="fl-result">';
+  h += '<div class="fl-result-label">Topdressing volume needed</div>';
+  h += '<div class="fl-result-big">' + fmtNumber(cubicYards, 2) + ' cubic yards</div>';
+  h += '<div class="fl-result-sub">' + fmtNumber(cubicMeters, 2) + ' m³ · approx ' + fmtNumber(weightTons, 1) + ' tons</div>';
+  h += '</div>';
+
+  h += '<div class="fl-stats">';
+  h += '<div class="fl-stat"><div class="lbl">Depth</div><div class="val">' + depth + ' inches</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Area</div><div class="val">' + fmtNumber(area, 0) + (isMetric ? " m²" : " sq ft") + '</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Bags (0.75 cu ft)</div><div class="val">' + Math.ceil(cubicYards * 36) + '</div></div>';
+  h += '</div>';
+
+  h += '<div class="fl-tip"><b>Tip:</b> Apply topdressing at 0.25 to 0.5 inches per application. Water lightly after spreading to settle the material into the turf canopy.</div>';
+
+  $("tdResult").innerHTML = h;
+}
+
+/* ---------- SPREADER CALIBRATION ---------- */
+function calcSpreader(){
+  var isMetric = state.units === "metric";
+  var testArea = num($("spTestArea").value, 400);
+  var testAreaSqFt = isMetric ? testArea * 10.7639 : testArea;
+  var productUsed = num($("spProductUsed").value, 1);
+  var targetRate = num($("spTargetRate").value, 3.125);
+  var currentSetting = num($("spCurrentSetting").value, 5);
+
+  var actualRate = (productUsed / testAreaSqFt) * 1000;
+  var ratio = actualRate / targetRate;
+
+  var direction = "OK";
+  var cls = "ok";
+  var adjustment = 0;
+
+  if(ratio > 1.1){
+    direction = "Reduce spreader setting";
+    cls = "warn";
+    adjustment = currentSetting * 0.9;
+  } else if(ratio < 0.9){
+    direction = "Increase spreader setting";
+    cls = "warn";
+    adjustment = currentSetting * 1.1;
+  }
+
+  var h = '<div class="fl-result">';
+  h += '<div class="fl-result-label">Actual application rate</div>';
+  h += '<div class="fl-result-big">' + fmtNumber(actualRate, 2) + ' lbs / 1,000 sq ft</div>';
+  h += '<div class="fl-result-sub">Target: ' + fmtNumber(targetRate, 2) + ' lbs / 1,000 sq ft · ' + (ratio > 1 ? (ratio * 100).toFixed(0) + '% of target' : (ratio * 100).toFixed(0) + '% of target') + '</div>';
+  h += '</div>';
+
+  h += '<div class="fl-stats">';
+  h += '<div class="fl-stat"><div class="lbl">Product used</div><div class="val">' + productUsed + ' lbs</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Test area</div><div class="val">' + testArea + ' sq ft</div></div>';
+  h += '<div class="fl-stat"><div class="lbl">Recommendation</div><div class="val ' + cls + '">' + direction + '</div></div>';
+  h += '</div>';
+
+  if(ratio > 1.1){
+    h += '<div class="fl-tip"><b>Your spreader is applying too much.</b> Reduce the setting from ' + currentSetting + ' to approximately ' + fmtNumber(adjustment, 1) + ' and re-test. Over-application risks burning the lawn.</div>';
+  } else if(ratio < 0.9){
+    h += '<div class="fl-tip"><b>Your spreader is applying too little.</b> Increase the setting from ' + currentSetting + ' to approximately ' + fmtNumber(adjustment, 1) + ' and re-test. Under-application wastes money and underfeeds the lawn.</div>';
+  } else {
+    h += '<div class="fl-tip"><b>Your spreader is calibrated correctly.</b> The actual rate is within 10% of the target. Keep this setting.</div>';
+  }
+
+  $("spResult").innerHTML = h;
+}
+
+/* ---------- WIRING ---------- */
+window.addEventListener("DOMContentLoaded", function(){
+  var T = $("tool");
+  if(!T) return;
+
+  // Tabs
+  document.querySelectorAll(".fl-tab").forEach(function(tab){
+    tab.addEventListener("click", function(){
+      var name = this.dataset.tab;
+      document.querySelectorAll(".fl-tab").forEach(function(x){
+        x.classList.toggle("on", x.dataset.tab === name);
+      });
+      $("fertilizerTab").hidden = (name !== "fertilizer");
+      $("seedTab").hidden = (name !== "seed");
+      $("limeTab").hidden = (name !== "lime");
+      $("topdressTab").hidden = (name !== "topdress");
+      $("spreaderTab").hidden = (name !== "spreader");
+    });
+  });
+
+  // Unit switcher
+  $("units").addEventListener("change", function(){
+    state.units = this.value;
+    var isMetric = state.units === "metric";
+    // Sync units across tabs
+    $("seedUnits").value = this.value;
+    $("limeUnits").value = this.value;
+    $("tdUnits").value = this.value;
+    $("spUnits").value = this.value;
+    // Update default values
+    $("lawnSize").value = isMetric ? 465 : 5000;
+    $("seedArea").value = isMetric ? 465 : 5000;
+    $("limeArea").value = isMetric ? 465 : 5000;
+    $("tdArea").value = isMetric ? 465 : 5000;
+    $("spTestArea").value = isMetric ? 37 : 400;
+    $("bagWeight").value = isMetric ? 25 : 50;
+    $("seedBagWeight").value = isMetric ? 2.5 : 5;
+  });
+
+  // Currency
+  $("currency").addEventListener("change", function(){
+    state.currency = this.value;
+  });
+
+  // Auto-fill target pH when grass changes
+  $("limeGrass").addEventListener("change", function(){
+    var g = GRASS_DATA[this.value];
+    if(g){
+      $("targetPh").value = ((g.targetPh[0] + g.targetPh[1]) / 2).toFixed(1);
+    }
+  });
+
+  // Buttons
+  $("calcFertBtn").addEventListener("click", calcFertilizer);
+  $("calcSeedBtn").addEventListener("click", calcSeed);
+  $("calcLimeBtn").addEventListener("click", calcLime);
+  $("calcTdBtn").addEventListener("click", calcTopdress);
+  $("calcSpBtn").addEventListener("click", calcSpreader);
+
+  // Auto-calc on load
+  calcFertilizer();
+});
+})();
+</script>
+</body>
+</html>

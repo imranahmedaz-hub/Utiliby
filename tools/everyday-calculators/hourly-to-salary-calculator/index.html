@@ -1,0 +1,496 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Hourly to Salary Calculator Online with Overtime</title>
+<meta name="description" content="Free online hourly to salary calculator. Convert hourly pay to yearly, monthly, weekly and daily pay, add overtime and tax, and compare job offers.">
+<link rel="canonical" href="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Hourly to Salary Calculator Online with Overtime">
+<meta property="og:description" content="Free online hourly to salary calculator with overtime, flat tax estimate, rate chart and job offer comparison. Convert in both directions.">
+<meta property="og:url" content="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Hourly to Salary Calculator Online with Overtime">
+<meta name="twitter:description" content="Free online hourly to salary calculator with overtime, flat tax estimate, rate chart and job offer comparison. Convert in both directions.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.tr-grid{grid-template-columns:minmax(0,1fr)}}
+.tr-verdict{padding:14px 16px;border-radius:12px;font-weight:700;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.tr-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.tr-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.tr-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}.tr-info{background:#e0f2fe;color:#0c4a6e;border-color:#7dd3fc}
+.tr-list{list-style:none;margin:6px 0;padding:0}.tr-list li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:.88rem;line-height:1.5}.tr-list li>span{flex:0 0 auto;font-weight:800;min-width:1.2em;text-align:center}
+.tr-y{color:#16a34a}.tr-n{color:#dc2626}.tr-q{color:#d97706}
+.cn-article p,.cn-article li,.cn-article td{overflow-wrap:anywhere}
+.tr-fig svg{min-width:0!important}
+.tr-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.tr-trip{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:640px){.tr-trip{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tr-trip{grid-template-columns:1fr}}
+.tr-trip>div{min-width:0}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+.tr-letter{white-space:pre-wrap;word-break:break-word;min-height:260px;line-height:1.55}
+.tr-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr-rowline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.tr-rowline b{white-space:nowrap}
+
+.ec-tw{overflow-x:auto}
+.ec-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.ec-card{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(128,128,128,.07);margin:8px 0}
+.ec-steps{margin:8px 0;padding:10px 12px 10px 28px;border-left:3px solid #0369a1;background:rgba(3,105,161,.06);border-radius:0 8px 8px 0;font-size:.86rem;line-height:1.6}
+.ec-steps li{margin:3px 0}
+.ec-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.ec-big{font-size:2rem;font-weight:800;line-height:1.1;overflow-wrap:anywhere}
+.ec-line{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.9rem}.ec-line b{text-align:right}
+.ec-sent{font-size:1.05rem;line-height:1.7}.ec-sent input{display:inline-block;width:7.5em;margin:0 4px;padding:6px 8px}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 8px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+#tool .im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}#tool .im-chk input{width:auto;flex:none}#tool .im-chk label{margin:0;text-transform:none;letter-spacing:0;font-size:.88rem;font-weight:500}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;min-height:110px}
+.ec-rm{padding:6px 12px}
+
+.dt-hero{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.dt-btn,.dt-tab.on{background:linear-gradient(135deg,#b45309,#f59e0b)}
+.dt-btn.ghost{color:#b45309}.dt-tab{color:#b45309}.dt-tab.on{color:#fff}
+.dt-tip{border-left-color:#b45309}.dt-tip b{color:#b45309}
+.dt-share button{color:#b45309}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline-color:#b45309}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab,.dt-share button,.dt-tip b{color:#fcd34d}.dt-tab.on{color:#fff}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Hourly to Salary Calculator","url":"https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/","description":"Free online hourly to salary calculator. Convert hourly, daily, weekly, biweekly, semi-monthly, monthly and annual pay in either direction, with hours per week, paid weeks, overtime multiplier and a flat tax estimate, plus an hourly rate chart and a job offer comparison by true hourly rate. Runs in the browser.","applicationCategory":"FinanceApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["Any pay period to any other","Overtime multiplier","Flat tax estimate","Paid weeks and part-time","Hourly rate chart","Job offer comparison","Take-home bar","Copy, CSV and print"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I convert hourly pay to an annual salary?","acceptedAnswer":{"@type":"Answer","text":"Multiply the hourly rate by the hours worked per week and by the weeks worked per year. At $25 an hour, 40 hours and 52 weeks, that is 25 x 40 x 52 = $52,000."}},{"@type":"Question","name":"How do I convert a salary to an hourly rate?","acceptedAnswer":{"@type":"Answer","text":"Divide the annual pay by the number of hours worked in a year. A 40-hour week over 52 weeks is 2,080 hours, so $65,000 a year is $31.25 an hour."}},{"@type":"Question","name":"How many working hours are in a year?","acceptedAnswer":{"@type":"Answer","text":"A full-time year of 40 hours a week and 52 weeks has 2,080 hours. Take off unpaid leave and the figure falls, for example 2,000 hours for 50 paid weeks."}},{"@type":"Question","name":"How much is $20 an hour per year?","acceptedAnswer":{"@type":"Answer","text":"At 40 hours a week for 52 weeks, $20 an hour is $41,600 a year, $3,467 a month and $800 a week before tax. See the rate chart for other wages."}},{"@type":"Question","name":"How much is $15 an hour per year?","acceptedAnswer":{"@type":"Answer","text":"At full time, $15 an hour is $31,200 a year, about $2,600 a month and $600 a week before tax."}},{"@type":"Question","name":"How much is $30 an hour per year?","acceptedAnswer":{"@type":"Answer","text":"At full time, $30 an hour is $62,400 a year, $5,200 a month and $1,200 a week before tax."}},{"@type":"Question","name":"How is monthly pay worked out?","acceptedAnswer":{"@type":"Answer","text":"Annual pay divided by 12. Weekly pay times 52 divided by 12 gives the same result. Four weeks a month understates it, because most months are longer than four weeks."}},{"@type":"Question","name":"What is the difference between biweekly and semi-monthly pay?","acceptedAnswer":{"@type":"Answer","text":"Biweekly means every two weeks, 26 paychecks a year. Semi-monthly means twice a month, 24 paychecks a year. The yearly total is the same, but each semi-monthly cheque is a little larger."}},{"@type":"Question","name":"How do I include overtime?","acceptedAnswer":{"@type":"Answer","text":"Enter the overtime hours per week and the multiplier, often 1.5 for time and a half. The calculator adds that premium pay across your paid weeks. Local overtime rules vary."}},{"@type":"Question","name":"What if I take unpaid holidays?","acceptedAnswer":{"@type":"Answer","text":"Reduce the paid weeks per year. With two weeks unpaid, enter 50, so $25 an hour at 40 hours gives $50,000 instead of $52,000."}},{"@type":"Question","name":"How much will I take home after tax?","acceptedAnswer":{"@type":"Answer","text":"Enter a flat tax percentage for a rough estimate. Real tax depends on brackets, deductions and local rules, so use a payroll or tax calculator for an exact figure."}},{"@type":"Question","name":"Which job offer pays more per hour?","acceptedAnswer":{"@type":"Answer","text":"Use the compare tab. It adds bonuses or benefits to the annual pay and divides by the hours you actually work, so a salary with long hours can pay less per hour than a lower hourly wage."}},{"@type":"Question","name":"What is the typical hours per week for a salaried job?","acceptedAnswer":{"@type":"Answer","text":"Many full-time jobs assume 35 to 40 hours, but salaried staff often work more. Enter your real hours to see your true hourly rate."}},{"@type":"Question","name":"Can I convert a monthly salary to an hourly wage?","acceptedAnswer":{"@type":"Answer","text":"Yes. Choose per month, enter the amount and your hours. At $4,333 a month and 40 hours, the hourly rate is about $25."}},{"@type":"Question","name":"Does this work for part-time hours?","acceptedAnswer":{"@type":"Answer","text":"Yes. Enter fewer hours per week, such as 20, and every figure scales to match."}},{"@type":"Question","name":"Is my data stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. Everything runs in your browser."}},{"@type":"Question","name":"Is this hourly to salary calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no sign-up."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Everyday Calculators","item":"https://utiliby.com/tools/everyday-calculators/"},{"@type":"ListItem","position":3,"name":"Hourly to Salary Calculator","item":"https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/everyday-calculators/">Everyday Calculators</a> › Hourly to Salary Calculator</nav>
+<h1 class="noembed">Hourly to Salary Calculator</h1>
+<p class="lead noembed">Convert hourly pay to annual, monthly, weekly and daily salary, and back, with overtime, a tax estimate and offer comparison. Free and private.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/" target="_blank" rel="noopener">Hourly to Salary Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Hourly to salary calculator">
+<div class="dt-hero noembed">
+<h2>Free Hourly to Salary Calculator</h2>
+<p>Convert hourly pay to annual, monthly, weekly and daily salary, and salary back to an hourly rate, with overtime and a flat tax estimate.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Tool sections"><button type="button" class="dt-tab on" id="dtTabBtn-calc">1. Convert pay</button><button type="button" class="dt-tab" id="dtTabBtn-chart">2. Rate chart</button><button type="button" class="dt-tab" id="dtTabBtn-cmp">3. Compare offers</button></div><div id="dtTab-calc"><div class="dt-panel"><h3>Your pay</h3><div class="dt-row3"><div><label for="hsCur">Currency</label><select id="hsCur"><option value="$">$ dollar</option><option value="£">£ pound</option><option value="€">€ euro</option><option value="">None</option></select></div><div><label for="hsAmt">Pay amount</label><input type="number" id="hsAmt" min="0" step="any"></div><div><label for="hsPer">Paid</label><select id="hsPer"><option value="h">per hour</option><option value="d">per day</option><option value="w">per week</option><option value="b">every two weeks</option><option value="s">twice a month</option><option value="m">per month</option><option value="y">per year</option></select></div></div><div class="dt-row3"><div><label for="hsHrs">Hours per week</label><input type="number" id="hsHrs" min="0" step="any"></div><div><label for="hsWk">Paid weeks per year</label><input type="number" id="hsWk" min="1" step="1"></div><div><label for="hsTax">Flat tax estimate, % (optional)</label><input type="number" id="hsTax" min="0" step="any"></div></div><div class="dt-row"><div><label for="hsOt">Overtime hours per week</label><input type="number" id="hsOt" min="0" step="any"></div><div><label for="hsOm">Overtime multiplier</label><input type="number" id="hsOm" min="0" step="any"></div></div><div id="hsRes" aria-live="polite"></div><figure class="dt-fig tr-fig" id="hsFig" style="margin:10px 0"></figure><div id="hsTbl"></div></div></div><div id="dtTab-chart" hidden><div class="dt-panel"><h3>Hourly rate chart</h3><div id="hsChart"></div></div></div><div id="dtTab-cmp" hidden><div class="dt-panel"><h3>Compare two job offers</h3><h4>Offer A</h4><div class="dt-row5"><div><label for="hsCaA">Pay</label><input type="number" id="hsCaA" min="0" step="any"></div><div><label for="hsCpA">Paid</label><select id="hsCpA"><option value="h">per hour</option><option value="m">per month</option><option value="y">per year</option></select></div><div><label for="hsChA">Hours per week</label><input type="number" id="hsChA" min="0" step="any"></div><div><label for="hsCwA">Paid weeks</label><input type="number" id="hsCwA" min="1" step="1"></div><div><label for="hsCeA">Yearly bonus or benefits value</label><input type="number" id="hsCeA" min="0" step="any"></div></div><h4>Offer B</h4><div class="dt-row5"><div><label for="hsCaB">Pay</label><input type="number" id="hsCaB" min="0" step="any"></div><div><label for="hsCpB">Paid</label><select id="hsCpB"><option value="h">per hour</option><option value="m">per month</option><option value="y">per year</option></select></div><div><label for="hsChB">Hours per week</label><input type="number" id="hsChB" min="0" step="any"></div><div><label for="hsCwB">Paid weeks</label><input type="number" id="hsCwB" min="1" step="1"></div><div><label for="hsCeB">Yearly bonus or benefits value</label><input type="number" id="hsCeB" min="0" step="any"></div></div><div id="hsCmp"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="hsCopy">Copy results</button>
+<button type="button" class="dt-btn ghost" id="hsDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="hsPrint">Print / save summary</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free hourly to salary calculator gives estimates only. It uses the hours and weeks you enter, a simple overtime multiplier and a single flat tax percentage. Real pay depends on your employer, local overtime law, progressive income tax, social contributions, benefits and deductions. It is not payroll, tax or legal advice. Nothing you enter is sent anywhere.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Hourly to Salary Calculator. https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Hourly to Salary Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/everyday-calculators/hourly-to-salary-calculator/"&gt;Hourly to Salary Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 17, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free hourly to salary calculator does</a></li><li><a href="#how">How to use the hourly to salary calculator</a></li><li><a href="#formula">The hourly to salary formulas</a></li><li><a href="#hours">Hours, weeks and unpaid time</a></li><li><a href="#overtime">Overtime pay</a></li><li><a href="#pay">Biweekly, semi-monthly and monthly pay</a></li><li><a href="#tax">Gross pay and a take-home estimate</a></li><li><a href="#offers">Comparing job offers</a></li><li><a href="#tips">Tips for using pay conversions</a></li><li><a href="#limits">Accuracy, privacy and responsible use</a></li><li><a href="#related">Related free tools</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free hourly to salary calculator does</h2>
+<p>Job adverts quote pay per hour, per year or per month, and comparing them is awkward. An <b>hourly to salary calculator</b> puts everything on the same scale. This free online tool converts between hourly, daily, weekly, biweekly, semi-monthly, monthly and annual pay in either direction. Choose how you are paid, enter the amount, your hours and your paid weeks, and every other period appears at once.</p><p>It goes beyond a single figure. You can add overtime at any multiplier, apply a flat tax estimate to see rough take-home pay, scan a table of common hourly rates, and compare two job offers on their true hourly rate including bonuses or benefits. A picture shows how pay splits into take-home and tax. Everything runs in your browser.</p><figure class="dt-fig tr-fig"><svg viewBox="0 0 640 170" width="100%" role="img" aria-label="25 dollars an hour converted to other pay periods"><title>$25 an hour in other pay periods</title>
+<g font-size="12" fill="#1f2937" text-anchor="middle"><rect class="dt-bar" x="20" y="22" width="100" height="62" rx="8" fill="#bae6fd"/><text x="70" y="48" font-size="11">Hourly</text><text x="70" y="68" font-weight="700">$25</text>
+<rect class="dt-bar" x="136" y="22" width="100" height="62" rx="8" fill="#bbf7d0" style="animation-delay:.1s"/><text x="186" y="48" font-size="11">Daily</text><text x="186" y="68" font-weight="700">$200</text>
+<rect class="dt-bar" x="252" y="22" width="100" height="62" rx="8" fill="#fde68a" style="animation-delay:.2s"/><text x="302" y="48" font-size="11">Weekly</text><text x="302" y="68" font-weight="700">$1,000</text>
+<rect class="dt-bar" x="368" y="22" width="100" height="62" rx="8" fill="#fed7aa" style="animation-delay:.3s"/><text x="418" y="48" font-size="11">Monthly</text><text x="418" y="68" font-weight="700">$4,333</text>
+<rect class="dt-bar" x="484" y="22" width="136" height="62" rx="8" fill="#fca5a5" style="animation-delay:.4s"/><text x="552" y="48" font-size="11">Yearly</text><text x="552" y="68" font-weight="700">$52,000</text></g>
+<text x="20" y="116" font-size="12" fill="currentColor">Annual = hourly rate &#215; hours per week &#215; weeks per year = 25 &#215; 40 &#215; 52 = $52,000.</text><text x="20" y="138" font-size="12" fill="currentColor">Salary to hourly: divide the annual pay by 2,080 (40 hours &#215; 52 weeks).</text></svg><figcaption>A $25 hourly wage at 40 hours a week for 52 weeks, in other pay periods.</figcaption></figure>
+<h2 id="how">How to use the hourly to salary calculator</h2>
+<ol><li><b>Enter your pay</b> and choose whether it is per hour, week, month or year.</li><li><b>Set your hours per week</b> and paid weeks per year.</li><li><b>Add overtime</b> hours and the multiplier if relevant.</li><li><b>Add a flat tax percentage</b> for a rough take-home estimate.</li><li><b>Read every pay period</b> in the results and table.</li><li><b>Use the other tabs</b> for the rate chart and the offer comparison.</li></ol>
+<h2 id="formula">The hourly to salary formulas</h2>
+<p>Annual pay equals hourly rate times hours per week times paid weeks per year. At $25 an hour for 40 hours and 52 weeks, that is $52,000. Monthly pay is annual pay divided by 12, which is $4,333.33. Weekly pay is $1,000, biweekly pay is $2,000 and daily pay on a five-day week is $200. In reverse, divide an annual salary by the hours worked in the year. The standard full-time year has 2,080 hours, so $65,000 is $31.25 an hour.</p><div class="dt-wrap"><table><tr><th>Hourly rate</th><th>Per year</th><th>Per month</th><th>Per week</th></tr><tr><td>$15</td><td>$31,200</td><td>$2,600</td><td>$600</td></tr><tr><td>$20</td><td>$41,600</td><td>$3,467</td><td>$800</td></tr><tr><td>$30</td><td>$62,400</td><td>$5,200</td><td>$1,200</td></tr><tr><td>$50</td><td>$104,000</td><td>$8,667</td><td>$2,000</td></tr></table></div>
+<h2 id="hours">Hours, weeks and unpaid time</h2>
+<p>Annual pay depends heavily on the hours and weeks you assume. The common 2,080-hour year counts 52 paid weeks, including paid holidays. If you take two unpaid weeks, you work 50 paid weeks, or 2,000 hours, and a $25 wage yields $50,000 instead of $52,000. Part-time workers should enter their real hours, and seasonal workers their paid weeks. Salaried staff who regularly work extra hours should enter those hours to see their true hourly rate, which is often lower than the headline figure suggests.</p>
+<h2 id="overtime">Overtime pay</h2>
+<p>Many places require extra pay for hours above a threshold, often 1.5 times the normal rate, called time and a half. If you earn $25 an hour and work 45 hours a week, five of them overtime at 1.5 times, you earn $25 x 40 + $37.50 x 5 = $1,187.50 a week, or $61,750 over 52 weeks. Overtime rules, thresholds and exemptions differ by country and sometimes by state or job type, so check local law. The calculator applies the multiplier you enter to the overtime hours you enter.</p>
+<h2 id="pay">Biweekly, semi-monthly and monthly pay</h2>
+<p>How often you are paid does not change your yearly total, but it changes each payment. Weekly pay means 52 payments, biweekly means 26 and semi-monthly means 24. A $52,000 salary pays $2,000 biweekly or about $2,166.67 semi-monthly. Some years contain 27 biweekly paydays, which can make a month feel larger. The calculator shows every period from the same annual figure so you can compare payslips and budgets.</p>
+<h2 id="tax">Gross pay and a take-home estimate</h2>
+<p>The figures above are gross pay, before tax and deductions. To see roughly what you keep, enter a flat tax percentage. This is a simplification, because income tax is usually progressive and there may be social security, health and pension contributions. Treat the take-home result as a rough guide, and use a payroll or tax calculator for a precise figure. For example, a 22 percent flat estimate turns $52,000 into $40,560.</p>
+<h2 id="offers">Comparing job offers</h2>
+<p>A higher salary does not always beat a lower hourly wage. Suppose Offer A pays $28 an hour for 40 hours, which is $58,240 a year, and Offer B pays $58,000 plus $4,000 in bonus and benefits but expects 45 hours a week. Offer B is $62,000 for 2,340 hours, or $26.50 an hour, so Offer A is better per hour worked. The compare tab does this for you. Remember to weigh commuting, flexibility, holiday and career growth too.</p>
+<h2 id="tips">Tips for using pay conversions</h2>
+<ul><li><b>Use real hours,</b> not contract hours, for your true rate.</li><li><b>Count paid weeks</b> carefully if you take unpaid leave.</li><li><b>Compare gross with gross</b> and net with net.</li><li><b>Include benefits</b> such as health cover and pension matching.</li><li><b>Check overtime law</b> where you work.</li></ul>
+<h2 id="limits">Accuracy, privacy and responsible use</h2>
+<p>The calculator is an estimate. It does not model progressive tax, deductions, benefits, unpaid breaks or local overtime rules. Do not use it as payroll or legal advice. Nothing you enter leaves your browser.</p>
+<h2 id="related">Related free tools</h2>
+<p>Use these free online tools together with this one:</p><ul><li>See what a raise does to your pay with the <a href="/tools/everyday-calculators/pay-raise-calculator/">pay raise calculator</a>.</li><li>Work out percent changes in pay with the <a href="/tools/everyday-calculators/percentage-calculator/">percentage calculator</a>.</li><li>Turn monthly pay into a spending plan with the <a href="/tools/everyday-calculators/budget-planner-calculator/">budget planner calculator</a>.</li><li>Add up hours worked each day with the <a href="/tools/date-time-tools/timecard-calculator/">timecard calculator</a>.</li><li>Count the working days in a pay period with the <a href="/tools/date-time-tools/working-days-calculator/">working days calculator</a>.</li></ul>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How do I convert hourly pay to an annual salary?</summary><p>Multiply the hourly rate by the hours worked per week and by the weeks worked per year. At $25 an hour, 40 hours and 52 weeks, that is 25 x 40 x 52 = $52,000.</p></details><details><summary>How do I convert a salary to an hourly rate?</summary><p>Divide the annual pay by the number of hours worked in a year. A 40-hour week over 52 weeks is 2,080 hours, so $65,000 a year is $31.25 an hour.</p></details><details><summary>How many working hours are in a year?</summary><p>A full-time year of 40 hours a week and 52 weeks has 2,080 hours. Take off unpaid leave and the figure falls, for example 2,000 hours for 50 paid weeks.</p></details><details><summary>How much is $20 an hour per year?</summary><p>At 40 hours a week for 52 weeks, $20 an hour is $41,600 a year, $3,467 a month and $800 a week before tax. See the rate chart for other wages.</p></details><details><summary>How much is $15 an hour per year?</summary><p>At full time, $15 an hour is $31,200 a year, about $2,600 a month and $600 a week before tax.</p></details><details><summary>How much is $30 an hour per year?</summary><p>At full time, $30 an hour is $62,400 a year, $5,200 a month and $1,200 a week before tax.</p></details><details><summary>How is monthly pay worked out?</summary><p>Annual pay divided by 12. Weekly pay times 52 divided by 12 gives the same result. Four weeks a month understates it, because most months are longer than four weeks.</p></details><details><summary>What is the difference between biweekly and semi-monthly pay?</summary><p>Biweekly means every two weeks, 26 paychecks a year. Semi-monthly means twice a month, 24 paychecks a year. The yearly total is the same, but each semi-monthly cheque is a little larger.</p></details><details><summary>How do I include overtime?</summary><p>Enter the overtime hours per week and the multiplier, often 1.5 for time and a half. The calculator adds that premium pay across your paid weeks. Local overtime rules vary.</p></details><details><summary>What if I take unpaid holidays?</summary><p>Reduce the paid weeks per year. With two weeks unpaid, enter 50, so $25 an hour at 40 hours gives $50,000 instead of $52,000.</p></details><details><summary>How much will I take home after tax?</summary><p>Enter a flat tax percentage for a rough estimate. Real tax depends on brackets, deductions and local rules, so use a payroll or tax calculator for an exact figure.</p></details><details><summary>Which job offer pays more per hour?</summary><p>Use the compare tab. It adds bonuses or benefits to the annual pay and divides by the hours you actually work, so a salary with long hours can pay less per hour than a lower hourly wage.</p></details><details><summary>What is the typical hours per week for a salaried job?</summary><p>Many full-time jobs assume 35 to 40 hours, but salaried staff often work more. Enter your real hours to see your true hourly rate.</p></details><details><summary>Can I convert a monthly salary to an hourly wage?</summary><p>Yes. Choose per month, enter the amount and your hours. At $4,333 a month and 40 hours, the hourly rate is about $25.</p></details><details><summary>Does this work for part-time hours?</summary><p>Yes. Enter fewer hours per week, such as 20, and every figure scales to match.</p></details><details><summary>Is my data stored or sent anywhere?</summary><p>No. Everything runs in your browser.</p></details><details><summary>Is this hourly to salary calculator free?</summary><p>Yes. It is free to use online with no sign-up.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>U.S. Department of Labor, <a href="https://www.dol.gov/agencies/whd/flsa/overtime" rel="noopener">Overtime pay under the Fair Labor Standards Act</a>.</li><li>U.S. Bureau of Labor Statistics, <a href="https://www.bls.gov/oes/" rel="noopener">Occupational Employment and Wage Statistics</a>.</li><li>GOV.UK, <a href="https://www.gov.uk/calculate-your-holiday-entitlement" rel="noopener">Calculate holiday entitlement</a>.</li><li>Investopedia, <a href="https://www.investopedia.com/terms/g/grossincome.asp" rel="noopener">Gross income</a>.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free hourly to salary calculator gives estimates only. It uses the hours and weeks you enter, a simple overtime multiplier and a single flat tax percentage. Real pay depends on your employer, local overtime law, progressive income tax, social contributions, benefits and deductions. It is not payroll, tax or legal advice. Nothing you enter is sent anywhere.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+/* ---------- travel shared helpers ---------- */
+function tn(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 0 : d, minimumFractionDigits: d == null ? 0 : d }); }
+function cur2(v, sym) { if (v == null || !isFinite(v)) return "n/a"; return sym + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function li(k, t) { return '<li><span class="' + (k === "y" ? "tr-y" : k === "n" ? "tr-n" : "tr-q") + '">' + (k === "y" ? "&#10003;" : k === "n" ? "&#10007;" : "?") + "</span><div>" + t + "</div></li>"; }
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { } }
+function svgTxt(x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 11) + '"' + (o.a ? ' text-anchor="' + o.a + '"' : "") + (o.w ? ' font-weight="' + o.w + '"' : "") + (o.f ? ' fill="' + o.f + '"' : ' fill="currentColor"') + ">" + esc(t) + "</text>"; }
+function mny(v, s, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; var a = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 ? "-" : "") + s + a; }
+function pct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toFixed(d == null ? 1 : d) + "%"; }
+function sval(id, def) { var e = $(id); return e ? e.value : def; }
+function nv(id, def) { var v = parseFloat($(id).value); return isNaN(v) ? def : v; }
+function stat(l, v, cls, sub) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + "</div>" + (sub ? '<div class="sub">' + sub + "</div>" : "") + "</div>"; }
+function bigRes(label, val, color, sum) { return '<div class="dt-result"><div class="dt-label">' + label + '</div><div class="dt-big"' + (color ? ' style="color:' + color + '"' : "") + ">" + val + '</div><p class="dt-sum">' + sum + "</p></div>"; }
+function niceMax(v) { if (v <= 0) return 1; var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function shortN(v, s) { var a = Math.abs(v), t = a >= 1e9 ? (a / 1e9).toFixed(a >= 1e10 ? 0 : 1) + "B" : a >= 1e6 ? (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? (a / 1e3).toFixed(a >= 1e4 ? 0 : 1) + "k" : a.toFixed(0); return (v < 0 ? "-" : "") + s + t; }
+function csvT(rows) { return "﻿" + rows.map(function (r) { return r.map(function (v) { return typeof v === "number" && isFinite(v) ? String(Math.round(v * 100) / 100) : csvCell(v); }).join(","); }).join("\r\n") + "\r\n"; }
+/* ---------- everyday calculators shared helpers ---------- */
+var EC = { cur: "$" };
+var PAL = ["#0369a1", "#16a34a", "#d97706", "#9333ea", "#dc2626", "#0891b2", "#be185d", "#4d7c0f"];
+function cnum(id, def) { var e = $(id); if (!e) return def; var s = String(e.value).replace(/[,\s_]/g, ""); if (s === "" || s === "-" || s === ".") return def; var v = parseFloat(s); return isFinite(v) ? v : def; }
+function cn(id, lo, hi, def) { var v = cnum(id, def); return Math.max(lo, Math.min(hi, v)); }
+function en(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function mon(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; return (v < 0 ? "-" : "") + EC.cur + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function pc1(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { minimumFractionDigits: d == null ? 1 : d, maximumFractionDigits: d == null ? 1 : d }) + "%"; }
+function tile(l, v, sub, cls) { return stat(esc(l), v, cls, sub); }
+function tiles(arr) { return '<div class="dt-stats">' + arr.join("") + "</div>"; }
+function trow(cells, h) { return "<tr>" + cells.map(function (c) { return "<" + (h ? "th" : "td") + ">" + c + "</" + (h ? "th" : "td") + ">"; }).join("") + "</tr>"; }
+function tbl(head, rows) { return '<div class="ec-tw"><table class="dt-table">' + trow(head, true) + rows.map(function (r) { return trow(r); }).join("") + "</table></div>"; }
+function verdict(kind, t) { return '<div class="tr-verdict tr-' + kind + '">' + t + "</div>"; }
+function svgOpen(w, h, label) { return '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" role="img" aria-label="' + esc(label) + '"><title>' + esc(label) + "</title>"; }
+function ticks(max) { var m = niceMax(max), a = []; for (var i = 0; i <= 4; i++) a.push(m * i / 4); return a; }
+function lineChart(o) {
+  var W = 640, H = o.h || 260, L = 58, R = 14, T = 26, B = 34, xs = o.xs, n = xs.length, mx = 0, mn = o.min0 === false ? Infinity : 0, f = o.fmt || shortN0;
+  o.series.forEach(function (s) { s.vals.forEach(function (v) { if (isFinite(v)) { mx = Math.max(mx, v); if (o.min0 === false) mn = Math.min(mn, v); } }); });
+  if (mn === Infinity) mn = 0; var top = niceMax(Math.max(mx - mn, 1)) + mn; if (o.min0 === false) { top = mx + (mx - mn) * 0.05; }
+  var X = function (i) { return L + (W - L - R) * (n > 1 ? i / (n - 1) : 0); }, Y = function (v) { return H - B - (H - B - T) * (v - mn) / Math.max(1e-9, top - mn); };
+  var s = svgOpen(W, H, o.label || "Line chart");
+  for (var g = 0; g <= 4; g++) { var gv = mn + (top - mn) * g / 4, y = Y(gv); s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity=".15"/>' + svgTxt(L - 6, y + 4, f(gv), { s: 10.5, a: "end" }); }
+  var step = Math.max(1, Math.ceil(n / 7)); for (var i = 0; i < n; i += step) s += svgTxt(X(i), H - 14, String(xs[i]), { s: 10.5, a: "middle" });
+  o.series.forEach(function (se, k) {
+    var c = se.color || PAL[k % 8], pts = se.vals.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+    if (se.area) s += '<polygon points="' + X(0).toFixed(1) + "," + Y(mn).toFixed(1) + " " + pts + " " + X(n - 1).toFixed(1) + "," + Y(mn).toFixed(1) + '" fill="' + c + '" opacity=".16"/>';
+    s += '<polyline points="' + pts + '" fill="none" stroke="' + c + '" stroke-width="3" stroke-linejoin="round"' + (se.dash ? ' stroke-dasharray="6 4"' : "") + "/>";
+  });
+  var lx = L; o.series.forEach(function (se, k) { var c = se.color || PAL[k % 8]; s += '<rect x="' + lx + '" y="6" width="12" height="12" rx="3" fill="' + c + '"/>' + svgTxt(lx + 17, 16, se.name, { s: 11 }); lx += 28 + se.name.length * 6.2; });
+  if (o.yTitle) s += svgTxt(4, T - 12, o.yTitle, { s: 10.5 });
+  return s + "</svg>";
+}
+function shortN0(v) { return shortN(v, ""); }
+function stackChart(o) {
+  var W = 640, H = o.h || 260, L = 58, R = 14, T = 26, B = 34, xs = o.xs, n = xs.length, tot = xs.map(function (_, i) { return o.series.reduce(function (a, s) { return a + Math.max(0, s.vals[i]); }, 0); }), mx = niceMax(Math.max.apply(null, tot) || 1), f = o.fmt || shortN0;
+  var bw = Math.min(46, (W - L - R) / n * 0.72), gap = (W - L - R) / n, s = svgOpen(W, H, o.label || "Stacked bar chart");
+  for (var g = 0; g <= 4; g++) { var gv = mx * g / 4, y = H - B - (H - B - T) * g / 4; s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity=".15"/>' + svgTxt(L - 6, y + 4, f(gv), { s: 10.5, a: "end" }); }
+  var step = Math.max(1, Math.ceil(n / 9));
+  xs.forEach(function (x, i) { var yy = H - B, xx = L + gap * i + (gap - bw) / 2; o.series.forEach(function (se, k) { var v = Math.max(0, se.vals[i]), h = (H - B - T) * v / mx; yy -= h; s += '<rect class="dt-bar" x="' + xx.toFixed(1) + '" y="' + yy.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, h).toFixed(1) + '" fill="' + (se.color || PAL[k % 8]) + '" style="animation-delay:' + Math.min(.6, i * .02).toFixed(2) + 's"><title>' + esc(x + " " + se.name + ": " + f(v)) + "</title></rect>"; }); if (i % step === 0) s += svgTxt(xx + bw / 2, H - 14, String(x), { s: 10.5, a: "middle" }); });
+  var lx = L; o.series.forEach(function (se, k) { s += '<rect x="' + lx + '" y="6" width="12" height="12" rx="3" fill="' + (se.color || PAL[k % 8]) + '"/>' + svgTxt(lx + 17, 16, se.name, { s: 11 }); lx += 28 + se.name.length * 6.2; });
+  return s + "</svg>";
+}
+function hbars(o) {
+  var items = o.items, n = items.length, rh = 28, W = 640, H = 14 + n * (rh + 8), mx = Math.max.apply(null, items.map(function (i) { return Math.abs(i.v); })) || 1, f = o.fmt || function (v) { return en(v, 2); }, lw = o.lw || 170, s = svgOpen(W, H, o.label || "Bar chart");
+  items.forEach(function (it, i) { var y = 8 + i * (rh + 8), w = Math.max(3, (W - lw - 110) * Math.abs(it.v) / mx); s += svgTxt(8, y + 19, it.l.length > 26 ? it.l.slice(0, 25) + "…" : it.l, { s: 12, w: it.best ? 700 : 400 }) + '<rect class="dt-bar" x="' + lw + '" y="' + y + '" width="' + w.toFixed(1) + '" height="' + rh + '" rx="6" fill="' + (it.color || PAL[i % 8]) + '" style="animation-delay:' + (i * .08).toFixed(2) + 's"/>' + svgTxt(lw + w + 8, y + 19, f(it.v) + (it.best ? "  best" : ""), { s: 12, w: 700 }); });
+  return s + "</svg>";
+}
+function donut(o) {
+  var items = o.items.filter(function (i) { return i.v > 0; }), tot = items.reduce(function (a, i) { return a + i.v; }, 0), s = svgOpen(640, 220, o.label || "Share chart"), cx = 110, cy = 110, r = 80, a0 = -Math.PI / 2, f = o.fmt || function (v) { return en(v, 2); };
+  if (!tot) return s + svgTxt(20, 40, "No data yet", { s: 13 }) + "</svg>";
+  items.forEach(function (it, i) { var a1 = a0 + it.v / tot * Math.PI * 2, big = a1 - a0 > Math.PI ? 1 : 0; if (items.length === 1) { s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + (it.color || PAL[0]) + '" stroke-width="30"/>'; } else s += '<path d="M' + (cx + r * Math.cos(a0)).toFixed(1) + " " + (cy + r * Math.sin(a0)).toFixed(1) + " A" + r + " " + r + " 0 " + big + " 1 " + (cx + r * Math.cos(a1)).toFixed(1) + " " + (cy + r * Math.sin(a1)).toFixed(1) + '" fill="none" stroke="' + (it.color || PAL[i % 8]) + '" stroke-width="30"/>'; a0 = a1; });
+  s += svgTxt(cx, cy - 2, o.center || "", { s: 15, a: "middle", w: 800 }) + svgTxt(cx, cy + 16, o.sub || "", { s: 10.5, a: "middle" });
+  items.slice(0, 9).forEach(function (it, i) { var y = 28 + i * 21; s += '<rect x="240" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + (it.color || PAL[i % 8]) + '"/>' + svgTxt(260, y, (it.l.length > 22 ? it.l.slice(0, 21) + "…" : it.l) + " · " + f(it.v) + " (" + (it.v / tot * 100).toFixed(0) + "%)", { s: 12 }); });
+  return s + "</svg>";
+}
+function setFig(id, html) { $(id).innerHTML = html; }
+function download(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); msg("Downloaded " + name + "."); }
+function bindStd(p, o) {
+  /* o: summary() -> [[k,v]], text() -> string, csv() -> string, file, report(box), ready() */
+  $(p + "Copy").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to copy yet.", "err"); return; } copyText(o.text(), $(p + "Copy")); });
+  $(p + "Dl").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to download yet.", "err"); return; } download(o.file, o.csv(), "text/csv"); });
+  $(p + "Print").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () { var b = repBox(); repHead(b, o.title, o.site); o.report(b); repDisc(b, o.disc); };
+}
+
+/* ---------- Hourly to salary calculator ---------- */
+var R = {};
+var DISCL = "This free hourly to salary calculator gives estimates only. It uses the hours and weeks you enter, a simple overtime multiplier and a single flat tax percentage. Real pay depends on your employer, local overtime law, progressive income tax, social contributions, benefits and deductions. It is not payroll, tax or legal advice. Nothing you enter is sent anywhere.";
+var PER = { h: "hour", d: "day", w: "week", b: "two weeks", s: "half month", m: "month", y: "year" };
+function hoursIn(per, hrs, wks) { return { h: 1, d: hrs / 5, w: hrs, b: hrs * 2, s: hrs * wks / 24, m: hrs * wks / 12, y: hrs * wks }[per]; }
+function calc() {
+  EC.cur = $("hsCur").value;
+  var amt = cnum("hsAmt", 0), per = $("hsPer").value, hrs = cn("hsHrs", 0.1, 168, 40), wks = cn("hsWk", 1, 52, 52), ot = cn("hsOt", 0, 100, 0), om = cn("hsOm", 1, 5, 1.5), tx = cn("hsTax", 0, 80, 0);
+  if (!(amt > 0)) { $("hsRes").innerHTML = verdict("info", "Enter a pay amount above zero."); $("hsFig").innerHTML = ""; R.rows = []; $("hsTbl").innerHTML = ""; return; }
+  var rate = amt / hoursIn(per, hrs, wks), otPay = rate * ot * om * wks, annual = (per === "y" ? amt : rate * hrs * wks) + otPay, net = annual * (1 - tx / 100);
+  var rows = [["Hourly", rate], ["Daily (" + en(hrs / 5, 1) + " h)", rate * hrs / 5], ["Weekly", annual / wks], ["Every two weeks", annual / wks * 2], ["Twice a month", annual / 24], ["Monthly", annual / 12], ["Quarterly", annual / 4], ["Yearly", annual]];
+  rows[0][1] = rate;
+  var data = rows.map(function (r) { return [r[0], mon(r[1]), mon(r[1] * (1 - tx / 100))]; });
+  R.rows = [["Pay entered", mon(amt) + " per " + PER[per]], ["Hours per week", String(hrs)], ["Paid weeks per year", String(wks)], ["Hourly rate", mon(rate)], ["Annual pay (gross)", mon(annual)], ["Monthly (gross)", mon(annual / 12)], ["Weekly (gross)", mon(annual / wks)]];
+  if (ot > 0) R.rows.push(["Overtime", ot + " h a week at " + om + "x"], ["Overtime pay per year", mon(otPay)]);
+  if (tx > 0) R.rows.push(["Flat tax estimate", tx + "%"], ["Annual take-home (estimate)", mon(net)], ["Monthly take-home (estimate)", mon(net / 12)]);
+  R.tbl = data;
+  $("hsRes").innerHTML = '<div class="dt-result"><div class="dt-label">Annual pay</div><div class="ec-big">' + mon(annual, 0) + '</div><p class="dt-sum">' + mon(amt) + " per " + PER[per] + " at " + hrs + " hours a week for " + wks + " weeks is " + (per === "h" ? "" : "<b>" + mon(rate) + " an hour</b>, ") + "<b>" + mon(annual / 12, 0) + " a month</b> and <b>" + mon(annual / wks, 0) + " a week</b> before tax." + (tx > 0 ? " After a " + tx + "% flat tax estimate: <b>" + mon(net, 0) + " a year</b>." : "") + "</p></div>" +
+    tiles([tile("Hourly", mon(rate), "before tax"), tile("Monthly", mon(annual / 12, 0), tx > 0 ? mon(net / 12, 0) + " after tax" : "gross"), tile("Weekly", mon(annual / wks, 0), tx > 0 ? mon(net / wks, 0) + " after tax" : "gross")]);
+  $("hsTbl").innerHTML = tbl(["Pay period", "Gross", tx > 0 ? "After " + tx + "% tax" : "After tax (set a tax %)"], data);
+  var items = [{ l: "Hourly", v: rate }, { l: "Daily", v: rate * hrs / 5 }, { l: "Weekly", v: annual / wks }, { l: "Monthly", v: annual / 12 }, { l: "Yearly", v: annual }];
+  var s = svgOpen(640, 150, "Annual pay split into take-home and tax"), W = 560, tw = tx > 0 ? W * tx / 100 : 0;
+  s += svgTxt(8, 18, "Annual pay " + mon(annual, 0), { s: 12, w: 700 }) + '<rect x="8" y="28" width="' + W + '" height="34" rx="6" fill="none" stroke="currentColor" opacity=".5"/><rect class="dt-bar" x="8" y="28" width="' + (W - tw).toFixed(1) + '" height="34" rx="6" fill="#16a34a"/>' + (tx > 0 ? '<rect class="dt-bar" x="' + (8 + W - tw).toFixed(1) + '" y="28" width="' + tw.toFixed(1) + '" height="34" fill="#f59e0b"/>' : "");
+  s += svgTxt(8 + (W - tw) / 2, 50, "Take-home " + mon(net, 0), { s: 12, a: "middle", f: "#fff", w: 700 }) + (tx > 0 && tw > 70 ? svgTxt(8 + W - tw / 2, 50, "Tax " + mon(annual - net, 0), { s: 12, a: "middle", f: "#422006", w: 700 }) : "");
+  s += svgTxt(8, 92, "Hours worked in a year: " + en(hrs * wks) + (ot > 0 ? " regular + " + en(ot * wks) + " overtime" : "") + ". Effective hourly rate including overtime: " + mon(annual / (hrs * wks + ot * wks)) + ".", { s: 11.5 }) + svgTxt(8, 112, "Pay for " + wks + " paid weeks. Unpaid weeks off reduce annual pay.", { s: 11.5 });
+  $("hsFig").innerHTML = s + "</svg>";
+  chart(); cmp();
+}
+function chart() {
+  var hrs = cn("hsHrs", 0.1, 168, 40), wks = cn("hsWk", 1, 52, 52), tx = cn("hsTax", 0, 80, 0), rates = [10, 12, 15, 18, 20, 22, 25, 30, 35, 40, 45, 50, 60, 75, 100];
+  R.chart = rates.map(function (r) { var a = r * hrs * wks; return [mon(r, 0), mon(a, 0), mon(a / 12, 0), mon(a / wks, 0), mon(a * (1 - tx / 100) / 12, 0)]; });
+  $("hsChart").innerHTML = tbl(["Hourly rate", "Per year", "Per month", "Per week", tx > 0 ? "Monthly after " + tx + "% tax" : "Monthly after tax (set a %)"], R.chart) + '<p class="ec-note">Based on ' + hrs + " hours a week for " + wks + " weeks a year.</p>";
+}
+function offer(k) { var amt = cnum("hsCa" + k, 0), per = $("hsCp" + k).value, hrs = cn("hsCh" + k, 0.1, 168, 40), wks = cn("hsCw" + k, 1, 52, 52), ex = cn("hsCe" + k, 0, 1e9, 0), annual = per === "h" ? amt * hrs * wks : per === "m" ? amt * 12 : amt; return { annual: annual, total: annual + ex, hrs: hrs, wks: wks, eff: (annual + ex) / (hrs * wks), ex: ex }; }
+function cmp() {
+  var a = offer("A"), b = offer("B");
+  if (!(a.annual > 0) || !(b.annual > 0)) { $("hsCmp").innerHTML = verdict("info", "Enter a pay amount for both offers."); R.cmp = []; return; }
+  var win = a.total / (a.hrs * a.wks) > b.total / (b.hrs * b.wks) ? "A" : "B", wa = a.eff, wb = b.eff;
+  R.cmp = [["Annual pay", mon(a.annual, 0), mon(b.annual, 0)], ["Extras (benefits, bonus)", mon(a.ex, 0), mon(b.ex, 0)], ["Total package", mon(a.total, 0), mon(b.total, 0)], ["Hours per year", en(a.hrs * a.wks), en(b.hrs * b.wks)], ["Effective hourly rate", mon(wa), mon(wb)]];
+  $("hsCmp").innerHTML = verdict("ok", "Offer " + win + " pays more per hour worked: " + mon(win === "A" ? wa : wb) + " versus " + mon(win === "A" ? wb : wa) + ".") + hbars({ items: [{ l: "Offer A hourly", v: wa, color: PAL[0], best: win === "A" }, { l: "Offer B hourly", v: wb, color: PAL[2], best: win === "B" }], fmt: function (v) { return mon(v, 2); }, lw: 120, label: "Effective hourly rate of each offer" }) + tbl(["", "Offer A", "Offer B"], R.cmp);
+}
+function text() { return "Hourly to salary results\n" + R.rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n"); }
+function setDef() { $("hsCur").value = "$"; $("hsAmt").value = 25; $("hsPer").value = "h"; $("hsHrs").value = 40; $("hsWk").value = 52; $("hsOt").value = 0; $("hsOm").value = 1.5; $("hsTax").value = 0; $("hsCaA").value = 28; $("hsCpA").value = "h"; $("hsChA").value = 40; $("hsCwA").value = 52; $("hsCeA").value = 0; $("hsCaB").value = 58000; $("hsCpB").value = "y"; $("hsChB").value = 45; $("hsCwB").value = 52; $("hsCeB").value = 4000; }
+function init() {
+  initCommon(); setDef(); initTabs(["calc", "chart", "cmp"]);
+  ["hsCur", "hsAmt", "hsPer", "hsHrs", "hsWk", "hsOt", "hsOm", "hsTax"].concat(["A", "B"].reduce(function (a, k) { return a.concat(["hsCa", "hsCp", "hsCh", "hsCw", "hsCe"].map(function (p) { return p + k; })); }, [])).forEach(function (id) { $(id).addEventListener("input", calc); $(id).addEventListener("change", calc); });
+  bindStd("hs", { ready: function () { return R.rows && R.rows.length; }, text: text, csv: function () { return csvText([["Pay period", "Gross", "After tax"]].concat(R.tbl, [["", "", ""]], [["Hourly rate", "Per year", "Per month", "Per week", "Monthly after tax"]], R.chart)); }, file: "hourly-to-salary.csv", title: "Hourly to salary results", site: "Free hourly to salary calculator", disc: DISCL, report: function (b) { repTbl(b, ["Item", "Value"], R.rows); repFig(b, $("hsFig").innerHTML); repAdd(b, "h3", "Pay by period"); repTbl(b, ["Pay period", "Gross", "After tax"], R.tbl); if (R.cmp && R.cmp.length) { repAdd(b, "h3", "Offer comparison"); repTbl(b, ["", "Offer A", "Offer B"], R.cmp); } } });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); initTabs.show("calc"); msg("Reset to the example."); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
