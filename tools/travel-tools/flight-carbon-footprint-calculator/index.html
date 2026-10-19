@@ -1,0 +1,516 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<script>if(location.search.indexOf('embed=1')>-1)document.documentElement.className='embed'</script>
+<title>Free Flight Carbon Footprint Calculator Online: CO2 per Trip</title>
+<meta name="description" content="Free online flight carbon footprint calculator. Estimate CO2 by route and cabin class, compare with car, coach and rail, total a year of flights, edit factors.">
+<link rel="canonical" href="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Utiliby">
+<meta property="og:title" content="Free Flight Carbon Footprint Calculator Online: CO2 per Trip">
+<meta property="og:description" content="Free online flight carbon footprint calculator with CO2 by route and cabin class, ground travel comparison, yearly total, offset cost and editable factors.">
+<meta property="og:url" content="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/">
+<meta property="og:image" content="https://utiliby.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Free Flight Carbon Footprint Calculator Online: CO2 per Trip">
+<meta name="twitter:description" content="Free online flight carbon footprint calculator with CO2 by route and cabin class, ground travel comparison, yearly total, offset cost and editable factors.">
+<meta name="twitter:image" content="https://utiliby.com/og-image.png">
+<link rel="icon" href="/favicon.png">
+<link rel="stylesheet" href="/assets/style.css">
+<style>
+.dt-hero{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-radius:var(--r);padding:24px;margin:16px 0;text-align:center}
+.dt-hero h2{margin:0 0 6px;font-size:1.3rem;color:#fff}
+.dt-hero p{margin:0;opacity:.92;font-size:.9rem}
+.dt-panel{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px;margin:12px 0}
+.dt-panel h3{margin:0 0 10px;font-size:1rem}
+.dt-panel label,.dt-lbl{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:10px 0 4px}
+.dt-panel input,.dt-panel select,.dt-panel textarea,.dt-in{width:100%;padding:9px 12px;font-size:.9rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);box-sizing:border-box;font-family:inherit}
+.dt-panel textarea{min-height:90px;resize:vertical}
+.dt-panel input[type=checkbox],.dt-panel input[type=radio]{width:auto}
+.dt-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.dt-row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
+.dt-row4{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+@media(max-width:700px){.dt-row3,.dt-row4{grid-template-columns:1fr 1fr}}
+@media(max-width:480px){.dt-row,.dt-row3,.dt-row4{grid-template-columns:1fr}}
+.dt-check{display:flex;align-items:center;gap:8px;font-size:.88rem;margin:8px 0;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg)}
+.dt-panel .dt-check{display:flex;text-transform:none;letter-spacing:0;font-weight:600;color:var(--fg);font-size:.88rem}
+.dt-chips{display:flex;flex-wrap:wrap;gap:8px;margin:6px 0}
+.dt-chips label{display:inline-flex;align-items:center;gap:6px;margin:0;padding:6px 10px;border:1px solid var(--line);border-radius:999px;text-transform:none;letter-spacing:0;font-size:.82rem;color:var(--fg);background:var(--bg);cursor:pointer}
+.dt-btn{display:inline-block;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;cursor:pointer;border:0;background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;margin-right:8px;margin-top:8px;font-family:inherit}
+.dt-btn:hover{opacity:.92}
+.dt-btn.ghost{background:transparent;color:#0369a1;border:1px solid var(--line)}
+.dt-btn.small{padding:7px 12px;font-size:.8rem;margin-top:6px}
+.dt-btn:disabled{opacity:.5;cursor:not-allowed}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab{color:#7dd3fc}.dt-tab.on{color:#fff}}
+.dt-x{padding:8px 12px;border-radius:8px;border:1px solid var(--line);background:transparent;color:#dc2626;font-weight:600;cursor:pointer;font-size:.8rem;font-family:inherit}
+#tool [hidden]{display:none!important}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline:2px solid #0369a1;outline-offset:2px}
+#tool select,#tool input,#tool textarea{max-width:100%}
+.dt-tabs{display:flex;gap:6px;flex-wrap:wrap;margin:12px 0}
+.dt-tab{padding:9px 16px;font-size:.88rem;border-radius:10px;cursor:pointer;font-weight:700;border:1px solid var(--line);background:transparent;color:#0369a1;font-family:inherit}
+.dt-tab.on{background:linear-gradient(135deg,#0369a1,#0ea5e9);color:#fff;border-color:transparent}
+.dt-result{background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:16px;margin:12px 0}
+.dt-big{font-size:2rem;font-weight:800;line-height:1.1;margin:4px 0}
+.dt-label{font-size:.72rem;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;font-weight:700}
+.dt-sum{margin:8px 0 0;font-size:.92rem;line-height:1.55}
+.dt-stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0}
+.dt-stat{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px}
+.dt-stat .lbl{font-size:.68rem;text-transform:uppercase;letter-spacing:.04em;color:var(--muted);font-weight:700;margin-bottom:4px}
+.dt-stat .val{font-size:1.05rem;font-weight:800;color:var(--fg)}
+.dt-stat .sub{font-size:.72rem;color:var(--muted);margin-top:2px}
+.dt-stat .val.ok{color:#16a34a}.dt-stat .val.warn{color:#d97706}.dt-stat .val.err{color:#dc2626}
+.dt-warn{background:#fef3c7;border:1px solid #fbbf24;color:#92400e;border-radius:10px;padding:10px 14px;font-size:.85rem;margin:10px 0;line-height:1.55}
+@media(prefers-color-scheme:dark){.dt-warn{background:#2d2005;border-color:#78460a;color:#fcd34d}}
+.dt-warn ul{margin:6px 0 0 18px}
+.dt-tip{background:rgba(3,105,161,.06);border-left:3px solid #0369a1;padding:10px 14px;border-radius:0 8px 8px 0;margin:10px 0;font-size:.85rem;line-height:1.6}
+.dt-tip b{color:#0369a1}
+.dt-tip ul{margin:6px 0 6px 18px}
+.dt-hint{font-size:.8rem;color:var(--muted);line-height:1.5;margin:8px 0 0}
+.dt-table{width:100%;border-collapse:collapse;margin:8px 0;font-size:.85rem}
+.dt-table th,.dt-table td{padding:6px 8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.dt-table th{background:var(--card);font-weight:700}
+.dt-scroll{overflow-x:auto}
+.dt-diagram{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:12px 8px;margin:12px 0;overflow-x:auto}
+.dt-diagram svg{display:block;margin:0 auto;height:auto;color:var(--fg)}
+.dt-actions{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.dt-actions .dt-btn{margin:0}
+.dt-status{min-height:1.2em;font-size:.82rem;color:#16a34a;margin:6px 0}.dt-status.err{color:#dc2626}
+.dt-fine{font-size:.8rem;color:var(--muted);line-height:1.55;margin:14px 0 0}
+.dt-xrow{display:grid;gap:10px;align-items:end;margin:12px 0 0;padding-top:10px;border-top:1px dashed var(--line)}
+.dt-chip{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.7rem;font-weight:800;color:#fff;white-space:nowrap}
+.dt-code{background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:.76rem;line-height:1.5;white-space:pre-wrap;word-break:break-all;max-height:300px;overflow:auto}
+@media(prefers-reduced-motion:no-preference){.dt-bar{animation:dtGrow .7s ease-out both;transform-box:fill-box;transform-origin:left center}.dt-pop{animation:dtPop .5s ease-out both;transform-box:fill-box;transform-origin:center}}
+@keyframes dtGrow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes dtPop{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:scale(1)}}
+.dt-report{display:none}
+.dt-rep-meta{font-size:10pt;color:#444}
+.dt-rep-table{width:100%;border-collapse:collapse;font-size:9.5pt;margin:6px 0 12px}
+.dt-rep-table th,.dt-rep-table td{border:1px solid #999;padding:3px 6px;text-align:left;vertical-align:top}
+.dt-rep-fig{margin:8px 0;break-inside:avoid}
+.dt-rep-disc{font-size:9.5pt;margin-top:12px}
+.dt-rep-sign{margin-top:28px;font-size:10pt}
+@media print{header.site,footer.site,main>*:not(#tool){display:none!important}#tool>*:not(.dt-report){display:none!important}.dt-report{display:block!important;color:#000;background:#fff;font-family:system-ui,sans-serif}.dt-report h2,.dt-report h3{color:#000;margin:10px 0 4px}.dt-report svg{max-width:100%;height:auto;color:#000}.tool{border:0!important;background:#fff!important;box-shadow:none!important;padding:0!important}body{background:#fff!important;color:#000!important}.dt-bar,.dt-pop{animation:none!important}}
+.dt-share{margin:20px 0;padding:16px;background:var(--card);border:1px solid var(--line);border-radius:12px}
+.dt-share h3{margin:0 0 10px;font-size:1rem}
+.dt-share label{display:block;font-size:.78rem;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.03em;margin:12px 0 4px}
+.dt-share input,.dt-share textarea{width:100%;padding:9px 12px;font-size:.82rem;border:1px solid var(--line);border-radius:8px;background:var(--bg);color:var(--fg);font-family:ui-monospace,monospace;box-sizing:border-box}
+.dt-share textarea{min-height:80px;resize:vertical}
+.dt-share button{margin-top:6px;background:transparent;color:#0369a1;border:1px solid var(--line);border-radius:6px;padding:6px 14px;font-weight:600;font-size:.82rem;cursor:pointer}
+.dt-disclaimer{background:var(--card);border:1px solid var(--line);border-left:4px solid #f59e0b;border-radius:8px;padding:14px 18px;margin:18px 0;font-size:.85rem;color:var(--muted);line-height:1.6}
+.dt-disclaimer b{color:var(--fg)}
+.cn-article h2{margin-top:2em}.cn-article h3{margin-top:1.4em;font-size:1.05rem}
+.cn-article ul,.cn-article ol{margin:6px 0 12px 22px;line-height:1.75}
+.cn-article table{width:100%;border-collapse:collapse;margin:12px 0;font-size:.88rem}
+.cn-article table th,.cn-article table td{padding:8px;border:1px solid var(--line);text-align:left;vertical-align:top}
+.cn-article table th{background:var(--card);font-weight:700}
+.cn-faq details{border-bottom:1px solid var(--line);padding:10px 0}
+.cn-faq summary{cursor:pointer;font-weight:600}
+.cn-article .dt-wrap{overflow-x:auto}
+.cn-article .dt-wrap table{min-width:520px}
+.dt-by{font-size:.82rem;color:var(--muted);margin:2px 0 14px}
+.dt-toc{border:1px solid var(--line);border-radius:10px;padding:10px 16px;background:var(--card);margin:14px 0}
+.dt-toc b{display:block;margin-bottom:4px}
+.dt-toc ol{margin:0 0 0 18px;columns:2;column-gap:28px;font-size:.88rem;line-height:1.7}
+@media(max-width:640px){.dt-toc ol{columns:1}}
+.dt-fig{margin:16px 0;padding:12px;border:1px solid var(--line);border-radius:12px;background:var(--bg);overflow-x:auto}
+.dt-fig svg{width:100%;min-width:520px;height:auto;display:block;color:var(--fg)}
+.dt-fig figcaption{font-size:.82rem;color:var(--muted);margin-top:8px;line-height:1.5}
+.tr-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;align-items:start}
+@media(max-width:860px){.tr-grid{grid-template-columns:minmax(0,1fr)}}
+.tr-verdict{padding:14px 16px;border-radius:12px;font-weight:700;margin:10px 0;border:1px solid var(--line);overflow-wrap:anywhere}
+.tr-ok{background:#dcfce7;color:#14532d;border-color:#86efac}.tr-bad{background:#fee2e2;color:#7f1d1d;border-color:#fca5a5}.tr-warn{background:#fef3c7;color:#78350f;border-color:#fcd34d}.tr-info{background:#e0f2fe;color:#0c4a6e;border-color:#7dd3fc}
+.tr-list{list-style:none;margin:6px 0;padding:0}.tr-list li{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:.88rem;line-height:1.5}.tr-list li>span{flex:0 0 auto;font-weight:800;min-width:1.2em;text-align:center}
+.tr-y{color:#16a34a}.tr-n{color:#dc2626}.tr-q{color:#d97706}
+.cn-article p,.cn-article li,.cn-article td{overflow-wrap:anywhere}
+.tr-fig svg{min-width:0!important}
+.tr-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.tr-trip{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:10px;align-items:end;padding:10px;border:1px solid var(--line);border-radius:10px;margin-bottom:8px;background:var(--bg)}
+@media(max-width:640px){.tr-trip{grid-template-columns:1fr 1fr}}
+@media(max-width:420px){.tr-trip{grid-template-columns:1fr}}
+.tr-trip>div{min-width:0}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.82rem}
+.tr-letter{white-space:pre-wrap;word-break:break-word;min-height:260px;line-height:1.55}
+.tr-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.tr-rowline{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.88rem}.tr-rowline b{white-space:nowrap}
+
+.ec-tw{overflow-x:auto}
+.ec-note{font-size:.8rem;color:var(--muted);line-height:1.5}
+.ec-card{padding:10px 12px;border:1px solid var(--line);border-radius:10px;background:rgba(128,128,128,.07);margin:8px 0}
+.ec-steps{margin:8px 0;padding:10px 12px 10px 28px;border-left:3px solid #0369a1;background:rgba(3,105,161,.06);border-radius:0 8px 8px 0;font-size:.86rem;line-height:1.6}
+.ec-steps li{margin:3px 0}
+.ec-in{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin:8px 0}
+.ec-big{font-size:2rem;font-weight:800;line-height:1.1;overflow-wrap:anywhere}
+.ec-line{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px solid var(--line);font-size:.9rem}.ec-line b{text-align:right}
+.ec-sent{font-size:1.05rem;line-height:1.7}.ec-sent input{display:inline-block;width:7.5em;margin:0 4px;padding:6px 8px}
+.seo-b{display:inline-block;padding:2px 9px;border-radius:999px;font-size:.72rem;font-weight:700;margin:2px 8px 2px 0}
+.seo-b.ok{background:rgba(22,163,74,.15);color:#166534}.seo-b.warn{background:rgba(217,119,6,.18);color:#92400e}.seo-b.bad{background:rgba(220,38,38,.15);color:#991b1b}.seo-b.info{background:rgba(3,105,161,.14);color:#075985}
+@media(prefers-color-scheme:dark){.seo-b.ok{color:#86efac}.seo-b.warn{color:#fcd34d}.seo-b.bad{color:#fca5a5}.seo-b.info{color:#7dd3fc}}
+#tool .im-chk{display:flex;align-items:center;gap:8px;margin:8px 0}#tool .im-chk input{width:auto;flex:none}#tool .im-chk label{margin:0;text-transform:none;letter-spacing:0;font-size:.88rem;font-weight:500}
+#tool textarea{font-family:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;font-size:.85rem;min-height:110px}
+.ec-rm{padding:6px 12px}
+
+.dt-hero{background:linear-gradient(135deg,#047857,#10b981)}
+.dt-btn,.dt-tab.on{background:linear-gradient(135deg,#047857,#10b981)}
+.dt-btn.ghost{color:#047857}.dt-tab{color:#047857}.dt-tab.on{color:#fff}
+.dt-tip{border-left-color:#047857}.dt-tip b{color:#047857}
+.dt-share button{color:#047857}
+#tool button:focus-visible,#tool select:focus-visible,#tool input:focus-visible,#tool textarea:focus-visible,#tool summary:focus-visible{outline-color:#047857}
+@media(prefers-color-scheme:dark){.dt-btn.ghost,.dt-tab,.dt-share button,.dt-tip b{color:#6ee7b7}.dt-tab.on{color:#fff}}
+</style>
+<script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Flight Carbon Footprint Calculator","url":"https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/","description":"Free online flight carbon footprint calculator. Pick two of 114 airports or enter a distance to estimate CO2 and CO2e per passenger by cabin class, compare with car, coach and rail, add up six flights, see offset cost and edit every emission factor. Runs in the browser.","applicationCategory":"TravelApplication","operatingSystem":"Any","isAccessibleForFree":true,"inLanguage":"en","featureList":["114 airports","Cabin class multipliers","Non-CO2 option","Car, coach and rail comparison","Yearly total of six flights","Offset cost","Editable factors","Copy, CSV and print"],"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"Utiliby","url":"https://utiliby.com"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How is the carbon footprint of a flight calculated?","acceptedAnswer":{"@type":"Answer","text":"The tool measures the great-circle distance, adds a routing uplift, multiplies by an emission factor per passenger-kilometre for the flight distance and a cabin class multiplier, then doubles it for a return trip. An optional multiplier covers non-CO2 effects."}},{"@type":"Question","name":"How much CO2 does a flight from London to New York produce?","acceptedAnswer":{"@type":"Answer","text":"With the default factors, about 598 kg of CO2 per passenger one way in economy and 1,197 kg return. With the non-CO2 multiplier of 1.9, the return trip is about 2,274 kg CO2e."}},{"@type":"Question","name":"What are non-CO2 effects?","acceptedAnswer":{"@type":"Answer","text":"Aircraft also affect the climate through contrails, cirrus clouds, nitrogen oxides and water vapour at altitude. Scientists estimate the total warming effect is roughly twice that of CO2 alone, though the figure is uncertain. You can switch the multiplier off or change it."}},{"@type":"Question","name":"Why is business class worse than economy?","acceptedAnswer":{"@type":"Answer","text":"A business or first-class seat takes up much more floor area, so a plane carries fewer passengers, and each one is allocated a bigger share of the fuel burn. Multipliers of about 1.5 to 4 are commonly used."}},{"@type":"Question","name":"Why are short flights worse per kilometre?","acceptedAnswer":{"@type":"Answer","text":"Take-off and climb use a large share of fuel, and that is spread over fewer kilometres on a short flight. The tool uses a higher factor for flights under 500 km."}},{"@type":"Question","name":"What is the routing uplift?","acceptedAnswer":{"@type":"Answer","text":"Flights rarely follow the great-circle line because of airways, weather and air traffic control. A typical uplift of about 8 percent is added to the distance."}},{"@type":"Question","name":"How accurate is this estimate?","acceptedAnswer":{"@type":"Answer","text":"It is a planning-level estimate. Different methodologies give results that vary by 20 percent or more because of aircraft type, load factor and assumptions. The factors are editable on the assumptions tab."}},{"@type":"Question","name":"How does it compare with a car or train?","acceptedAnswer":{"@type":"Answer","text":"The results chart compares a flight with car, coach and rail for the same journey, assuming ground routes are 20 percent longer than the straight line. Not every route can be travelled by land."}},{"@type":"Question","name":"How many trees offset a flight?","acceptedAnswer":{"@type":"Answer","text":"A mature tree absorbs roughly 21 kg of CO2 a year, so a 1,000 kg trip equals about 48 tree-years. This is only a rough illustration and does not mean planting trees is a complete offset."}},{"@type":"Question","name":"What does carbon offsetting cost?","acceptedAnswer":{"@type":"Answer","text":"Prices vary widely, from a few dollars to over a hundred dollars per tonne, depending on the project and its quality. Offsets should supplement, not replace, efforts to cut emissions."}},{"@type":"Question","name":"What is a 2-tonne budget?","acceptedAnswer":{"@type":"Answer","text":"Many climate scenarios suggest annual per-person emissions need to fall to about 2 tonnes CO2e by mid-century. A single long-haul return flight can use much of that."}},{"@type":"Question","name":"Can I add several flights?","acceptedAnswer":{"@type":"Answer","text":"Yes. The second tab lets you enter up to six flights with their cabin class and whether they are returns, and totals your yearly flying emissions."}},{"@type":"Question","name":"Can I enter my own distance?","acceptedAnswer":{"@type":"Answer","text":"Yes. Type a distance in kilometres to use instead of the airports, for routes that are not in the list."}},{"@type":"Question","name":"Does it include emissions from making the fuel?","acceptedAnswer":{"@type":"Answer","text":"The factors are intended as typical well-to-wake-style planning figures, but methods differ. Treat the numbers as a guide and use the assumptions tab to change them."}},{"@type":"Question","name":"Which airports are included?","acceptedAnswer":{"@type":"Answer","text":"114 major airports worldwide. You can also use any distance in kilometres."}},{"@type":"Question","name":"Is my data stored or sent anywhere?","acceptedAnswer":{"@type":"Answer","text":"No. All calculations run in your browser."}},{"@type":"Question","name":"Is this flight carbon footprint calculator free?","acceptedAnswer":{"@type":"Answer","text":"Yes. It is free to use online with no sign-up."}}]},{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://utiliby.com/"},{"@type":"ListItem","position":2,"name":"Travel Tools","item":"https://utiliby.com/tools/travel-tools/"},{"@type":"ListItem","position":3,"name":"Flight Carbon Footprint Calculator","item":"https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/"}]}]}</script>
+</head>
+<body>
+<header class="site noembed"><div class="wrap"><a class="logo" href="/"><img src="/favicon.png" alt="" width="30" height="30">Utiliby</a><nav aria-label="Main" id="site-header-nav"></nav></div></header>
+<main class="wrap">
+<nav class="crumbs noembed" aria-label="Breadcrumb"><a href="/">Home</a> › <a href="/tools/travel-tools/">Travel Tools</a> › Flight Carbon Footprint Calculator</nav>
+<h1 class="noembed">Flight Carbon Footprint Calculator</h1>
+<p class="lead noembed">Estimate the CO2 of a flight by route and cabin class, compare with car, coach and rail, and total a year of flying. Free and private.</p>
+<p class="onlyembed"><a href="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/" target="_blank" rel="noopener">Flight Carbon Footprint Calculator by Utiliby</a></p>
+<section class="tool" id="tool" aria-label="Flight carbon footprint calculator">
+<div class="dt-hero noembed">
+<h2>Free Flight Carbon Footprint Calculator</h2>
+<p>Estimate the CO2 emissions of a flight by route and cabin class, compare with car, coach and rail, and add up a year of flying.</p>
+</div>
+<div class="dt-tabs" role="group" aria-label="Tool sections"><button type="button" class="dt-tab on" id="dtTabBtn-one">1. One trip</button><button type="button" class="dt-tab" id="dtTabBtn-year">2. All my flights</button><button type="button" class="dt-tab" id="dtTabBtn-fac">3. Assumptions</button></div><div id="dtTab-one"><div class="dt-panel"><h3>Your flight</h3><datalist id="cfList"></datalist><div class="dt-row3"><div><label for="cfA">From</label><input type="text" id="cfA" list="cfList" autocomplete="off" placeholder="Type a city or code"></div><div><label for="cfB">To</label><input type="text" id="cfB" list="cfList" autocomplete="off" placeholder="Type a city or code"></div><div><label for="cfD">Or distance in km (optional)</label><input type="number" id="cfD" min="0" step="any"></div></div><div class="dt-row"><div><label for="cfCls">Cabin class</label><select id="cfCls"><option value="e">Economy</option><option value="p">Premium economy</option><option value="b">Business</option><option value="f">First</option></select></div><div><label for="cfPax">Passengers</label><input type="number" id="cfPax" min="1" step="1"></div></div><div class="dt-row"><div class="im-chk"><input type="checkbox" id="cfRt" checked><label for="cfRt">Return trip</label></div><div class="im-chk"><input type="checkbox" id="cfRfOn" checked><label for="cfRfOn">Include non-CO2 effects (contrails and NOx)</label></div></div><div id="cfRes" aria-live="polite"></div><div id="cfFig" style="margin:10px 0"></div><div id="cfEq"></div></div></div><div id="dtTab-year" hidden><div class="dt-panel"><h3>All your flights this year</h3><div id="cfRows"></div><div id="cfMulti"></div></div></div><div id="dtTab-fac" hidden><div class="dt-panel"><h3>Emission factors and assumptions (editable)</h3><p class="ec-note">These typical planning factors can be changed to match another methodology.</p><div class="dt-row3"><div><label for="cfF1">Under 500 km, kg per passenger-km</label><input type="number" id="cfF1" min="0" step="any"></div><div><label for="cfF2">500 to 3,700 km, kg per passenger-km</label><input type="number" id="cfF2" min="0" step="any"></div><div><label for="cfF3">Over 3,700 km, kg per passenger-km</label><input type="number" id="cfF3" min="0" step="any"></div></div><div class="dt-row3"><div><label for="cfRf">Non-CO2 multiplier</label><input type="number" id="cfRf" min="0" step="any"></div><div><label for="cfUp">Routing uplift, %</label><input type="number" id="cfUp" min="0" step="any"></div><div><label for="cfPx">Offset price per tonne</label><input type="number" id="cfPx" min="0" step="any"></div></div><div class="dt-row"><div><label for="cfRail">Rail, kg per passenger-km</label><input type="number" id="cfRail" min="0" step="any"></div><div><label for="cfBus">Coach, kg per passenger-km</label><input type="number" id="cfBus" min="0" step="any"></div></div><div id="cfFac"></div></div></div>
+<div class="dt-actions">
+<button type="button" class="dt-btn ghost" id="resetBtn">Reset</button><button type="button" class="dt-btn" id="cfCopy">Copy results</button>
+<button type="button" class="dt-btn ghost" id="cfDl">Download CSV</button>
+<button type="button" class="dt-btn ghost" id="cfPrint">Print / save results</button>
+</div>
+<p class="dt-status" id="dtStatus" role="status" aria-live="polite"></p>
+<div class="dt-report" id="dtReport" aria-hidden="true"></div>
+<p class="dt-fine"><b>Disclaimer:</b> This free flight carbon footprint calculator gives estimates based on typical per-passenger-kilometre emission factors, class multipliers and an optional uplift for non-CO2 effects. Real emissions depend on the aircraft, load factor, route, weather, fuel and the method used, and published calculators differ by 20 percent or more. The factors are editable. Use the result for comparison and awareness, not for formal carbon accounting or compliance. Nothing you enter is sent anywhere.</p>
+</section>
+<div class="dt-share noembed">
+<h3>Share, cite or embed this tool</h3>
+<label for="dt-share-link">Shareable link</label>
+<input type="text" id="dt-share-link" readonly value="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/">
+<button type="button" data-copy-target="dt-share-link">Copy link</button>
+<label for="dt-cite">Cite this page</label>
+<textarea id="dt-cite" readonly>Utiliby. (2026). Flight Carbon Footprint Calculator. https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/</textarea>
+<button type="button" data-copy-target="dt-cite">Copy citation</button>
+<label for="dt-embed">Add this tool to your site</label>
+<textarea id="dt-embed" readonly>&lt;iframe src="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/?embed=1" width="100%" height="1000" style="border:0" loading="lazy" title="Flight Carbon Footprint Calculator by Utiliby"&gt;&lt;/iframe&gt;
+&lt;p&gt;&lt;a href="https://utiliby.com/tools/travel-tools/flight-carbon-footprint-calculator/"&gt;Flight Carbon Footprint Calculator by Utiliby&lt;/a&gt;&lt;/p&gt;</textarea>
+<button type="button" data-copy-target="dt-embed">Copy embed code</button>
+</div>
+<article class="cn-article noembed">
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 17, 2026 · Rules and formulas reviewed October 2026</p>
+<nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free flight carbon footprint calculator does</a></li><li><a href="#how">How to use the flight carbon footprint calculator</a></li><li><a href="#method">How the emissions are estimated</a></li><li><a href="#compare">Comparing flying with other transport</a></li><li><a href="#reduce">Ways to reduce the footprint of your travel</a></li><li><a href="#reading_x">Reading flight emission numbers responsibly</a></li><li><a href="#limits">Limits and privacy</a></li><li><a href="#related">Related free tools</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
+<h2 id="what">What this free flight carbon footprint calculator does</h2>
+<p>Flying is one of the most carbon-intensive things most of us do, yet the numbers are rarely clear. This free online <b>flight carbon footprint calculator</b> estimates the CO2 emissions of a flight between any two of 114 major airports, or for a distance you enter. Choose the cabin class, one way or return, and the number of passengers, and it shows kilograms of CO2 per passenger and in total, with an optional uplift for the other climate effects of flying.</p><p>Charts compare cabin classes and show how flying stacks up against car, coach and rail, and the equivalents section translates the result into driving distance, tree-years, a share of a 2-tonne yearly budget and an offset cost. A second tab totals up to six flights for a year of travel, and the assumptions tab lets you edit every emission factor. Everything runs in your browser.</p><figure class="dt-fig tr-fig"><svg viewBox="0 0 640 170" width="100%" role="img" aria-label="Flight emissions equal distance times an emission factor times a class multiplier"><title>How flight emissions are estimated</title>
+<g font-size="13" fill="#1f2937" text-anchor="middle"><rect class="dt-bar" x="14" y="14" width="150" height="74" rx="10" fill="#bae6fd"/><text x="89" y="40" font-weight="700">Distance</text><text x="89" y="64">5,541 x 1.08 = 5,984 km</text>
+<rect class="dt-bar" x="174" y="14" width="150" height="74" rx="10" fill="#bbf7d0" style="animation-delay:.1s"/><text x="249" y="40" font-weight="700">Factor</text><text x="249" y="64">0.10 kg CO2 per km</text>
+<rect class="dt-bar" x="334" y="14" width="150" height="74" rx="10" fill="#fde68a" style="animation-delay:.2s"/><text x="409" y="40" font-weight="700">Return</text><text x="409" y="64">x 2 trips = 1,197 kg</text>
+<rect class="dt-bar" x="494" y="14" width="132" height="74" rx="10" fill="#fecaca" style="animation-delay:.3s"/><text x="560" y="40" font-weight="700">Non-CO2 x 1.9</text><text x="560" y="64">= 2,274 kg CO2e</text></g>
+<g font-size="12" fill="currentColor"><text x="14" y="116">London to New York, economy, return, per passenger.</text><text x="14" y="138">Business class on this route uses a multiplier of 2.9, so the same trip is about 6,594 kg CO2e.</text></svg><figcaption>How the estimate is assembled from distance, factor and class.</figcaption></figure>
+<h2 id="how">How to use the flight carbon footprint calculator</h2>
+<ol><li><b>Choose the airports</b> from the list, or type a distance in kilometres.</li><li><b>Select the cabin class</b> and whether it is a return trip.</li><li><b>Enter the number of passengers.</b></li><li><b>Decide whether to include non-CO2 effects</b>, which roughly double the climate impact.</li><li><b>Read the emissions</b> and the comparison with ground travel.</li><li><b>Use the second tab</b> to add up a year of flights, and the third to edit the assumptions.</li></ol>
+<h2 id="method">How the emissions are estimated</h2>
+<p>The calculation has four steps. First, the great-circle distance between the airports is increased by a routing uplift, 8 percent by default, because real flights are longer than the straight line. Second, a factor in kilograms of CO2 per passenger-kilometre is chosen by distance: 0.18 for flights under 500 km, 0.14 up to 3,700 km and 0.10 beyond, which reflects the heavy fuel use of take-off on short hops. Third, a class multiplier is applied: for long-haul flights 1.6 for premium economy, 2.9 for business and 4.0 for first. Finally, return trips are doubled and, if selected, a multiplier of 1.9 covers non-CO2 effects.</p><p>For London to New York, the distance is 5,541 km, which becomes 5,984 km with the uplift. At 0.10 kg per km the one-way economy emissions are 598 kg per passenger, and 1,197 kg for the return. With the multiplier of 1.9, that is 2,274 kg CO2e, which is about 114 percent of a 2-tonne yearly budget. In business class the return is about 3,471 kg CO2 and 6,594 kg CO2e.</p><div class="dt-wrap"><table><tr><th>Return flight, economy, per passenger</th><th>Distance</th><th>CO2</th><th>CO2e (x1.9)</th></tr><tr><td>London to Paris</td><td>347 km</td><td>2 x 67 = 135 kg</td><td>256 kg</td></tr><tr><td>Dubai to Delhi</td><td>2,184 km</td><td>2 x 330 = 661 kg</td><td>1,255 kg</td></tr><tr><td>Tashkent to Istanbul</td><td>3,357 km</td><td>2 x 508 = 1,015 kg</td><td>1,929 kg</td></tr><tr><td>London to New York</td><td>5,541 km</td><td>1,197 kg</td><td>2,274 kg</td></tr></table></div>
+<h2 id="compare">Comparing flying with other transport</h2>
+<p>For journeys of a few hundred kilometres, a train or coach produces a small fraction of the emissions of a flight. A typical average car emits about 0.17 kg of CO2 per kilometre, which is shared between everyone in it, so a full car can be competitive with flying even over long distances. Rail in Europe is commonly around 0.03 to 0.04 kg per passenger-kilometre and coaches about 0.03. The comparison chart assumes the ground route is 20 percent longer than the straight line and shows the difference. For island and intercontinental trips there may be no alternative, and the best choice is often to fly less often and stay longer.</p>
+<h2 id="reduce">Ways to reduce the footprint of your travel</h2>
+<ul><li><b>Choose trains</b> for trips under about 800 km where they are practical.</li><li><b>Fly economy</b>, which cuts emissions per passenger by more than half compared with business.</li><li><b>Take direct flights</b>, since take-off and landing use a lot of fuel.</li><li><b>Fly less often and stay longer</b>, replacing several short trips with one long one.</li><li><b>Use video calls</b> in place of some business travel.</li><li><b>Offset what remains</b> through high-quality projects, as a supplement and not a substitute.</li></ul>
+<h2 id="reading_x">Reading flight emission numbers responsibly</h2>
+<p>Two figures appear in this tool. CO2 is the carbon dioxide released by burning fuel, and CO2e adds an allowance for the other warming effects of aircraft, such as contrails and nitrogen oxides, which scientists estimate roughly double the climate impact, though the exact multiplier is debated. Whichever you use, say which one you mean. The per-passenger figure is also an allocation: the plane burns the same fuel whether it is full or half empty, so the number per seat depends on how many seats are sold and how the aircraft is configured.</p><p>Estimates from different calculators can differ by 20 percent or more because of aircraft type, route and the way fuel, cargo and seat space are allocated. That is why the factors are editable. Use the numbers to compare choices, such as a direct flight against one with a stopover, economy against business class, or flying against a train, rather than to claim an exact total. If you choose to offset, look for credible, verified projects and treat offsetting as a complement to flying less, not a licence to fly more.</p>
+<h2 id="limits">Limits and privacy</h2>
+<p>No simple calculator can know the aircraft, the passenger load or the route on the day. The factors here are typical planning values, and the non-CO2 multiplier is an area of active scientific debate. Official methodologies, such as those of aviation authorities and national governments, give a range of results. This tool is useful for comparing options and raising awareness, not for formal reporting. Nothing you enter leaves your browser.</p>
+<h2 id="related">Related free tools</h2>
+<p>Use these free online tools together with this one:</p><ul><li>Compare distance and journey time with the <a href="/tools/travel-tools/flight-time-calculator/">flight time calculator</a>.</li><li>Plan the total cost of the trip with the <a href="/tools/travel-tools/travel-budget-calculator/">travel budget calculator</a>.</li><li>Compare places to stay with the <a href="/tools/travel-tools/hotel-vs-airbnb-cost-calculator/">hotel vs Airbnb cost calculator</a>.</li><li>Compare the cost of driving with the <a href="/tools/everyday-calculators/gas-trip-cost-calculator/">gas trip cost calculator</a>.</li><li>Check your connection on public Wi-Fi with the <a href="/tools/security-privacy-tools/my-ip-address-checker/">IP address checker</a>.</li></ul>
+<h2 id="faq">Frequently asked questions</h2>
+<div class="cn-faq"><details><summary>How is the carbon footprint of a flight calculated?</summary><p>The tool measures the great-circle distance, adds a routing uplift, multiplies by an emission factor per passenger-kilometre for the flight distance and a cabin class multiplier, then doubles it for a return trip. An optional multiplier covers non-CO2 effects.</p></details><details><summary>How much CO2 does a flight from London to New York produce?</summary><p>With the default factors, about 598 kg of CO2 per passenger one way in economy and 1,197 kg return. With the non-CO2 multiplier of 1.9, the return trip is about 2,274 kg CO2e.</p></details><details><summary>What are non-CO2 effects?</summary><p>Aircraft also affect the climate through contrails, cirrus clouds, nitrogen oxides and water vapour at altitude. Scientists estimate the total warming effect is roughly twice that of CO2 alone, though the figure is uncertain. You can switch the multiplier off or change it.</p></details><details><summary>Why is business class worse than economy?</summary><p>A business or first-class seat takes up much more floor area, so a plane carries fewer passengers, and each one is allocated a bigger share of the fuel burn. Multipliers of about 1.5 to 4 are commonly used.</p></details><details><summary>Why are short flights worse per kilometre?</summary><p>Take-off and climb use a large share of fuel, and that is spread over fewer kilometres on a short flight. The tool uses a higher factor for flights under 500 km.</p></details><details><summary>What is the routing uplift?</summary><p>Flights rarely follow the great-circle line because of airways, weather and air traffic control. A typical uplift of about 8 percent is added to the distance.</p></details><details><summary>How accurate is this estimate?</summary><p>It is a planning-level estimate. Different methodologies give results that vary by 20 percent or more because of aircraft type, load factor and assumptions. The factors are editable on the assumptions tab.</p></details><details><summary>How does it compare with a car or train?</summary><p>The results chart compares a flight with car, coach and rail for the same journey, assuming ground routes are 20 percent longer than the straight line. Not every route can be travelled by land.</p></details><details><summary>How many trees offset a flight?</summary><p>A mature tree absorbs roughly 21 kg of CO2 a year, so a 1,000 kg trip equals about 48 tree-years. This is only a rough illustration and does not mean planting trees is a complete offset.</p></details><details><summary>What does carbon offsetting cost?</summary><p>Prices vary widely, from a few dollars to over a hundred dollars per tonne, depending on the project and its quality. Offsets should supplement, not replace, efforts to cut emissions.</p></details><details><summary>What is a 2-tonne budget?</summary><p>Many climate scenarios suggest annual per-person emissions need to fall to about 2 tonnes CO2e by mid-century. A single long-haul return flight can use much of that.</p></details><details><summary>Can I add several flights?</summary><p>Yes. The second tab lets you enter up to six flights with their cabin class and whether they are returns, and totals your yearly flying emissions.</p></details><details><summary>Can I enter my own distance?</summary><p>Yes. Type a distance in kilometres to use instead of the airports, for routes that are not in the list.</p></details><details><summary>Does it include emissions from making the fuel?</summary><p>The factors are intended as typical well-to-wake-style planning figures, but methods differ. Treat the numbers as a guide and use the assumptions tab to change them.</p></details><details><summary>Which airports are included?</summary><p>114 major airports worldwide. You can also use any distance in kilometres.</p></details><details><summary>Is my data stored or sent anywhere?</summary><p>No. All calculations run in your browser.</p></details><details><summary>Is this flight carbon footprint calculator free?</summary><p>Yes. It is free to use online with no sign-up.</p></details></div>
+<h2 id="sources">Sources and further reading</h2>
+<ul><li>UK Government, <a href="https://www.gov.uk/government/collections/government-conversion-factors-for-company-reporting" rel="noopener">Greenhouse gas reporting: conversion factors</a>.</li><li>International Civil Aviation Organization, <a href="https://www.icao.int/environmental-protection/Carbonoffset/Pages/default.aspx" rel="noopener">ICAO Carbon Emissions Calculator</a>.</li><li>U.S. Environmental Protection Agency, <a href="https://www.epa.gov/energy/greenhouse-gases-equivalencies-calculator-calculations-and-references" rel="noopener">Greenhouse gas equivalencies: calculations and references</a>.</li><li>Lee et al., <a href="https://doi.org/10.1016/j.atmosenv.2020.117834" rel="noopener">The contribution of global aviation to anthropogenic climate forcing for 2000 to 2018</a>, Atmospheric Environment.</li></ul>
+<p><small>Sources were consulted in October 2026. Standards and rules can change, so always check the official page for your situation.</small></p>
+<div class="dt-disclaimer" id="disclaimer"><b>Disclaimer:</b> This free flight carbon footprint calculator gives estimates based on typical per-passenger-kilometre emission factors, class multipliers and an optional uplift for non-CO2 effects. Real emissions depend on the aircraft, load factor, route, weather, fuel and the method used, and published calculators differ by 20 percent or more. The factors are editable. Use the result for comparison and awareness, not for formal carbon accounting or compliance. Nothing you enter is sent anywhere.</div>
+</article>
+</main>
+<footer class="site noembed"><div class="wrap" id="site-footer"></div></footer>
+<script src="/assets/site.js" defer></script>
+<script>
+(function(){
+"use strict";
+/* ---------- shared helpers ---------- */
+function $(id) { return document.getElementById(id); }
+function esc(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function copyText(text, btn) { function done(ok) { if (!btn) return; var o = btn.getAttribute("data-label"); if (o === null) { o = btn.textContent; btn.setAttribute("data-label", o); } btn.textContent = ok ? "Copied!" : "Copy failed"; setTimeout(function () { btn.textContent = o; }, 1400); } function fb() { var ok = false; try { var ta = document.createElement("textarea"); ta.value = text; ta.setAttribute("readonly", ""); ta.style.position = "fixed"; ta.style.opacity = "0"; document.body.appendChild(ta); ta.select(); ok = document.execCommand("copy"); document.body.removeChild(ta); } catch (e) { ok = false; } done(ok); } if (navigator.clipboard && navigator.clipboard.writeText) { navigator.clipboard.writeText(text).then(function () { done(true); }, fb); } else { fb(); } }
+function msg(t, kind) { var e = $("dtStatus"); if (!e) return; e.textContent = t; e.className = "dt-status" + (kind ? " " + kind : ""); clearTimeout(msg.t); msg.t = setTimeout(function () { e.textContent = ""; }, 4000); }
+function saveBlob(blob, name) { var a = document.createElement("a"); a.href = URL.createObjectURL(blob); a.download = name; document.body.appendChild(a); a.click(); setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 500); }
+function csvCell(v) { v = v == null ? "" : String(v); if (/^[=+\-@\t\r]/.test(v)) v = "'" + v; return '"' + v.replace(/"/g, '""') + '"'; }
+function csvText(rows) { return "\ufeff" + rows.map(function (r) { return r.map(csvCell).join(","); }).join("\r\n") + "\r\n"; }
+function intIn(id, lo, hi, def) { var v = parseInt($(id).value, 10); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function numIn(id, lo, hi, def) { var v = parseFloat($(id).value); if (isNaN(v)) return def; return Math.max(lo, Math.min(hi, v)); }
+function plural(n, w) { return n + " " + w + (n === 1 ? "" : "s"); }
+function p2(n) { return (n < 10 ? "0" : "") + n; }
+
+/* ---------- date helpers: whole days as integers (no time-zone drift) ---------- */
+var MON = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+var MONFULL = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+var DAYS = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+var DAYSFULL = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+function dnum(y, m, d) { return Math.round(Date.UTC(y, m - 1, d) / 86400000); }
+function ymd(n) { var t = new Date(n * 86400000); return { y: t.getUTCFullYear(), m: t.getUTCMonth() + 1, d: t.getUTCDate() }; }
+function dow(n) { return (((n + 4) % 7) + 7) % 7; } /* 0 = Sunday */
+function parseD(s) {
+  if (!s || !/^\d{4}-\d{2}-\d{2}$/.test(s)) return null;
+  var y = +s.slice(0, 4), m = +s.slice(5, 7), d = +s.slice(8, 10);
+  if (y < 1900 || y > 2200 || m < 1 || m > 12 || d < 1) return null;
+  var n = dnum(y, m, d), o = ymd(n);
+  return (o.m === m && o.d === d) ? n : null;
+}
+function isoD(n) { var o = ymd(n); return o.y + "-" + p2(o.m) + "-" + p2(o.d); }
+function fmtD(n) { var o = ymd(n); return o.d + " " + MON[o.m - 1] + " " + o.y; }
+function fmtDW(n) { return DAYS[dow(n)] + " " + fmtD(n); }
+function dim(y, m) { return ymd(dnum(y, m + 1, 1) - 1).d; }
+function addMonths(n, k) {
+  var o = ymd(n), t = o.y * 12 + (o.m - 1) + k, y = Math.floor(t / 12), m = ((t % 12) + 12) % 12 + 1;
+  return dnum(y, m, Math.min(o.d, dim(y, m)));
+}
+function todayDN() { var t = new Date(); return dnum(t.getFullYear(), t.getMonth() + 1, t.getDate()); }
+function setDateInput(id, n) { $(id).value = isoD(n); }
+
+/* ---------- tabs ---------- */
+function initTabs(names, onChange) {
+  names.forEach(function (n) {
+    $("dtTabBtn-" + n).addEventListener("click", function () { showTab(n); });
+  });
+  function showTab(n) {
+    names.forEach(function (k) {
+      $("dtTab-" + k).hidden = k !== n; var b = $("dtTabBtn-" + k); b.classList.toggle("on", k === n); b.setAttribute("aria-pressed", k === n ? "true" : "false");
+    });
+    initTabs.cur = n; if (onChange) onChange(n);
+  }
+  initTabs.cur = names[0]; initTabs.show = showTab;
+}
+
+/* ---------- print report helpers ---------- */
+function repBox() { var b = $("dtReport"); b.textContent = ""; return b; }
+function repAdd(box, tag, txt, cls) { var e = document.createElement(tag); if (cls) e.className = cls; e.textContent = txt; box.appendChild(e); return e; }
+function repTbl(box, head, rows) {
+  var t = document.createElement("table"), tr = document.createElement("tr"); t.className = "dt-rep-table";
+  head.forEach(function (x) { var th = document.createElement("th"); th.textContent = x; tr.appendChild(th); }); t.appendChild(tr);
+  rows.forEach(function (r) { var q = document.createElement("tr"); r.forEach(function (c) { var td = document.createElement("td"); td.textContent = c; q.appendChild(td); }); t.appendChild(q); });
+  box.appendChild(t); return t;
+}
+function repFig(box, html) { var w = document.createElement("div"); w.className = "dt-rep-fig"; w.innerHTML = html; box.appendChild(w); }
+function repDisc(box, text) { repAdd(box, "p", "Disclaimer: " + text, "dt-rep-disc"); }
+function repHead(box, title, site) { repAdd(box, "h2", title); repAdd(box, "p", "Generated " + new Date().toLocaleString() + " · " + site + ", utiliby.com", "dt-rep-meta"); }
+
+/* ---------- minimal iCalendar writer (RFC 5545) ---------- */
+function icsEsc(s) { return String(s == null ? "" : s).replace(/\\/g, "\\\\").replace(/;/g, "\\;").replace(/,/g, "\\,").replace(/\r\n|\r|\n/g, "\\n"); }
+function icsFold(line) {
+  var enc = new TextEncoder(), out = [], cur = "", curBytes = 0, limit = 75;
+  for (var ch of line) {
+    var b = enc.encode(ch).length;
+    if (curBytes + b > limit) { out.push(cur); cur = " "; curBytes = 1; limit = 75; }
+    cur += ch; curBytes += b;
+  }
+  out.push(cur); return out.join("\r\n");
+}
+function icsUtcStamp(ms) { var d = new Date(ms); return d.getUTCFullYear() + p2(d.getUTCMonth() + 1) + p2(d.getUTCDate()) + "T" + p2(d.getUTCHours()) + p2(d.getUTCMinutes()) + p2(d.getUTCSeconds()) + "Z"; }
+function icsDateStamp(n) { var o = ymd(n); return o.y + p2(o.m) + p2(o.d); }
+function icsWrap(lines, calName) {
+  var head = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Utiliby//Free Online Tools//EN", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
+  if (calName) head.push("X-WR-CALNAME:" + icsEsc(calName));
+  return head.concat(lines, ["END:VCALENDAR"]).map(icsFold).join("\r\n") + "\r\n";
+}
+function icsUid(seed) { var h = 5381, s = String(seed); for (var i = 0; i < s.length; i++) h = ((h * 33) ^ s.charCodeAt(i)) >>> 0; return h.toString(16) + "-" + s.length.toString(16) + "@utiliby.com"; }
+function initCommon() {
+  document.addEventListener("click", function (e) { var b = e.target.closest("[data-copy-target]"); if (b) { var t = document.getElementById(b.getAttribute("data-copy-target")); if (t) copyText(t.value, b); } });
+  window.addEventListener("beforeprint", function () { if (window.fillReport) window.fillReport(); });
+}
+/* ---------- seo shared helpers ---------- */
+function dlText(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); }
+function bindAct(p, o) {
+  /* o: code(), file(), mime, rows(), title, site, note, empty() */
+  $(p + "Copy").addEventListener("click", function () { var c = o.code(); if (!c) { msg("Nothing to copy yet.", "err"); return; } copyText(c, $(p + "Copy")); });
+  $(p + "Dl") && $(p + "Dl").addEventListener("click", o.dlClick || function () { var c = o.dl ? o.dl() : o.code(); if (!c) { msg("Nothing to download yet.", "err"); return; } dlText(o.file(), c, o.mime); msg("Downloaded " + o.file() + "."); });
+  $(p + "Print").addEventListener("click", function () { if (!o.code()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () {
+    var b = repBox(); repHead(b, o.title, o.site); repTbl(b, ["Setting", "Value"], o.rows());
+    repFig(b, '<pre style="white-space:pre-wrap;word-break:break-word;font:9.5pt/1.4 monospace;border:1px solid #999;padding:8px;margin:8px 0">' + esc(o.code()) + "</pre>"); repDisc(b, o.note);
+  };
+}
+function badge(k, t) { return '<span class="seo-b ' + k + '">' + esc(t) + "</span>"; }
+function meter(v, max, warnAt, badAt) { var p = Math.max(0, Math.min(100, v / max * 100)), c = v > badAt ? " bad" : (v > warnAt ? " warn" : ""); return '<div class="seo-meter' + c + '"><i style="width:' + p.toFixed(0) + '%"></i></div>'; }
+function isUrl(s) { try { var u = new URL(s); return /^https?:$/.test(u.protocol) && !!u.hostname; } catch (e) { return false; } }
+function xe(s) { return String(s).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;"); }
+function bindTabs(groupId, onShow) { var g = $(groupId); g.addEventListener("click", function (e) { var b = e.target.closest("button[data-tab]"); if (!b) return; [].forEach.call(g.querySelectorAll("button"), function (x) { x.classList.toggle("ghost", x !== b); }); onShow(b.getAttribute("data-tab")); }); }
+/* ---------- marketing shared helpers ---------- */
+function clamp(v, a, b) { return Math.max(a, Math.min(b, v)); }
+function fnum(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }); }
+function fmoney(v, d) { if (v == null || !isFinite(v)) return "n/a"; var s = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d == null ? 2 : d, maximumFractionDigits: d == null ? 2 : d }); return (v < 0 ? "-$" : "$") + s; }
+function fpct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 2 : d, minimumFractionDigits: 0 }) + "%"; }
+function hex2rgb(h) { h = String(h || "").replace("#", ""); if (h.length === 3) h = h.replace(/(.)/g, "$1$1"); var n = parseInt(h, 16); if (!/^[0-9a-f]{6}$/i.test(h)) return [0, 0, 0]; return [(n >> 16) & 255, (n >> 8) & 255, n & 255]; }
+function lum(c) { var f = function (v) { v /= 255; return v <= 0.04045 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }; return 0.2126 * f(c[0]) + 0.7152 * f(c[1]) + 0.0722 * f(c[2]); }
+function crat(a, b) { var x = lum(hex2rgb(a)), y = lum(hex2rgb(b)); return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+function onHex(h) { return crat(h, "#ffffff") >= crat(h, "#000000") ? "#ffffff" : "#000000"; }
+function setTabs(gid, panes, key) { [].forEach.call(document.querySelectorAll("#" + gid + " button"), function (b) { b.classList.toggle("ghost", b.getAttribute("data-tab") !== key); }); panes.forEach(function (p) { var e = document.getElementById(p[1]); if (e) e.hidden = p[0] !== key; }); }
+/* ---------- travel shared helpers ---------- */
+function tn(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { maximumFractionDigits: d == null ? 0 : d, minimumFractionDigits: d == null ? 0 : d }); }
+function cur2(v, sym) { if (v == null || !isFinite(v)) return "n/a"; return sym + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 }); }
+function li(k, t) { return '<li><span class="' + (k === "y" ? "tr-y" : k === "n" ? "tr-n" : "tr-q") + '">' + (k === "y" ? "&#10003;" : k === "n" ? "&#10007;" : "?") + "</span><div>" + t + "</div></li>"; }
+function lsGet(k) { try { return window.localStorage.getItem(k); } catch (e) { return null; } }
+function lsSet(k, v) { try { window.localStorage.setItem(k, v); } catch (e) { } }
+function svgTxt(x, y, t, o) { o = o || {}; return '<text x="' + x + '" y="' + y + '" font-size="' + (o.s || 11) + '"' + (o.a ? ' text-anchor="' + o.a + '"' : "") + (o.w ? ' font-weight="' + o.w + '"' : "") + (o.f ? ' fill="' + o.f + '"' : ' fill="currentColor"') + ">" + esc(t) + "</text>"; }
+function mny(v, s, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; var a = Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); return (v < 0 ? "-" : "") + s + a; }
+function pct(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toFixed(d == null ? 1 : d) + "%"; }
+function sval(id, def) { var e = $(id); return e ? e.value : def; }
+function nv(id, def) { var v = parseFloat($(id).value); return isNaN(v) ? def : v; }
+function stat(l, v, cls, sub) { return '<div class="dt-stat"><div class="lbl">' + l + '</div><div class="val ' + (cls || "") + '">' + v + "</div>" + (sub ? '<div class="sub">' + sub + "</div>" : "") + "</div>"; }
+function bigRes(label, val, color, sum) { return '<div class="dt-result"><div class="dt-label">' + label + '</div><div class="dt-big"' + (color ? ' style="color:' + color + '"' : "") + ">" + val + '</div><p class="dt-sum">' + sum + "</p></div>"; }
+function niceMax(v) { if (v <= 0) return 1; var p = Math.pow(10, Math.floor(Math.log10(v))), f = v / p; return (f <= 1 ? 1 : f <= 2 ? 2 : f <= 2.5 ? 2.5 : f <= 5 ? 5 : 10) * p; }
+function shortN(v, s) { var a = Math.abs(v), t = a >= 1e9 ? (a / 1e9).toFixed(a >= 1e10 ? 0 : 1) + "B" : a >= 1e6 ? (a / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? (a / 1e3).toFixed(a >= 1e4 ? 0 : 1) + "k" : a.toFixed(0); return (v < 0 ? "-" : "") + s + t; }
+function csvT(rows) { return "﻿" + rows.map(function (r) { return r.map(function (v) { return typeof v === "number" && isFinite(v) ? String(Math.round(v * 100) / 100) : csvCell(v); }).join(","); }).join("\r\n") + "\r\n"; }
+/* ---------- everyday calculators shared helpers ---------- */
+var EC = { cur: "$" };
+var PAL = ["#0369a1", "#16a34a", "#d97706", "#9333ea", "#dc2626", "#0891b2", "#be185d", "#4d7c0f"];
+function cnum(id, def) { var e = $(id); if (!e) return def; var s = String(e.value).replace(/[,\s_]/g, ""); if (s === "" || s === "-" || s === ".") return def; var v = parseFloat(s); return isFinite(v) ? v : def; }
+function cn(id, lo, hi, def) { var v = cnum(id, def); return Math.max(lo, Math.min(hi, v)); }
+function en(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 0 : d; return v.toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function mon(v, d) { if (v == null || !isFinite(v)) return "n/a"; d = d == null ? 2 : d; return (v < 0 ? "-" : "") + EC.cur + Math.abs(v).toLocaleString("en-US", { minimumFractionDigits: d, maximumFractionDigits: d }); }
+function pc1(v, d) { if (v == null || !isFinite(v)) return "n/a"; return v.toLocaleString("en-US", { minimumFractionDigits: d == null ? 1 : d, maximumFractionDigits: d == null ? 1 : d }) + "%"; }
+function tile(l, v, sub, cls) { return stat(esc(l), v, cls, sub); }
+function tiles(arr) { return '<div class="dt-stats">' + arr.join("") + "</div>"; }
+function trow(cells, h) { return "<tr>" + cells.map(function (c) { return "<" + (h ? "th" : "td") + ">" + c + "</" + (h ? "th" : "td") + ">"; }).join("") + "</tr>"; }
+function tbl(head, rows) { return '<div class="ec-tw"><table class="dt-table">' + trow(head, true) + rows.map(function (r) { return trow(r); }).join("") + "</table></div>"; }
+function verdict(kind, t) { return '<div class="tr-verdict tr-' + kind + '">' + t + "</div>"; }
+function svgOpen(w, h, label) { return '<svg viewBox="0 0 ' + w + " " + h + '" width="100%" role="img" aria-label="' + esc(label) + '"><title>' + esc(label) + "</title>"; }
+function ticks(max) { var m = niceMax(max), a = []; for (var i = 0; i <= 4; i++) a.push(m * i / 4); return a; }
+function lineChart(o) {
+  var W = 640, H = o.h || 260, L = 58, R = 14, T = 26, B = 34, xs = o.xs, n = xs.length, mx = 0, mn = o.min0 === false ? Infinity : 0, f = o.fmt || shortN0;
+  o.series.forEach(function (s) { s.vals.forEach(function (v) { if (isFinite(v)) { mx = Math.max(mx, v); if (o.min0 === false) mn = Math.min(mn, v); } }); });
+  if (mn === Infinity) mn = 0; var top = niceMax(Math.max(mx - mn, 1)) + mn; if (o.min0 === false) { top = mx + (mx - mn) * 0.05; }
+  var X = function (i) { return L + (W - L - R) * (n > 1 ? i / (n - 1) : 0); }, Y = function (v) { return H - B - (H - B - T) * (v - mn) / Math.max(1e-9, top - mn); };
+  var s = svgOpen(W, H, o.label || "Line chart");
+  for (var g = 0; g <= 4; g++) { var gv = mn + (top - mn) * g / 4, y = Y(gv); s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity=".15"/>' + svgTxt(L - 6, y + 4, f(gv), { s: 10.5, a: "end" }); }
+  var step = Math.max(1, Math.ceil(n / 7)); for (var i = 0; i < n; i += step) s += svgTxt(X(i), H - 14, String(xs[i]), { s: 10.5, a: "middle" });
+  o.series.forEach(function (se, k) {
+    var c = se.color || PAL[k % 8], pts = se.vals.map(function (v, i) { return X(i).toFixed(1) + "," + Y(v).toFixed(1); }).join(" ");
+    if (se.area) s += '<polygon points="' + X(0).toFixed(1) + "," + Y(mn).toFixed(1) + " " + pts + " " + X(n - 1).toFixed(1) + "," + Y(mn).toFixed(1) + '" fill="' + c + '" opacity=".16"/>';
+    s += '<polyline points="' + pts + '" fill="none" stroke="' + c + '" stroke-width="3" stroke-linejoin="round"' + (se.dash ? ' stroke-dasharray="6 4"' : "") + "/>";
+  });
+  var lx = L; o.series.forEach(function (se, k) { var c = se.color || PAL[k % 8]; s += '<rect x="' + lx + '" y="6" width="12" height="12" rx="3" fill="' + c + '"/>' + svgTxt(lx + 17, 16, se.name, { s: 11 }); lx += 28 + se.name.length * 6.2; });
+  if (o.yTitle) s += svgTxt(4, T - 12, o.yTitle, { s: 10.5 });
+  return s + "</svg>";
+}
+function shortN0(v) { return shortN(v, ""); }
+function stackChart(o) {
+  var W = 640, H = o.h || 260, L = 58, R = 14, T = 26, B = 34, xs = o.xs, n = xs.length, tot = xs.map(function (_, i) { return o.series.reduce(function (a, s) { return a + Math.max(0, s.vals[i]); }, 0); }), mx = niceMax(Math.max.apply(null, tot) || 1), f = o.fmt || shortN0;
+  var bw = Math.min(46, (W - L - R) / n * 0.72), gap = (W - L - R) / n, s = svgOpen(W, H, o.label || "Stacked bar chart");
+  for (var g = 0; g <= 4; g++) { var gv = mx * g / 4, y = H - B - (H - B - T) * g / 4; s += '<line x1="' + L + '" x2="' + (W - R) + '" y1="' + y.toFixed(1) + '" y2="' + y.toFixed(1) + '" stroke="currentColor" opacity=".15"/>' + svgTxt(L - 6, y + 4, f(gv), { s: 10.5, a: "end" }); }
+  var step = Math.max(1, Math.ceil(n / 9));
+  xs.forEach(function (x, i) { var yy = H - B, xx = L + gap * i + (gap - bw) / 2; o.series.forEach(function (se, k) { var v = Math.max(0, se.vals[i]), h = (H - B - T) * v / mx; yy -= h; s += '<rect class="dt-bar" x="' + xx.toFixed(1) + '" y="' + yy.toFixed(1) + '" width="' + bw.toFixed(1) + '" height="' + Math.max(0, h).toFixed(1) + '" fill="' + (se.color || PAL[k % 8]) + '" style="animation-delay:' + Math.min(.6, i * .02).toFixed(2) + 's"><title>' + esc(x + " " + se.name + ": " + f(v)) + "</title></rect>"; }); if (i % step === 0) s += svgTxt(xx + bw / 2, H - 14, String(x), { s: 10.5, a: "middle" }); });
+  var lx = L; o.series.forEach(function (se, k) { s += '<rect x="' + lx + '" y="6" width="12" height="12" rx="3" fill="' + (se.color || PAL[k % 8]) + '"/>' + svgTxt(lx + 17, 16, se.name, { s: 11 }); lx += 28 + se.name.length * 6.2; });
+  return s + "</svg>";
+}
+function hbars(o) {
+  var items = o.items, n = items.length, rh = 28, W = 640, H = 14 + n * (rh + 8), mx = Math.max.apply(null, items.map(function (i) { return Math.abs(i.v); })) || 1, f = o.fmt || function (v) { return en(v, 2); }, lw = o.lw || 170, s = svgOpen(W, H, o.label || "Bar chart");
+  items.forEach(function (it, i) { var y = 8 + i * (rh + 8), w = Math.max(3, (W - lw - 110) * Math.abs(it.v) / mx); s += svgTxt(8, y + 19, it.l.length > 26 ? it.l.slice(0, 25) + "…" : it.l, { s: 12, w: it.best ? 700 : 400 }) + '<rect class="dt-bar" x="' + lw + '" y="' + y + '" width="' + w.toFixed(1) + '" height="' + rh + '" rx="6" fill="' + (it.color || PAL[i % 8]) + '" style="animation-delay:' + (i * .08).toFixed(2) + 's"/>' + svgTxt(lw + w + 8, y + 19, f(it.v) + (it.best ? "  best" : ""), { s: 12, w: 700 }); });
+  return s + "</svg>";
+}
+function donut(o) {
+  var items = o.items.filter(function (i) { return i.v > 0; }), tot = items.reduce(function (a, i) { return a + i.v; }, 0), s = svgOpen(640, 220, o.label || "Share chart"), cx = 110, cy = 110, r = 80, a0 = -Math.PI / 2, f = o.fmt || function (v) { return en(v, 2); };
+  if (!tot) return s + svgTxt(20, 40, "No data yet", { s: 13 }) + "</svg>";
+  items.forEach(function (it, i) { var a1 = a0 + it.v / tot * Math.PI * 2, big = a1 - a0 > Math.PI ? 1 : 0; if (items.length === 1) { s += '<circle cx="' + cx + '" cy="' + cy + '" r="' + r + '" fill="none" stroke="' + (it.color || PAL[0]) + '" stroke-width="30"/>'; } else s += '<path d="M' + (cx + r * Math.cos(a0)).toFixed(1) + " " + (cy + r * Math.sin(a0)).toFixed(1) + " A" + r + " " + r + " 0 " + big + " 1 " + (cx + r * Math.cos(a1)).toFixed(1) + " " + (cy + r * Math.sin(a1)).toFixed(1) + '" fill="none" stroke="' + (it.color || PAL[i % 8]) + '" stroke-width="30"/>'; a0 = a1; });
+  s += svgTxt(cx, cy - 2, o.center || "", { s: 15, a: "middle", w: 800 }) + svgTxt(cx, cy + 16, o.sub || "", { s: 10.5, a: "middle" });
+  items.slice(0, 9).forEach(function (it, i) { var y = 28 + i * 21; s += '<rect x="240" y="' + (y - 11) + '" width="13" height="13" rx="3" fill="' + (it.color || PAL[i % 8]) + '"/>' + svgTxt(260, y, (it.l.length > 22 ? it.l.slice(0, 21) + "…" : it.l) + " · " + f(it.v) + " (" + (it.v / tot * 100).toFixed(0) + "%)", { s: 12 }); });
+  return s + "</svg>";
+}
+function setFig(id, html) { $(id).innerHTML = html; }
+function download(name, text, mime) { saveBlob(new Blob([text], { type: (mime || "text/plain") + ";charset=utf-8" }), name); msg("Downloaded " + name + "."); }
+function bindStd(p, o) {
+  /* o: summary() -> [[k,v]], text() -> string, csv() -> string, file, report(box), ready() */
+  $(p + "Copy").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to copy yet.", "err"); return; } copyText(o.text(), $(p + "Copy")); });
+  $(p + "Dl").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to download yet.", "err"); return; } download(o.file, o.csv(), "text/csv"); });
+  $(p + "Print").addEventListener("click", function () { if (o.ready && !o.ready()) { msg("Nothing to print yet.", "err"); return; } fillReport(); window.print(); });
+  window.fillReport = function () { var b = repBox(); repHead(b, o.title, o.site); o.report(b); repDisc(b, o.disc); };
+}
+/* ---- travel shared library: airports, great-circle maths, time zones ---- */
+var AP = [
+["JFK","New York","United States",40.64,-73.78,"America/New_York"],["LAX","Los Angeles","United States",33.94,-118.41,"America/Los_Angeles"],["ORD","Chicago","United States",41.98,-87.90,"America/Chicago"],["ATL","Atlanta","United States",33.64,-84.43,"America/New_York"],["DFW","Dallas","United States",32.90,-97.04,"America/Chicago"],["DEN","Denver","United States",39.86,-104.67,"America/Denver"],["SFO","San Francisco","United States",37.62,-122.38,"America/Los_Angeles"],["SEA","Seattle","United States",47.45,-122.31,"America/Los_Angeles"],["LAS","Las Vegas","United States",36.08,-115.15,"America/Los_Angeles"],["MIA","Miami","United States",25.79,-80.29,"America/New_York"],["BOS","Boston","United States",42.36,-71.01,"America/New_York"],["IAD","Washington DC","United States",38.95,-77.46,"America/New_York"],["PHX","Phoenix","United States",33.43,-112.01,"America/Phoenix"],["MCO","Orlando","United States",28.43,-81.31,"America/New_York"],["IAH","Houston","United States",29.98,-95.34,"America/Chicago"],["EWR","Newark","United States",40.69,-74.17,"America/New_York"],["SAN","San Diego","United States",32.73,-117.19,"America/Los_Angeles"],["HNL","Honolulu","United States",21.32,-157.92,"Pacific/Honolulu"],["ANC","Anchorage","United States",61.17,-150.00,"America/Anchorage"],
+["YYZ","Toronto","Canada",43.68,-79.63,"America/Toronto"],["YVR","Vancouver","Canada",49.19,-123.18,"America/Vancouver"],["YUL","Montreal","Canada",45.47,-73.74,"America/Toronto"],["MEX","Mexico City","Mexico",19.44,-99.07,"America/Mexico_City"],["CUN","Cancun","Mexico",21.04,-86.87,"America/Cancun"],["PTY","Panama City","Panama",9.07,-79.38,"America/Panama"],["HAV","Havana","Cuba",22.99,-82.41,"America/Havana"],
+["GRU","Sao Paulo","Brazil",-23.43,-46.47,"America/Sao_Paulo"],["GIG","Rio de Janeiro","Brazil",-22.81,-43.25,"America/Sao_Paulo"],["EZE","Buenos Aires","Argentina",-34.82,-58.54,"America/Argentina/Buenos_Aires"],["SCL","Santiago","Chile",-33.39,-70.79,"America/Santiago"],["BOG","Bogota","Colombia",4.70,-74.15,"America/Bogota"],["LIM","Lima","Peru",-12.02,-77.11,"America/Lima"],
+["LHR","London","United Kingdom",51.47,-0.45,"Europe/London"],["MAN","Manchester","United Kingdom",53.35,-2.27,"Europe/London"],["EDI","Edinburgh","United Kingdom",55.95,-3.37,"Europe/London"],["DUB","Dublin","Ireland",53.42,-6.27,"Europe/Dublin"],["CDG","Paris","France",49.01,2.55,"Europe/Paris"],["AMS","Amsterdam","Netherlands",52.31,4.76,"Europe/Amsterdam"],["BRU","Brussels","Belgium",50.90,4.48,"Europe/Brussels"],["FRA","Frankfurt","Germany",50.04,8.56,"Europe/Berlin"],["MUC","Munich","Germany",48.35,11.79,"Europe/Berlin"],["MAD","Madrid","Spain",40.47,-3.56,"Europe/Madrid"],["BCN","Barcelona","Spain",41.30,2.08,"Europe/Madrid"],["LIS","Lisbon","Portugal",38.77,-9.13,"Europe/Lisbon"],["FCO","Rome","Italy",41.80,12.25,"Europe/Rome"],["MXP","Milan","Italy",45.63,8.72,"Europe/Rome"],["ZRH","Zurich","Switzerland",47.46,8.55,"Europe/Zurich"],["VIE","Vienna","Austria",48.11,16.57,"Europe/Vienna"],["PRG","Prague","Czechia",50.10,14.26,"Europe/Prague"],["BUD","Budapest","Hungary",47.44,19.26,"Europe/Budapest"],["WAW","Warsaw","Poland",52.17,20.97,"Europe/Warsaw"],["CPH","Copenhagen","Denmark",55.62,12.66,"Europe/Copenhagen"],["ARN","Stockholm","Sweden",59.65,17.92,"Europe/Stockholm"],["OSL","Oslo","Norway",60.19,11.10,"Europe/Oslo"],["HEL","Helsinki","Finland",60.32,24.96,"Europe/Helsinki"],["KEF","Reykjavik","Iceland",63.99,-22.61,"Atlantic/Reykjavik"],["ATH","Athens","Greece",37.94,23.94,"Europe/Athens"],["OTP","Bucharest","Romania",44.57,26.10,"Europe/Bucharest"],["IST","Istanbul","Turkey",41.26,28.74,"Europe/Istanbul"],["SVO","Moscow","Russia",55.97,37.41,"Europe/Moscow"],
+["DXB","Dubai","United Arab Emirates",25.25,55.36,"Asia/Dubai"],["AUH","Abu Dhabi","United Arab Emirates",24.43,54.65,"Asia/Dubai"],["DOH","Doha","Qatar",25.27,51.61,"Asia/Qatar"],["RUH","Riyadh","Saudi Arabia",24.96,46.70,"Asia/Riyadh"],["JED","Jeddah","Saudi Arabia",21.68,39.16,"Asia/Riyadh"],["TLV","Tel Aviv","Israel",32.01,34.89,"Asia/Jerusalem"],["AMM","Amman","Jordan",31.72,35.99,"Asia/Amman"],["CAI","Cairo","Egypt",30.12,31.41,"Africa/Cairo"],["CMN","Casablanca","Morocco",33.37,-7.59,"Africa/Casablanca"],["JNB","Johannesburg","South Africa",-26.14,28.25,"Africa/Johannesburg"],["CPT","Cape Town","South Africa",-33.97,18.60,"Africa/Johannesburg"],["NBO","Nairobi","Kenya",-1.32,36.93,"Africa/Nairobi"],["ADD","Addis Ababa","Ethiopia",8.98,38.80,"Africa/Addis_Ababa"],["LOS","Lagos","Nigeria",6.58,3.32,"Africa/Lagos"],["ACC","Accra","Ghana",5.61,-0.17,"Africa/Accra"],["MRU","Mauritius","Mauritius",-20.43,57.68,"Indian/Mauritius"],
+["DEL","Delhi","India",28.56,77.10,"Asia/Kolkata"],["BOM","Mumbai","India",19.09,72.87,"Asia/Kolkata"],["BLR","Bengaluru","India",13.20,77.71,"Asia/Kolkata"],["MAA","Chennai","India",12.99,80.17,"Asia/Kolkata"],["CCU","Kolkata","India",22.65,88.45,"Asia/Kolkata"],["HYD","Hyderabad","India",17.24,78.43,"Asia/Kolkata"],["ISB","Islamabad","Pakistan",33.55,72.83,"Asia/Karachi"],["KHI","Karachi","Pakistan",24.91,67.16,"Asia/Karachi"],["LHE","Lahore","Pakistan",31.52,74.40,"Asia/Karachi"],["DAC","Dhaka","Bangladesh",23.84,90.40,"Asia/Dhaka"],["CMB","Colombo","Sri Lanka",7.18,79.88,"Asia/Colombo"],["KTM","Kathmandu","Nepal",27.70,85.36,"Asia/Kathmandu"],["TAS","Tashkent","Uzbekistan",41.26,69.28,"Asia/Tashkent"],["ALA","Almaty","Kazakhstan",43.35,77.04,"Asia/Almaty"],
+["BKK","Bangkok","Thailand",13.69,100.75,"Asia/Bangkok"],["SIN","Singapore","Singapore",1.36,103.99,"Asia/Singapore"],["KUL","Kuala Lumpur","Malaysia",2.75,101.71,"Asia/Kuala_Lumpur"],["CGK","Jakarta","Indonesia",-6.13,106.66,"Asia/Jakarta"],["DPS","Bali","Indonesia",-8.75,115.17,"Asia/Makassar"],["MNL","Manila","Philippines",14.51,121.02,"Asia/Manila"],["SGN","Ho Chi Minh City","Vietnam",10.82,106.66,"Asia/Ho_Chi_Minh"],["HAN","Hanoi","Vietnam",21.22,105.81,"Asia/Ho_Chi_Minh"],["HKG","Hong Kong","Hong Kong",22.31,113.91,"Asia/Hong_Kong"],["PEK","Beijing","China",40.08,116.59,"Asia/Shanghai"],["PVG","Shanghai","China",31.14,121.81,"Asia/Shanghai"],["CAN","Guangzhou","China",23.39,113.30,"Asia/Shanghai"],["ICN","Seoul","South Korea",37.46,126.44,"Asia/Seoul"],["NRT","Tokyo Narita","Japan",35.77,140.39,"Asia/Tokyo"],["HND","Tokyo Haneda","Japan",35.55,139.78,"Asia/Tokyo"],["KIX","Osaka","Japan",34.43,135.24,"Asia/Tokyo"],["TPE","Taipei","Taiwan",25.08,121.23,"Asia/Taipei"],
+["SYD","Sydney","Australia",-33.95,151.18,"Australia/Sydney"],["MEL","Melbourne","Australia",-37.67,144.84,"Australia/Melbourne"],["BNE","Brisbane","Australia",-27.38,153.12,"Australia/Brisbane"],["PER","Perth","Australia",-31.94,115.97,"Australia/Perth"],["AKL","Auckland","New Zealand",-37.01,174.79,"Pacific/Auckland"],["NAN","Nadi (Fiji)","Fiji",-17.76,177.44,"Pacific/Fiji"],["PPT","Papeete (Tahiti)","French Polynesia",-17.56,-149.61,"Pacific/Tahiti"]
+];
+function apLabel(a) { return a[1] + " (" + a[0] + "), " + a[2]; }
+function apFill(listId) { var h = ""; AP.slice().sort(function (x, y) { return x[1] < y[1] ? -1 : 1; }).forEach(function (a) { h += '<option value="' + apLabel(a).replace(/"/g, "&quot;") + '"></option>'; }); $(listId).innerHTML = h; }
+function apGet(s) {
+  s = String(s || "").trim().toLowerCase(); if (!s) return null; var m = s.match(/\(([a-z]{3})\)/), code = m ? m[1] : (s.length === 3 ? s : null), i;
+  if (code) for (i = 0; i < AP.length; i++) if (AP[i][0].toLowerCase() === code) return AP[i];
+  for (i = 0; i < AP.length; i++) if (AP[i][1].toLowerCase() === s) return AP[i];
+  for (i = 0; i < AP.length; i++) if (AP[i][1].toLowerCase().indexOf(s) === 0) return AP[i];
+  return null;
+}
+function gcKm(la1, lo1, la2, lo2) { var R = 6371.0088, r = Math.PI / 180, dLa = (la2 - la1) * r, dLo = (lo2 - lo1) * r, a = Math.sin(dLa / 2) * Math.sin(dLa / 2) + Math.cos(la1 * r) * Math.cos(la2 * r) * Math.sin(dLo / 2) * Math.sin(dLo / 2); return 2 * R * Math.asin(Math.min(1, Math.sqrt(a))); }
+function bearing(la1, lo1, la2, lo2) { var r = Math.PI / 180, y = Math.sin((lo2 - lo1) * r) * Math.cos(la2 * r), x = Math.cos(la1 * r) * Math.sin(la2 * r) - Math.sin(la1 * r) * Math.cos(la2 * r) * Math.cos((lo2 - lo1) * r); return (Math.atan2(y, x) / r + 360) % 360; }
+function hm(min) { min = Math.round(min); var h = Math.floor(min / 60), m = min % 60; return h + " h " + p2(m) + " min"; }
+function tzOff(tz, ms) { try { var f = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" }).formatToParts(new Date(ms)), o = {}; f.forEach(function (p) { o[p.type] = +p.value; }); return (Date.UTC(o.year, o.month - 1, o.day, o.hour, o.minute, o.second) - Math.floor(ms / 1000) * 1000) / 60000; } catch (e) { return 0; } }
+function zonedToUTC(y, mo, d, h, mi, tz) { var guess = Date.UTC(y, mo - 1, d, h, mi), off = tzOff(tz, guess); var t = guess - off * 60000, off2 = tzOff(tz, t); if (off2 !== off) t = guess - off2 * 60000; return t; }
+function tzStamp(ms, tz) { try { return new Intl.DateTimeFormat("en-GB", { timeZone: tz, weekday: "short", day: "numeric", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date(ms)); } catch (e) { return new Date(ms).toISOString(); } }
+function tzClock(ms, tz) { try { return new Intl.DateTimeFormat("en-GB", { timeZone: tz, hour: "2-digit", minute: "2-digit", hourCycle: "h23" }).format(new Date(ms)); } catch (e) { return ""; } }
+function tzName(off) { var s = off < 0 ? "-" : "+", a = Math.abs(off); return "UTC" + s + p2(Math.floor(a / 60)) + ":" + p2(a % 60); }
+
+/* ---------- Flight carbon footprint calculator ---------- */
+var R = {};
+var DISCL = "This free flight carbon footprint calculator gives estimates based on typical per-passenger-kilometre emission factors, class multipliers and an optional uplift for non-CO2 effects. Real emissions depend on the aircraft, load factor, route, weather, fuel and the method used, and published calculators differ by 20 percent or more. The factors are editable. Use the result for comparison and awareness, not for formal carbon accounting or compliance. Nothing you enter is sent anywhere.";
+var CLS = { e: ["Economy", 1, 1], p: ["Premium economy", 1.2, 1.6], b: ["Business", 1.5, 2.9], f: ["First", 1.5, 4.0] };
+var CAR_KM = 0.17, TREE = 21, BUDGET = 2000;
+function F() { return { a: cn("cfF1", 0.01, 1, 0.18), b: cn("cfF2", 0.01, 1, 0.14), c: cn("cfF3", 0.01, 1, 0.10), rf: cn("cfRf", 1, 4, 1.9), up: cn("cfUp", 0, 30, 8), px: cn("cfPx", 0, 500, 25), rail: cn("cfRail", 0.001, 0.5, 0.035), bus: cn("cfBus", 0.001, 0.5, 0.027) }; }
+function band(d) { return d < 500 ? 0 : d < 3700 ? 1 : 2; }
+function perPkm(d, cls, f) { var b = band(d), base = [f.a, f.b, f.c][b], m = CLS[cls][b === 2 ? 2 : 1]; if (b === 0) m = CLS[cls][1]; return base * m; }
+function trip(dkm, cls, rt, pax, rf, f) { var d = dkm * (1 + f.up / 100), k = perPkm(d, cls, f) * d * (rt ? 2 : 1) * pax, kw = k * (rf ? f.rf : 1); return { d: d, per: perPkm(d, cls, f), co2: k, tot: kw }; }
+function pt(s) { var a = apGet(s); return a ? { n: a[1] + " (" + a[0] + ")", lat: a[3], lon: a[4] } : null; }
+function eq(kg, f) { return [["Driving an average car", en(kg / CAR_KM, 0) + " km"], ["Tree-years to absorb", en(kg / TREE, 0) + " trees for a year"], ["Share of a 2-tonne yearly budget", en(kg / BUDGET * 100, 0) + "%"], ["Offset cost at " + EC.cur + en(f.px, 0) + " per tonne", EC.cur + en(kg / 1000 * f.px, 2)]]; }
+function calc() {
+  EC.cur = "$"; var f = F(), A = pt($("cfA").value), B = pt($("cfB").value), manual = cn("cfD", 0, 40000, 0), dist, name;
+  var cls = $("cfCls").value, rt = $("cfRt").checked, pax = Math.max(1, Math.round(cn("cfPax", 1, 500, 1))), rf = $("cfRfOn").checked;
+  if (manual > 0) { dist = manual; name = en(manual, 0) + " km flight"; } else if (A && B && (A.lat !== B.lat || A.lon !== B.lon)) { dist = gcKm(A.lat, A.lon, B.lat, B.lon); name = A.n + " to " + B.n; } else { $("cfRes").innerHTML = verdict("info", "Pick two airports from the list, or enter a distance in kilometres."); $("cfFig").innerHTML = ""; $("cfEq").innerHTML = ""; R.rows = []; multi(); fac(); return; }
+  var t = trip(dist, cls, rt, pax, rf, f), per = t.tot / pax, bi = band(t.d);
+  R.rows = [["Route", name + (rt ? ", return" : ", one way")], ["Great-circle distance", en(dist, 0) + " km"], ["Distance with " + f.up + "% routing uplift", en(t.d, 0) + " km"], ["Emission factor", en(t.per, 3) + " kg CO2 per passenger-km (" + ["short hop", "short and medium haul", "long haul"][bi] + ", " + CLS[cls][0] + ")"], ["CO2 per passenger", en(per / (rf ? f.rf : 1), 0) + " kg"], ["With non-CO2 effects (x" + f.rf + ")", rf ? en(per, 0) + " kg CO2e" : "not applied"], ["Total for " + pax + " passenger" + (pax > 1 ? "s" : ""), en(t.tot, 0) + " kg CO2e"]];
+  $("cfRes").innerHTML = '<div class="dt-result"><div class="dt-label">' + esc(name) + (rt ? " (return)" : "") + '</div><div class="ec-big">' + en(per, 0) + ' kg CO2' + (rf ? "e" : "") + '</div><p class="dt-sum">Per passenger in <b>' + CLS[cls][0].toLowerCase() + "</b>, over <b>" + en(t.d * (rt ? 2 : 1), 0) + " km</b> flown. " + (pax > 1 ? "All " + pax + " passengers: <b>" + en(t.tot / 1000, 2) + " tonnes</b>. " : "That is <b>" + en(per / 1000, 2) + " tonnes</b>. ") + "Equal to about " + en(per / CAR_KM, 0) + " km in an average car.</p></div>" + tiles([tile("Per passenger", en(per, 0) + " kg"), tile("Total", en(t.tot, 0) + " kg", pax + " passenger" + (pax > 1 ? "s" : "")), tile("Yearly budget", en(per / BUDGET * 100, 0) + "%", "of 2 tonnes")]);
+  var items = Object.keys(CLS).map(function (k, i) { var x = trip(dist, k, rt, 1, rf, f); return { l: CLS[k][0], v: x.tot, color: k === cls ? "#dc2626" : "#0369a1", best: k === cls }; });
+  var g = dist * 1.2, oc = Math.max(1, Math.min(pax, 4)), ground = [{ l: "Flying (" + CLS[cls][0] + ")", v: per, color: "#dc2626" }, { l: "Car, " + oc + " occupant" + (oc > 1 ? "s" : ""), v: g * CAR_KM / oc * (rt ? 2 : 1), color: "#d97706" }, { l: "Coach", v: g * f.bus * (rt ? 2 : 1), color: "#0891b2" }, { l: "Rail", v: g * f.rail * (rt ? 2 : 1), color: "#16a34a" }];
+  $("cfFig").innerHTML = '<h3>By cabin class</h3>' + hbars({ items: items, fmt: function (v) { return en(v, 0) + " kg"; }, lw: 150, label: "Emissions by cabin class" }) + '<h3>Compared with ground travel (if possible)</h3>' + hbars({ items: ground, fmt: function (v) { return en(v, 0) + " kg"; }, lw: 150, label: "Flying versus ground travel" }) + '<p class="ec-note">Ground distance assumed 20% longer than the straight line. Not every route can be travelled by land.</p>';
+  R.eq = eq(per, f); $("cfEq").innerHTML = tbl(["Equivalent", "Amount (per passenger)"], R.eq) + tbl(["Item", "Value"], R.rows);
+  R.cls = items.map(function (x) { return [x.l, en(x.v, 0) + " kg"]; });
+  multi(); fac();
+}
+function multi() {
+  var f = F(), rf = $("cfRfOn").checked, tot = 0, rows = [];
+  for (var i = 1; i <= 6; i++) { var A = pt($("cfM" + i + "a").value), B = pt($("cfM" + i + "b").value); if (!A || !B || (A.lat === B.lat && A.lon === B.lon)) continue; var d = gcKm(A.lat, A.lon, B.lat, B.lon), c = $("cfM" + i + "c").value, rt = $("cfM" + i + "r").checked, t = trip(d, c, rt, 1, rf, f); tot += t.tot; rows.push([A.n + " to " + B.n + (rt ? " (return)" : ""), CLS[c][0], en(d, 0) + " km", en(t.tot, 0) + " kg"]); }
+  R.multi = rows.concat(rows.length ? [["Total", "", "", en(tot, 0) + " kg CO2" + (rf ? "e" : "")]] : []);
+  $("cfMulti").innerHTML = rows.length ? '<div class="dt-result"><div class="dt-label">Your flights this year</div><div class="ec-big">' + en(tot / 1000, 2) + ' t CO2' + (rf ? "e" : "") + '</div><p class="dt-sum">That is <b>' + en(tot / BUDGET * 100, 0) + "%</b> of a 2-tonne yearly budget, equal to about " + en(tot / CAR_KM, 0) + " km of driving. Offsetting at " + EC.cur + en(f.px, 0) + " per tonne would cost about " + EC.cur + en(tot / 1000 * f.px, 0) + ".</p></div>" + tbl(["Flight", "Class", "Distance", "Emissions"], R.multi) : verdict("info", "Add at least one flight with two airports from the list.");
+}
+function fac() {
+  var f = F(); R.fac = [["Short hops (under 500 km)", f.a + " kg CO2 per passenger-km"], ["Short and medium haul (500 to 3,700 km)", f.b + " kg"], ["Long haul (over 3,700 km)", f.c + " kg"], ["Routing uplift", f.up + "%"], ["Non-CO2 multiplier", "x" + f.rf]].concat(Object.keys(CLS).map(function (k) { return [CLS[k][0] + " multiplier", "x" + CLS[k][1] + " (under 3,700 km), x" + CLS[k][2] + " (long haul)"]; }));
+  $("cfFac").innerHTML = tbl(["Assumption", "Value"], R.fac);
+}
+function text() { return "Flight carbon footprint\n" + R.rows.map(function (r) { return r[0] + ": " + r[1]; }).join("\n"); }
+function setDef() { $("cfA").value = "London (LHR), United Kingdom"; $("cfB").value = "New York (JFK), United States"; $("cfD").value = ""; $("cfCls").value = "e"; $("cfRt").checked = true; $("cfPax").value = 1; $("cfRfOn").checked = true; $("cfF1").value = 0.18; $("cfF2").value = 0.14; $("cfF3").value = 0.10; $("cfRf").value = 1.9; $("cfUp").value = 8; $("cfPx").value = 25; $("cfRail").value = 0.035; $("cfBus").value = 0.027;
+  var d = [["London (LHR), United Kingdom", "New York (JFK), United States", "e", 1], ["Dubai (DXB), United Arab Emirates", "Delhi (DEL), India", "e", 0], ["Tashkent (TAS), Uzbekistan", "Istanbul (IST), Turkey", "e", 1], ["", "", "e", 0], ["", "", "e", 0], ["", "", "e", 0]];
+  d.forEach(function (r, i) { $("cfM" + (i + 1) + "a").value = r[0]; $("cfM" + (i + 1) + "b").value = r[1]; $("cfM" + (i + 1) + "c").value = r[2]; $("cfM" + (i + 1) + "r").checked = !!r[3]; }); }
+function init() {
+  initCommon(); apFill("cfList");
+  var h = ""; for (var i = 1; i <= 6; i++) h += '<div class="dt-row"><div><label for="cfM' + i + 'a">Flight ' + i + ' from</label><input type="text" id="cfM' + i + 'a" list="cfList" autocomplete="off"></div><div><label for="cfM' + i + 'b">to</label><input type="text" id="cfM' + i + 'b" list="cfList" autocomplete="off"></div><div><label for="cfM' + i + 'c">Class</label><select id="cfM' + i + 'c"><option value="e">Economy</option><option value="p">Premium economy</option><option value="b">Business</option><option value="f">First</option></select></div><div class="im-chk"><input type="checkbox" id="cfM' + i + 'r"><label for="cfM' + i + 'r">Return</label></div></div>';
+  $("cfRows").innerHTML = h; setDef(); initTabs(["one", "year", "fac"]);
+  var ids = ["cfA", "cfB", "cfD", "cfCls", "cfRt", "cfPax", "cfRfOn", "cfF1", "cfF2", "cfF3", "cfRf", "cfUp", "cfPx", "cfRail", "cfBus"]; for (var j = 1; j <= 6; j++) ids.push("cfM" + j + "a", "cfM" + j + "b", "cfM" + j + "c", "cfM" + j + "r");
+  ids.forEach(function (id) { $(id).addEventListener("input", calc); $(id).addEventListener("change", calc); });
+  bindStd("cf", { ready: function () { return R.rows && R.rows.length; }, text: text, csv: function () { return csvText([["Item", "Value"]].concat(R.rows, [["", ""], ["Cabin class", "kg"]], R.cls || [], [["", ""], ["Equivalents", ""]], R.eq || [], [["", ""], ["Flights this year", "Class", "Distance", "Emissions"]], R.multi || [], [["", ""]], R.fac)); }, file: "flight-carbon-footprint.csv", title: "Flight carbon footprint", site: "Free flight carbon footprint calculator", disc: DISCL, report: function (b) { repTbl(b, ["Item", "Value"], R.rows); repAdd(b, "h3", "Equivalents"); repTbl(b, ["Equivalent", "Amount"], R.eq); if (R.multi && R.multi.length) { repAdd(b, "h3", "Flights this year"); repTbl(b, ["Flight", "Class", "Distance", "Emissions"], R.multi); } repAdd(b, "h3", "Assumptions"); repTbl(b, ["Assumption", "Value"], R.fac); } });
+  $("resetBtn").addEventListener("click", function () { setDef(); calc(); initTabs.show("one"); msg("Reset to the example."); });
+  calc();
+}
+init();
+
+})();
+</script>
+</body>
+</html>
