@@ -887,10 +887,15 @@ document.addEventListener("DOMContentLoaded", function () {
           if (catSlug(t.url) === mySlug && !isGuide(t)) take(same, t, SAME_MAX);
         }
         var used = {}; used[mySlug] = 1;
-        var start = (cur * 7 + 3) % n;
-        for (i = 0; i < n && other.length < OTHER_MAX; i++) {
-          var o = toolIndex[(start + i) % n], s = catSlug(o.url);
-          if (isGuide(o) || !s || used[s] || seen[norm(o.url)]) continue;
+        // all tools (guides left out) in toolIndex order. Walk through them with a big step,
+        // starting at a different place for every page, so each tool is offered about equally
+        // often and the first tool of a category is not favoured.
+        var flat = [];
+        for (i = 0; i < n; i++) { if (!isGuide(toolIndex[i]) && catSlug(toolIndex[i].url)) flat.push(toolIndex[i]); }
+        var m = flat.length, base = (cur * 7 + 3) % m, step = Math.max(1, Math.round(m * 0.382));
+        for (i = 0; i < 2 * m && other.length < OTHER_MAX; i++) {
+          var o = i < m ? flat[(base + i * step) % m] : flat[i - m], s = catSlug(o.url);
+          if (used[s] || seen[norm(o.url)]) continue;
           used[s] = 1; seen[norm(o.url)] = 1; other.push(o);
         }
       }
