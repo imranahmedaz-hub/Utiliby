@@ -795,7 +795,7 @@ document.addEventListener("DOMContentLoaded", function () {
    (replaces the automatic same-category / other-category blocks for that tool). */
 (function () {
   var SAME_MAX   = 6;   // tools from the same category
-  var OTHER_MAX  = 6;   // tools from other categories
+  var OTHER_MAX  = 3;   // tools from other categories
   var GUIDE_MAX  = 3;   // guides shown on a tool page
   var GUIDE_SAME_MAX  = 4;  // guides from the same topic, shown on a guide page
   var GUIDE_OTHER_MAX = 3;  // guides from other topics (one per topic), shown on a guide page
@@ -805,8 +805,9 @@ document.addEventListener("DOMContentLoaded", function () {
   function isGuide(t) { return t.category === "Guide" || norm(t.url).indexOf("/guides/") === 0; }
   function topicOf(g) { return g.topic || (g.tools && g.tools.length ? catSlug(g.tools[0]) : ""); }
   function cleanName(t) { return isGuide(t) ? t.name.replace(/\s*\(Guide\)\s*$/i, "") : t.name; }
-  function card(t) {
-    return '<a class="card" href="' + ulEsc(t.url) + '"><b>' + ulEsc(cleanName(t)) + '</b><span>' + ulEsc(isGuide(t) ? "Guide" : t.category) + '</span></a>';
+  // withLabel: show the category under the name (only useful for tools from other categories)
+  function card(t, withLabel) {
+    return '<a class="card" href="' + ulEsc(t.url) + '"><b>' + ulEsc(cleanName(t)) + '</b>' + (withLabel ? '<span>' + ulEsc(isGuide(t) ? "Guide" : t.category) + '</span>' : '') + '</a>';
   }
 
   // compact "guide + its tool" rows used at the bottom of guide pages
@@ -834,9 +835,9 @@ document.addEventListener("DOMContentLoaded", function () {
       ".rel-guides .rg-tool a{color:var(--brand)}";
     document.head.appendChild(st);
   }
-  function block(title, list, first) {
+  function block(title, list, first, withLabel) {
     if (!list.length) return "";
-    return '<h2' + (first ? '' : ' style="margin-top:28px"') + '>' + ulEsc(title) + '</h2><div class="grid">' + list.map(card).join("") + '</div>';
+    return '<h2' + (first ? '' : ' style="margin-top:28px"') + '>' + ulEsc(title) + '</h2><div class="grid tool-list">' + list.map(function (t) { return card(t, withLabel); }).join("") + '</div>';
   }
 
   function init() {
@@ -901,7 +902,7 @@ document.addEventListener("DOMContentLoaded", function () {
       }
       html = block(guides.length > 1 ? "Guides" : "Read the guide", guides, true) +
              block("More " + me.category + (/tools$/i.test(me.category) ? "" : " tools"), same, !guides.length) +
-             block("You may also like", other, !guides.length && !same.length);
+             block("You may also like", other, !guides.length && !same.length, true);
     }
     if (!html) return;
     addCss();
