@@ -184,7 +184,7 @@
 <button type="button" data-copy-target="dt-embed">Copy embed code</button>
 </div>
 <article class="cn-article noembed">
-<p class="dt-by">Written by the Utiliby editorial team · Last updated October 13, 2026 · Rules and formulas reviewed October 2026</p>
+<p class="dt-by">Written by the Utiliby editorial team · Last updated October 26, 2026 · Rules and formulas reviewed October 2026</p>
 <nav class="dt-toc" aria-label="Contents"><b>Contents</b><ol><li><a href="#what">What this free online text to speech reader does</a></li><li><a href="#how">How to use the text to speech reader</a></li><li><a href="#speed">How fast should text to speech be read?</a></li><li><a href="#browser">How browser text to speech works</a></li><li><a href="#voices">Getting better voices on Windows, Mac, iPhone and Android</a></li><li><a href="#access">Text to speech for dyslexia, low vision and learning</a></li><li><a href="#tips">Tips for clear, natural-sounding speech</a></li><li><a href="#trouble">Troubleshooting: no sound, no voices or stuck playback</a></li><li><a href="#uses">Common uses for an online text to speech reader</a></li><li><a href="#compare">How this compares with paid text to speech services</a></li><li><a href="#privacy">Privacy and data</a></li><li><a href="#related">Related free tools</a></li><li><a href="#faq">Frequently asked questions</a></li><li><a href="#sources">Sources and further reading</a></li><li><a href="#disclaimer">Disclaimer</a></li></ol></nav>
 <h2 id="what">What this free online text to speech reader does</h2>
 <p>A <b>text to speech reader</b> turns written words into spoken audio. This free online version works straight in your browser: paste an article, an email, homework or a draft, press <b>Play</b> and hear it read aloud in the voice and speed you choose. As it speaks, the reading panel highlights the current sentence and the current word, so you can follow along with your eyes and your ears together.</p><p>Most online text to speech services are paid, limit the number of characters, add a watermark to the audio or ask you to upload your text. This reader is different. It uses the voices that are already on your computer, phone or tablet, so there is nothing to subscribe to, nothing to install and no usage cap. It also keeps your text on your device, which matters for drafts, school work, contracts and anything private.</p><p>People use it for many reasons: proofreading by ear to catch mistakes the eye skips, listening to long articles while cooking or commuting, supporting reading with dyslexia or low vision, practising pronunciation in a second language, and giving tired eyes a break. It is also useful for developers and content writers who want to hear how a page might sound to someone using a screen reader.</p><figure class="dt-fig"><svg viewBox="0 0 640 200" width="100%" role="img" aria-label="Diagram showing text split into sentences, queued, spoken by a device voice and highlighted on screen"><title>How browser text to speech works</title>
@@ -390,11 +390,15 @@ function speakable(s) {
   return t.replace(/\s+/g, " ").trim();
 }
 function splitText(text) {
-  var out = [], parts = text.match(/[^.!?\n]+(?:[.!?]+["')\]]*|$)|\n/g) || [];
-  parts.forEach(function (p) {
-    p = p.replace(/^\s+/, ""); if (!p.trim()) return;
-    while (p.length > 220) { var cut = Math.max(p.lastIndexOf(", ", 200), p.lastIndexOf("; ", 200), p.lastIndexOf(" ", 200)); if (cut < 60) cut = 200; out.push(p.slice(0, cut + 1).trim()); p = p.slice(cut + 1); }
-    if (p.trim()) out.push(p.trim());
+  var out = [], AB = /(?:\b(?:e\.g|i\.e|vs|mr|mrs|ms|dr|prof|fig|approx|cf)\.)$/i;
+  String(text).split(/\n/).forEach(function (line) {
+    var pcs = line.replace(/([.!?]+["')\]]*)\s+/g, "$1\u0001").split("\u0001"), merged = [];
+    pcs.forEach(function (p) { if (merged.length && AB.test(merged[merged.length - 1])) merged[merged.length - 1] += " " + p; else merged.push(p); });
+    merged.forEach(function (p) {
+      p = p.replace(/^\s+/, ""); if (!p.trim()) return;
+      while (p.length > 220) { var cut = Math.max(p.lastIndexOf(", ", 200), p.lastIndexOf("; ", 200), p.lastIndexOf(" ", 200)); if (cut < 60) cut = 200; out.push(p.slice(0, cut + 1).trim()); p = p.slice(cut + 1); }
+      if (p.trim()) out.push(p.trim());
+    });
   });
   return out;
 }
