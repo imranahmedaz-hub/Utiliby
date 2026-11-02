@@ -1,0 +1,920 @@
+/* =========================================================
+   Utiliby – shared JS
+   - Dynamic header nav + footer (with social row)
+   - Organization schema with sameAs (brand entity)
+   - Tool index (single source of truth)
+   - Home page enhanced search
+   - Breadcrumb search (all other pages)
+   - Share module (auto-injected)
+   - Copy-to-clipboard, YouTube facade
+   ========================================================= */
+
+/* ---------- 1. TOOL INDEX ---------- */
+var toolIndex = [
+  { name: "Split Bill Calculator",              url: "/tools/everyday-calculators/split-bill-calculator/",                 category: "Everyday Calculators", keywords: "bill splitter check restaurant tip tax group dinner share" },
+  { name: "Budget Planner Calculator",          url: "/tools/everyday-calculators/budget-planner-calculator/",            category: "Everyday Calculators", keywords: "budget 50/30/20 needs wants savings monthly money personal finance" },
+  { name: "GPA Calculator",                     url: "/tools/everyday-calculators/gpa-calculator/",                       category: "Everyday Calculators", keywords: "gpa grade point average weighted unweighted cumulative college school" },
+  { name: "Fertilizer/Lawn Calculator",         url: "/tools/everyday-calculators/fertilizer-lawn-calculator/",           category: "Everyday Calculators", keywords: "fertilizer npk lawn grass seed lime topdressing spreader garden" },
+  { name: "Screen Time Calculator",             url: "/tools/everyday-calculators/screen-time-calculator/",               category: "Everyday Calculators", keywords: "screen time digital wellbeing phone hours lifetime health" },
+  { name: "Percentage Calculator",              url: "/tools/everyday-calculators/percentage-calculator/", category: "Everyday Calculators", keywords: "percentage calculator percent of a number percent change percentage increase decrease percent difference reverse percentage what percent is x of y successive percent free online" },
+  { name: "Age Calculator",                     url: "/tools/everyday-calculators/age-calculator/", category: "Everyday Calculators", keywords: "age calculator exact age years months days date of birth calculator next birthday how old am i age in days age on other planets korean age free online" },
+  { name: "BMI Calculator",                     url: "/tools/everyday-calculators/bmi-calculator/", category: "Everyday Calculators", keywords: "bmi calculator body mass index healthy weight range bmi prime ponderal index asian bmi waist to height ratio goal weight free online" },
+  { name: "Loan Calculator",                    url: "/tools/everyday-calculators/loan-calculator/", category: "Everyday Calculators", keywords: "loan calculator monthly payment amortization schedule extra payments biweekly payment loan interest car loan personal loan affordability apr free online" },
+  { name: "Compound Interest Calculator",       url: "/tools/everyday-calculators/compound-interest-calculator/", category: "Everyday Calculators", keywords: "compound interest calculator investment growth monthly contributions continuous compounding rule of 72 savings goal inflation adjusted free online" },
+  { name: "Fraction Calculator",                url: "/tools/everyday-calculators/fraction-calculator/", category: "Everyday Calculators", keywords: "fraction calculator add subtract multiply divide fractions mixed numbers simplify fractions decimal to fraction compare fractions repeating decimals free online" },
+  { name: "Days Between Dates Calculator",      url: "/tools/everyday-calculators/days-between-dates-calculator/", category: "Everyday Calculators", keywords: "days between dates calculator date difference add days to date subtract days weeks between dates countdown weekdays iso week day of year free online" },
+  { name: "Discount Calculator",                url: "/tools/everyday-calculators/discount-calculator/", category: "Everyday Calculators", keywords: "discount calculator percent off sale price stacked discount coupon sales tax original price bogo compare deals free online" },
+  { name: "Hourly to Salary Calculator",        url: "/tools/everyday-calculators/hourly-to-salary-calculator/", category: "Everyday Calculators", keywords: "hourly to salary calculator hourly wage to annual salary salary to hourly overtime pay biweekly monthly pay rate chart compare job offers free online" },
+  { name: "Average Calculator",                 url: "/tools/everyday-calculators/average-calculator/", category: "Everyday Calculators", keywords: "average calculator mean median mode range standard deviation quartiles outliers weighted average grade average missing number free online" },
+  { name: "Unit Price Calculator",              url: "/tools/everyday-calculators/unit-price-calculator/", category: "Everyday Calculators", keywords: "unit price calculator price per ounce price per unit compare grocery prices best value cost per use shrinkflation checker free online" },
+  { name: "Electricity Cost Calculator",        url: "/tools/everyday-calculators/electricity-cost-calculator/", category: "Everyday Calculators", keywords: "electricity cost calculator appliance running cost watts to kwh cost per hour cost to run space heater led savings payback standby power co2 free online" },
+  { name: "Pay Raise Calculator",               url: "/tools/everyday-calculators/pay-raise-calculator/", category: "Everyday Calculators", keywords: "pay raise calculator salary increase percentage raise real raise inflation how much raise do i need new salary negotiation ask ladder free online" },
+  { name: "Subscription Cost Calculator",       url: "/tools/everyday-calculators/subscription-cost-calculator/", category: "Everyday Calculators", keywords: "subscription cost calculator subscription tracker monthly yearly cost cancel subscriptions annual vs monthly plan streaming costs savings free online" },
+  { name: "Gas Trip Cost Calculator",           url: "/tools/everyday-calculators/gas-trip-cost-calculator/", category: "Everyday Calculators", keywords: "gas trip cost calculator road trip fuel cost mpg l/100km cost per mile split gas cost carpool ev vs gas multi stop co2 free online" },
+  { name: "Keto Macro Calculator",              url: "/tools/health-fitness/keto-macro-calculator/",                      category: "Health & Fitness",     keywords: "keto macro protein fat carbs diet low-carb carnivore macros" },
+  { name: "Sleep Cycle Calculator",             url: "/tools/health-fitness/sleep-cycle-calculator/",                     category: "Health & Fitness",     keywords: "sleep cycle bedtime wake up nap sleep debt calculator" },
+  { name: "Stretching Routine Generator",       url: "/tools/health-fitness/stretching-routine-generator/",               category: "Health & Fitness",     keywords: "stretching routine generator stretch flexibility morning desk break mobility" },
+  { name: "V-Belt Length Calculator",           url: "/tools/engineering/v-belt-length-calculator/",                      category: "Engineering",          keywords: "v-belt length pulley belt drive wrap angle mechanical" },
+  { name: "Spring Rate Calculator",             url: "/tools/engineering/spring-rate-calculator/",                        category: "Engineering",          keywords: "spring rate calculator spring constant compression extension torsion wahl factor stress" },
+  { name: "Stepper Motor Calculator",           url: "/tools/engineering/stepper-motor-calculator/",                      category: "Engineering",          keywords: "stepper motor calculator speed torque steps per mm cnc 3d printer microstepping resonance" },
+  { name: "Bearing L10 Life Calculator",        url: "/tools/engineering/bearing-l10-life-calculator/",                   category: "Engineering",          keywords: "bearing l10 life iso 281 rating life l10h dynamic load rating equivalent load bearing fatigue life reliability modified life aiso lubrication" },
+  { name: "Roof Pitch Calculator",              url: "/tools/construction/roof-pitch-calculator/",                        category: "Construction",         keywords: "roof pitch slope rise run degrees roof angle" },
+  { name: "Fence Post Calculator",              url: "/tools/construction/fence-post-calculator/",                        category: "Construction",         keywords: "fence post concrete bags spacing wood chainlink" },
+  { name: "Stair Stringer Calculator (IRC Code)", url: "/tools/construction/stair-stringer-calculator/",                  category: "Construction",         keywords: "stair stringer calculator IRC code riser tread total run stringer length angle headroom handrail deck stairs cut list" },
+  { name: "Deck Footing Calculator (Frost Depth)", url: "/tools/construction/deck-footing-calculator/",                   category: "Construction",         keywords: "deck footing calculator frost depth footing size tributary area concrete bags rebar IRC R403.1.4 sonotube" },
+  { name: "Password Generator",                 url: "/tools/developer-tools/password-generator/",                        category: "Developer Tools",      keywords: "password generator secure random strong" },
+  { name: "Cron Expression Generator",          url: "/tools/developer-tools/cron-expression-generator/",                 category: "Developer Tools",      keywords: "cron expression generator parser crontab schedule builder quartz unix systemd timer next run time timezone" },
+  { name: "Code Unminifier (Beautify)",         url: "/tools/developer-tools/code-unminifier/",                           category: "Developer Tools",      keywords: "code unminifier beautifier formatter minified javascript css html json xml sql beautify prettify code formatter unminify" },
+  { name: "README Template Generator",          url: "/tools/developer-tools/readme-template-generator/",                 category: "Developer Tools",      keywords: "readme template generator readme.md generator github readme builder markdown readme maker project documentation shields.io badges" },
+  { name: "License File Generator",             url: "/tools/developer-tools/license-file-generator/",                    category: "Developer Tools",      keywords: "license file generator open source license generator mit apache gpl bsd isc mpl unlicense spdx license picker choose a license LICENSE file" },
+  { name: "Jet Lag Calculator",                 url: "/tools/travel-tools/jet-lag-calculator/",                           category: "Travel Tools",         keywords: "jet lag time zone travel sleep recovery flight" },
+  { name: "Schengen 90/180 Day Calculator",     url: "/tools/travel-tools/schengen-calculator/",                          category: "Travel Tools",         keywords: "schengen calculator 90 180 day rule rolling window overstay visa europe schengen days calculator" },
+  { name: "Layover Time Calculator",            url: "/tools/travel-tools/layover-time-calculator/",                      category: "Travel Tools",         keywords: "layover time calculator connection time minimum connection time MCT airport layover is my layover long enough" },
+  { name: "Passport Validity Checker",          url: "/tools/travel-tools/passport-validity-checker/",                    category: "Travel Tools",         keywords: "passport validity checker 6 month rule passport expiry travel entry requirements passport validity by country" },
+  { name: "EU261 Compensation Calculator",      url: "/tools/travel-tools/eu261-compensation-calculator/",                category: "Travel Tools",         keywords: "eu261 compensation calculator flight delay compensation eu flight compensation cancelled flight claim EU regulation 261" },
+  { name: "VAT Refund Calculator",              url: "/tools/travel-tools/vat-refund-calculator/",                        category: "Travel Tools",         keywords: "vat refund calculator tax free shopping tourist vat refund tax refund calculator vat refund by country" },
+  { name: "Flight Time Calculator",             url: "/tools/travel-tools/flight-time-calculator/", category: "Travel Tools", keywords: "flight time calculator how long is the flight distance between airports great circle distance flight duration calculator arrival time time difference km miles nautical miles multi stop layover jet stream route map free online" },
+  { name: "Packing List Generator",             url: "/tools/travel-tools/packing-list-generator/", category: "Travel Tools", keywords: "packing list generator travel packing checklist what to pack printable packing list vacation packing list beach ski hiking business trip carry on only baby kids packing baggage weight calculator free online" },
+  { name: "Travel Budget Calculator",           url: "/tools/travel-tools/travel-budget-calculator/", category: "Travel Tools", keywords: "travel budget calculator trip cost calculator vacation budget planner how much does a trip cost daily travel budget per person savings plan for a trip holiday cost estimator backpacking budget free online" },
+  { name: "Carry-On Size Checker",              url: "/tools/travel-tools/carry-on-size-checker/", category: "Travel Tools", keywords: "carry on size checker cabin bag size airline baggage allowance hand luggage dimensions personal item size ryanair easyjet delta united iata 56x45x25 will my bag fit carry on weight limit free online" },
+  { name: "Airport Arrival Time Calculator",    url: "/tools/travel-tools/airport-arrival-time-calculator/", category: "Travel Tools", keywords: "airport arrival time calculator how early to arrive at the airport when to leave for the airport how long before flight to arrive international domestic security check in bag drop cut off landing to exit time free online" },
+  { name: "Sunrise and Sunset Calculator",      url: "/tools/travel-tools/sunrise-sunset-calculator/", category: "Travel Tools", keywords: "sunrise sunset calculator sunrise time sunset time day length solar noon golden hour blue hour civil nautical astronomical twilight sun path by date and location polar day free online" },
+  { name: "Flight Carbon Footprint Calculator", url: "/tools/travel-tools/flight-carbon-footprint-calculator/", category: "Travel Tools", keywords: "flight carbon footprint calculator co2 emissions per flight carbon offset cost economy business class emissions flying vs train vs car aviation emissions per passenger kg co2e yearly travel footprint free online" },
+  { name: "Tipping Guide Calculator",           url: "/tools/travel-tools/tipping-guide-calculator/", category: "Travel Tools", keywords: "tipping guide calculator how much to tip abroad tipping etiquette by country tip calculator restaurant taxi hotel porter tour guide service charge included split bill with tip usa europe japan free online" },
+  { name: "Points and Miles Value Calculator",  url: "/tools/travel-tools/points-miles-value-calculator/", category: "Travel Tools", keywords: "points and miles value calculator cents per point airline miles value hotel points value redemption calculator is it worth using points travel rewards card vs cash back buy points break even free online" },
+  { name: "Currency Exchange Fee Calculator",   url: "/tools/travel-tools/currency-exchange-fee-calculator/", category: "Travel Tools", keywords: "currency exchange fee calculator foreign transaction fee atm fee exchange rate markup dynamic currency conversion dcc airport exchange cost cheapest way to exchange money travel card fees mid market rate free online" },
+  { name: "Days in Country Tracker",            url: "/tools/travel-tools/days-in-country-tracker/", category: "Travel Tools", keywords: "days in country tracker 183 day rule calculator tax residency day counter how many days have i spent in a country digital nomad day tracker substantial presence test uk tax year rolling 365 free online" },
+  { name: "Hotel vs Airbnb Cost Calculator",    url: "/tools/travel-tools/hotel-vs-airbnb-cost-calculator/", category: "Travel Tools", keywords: "hotel vs airbnb cost calculator is airbnb cheaper than a hotel vacation rental cost comparison cleaning fee service fee resort fee break even nights group size per person cost free online" },
+  { name: "Vendor Comparison Tool",             url: "/tools/business-legal-tools/vendor-comparison-tool/",               category: "Business & Legal",     keywords: "vendor comparison supplier procurement weighted decision" },
+  { name: "Invoice Generator",                  url: "/tools/business-legal-tools/invoice-generator/",                    category: "Business & Legal",     keywords: "invoice generator free invoice maker create invoice online invoice template pdf freelancer small business" },
+  { name: "Startup Runway Calculator",          url: "/tools/business-legal-tools/startup-runway-calculator/",            category: "Business & Legal",     keywords: "startup runway calculator burn rate calculator cash runway months startup finance" },
+  { name: "Break-Even Calculator",              url: "/tools/business-legal-tools/break-even-calculator/",                category: "Business & Legal",     keywords: "break even calculator break even point analysis small business contribution margin fixed costs variable costs" },
+  { name: "SBA Loan Calculator",                url: "/tools/business-legal-tools/sba-loan-calculator/",                  category: "Business & Legal",     keywords: "sba loan calculator sba 7a calculator sba 504 calculator monthly payment amortization small business loan" },
+  { name: "Business Valuation Calculator",      url: "/tools/business-legal-tools/business-valuation-calculator/",        category: "Business & Legal",     keywords: "business valuation calculator how much is my business worth ebitda multiple revenue multiple small business valuation" },
+  { name: "Lesson Plan Template Generator",     url: "/tools/education-study-tools/lesson-plan-template-generator/",      category: "Education",            keywords: "lesson plan template teacher classroom generator" },
+  { name: "Random Student Picker",              url: "/tools/education-study-tools/random-student-picker/",               category: "Education",            keywords: "random student picker random name picker classroom wheel student selector cold calling fair picker" },
+  { name: "Group Generator",                    url: "/tools/education-study-tools/group-generator/",                     category: "Education",            keywords: "random group generator random team maker group generator balanced groups classroom groups" },
+  { name: "Exam Timer",                         url: "/tools/education-study-tools/exam-timer/",                          category: "Education",            keywords: "exam timer per question pacing countdown timer exam hall invigilator timer study timer" },
+  { name: "Rubric Generator",                   url: "/tools/education-study-tools/rubric-generator/",                    category: "Education",            keywords: "rubric generator grading rubric rubric maker analytic rubric rubric template" },
+  { name: "Syllabus Generator",                 url: "/tools/education-study-tools/syllabus-generator/",                  category: "Education",            keywords: "syllabus generator course syllabus syllabus template course outline syllabus maker" },
+  { name: "Language Flashcard Generator",       url: "/tools/education-study-tools/flashcard-generator/",                 category: "Education",            keywords: "flashcard generator language flashcards vocabulary flashcards spaced repetition flashcard maker" },
+  { name: "Pronunciation Guide Tool",           url: "/tools/education-study-tools/pronunciation-guide/",                 category: "Education",            keywords: "pronunciation guide pronunciation tool IPA phonetic spelling how to pronounce" },
+  { name: "Bold Italic Text Generator",         url: "/tools/text-writing/bold-italic-text-generator/",                   category: "Text & Writing",       keywords: "bold italic unicode fancy text cursive font generator" },
+  { name: "Upside-Down Text Generator", 	url: "/tools/text-writing/upside-down-text-generator/", 		  category: "Text & Writing", 	    keywords: "upside down text generator flip text mirror reverse copy paste unicode instagram bio" },
+  { name: "Strikethrough Text Generator", 	url: "/tools/text-writing/strikethrough-text-generator/", 		  category: "Text & Writing",       keywords: "strikethrough text generator crossed out text cross out unicode instagram discord whatsapp" },
+  { name: "Old English Font Generator", 	url: "/tools/text-writing/old-english-font-generator/", 		  category: "Text & Writing",       keywords: "old english font generator gothic text blackletter fraktur copy paste tattoo logo" },
+  { name: "Text to ASCII Art Generator", 	url: "/tools/text-writing/text-to-ascii-art/", 				  category: "Text & Writing",       keywords: "text to ascii art generator ascii banner figlet readme header terminal banner" },
+  { name: "Word Counter",                       url: "/tools/text-writing/word-counter/", category: "Text & Writing", keywords: "word counter character counter count words online sentence counter paragraph counter keyword density checker reading level flesch word count goal essay word limit letter frequency twitter character limit free online" },
+  { name: "Grammar Checker",                    url: "/tools/text-writing/grammar-checker/", category: "Text & Writing", keywords: "grammar checker free online spell checker punctuation checker proofreading tool passive voice checker wordiness checker repeated words adverb checker us uk english sentence length writing style editor" },
+  { name: "Citation Generator",                 url: "/tools/text-writing/citation-generator/", category: "Text & Writing", keywords: "citation generator apa citation generator mla citation generator chicago harvard ieee reference generator bibliography maker cite a website cite a book cite a journal article in text citation works cited free online" },
+  { name: "Text Compare Tool",                  url: "/tools/text-writing/text-compare-tool/", category: "Text & Writing", keywords: "text compare tool diff checker compare two texts online difference between two text files find differences in text text diff side by side similarity percentage compare documents unified diff plagiarism check free" },
+  { name: "Lorem Ipsum Generator",              url: "/tools/text-writing/lorem-ipsum-generator/", category: "Text & Writing", keywords: "lorem ipsum generator dummy text generator placeholder text random text generator lorem ipsum paragraphs lorem ipsum words html lorem ipsum markdown json filler text exact character count free online" },
+  { name: "Text Case Converter",                url: "/tools/text-writing/text-case-converter/", category: "Text & Writing", keywords: "text case converter uppercase to lowercase converter title case converter sentence case capitalize each word camelcase snake case kebab case url slug ap apa chicago mla title case inverse case free online" },
+  { name: "Reading Time Calculator",            url: "/tools/text-writing/reading-time-calculator/", category: "Text & Writing", keywords: "reading time calculator how long to read words per minute speaking time calculator speech length calculator words to minutes minutes to words presentation time audiobook length read time estimator blog free online" },
+  { name: "Words to Pages Calculator",          url: "/tools/text-writing/words-to-pages-calculator/", category: "Text & Writing", keywords: "words to pages calculator how many pages is 1000 words how many words per page pages to words double spaced single spaced essay length page count calculator font size margins a4 letter free online" },
+  { name: "Syllable Counter",                   url: "/tools/text-writing/syllable-counter/", category: "Text & Writing", keywords: "syllable counter count syllables online haiku checker poem syllable counter lyrics syllable count how many syllables in a word syllable divider tanka limerick iambic pentameter polysyllabic words free" },
+  { name: "Zodiac Sign Calculator",             url: "/tools/astrology/zodiac-sign-calculator/",                          category: "Astrology",            keywords: "zodiac sign calculator astrology sun sign" },
+  { name: "Bounds & Terms Calculator",          url: "/tools/astrology/bounds-terms-calculator/",                    category: "Astrology",            keywords: "bounds terms calculator egyptian bounds calculator by degree chaldean terms calculator find planetary bound ruler astrology terms table" },
+  { name: "Essential Dignity & Almuten Calculator", url: "/tools/astrology/essential-dignity-almuten-calculator/",       category: "Astrology",            keywords: "essential dignity calculator astrology free almuten calculator almuten figuris calculator essential dignity score triplicity rulers medieval astrology score" },
+  { name: "Arabic Lots & Parts Calculator", url: "/tools/astrology/arabic-lots-calculator/",                     category: "Astrology",            keywords: "arabic parts calculator arabic lots calculator part of fortune calculator lot of spirit hermetic lots calculator lot of eros lot of marriage lot of victory" },
+  { name: "Zodiacal Releasing Calculator", url: "/tools/astrology/zodiacal-releasing-calculator/",              category: "Astrology",            keywords: "zodiacal releasing calculator aphesis spirit period calculation releasing from part of fortune major and minor periods loosing of the bond" },
+  { name: "Planetary Hours Calculator",    url: "/tools/astrology/planetary-hours-calculator/",                 category: "Astrology",            keywords: "planetary hours calculator chaldean planetary hour tracker planetary hours night hours day ruler sunrise sunset" },
+  { name: "Annual Profections & Firdaria Calculator", url: "/tools/astrology/annual-profections-firdaria-calculator/",     category: "Astrology",            keywords: "annual profections calculator whole sign profected ascendant firdaria calculator time lord profection fardardar periods" },
+  { name: "Cooking Measurement Converter",      url: "/tools/recipe-cooking-tools/cooking-measurement-converter/",        category: "Cooking",              keywords: "cooking measurement converter cups grams ounces recipe" },
+  { name: "Recipe Nutrition Calculator", url: "/tools/recipe-cooking-tools/recipe-nutrition-calculator/", category: "Cooking", keywords: "recipe nutrition calculator calories per serving macros protein carbs fat fibre sodium daily value food database" },
+  { name: "Meat & Turkey Cooking Time Calculator", url: "/tools/recipe-cooking-tools/meat-cooking-time-calculator/", category: "Cooking", keywords: "meat cooking time calculator turkey roasting time per pound thaw time prime rib chicken pork ham internal temperature" },
+  { name: "Air Fryer Conversion Calculator", url: "/tools/recipe-cooking-tools/air-fryer-conversion-calculator/", category: "Cooking", keywords: "air fryer conversion calculator oven to air fryer temperature time convert cooking times chart" },
+  { name: "Recipe Cost Calculator", url: "/tools/recipe-cooking-tools/recipe-cost-calculator/", category: "Cooking", keywords: "recipe cost calculator cost per serving food cost percentage menu price recipe costing yield" },
+  { name: "Pizza Dough Calculator", url: "/tools/recipe-cooking-tools/pizza-dough-calculator/", category: "Cooking", keywords: "pizza dough calculator hydration baker's percentage yeast cold ferment dough ball weight poolish biga" },
+  { name: "Nutrition Facts Label Generator", url: "/tools/recipe-cooking-tools/nutrition-facts-label-generator/", category: "Cooking", keywords: "nutrition facts label generator FDA label maker download png svg rounding daily value" },
+  { name: "Baking Pan Size Converter", url: "/tools/recipe-cooking-tools/baking-pan-size-converter/", category: "Cooking", keywords: "baking pan size converter cake pan substitution scale recipe bake time 9x13 8 inch round volume" },
+  { name: "Rice to Water Ratio Calculator", url: "/tools/recipe-cooking-tools/rice-to-water-ratio-calculator/", category: "Cooking", keywords: "rice to water ratio calculator cups stove rice cooker instant pot basmati jasmine quinoa grains" },
+  { name: "Yeast Conversion Calculator", url: "/tools/recipe-cooking-tools/yeast-conversion-calculator/", category: "Cooking", keywords: "yeast conversion calculator instant active dry fresh yeast packet teaspoon grams rise time" },
+  { name: "Moon Phase Calculator",              url: "/tools/date-time-tools/moon-phase-calculator/",                     category: "Date & Time",          keywords: "moon phase calculator lunar calendar full moon new moon" },
+  { name: "Shift Schedule Generator",           url: "/tools/date-time-tools/shift-schedule-generator/",                  category: "Date & Time",          keywords: "shift schedule generator rotating roster 2-2-3 pitman 4 on 4 off dupont 12 hour shift pattern" },
+  { name: "Calendar Event ICS File Generator",  url: "/tools/date-time-tools/ics-file-generator/",                        category: "Date & Time",          keywords: "ics file generator add to calendar link google calendar outlook ical event invite" },
+  { name: "Time Card Calculator",               url: "/tools/date-time-tools/timecard-calculator/",                       category: "Date & Time",          keywords: "time card calculator hours calculator timesheet overtime rounding decimal hours" },
+  { name: "Meeting Time Zone Planner",          url: "/tools/date-time-tools/meeting-time-zone-planner/",                 category: "Date & Time",          keywords: "meeting time zone planner world clock meeting planner overlap time converter" },
+  { name: "Working Days Calculator",            url: "/tools/date-time-tools/working-days-calculator/",                   category: "Date & Time",          keywords: "working days calculator business days calculator workdays between dates holidays" },
+  { name: "Rental Yield Calculator",            url: "/tools/real-estate-tools/rental-yield-calculator/",                 category: "Real Estate",          keywords: "rental yield calculator property investment cash flow cap rate" },
+  { name: "BRRRR Calculator",                   url: "/tools/real-estate-tools/brrrr-calculator/",                        category: "Real Estate",          keywords: "brrrr calculator buy rehab rent refinance repeat cash left in deal refinance hard money dscr real estate investing" },
+  { name: "House Flip Calculator",              url: "/tools/real-estate-tools/house-flip-calculator/",                   category: "Real Estate",          keywords: "house flip calculator 70 percent rule maximum allowable offer mao arv profit roi fix and flip" },
+  { name: "Rental Property Cash Flow Calculator",url: "/tools/real-estate-tools/rental-property-cash-flow-calculator/",    category: "Real Estate",          keywords: "rental property calculator cash flow cash on cash return cap rate dscr 1 percent rule break even occupancy irr" },
+  { name: "Home Sale Net Proceeds Calculator",  url: "/tools/real-estate-tools/home-sale-net-proceeds-calculator/",       category: "Real Estate",          keywords: "home sale net proceeds calculator seller net sheet closing costs commission mortgage payoff capital gains selling a house" },
+  { name: "Prorated Rent Calculator",           url: "/tools/real-estate-tools/prorated-rent-calculator/",                category: "Real Estate",          keywords: "prorated rent calculator rent increase calculator roommate rent split rent affordability move in move out 30 percent rule" },
+  { name: "Mortgage Refinance Calculator", url: "/tools/real-estate-tools/mortgage-refinance-calculator/",      category: "Real Estate",          keywords: "mortgage refinance calculator refinance calculator refi calculator home refinance savings monthly payment closing costs break even" },
+  { name: "Refinance Break-Even Calculator", url: "/tools/real-estate-tools/refinance-break-even-calculator/",    category: "Real Estate",          keywords: "refinance break even calculator is it worth refinancing closing costs payback months" },
+  { name: "Cash-Out Refinance Calculator", url: "/tools/real-estate-tools/cash-out-refinance-calculator/",      category: "Real Estate",          keywords: "cash out refinance calculator home equity cash available ltv limit new payment" },
+  { name: "Refinance Closing Costs Calculator", url: "/tools/real-estate-tools/refinance-closing-costs-calculator/",      category: "Real Estate",          keywords: "refinance closing costs calculator closing costs estimate points no closing cost refinance cash to close lender fees" },
+  { name: "FHA, VA and USDA Streamline Refinance Calculator", url: "/tools/real-estate-tools/fha-va-usda-refinance-calculator/",      category: "Real Estate",          keywords: "fha streamline refinance calculator va irrrl calculator usda streamline net tangible benefit mortgage insurance fha to conventional" },
+  { name: "Refinance Loan Term Calculator", url: "/tools/real-estate-tools/refinance-loan-term-calculator/",      category: "Real Estate",          keywords: "refinance loan term calculator 15 year vs 30 year refinance shorten loan term arm to fixed refinance interest saved" },
+  { name: "Refinance vs HELOC Calculator", url: "/tools/real-estate-tools/refinance-vs-heloc-calculator/",      category: "Real Estate",          keywords: "refinance vs heloc calculator cash out refinance vs home equity loan heloc payment rate risk" },
+  { name: "Remove PMI Refinance Calculator", url: "/tools/real-estate-tools/remove-pmi-refinance-calculator/",      category: "Real Estate",          keywords: "remove pmi refinance calculator when does pmi end refinance to get rid of pmi 80 percent ltv" },
+  { name: "Rental Property Refinance Calculator", url: "/tools/real-estate-tools/rental-property-refinance-calculator/",      category: "Real Estate",          keywords: "rental property refinance calculator investment property refinance cash out dscr second home multifamily refinance" },
+  { name: "Remortgage Calculator UK", url: "/tools/real-estate-tools/remortgage-calculator-uk/",      category: "Real Estate",          keywords: "remortgage calculator uk early repayment charge remortgage fees product transfer break even pounds" },
+  { name: "Mortgage Refinance Calculator Canada", url: "/tools/real-estate-tools/mortgage-refinance-calculator-canada/",      category: "Real Estate",          keywords: "mortgage refinance calculator canada prepayment penalty ird break mortgage early semi annual compounding cad" },
+  { name: "Home Loan Refinance Calculator Australia", url: "/tools/real-estate-tools/home-loan-refinance-calculator/",      category: "Real Estate",          keywords: "home loan refinance calculator australia refinance cashback break costs switching home loan aud" },
+  { name: "Home Loan Refinance Calculator India", url: "/tools/real-estate-tools/home-loan-refinance-calculator-india/",      category: "Real Estate",          keywords: "home loan balance transfer calculator india home loan refinance emi saving processing fee gst inr" },
+  { name: "Loot Table Randomizer",              url: "/tools/gaming-tools/loot-table-randomizer/",                        category: "Gaming",               keywords: "loot table randomizer weighted rpg gacha drops" },
+  { name: "Dice Probability Calculator",        url: "/tools/gaming-tools/dice-probability-calculator/",                  category: "Gaming",               keywords: "dice probability calculator advantage disadvantage 4d6 drop lowest d20 odds dice pool tabletop rpg" },
+  { name: "Gacha Pity Calculator",              url: "/tools/gaming-tools/gacha-pity-calculator/",                        category: "Gaming",               keywords: "gacha pity calculator pull probability soft pity hard pity 50/50 genshin honkai star rail zenless wuthering waves" },
+  { name: "Elo Rating Calculator",              url: "/tools/gaming-tools/elo-rating-calculator/",                        category: "Gaming",               keywords: "elo rating calculator win rate calculator rank climb expected score k-factor games to rank up" },
+  { name: "D&D Encounter Calculator",           url: "/tools/gaming-tools/dnd-encounter-calculator/",                     category: "Gaming",               keywords: "dnd 5e encounter calculator difficulty xp budget challenge rating monsters party level" },
+  { name: "Mouse Sensitivity Converter",        url: "/tools/gaming-tools/mouse-sensitivity-converter/",                  category: "Gaming",               keywords: "mouse sensitivity converter edpi calculator cm per 360 valorant cs2 overwatch apex fortnite" },
+  { name: "Mouse Double Click Test", url: "/tools/device-tests/mouse-double-click-test/", category: "Device Tests", keywords: "mouse double click test ghost click double clicking mouse fix click chatter left button test free online" },
+  { name: "Scroll Wheel Test", url: "/tools/device-tests/scroll-wheel-test/", category: "Device Tests", keywords: "scroll wheel test mouse scroll test scroll jumping skipping wheel notches delta free online" },
+  { name: "Mouse Polling Rate Test", url: "/tools/device-tests/mouse-polling-rate-test/", category: "Device Tests", keywords: "mouse polling rate test hz report rate 125 500 1000 4000 8000 hz gaming mouse free online" },
+  { name: "Closed Caption Generator",           url: "/tools/accessibility-tools/closed-caption-generator/",              category: "Accessibility",        keywords: "closed caption generator srt vtt subtitle wcag" },
+  { name: "Text to Speech Reader",             url: "/tools/accessibility-tools/text-to-speech-reader/",                     category: "Accessibility",       keywords: "text to speech reader read aloud tts online browser voices" },
+  { name: "Color Contrast Checker",            url: "/tools/accessibility-tools/color-contrast-checker/",                    category: "Accessibility",       keywords: "color contrast checker wcag aa aaa apca ratio accessible colors" },
+  { name: "Color Blind Test and Simulator",    url: "/tools/accessibility-tools/color-blind-test/",                          category: "Accessibility",       keywords: "color blind test simulator ishihara deuteranopia protanopia tritanopia" },
+  { name: "Braille Translator",                url: "/tools/accessibility-tools/braille-translator/",                        category: "Accessibility",       keywords: "braille translator text to braille grade 1 grade 2 ueb brf" },
+  { name: "Bionic Reading Converter",          url: "/tools/accessibility-tools/bionic-reading-converter/",                  category: "Accessibility",       keywords: "bionic reading converter bold first letters text rsvp speed reader" },
+  { name: "HTML Accessibility Checker",        url: "/tools/accessibility-tools/html-accessibility-checker/",                category: "Accessibility",       keywords: "html accessibility checker wcag a11y audit aria alt labels" },
+  { name: "Accessibility Statement Generator", url: "/tools/accessibility-tools/accessibility-statement-generator/",         category: "Accessibility",       keywords: "accessibility statement generator wcag template ada eaa" },
+  { name: "WCAG Checklist Generator",          url: "/tools/accessibility-tools/wcag-checklist-generator/",                  category: "Accessibility",       keywords: "wcag 2.2 checklist generator audit success criteria report" },
+  { name: "Alt Text Checker",                  url: "/tools/accessibility-tools/alt-text-checker/",                          category: "Accessibility",       keywords: "alt text checker image alt attribute score accessibility" },
+  { name: "Watermark Remover",                 url: "/tools/image-tools/watermark-remover/",                             category: "Image",                keywords: "watermark remover remove watermark image photo" },
+  { name: "Image Compressor",                 url: "/tools/image-tools/image-compressor/",                         category: "Image",                keywords: "image compressor compress jpg png webp reduce image size to 100kb 50kb free online" },
+  { name: "Image Cropper",                    url: "/tools/image-tools/crop-image/",                               category: "Image",                keywords: "crop image circle crop photo cropper online free aspect ratio" },
+  { name: "Meme Generator",                   url: "/tools/image-tools/meme-generator/",                           category: "Image",                keywords: "meme generator make a meme add text to image online caption" },
+  { name: "Image Resizer",                    url: "/tools/image-tools/image-resizer/",                            category: "Image",                keywords: "image resizer resize image online pixels cm inches 100kb social media sizes" },
+  { name: "Image Converter",                  url: "/tools/image-tools/image-converter/",                          category: "Image",                keywords: "image converter webp to jpg png to jpg jpg to png ico favicon avif bmp" },
+  { name: "Passport Photo Maker",             url: "/tools/image-tools/passport-photo-maker/",                     category: "Image",                keywords: "passport photo maker passport size photo online 2x2 35x45 printable sheet visa photo" },
+  { name: "EXIF Data Remover",                url: "/tools/image-tools/exif-data-remover/",                        category: "Image",                keywords: "exif remover remove metadata from photo view exif data gps location photo" },
+  { name: "Image Splitter",                   url: "/tools/image-tools/image-splitter/",                           category: "Image",                keywords: "image splitter split image into parts instagram grid maker photo grid" },
+  { name: "Blur Image",                       url: "/tools/image-tools/blur-image/",                               category: "Image",                keywords: "blur image pixelate photo redact blur part of image blur face license plate" },
+  { name: "PDF to Text Extractor",              url: "/tools/pdf-document-tools/pdf-to-text-extractor/",                  category: "PDF & Document",       keywords: "pdf to text extractor document convert" },
+  { name: "PDF Watermark Remover",              url: "/tools/pdf-document-tools/pdf-watermark-remover/",                  category: "PDF & Document",       keywords: "pdf watermark remover remove watermark from pdf free pdf watermark removal online watermark remover pdf" },  
+  { name: "Merge PDF",                     url: "/tools/pdf-document-tools/merge-pdf/",                         category: "PDF & Document",       keywords: "merge pdf combine pdf files into one join pdfs free online no upload" },
+  { name: "Compress PDF",                  url: "/tools/pdf-document-tools/compress-pdf/",                      category: "PDF & Document",       keywords: "compress pdf reduce pdf file size shrink pdf online free target size kb mb" },
+  { name: "JPG to PDF",                    url: "/tools/pdf-document-tools/jpg-to-pdf/",                        category: "PDF & Document",       keywords: "jpg to pdf convert images to pdf png to pdf photo to pdf combine images free online" },
+  { name: "Sign PDF",                      url: "/tools/pdf-document-tools/sign-pdf/",                          category: "PDF & Document",       keywords: "sign pdf online free esign pdf draw signature add signature to pdf fill and sign" },
+  { name: "Split PDF",                     url: "/tools/pdf-document-tools/split-pdf/",                         category: "PDF & Document",       keywords: "split pdf extract pages from pdf delete pages pdf separate pdf page ranges free" },
+  { name: "PDF to JPG",                    url: "/tools/pdf-document-tools/pdf-to-jpg/",                        category: "PDF & Document",       keywords: "pdf to jpg convert pdf to image png webp pdf pages to images high quality dpi" },
+  { name: "Add Page Numbers to PDF",       url: "/tools/pdf-document-tools/add-page-numbers-to-pdf/",           category: "PDF & Document",       keywords: "add page numbers to pdf number pdf pages roman numerals bates numbering footer page x of y" },
+  { name: "Extract Images from PDF",       url: "/tools/pdf-document-tools/extract-images-from-pdf/",           category: "PDF & Document",       keywords: "extract images from pdf save pdf images pdf image extractor download embedded images" },
+  { name: "Flatten PDF",                   url: "/tools/pdf-document-tools/flatten-pdf/",                       category: "PDF & Document",       keywords: "flatten pdf flatten form fields flatten annotations make pdf uneditable remove fillable fields" },
+  { name: "Audio Merger",                       url: "/tools/audio-music-tools/audio-merger/",                            category: "Audio & Music",        keywords: "audio merger joiner combine mp3 wav merge" },
+  { name: "MP4 to MP3 Converter",          url: "/tools/audio-music-tools/mp4-to-mp3-converter/",               category: "Audio & Music", keywords: "mp4 to mp3 converter convert video to mp3 extract audio from mp4 free online no upload" },
+  { name: "Audio Cutter",                  url: "/tools/audio-music-tools/audio-cutter/",                       category: "Audio & Music", keywords: "audio cutter mp3 cutter trim audio cut mp3 online ringtone maker" },
+  { name: "Vocal Remover",                 url: "/tools/audio-music-tools/vocal-remover/",                      category: "Audio & Music", keywords: "vocal remover karaoke maker remove vocals from song instrumental free online" },
+  { name: "Audio Speed and Pitch Changer", url: "/tools/audio-music-tools/audio-speed-pitch-changer/",          category: "Audio & Music", keywords: "audio speed changer pitch changer speed up mp3 change key of song nightcore slow down" },
+  { name: "Online Voice Recorder",         url: "/tools/audio-music-tools/online-voice-recorder/",              category: "Audio & Music", keywords: "online voice recorder microphone test record audio free mic recorder" },
+  { name: "Audio Volume Booster",          url: "/tools/audio-music-tools/audio-volume-booster/",               category: "Audio & Music", keywords: "audio volume booster make mp3 louder normalize lufs increase volume of audio file" },
+  { name: "BPM Detector and Tap Tempo",    url: "/tools/audio-music-tools/bpm-detector/",                       category: "Audio & Music", keywords: "bpm detector tap tempo bpm counter song bpm finder bpm analyzer" },
+  { name: "Song Key Finder",               url: "/tools/audio-music-tools/song-key-finder/",                    category: "Audio & Music", keywords: "song key finder detect key of song camelot wheel musical key detector" },
+  { name: "Silence Remover",               url: "/tools/audio-music-tools/silence-remover/",                    category: "Audio & Music", keywords: "silence remover remove silence from audio podcast trim silence cut pauses" },
+  { name: "Sitemap Validator",                  url: "/tools/seo-web-tools/sitemap-validator/",                           category: "SEO & Web",            keywords: "sitemap validator xml checker seo" },
+  { name: "Schema Markup Generator",       url: "/tools/seo-web-tools/schema-markup-generator/",                category: "SEO & Web",            keywords: "schema markup generator json-ld faq schema product article local business structured data" },
+  { name: "Meta Tag Generator",            url: "/tools/seo-web-tools/meta-tag-generator/",                     category: "SEO & Web",            keywords: "meta tag generator title description length pixel width serp preview open graph" },
+  { name: "UTM Link Builder",              url: "/tools/seo-web-tools/utm-link-builder/",                       category: "SEO & Web",            keywords: "utm builder campaign url builder utm_source utm_medium bulk utm links" },
+  { name: "Robots.txt Generator",          url: "/tools/seo-web-tools/robots-txt-generator/",                   category: "SEO & Web",            keywords: "robots.txt generator robots txt tester block ai crawlers wordpress disallow" },
+  { name: "Open Graph Generator",          url: "/tools/seo-web-tools/open-graph-generator/",                   category: "SEO & Web",            keywords: "open graph generator og tags twitter card facebook linkedin share preview" },
+  { name: "Htaccess Redirect Generator",   url: "/tools/seo-web-tools/htaccess-redirect-generator/",            category: "SEO & Web",            keywords: "htaccess redirect generator 301 redirect https www apache nginx rules" },
+  { name: "Hreflang Tag Generator",        url: "/tools/seo-web-tools/hreflang-tag-generator/",                 category: "SEO & Web",            keywords: "hreflang generator hreflang tags x-default language country sitemap multilingual seo" },
+  { name: "Google Search Operator Builder", url: "/tools/seo-web-tools/google-search-operator-builder/",         category: "SEO & Web",            keywords: "google search operators site: filetype: intitle advanced search builder dorks seo" },
+  { name: "Meta Robots Tag Generator",     url: "/tools/seo-web-tools/meta-robots-tag-generator/",              category: "SEO & Web",            keywords: "meta robots tag generator noindex nofollow x-robots-tag noarchive nosnippet" },
+  { name: "My IP Address Checker",              url: "/tools/security-privacy-tools/my-ip-address-checker/",              category: "Security & Privacy",   keywords: "ip address checker my ip vpn webrtc leak test" },
+  { name: "Password Strength Checker",     url: "/tools/security-privacy-tools/password-strength-checker/",     category: "Security & Privacy",   keywords: "password strength checker password checker how strong is my password crack time test password" },
+  { name: "Hash Generator",                url: "/tools/security-privacy-tools/hash-generator/",                category: "Security & Privacy",   keywords: "hash generator md5 sha256 sha1 sha512 checksum file hash hmac crc32 online" },
+  { name: "Text Encryption Tool",          url: "/tools/security-privacy-tools/text-encryption-tool/",          category: "Security & Privacy",   keywords: "encrypt text online decrypt text aes 256 encryption tool password message encryption" },
+  { name: "2FA Code Generator",            url: "/tools/security-privacy-tools/2fa-code-generator/",            category: "Security & Privacy",   keywords: "2fa code generator totp authenticator online otp generator qr code secret key" },
+  { name: "Breached Password Checker",     url: "/tools/security-privacy-tools/pwned-password-checker/",        category: "Security & Privacy",   keywords: "pwned password checker breached password has my password been leaked data breach password check" },
+  { name: "File Encryption Tool",          url: "/tools/security-privacy-tools/file-encryption-tool/",          category: "Security & Privacy",   keywords: "file encryption online encrypt file with password aes-256 decrypt file encrypt pdf zip" },
+  { name: "Passphrase Generator",          url: "/tools/security-privacy-tools/passphrase-generator/",          category: "Security & Privacy",   keywords: "passphrase generator random word password generator diceware memorable secure passphrase" },
+  { name: "Browser Fingerprint Checker",   url: "/tools/security-privacy-tools/browser-fingerprint-checker/",   category: "Security & Privacy",   keywords: "browser fingerprint checker canvas fingerprint test what does my browser reveal tracking test privacy" },
+  { name: "API Key Generator",             url: "/tools/security-privacy-tools/api-key-generator/",             category: "Security & Privacy",   keywords: "api key generator random token generator secret key generator jwt secret uuid generator app key" },
+  { name: "Meeting Scheduler Poll",             url: "/tools/productivity-organization-tools/meeting-scheduler-poll/",    category: "Productivity",         keywords: "meeting scheduler poll availability doodle find time" },
+  { name: "Pomodoro Timer",                url: "/tools/productivity-organization-tools/pomodoro-timer/",       category: "Productivity",         keywords: "pomodoro timer online pomodoro timer free pomodoro technique timer 25 5 focus timer study timer work timer" },
+  { name: "Online To-Do List",             url: "/tools/productivity-organization-tools/online-to-do-list/",    category: "Productivity",         keywords: "online to do list free to do list online task list daily to do list task manager checklist maker todo list" },
+  { name: "Gantt Chart Maker",             url: "/tools/productivity-organization-tools/gantt-chart-maker/",    category: "Productivity",         keywords: "gantt chart maker free gantt chart online project timeline maker project schedule gantt chart generator" },
+  { name: "Kanban Board",                  url: "/tools/productivity-organization-tools/kanban-board/",         category: "Productivity",         keywords: "kanban board online free kanban board kanban tool trello alternative task board project board wip limit" },
+  { name: "Habit Tracker",                 url: "/tools/productivity-organization-tools/habit-tracker/",        category: "Productivity",         keywords: "habit tracker online free habit tracker daily habit tracker monthly habit tracker streak tracker habit chart" },
+  { name: "Weekly Schedule Maker",         url: "/tools/productivity-organization-tools/weekly-schedule-maker/", category: "Productivity",         keywords: "weekly schedule maker weekly planner online class schedule maker timetable maker study schedule maker time blocking" },
+  { name: "Eisenhower Matrix Maker",       url: "/tools/productivity-organization-tools/eisenhower-matrix-maker/", category: "Productivity",         keywords: "eisenhower matrix maker urgent important matrix eisenhower box priority matrix prioritization matrix template" },
+  { name: "Meeting Agenda Generator",      url: "/tools/productivity-organization-tools/meeting-agenda-generator/", category: "Productivity",         keywords: "meeting agenda generator meeting agenda template agenda maker team meeting agenda one on one agenda free agenda builder" },
+  { name: "Decision Matrix Calculator",    url: "/tools/productivity-organization-tools/decision-matrix-calculator/", category: "Productivity",         keywords: "decision matrix calculator weighted decision matrix pugh matrix weighted scoring model decision making tool compare options" },
+  { name: "Color Name Identifier",              url: "/tools/design-color-tools/color-name-identifier/",                  category: "Design & Color",       keywords: "color name identifier hex rgb picker" },
+  { name: "Color Picker", url: "/tools/design-color-tools/color-picker/", category: "Design & Color", keywords: "color picker hex color picker rgb hsl hsv cmyk eyedropper online color code finder" },
+  { name: "Color Palette Generator", url: "/tools/design-color-tools/color-palette-generator/", category: "Design & Color", keywords: "color palette generator color scheme generator palette from color random palette tailwind css export contrast" },
+  { name: "Image Color Picker", url: "/tools/design-color-tools/image-color-picker/", category: "Design & Color", keywords: "image color picker pick color from image photo hex palette extractor dominant colors eyedropper" },
+  { name: "CSS Gradient Generator", url: "/tools/design-color-tools/css-gradient-generator/", category: "Design & Color", keywords: "css gradient generator linear radial conic gradient background tailwind svg png oklab" },
+  { name: "HEX to RGB Converter", url: "/tools/design-color-tools/hex-to-rgb-converter/", category: "Design & Color", keywords: "hex to rgb converter rgb to hex color converter hsl cmyk oklch bulk code snippets swift android flutter" },
+  { name: "Color Wheel", url: "/tools/design-color-tools/color-wheel/", category: "Design & Color", keywords: "color wheel complementary triadic analogous split complementary tetradic rgb ryb color scheme generator" },
+  { name: "Color Mixer", url: "/tools/design-color-tools/color-mixer/", category: "Design & Color", keywords: "color mixer mix colors online what colors make brown paint color mixer blend two colors hex color mixing chart" },
+  { name: "Tints and Shades Generator", url: "/tools/design-color-tools/tints-and-shades-generator/", category: "Design & Color", keywords: "tints and shades generator color shades lighter darker hex tailwind 50 950 color scale tones" },
+  { name: "Glassmorphism Generator", url: "/tools/design-color-tools/glassmorphism-generator/", category: "Design & Color", keywords: "glassmorphism generator css frosted glass backdrop filter blur glass card tailwind liquid glass" },
+  { name: "TikTok Caption Generator",           url: "/tools/social-media-tools/tiktok-caption-generator/",               category: "Social Media",         keywords: "tiktok caption generator hashtags viral" },
+  { name: "Fancy Text Generator",          url: "/tools/social-media-tools/fancy-text-generator/",              category: "Social Media",         keywords: "fancy text generator cool fonts generator instagram fonts copy and paste stylish text bold italic cursive unicode font" },
+  { name: "Hashtag Generator",             url: "/tools/social-media-tools/hashtag-generator/",                 category: "Social Media",         keywords: "hashtag generator instagram hashtags tiktok hashtags best hashtags for reels hashtag ideas copy and paste" },
+  { name: "Instagram Caption Generator",   url: "/tools/social-media-tools/instagram-caption-generator/",       category: "Social Media",         keywords: "instagram caption generator captions for instagram photos short captions funny captions aesthetic captions ideas" },
+  { name: "YouTube Thumbnail Downloader",  url: "/tools/social-media-tools/youtube-thumbnail-downloader/",      category: "Social Media",         keywords: "youtube thumbnail downloader download youtube thumbnail hd maxres thumbnail grabber video thumbnail image" },
+  { name: "YouTube Money Calculator",      url: "/tools/social-media-tools/youtube-money-calculator/",          category: "Social Media",         keywords: "youtube money calculator how much do youtubers make youtube earnings estimator rpm cpm views to money" },
+  { name: "Engagement Rate Calculator",    url: "/tools/social-media-tools/engagement-rate-calculator/",        category: "Social Media",         keywords: "engagement rate calculator instagram engagement rate tiktok engagement rate social media engagement formula benchmark" },
+  { name: "Social Media Image Resizer",    url: "/tools/social-media-tools/social-media-image-resizer/",        category: "Social Media",         keywords: "social media image resizer instagram post size tiktok cover size youtube banner size crop image for social media" },
+  { name: "Instagram Bio Generator",       url: "/tools/social-media-tools/instagram-bio-generator/",           category: "Social Media",         keywords: "instagram bio generator bio ideas for instagram aesthetic bio funny bio short bio for instagram profile preview" },
+  { name: "Username Generator",            url: "/tools/social-media-tools/username-generator/",                category: "Social Media",         keywords: "username generator instagram username ideas cool usernames tiktok username generator gaming names aesthetic usernames" },
+  { name: "Tweet Character Counter",       url: "/tools/social-media-tools/tweet-character-counter/",           category: "Social Media",         keywords: "tweet character counter twitter character count x post length counter thread splitter 280 characters" },
+  { name: "Content Calendar Generator",    url: "/tools/social-media-tools/content-calendar-generator/",        category: "Social Media",         keywords: "content calendar generator social media content calendar template content planner posting schedule 30 day content plan" },
+  { name: "YouTube Title Generator",       url: "/tools/social-media-tools/youtube-title-generator/",           category: "Social Media",         keywords: "youtube title generator video title ideas youtube title checker clickable titles seo title for youtube" },
+  { name: "LinkedIn Post Formatter",       url: "/tools/social-media-tools/linkedin-post-formatter/",           category: "Social Media",         keywords: "linkedin post formatter linkedin bold text generator linkedin text formatter linkedin post preview line breaks" },
+  { name: "UTM Link Builder",              url: "/tools/social-media-tools/utm-link-builder/",                  category: "Social Media",         keywords: "utm link builder utm generator campaign url builder utm builder google analytics utm parameters bulk utm" },
+  { name: "Influencer Rate Calculator",    url: "/tools/social-media-tools/influencer-rate-calculator/",        category: "Social Media",         keywords: "influencer rate calculator how much to charge instagram influencer pricing sponsored post rate calculator creator rates" },
+  { name: "Instagram Line Break Generator", url: "/tools/social-media-tools/instagram-line-break-generator/",    category: "Social Media",         keywords: "instagram line break generator instagram bio spacing invisible character blank line instagram caption space" },
+  { name: "Social Media Character Limits Checker", url: "/tools/social-media-tools/social-media-character-limits-checker/", category: "Social Media",         keywords: "social media character limits instagram bio limit tiktok caption limit youtube title length linkedin headline limit" },
+  { name: "Giveaway Winner Picker",        url: "/tools/social-media-tools/giveaway-winner-picker/",            category: "Social Media",         keywords: "giveaway winner picker random name picker instagram giveaway picker comment picker random winner generator" },
+  { name: "Follower Growth Calculator",    url: "/tools/social-media-tools/follower-growth-calculator/",        category: "Social Media",         keywords: "follower growth calculator follower projection instagram growth calculator how long to reach 10k followers growth rate" },
+  { name: "YouTube Tag Generator",         url: "/tools/social-media-tools/youtube-tag-generator/",             category: "Social Media",         keywords: "youtube tag generator youtube tags for videos tag counter 500 characters video tags seo hashtag ideas" },
+  { name: "YouTube Timestamp Generator", url: "/tools/social-media-tools/youtube-timestamp-generator/", category: "Social Media", keywords: "youtube timestamp generator youtube chapters maker timestamps for youtube video chapter checker 00:00 description timestamps free online" },
+  { name: "YouTube Description Generator", url: "/tools/social-media-tools/youtube-description-generator/", category: "Social Media", keywords: "youtube description generator youtube video description template description with chapters links hashtags preview before show more" },
+  { name: "YouTube Watch Time Calculator", url: "/tools/social-media-tools/youtube-watch-time-calculator/", category: "Social Media", keywords: "youtube watch time calculator 4000 watch hours 1000 subscribers monetization tracker youtube partner program shorts views calculator" },
+  { name: "YouTube Thumbnail Tester", url: "/tools/social-media-tools/youtube-thumbnail-tester/", category: "Social Media", keywords: "youtube thumbnail tester thumbnail preview thumbnail size checker 1280x720 thumbnail a/b compare squint test safe zone" },
+  { name: "YouTube Playlist Length Calculator", url: "/tools/social-media-tools/youtube-playlist-length-calculator/", category: "Social Media", keywords: "youtube playlist length calculator playlist duration total time at 1.5x 2x speed course watching schedule study plan" },
+  { name: "Elevator Pitch Generator",           url: "/tools/marketing-advertising-tools/elevator-pitch-generator/",      category: "Marketing",            keywords: "elevator pitch generator startup investor sales" },
+  { name: "QR Code Generator",                url: "/tools/marketing-advertising-tools/qr-code-generator/", category: "Marketing", keywords: "qr code generator free qr code maker custom qr code wifi vcard whatsapp logo no sign up" },
+  { name: "Email Signature Generator",        url: "/tools/marketing-advertising-tools/email-signature-generator/", category: "Marketing", keywords: "email signature generator free html email signature gmail outlook professional signature template" },
+  { name: "Business Name Generator",          url: "/tools/marketing-advertising-tools/business-name-generator/", category: "Marketing", keywords: "business name generator company name ideas brandable names domain name generator startup name" },
+  { name: "A/B Test Calculator",              url: "/tools/marketing-advertising-tools/ab-test-calculator/", category: "Marketing", keywords: "ab test calculator statistical significance p value sample size split test conversion lift" },
+  { name: "Marketing ROI & ROAS Calculator",  url: "/tools/marketing-advertising-tools/marketing-roi-calculator/", category: "Marketing", keywords: "marketing roi calculator roas calculator break even roas return on ad spend cac ltv" },
+  { name: "Headline & Subject Line Analyzer", url: "/tools/marketing-advertising-tools/headline-analyzer/", category: "Marketing", keywords: "headline analyzer email subject line tester headline score power words ctr subject line checker" },
+  { name: "Google Ads Character Counter",     url: "/tools/marketing-advertising-tools/google-ads-character-counter/", category: "Marketing", keywords: "google ads character counter rsa preview responsive search ad headline 30 description 90 character limit" },
+  { name: "CTR, CPM, CPC & CPA Calculator",   url: "/tools/marketing-advertising-tools/ad-metrics-calculator/", category: "Marketing", keywords: "ctr calculator cpm calculator cpc calculator cpa calculator ad metrics click through rate cost per click" },
+  { name: "Buyer Persona Generator",          url: "/tools/marketing-advertising-tools/buyer-persona-generator/", category: "Marketing", keywords: "buyer persona generator customer persona template persona card marketing persona maker printable" },
+  { name: "Newsletter Sign-up Form Generator",  url: "/tools/email-tools/newsletter-signup-form-generator/",              category: "Email",                keywords: "newsletter signup form generator email opt-in" },
+  { name: "Email Validator & List Cleaner",   url: "/tools/email-tools/email-validator/", category: "Email", keywords: "email validator free email list cleaner bulk email checker validate email addresses remove duplicates disposable role-based typo fixer" },
+  { name: "Out of Office Message Generator",  url: "/tools/email-tools/out-of-office-message-generator/", category: "Email", keywords: "out of office message generator free automatic reply email auto reply vacation responder gmail outlook professional template" },
+  { name: "HTML Email Template Builder",      url: "/tools/email-tools/html-email-template-builder/", category: "Email", keywords: "html email template builder free responsive email template generator newsletter template table based email code outlook gmail" },
+  { name: "Email Header Analyzer",            url: "/tools/email-tools/email-header-analyzer/", category: "Email", keywords: "email header analyzer free trace email headers spf dkim dmarc check received headers delay phishing spoofing originating ip" },
+  { name: "DMARC & SPF Record Generator",     url: "/tools/email-tools/dmarc-record-generator/", category: "Email", keywords: "dmarc record generator free spf record generator dmarc checker spf lookup limit dns txt record google workspace microsoft 365" },
+  { name: "Email Subject Line Generator",     url: "/tools/email-tools/email-subject-line-generator/", category: "Email", keywords: "email subject line generator free subject line ideas newsletter sale cold email follow up preheader inbox preview" },
+  { name: "Mailto Link Generator",            url: "/tools/email-tools/mailto-link-generator/", category: "Email", keywords: "mailto link generator free mailto subject body cc bcc html email link button decode mailto url encode" },
+  { name: "Email Extractor",                  url: "/tools/email-tools/email-extractor/", category: "Email", keywords: "email extractor free extract emails from text file html email finder remove duplicates filter domain csv at dot obfuscated" },
+  { name: "Email Spam Word Checker",          url: "/tools/email-tools/email-spam-word-checker/", category: "Email", keywords: "email spam word checker free spam trigger words test email spam score subject line check deliverability" },
+  { name: "How to Calculate Gacha Pity and Pull Odds (Guide)", url: "/guides/how-to-calculate-gacha-pity/", category: "Guide", tools: ["/tools/gaming-tools/gacha-pity-calculator/"], keywords: "how to calculate gacha pity pull odds soft pity hard pity 50/50 guarantee pulls to save genshin star rail zenless gacha probability" },
+  { name: "How to Calculate Keto Macros (Guide)", url: "/guides/how-to-calculate-keto-macros/",                           category: "Guide",                tools: ["/tools/health-fitness/keto-macro-calculator/"], keywords: "how to calculate keto macros guide tutorial protein fat carbs mifflin st jeor" },
+  { name: "How to Merge Audio Files Online (Guide)", url: "/guides/how-to-merge-audio-files/",                            category: "Guide",                tools: ["/tools/audio-music-tools/audio-merger/"], keywords: "how to merge audio files combine mp3 files join audio files online free join mp3 combine wav m4a crossfade audiobook podcast" },
+  { name: "How to Calculate Mortgage Refinance Savings (Guide)", url: "/guides/how-to-calculate-mortgage-refinance-savings/", category: "Guide", tools: ["/tools/real-estate-tools/mortgage-refinance-calculator/", "/tools/real-estate-tools/refinance-break-even-calculator/", "/tools/real-estate-tools/refinance-loan-term-calculator/"], keywords: "how to calculate mortgage refinance savings refinance break even formula total interest saved worked example" },
+  { name: "Is Mortgage Refinance Interest Tax Deductible? (Guide)", url: "/guides/is-mortgage-refinance-interest-tax-deductible/", category: "Guide", tools: ["/tools/real-estate-tools/mortgage-refinance-calculator/", "/tools/real-estate-tools/cash-out-refinance-calculator/"], keywords: "is refinance interest tax deductible refinance points deduction cash out refinance tax closing costs deductible" },
+  { name: "How to Find the HEX Code and Name of Any Color (Guide)", url: "/guides/how-to-find-the-hex-code-and-name-of-any-color/", category: "Guide", tools: ["/tools/design-color-tools/color-picker/", "/tools/design-color-tools/color-name-identifier/", "/tools/design-color-tools/image-color-picker/"], keywords: "how to find hex code of a color color name finder pick color from screen website image eyedropper hex rgb hsl rgba css color name identify color" },
+  { name: "How Long a Layover Do You Need? (Guide)", url: "/guides/how-long-a-layover-do-you-need/", category: "Guide", tools: ["/tools/travel-tools/layover-time-calculator/"], keywords: "how long a layover do you need minimum connection time mct layover connection terminal change separate tickets self transfer missed connection" },
+  { name: "Refinancing with Bad Credit, Self-Employed or Underwater (Guide)", url: "/guides/refinance-with-bad-credit-self-employed-or-underwater/", category: "Guide", tools: ["/tools/real-estate-tools/refinance-break-even-calculator/", "/tools/real-estate-tools/fha-va-usda-refinance-calculator/", "/tools/real-estate-tools/mortgage-refinance-calculator/"], keywords: "refinance with bad credit self employed refinance negative equity underwater mortgage refinance options" },
+  { name: "Mortgage Refinance by State: Costs and Taxes (Guide)", url: "/guides/mortgage-refinance-by-state/", category: "Guide", tools: ["/tools/real-estate-tools/refinance-closing-costs-calculator/", "/tools/real-estate-tools/mortgage-refinance-calculator/"], keywords: "mortgage refinance by state refinance closing costs california texas florida new york mortgage recording tax" }
+];
+
+/* ---------- 2. SOCIAL PROFILES ---------- */
+var socialProfiles = [
+  { name: "YouTube",   url: "https://www.youtube.com/@Utilibyteam",                          icon: "youtube"   },
+  { name: "Facebook",  url: "https://www.facebook.com/profile.php?id=61594822713947",        icon: "facebook"  },
+  { name: "Instagram", url: "https://www.instagram.com/utilibyteam/",                        icon: "instagram" },
+  { name: "X",         url: "https://x.com/Utiliby",                                         icon: "x"         },
+  { name: "TikTok",    url: "https://tiktok.com/utiliby",                                    icon: "tiktok"    },
+  { name: "Pinterest", url: "https://pinterest.com/utiliby",                                 icon: "pinterest" }
+];
+
+/* ---------- 3. UTILITIES ---------- */
+function ulEsc(s){
+  return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;");
+}
+function ulContains(haystack, needle){
+  return haystack.toLowerCase().indexOf(needle.toLowerCase()) > -1;
+}
+
+/* ---------- 4. ORGANIZATION SCHEMA (brand entity) ---------- */
+(function(){
+  function injectOrgSchema(){
+    if(document.getElementById("utiliby-org-schema")) return;
+    var schema = {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "name": "Utiliby",
+      "alternateName": "Utiliby Free Online Tools",
+      "url": "https://utiliby.com",
+      "logo": "https://utiliby.com/favicon.png",
+      "description": "Free online calculators, converters and generators that run entirely in your browser.",
+      "sameAs": socialProfiles.map(function(p){ return p.url; })
+    };
+    var s = document.createElement("script");
+    s.type = "application/ld+json";
+    s.id = "utiliby-org-schema";
+    s.textContent = JSON.stringify(schema);
+    document.head.appendChild(s);
+  }
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", injectOrgSchema);
+  } else {
+    injectOrgSchema();
+  }
+})();
+
+/* ---------- 5. SITE NAV + FOOTER (with social row) ---------- */
+(function () {
+  var categoryLinks = [
+    ["/tools/everyday-calculators/", "Everyday"],
+    ["/tools/health-fitness/", "Health"],
+    ["/tools/engineering/", "Engineering"],
+    ["/tools/construction/", "Construction"],
+    ["/tools/developer-tools/", "Developer"],
+    ["/tools/travel-tools/", "Travel"],
+    ["/tools/business-legal-tools/", "Business"],
+    ["/tools/education-study-tools/", "Education"],
+    ["/tools/text-writing/", "Text"],
+    ["/tools/astrology/", "Astrology"],
+    ["/tools/recipe-cooking-tools/", "Cooking"],
+    ["/tools/date-time-tools/", "Date &amp; Time"],
+    ["/tools/real-estate-tools/", "Real Estate"],
+    ["/tools/gaming-tools/", "Gaming"],
+    ["/tools/device-tests/", "Device Tests"],
+    ["/tools/accessibility-tools/", "Accessibility"],
+    ["/tools/image-tools/", "Image"],
+    ["/tools/pdf-document-tools/", "PDF &amp; Document"],
+    ["/tools/audio-music-tools/", "Audio &amp; Music"],
+    ["/tools/seo-web-tools/", "SEO &amp; Web"],
+    ["/tools/security-privacy-tools/", "Security &amp; Privacy"],
+    ["/tools/productivity-organization-tools/", "Productivity"],
+    ["/tools/design-color-tools/", "Design &amp; Color"],
+    ["/tools/social-media-tools/", "Social Media"],
+    ["/tools/marketing-advertising-tools/", "Marketing"],
+    ["/tools/email-tools/", "Email"]
+  ];
+
+  var legalLinks = [
+    ["/", "Home"],
+    ["/guides/", "Guides"],
+    ["/about/", "About"],
+    ["/contact/", "Contact"],
+    ["/privacy-policy/", "Privacy Policy"],
+    ["/terms/", "Terms"]
+  ];
+
+  var socialSVG = {
+    youtube:   '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M23.5 6.2a3 3 0 0 0-2.1-2.1C19.5 3.5 12 3.5 12 3.5s-7.5 0-9.4.6A3 3 0 0 0 .5 6.2C0 8.1 0 12 0 12s0 3.9.5 5.8a3 3 0 0 0 2.1 2.1c1.9.6 9.4.6 9.4.6s7.5 0 9.4-.6a3 3 0 0 0 2.1-2.1c.5-1.9.5-5.8.5-5.8s0-3.9-.5-5.8zM9.6 15.6V8.4l6.2 3.6-6.2 3.6z"/></svg>',
+    facebook:  '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.89 3.77-3.89 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.44 2.9h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/></svg>',
+    instagram: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.16c3.2 0 3.58.01 4.85.07 1.17.05 1.8.25 2.23.41.56.22.96.48 1.38.9.42.42.68.82.9 1.38.16.43.36 1.06.41 2.23.06 1.27.07 1.65.07 4.85s-.01 3.58-.07 4.85c-.05 1.17-.25 1.8-.41 2.23-.22.56-.48.96-.9 1.38-.42.42-.82.68-1.38.9-.43.16-1.06.36-2.23.41-1.27.06-1.65.07-4.85.07s-3.58-.01-4.85-.07c-1.17-.05-1.8-.25-2.23-.41a3.72 3.72 0 0 1-1.38-.9 3.72 3.72 0 0 1-.9-1.38c-.16-.43-.36-1.06-.41-2.23C2.17 15.58 2.16 15.2 2.16 12s.01-3.58.07-4.85c.05-1.17.25-1.8.41-2.23.22-.56.48-.96.9-1.38.42-.42.82-.68 1.38-.9.43-.16 1.06-.36 2.23-.41C8.42 2.17 8.8 2.16 12 2.16M12 0C8.74 0 8.33.01 7.05.07 5.78.13 4.9.33 4.14.63a5.88 5.88 0 0 0-2.13 1.38A5.88 5.88 0 0 0 .63 4.14C.33 4.9.13 5.78.07 7.05.01 8.33 0 8.74 0 12s.01 3.67.07 4.95c.06 1.27.26 2.15.56 2.91.31.79.72 1.46 1.38 2.13a5.88 5.88 0 0 0 2.13 1.38c.76.3 1.64.5 2.91.56C8.33 23.99 8.74 24 12 24s3.67-.01 4.95-.07c1.27-.06 2.15-.26 2.91-.56a5.88 5.88 0 0 0 2.13-1.38 5.88 5.88 0 0 0 1.38-2.13c.3-.76.5-1.64.56-2.91.06-1.28.07-1.69.07-4.95s-.01-3.67-.07-4.95c-.06-1.27-.26-2.15-.56-2.91a5.88 5.88 0 0 0-1.38-2.13A5.88 5.88 0 0 0 19.86.63c-.76-.3-1.64-.5-2.91-.56C15.67.01 15.26 0 12 0zm0 5.84a6.16 6.16 0 1 0 0 12.32 6.16 6.16 0 0 0 0-12.32zm0 10.16a4 4 0 1 1 0-8 4 4 0 0 1 0 8zm7.85-10.4a1.44 1.44 0 1 1-2.88 0 1.44 1.44 0 0 1 2.88 0z"/></svg>',
+    x:         '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M18.9 2H22l-7.1 8.13L23.3 22h-6.6l-5.17-6.76L5.6 22H2.5l7.6-8.7L1 2h6.8l4.67 6.18L18.9 2zm-1.15 18.1h1.72L7.4 3.8H5.55l12.2 16.3z"/></svg>',
+    tiktok:    '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M19.6 6.7a5.6 5.6 0 0 1-3.4-1.2 5.6 5.6 0 0 1-2-3.4V2H10v13.6a2.6 2.6 0 1 1-2.6-2.6c.2 0 .4 0 .6.1V9a6.4 6.4 0 0 0-.6 0 6.4 6.4 0 1 0 6.4 6.4V8.8a9.4 9.4 0 0 0 5.8 2V7c-.3 0-.6 0-1-.3z"/></svg>',
+    pinterest: '<svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0a12 12 0 0 0-4.4 23.2c-.1-.9-.2-2.4 0-3.4l1.5-6.2s-.4-.8-.4-1.9c0-1.8 1-3.1 2.3-3.1 1.1 0 1.6.8 1.6 1.8 0 1.1-.7 2.7-1 4.2-.3 1.2.6 2.2 1.8 2.2 2.2 0 3.9-2.3 3.9-5.6 0-2.9-2.1-5-5.1-5-3.5 0-5.5 2.6-5.5 5.3 0 1 .4 2.1.9 2.7.1.1.1.2.1.3l-.3 1.3c-.1.2-.2.3-.4.2-1.5-.7-2.4-2.8-2.4-4.6 0-3.7 2.7-7.1 7.7-7.1 4.1 0 7.2 2.9 7.2 6.8 0 4-2.5 7.2-6 7.2-1.2 0-2.3-.6-2.6-1.3l-.7 2.7c-.3 1-.9 2.3-1.4 3.1A12 12 0 1 0 12 0z"/></svg>'
+  };
+
+  function buildHeader() {
+    var el = document.getElementById("site-header-nav");
+    if (!el) return;
+    var html = "";
+    for (var i = 0; i < categoryLinks.length; i++) {
+      html += '<a href="' + categoryLinks[i][0] + '">' + categoryLinks[i][1] + '</a>';
+    }
+    el.innerHTML = html;
+  }
+
+  function buildSocialRow() {
+    var h = '<div class="footer-social">';
+    h += '<div class="footer-social-label">Follow Utiliby</div>';
+    h += '<div class="footer-social-row">';
+    for (var i = 0; i < socialProfiles.length; i++) {
+      var p = socialProfiles[i];
+      var icon = socialSVG[p.icon] || "";
+      h += '<a href="' + p.url + '" target="_blank" rel="noopener" class="footer-social-link" aria-label="Utiliby on ' + p.name + '">' + icon + '<span>' + p.name + '</span></a>';
+    }
+    h += '</div>';
+    h += '</div>';
+    return h;
+  }
+
+  function buildFooter() {
+    var el = document.getElementById("site-footer");
+    if (!el) return;
+    var html = "";
+    // Legal links row
+    html += '<div class="footer-links-row">';
+    for (var i = 0; i < legalLinks.length; i++) {
+      html += '<a href="' + legalLinks[i][0] + '">' + legalLinks[i][1] + '</a>';
+    }
+    html += '</div>';
+    // Social row
+    html += buildSocialRow();
+    // Copyright
+    html += '<p class="footer-copy">© 2026 Utiliby. Free online tools.</p>';
+    el.innerHTML = html;
+  }
+
+  function buildAll() {
+    buildHeader();
+    buildFooter();
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", buildAll);
+  } else {
+    buildAll();
+  }
+})();
+
+/* ---------- 6. HOME PAGE SEARCH ---------- */
+(function () {
+  function init() {
+    var q = document.getElementById("q");
+    if (!q) return;
+    var allCards = Array.prototype.slice.call(document.querySelectorAll(".card[data-name]"));
+    if (allCards.length === 0) return;
+
+    var popularGrid = null;
+    var h2s = document.querySelectorAll("h2");
+    for (var i = 0; i < h2s.length; i++) {
+      if (h2s[i].textContent.toLowerCase().indexOf("popular") > -1) {
+        var next = h2s[i].nextElementSibling;
+        if (next && next.classList.contains("grid")) { popularGrid = next; break; }
+      }
+    }
+    if (!popularGrid) popularGrid = allCards[0].parentNode;
+
+    var categoryCards = [];
+    var popularCards = [];
+    for (var k = 0; k < allCards.length; k++) {
+      if (allCards[k].closest(".grid") === popularGrid) popularCards.push(allCards[k]);
+      else categoryCards.push(allCards[k]);
+    }
+    var injected = [];
+
+    function clearInjected() {
+      for (var i = 0; i < injected.length; i++) {
+        if (injected[i].parentNode) injected[i].parentNode.removeChild(injected[i]);
+      }
+      injected = [];
+    }
+
+    function toggleSectionHeading(grid, show) {
+      var prev = grid.previousElementSibling;
+      if (prev && prev.tagName === "H2") prev.style.display = show ? "" : "none";
+    }
+
+    function update() {
+      var v = q.value.trim().toLowerCase();
+      var visibleUrls = {};
+
+      for (var i = 0; i < allCards.length; i++) {
+        var c = allCards[i];
+        var match = !v || ulContains(c.dataset.name || "", v);
+        c.style.display = match ? "" : "none";
+        if (match) {
+          var href = c.getAttribute("href");
+          if (href) visibleUrls[href] = true;
+        }
+      }
+
+      clearInjected();
+
+      if (v) {
+        for (var j = 0; j < toolIndex.length; j++) {
+          var tool = toolIndex[j];
+          var haystack = tool.name + " " + (tool.keywords || "") + " " + (tool.category || "");
+          if (!ulContains(haystack, v)) continue;
+          if (visibleUrls[tool.url]) continue;
+          var a = document.createElement("a");
+          a.className = "card";
+          a.href = tool.url;
+          a.dataset.name = (tool.name + " " + (tool.keywords || "")).toLowerCase();
+          a.dataset.injected = "1";
+          a.innerHTML = "<b>" + ulEsc(tool.name) + "</b><span>" + ulEsc(tool.category) + "</span>";
+          popularGrid.appendChild(a);
+          injected.push(a);
+          visibleUrls[tool.url] = true;
+        }
+      }
+
+      var totalVisible = 0;
+      for (var x in visibleUrls) totalVisible++;
+
+      var noResult = document.getElementById("home-no-results");
+      if (v && totalVisible === 0) {
+        if (!noResult) {
+          noResult = document.createElement("p");
+          noResult.id = "home-no-results";
+          noResult.className = "meta";
+          noResult.style.textAlign = "center";
+          noResult.style.padding = "20px";
+          noResult.style.gridColumn = "1 / -1";
+          popularGrid.appendChild(noResult);
+        }
+        noResult.textContent = 'No tools match "' + q.value.trim() + '". Try a different keyword.';
+        noResult.style.display = "";
+      } else if (noResult) {
+        noResult.style.display = "none";
+      }
+
+      var anyCategoryVisible = false;
+      for (var y = 0; y < categoryCards.length; y++) {
+        if (categoryCards[y].style.display !== "none") { anyCategoryVisible = true; break; }
+      }
+      if (categoryCards[0]) toggleSectionHeading(categoryCards[0].closest(".grid"), anyCategoryVisible);
+    }
+
+    q.addEventListener("input", update);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+/* ---------- 7. BREADCRUMB SEARCH ---------- */
+(function () {
+  function init() {
+    if (document.getElementById("q")) return;
+    if (document.documentElement.classList.contains("embed")) return;
+    var crumbs = document.querySelector("nav.crumbs");
+    if (!crumbs) return;
+    if (document.getElementById("site-search")) return;
+
+    var wrap = document.createElement("div");
+    wrap.className = "crumbs-row";
+    crumbs.parentNode.insertBefore(wrap, crumbs);
+    wrap.appendChild(crumbs);
+
+    var searchWrap = document.createElement("div");
+    searchWrap.className = "crumbs-search";
+    searchWrap.innerHTML =
+      '<input id="site-q" type="search" placeholder="Search tools…" autocomplete="off" ' +
+      'aria-label="Search tools" aria-expanded="false" aria-controls="site-q-results" role="combobox">' +
+      '<div id="site-q-results" class="crumbs-results" role="listbox" hidden></div>';
+    wrap.appendChild(searchWrap);
+
+    var input = document.getElementById("site-q");
+    var results = document.getElementById("site-q-results");
+    var activeIdx = -1;
+    var currentMatches = [];
+
+    function closeResults() {
+      results.hidden = true;
+      results.innerHTML = "";
+      input.setAttribute("aria-expanded", "false");
+      activeIdx = -1;
+      currentMatches = [];
+    }
+
+    function render(matches) {
+      if (matches.length === 0) {
+        results.innerHTML = '<div class="crumbs-result-empty">No tools match.</div>';
+        results.hidden = false;
+        input.setAttribute("aria-expanded", "true");
+        return;
+      }
+      var h = "";
+      for (var i = 0; i < matches.length; i++) {
+        var m = matches[i];
+        var cls = "crumbs-result-item" + (i === activeIdx ? " active" : "");
+        h += '<a class="' + cls + '" href="' + m.url + '" role="option" data-idx="' + i + '">' +
+             '<span class="crumbs-result-name">' + ulEsc(m.name) + '</span>' +
+             '<span class="crumbs-result-cat">' + ulEsc(m.category) + '</span>' +
+             '</a>';
+      }
+      results.innerHTML = h;
+      results.hidden = false;
+      input.setAttribute("aria-expanded", "true");
+    }
+
+    function search(query) {
+      var v = query.trim();
+      if (!v) { closeResults(); return; }
+      var matches = [];
+      for (var i = 0; i < toolIndex.length && matches.length < 8; i++) {
+        var t = toolIndex[i];
+        var haystack = t.name + " " + (t.keywords || "") + " " + (t.category || "");
+        if (ulContains(haystack, v)) matches.push(t);
+      }
+      currentMatches = matches;
+      activeIdx = -1;
+      render(matches);
+    }
+
+    input.addEventListener("input", function () { search(this.value); });
+    input.addEventListener("focus", function () { if (this.value.trim()) search(this.value); });
+
+    input.addEventListener("keydown", function (e) {
+      if (results.hidden) return;
+      if (e.key === "ArrowDown") {
+        e.preventDefault();
+        activeIdx = Math.min(activeIdx + 1, currentMatches.length - 1);
+        render(currentMatches);
+      } else if (e.key === "ArrowUp") {
+        e.preventDefault();
+        activeIdx = Math.max(activeIdx - 1, -1);
+        render(currentMatches);
+      } else if (e.key === "Enter" && activeIdx >= 0 && currentMatches[activeIdx]) {
+        e.preventDefault();
+        window.location.href = currentMatches[activeIdx].url;
+      } else if (e.key === "Escape") {
+        closeResults();
+        input.blur();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!searchWrap.contains(e.target)) closeResults();
+    });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+/* ---------- 8. SHARE MODULE ---------- */
+(function () {
+  function buildShareUI(host){
+    var canonical = document.querySelector('link[rel="canonical"]');
+    var url = canonical ? canonical.href : location.href.split("#")[0].split("?")[0];
+    var rawTitle = document.title.replace(/\s*[|–—].*$/, "").trim();
+
+    function shareText(){
+      var resultText = host.getAttribute("data-result") || "";
+      return resultText ? resultText + " — " + rawTitle : rawTitle;
+    }
+
+    function render(){
+      var t = shareText();
+      var u = url;
+      var links = {
+        x:        "https://twitter.com/intent/tweet?text=" + encodeURIComponent(t) + "&url=" + encodeURIComponent(u),
+        facebook: "https://www.facebook.com/sharer/sharer.php?u=" + encodeURIComponent(u),
+        linkedin: "https://www.linkedin.com/sharing/share-offsite/?url=" + encodeURIComponent(u),
+        whatsapp: "https://api.whatsapp.com/send?text=" + encodeURIComponent(t + " " + u),
+        reddit:   "https://www.reddit.com/submit?url=" + encodeURIComponent(u) + "&title=" + encodeURIComponent(rawTitle),
+        email:    "mailto:?subject=" + encodeURIComponent(rawTitle) + "&body=" + encodeURIComponent(t + "\n\n" + u)
+      };
+      var hasNativeShare = typeof navigator.share === "function";
+
+      var h = '';
+      h += '<div class="tool-share-label">Share this tool</div>';
+      h += '<div class="tool-share-row">';
+      h += '<button type="button" class="tool-share-btn tool-share-copy" data-share-action="copy">📋 Copy link</button>';
+      if(hasNativeShare){
+        h += '<button type="button" class="tool-share-btn tool-share-native" data-share-action="native">🔗 Share</button>';
+      }
+      h += '<a href="' + links.x + '" target="_blank" rel="nofollow noopener noreferrer" class="tool-share-btn">𝕏 X</a>';
+      h += '<a href="' + links.facebook + '" target="_blank" rel="nofollow noopener noreferrer" class="tool-share-btn">Facebook</a>';
+      h += '<a href="' + links.linkedin + '" target="_blank" rel="nofollow noopener noreferrer" class="tool-share-btn">LinkedIn</a>';
+      h += '<a href="' + links.whatsapp + '" target="_blank" rel="nofollow noopener noreferrer" class="tool-share-btn">WhatsApp</a>';
+      h += '<a href="' + links.reddit + '" target="_blank" rel="nofollow noopener noreferrer" class="tool-share-btn">Reddit</a>';
+      h += '<a href="' + links.email + '" class="tool-share-btn">Email</a>';
+      h += '</div>';
+
+      host.innerHTML = h;
+    }
+
+    render();
+    host._refresh = render;
+
+    host.addEventListener("click", function(e){
+      var btn = e.target.closest("[data-share-action]");
+      if(!btn) return;
+      var action = btn.getAttribute("data-share-action");
+      if(action === "copy"){
+        if(navigator.clipboard){
+          navigator.clipboard.writeText(url).then(function(){
+            var o = btn.textContent;
+            btn.textContent = "✓ Copied!";
+            setTimeout(function(){ btn.textContent = o; }, 1400);
+          });
+        }
+      } else if(action === "native"){
+        if(navigator.share){
+          navigator.share({
+            title: rawTitle,
+            text: shareText(),
+            url: url
+          }).catch(function(){});
+        }
+      }
+    });
+  }
+
+  function init(){
+    if(document.documentElement.classList.contains("embed")) return;
+
+    var tools = document.querySelectorAll("section.tool");
+    for(var i = 0; i < tools.length; i++){
+      if(tools[i].querySelector(".tool-share")) continue;
+      var div = document.createElement("div");
+      div.className = "tool-share noembed";
+      div.setAttribute("data-result", "");
+      tools[i].appendChild(div);
+    }
+    var hosts = document.querySelectorAll(".tool-share");
+    for(var j = 0; j < hosts.length; j++){
+      buildShareUI(hosts[j]);
+    }
+  }
+
+  if(document.readyState === "loading"){
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+
+  window.utShare = {
+    setResult: function(text){
+      var hosts = document.querySelectorAll(".tool-share");
+      for(var i = 0; i < hosts.length; i++){
+        hosts[i].setAttribute("data-result", text);
+        if(typeof hosts[i]._refresh === "function") hosts[i]._refresh();
+      }
+    }
+  };
+})();
+
+/* ---------- 9. COPY TO CLIPBOARD ---------- */
+document.addEventListener("click", function (e) {
+  var b = e.target.closest("[data-copy]");
+  if (!b) return;
+  var s = document.getElementById(b.dataset.copy);
+  var t = s ? (s.value || s.textContent) : location.href.split("#")[0].split("?")[0];
+  if (navigator.clipboard) {
+    navigator.clipboard.writeText(t.trim()).then(function () {
+      var o = b.textContent;
+      b.textContent = "Copied!";
+      setTimeout(function () { b.textContent = o; }, 1500);
+    });
+  }
+});
+
+/* ---------- 10. YOUTUBE FACADE ---------- */
+document.addEventListener("DOMContentLoaded", function () {
+  function loadYt(el) {
+    var id = el.dataset.id;
+    var f = document.createElement("iframe");
+    f.src = "https://www.youtube-nocookie.com/embed/" + id + "?autoplay=1";
+    f.title = el.getAttribute("aria-label") || "YouTube video";
+    f.allow = "accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture";
+    f.allowFullscreen = true;
+    el.replaceWith(f);
+  }
+  var fac = document.getElementById("ytFacade");
+  if (fac) {
+    fac.addEventListener("click", function () { loadYt(fac); });
+    fac.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); loadYt(fac); }
+    });
+  }
+});
+
+/* ---------- 11. RELATED TOOLS + GUIDES (auto internal links) ----------
+   Reads toolIndex. On any page whose path is listed in toolIndex it adds, at the
+   bottom of <main>, blocks of internal links. Nothing to configure per page - add
+   an entry to toolIndex and every page picks it up.
+
+   TOOL PAGE  ->  "Guides"            guides that list this tool (or share its category)
+                  "More <Category>"   other tools of the same category
+                  "You may also like" one tool from each of several other categories
+   GUIDE PAGE ->  "More <Category> guides"    up to 4 guides on the same topic
+                  "Guides on other topics"    up to 3 guides, one per other topic
+                  Each guide is listed with its own tool(s) (from its  tools: [...]  field).
+                  Nothing is shown for a guide without a  tools  field except its title.
+
+   Guide entries in toolIndex (category "Guide") take two optional fields:
+     tools: ["/tools/health-fitness/keto-macro-calculator/"]   tools the guide is about
+     topic: "health-fitness"                                   category folder; if left out,
+                                                               it is taken from tools[0]
+   Any tool entry may take  related: ["/tools/x/y/", ...]  to hand-pick its links
+   (replaces the automatic same-category / other-category blocks for that tool). */
+(function () {
+  var SAME_MAX   = 6;   // tools from the same category
+  var OTHER_MAX  = 3;   // tools from other categories
+  var GUIDE_MAX  = 3;   // guides shown on a tool page
+  var GUIDE_SAME_MAX  = 4;  // guides from the same topic, shown on a guide page
+  var GUIDE_OTHER_MAX = 3;  // guides from other topics (one per topic), shown on a guide page
+
+  function norm(p) { p = (p || "").split("?")[0].split("#")[0]; return p.replace(/index\.html$/, "").replace(/\/?$/, "/"); }
+  function catSlug(u) { var m = norm(u).match(/^\/tools\/([^\/]+)\//); return m ? m[1] : ""; }
+  function isGuide(t) { return t.category === "Guide" || norm(t.url).indexOf("/guides/") === 0; }
+  function topicOf(g) { return g.topic || (g.tools && g.tools.length ? catSlug(g.tools[0]) : ""); }
+  function cleanName(t) { return isGuide(t) ? t.name.replace(/\s*\(Guide\)\s*$/i, "") : t.name; }
+  // withLabel: show the category under the name (only useful for tools from other categories)
+  function card(t, withLabel) {
+    return '<a class="card" href="' + ulEsc(t.url) + '"><b>' + ulEsc(cleanName(t)) + '</b>' + (withLabel ? '<span>' + ulEsc(isGuide(t) ? "Guide" : t.category) + '</span>' : '') + '</a>';
+  }
+
+  // compact "guide + its tool" rows used at the bottom of guide pages
+  function guideRow(g) {
+    var tools = [];
+    if (g.tools) for (var k = 0; k < g.tools.length && tools.length < 2; k++) {
+      var t = null, u = norm(g.tools[k]);
+      for (var m = 0; m < toolIndex.length; m++) if (norm(toolIndex[m].url) === u) { t = toolIndex[m]; break; }
+      if (t) tools.push('<a href="' + ulEsc(t.url) + '">' + ulEsc(t.name) + '</a>');
+    }
+    return '<li><a class="rg-title" href="' + ulEsc(g.url) + '">' + ulEsc(cleanName(g)) + '</a>' +
+           (tools.length ? '<span class="rg-tool">Tool: ' + tools.join(" · ") + '</span>' : '') + '</li>';
+  }
+  function guideList(title, list, first) {
+    if (!list.length) return "";
+    return '<h2' + (first ? '' : ' style="margin-top:24px"') + '>' + ulEsc(title) + '</h2><ul class="rel-guides">' + list.map(guideRow).join("") + '</ul>';
+  }
+  function addCss() {
+    if (document.getElementById("rel-guides-css")) return;
+    var st = document.createElement("style"); st.id = "rel-guides-css";
+    st.textContent = ".rel-guides{list-style:none;margin:10px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:4px 28px}" +
+      ".rel-guides li{padding:9px 0;border-bottom:1px solid var(--line)}" +
+      ".rel-guides .rg-title{font-weight:600;font-size:.95rem;display:block}" +
+      ".rel-guides .rg-tool{display:block;font-size:.83rem;color:var(--muted);margin-top:2px}" +
+      ".rel-guides .rg-tool a{color:var(--brand)}";
+    document.head.appendChild(st);
+  }
+  function block(title, list, first, withLabel) {
+    if (!list.length) return "";
+    return '<h2' + (first ? '' : ' style="margin-top:28px"') + '>' + ulEsc(title) + '</h2><div class="grid tool-list">' + list.map(function (t) { return card(t, withLabel); }).join("") + '</div>';
+  }
+
+  function init() {
+    if (document.documentElement.classList.contains("embed")) return;
+    if (document.querySelector(".related-tools")) return;
+    var main = document.querySelector("main");
+    if (!main) return;
+
+    var here = norm(location.pathname), cur = -1, i, n = toolIndex.length;
+    for (i = 0; i < n; i++) { if (norm(toolIndex[i].url) === here) { cur = i; break; } }
+    if (cur < 0) return;                        // home, category, about... are not in toolIndex
+    var me = toolIndex[cur], seen = {}; seen[here] = 1;
+    function byUrl(u) { u = norm(u); for (var k = 0; k < n; k++) if (norm(toolIndex[k].url) === u) return toolIndex[k]; return null; }
+    function take(list, t, max) { if (t && list.length < max && !seen[norm(t.url)]) { seen[norm(t.url)] = 1; list.push(t); } }
+    var html = "";
+
+    if (isGuide(me)) {
+      /* ----- guide page: compact list of guides, each with its own tool(s) ----- */
+      var topic = topicOf(me), sameG = [], otherG = [], usedT = {}, i2;
+      usedT[topic] = 1;
+      for (i = 1; i < n; i++) { var g = toolIndex[(cur + i) % n]; if (isGuide(g) && topic && topicOf(g) === topic) take(sameG, g, GUIDE_SAME_MAX); }
+      // other topics: one guide per topic, starting at a different place for every guide
+      var gl = [];
+      for (i = 0; i < n; i++) { if (isGuide(toolIndex[i])) gl.push(toolIndex[i]); }
+      for (i = 0; i < gl.length && otherG.length < GUIDE_OTHER_MAX; i++) {
+        var g3 = gl[(cur + i) % gl.length], tp = topicOf(g3);
+        if (seen[norm(g3.url)] || usedT[tp || g3.url]) continue;
+        usedT[tp || g3.url] = 1; seen[norm(g3.url)] = 1; otherG.push(g3);
+      }
+      var tl = me.tools && me.tools.length ? byUrl(me.tools[0]) : null;
+      var label = tl ? tl.category : "";
+      html = guideList(label ? "More " + label + " guides" : "More guides", sameG, true) +
+             guideList(sameG.length ? "Guides on other topics" : "More guides", otherG, !sameG.length);
+    } else {
+      /* ----- tool page ----- */
+      var mySlug = catSlug(me.url), guides = [], same = [], other = [];
+      for (i = 0; i < n; i++) { var a = toolIndex[i]; if (isGuide(a) && a.tools) for (var j = 0; j < a.tools.length; j++) if (norm(a.tools[j]) === here) take(guides, a, GUIDE_MAX); }
+      for (i = 0; i < n; i++) { var b = toolIndex[i]; if (isGuide(b) && mySlug && topicOf(b) === mySlug) take(guides, b, GUIDE_MAX); }
+
+      if (me.related && me.related.length) {
+        for (i = 0; i < me.related.length; i++) {
+          var r = byUrl(me.related[i]);
+          if (r && !seen[norm(r.url)]) { seen[norm(r.url)] = 1; (catSlug(r.url) === mySlug ? same : other).push(r); }
+        }
+      } else {
+        for (i = 1; i < n && same.length < SAME_MAX; i++) {
+          var t = toolIndex[(cur + i) % n];
+          if (catSlug(t.url) === mySlug && !isGuide(t)) take(same, t, SAME_MAX);
+        }
+        var used = {}; used[mySlug] = 1;
+        // all tools (guides left out) in toolIndex order. Walk through them with a big step,
+        // starting at a different place for every page, so each tool is offered about equally
+        // often and the first tool of a category is not favoured.
+        var flat = [];
+        for (i = 0; i < n; i++) { if (!isGuide(toolIndex[i]) && catSlug(toolIndex[i].url)) flat.push(toolIndex[i]); }
+        var m = flat.length, base = (cur * 7 + 3) % m, step = Math.max(1, Math.round(m * 0.382));
+        for (i = 0; i < 2 * m && other.length < OTHER_MAX; i++) {
+          var o = i < m ? flat[(base + i * step) % m] : flat[i - m], s = catSlug(o.url);
+          if (used[s] || seen[norm(o.url)]) continue;
+          used[s] = 1; seen[norm(o.url)] = 1; other.push(o);
+        }
+      }
+      html = block(guides.length > 1 ? "Guides" : "Read the guide", guides, true) +
+             block("More " + me.category + (/tools$/i.test(me.category) ? "" : " tools"), same, !guides.length) +
+             block("You may also like", other, !guides.length && !same.length, true);
+    }
+    if (!html) return;
+    addCss();
+    main.insertAdjacentHTML("beforeend", '<section class="related-tools noembed" style="margin-top:36px"><nav aria-label="Related links">' + html + '</nav></section>');
+  }
+
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
